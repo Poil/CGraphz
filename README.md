@@ -1,18 +1,28 @@
-# CGraphz
-## Installation on Ubuntu
-### Apache MysqL PHP
+CGraphz
+=============
+
+Installation on Ubuntu
+-------
+
+Apache MysqL PHP
+-----
 > aptitude install mysql-server mysql-client php5 libapache2-mod-php5 php5-mysql
-### Clone Git
+
+Clone Git
+-----
 > cd /var/www/
 > git clone http://github.com/Poil/CGraphz.git
-### Post Installation
-#### MySQL
+
+Post Installation
+-----
+* MySQL
 > mysql -u root -p
 > source /var/www/CGraphz/sql/cgraphz.sql
-#### Configuration
+* Configuration
 Edit /var/www/CGraphz/config/config.php
 
-## Add your first server
+Add your first server
+-------
 1. Open your webbrowser and goto http://localhost/CGraphz
  * Login : admin
  * Password : passwd
