@@ -12,8 +12,8 @@ $connSQL=new DB();
 $auth = new AUTH_USER();
 if ($auth->verif_auth()) {
 
-	$plugin = validate_get($_GET['p'], 'plugin');
-	$host=validate_get($_GET['h'], 'host');
+	$plugin = validate_get(GET('p'), 'plugin');
+	$host=validate_get(GET('h'), 'host');
 	if (strpos($host,':')!=FALSE) {
 		$tmp=explode(':',$host);
 		$host=$tmp[0];
@@ -22,7 +22,7 @@ if ($auth->verif_auth()) {
 	$heigth = empty($_GET['y']) ? $CONFIG['heigth'] : $_GET['y'];
 	$s=intval($_GET['s']);
 	
-	if (validate_get($_GET['h'], 'host') === NULL) {
+	if (validate_get(GET('h'), 'host') === NULL) {
 	        error_log('CGRAPHZ ERROR: plugin contains unknown characters');
 	        error_image();
 	}

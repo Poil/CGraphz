@@ -62,14 +62,14 @@ class Type_Default {
 	# parse $_GET values
 	function parse_get() {
 		$this->args = array(
-			'host' => $_GET['h'],
-			'plugin' => $_GET['p'],
-			'pinstance' => $_GET['pi'],
-			'type' => $_GET['t'],
-			'tinstance' => $_GET['ti'],
+			'host' => GET('h'),
+			'plugin' => GET('p'),
+			'pinstance' => GET('pi'),
+			'type' => GET('t'),
+			'tinstance' => GET('ti'),
 		);
-		$this->seconds = $_GET['s'];
-		$this->seconds_end = $_GET['e'];
+		$this->seconds = GET('s');
+		$this->seconds_end = GET('e');
 	}
 
 	function validate_color($color) {
@@ -86,12 +86,12 @@ class Type_Default {
 
 		$rgb = array('r', 'g', 'b');
 
-		$fg[r] = hexdec(substr($fgc,0,2));
-		$fg[g] = hexdec(substr($fgc,2,2));
-		$fg[b] = hexdec(substr($fgc,4,2));
-		$bg[r] = hexdec(substr($bgc,0,2));
-		$bg[g] = hexdec(substr($bgc,2,2));
-		$bg[b] = hexdec(substr($bgc,4,2));
+		$fg['r'] = hexdec(substr($fgc,0,2));
+		$fg['g'] = hexdec(substr($fgc,2,2));
+		$fg['b'] = hexdec(substr($fgc,4,2));
+		$bg['r'] = hexdec(substr($bgc,0,2));
+		$bg['g'] = hexdec(substr($bgc,2,2));
+		$bg['b'] = hexdec(substr($bgc,4,2));
 
 		foreach ($rgb as $pri) {
 			$c[$pri] = dechex(round($percent * $fg[$pri]) + ((1.0 - $percent) * $bg[$pri]));
@@ -99,7 +99,7 @@ class Type_Default {
 				$c[$pri] = '00';
 		}
 
-		return $c[r].$c[g].$c[b];
+		return $c['r'].$c['g'].$c['b'];
 	}
 	
 	function rrd_escape($value) {

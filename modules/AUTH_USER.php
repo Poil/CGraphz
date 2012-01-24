@@ -5,8 +5,10 @@ class AUTH_USER {
 	private $id_auth_user;
 		
 	function __construct() {
-		session_name('CGRAPHZ');
-		session_start();
+		if(!isset($_SESSION)) {
+			session_name('CGRAPHZ');
+			session_start();
+		}
 		$this->connSQL=new DB();
 	}
 	
