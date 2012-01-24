@@ -1,9 +1,9 @@
 <?php
 $connSQL=new DB();
 if (isset($_GET['f_id_config_project'])) {
-	$f_id_config_project=intval($_GET['f_id_config_project']);
-	$f_id_config_role=intval($_GET['f_id_config_role']);
-	$f_id_config_environment=intval($_GET['f_id_config_environment']);
+	$f_id_config_project=intval(@$_GET['f_id_config_project']);
+	$f_id_config_role=intval(@$_GET['f_id_config_role']);
+	$f_id_config_environment=intval(@$_GET['f_id_config_environment']);
 	
 	if (isset($_GET['f_id_config_environment']) && $f_id_config_environment!==0) {
 		$JOIN_ENV='LEFT OUTER JOIN config_environment_server ces
@@ -13,6 +13,9 @@ if (isset($_GET['f_id_config_project'])) {
 		$JOIN_ENV='LEFT OUTER JOIN config_environment_server ces
 				ON cs.id_config_server=ces.id_config_server';
 		$WHERE_ENV='AND ces.id_config_environment IS NULL';
+	} else {
+		$JOIN_ENV='';
+		$WHERE_ENV='';
 	}
 	
 	if (isset($_GET['f_id_config_role']) && $f_id_config_role!==0) {
