@@ -2,9 +2,9 @@
 
 # Collectd NFS plugin
 
-require_once 'conf/common.inc.php';
+
 require_once 'type/GenericStacked.class.php';
-require_once 'inc/collectd.inc.php';
+require_once 'modules/collectd.inc.php';
 
 
 # Check http://github.com/octo/collectd/blob/master/src/nfs.c
@@ -30,6 +30,7 @@ $obj->heigth = $heigth;
 $obj->rrd_title = sprintf('NFS-%s Procedures', $obj->args['pinstance']);
 $obj->rrd_vertical = 'Procedures';
 $obj->rrd_format = '%5.2lf';
+$obj->generate_colors();
 
 collectd_flush($obj->identifiers);
 $obj->rrd_graph();

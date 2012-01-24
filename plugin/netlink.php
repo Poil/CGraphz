@@ -2,9 +2,9 @@
 
 # Collectd Netlink Plugin
 
-require_once 'conf/common.inc.php';
+
 require_once 'type/GenericStacked.class.php';
-require_once 'inc/collectd.inc.php';
+require_once 'modules/collectd.inc.php';
 
 $obj = new Type_GenericStacked($CONFIG);
 

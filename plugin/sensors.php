@@ -2,9 +2,9 @@
 
 # Collectd Sensors plugin
 
-require_once 'conf/common.inc.php';
+
 require_once 'type/Default.class.php';
-require_once 'inc/collectd.inc.php';
+require_once 'modules/collectd.inc.php';
 
 ## LAYOUT
 # sensors-XXXX/
@@ -18,6 +18,7 @@ $obj->ds_names = array(
 );
 $obj->width = $width;
 $obj->heigth = $heigth;
+$obj->generate_colors();
 switch($obj->args['type']) {
 	case 'fanspeed':
 		$obj->rrd_title = sprintf('Fanspeed (%s)', $obj->args['pinstance']);

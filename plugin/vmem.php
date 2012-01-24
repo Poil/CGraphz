@@ -2,9 +2,9 @@
 
 # Collectd VMem plugin
 
-require_once 'conf/common.inc.php';
+
 require_once 'type/GenericStacked.class.php';
-require_once 'inc/collectd.inc.php';
+require_once 'modules/collectd.inc.php';
 
 ## LAYOUT
 # vmem/
@@ -16,8 +16,6 @@ require_once 'inc/collectd.inc.php';
 $obj = new Type_GenericStacked($CONFIG);
 $obj->width = $width;
 $obj->heigth = $heigth;
-$obj->rrd_format = '%5.1lf%s';
-
 switch($obj->args['type']) {
 	case 'vmpage_faults':
 		$obj->data_sources = array('minflt', 'majflt');
@@ -27,6 +25,7 @@ switch($obj->args['type']) {
 		                       'majflt' => 'Major');
 		$obj->rrd_title = 'Page faults';
 		$obj->rrd_vertical = '';
+		$obj->rrd_format = '%5.1lf%s';
 		break;
 	case 'vmpage_io':
 		$obj->data_sources = array('in', 'out');
@@ -40,9 +39,11 @@ switch($obj->args['type']) {
 		                     'swap-out'   => 'ffff00');
 		$obj->rrd_title = 'Page IO';
 		$obj->rrd_vertical = '';
+		$obj->rrd_format = '%5.1lf%s';
 		break;
 	case 'vmpage_number':
 		$obj->data_sources = array('value');
+		$obj->generate_colors();
 		$obj->order = array('active_anon', 'active_file',
 		                    'anon_pages', 'bounce',
 		                    'dirty', 'file_pages',
@@ -55,6 +56,7 @@ switch($obj->args['type']) {
 		                    'writeback', 'writeback_temp');
 		$obj->rrd_title = 'Pages';
 		$obj->rrd_vertical = '';
+		$obj->rrd_format = '%5.1lf%s';
 		break;
 }
 

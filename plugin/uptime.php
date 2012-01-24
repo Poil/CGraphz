@@ -2,9 +2,9 @@
 
 # Collectd Uptime plugin
 
-require_once 'conf/common.inc.php';
+
 require_once 'type/Uptime.class.php';
-require_once 'inc/collectd.inc.php';
+require_once 'modules/collectd.inc.php';
 
 ## LAYOUT
 # uptime/uptime.rrd

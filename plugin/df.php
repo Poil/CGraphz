@@ -2,9 +2,9 @@
 
 # Collectd Df plugin
 
-require_once 'conf/common.inc.php';
+
 require_once 'type/GenericStacked.class.php';
-require_once 'inc/collectd.inc.php';
+require_once 'modules/collectd.inc.php';
 
 # LAYOUT
 #
@@ -15,6 +15,7 @@ require_once 'inc/collectd.inc.php';
 $obj = new Type_GenericStacked($CONFIG);
 $obj->data_sources = array('value');
 $obj->order = array('reserved', 'free', 'used');
+
 $obj->ds_names = array(
 	'reserved' => 'Reserved',
 	'free' => 'Free',
@@ -37,6 +38,7 @@ if ($CONFIG['version'] < 5) {
 	$obj->data_sources = array('free', 'used');
 	$obj->rrd_title = sprintf('Free space (%s)', $obj->args['tinstance']);
 }
+
 
 collectd_flush($obj->identifiers);
 $obj->rrd_graph();

@@ -2,8 +2,8 @@
 
 # Collectd Swap plugin
 
-require_once 'conf/common.inc.php';
-require_once 'inc/collectd.inc.php';
+
+require_once 'modules/collectd.inc.php';
 
 ## LAYOUT
 # swap/
@@ -11,7 +11,7 @@ require_once 'inc/collectd.inc.php';
 # swap/swap-free.rrd
 # swap/swap-used.rrd
 
-switch(GET('t')) {
+switch($_GET['t']) {
 	case 'swap':
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG);

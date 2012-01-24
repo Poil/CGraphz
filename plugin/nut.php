@@ -2,9 +2,9 @@
 
 # Collectd NUT plugin
 
-require_once 'conf/common.inc.php';
+
 require_once 'type/Default.class.php';
-require_once 'inc/collectd.inc.php';
+require_once 'modules/collectd.inc.php';
 
 ## LAYOUT
 # nut-XXXX/
@@ -16,6 +16,7 @@ require_once 'inc/collectd.inc.php';
 $obj = new Type_Default($CONFIG);
 $obj->width = $width;
 $obj->heigth = $heigth;
+$obj->generate_colors();
 switch($obj->args['type']) {
 	case 'percent':
 		$obj->data_sources = array('percent');

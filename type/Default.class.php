@@ -9,6 +9,7 @@ class Type_Default {
 	var $cache;
 	var $args;
 	var $seconds;
+	var $seconds_end;
 	var $data_sources = array('value');
 	var $order;
 	var $ds_names;
@@ -34,38 +35,41 @@ class Type_Default {
 		$this->identifiers = $this->file2identifier($this->files);
 	}
 
-	function rainbow_colors() {
-		$sources = count($this->rrd_get_sources());
-		foreach ($this->rrd_get_sources() as $ds) {
-			# hue (saturnation=1, value=1)
-			$h = 360 - ($c * (330/($sources-1)));
+	function generate_colors() {
+		$base = array( array(255,   0,   0),
+			       array(  0, 255,   0),
+			       array(  0,   0, 255),
+			       array(255, 120,   0),
+			       array(255,   0, 120),
+			       array(  0, 255, 120),
+			       array(120, 255,   0),
+			       array(120,   0, 255),
+			       array(  0, 120, 255));
 
-			$h = ($h %= 360) / 60;
-			$f = $h - floor($h);
-			$q[0] = $q[1] = 0;
-			$q[2] = 1*(1-1*(1-$f));
-			$q[3] = $q[4] = 1;
-			$q[5] = 1*(1-1*$f);
-
-			$hex = '';
-			foreach(array(4,2,0) as $j) {
-				$hex .= sprintf('%02x', $q[(floor($h)+$j)%6] * 255);
+		$this->colors = array();
+		$n = 0;
+		$p = 0;
+		foreach($base as $b) {
+			$n = $p;
+			for($i = 100; $i >= 20; $i -= 30) {
+				$this->colors[$n] = sprintf('%02x%02x%02x', $b[0] * $i / 100, $b[1] * $i / 100, $b[2] * $i / 100);
+				$n += count($base);
 			}
-			$this->colors[$ds] = $hex;
-			$c++;
+			$p++;
 		}
 	}
 
 	# parse $_GET values
 	function parse_get() {
 		$this->args = array(
-			'host' => GET('h'),
-			'plugin' => GET('p'),
-			'pinstance' => GET('pi'),
-			'type' => GET('t'),
-			'tinstance' => GET('ti'),
+			'host' => $_GET['h'],
+			'plugin' => $_GET['p'],
+			'pinstance' => $_GET['pi'],
+			'type' => $_GET['t'],
+			'tinstance' => $_GET['ti'],
 		);
-		$this->seconds = GET('s');
+		$this->seconds = $_GET['s'];
+		$this->seconds_end = $_GET['e'];
 	}
 
 	function validate_color($color) {
@@ -82,12 +86,12 @@ class Type_Default {
 
 		$rgb = array('r', 'g', 'b');
 
-		$fg['r'] = hexdec(substr($fgc,0,2));
-		$fg['g'] = hexdec(substr($fgc,2,2));
-		$fg['b'] = hexdec(substr($fgc,4,2));
-		$bg['r'] = hexdec(substr($bgc,0,2));
-		$bg['g'] = hexdec(substr($bgc,2,2));
-		$bg['b'] = hexdec(substr($bgc,4,2));
+		$fg[r] = hexdec(substr($fgc,0,2));
+		$fg[g] = hexdec(substr($fgc,2,2));
+		$fg[b] = hexdec(substr($fgc,4,2));
+		$bg[r] = hexdec(substr($bgc,0,2));
+		$bg[g] = hexdec(substr($bgc,2,2));
+		$bg[b] = hexdec(substr($bgc,4,2));
 
 		foreach ($rgb as $pri) {
 			$c[$pri] = dechex(round($percent * $fg[$pri]) + ((1.0 - $percent) * $bg[$pri]));
@@ -95,11 +99,11 @@ class Type_Default {
 				$c[$pri] = '00';
 		}
 
-		return $c['r'].$c['g'].$c['b'];
+		return $c[r].$c[g].$c[b];
 	}
-
+	
 	function rrd_escape($value) {
-		return str_replace(':', '\:', $value);
+			return str_replace(':', '\:', $value);
 	}
 
 	function rrd_files() {
@@ -143,9 +147,6 @@ class Type_Default {
 	}
 
 	function rrd_graph($debug=false) {
-		if (!$this->colors)
-			$this->rainbow_colors();
-
 		$graphdata = $this->rrd_gen_graph();
 		
 		if(!$debug) {
@@ -157,7 +158,10 @@ class Type_Default {
 			echo `$graphdata`;
 		} else {
 			print '<pre>';
-			print_r($graphdata);
+			neat_r($graphdata, false, ' \\');
+			$graphdata = implode(' ', $graphdata);
+			echo "\n\nResult : " ;
+			system($graphdata." 2>&1");
 			print '</pre>';
 		}
 	}
@@ -172,7 +176,11 @@ class Type_Default {
 		$rrdgraph[] = '-l 0';
 		$rrdgraph[] = sprintf('-t "%s on %s"', $this->rrd_title, $this->args['host']);
 		$rrdgraph[] = sprintf('-v "%s"', $this->rrd_vertical);
-		$rrdgraph[] = sprintf('-s -%d', is_numeric($this->seconds) ? $this->seconds : 86400);
+		if ($this->seconds_end=="") {
+			$rrdgraph[] = sprintf('-s -%d', is_numeric($this->seconds) ? $this->seconds : 86400);
+		} else {
+			$rrdgraph[] = sprintf('-s %s -e %s', is_numeric($this->seconds) ? $this->seconds : 'now-86400', is_numeric($this->seconds_end) ? $this->seconds_end : 'now');
+		}
 
 		return $rrdgraph;
 	}
@@ -199,13 +207,8 @@ class Type_Default {
 		}
 		# or one file with multiple data_sources
 		else {
-			if(is_array($this->data_sources) && count($this->data_sources)==1 && in_array('value', $this->data_sources)) {
-				# use tinstances as sources
-				$sources = $this->tinstances;
-			} else {
-				# use data_sources as sources
-				$sources = $this->data_sources;
-			}
+			# use data_sources as sources
+			$sources = $this->data_sources;
 		}
 		$this->parse_ds_names($sources);
 		return $sources;

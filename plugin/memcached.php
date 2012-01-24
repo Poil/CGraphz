@@ -6,8 +6,8 @@
 
 
 
-require_once 'conf/common.inc.php';
-require_once 'inc/collectd.inc.php';
+
+require_once 'modules/collectd.inc.php';
 
 ## LAYOUT
 # df-cache.rrd
@@ -21,7 +21,7 @@ require_once 'inc/collectd.inc.php';
 # ps_cputime.rrd
 
 
-switch(GET('t')) {
+switch($_GET['t']) {
 # df-cache.rrd
 	case 'df':
         require_once 'type/Default.class.php';

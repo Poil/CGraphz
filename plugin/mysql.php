@@ -2,20 +2,21 @@
 
 # Collectd MySQL plugin
 
-require_once 'conf/common.inc.php';
+
 require_once 'type/GenericStacked.class.php';
-require_once 'inc/collectd.inc.php';
+require_once 'modules/collectd.inc.php';
 
 $obj = new Type_GenericStacked($CONFIG);
 $obj->width = $width;
 $obj->heigth = $heigth;
-$obj->rrd_format = '%5.1lf%s';
 
 switch($obj->args['type'])
 {
 	case 'mysql_commands':
+		$obj->generate_colors();
 		$obj->rrd_title = sprintf('MySQL commands (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Issues/s';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'mysql_handler':
 		$obj->colors = array(
@@ -33,6 +34,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('MySQL handler (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Invocations';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'mysql_locks':
 		$obj->colors = array(
@@ -41,6 +43,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('MySQL locks (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'locks';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'mysql_octets':
 		$obj->data_sources = array('rx', 'tx');
@@ -54,6 +57,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('MySQL traffic (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bits per second';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'mysql_qcache':
 		$obj->data_sources = array('not_cached', 'inserts', 'hits', 'lowmem_prunes', 'queries_in_cache');
@@ -73,6 +77,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('MySQL query cache (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Queries/s';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'mysql_threads':
 		$obj->data_sources = array('cached', 'connected', 'running', 'created');
@@ -86,10 +91,11 @@ switch($obj->args['type'])
 			'cached' => '00e000',
 			'connected' => '0000ff',
 			'running' => 'ff0000',
-			'created' => 'cccccc',
+			'created' => 'ffcc00',
 		);
 		$obj->rrd_title = sprintf('MySQL threads (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Threads';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 }
 

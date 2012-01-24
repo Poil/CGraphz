@@ -2,9 +2,8 @@
 
 # Collectd CPU plugin
 
-require_once 'conf/common.inc.php';
 require_once 'type/GenericStacked.class.php';
-require_once 'inc/collectd.inc.php';
+require_once 'modules/collectd.inc.php';
 
 ## LAYOUT
 # processes/
@@ -18,7 +17,6 @@ require_once 'inc/collectd.inc.php';
 $obj = new Type_GenericStacked($CONFIG);
 $obj->width = $width;
 $obj->heigth = $heigth;
-$obj->rrd_format = '%5.1lf%s';
 
 switch($obj->args['type'])
 {
@@ -42,6 +40,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = 'Processes';
 		$obj->rrd_vertical = 'Processes';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'fork_rate':
@@ -53,6 +52,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = 'Fork rate';
 		$obj->rrd_vertical = 'forks/s';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'ps_code':
@@ -64,6 +64,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('Text Resident Set (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bytes';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'ps_count':
@@ -78,6 +79,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('Number of Processes/Threads (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Amount';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'ps_cputime':
@@ -92,6 +94,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('CPU time (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'CPU time [s]';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'ps_disk_octets':
@@ -106,6 +109,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('Disk Traffic (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bytes per second';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'ps_disk_ops':
@@ -120,6 +124,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('Disk Operations (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Ops per second';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'ps_data':
@@ -131,6 +136,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('Data Resident Set (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bytes';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'ps_pagefaults':
@@ -145,6 +151,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('PageFaults (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Pagefaults';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'ps_rss':
@@ -156,6 +163,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('Resident Segment Size (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bytes';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'ps_stacksize':
@@ -167,6 +175,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('Stacksize (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bytes';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 	case 'ps_vm':
@@ -178,6 +187,7 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('Virtual Memory (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bytes';
+		$obj->rrd_format = '%5.1lf%s';
 	break;
 
 }

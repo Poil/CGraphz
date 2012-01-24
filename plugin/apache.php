@@ -1,10 +1,8 @@
 <?php
 
 # Collectd Apache plugin
-
-require_once 'conf/common.inc.php';
 require_once 'type/Default.class.php';
-require_once 'inc/collectd.inc.php';
+require_once 'modules/collectd.inc.php';
 
 ## LAYOUT
 # apache[-X]/apache_bytes-X.rrd
