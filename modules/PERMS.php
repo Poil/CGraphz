@@ -68,6 +68,7 @@ class PERMS {
 	
 	function perm_list_module($module, $show_no_menu=true) {
 		if ($show_no_menu!==true) $libmenu=' AND (menu_name!="" OR menu_name IS NOT NULL) ';
+		else $libmenu='';
 		$lib='
 			SELECT pm.component, pm.menu_name
 			FROM perm_module pm
