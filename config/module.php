@@ -25,6 +25,7 @@ if ($module=='config') {
 		include(DIR_FSROOT.'/html/config/project/r_project_wh_id.php');
 		include(DIR_FSROOT.'/html/config/project/r_project.php');
 		include(DIR_FSROOT.'/html/config/project/d_project.php');
+		echo '<div class="spacer">&nbsp;</div>';
 		
 		if (isset($_GET['f_id_config_project'])) {
 			echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_project').'">Nouveau</a> ]';
@@ -52,6 +53,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/perm/project_group/r_project_group.php');
 			include(DIR_FSROOT.'/html/perm/project_group/d_project_group.php');
 			
+			echo '<div class="spacer">&nbsp;</div>';
 			if (isset($_GET['f_id_auth_group'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_group').'">Nouveau</a> ]';
 			}
@@ -71,6 +73,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/config/project_server/r_project_server_wh_id.php');
 			include(DIR_FSROOT.'/html/config/project_server/r_project_server.php');
 			include(DIR_FSROOT.'/html/config/project_server/d_project_server.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_config_server'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_server').'">Nouveau</a> ]';
@@ -97,6 +100,7 @@ if ($module=='config') {
 		include(DIR_FSROOT.'/html/config/server/r_server_wh_id.php');
 		include(DIR_FSROOT.'/html/config/server/r_server.php');
 		include(DIR_FSROOT.'/html/config/server/d_server.php');
+		echo '<div class="spacer">&nbsp;</div>';
 		
 		if (isset($_GET['f_id_config_server'])) {
 			echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_server').'">Nouveau</a> ]';
@@ -132,6 +136,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/config/server_project/r_server_project_wh_id.php');
 			include(DIR_FSROOT.'/html/config/server_project/r_server_project.php');
 			include(DIR_FSROOT.'/html/config/server_project/d_server_project.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_config_project'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_project').'">Nouveau</a> ]';
@@ -155,6 +160,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/config/server_role/r_server_role_wh_id.php');
 			include(DIR_FSROOT.'/html/config/server_role/r_server_role.php');
 			include(DIR_FSROOT.'/html/config/server_role/d_server_role.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_config_role'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_role').'">Nouveau</a> ]';
@@ -178,6 +184,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/config/server_environment/r_server_environment_wh_id.php');
 			include(DIR_FSROOT.'/html/config/server_environment/r_server_environment.php');
 			include(DIR_FSROOT.'/html/config/server_environment/d_server_environment.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_config_environment'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_role').'">Nouveau</a> ]';
@@ -202,6 +209,7 @@ if ($module=='config') {
 		include(DIR_FSROOT.'/html/config/role/r_role_wh_id.php');
 		include(DIR_FSROOT.'/html/config/role/r_role.php');
 		include(DIR_FSROOT.'/html/config/role/d_role.php');
+		echo '<div class="spacer">&nbsp;</div>';
 		
 		if (isset($_GET['f_id_config_role'])) {
 			echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_role').'">Nouveau</a> ]';
@@ -228,6 +236,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/config/role_server/r_role_server_wh_id.php');
 			include(DIR_FSROOT.'/html/config/role_server/r_role_server.php');
 			include(DIR_FSROOT.'/html/config/role_server/d_role_server.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_config_server'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_server').'">Nouveau</a> ]';
@@ -251,6 +260,7 @@ if ($module=='config') {
 		include(DIR_FSROOT.'/html/config/environment/r_environment_wh_id.php');
 		include(DIR_FSROOT.'/html/config/environment/r_environment.php');
 		include(DIR_FSROOT.'/html/config/environment/d_environment.php');
+		echo '<div class="spacer">&nbsp;</div>';
 		
 		if (isset($_GET['f_id_config_environment'])) {
 			echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_environment').'">Nouveau</a> ]';
@@ -277,6 +287,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/config/environment_server/r_environment_server_wh_id.php');
 			include(DIR_FSROOT.'/html/config/environment_server/r_environment_server.php');
 			include(DIR_FSROOT.'/html/config/environment_server/d_environment_server.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_config_server'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_server').'">Nouveau</a> ]';
@@ -300,6 +311,7 @@ if ($module=='config') {
 		include(DIR_FSROOT.'/html/config/plugin_filter/r_plugin_filter_wh_id.php');
 		include(DIR_FSROOT.'/html/config/plugin_filter/r_plugin_filter.php');
 		include(DIR_FSROOT.'/html/config/plugin_filter/d_plugin_filter.php');
+		echo '<div class="spacer">&nbsp;</div>';
 		
 		if (isset($_GET['f_id_config_plugin_filter'])) {
 			echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_plugin_filter').'">Nouveau</a> ]';
@@ -329,6 +341,7 @@ if ($module=='config') {
 		include(DIR_FSROOT.'/html/auth/user/r_user_wh_id.php');
 		include(DIR_FSROOT.'/html/auth/user/r_user.php');
 		include(DIR_FSROOT.'/html/auth/user/d_user.php');
+		echo '<div class="spacer">&nbsp;</div>';
 		
 		if (isset($_GET['f_id_auth_user'])) {
 			echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_user').'">Nouveau</a> ]';
@@ -356,6 +369,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/auth/user_group/r_user_group_wh_id.php');
 			include(DIR_FSROOT.'/html/auth/user_group/r_user_group.php');
 			include(DIR_FSROOT.'/html/auth/user_group/d_user_group.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_auth_group'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_group').'">Nouveau</a> ]';
@@ -380,6 +394,7 @@ if ($module=='config') {
 		include(DIR_FSROOT.'/html/auth/group/r_group_wh_id.php');
 		include(DIR_FSROOT.'/html/auth/group/r_group.php');
 		include(DIR_FSROOT.'/html/auth/group/d_group.php');
+		echo '<div class="spacer">&nbsp;</div>';
 		
 		if (isset($_GET['f_id_auth_group'])) {
 			echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_group').'">Nouveau</a> ]';
@@ -407,6 +422,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/auth/group_user/r_group_user_wh_id.php');
 			include(DIR_FSROOT.'/html/auth/group_user/r_group_user.php');
 			include(DIR_FSROOT.'/html/auth/group_user/d_group_user.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_auth_user'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_user').'">Nouveau</a> ]';
@@ -430,6 +446,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/perm/group_project/r_group_project_wh_id.php');
 			include(DIR_FSROOT.'/html/perm/group_project/r_group_project.php');
 			include(DIR_FSROOT.'/html/perm/group_project/d_group_project.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_config_project'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_project').'">Nouveau</a> ]';
@@ -453,6 +470,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/config/group_plugin_filter/r_group_plugin_filter_wh_id.php');
 			include(DIR_FSROOT.'/html/config/group_plugin_filter/r_group_plugin_filter.php');
 			include(DIR_FSROOT.'/html/config/group_plugin_filter/d_group_plugin_filter.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_config_plugin_filter'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_plugin_filter').'">Nouveau</a> ]';
@@ -476,6 +494,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/perm/group_module/r_group_module_wh_id.php');
 			include(DIR_FSROOT.'/html/perm/group_module/r_group_module.php');
 			include(DIR_FSROOT.'/html/perm/group_module/d_group_module.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_perm_module'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_perm_module').'">Nouveau</a> ]';
@@ -501,6 +520,7 @@ if ($module=='config') {
 		include(DIR_FSROOT.'/html/perm/module/r_module_wh_id.php');
 		include(DIR_FSROOT.'/html/perm/module/r_module.php');
 		include(DIR_FSROOT.'/html/perm/module/d_module.php');
+		echo '<div class="spacer">&nbsp;</div>';
 		
 		if (isset($_GET['f_id_perm_module'])) {
 			echo '[ <a href="'.removeqsvar($cur_url,'f_id_perm_module').'">Nouveau</a> ]';
@@ -528,6 +548,7 @@ if ($module=='config') {
 			include(DIR_FSROOT.'/html/perm/module_group/r_module_group_wh_id.php');
 			include(DIR_FSROOT.'/html/perm/module_group/r_module_group.php');
 			include(DIR_FSROOT.'/html/perm/module_group/d_module_group.php');
+			echo '<div class="spacer">&nbsp;</div>';
 			
 			if (isset($_GET['f_id_auth_group'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_group').'">Nouveau</a> ]';
@@ -566,6 +587,7 @@ if ($module=='config') {
 		include(DIR_FSROOT.'/html/small_admin/mygroup/r_group_wh_id.php');
 		include(DIR_FSROOT.'/html/small_admin/mygroup/r_group.php');
 		include(DIR_FSROOT.'/html/small_admin/mygroup/d_group.php');
+		echo '<div class="spacer">&nbsp;</div>';
 		
 		if (isset($_GET['f_id_auth_group'])) {
 			echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_group').'">Nouveau</a> ]';
@@ -597,6 +619,7 @@ if ($module=='config') {
 				include(DIR_FSROOT.'/html/small_admin/mygroup_user/r_group_user_wh_id.php');
 				include(DIR_FSROOT.'/html/small_admin/mygroup_user/r_group_user.php');
 				include(DIR_FSROOT.'/html/small_admin/mygroup_user/d_group_user.php');
+				echo '<div class="spacer">&nbsp;</div>';
 				
 				if (isset($_GET['f_id_auth_user'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_user').'">Nouveau</a> ]';
