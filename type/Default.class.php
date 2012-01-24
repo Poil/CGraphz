@@ -44,7 +44,11 @@ class Type_Default {
 			       array(  0, 255, 120),
 			       array(120, 255,   0),
 			       array(120,   0, 255),
-			       array(  0, 120, 255));
+			       array(  0, 120, 255),
+			       array(120, 120, 0),
+			       array(  0, 120, 120),
+			       array(120, 0, 120)
+			);
 
 		$this->colors = array();
 		$n = 0;

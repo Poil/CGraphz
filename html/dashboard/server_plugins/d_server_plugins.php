@@ -47,11 +47,27 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 		$old_pi='';
 		foreach ($plugins as $plugin) {
 			preg_match($myregex, $plugin, $matches);
-
-			$p=$matches[2];
-			$pi=$matches[3];
-			$t=$matches[4];
-			$ti=$matches[5];
+			if (isset($matches[2])) {
+				$p=$matches[2];
+				if (!isset($$p)) $$p=false;
+			} else { 
+				$p=null; 
+			}
+			if (isset($matches[3])) {
+				$pi=$matches[3];
+			} else { 
+				$pi=null; 
+			}
+			if (isset($matches[4])) {
+				$t=$matches[4];
+			} else { 
+				$t=null; 
+			}
+			if (isset($matches[5])) {
+				$ti=$matches[5];
+			} else { 
+				$ti=null; 
+			}
 			
 			if ($$p!=true) {
 				echo "<h3>$p</h3>";
@@ -72,7 +88,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 							} else {
 								echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
 							}
-							$cpt++;
+							//$cpt++;
 						}
 					} else {
 						echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
@@ -81,7 +97,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 						} else {
 							echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
 						}
-						$cpt++;
+						//$cpt++;
 					}
 					$old_t=$t;
 					$old_pi=$pi;

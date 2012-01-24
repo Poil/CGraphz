@@ -68,7 +68,7 @@ if (isset($_GET['f_id_config_project'])) {
 		if (($cpt_server<MAX_SRV || $cpt_role<=1 || isset($_GET['f_id_config_role'])) && $cpt_server!==0) {
 			echo '<div id="div_menu_project_server">';
 			foreach ($all_server as $server) {
-				if (intval($_GET['f_id_config_server'])==$server->id_config_server) { 
+				if (intval(GET('f_id_config_server'))==$server->id_config_server) { 
 					$style=' style="font-weight: bold;" '; 
 				} else { 
 					$style=''; 

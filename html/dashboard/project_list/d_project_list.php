@@ -1,6 +1,6 @@
 <?php
 foreach ($all_project as $project) {
-	if (intval($_GET['f_id_config_project'])==$project->id_config_project) { 
+	if (intval(GET('f_id_config_project'))==$project->id_config_project) { 
 		$style=' style="font-weight: bold;" '; 
 	} else { 
 		$style=''; 

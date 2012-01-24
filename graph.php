@@ -2,7 +2,6 @@
 //session_cache_limiter("private");
 //ob_start();
 include './config/config.php';
-include DIR_FSROOT.'/modules/functions.inc.php';
 	
 session_name('CGRAPHZ');
 session_start();
