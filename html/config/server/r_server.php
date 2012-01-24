@@ -16,7 +16,8 @@ $connSQL->query($lib);
 
 $find='0';
 $lib= 'INSERT INTO server_list (`server_name`) VALUES (';  
-for($i=0; $i<count($filelist); $i++) {
+$cpt_filelist=count($filelist);
+for($i=0; $i<$cpt_filelist; $i++) {
 	if ($filelist[$i]!='lost+found' && $filelist[$i]!='..' && $filelist[$i]!='.' && strpos($filelist[$i],':')==false) {
 		if($find=='1')  {
 			$lib.=" ), (";
