@@ -72,4 +72,5 @@ function my_autoload ($pClassName) {
 spl_autoload_register("my_autoload");
 
 include(DIR_FSROOT.'/html/form/commun/func_form.php');
+include(DIR_FSROOT.'/modules/functions.inc.php');
 ?>
