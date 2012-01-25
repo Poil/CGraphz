@@ -577,8 +577,6 @@ if ($module=='config') {
 	} else if ($component=='compare') {
 		include(DIR_FSROOT.'/html/dashboard/server_compare/r_server.php');
 		include(DIR_FSROOT.'/html/dashboard/server_compare/f_server.php');
-	} else if ($component=='static_exploit') {
-		include(DIR_FSROOT.'/html/dashboard/static/static_exploit.php');
 	}
 } else if ($module=='small_admin') {
 	if ($component=='mygroup') {
