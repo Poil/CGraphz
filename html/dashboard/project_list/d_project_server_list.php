@@ -1,25 +1,31 @@
 <?php
+if (isset($_GET['auto_refresh'])) {
+	$urlrefresh='<a href="'.removeqsvar($_SERVER['REQUEST_URI'],'auto_refresh').'">No AutoRefresh</a>';
+} else {
+	$urlrefresh='<a href="'.htmlentities($_SERVER['REQUEST_URI']).'&amp;auto_refresh=true">AutoRefresh</a>';
+}
+
 if (isset($_GET['f_id_config_server'])) {
-	echo <<<LEFTMENU
+	echo '
 	<div id="left_menu">
 		<div id="left_menu_show">
 			<ul>			
-				<li><a href="#" onclick="refresh_graph('dashboard','3600','',''); $('#left_menu_show').hide('400'); return false">1h</a></li>
-				<li><a href="#" onclick="refresh_graph('dashboard','7200','',''); $('#left_menu_show').hide('400'); return false">2h</a></li>
-				<li><a href="#" onclick="refresh_graph('dashboard','21600','',''); $('#left_menu_show').hide('400'); return false">6h</a></li>
-				<li><a href="#" onclick="refresh_graph('dashboard','43200','',''); $('#left_menu_show').hide('400'); return false">12h</a></li>
-				<li><a href="#" onclick="refresh_graph('dashboard','86400','',''); $('#left_menu_show').hide('400'); return false">1 jour</a></li>
-				<li><a href="#" onclick="refresh_graph('dashboard','172800','',''); $('#left_menu_show').hide('400'); return false">2 jours</a></li>
-				<li><a href="#" onclick="refresh_graph('dashboard','604800','',''); $('#left_menu_show').hide('400'); return false">1 semaine</a></li>
-				<li><a href="#" onclick="refresh_graph('dashboard','2592000','',''); $('#left_menu_show').hide('400'); return false">1 mois</a></li>
-				<li><a href="#" onclick="refresh_graph('dashboard','31104000','',''); $('#left_menu_show').hide('400'); return false">1 an</a></li>
+				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'3600\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1h</a></li>
+				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'7200\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">2h</a></li>
+				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'21600\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">6h</a></li>
+				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'43200\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">12h</a></li>
+				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'86400\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 jour</a></li>
+				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'172800\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">2 jours</a></li>
+				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'604800\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 semaine</a></li>
+				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'2592000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 mois</a></li>
+				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'31104000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 an</a></li>
+				<li>'.$urlrefresh.'</li>
 			</ul>
 		</div>
-		<img src="img/refresh.png" style="cursor:pointer" onclick="refresh_graph('dashboard','','',''); return false" title="Rafraichir" alt="Refresh">
+		<img src="img/refresh.png" style="cursor:pointer" onclick="refresh_graph(\'dashboard\',\'\',\'\',\'\'); return false" title="Rafraichir" alt="Refresh" />
 		<br />
-		<img src="img/clock.png" style="cursor:pointer" onclick="$('#left_menu_show').toggle('400'); return false;" title="Echelle de temps" alt="Time Selector">
-	</div>
-LEFTMENU;
+		<img src="img/clock.png" style="cursor:pointer" onclick="$(\'#left_menu_show\').toggle(\'400\'); return false;" title="Echelle de temps" alt="Time Selector" />
+	</div>';
 }
 
 if (isset($_GET['f_id_config_project'])) {
@@ -86,5 +92,16 @@ if (isset($_GET['f_id_config_project'])) {
 			echo '</div>';
 		}
 	}
+}
+
+if (isset($_GET['auto_refresh'])) {
+	echo '
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  var auto_refresh=setInterval(function() {
+	     refresh_graph(\'dashboard\',\'\',\'\',\'\');
+	  }, 60000)
+	});
+	</script>';
 }
 ?>
