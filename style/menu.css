@@ -124,7 +124,6 @@ div#div_menu ul.niveau1 {
 	margin-top:10pt;
 }
 
-
 div#div_menu ul ul {
 	padding-right: 0pt; 	
 	padding-bottom: 0pt;
@@ -136,20 +135,21 @@ div#div_menu ul ul {
 	margin: 0pt; 
 		 
 	position: absolute; 
-	top: -1pt
+	top: -1pt;
 }
 
 div#div_menu ul ul ul {
-  top:-1.5pt;  
+  top:-1.5pt;
+  margin-left:-1pt;
 }
 
 div#div_menu li {
 	padding-right:2pt; 
-	padding-left:2pt; 
-	padding-bottom:2pt; 
-	margin:0pt; 
+	padding-left:2pt;
+	padding-bottom:2.25pt; 
+	padding-top:2.25pt; 
+	margin:0pt;
 	width:120pt; 
-	padding-top:2pt; 
 	list-style-type:none; 
 	position:relative; 
 	color:white;
@@ -158,6 +158,14 @@ div#div_menu li {
 
 div#div_menu li:hover{
 	background-color:#759FCF;
+}
+
+div#div_menu li li {
+	border:2pt solid #2c4056;
+	border-top:none;
+}
+div#div_menu li li:first-child {
+	border-top:2pt solid #2c4056;
 }
 /*
 div#div_menu li.sfhover {
@@ -174,14 +182,14 @@ div#div_menu li:hover ul.niveau2 {
 	left:0;
 	top:15pt;
 	background-color:#507aaa;
-	border:2pt solid #2c4056;
-	border-top:none;
+	/*border:2pt solid #2c4056;
+	border-top:none;*/
 }
-
+/*
 div#div_menu li:hover ul.niveau2 li {
 	border-top:2pt solid #2c4056;
 }
-
+*/
 div#div_menu li li:hover ul.niveau3 {
 	display:block;
 	background-color:#507aaa;
