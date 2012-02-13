@@ -39,7 +39,7 @@ class PERMS {
 			FROM
 			auth_group ag
 				JOIN auth_user_group aug
-					ON ag.id_auth_group=aug.id_auth_group AND ag.group="Administrateur"
+					ON ag.id_auth_group=aug.id_auth_group AND ag.group="Admin"
 				JOIN auth_user au
 					ON aug.id_auth_user=au.id_auth_user	AND au.user="'.$_SESSION['S_USER'].'"';
 		$res=$this->connSQL->getRow($lib);
