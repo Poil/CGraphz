@@ -97,6 +97,23 @@ switch($obj->args['type'])
 		$obj->rrd_vertical = 'Threads';
 		$obj->rrd_format = '%5.1lf%s';
 	break;
+        case 'mysql_log_position': 
+                $obj->colors = array(
+                        'master-bin' => 'ff0000',
+                        'slave-exec' => 'ff00e7',
+                        'slave-read' => 'cc00ff',
+                );
+                $obj->rrd_title = sprintf('MySQL Log Position (%s)', $obj->args['pinstance']);
+                $obj->rrd_vertical = 'Position';
+                $obj->rrd_format = '%5.1lf%s';
+        break;
+        case 'time_offset':       
+                $obj->data_sources = array('seconds');
+                $obj->rrd_title = sprintf('Time Offset (%s)', $obj->args['pinstance']);
+                $obj->rrd_vertical = 'seconds';
+                $obj->rrd_format = '%5.1lf%s';
+        break;
+
 }
 
 collectd_flush($obj->identifiers);
