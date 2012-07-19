@@ -16,4 +16,5 @@ GROUP BY id_config_project, project_description
 ORDER BY project_description ';
 
 $all_project=$connSQL->getResults($lib);
+
 ?>

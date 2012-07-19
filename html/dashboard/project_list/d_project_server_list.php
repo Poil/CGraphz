@@ -41,10 +41,12 @@ if (isset($_GET['f_id_config_project'])) {
 			if (isset($environment->id_config_environment)) $myenvironment=$environment->id_config_environment;
 			else $myenvironment=0;
 			
-			if (isset($myrole))
+			if (isset($myrole)) {
 				echo '<span><a '.$style.' href="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$f_id_config_project.'&amp;f_id_config_environment='.$myenvironment.'&amp;f_id_config_role='.$myrole.'">'.$environment->environment_description.'</a></span>';
-			else
+			}
+			else {
 				echo '<span><a '.$style.' href="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$f_id_config_project.'&amp;f_id_config_environment='.$myenvironment.'">'.$environment->environment_description.'</a></span>';
+			}
 		}	
 		echo '<div class="spacer">&nbsp;</div>';
 		echo '</div>';
@@ -80,7 +82,7 @@ if (isset($_GET['f_id_config_project'])) {
 				} else { 
 					$style=''; 
 				}
-				if ($cpt_server>MAX_SRV || isset($_GET['f_id_config_role'])) $str_role='&amp;f_id_config_role='.$f_id_config_role;
+				if (($cpt_server>MAX_SRV && $cpt_role>1) || isset($_GET['f_id_config_role'])) $str_role='&amp;f_id_config_role='.$f_id_config_role;
 				else $str_role='';
 				if (isset($_GET['f_id_config_environment'])) $str_environment='&amp;f_id_config_environment='.$f_id_config_environment;
 				else $str_environment='';

@@ -6,7 +6,7 @@
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />
+	<!--<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />!-->
 	
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/000.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/menu.css" />
@@ -47,6 +47,7 @@ if ($auth->verif_auth()) {
 	include(DIR_FSROOT.'/config/module.php');
 } else {
 	include(DIR_FSROOT.'/html/auth/auth/f_auth.php');
+	echo NOT_LOGGED_MSG;
 }
 
 ?> 

@@ -13,6 +13,7 @@ if ($auth->verif_auth()) {
 
 	$plugin = validate_get(GET('p'), 'plugin');
 	$host=validate_get(GET('h'), 'host');
+	
 	if (strpos($host,':')!=FALSE) {
 		$tmp=explode(':',$host);
 		$host=$tmp[0];

@@ -9,7 +9,7 @@ define('DB_LOGIN','root');
 define('DB_PASSWD','');
 define('LDAP_HOST','ldaps://');
 define('LDAP_PORT','636');
-define('LDAP_TREE','ou=People,dc=auth,dc=,dc=');
+define('LDAP_TREE','ou=People,dc=auth,dc=org,dc=fr');
 define('DIR_FSROOT',$_SERVER['DOCUMENT_ROOT']);
 define('DIR_WEBROOT', '');
 define('DEBUG',false);
@@ -18,6 +18,7 @@ define('DEF_LANG','fr');
 define('MAX_SRV',4); // Nombre min de serveur avant affichage des catégories
 //define('MAX_ELEM_ADM_TAB',2); // Nombre Max d'elements par table d'admin'
 //define('MAX_ADM_TAB',2);
+define('NOT_LOGGED_MSG','<br />Pour toute demande d\'accès s\'adresser à <a href="mailto:example@example.com">example@example.com</a> en spécifiant les projets/environnements auxquels vous souhaitez avoir accès');
 
 // Liste des plugins à afficher
 $plugins = array('load', 'memory', 'disk-sda', 'cpu', 'interface', 'processes', 'tcpconns');
@@ -72,5 +73,4 @@ function my_autoload ($pClassName) {
 spl_autoload_register("my_autoload");
 
 include(DIR_FSROOT.'/html/form/commun/func_form.php');
-include(DIR_FSROOT.'/modules/functions.inc.php');
 ?>

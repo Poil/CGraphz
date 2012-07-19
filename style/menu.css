@@ -124,6 +124,7 @@ div#div_menu ul.niveau1 {
 	margin-top:10pt;
 }
 
+
 div#div_menu ul ul {
 	padding-right: 0pt; 	
 	padding-bottom: 0pt;
@@ -146,12 +147,12 @@ div#div_menu ul ul ul {
 div#div_menu li {
 	padding-right:2pt; 
 	padding-left:2pt;
-	padding-bottom:2.25pt; 
+	padding-bottom:2.25pt;
 	padding-top:2.25pt; 
 	margin:0pt;
 	width:120pt; 
 	list-style-type:none; 
-	position:relative; 
+	position:relative;
 	color:white;
 	text-align:center;
 }
@@ -164,9 +165,11 @@ div#div_menu li li {
 	border:2pt solid #2c4056;
 	border-top:none;
 }
+
 div#div_menu li li:first-child {
 	border-top:2pt solid #2c4056;
 }
+
 /*
 div#div_menu li.sfhover {
 	background-color:#759FCF;

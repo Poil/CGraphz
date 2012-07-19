@@ -14,6 +14,13 @@ if (isset($_SESSION['time_range']) && is_numeric($_SESSION['time_range'])) {
 
 
 echo '<div id="dashboard">';
+
+if ($cur_server->server_name=='') {
+	echo '<h1>Serveur inconnu</h1>';
+	echo '</div>';
+	exit;
+}
+
 echo '<h1>'.$cur_server->server_name.'</h1>';
 
 $lib = 'SELECT 
@@ -45,8 +52,10 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 		
 		$old_t='';
 		$old_pi='';
+		$old_subpg='';
 		foreach ($plugins as $plugin) {
 			preg_match($myregex, $plugin, $matches);
+
 			if (isset($matches[2])) {
 				$p=$matches[2];
 				if (!isset($$p)) $$p=false;
@@ -68,6 +77,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			} else { 
 				$ti=null; 
 			}
+
 			
 			if ($$p!=true) {
 				echo "<h3>$p</h3>";
@@ -79,7 +89,23 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				
 				// Verif regex OK
 				if ($p!="" && $t!="") {
-					if (!preg_match('/^(df|interface|oracle)$/', $p)) {
+					if (preg_match('/^GenericJMX/', $p)) {
+						$ti='';
+						if ($old_t!=$t or $old_pi!=$pi) {
+						        $tmp=explode('-',$pi);
+						$subpg=$tmp[0];
+						if ($subpg!=$old_subpg) {
+						        echo '<h4>'.str_replace("_", " ",$subpg).'</h4>';
+						}
+						echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
+						if (isset($time_start) && isset($time_end)) {
+						        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
+						} else {
+						        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
+						        }
+						        $old_subpg=$subpg;
+						}
+					} else if (!preg_match('/^(df|interface|oracle)$/', $p)) {
 						$ti='';
 						if ($old_t!=$t or $old_pi!=$pi)	{							
 							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
