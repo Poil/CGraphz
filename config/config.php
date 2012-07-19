@@ -5,8 +5,8 @@ define('CGRAPHZ_VERSION','1.32');
 define('DB_HOST','localhost');
 define('DB_PORT','3306');
 define('DB_DATABASE','cgraphz');
-define('DB_LOGIN','root');
-define('DB_PASSWD','');
+define('DB_LOGIN','cgraphz');
+define('DB_PASSWD','password');
 define('LDAP_HOST','ldaps://');
 define('LDAP_PORT','636');
 define('LDAP_TREE','ou=People,dc=auth,dc=org,dc=fr');
@@ -73,4 +73,5 @@ function my_autoload ($pClassName) {
 spl_autoload_register("my_autoload");
 
 include(DIR_FSROOT.'/html/form/commun/func_form.php');
+include(DIR_FSROOT.'/modules/functions.inc.php');
 ?>

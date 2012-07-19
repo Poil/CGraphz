@@ -243,6 +243,7 @@ class Type_Default {
 		$sources = $this->rrd_get_sources();
 
 		$i=0;
+
 		foreach ($this->tinstances as $tinstance) {
 			foreach ($this->data_sources as $ds) {
 				$rrdgraph[] = sprintf('DEF:min_%s="%s":%s:MIN', crc32hex($sources[$i]), $this->rrd_escape($this->files[$tinstance]), $ds);

@@ -158,15 +158,32 @@ foreach ($vmlist as $vmdir) {
 		foreach ($plugins as $plugin) {
 			preg_match($myregex, $plugin, $matches);
 
-			$p=$matches[2];
-			$pi=$matches[3];
-			$t=$matches[4];
-			$ti=$matches[5];			
+			if (isset($matches[2])) {
+				$p=$matches[2];
+				if (!isset($$p)) $$p=false;
+			} else { 
+				$p=null; 
+			}
+			if (isset($matches[3])) {
+				$pi=$matches[3];
+			} else { 
+				$pi=null; 
+			}
+			if (isset($matches[4])) {
+				$t=$matches[4];
+			} else { 
+				$t=null; 
+			}
+			if (isset($matches[5])) {
+				$ti=$matches[5];
+			} else { 
+				$ti=null; 
+			}
 
 			if (! isset(${$vm.$p.$pi.$t.$ti}) ) {
 				${$vm.$p.$pi.$t.$ti}=true;
-				if ($t!=$t_old) echo '<h4>'.$t.'</h4>';
-				$t_old=$t;
+				if ($t!=$old_t) echo '<h4>'.$t.'</h4>';
+				$old_t=$t;
 				
 				echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.':'.$vm.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
 				if (isset($time_start) && isset($time_end)) {
