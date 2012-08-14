@@ -649,13 +649,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/small_admin/newuser/w_user.php');
 			include(DIR_FSROOT.'/html/small_admin/newuser/f_user.php');
 		}
-	}
-} // FIN PERM MODULE
-else {
-	if ($component && $module) {
-		echo '<br />Vous n\'avez pas accès à cette partie du site<br />';
 	} else {
 		echo $CONFIG['welcome_text'];
+	} 
+} else {
+	if ($component && $module) {
+		echo '<br />Vous n\'avez pas accès à cette partie du site<br />';
 	}
 }
 ?>
