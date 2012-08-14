@@ -27,8 +27,9 @@ switch($obj->args['type'])
                 );
                 $obj->rrd_title = sprintf('Bytes %s',
                         !empty($obj->args['pinstance']) ? ' ('.$obj->args['pinstance'].')' : '');
-                $obj->rrd_vertical = 'Bytes';
+                $obj->rrd_vertical = ucfirst($CONFIG['datasize']);
                 $obj->rrd_format = '%5.1lf%s';
+				$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
         break;
 
         case 'files':

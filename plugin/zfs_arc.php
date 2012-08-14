@@ -1,9 +1,8 @@
 <?php
 # Collectd zfs_arc plugin
 
-require_once 'conf/common.inc.php';
+require_once 'modules/collectd.inc.php';
 require_once 'type/Default.class.php';
-require_once 'inc/collectd.inc.php';
 
 ## LAYOUT
 # zfs_arc/
@@ -60,7 +59,8 @@ switch($obj->args['type']) {
 			'maxlimit',
 		);
 		$obj->rrd_title = 'Arc size';
-		$obj->rrd_vertical = 'bytes';
+		$obj->rrd_vertical = ucfirst($CONFIG['datasize']);
+		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
 		break;
 	case 'arc_l2_bytes':
 		$obj->data_sources = array(
@@ -76,20 +76,22 @@ switch($obj->args['type']) {
 			'read'  => '0000ff',
 		);
 		$obj->rrd_title = 'Arc L2 bytes';
-		$obj->rrd_vertical = 'bytes';
+		$obj->rrd_vertical = ucfirst($CONFIG['datasize']);
+		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
 		break;
 	case 'arc_l2_size':
 		$obj->data_sources = array(
 			'value',
 		);
 		$obj->ds_names = array(
-			'value'   => 'Bytes',
+			'value'   => ucfirst($CONFIG['datasize']),
 		);
 		$obj->colors = array(
 			'value' => '0000ff',
 		);
 		$obj->rrd_title = 'Arc L2 size';
-		$obj->rrd_vertical = 'bytes';
+		$obj->rrd_vertical = ucfirst($CONFIG['datasize']);
+		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
 		break;
 	case 'arc_ratio':
 		$obj->data_sources = array('value');

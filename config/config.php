@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Europe/Paris');
 
-define('CGRAPHZ_VERSION','1.32');
+define('CGRAPHZ_VERSION','1.33');
 define('DB_HOST','localhost');
 define('DB_PORT','3306');
 define('DB_DATABASE','cgraphz');
@@ -46,6 +46,9 @@ $CONFIG['time_range']['uptime']  = 31536000;
 
 # show load averages on overview page
 $CONFIG['showload'] = true;
+
+# show graphs in bits or bytes
+$CONFIG['datasize'] = 'bytes';
 
 # browser cache time for the graphs (in seconds)
 $CONFIG['cache'] = 90;

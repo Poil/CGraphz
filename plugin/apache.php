@@ -17,14 +17,15 @@ switch ($obj->args['type']) {
 	case 'apache_bytes':
 		$obj->data_sources = array('value');
 		$obj->ds_names = array(
-			'value' => 'Bytes/s',
+			'value' => sprintf('%s/s', ucfirst($CONFIG['datasize'])),
 		);
 		$obj->colors = array(
 			'value' => '0000ff',
 		);
 		$obj->rrd_title = sprintf('Webserver Traffic%s',
 			!empty($obj->args['pinstance']) ? ' ('.$obj->args['pinstance'].')' : '');
-		$obj->rrd_vertical = 'Bytes/s';
+		$obj->rrd_vertical = sprintf('%s/s', ucfirst($CONFIG['datasize']));
+		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
 	break;
 	case 'apache_connections':
 		$obj->data_sources = array('value');
@@ -92,16 +93,16 @@ switch ($obj->args['type']) {
 			'request_start',
 		);
 		$obj->ds_names = array(
-			'open'      => 'Open (empty)',
-			'waiting'   => 'Waiting',
-			'starting'  => 'Starting up',
-			'reading'   => 'Reading request',
-			'sending'   => 'Sending reply',
-			'keepalive' => 'Keepalive',
-			'dnslookup' => 'DNS Lookup',
-			'closing'   => 'Closing',
-			'logging'   => 'Logging',
-			'finishing' => 'Finishing',
+			'open'	       => 'Open (empty)',
+			'waiting'      => 'Waiting',
+			'starting'     => 'Starting up',
+			'reading'      => 'Reading request',
+			'sending'      => 'Sending reply',
+			'keepalive'    => 'Keepalive',
+			'dnslookup'    => 'DNS Lookup',
+			'closing'      => 'Closing',
+			'logging'      => 'Logging',
+			'finishing'    => 'Finishing',
 			'idle_cleanup' => 'Idle cleanup',
 
 			'connect'        => 'Connect (empty)',
@@ -117,16 +118,16 @@ switch ($obj->args['type']) {
 			'response_end'   => 'Response end',
 		);
 		$obj->colors = array(
-			'open'      => 'e0e0e0',
-			'waiting'   => 'ffb000',
-			'starting'  => 'ff00ff',
-			'reading'   => '0000ff',
-			'sending'   => '00e000',
-			'keepalive' => '0080ff',
-			'dnslookup' => 'ff0000',
-			'closing'   => '000080',
-			'logging'   => 'a000a0',
-			'finishing' => '008080',
+			'open'         => 'e0e0e0',
+			'waiting'      => 'ffb000',
+			'starting'     => 'ff00ff',
+			'reading'      => '0000ff',
+			'sending'      => '00e000',
+			'keepalive'    => '0080ff',
+			'dnslookup'    => 'ff0000',
+			'closing'      => '000080',
+			'logging'      => 'a000a0',
+			'finishing'    => '008080',
 			'idle_cleanup' => 'ffff00',
 
 			'connect'        => 'e0e0e0',
@@ -134,10 +135,10 @@ switch ($obj->args['type']) {
 			'hard_error'     => 'ff0000',
 			'read'           => 'ff00ff',
 			'read_post'      => '00e000',
-			'write'          => '000080',
+			'write'	         => '000080',
 			'handle_request' => '0080ff',
 			'request_start'  => 'ffb000',
-			'request_end'    => '0000ff',
+			'request_end'	 => '0000ff',
 			'response_start' => 'ffff00',
 			'response_end'   => 'a000a0',
 		);
