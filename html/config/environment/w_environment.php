@@ -2,8 +2,8 @@
 if (isset($_POST['f_submit_environment'])) {
 	
 	$f_id_config_environment=intval($_POST['f_id_config_environment']);
-	$f_environment=mysql_escape_string($_POST['f_environment']);
-	$f_environment_description=mysql_escape_string($_POST['f_environment_description']);
+	$f_environment=mysql_escape_string(filter_input(INPUT_POST,'f_environment',FILTER_SANITIZE_SPECIAL_CHARS));
+	$f_environment_description=mysql_escape_string(filter_input(INPUT_POST,'f_environment_description',FILTER_SANITIZE_SPECIAL_CHARS));
 		
 	if ($_POST['f_id_config_environment']) { // UPDATE
 		$lib='

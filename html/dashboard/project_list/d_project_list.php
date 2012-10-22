@@ -5,6 +5,7 @@ foreach ($all_project as $project) {
 	} else { 
 		$style=''; 
 	}
+	
 	echo '<span><a '.$style.' href="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$project->id_config_project.'">'.$project->project_description.'</a></span>';
 }
 ?>

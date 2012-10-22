@@ -2,8 +2,8 @@
 if (isset($_POST['f_submit_role'])) {
 	
 	$f_id_config_role=intval($_POST['f_id_config_role']);
-	$f_role=mysql_escape_string($_POST['f_role']);
-	$f_role_description=mysql_escape_string($_POST['f_role_description']);
+	$f_role=mysql_escape_string(filter_input(INPUT_POST,'f_role',FILTER_SANITIZE_SPECIAL_CHARS));
+	$f_role_description=mysql_escape_string(filter_input(INPUT_POST,'f_role_description',FILTER_SANITIZE_SPECIAL_CHARS));
 		
 	if ($_POST['f_id_config_role']) { // UPDATE
 		$lib='

@@ -126,42 +126,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `cgraphz`.`content_dashboard`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cgraphz`.`content_dashboard` (
-  `id_content_dashboard` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
-  `dashboard` VARCHAR(45) NOT NULL ,
-  `dashboard_description` TEXT NULL ,
-  `dashboard_content` TEXT NULL ,
-  `id_config_project` INT UNSIGNED NOT NULL ,
-  PRIMARY KEY (`id_content_dashboard`) ,
-  UNIQUE INDEX `ix_cd_dashboard` (`dashboard` ASC) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `cgraphz`.`content_project_dashboard`
--- -----------------------------------------------------
-CREATE  TABLE IF NOT EXISTS `cgraphz`.`content_project_dashboard` (
-  `id_content_dashboard` INT UNSIGNED NOT NULL ,
-  `id_config_project` INT UNSIGNED NOT NULL ,
-  PRIMARY KEY (`id_content_dashboard`, `id_config_project`) ,
-  INDEX `fk_cpd_id_config_project` (`id_config_project` ASC) ,
-  INDEX `fk_cpd_id_content_dashboard` (`id_content_dashboard` ASC) ,
-  CONSTRAINT `fk_cpd_id_config_project`
-    FOREIGN KEY (`id_config_project` )
-    REFERENCES `cgraphz`.`config_project` (`id_config_project` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cpd_id_content_dashboard`
-    FOREIGN KEY (`id_content_dashboard` )
-    REFERENCES `cgraphz`.`content_dashboard` (`id_content_dashboard` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `cgraphz`.`perm_module`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `cgraphz`.`perm_module` (
@@ -302,6 +266,63 @@ CREATE  TABLE IF NOT EXISTS `cgraphz`.`config_environment_server` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `cgraphz`.`config_dynamic_dashboard`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `cgraphz`.`config_dynamic_dashboard` (
+  `id_config_dynamic_dashboard` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `title` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`id_config_dynamic_dashboard`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cgraphz`.`config_dynamic_dashboard_content`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `cgraphz`.`config_dynamic_dashboard_content` (
+  `id_config_dynamic_dashboard_content` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
+  `id_config_dynamic_dashboard` INT UNSIGNED NOT NULL ,
+  `title` VARCHAR(45) NOT NULL ,
+  `dash_ordering` INT NOT NULL ,
+  `regex_srv` VARCHAR(255) NOT NULL ,
+  `regex_p_filter` VARCHAR(80) NOT NULL ,
+  `regex_pi_filter` VARCHAR(80) NOT NULL ,
+  `regex_t_filter` VARCHAR(80) NOT NULL ,
+  `regex_ti_filter` VARCHAR(80) NOT NULL ,
+  `rrd_ordering` VARCHAR(255) NOT NULL ,
+  PRIMARY KEY (`id_config_dynamic_dashboard_content`) ,
+  INDEX `fk_cddc_id_config_dynamic_content` (`id_config_dynamic_dashboard` ASC) ,
+  CONSTRAINT `fk_cddc_id_config_dynamic_content`
+    FOREIGN KEY (`id_config_dynamic_dashboard` )
+    REFERENCES `cgraphz`.`config_dynamic_dashboard` (`id_config_dynamic_dashboard` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cgraphz`.`config_dynamic_dashboard_group`
+-- -----------------------------------------------------
+CREATE  TABLE IF NOT EXISTS `cgraphz`.`config_dynamic_dashboard_group` (
+  `id_config_dynamic_dashboard` INT UNSIGNED NOT NULL ,
+  `id_auth_group` INT UNSIGNED NOT NULL ,
+  `group_manager` TINYINT(1) NULL DEFAULT 0 ,
+  PRIMARY KEY (`id_config_dynamic_dashboard`, `id_auth_group`) ,
+  INDEX `fk_cddg_id_auth_group` (`id_auth_group` ASC) ,
+  INDEX `fk_cddg_id_config_dynamic_dashboard` (`id_config_dynamic_dashboard` ASC) ,
+  CONSTRAINT `fk_cddg_id_auth_group`
+    FOREIGN KEY (`id_auth_group` )
+    REFERENCES `cgraphz`.`auth_group` (`id_auth_group` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cddg_id_config_dynamic_dashboard`
+    FOREIGN KEY (`id_config_dynamic_dashboard` )
+    REFERENCES `cgraphz`.`config_dynamic_dashboard` (`id_config_dynamic_dashboard` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
@@ -312,7 +333,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cgraphz`;
-INSERT INTO `cgraphz`.`auth_group` (`id_auth_group`, `group`, `group_description`) VALUES (1, 'admin', NULL);
+INSERT INTO `cgraphz`.`auth_group` (`id_auth_group`, `group`, `group_description`) VALUES (1, 'admin', 'Administrateur');
 
 COMMIT;
 
@@ -321,7 +342,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cgraphz`;
-INSERT INTO `cgraphz`.`auth_user` (`id_auth_user`, `nom`, `prenom`, `user`, `mail`, `passwd`, `type`) VALUES (1, 'admin', 'root', 'admin', 'noreply@neant.com', password('passwd'), 'mysql');
+INSERT INTO `cgraphz`.`auth_user` (`id_auth_user`, `nom`, `prenom`, `user`, `mail`, `passwd`, `type`) VALUES (1, 'admin', 'root', 'admin', 'noreply@neant.com', '*196BDEDE2AE4F84CA44C47D54D78478C7E2BD7B7', 'mysql');
 
 COMMIT;
 
@@ -335,38 +356,23 @@ INSERT INTO `cgraphz`.`auth_user_group` (`id_auth_group`, `id_auth_user`, `manag
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `cgraphz`.`config_project`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `cgraphz`;
-INSERT INTO `cgraphz`.`config_project` (`id_config_project`, `project`, `project_description`) VALUES (1, 'test', 'test');
-
-COMMIT;
-
--- -----------------------------------------------------
--- Data for table `cgraphz`.`perm_project_group`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `cgraphz`;
-INSERT INTO `cgraphz`.`perm_project_group` (`id_auth_group`, `id_config_project`) VALUES (1, 1);
-
-COMMIT;
-
--- -----------------------------------------------------
 -- Data for table `cgraphz`.`perm_module`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cgraphz`;
 INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (1, 'perm', 'module', 'Modules', 1);
-INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (2, 'config', 'dashboard', NULL, NULL);
-INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (3, 'config', 'template', NULL, NULL);
-INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (4, 'config', 'project', 'Projets', 2);
-INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (5, 'config', 'server', 'Serveurs', 1);
-INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (6, 'dashboard', 'view', 'Dashboard', 1);
-INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (7, 'auth', 'user', 'Utilisateurs', 1);
-INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (8, 'auth', 'group', 'Groupes', 2);
-INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (9, 'config', 'plugin', 'Filtres', 4);
-INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (10, 'config', 'role', 'Rôles', 3);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (2, 'config', 'project', 'Projets', 2);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (3, 'config', 'server', 'Serveurs', 1);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (4, 'dashboard', 'view', 'Dashboard', 1);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (5, 'auth', 'user', 'Utilisateurs', 1);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (6, 'auth', 'group', 'Groupes', 2);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (7, 'config', 'filter', 'Filtres', 3);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (8, 'dashboard', 'dynamic', 'Dynamique', 2);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (9, 'small_admin', 'myaccount', 'Mon Compte', 1);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (10, 'small_admin', 'mygroup', 'Mes Groupes', 2);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (11, 'small_admin', 'newuser', 'Nouvel Utilisateur', 3);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (12, 'small_admin', 'mydashboard', 'Mes TdBs', 4);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (13, 'config', 'dynamic_dashboard', 'TdBs Dynamiques', 4);
 
 COMMIT;
 
@@ -385,6 +391,9 @@ INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_grou
 INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (8, 1, 8);
 INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (9, 1, 9);
 INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (10, 1, 10);
+INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (11, 1, 11);
+INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (12, 1, 12);
+INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (13, 1, 13);
 
 COMMIT;
 
@@ -404,24 +413,5 @@ INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin
 INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (9, 'tcpconns', '\\d+-\\w+', 'tcp_connections', '\\w+', 'tcpconns', 5);
 INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (10, 'df', '', 'df', '.+', 'df', 6);
 INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (11, 'cpu', '\\d+', 'cpu', '\\w+', 'cpu', 7);
-
-COMMIT;
-
--- -----------------------------------------------------
--- Data for table `cgraphz`.`config_plugin_filter_group`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `cgraphz`;
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (1, 1);
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (2, 1);
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (3, 1);
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (4, 1);
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (5, 1);
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (6, 1);
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (7, 1);
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (8, 1);
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (9, 1);
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (10, 1);
-INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (11, 1);
 
 COMMIT;

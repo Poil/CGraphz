@@ -332,6 +332,82 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			echo '</fieldset>';
 			echo '</fieldset>';
 			echo '<div class="spacer">&nbsp;</div>';
+		} else if ($component=='dynamic_dashboard') {
+			echo '<h1>Gestion des Dashboards Dynamiques </h1>';
+			include(DIR_FSROOT.'/html/config/dynamic_dashboard/w_dynamic_dashboard.php');
+			include(DIR_FSROOT.'/html/config/dynamic_dashboard/e_dynamic_dashboard.php');
+			include(DIR_FSROOT.'/html/config/dynamic_dashboard/r_dynamic_dashboard_wh_id.php');
+			include(DIR_FSROOT.'/html/config/dynamic_dashboard/r_dynamic_dashboard.php');
+			include(DIR_FSROOT.'/html/config/dynamic_dashboard/d_dynamic_dashboard.php');
+			echo '<div class="spacer">&nbsp;</div>';
+			
+			if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'">Nouveau</a> ]';
+			}
+			echo '<div class="spacer">&nbsp;</div>';
+			echo '<fieldset>';
+			if (isset($cur_dynamic_dashboard)) {
+				echo '<legend>'.$cur_dynamic_dashboard->title.'</legend>';
+			}
+			echo '<fieldset>';
+			if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+				echo '<legend>Editer</legend>';
+			}
+			else {
+				echo '<legend>Nouveau</legend>';
+			}
+			include(DIR_FSROOT.'/html/config/dynamic_dashboard/f_dynamic_dashboard.php');
+			echo '</fieldset>';
+			if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+				echo '<fieldset>';
+				echo '<legend>Groupes</legend>';
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/w_dynamic_dashboard_group.php');
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/e_dynamic_dashboard_group.php');
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/r_dynamic_dashboard_group_wh_id.php');
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/r_dynamic_dashboard_group.php');
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/d_dynamic_dashboard_group.php');
+				echo '<div class="spacer">&nbsp;</div>';
+				
+				if (isset($_GET['f_id_config_dynamic_dashboard_group'])) {
+					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard_group').'">Nouveau</a> ]';
+				}
+				echo '<div class="spacer">&nbsp;</div>';
+				if (isset($_GET['f_id_config_dynamic_dashboard_group'])) {
+					echo '<legend>Editer</legend>';
+				}
+				else {
+					echo '<legend>Nouveau</legend>';
+				}
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/f_dynamic_dashboard_group.php');
+				echo '</fieldset>';
+			}
+			
+			if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+				echo '<fieldset class="large">';
+				echo '<legend>Contenu</legend>';
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/w_dynamic_dashboard_content.php');
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/e_dynamic_dashboard_content.php');
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/r_dynamic_dashboard_content_wh_id.php');
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/r_dynamic_dashboard_content.php');
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/d_dynamic_dashboard_content.php');
+				echo '<div class="spacer">&nbsp;</div>';
+				
+				if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
+					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard_content').'">Nouveau</a> ]';
+				}
+				echo '<div class="spacer">&nbsp;</div>';
+				if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
+					echo '<legend>Editer</legend>';
+				}
+				else {
+					echo '<legend>Nouveau</legend>';
+				}
+				include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/f_dynamic_dashboard_content.php');
+				echo '</fieldset>';
+			}
+			
+			echo '</fieldset>';
+			echo '<div class="spacer">&nbsp;</div>';
 		}
 	} else if ($module=='auth') {
 		if ($component=='user') {
@@ -574,10 +650,15 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/server/r_server_wh_id.php');
 				include(DIR_FSROOT.'/html/dashboard/server_plugins/d_server_plugins.php');			
 			}
-		} else if ($component=='compare') {
+		} else if ($component == 'dynamic') {
+				include(DIR_FSROOT.'/modules/preg_find.php');
+				include(DIR_FSROOT.'/html/dashboard/dynamic/r_dynamic.php');
+		}
+		/*else if ($component=='compare') {
 			include(DIR_FSROOT.'/html/dashboard/server_compare/r_server.php');
 			include(DIR_FSROOT.'/html/dashboard/server_compare/f_server.php');
-		} else if ($component=='static_exploit') {
+		} */
+		else if ($component=='static_exploit') {
 			include(DIR_FSROOT.'/html/dashboard/static/static_exploit.php');
 		} else if ($component=='static_socle') {
 			include(DIR_FSROOT.'/html/dashboard/static/static_socle.php');
@@ -648,6 +729,63 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			echo '<h1>Créer un Compte</h1>';
 			include(DIR_FSROOT.'/html/small_admin/newuser/w_user.php');
 			include(DIR_FSROOT.'/html/small_admin/newuser/f_user.php');
+		} else if ($component=='mydashboard') {
+			echo '<h1>Gérer mes TdB dynamiques</h1>';
+			include(DIR_FSROOT.'/html/small_admin/mydashboard/r_dynamic_dashboard_wh_id.php');
+			include(DIR_FSROOT.'/html/small_admin/mydashboard/e_dynamic_dashboard.php');
+			include(DIR_FSROOT.'/html/small_admin/mydashboard/w_dynamic_dashboard.php');
+			include(DIR_FSROOT.'/html/small_admin/mydashboard/r_dynamic_dashboard_wh_id.php');
+			include(DIR_FSROOT.'/html/small_admin/mydashboard/r_dynamic_dashboard.php');
+			include(DIR_FSROOT.'/html/small_admin/mydashboard/d_dynamic_dashboard.php');
+			echo '<div class="spacer">&nbsp;</div>';
+			
+			if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'">Nouveau</a> ]';
+			}
+			echo '<div class="spacer">&nbsp;</div>';
+			$f_id_config_dynamic_dashboard=intval($_GET['f_id_config_dynamic_dashboard']);
+			//if ($f_id_config_dynamic_dashboard) {
+				echo '<fieldset>';
+				if (isset($cur_dynamic_dashboard)) {
+					echo '<legend>'.$cur_dynamic_dashboard->title.'</legend>';
+				}
+				echo '<fieldset>';
+				if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+					echo '<legend>Editer</legend>';
+				}
+				else {
+					echo '<legend>Nouveau</legend>';
+				}
+			
+				include(DIR_FSROOT.'/html/small_admin/mydashboard/f_dynamic_dashboard.php');
+				echo '</fieldset>';
+				
+				if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+					echo '<fieldset class="large">';
+					echo '<legend>Utilisateurs</legend>';
+					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/w_dynamic_dashboard_content.php');
+					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/e_dynamic_dashboard_content.php');
+					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content_wh_id.php');
+					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content.php');
+					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/d_dynamic_dashboard_content.php');
+					echo '<div class="spacer">&nbsp;</div>';
+					
+					if (isset($_GET['f_id_auth_user'])) {
+						echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_user').'">Nouveau</a> ]';
+					}
+					echo '<div class="spacer">&nbsp;</div>';
+					if (isset($_GET['f_id_auth_user'])) {
+						echo '<strong>Supprimer</strong>';
+					}
+					else {
+						echo '<strong>Nouveau</strong>';
+					}
+					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/f_dynamic_dashboard_content.php');
+					echo '</fieldset>';
+				}
+				echo '</fieldset>';
+			//}
+			echo '<div class="spacer">&nbsp;</div>';
 		}
 	} else {
 		echo $CONFIG['welcome_text'];

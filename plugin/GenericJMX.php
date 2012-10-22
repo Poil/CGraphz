@@ -21,7 +21,7 @@ switch($obj->args['pinstance']) {
                'rx' => '0000ff',
                'tx' => '00b000',
             );
-            $obj->rrd_title = sprintf('Interface Traffic (%s)', $obj->args['pinstance']);
+            $obj->rrd_title = sprintf('Interface Traffic (%s)', str_replace('_', ' ',$obj->args['pinstance']));
             $obj->rrd_vertical = 'Bytes/s';
          break;
          default:

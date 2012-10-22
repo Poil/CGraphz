@@ -2,8 +2,8 @@
 if (isset($_POST['f_submit_project'])) {
 	
 	$f_id_config_project=intval($_POST['f_id_config_project']);
-	$f_project=mysql_escape_string($_POST['f_project']);
-	$f_project_description=mysql_escape_string($_POST['f_project_description']);
+	$f_project=mysql_escape_string(filter_input(INPUT_POST,'f_project',FILTER_SANITIZE_SPECIAL_CHARS));
+	$f_project_description=mysql_escape_string(filter_input(INPUT_POST,'f_project_description',FILTER_SANITIZE_SPECIAL_CHARS));
 		
 	if ($_POST['f_id_config_project']) { // UPDATE
 		$lib='

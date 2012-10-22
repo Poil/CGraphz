@@ -2,11 +2,11 @@
 if (isset($_POST['f_submit_plugin_filter'])) {
 	
 	$f_id_config_plugin_filter=intval($_POST['f_id_config_plugin_filter']);
-	$f_plugin_filter_desc=mysql_escape_string($_POST['f_plugin_filter_desc']);
-	$f_plugin_filter_p=mysql_escape_string($_POST['f_plugin_filter_p']);
-	$f_plugin_filter_pi=mysql_escape_string($_POST['f_plugin_filter_pi']);
-	$f_plugin_filter_t=mysql_escape_string($_POST['f_plugin_filter_t']);
-	$f_plugin_filter_ti=mysql_escape_string($_POST['f_plugin_filter_ti']);
+	$f_plugin_filter_desc=mysql_escape_string(filter_input(INPUT_POST,'f_plugin_filter_desc',FILTER_SANITIZE_SPECIAL_CHARS));
+	$f_plugin_filter_p=mysql_escape_string(filter_input(INPUT_POST,'f_plugin_filter_p',FILTER_SANITIZE_SPECIAL_CHARS));
+	$f_plugin_filter_pi=mysql_escape_string(filter_input(INPUT_POST,'f_plugin_filter_pi',FILTER_SANITIZE_SPECIAL_CHARS));
+	$f_plugin_filter_t=mysql_escape_string(filter_input(INPUT_POST,'f_plugin_filter_t',FILTER_SANITIZE_SPECIAL_CHARS));
+	$f_plugin_filter_ti=mysql_escape_string(filter_input(INPUT_POST,'f_plugin_filter_ti',FILTER_SANITIZE_SPECIAL_CHARS));
 	$f_plugin_filter_plugin_order=intval($_POST['f_plugin_filter_plugin_order']);
 		
 	if ($_POST['f_id_config_plugin_filter']) { // UPDATE

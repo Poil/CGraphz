@@ -2,9 +2,9 @@
 if (isset($_POST['f_submit_module'])) {
 	
 	$f_id_perm_module=intval($_POST['f_id_perm_module']);
-	$f_module=mysql_escape_string($_POST['f_module']);
-	$f_component=mysql_escape_string($_POST['f_component']);
-	$f_menu_name=mysql_escape_string($_POST['f_menu_name']);
+	$f_module=mysql_escape_string(filter_input(INPUT_POST,'f_module',FILTER_SANITIZE_SPECIAL_CHARS));
+	$f_component=mysql_escape_string(filter_input(INPUT_POST,'f_component',FILTER_SANITIZE_SPECIAL_CHARS));
+	$f_menu_name=mysql_escape_string(filter_input(INPUT_POST,'f_menu_name',FILTER_SANITIZE_SPECIAL_CHARS));
 	$f_menu_order=intval($_POST['f_menu_order']);
 		
 	if ($_POST['f_id_perm_module']) { // UPDATE

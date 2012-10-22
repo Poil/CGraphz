@@ -34,24 +34,23 @@ if ($auth->verif_auth()) {
 	
 	$lib='
 	SELECT cs.server_name
-	FROM cgraphz.config_server cs
-	  LEFT JOIN cgraphz.config_server_project csp 
+	FROM config_server cs
+	  LEFT JOIN config_server_project csp 
         ON cs.id_config_server=csp.id_config_server
-	  LEFT JOIN cgraphz.perm_project_group ppg 
+	  LEFT JOIN perm_project_group ppg 
         ON csp.id_config_project=ppg.id_config_project
-	  LEFT JOIN cgraphz.auth_user_group aug 
+	  LEFT JOIN auth_user_group aug 
         ON ppg.id_auth_group=aug.id_auth_group
 	WHERE cs.server_name="'.$host.'" 
 	  AND aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
 	GROUP BY server_name
 	ORDER BY server_name';
-		
 	$autorized=$connSQL->getRow($lib);
 	
 	if ($host==$autorized->server_name) {
 		# load plugin
 		include DIR_FSROOT.'/plugin/'.$plugin.'.php';
-	} else {
+	} else {		
 		error_image();
 	}
 }

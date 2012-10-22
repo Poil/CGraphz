@@ -18,7 +18,15 @@ if ($perm_mod->perm_list_module('dashboard')) {
 			$allowed_perm=$perm_mod->perm_list_module('dashboard', false);			
 			if ($allowed_perm) {
 				foreach ($allowed_perm as $allowed) {
-					echo '<li><a href="index.php?module=dashboard&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
+					if ($allowed->component=='dynamic') {
+						echo '<li>'.$allowed->menu_name;
+							echo '<ul class="niveau3">';						
+								include(DIR_FSROOT.'/html/menu/menu_dynamic_dashboard.php');
+							echo '</ul>';
+						echo '</li>';
+					} else {
+						echo '<li><a href="index.php?module=dashboard&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
+					}
 				}
 			}
 		echo '</ul>

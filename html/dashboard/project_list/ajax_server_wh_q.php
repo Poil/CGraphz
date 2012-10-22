@@ -6,7 +6,7 @@ if ($auth->verif_auth()) {
 
 if ($_GET['f_q']) {
 	$connSQL=new DB();
-	$f_q=htmlentities($_GET['f_q']);
+	$f_q=filter_input(INPUT_GET,'f_q',FILTER_SANITIZE_SPECIAL_CHARS);
 	
 	$lib='
 	SELECT 
@@ -31,8 +31,8 @@ if ($_GET['f_q']) {
 	$cpt_server=count($all_server);
 	
 	for ($i=0; $i<$cpt_server; $i++) {
-		echo '<a href="#" 
-			onclick="window.location.href=genUrl(\''.$all_server[$i]->id_config_server.'\',\''.$all_server[$i]->id_config_project.'\')">'.$all_server[$i]->server_name.'</a><br />';
+		echo '<a href="'.DIR_WEBROOT.'/index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$all_server[$i]->id_config_project.'&amp;f_id_config_server='.$all_server[$i]->id_config_server.'" 
+			onclick="window.location.href=genUrl(\''.$all_server[$i]->id_config_server.'\',\''.$all_server[$i]->id_config_project.'\'); return false;">'.$all_server[$i]->server_name.'</a><br />';
 	}
 }
 }

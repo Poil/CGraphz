@@ -26,6 +26,18 @@ div#dashboard {
   	padding-left:18pt;
 }
 
+div#displaytest {
+	position:absolute;
+	background:white;
+	border:1pt solid #555555;
+	top:400pt;
+	margin:80pt;
+	padding:10pt;
+	min-height:200pt;
+	/*max-height:300pt;
+	overflow:auto;*/
+}
+
 a, a:link, a:visited {
 	color:#2a5685;
 	text-decoration:none;
@@ -65,6 +77,14 @@ fieldset fieldset legend {
 
 fieldset fieldset:nth-child(even) {
   clear:both;  
+}
+
+fieldset.large {
+	width:715pt;
+}
+
+fieldset.large label {
+	width:120pt;
 }
 
 .spacer { clear : both; height:0pt;}
@@ -197,7 +217,8 @@ input[type=checkbox] {
 	margin: 2pt 0pt 2pt 0pt;
 }
 
-input[type=submit] {
+input[type=submit],
+input[type=button] {
 	height:16pt;
 }
 
