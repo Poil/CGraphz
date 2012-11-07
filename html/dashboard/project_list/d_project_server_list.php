@@ -33,7 +33,7 @@ if (isset($_GET['f_id_config_project'])) {
 	if (isset($all_environment) && $cpt_environment>1) {
 		echo '<div id="div_menu_server_environment">';
 		foreach ($all_environment as $environment) {
-			if (intval($_GET['f_id_config_environment'])==$environment->id_config_environment && $_GET['f_id_config_environment']!='') { 
+			if (isset($_GET['f_id_config_environment']) && intval($_GET['f_id_config_environment'])==$environment->id_config_environment) { 
 				$style=' style="font-weight: bold;" '; 
 			} else { 
 				$style=''; 
@@ -55,7 +55,7 @@ if (isset($_GET['f_id_config_project'])) {
 		if (isset($all_role) && $cpt_role>1) {
 			echo '<div id="div_menu_server_role">';
 			foreach ($all_role as $role) {
-				if (intval($_GET['f_id_config_role'])==$role->id_config_role && $_GET['f_id_config_role']!='') { 
+				if (isset($_GET['f_id_config_role']) && intval($_GET['f_id_config_role'])==$role->id_config_role) { 
 					$style=' style="font-weight: bold;" '; 
 				} else { 
 					$style=''; 

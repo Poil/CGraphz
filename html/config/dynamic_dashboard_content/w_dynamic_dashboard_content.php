@@ -15,7 +15,6 @@ if (isset($_POST['f_submit_dynamic_dashboard_content'])) {
 	
 //	if ( (filter_var($f_regex_srv, FILTER_VALIDATE_REGEXP) !== false) && (filter_var($f_regex_filter, FILTER_VALIDATE_REGEXP) !== false) ) {
 		if ($f_id_config_dynamic_dashboard_content !== 0) {
-			echo 'update'; 
 			$lib='
 				UPDATE config_dynamic_dashboard_content SET
 					title="'.$f_title.'",
@@ -29,7 +28,6 @@ if (isset($_POST['f_submit_dynamic_dashboard_content'])) {
 				WHERE
 					id_config_dynamic_dashboard_content="'.$f_id_config_dynamic_dashboard_content.'"';
 		} else { // INSERT
-		echo 'insert';
 			$lib='INSERT INTO config_dynamic_dashboard_content 
 				(id_config_dynamic_dashboard,title,regex_srv,regex_p_filter,regex_pi_filter,regex_t_filter,regex_ti_filter,rrd_ordering,dash_ordering) 
 			VALUES 

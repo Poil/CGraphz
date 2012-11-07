@@ -163,6 +163,18 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 			
 			//$final_array=array_merge_recursive($plugin_array, $final_array);
 			foreach ($plugin_array as $plugin) {
+				if (preg_match('/^GenericJMX|elasticsearch/', $plugin['p'])) {
+					if (substr_count($plugin['ti'], '-') >= 1) {
+						if ($plugin['ti']!='') {
+							$tmp=explode('-',$plugin['ti']);
+							$plugin['ti']=$tmp[0];
+							if ($plugin['ti']!='') $plugin['ti']=$plugin['ti'].'-*';
+						}
+					} else {
+						$plugin['ti']='';
+					}
+				}
+				
 				if (! isset(${$plugin['servername'].$plugin['p'].$plugin['pi'].$plugin['t'].$plugin['ti']}) ) {
 					${$plugin['servername'].$plugin['p'].$plugin['pi'].$plugin['t'].$plugin['ti']}=true;
 					
@@ -198,12 +210,31 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 						}
 					}
 				
-					if (preg_match('/^GenericJMX/', $plugin['p'])) {
-						echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
-						if (isset($time_start) && isset($time_end)) {
-						        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
-						} else {
-						        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
+					if (preg_match('/^GenericJMX|elasticsearch/', $plugin['p'])) {
+						if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or ($ti!="" && $old_ti!=$plugin['ti'])) {
+						    $tmp=explode('-',$plugin['pi']);
+/*
+							$subpg=$tmp[0];
+							if ($subpg!=$old_subpg) {
+							        echo '<h4>'.str_replace("_", " ",$subpg).'</h4>';
+							}
+							
+							if (substr_count($plugin['pi'], '-') >= 1) {
+								$tmp=explode('-',$plugin['pi']);
+								$subpi=$tmp[1];
+								if ($subpi!=$old_subpi) {
+									echo '<h5>'.str_replace("_", " ",$subpi).'</h5>';
+									$old_subpi=$subpi;
+								}
+							}*/
+							
+							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />';
+							if (isset($time_start) && isset($time_end)) {
+							        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
+							} else {
+							        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
+						        }
+						        $old_subpg=$subpg;
 						}
 					} else if (!preg_match('/^(df|interface|oracle)$/', $plugin['p'])) {
 						$plugin['ti']='';

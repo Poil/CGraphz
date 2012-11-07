@@ -1,5 +1,5 @@
 <form name="f_form_dynamic_dashboard_content" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_dynamic_dashboard_content'); ?>">
-	<input type="hidden" name="f_id_config_dynamic_dashboard_content" id="f_id_config_dynamic_dashboard_content" value="<?php echo @$cur_dynamic_dashboard_content->id_config_dynamic_dashboard_content; ?>" />
+	<input type="hidden" name="f_id_config_dynamic_dashboard_content" id="f_id_config_dynamic_dashboard_content" value="" />
 	<input type="hidden" name="f_id_config_dynamic_dashboard" id="f_id_config_dynamic_dashboard" value="<?php echo $_GET['f_id_config_dynamic_dashboard'] ?>" />
 	<label for="f_title">Titre</label>
 		<input type="text" name="f_title" id="f_title" value="<?php echo @$cur_dynamic_dashboard_content->title; ?>" /><br />

@@ -84,24 +84,45 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$$p=true;
 			}
 			
+			if (preg_match('/^GenericJMX|elasticsearch/', $p)) {
+				if (substr_count($ti, '-') >= 1) {
+					if ($ti!='') {
+						$tmp=explode('-',$ti);
+						$ti=$tmp[0];
+					}
+				} else {
+					$ti='';
+				}
+			}
 			if (! isset(${$p.$pi.$t.$ti}) ) {
 				${$p.$pi.$t.$ti}=true;
 				
 				// Verif regex OK
 				if ($p!="" && $t!="") {
-					if (preg_match('/^GenericJMX/', $p)) {
-						$ti='';
-						if ($old_t!=$t or $old_pi!=$pi) {
-						        $tmp=explode('-',$pi);
-						$subpg=$tmp[0];
-						if ($subpg!=$old_subpg) {
-						        echo '<h4>'.str_replace("_", " ",$subpg).'</h4>';
-						}
-						echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
-						if (isset($time_start) && isset($time_end)) {
-						        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
-						} else {
-						        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
+					if (preg_match('/^GenericJMX|elasticsearch/', $p)) {
+
+						if ($ti!='') $ti=$ti.'-*';
+						if ($old_t!=$t or $old_pi!=$pi or ($ti!="" && $old_ti!=$ti)) {
+						    $tmp=explode('-',$pi);
+							$subpg=$tmp[0];
+							if ($subpg!=$old_subpg) {
+							        echo '<h4>'.str_replace("_", " ",$subpg).'</h4>';
+							}
+							
+							if (substr_count($pi, '-') >= 1) {
+								$tmp=explode('-',$pi);
+								$subpi=$tmp[1];
+								if ($subpi!=$old_subpi) {
+									echo '<h5>'.str_replace("_", " ",$subpi).'</h5>';
+									$old_subpi=$subpi;
+								}
+							}
+							
+							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
+							if (isset($time_start) && isset($time_end)) {
+							        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
+							} else {
+							        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
 						        }
 						        $old_subpg=$subpg;
 						}
@@ -116,7 +137,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 							}
 							//$cpt++;
 						}
-					} else {
+                                        } else {
 						echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
 						if (isset($time_start) && isset($time_end)) {
 							echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
@@ -129,8 +150,8 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 					$old_pi=$pi;
 				} else if (DEBUG==true){
 					echo 'ERREUR - p='.$p.' pi='.$pi.' t='.$t.' ti='.$ti.'<br />';
-				}
-			}
+				} 
+			} 
 		}
 	}
 }

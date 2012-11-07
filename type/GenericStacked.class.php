@@ -9,8 +9,12 @@ class Type_GenericStacked extends Type_Default {
 
 		$sources = $this->rrd_get_sources();
 		
-		if ($this->scale)
+		if ($this->scale) {
 			$raw = '_raw';
+		}
+		else {
+			$raw = null;
+		}
 		$i=0;
 		foreach ($this->tinstances as $tinstance) {
 			foreach ($this->data_sources as $ds) {

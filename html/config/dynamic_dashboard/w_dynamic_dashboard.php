@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['f_submit_dynamic_dashboard'])) {
+if (isset($_POST['f_submit_dynamic_dashboard']) && $_POST['f_title']!='') {
 	
 	$f_id_config_dynamic_dashboard=intval($_POST['f_id_config_dynamic_dashboard']);
 	$f_title=mysql_escape_string(filter_input(INPUT_POST,'f_title',FILTER_SANITIZE_SPECIAL_CHARS));
