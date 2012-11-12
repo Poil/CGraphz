@@ -18,7 +18,7 @@ define('DEF_LANG','fr');
 define('MAX_SRV',4); // Nombre min de serveur avant affichage des catégories
 //define('MAX_ELEM_ADM_TAB',2); // Nombre Max d'elements par table d'admin'
 //define('MAX_ADM_TAB',2);
-define('NOT_LOGGED_MSG','<br />Pour toute demande d\'accès s\'adresser à <a href="mailto:demandes.exploitation@pjdirect.fr">demandes.exploitation@pjdirect.fr</a> en spécifiant les projets/environnements auxquels vous souhaitez avoir accès');
+define('NOT_LOGGED_MSG','<br />Please log-in<br />');
 
 // Liste des plugins à afficher
 $plugins = array('load', 'memory', 'disk-sda', 'cpu', 'interface', 'processes', 'tcpconns');
