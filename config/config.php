@@ -4,12 +4,12 @@ date_default_timezone_set('Europe/Paris');
 define('CGRAPHZ_VERSION','1.50 Beta 1');
 define('DB_HOST','localhost');
 define('DB_PORT','3306');
-define('DB_DATABASE','visu01g');
+define('DB_DATABASE','myDB');
 define('DB_LOGIN','root');
-define('DB_PASSWD','Zorglub+SQL');
-define('LDAP_HOST','ldaps://192.168.158.3');
+define('DB_PASSWD','MyDBPassword');
+define('LDAP_HOST','ldaps://192.168.1.1');
 define('LDAP_PORT','636');
-define('LDAP_TREE','ou=People,dc=auth,dc=pagesjaunes,dc=fr');
+define('LDAP_TREE','ou=People,dc=auth,dc=mydomain,dc=fr');
 define('DIR_FSROOT',$_SERVER['DOCUMENT_ROOT']);
 define('DIR_WEBROOT', '');
 define('DEBUG',false);
@@ -54,7 +54,7 @@ $CONFIG['datasize'] = 'bytes';
 $CONFIG['cache'] = 90;
 
 # default width/height of the graphs
-$CONFIG['width'] = 400;
+$CONFIG['width'] = 480;
 $CONFIG['heigth'] = 175;
 # default width/height of detailed graphs
 $CONFIG['detail-width'] = 800;
@@ -67,13 +67,6 @@ $CONFIG['socket'] = NULL;
 
 $CONFIG['welcome_text'] =
 '<h3>Bienvenue sur cgraphz</h3>
-	<br />En cas de besoin, merci de contacter les équipes suivantes :
-	<dl>
-		<dt>Questions concernant la supervision:</dt>
-		<dd>Équipe PES, Production Exploitation Supervision (<a href=mailto:ael.esl.supervision@pagesjaunes.fr>ael.esl.supervision@pagesjaunes.fr</a>)</dd>
-		<dt>Questions concernant l\'interface: </dt>
-		<dd>Équipe Système et Intégration (<a href=mailto:ael.scs.systeme@pagesjaunes.fr>ael.scs.systeme@pagesjaunes.fr</a>)</dd>
-	</dl>
 ';
 
 function my_autoload ($pClassName) {
