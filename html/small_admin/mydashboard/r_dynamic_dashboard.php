@@ -8,6 +8,7 @@ $lib='SELECT cdd.*
 	LEFT JOIN auth_user_group aug
 		ON cddg.id_auth_group=aug.id_auth_group	 
 	WHERE aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
+	AND cddg.group_manager=1
 	GROUP BY cdd.title
 	ORDER BY cdd.title';
 
