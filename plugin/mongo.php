@@ -53,13 +53,13 @@ switch($obj->args['type']) {
 	case 'file_size' :
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG);
-		//$obj -> data_sources = array('bytes');
+		$obj -> data_sources = array('bytes');
 		$obj -> rrd_title = sprintf('File Size%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
 		$obj -> rrd_vertical = 'Bytes';
 		break;
 	case 'total_operations' :
 		require_once 'type/GenericStacked.class.php';
-		$obj = new Type_GenericStacked($CONFIG);		
+		$obj = new Type_GenericStacked($CONFIG);
 		$obj -> rrd_title = sprintf('Total Operation%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
 		$obj -> rrd_vertical = 'Operation';
 }
@@ -67,6 +67,18 @@ $obj -> width = $width;
 $obj -> heigth = $heigth;
 $obj -> rrd_format = '%5.1lf%s';
 $obj -> generate_colors();
+
+# backwards compatibility
+if ($CONFIG['version'] < 5 && in_array($obj -> args['type'], array('frequency', 'percent', 'timeleft'))) {
+
+	$obj -> data_sources = array($obj -> args['type']);
+
+	$obj -> ds_names[$obj -> args['type']] = $obj -> ds_names['value'];
+	unset($obj -> ds_names['value']);
+
+	$obj -> colors[$obj -> args['type']] = $obj -> colors['value'];
+	unset($obj -> colors['value']);
+}
 
 collectd_flush($obj -> identifiers);
 $obj -> rrd_graph();
