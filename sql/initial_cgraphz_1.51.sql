@@ -351,7 +351,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `cgraphz`;
-INSERT INTO `cgraphz`.`auth_user_group` (`id_auth_group`, `id_auth_user`, `manager`) VALUES (1, 1, NULL);
+INSERT INTO `cgraphz`.`auth_user_group` (`id_auth_group`, `id_auth_user`, `manager`) VALUES (1, 1, 1);
 
 COMMIT;
 
@@ -366,13 +366,15 @@ INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `m
 INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (4, 'dashboard', 'view', 'Dashboard', 1);
 INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (5, 'auth', 'user', 'Utilisateurs', 1);
 INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (6, 'auth', 'group', 'Groupes', 2);
-INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (7, 'config', 'filter', 'Filtres', 3);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (7, 'config', 'plugin', 'Filtres', 3);
 INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (8, 'dashboard', 'dynamic', 'Dynamique', 2);
 INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (9, 'small_admin', 'myaccount', 'Mon Compte', 1);
 INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (10, 'small_admin', 'mygroup', 'Mes Groupes', 2);
 INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (11, 'small_admin', 'newuser', 'Nouvel Utilisateur', 3);
 INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (12, 'small_admin', 'mydashboard', 'Mes TdBs', 4);
 INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (13, 'config', 'dynamic_dashboard', 'TdBs Dynamiques', 4);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (14, 'config', 'role', 'Rôles', 5);
+INSERT INTO `cgraphz`.`perm_module` (`id_perm_module`, `module`, `component`, `menu_name`, `menu_order`) VALUES (15, 'config', 'environment', 'Environnements', 6);
 
 COMMIT;
 
@@ -413,5 +415,14 @@ INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin
 INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (9, 'tcpconns', '\\d+-\\w+', 'tcp_connections', '\\w+', 'tcpconns', 5);
 INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (10, 'df', '', 'df', '.+', 'df', 6);
 INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (11, 'cpu', '\\d+', 'cpu', '\\w+', 'cpu', 7);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `cgraphz`.`config_plugin_filter_group`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `cgraphz`;
+INSERT INTO `cgraphz`.`config_plugin_filter_group` (`id_config_plugin_filter`, `id_auth_group`) VALUES (1, 1);
 
 COMMIT;
