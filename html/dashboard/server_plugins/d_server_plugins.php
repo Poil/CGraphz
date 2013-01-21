@@ -1,17 +1,21 @@
 <?php
 $f_id_config_project=intval($_GET['f_id_config_project']);
 
-if (isset($_SESSION['time_start']) && is_numeric($_SESSION['time_start']) && isset($_SESSION['time_end']) && is_numeric($_SESSION['time_end'])) {
-	$time_start=$_SESSION['time_start'];
-	$time_end=$_SESSION['time_end'];
-} 
+
 
 if (isset($_SESSION['time_range']) && is_numeric($_SESSION['time_range'])) {
 	$time_range=$_SESSION['time_range'];
 } else {
-	$time_range=$CONFIG['time_range']['default'];
+	if (isset($_SESSION['time_start']) && is_numeric($_SESSION['time_start']) && isset($_SESSION['time_end']) && is_numeric($_SESSION['time_end'])) {
+		$time_start=$_SESSION['time_start'];
+		$time_end=$_SESSION['time_end'];
+		$time_range='';
+	} else {
+		$time_range=$CONFIG['time_range']['default'];
+		$time_start='';
+		$time_end='';
+	}
 }
-
 
 echo '<div id="dashboard">';
 
@@ -118,7 +122,11 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 								}
 							}
 							
-							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
+							if ($time_range!='') {
+								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
+							} else {
+								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_start.'&amp;e='.$time_end.' />';
+							}
 							if (isset($time_start) && isset($time_end)) {
 							        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
 							} else {
@@ -128,8 +136,12 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 						}
 					} else if (!preg_match('/^(df|interface|oracle)$/', $p)) {
 						$ti='';
-						if ($old_t!=$t or $old_pi!=$pi)	{							
-							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
+						if ($old_t!=$t or $old_pi!=$pi)	{
+							if ($time_range!='') {						
+								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
+							} else {
+								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_start.'&amp;e='.$time_end.' />';
+							}
 							if (isset($time_start) && isset($time_end)) {
 								echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
 							} else {
@@ -137,8 +149,12 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 							}
 							//$cpt++;
 						}
-                                        } else {
-						echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
+					} else {
+						if ($time_range!='') {
+							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
+						} else {
+							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;ti='.$ti.'&amp;s='.$time_start.'&amp;e='.$time_end.' />';
+						}
 						if (isset($time_start) && isset($time_end)) {
 							echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
 						} else {
@@ -213,7 +229,6 @@ foreach ($vmlist as $vmdir) {
 					echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
 				}
 			}
-
 		}
 	}
 }

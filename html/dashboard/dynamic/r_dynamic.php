@@ -1,15 +1,18 @@
 <?php
 $f_id_config_dynamic_dashboard=intval($_GET['f_id_config_dynamic_dashboard']);
 
-if (isset($_SESSION['time_start']) && is_numeric($_SESSION['time_start']) && isset($_SESSION['time_end']) && is_numeric($_SESSION['time_end'])) {
-	$time_start=$_SESSION['time_start'];
-	$time_end=$_SESSION['time_end'];
-} 
-
 if (isset($_SESSION['time_range']) && is_numeric($_SESSION['time_range'])) {
 	$time_range=$_SESSION['time_range'];
 } else {
-	$time_range=$CONFIG['time_range']['default'];
+	if (isset($_SESSION['time_start']) && is_numeric($_SESSION['time_start']) && isset($_SESSION['time_end']) && is_numeric($_SESSION['time_end'])) {
+		$time_start=$_SESSION['time_start'];
+		$time_end=$_SESSION['time_end'];
+		$time_range='';
+	} else {
+		$time_range=$CONFIG['time_range']['default'];
+		$time_start='';
+		$time_end='';
+	}
 }
 
 if (isset($_GET['auto_refresh'])) {
@@ -31,7 +34,9 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'172800\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">2 jours</a></li>
 				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'604800\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 semaine</a></li>
 				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'2592000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 mois</a></li>
+				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'15552000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">6 mois</a></li>
 				<li><a href="#" onclick="refresh_graph(\'dashboard\',\'31104000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 an</a></li>
+				<li><a href="#" onclick="Show_Popup($(\'.imggraph:first\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')">Custom</a></li>
 			</ul>
 		</div>
 		<img src="img/refresh.png" style="cursor:pointer" onclick="refresh_graph(\'dashboard\',\'\',\'\',\'\'); return false" title="Rafraichir" alt="Refresh" />
@@ -213,22 +218,11 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 					if (preg_match('/^GenericJMX|elasticsearch/', $plugin['p'])) {
 						if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or ($ti!="" && $old_ti!=$plugin['ti'])) {
 						    $tmp=explode('-',$plugin['pi']);
-/*
-							$subpg=$tmp[0];
-							if ($subpg!=$old_subpg) {
-							        echo '<h4>'.str_replace("_", " ",$subpg).'</h4>';
+							if ($time_range!='') {
+								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />';
+							} else {
+								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />';
 							}
-							
-							if (substr_count($plugin['pi'], '-') >= 1) {
-								$tmp=explode('-',$plugin['pi']);
-								$subpi=$tmp[1];
-								if ($subpi!=$old_subpi) {
-									echo '<h5>'.str_replace("_", " ",$subpi).'</h5>';
-									$old_subpi=$subpi;
-								}
-							}*/
-							
-							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />';
 							if (isset($time_start) && isset($time_end)) {
 							        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
 							} else {
@@ -239,7 +233,11 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 					} else if (!preg_match('/^(df|interface|oracle)$/', $plugin['p'])) {
 						$plugin['ti']='';
 						if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $plugin['servername']!=$old_servername)	{
-							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
+							if ($time_range!='') {
+								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
+							} else {
+								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
+							}
 							if (isset($time_start) && isset($time_end)) {
 								echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
 							} else {
@@ -247,7 +245,11 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 							}
 						}
 					} else {
-						echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
+						if ($time_range!='') {
+							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
+						} else {
+							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
+						}
 						if (isset($time_start) && isset($time_end)) {
 							echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
 						} else {
