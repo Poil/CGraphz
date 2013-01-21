@@ -17,7 +17,7 @@ Post Installation
 -----
 * MySQL
 > mysql -u root -p
-> source /var/www/CGraphz/sql/cgraphz.sql
+> source /var/www/CGraphz/sql/initial_cgraphz_1.51.sql
 * Configuration
 Edit /var/www/CGraphz/config/config.php
 
@@ -25,7 +25,7 @@ Add your first server
 -------
 1. Open your webbrowser and goto http://localhost/CGraphz
  * Login : admin
- * Password : passwd
+ * Password : pass
 
 1. Goto Administration / Serveurs
  * Add servers, you can enter a description
