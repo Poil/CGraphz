@@ -11,6 +11,7 @@ Apache MysqL PHP
 Clone Git
 -----
 > cd /var/www/
+
 > git clone http://github.com/Poil/CGraphz.git
 
 Post Installation
