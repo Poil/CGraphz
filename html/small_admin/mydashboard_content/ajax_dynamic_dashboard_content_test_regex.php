@@ -66,14 +66,12 @@ if ($_POST['f_regex_srv']) {
 		}
 	}
 
-	echo '<div>
-	Serveurs trouvés<br />';
+	echo '<div>'.SERVERS_FOUND.'<br />';
 	foreach ($all_server as $server) {
 		echo $server->server_name.', ';
 	}
 	echo '</div><br />
-	<div>
-	RRDs trouvés<br />';
+	<div>'.RRDS_FOUND.'<br />';
 	
 	$plugin_array=array_unique($plugin_array,SORT_REGULAR);
 

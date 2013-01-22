@@ -1,14 +1,14 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_dynamic_dashboard_content" class="table_admin">
 <thead>
 <tr>
-	<th>Titre</th>
-	<th>Ordre TdB</th>
-	<th>Rgx Serveur</th>
-	<th>Rgx Plugin</th>
-	<th>Rgx Plugin Instance</th>
-	<th>Rgx Type</th>
-	<th>Rgx Type Instance</th>
-	<th>Ordre Graphs</th>
+	<th><?php echo TITLE ?></th>
+	<th><?php echo DISPLAYED_ORDER ?></th>
+	<th><?php echo REGEX_SRV ?></th>
+	<th><?php echo REGEX_PLUGIN ?></th>
+	<th><?php echo REGEX_PLUGIN_INSTANCE ?></th>
+	<th><?php echo REGEX_TYPE ?></th>
+	<th><?php echo REGEX_TYPE_INSTANCE ?></th>
+	<th><?php echo GRAPH_ORDER?></th>
 </tr>
 </thead>
 <tbody>

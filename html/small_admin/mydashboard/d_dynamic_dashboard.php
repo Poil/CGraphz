@@ -1,7 +1,7 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_dynamic_dashboard" class="table_admin">
 <thead>
 <tr>
-	<th>Titre</th>
+	<th><?php echo TITLE ?></th>
 </tr>
 </thead>
 <tbody>

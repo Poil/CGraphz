@@ -1,9 +1,9 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_group_project" class="table_admin">
 <thead>
 <tr>
-	<th>Module</th>
-	<th>Composant</th>
-	<th>Nom Menu</th>
+	<th><?php echo MODULE ?></th>
+	<th><?php echo COMPONANT ?></th>
+	<th><?php echo MENU_NAME ?></th>
 </tr>
 </thead>
 <tbody>

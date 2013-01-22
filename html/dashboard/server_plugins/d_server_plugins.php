@@ -20,7 +20,7 @@ if (isset($_SESSION['time_range']) && is_numeric($_SESSION['time_range'])) {
 echo '<div id="dashboard">';
 
 if ($cur_server->server_name=='') {
-	echo '<h1>Serveur inconnu</h1>';
+	echo '<h1>'.UNKNOWN_SERVER.'</h1>';
 	echo '</div>';
 	exit;
 }

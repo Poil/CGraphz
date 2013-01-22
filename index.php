@@ -34,6 +34,7 @@
 	}
 	?>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/func.js"></script>
+	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/dyn_js.php"></script>
 	
 	
 	<title>CGRAPHZ <?php echo CGRAPHZ_VERSION; ?></title>

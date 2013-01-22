@@ -1,8 +1,8 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_group_user" class="table_admin">
 <thead>
 <tr>
-	<th>Groupe Utilisateurs</th>
-	<th>Manager</th>
+	<th><?php echo GROUP ?></th>
+	<th><?php echo MANAGER ?></th>
 </tr>
 </thead>
 <tbody>

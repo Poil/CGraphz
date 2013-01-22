@@ -16,30 +16,17 @@
 			?>
 		</select><br />
 		<?php } ?>		
-	<label for="f_server_description">Description</label>
+	<label for="f_server_description"><?php echo DESC ?></label>
 		<input type="text" name="f_server_description" id="f_server_description" value="<?php echo @$cur_server->server_description; ?>" /><br />
-	<input type="submit" name="f_submit_server" id="f_submit_server" value="Envoyer" />
+	<input type="submit" name="f_submit_server" id="f_submit_server" value="<?php echo SUBMIT ?>" />
 </form>
 <?php
 if (isset($_GET['f_id_config_server'])) {
 ?>
 	<form name="f_form_del_server" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_server'); ?>">
 		<input type="hidden" name="f_id_config_server" id="f_del_id_config_server" value="<?php echo $cur_server->id_config_server; ?>" />
-		<input type="submit" name="f_del_server" id="f_del_server" value="Supprimer" />
+		<input type="submit" name="f_del_server" id="f_del_server" value="<?php echo DEL ?>" />
 	</form>
 <?php
 } 
 ?>
-<script type="text/javascript">
-$(function(){
-	$.localise('ui.multiselect', {language: 'fr',  path: 'lib/multiselect/locale/'});
-
-	// local
-	$(".multiselect").multiselect();
-	// remote
-	//$("#languages").multiselect({
-	//	remoteUrl: "ajax.php"
-	//});
-
-});
-</script>

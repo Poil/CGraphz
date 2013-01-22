@@ -1,7 +1,7 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_module_group" class="table_admin">
 <thead>
 <tr>
-	<th>Groupes des Modules</th>
+	<th><?php echo GROUP ?></th>
 </tr>
 </thead>
 <tbody>

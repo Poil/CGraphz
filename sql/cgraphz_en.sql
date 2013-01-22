@@ -1,0 +1,16 @@
+UPDATE `auth_group` SET group_description='Administrator' WHERE id_auth_group=1;
+UPDATE `perm_module` SET menu_name='Modules' WHERE id_perm_module=1;
+UPDATE `perm_module` SET menu_name='Projects' WHERE id_perm_module=2;
+UPDATE `perm_module` SET menu_name='Servers' WHERE id_perm_module=3;
+UPDATE `perm_module` SET menu_name='Dashboards' WHERE id_perm_module=4;
+UPDATE `perm_module` SET menu_name='Users' WHERE id_perm_module=5;
+UPDATE `perm_module` SET menu_name='Groups' WHERE id_perm_module=6;
+UPDATE `perm_module` SET menu_name='Filters' WHERE id_perm_module=7;
+UPDATE `perm_module` SET menu_name='Dynamic Dashboards' WHERE id_perm_module=8;
+UPDATE `perm_module` SET menu_name='My Account' WHERE id_perm_module=9;
+UPDATE `perm_module` SET menu_name='My Groups' WHERE id_perm_module=10;
+UPDATE `perm_module` SET menu_name='New User' WHERE id_perm_module=11;
+UPDATE `perm_module` SET menu_name='My Dynamic Dashboards' WHERE id_perm_module=12;
+UPDATE `perm_module` SET menu_name='Dynamic Dashboards' WHERE id_perm_module=13;
+UPDATE `perm_module` SET menu_name='Roles' WHERE id_perm_module=14;
+UPDATE `perm_module` SET menu_name='Environments' WHERE id_perm_module=15;

@@ -9,15 +9,6 @@
 		?>
 	</select><br />
 
-	<input type="submit" name="f_del_server_check" id="f_del_server_check" value="Supprimer" />
+	<input type="submit" name="f_del_server_check" id="f_del_server_check" value="<?php echo DEL ?>" />
 </form>
 
-
-<script type="text/javascript">
-$(function(){
-	$.localise('ui.multiselect', {language: 'fr',  path: 'lib/multiselect/locale/'});
-
-	$(".multiselect").multiselect();
-
-});
-</script>

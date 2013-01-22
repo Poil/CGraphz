@@ -5,14 +5,14 @@ if (isset($_GET['f_id_config_role'])) {
 		<input type="hidden" name="f_id_config_role" id="f_id_config_role" value="<?php echo $f_id_config_role; ?>" />
 		<input type="hidden" name="f_id_config_server" id="f_id_config_server" value="<?php echo $cur_server->id_config_server; ?>" />
 		<input readonly="readonly" type="text" name="f_role_desc" id="f_role_desc" value="<?php echo $cur_server_role->role_description; ?>" />
-		<input type="submit" name="f_delete_server_role" id="f_delete_server_role" value="Supprimer" />
+		<input type="submit" name="f_delete_server_role" id="f_delete_server_role" value="<?php echo DEL ?>" />
 	</form>
 <?php
 } else {
 	?> 
 	<form name="f_formserver_role_" method="post" action="">
 		<input type="hidden" name="f_id_config_server" id="f_id_config_server" value="<?php echo $cur_server->id_config_server; ?>" />
-		<label for="f_id_config_role">Projet</label>
+		<label for="f_id_config_role"><?php echo PROJECT ?></label>
 		<?php 
 		echo '<select name="f_id_config_role" id="f_id_config_role">';
 			for ($i=0; $i<$cpt_role; $i++) {
@@ -22,7 +22,7 @@ if (isset($_GET['f_id_config_role'])) {
 			}
 		echo '</select>';
 		?>
-		<input type="submit" name="f_submit_server_role" id="f_submit_server_role" value="Envoyer" />
+		<input type="submit" name="f_submit_server_role" id="f_submit_server_role" value="<?php echo SUBMIT ?>" />
 	</form>
 	<?php 
 }

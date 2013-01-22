@@ -10,7 +10,7 @@ foreach ($all_project as $project) {
 }
 ?>
 <div id="f_form_find_server">
-<label for="f_find_server">Recherche :&nbsp;<input type="text" id="f_find_server" name="f_find_server" /></label>
+<label for="f_find_server"><?php echo SEARCH ?>:&nbsp;<input type="text" id="f_find_server" name="f_find_server" /></label>
 </div>
 <div class="spacer">&nbsp;</div>
 <script type="text/javascript">

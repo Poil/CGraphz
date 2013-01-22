@@ -13,7 +13,7 @@ $perm_mod = new PERMS();
 if ($perm_mod->perm_list_module('dashboard')) { 
 	echo '
 	<ul class="niveau1">
-		<li>Métrologie
+		<li>',PERF_ANALYSIS,'
 		<ul class="niveau2">';
 			$allowed_perm=$perm_mod->perm_list_module('dashboard', false);			
 			if ($allowed_perm) {
@@ -41,7 +41,7 @@ $perm_mod = new PERMS();
 if ($perm_mod->perm_list_module('small_admin')) { 
 	echo '
 	<ul class="niveau1">
-		<li>Gestion
+		<li>',SMALL_ADMIN,'
 		<ul class="niveau2">';
 			$allowed_perm=$perm_mod->perm_list_module('small_admin', false);			
 			if ($allowed_perm) {
@@ -58,14 +58,13 @@ if ($perm_mod->perm_list_module('small_admin')) {
 <?php
 // Affichage du menu Configuration si l'utilisateur a les droits
 if ($perm_mod->perm_list_module('perm') or $perm_mod->perm_list_module('auth') or $perm_mod->perm_list_module('config')) {
-echo <<< MENU_CONFIGURATION
+echo '
 	<ul class="niveau1">
-		<li>Administration
+		<li>',ADMIN,'
 			<ul class="niveau2">
-MENU_CONFIGURATION;
+				<li>',PERMS,'
+					<ul class="niveau3">';
 ?>
-				<li>Permissions
-					<ul class="niveau3">
 						<?php
 						$allowed_perm=$perm_mod->perm_list_module('perm', false);
 						
@@ -83,13 +82,11 @@ MENU_CONFIGURATION;
 								echo '<li><a href="index.php?module=auth&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
 							}
 						}
-						?>
+echo '
 					</ul>
 				</li>
-
-				<li>Configuration
-					<ul class="niveau3">
-						<?php
+				<li>',CONF,'
+					<ul class="niveau3">';
 						$allowed_config=$perm_mod->perm_list_module('config', false);
 						if ($allowed_config) {
 							foreach ($allowed_config as $allowed) {
