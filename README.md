@@ -1,0 +1,37 @@
+CGraphz
+=============
+
+Installation on Ubuntu
+-------
+
+Apache MysqL PHP
+-----
+> aptitude install mysql-server mysql-client php5 libapache2-mod-php5 php5-mysql
+
+Clone Git
+-----
+> cd /var/www/
+
+> git clone http://github.com/Poil/CGraphz.git
+
+Post Installation
+-----
+* MySQL
+> mysql -u root -p
+> source /var/www/CGraphz/sql/initial_cgraphz_1.51.sql
+* Configuration
+Edit /var/www/CGraphz/config/config.php
+
+Add your first server
+-------
+1. Open your webbrowser and goto http://localhost/CGraphz
+ * Login : admin
+ * Password : pass
+
+1. Goto Administration / Serveurs
+ * Add servers, you can enter a description
+1. Goto Administration / Projets
+ * Click on the project "test"
+ * Put some servers in this project
+ * Add the admin group to the permissions tab
+1. You can now go on dashboard and view your RRDs
