@@ -320,7 +320,8 @@ table.table_admin tr th.sorting_desc_disabled {
 }
 
 .dataTables_length {
-	width: 160px;
+	width: auto;
+	padding-right:15pt;
 }
 
 .dataTables_filter {
