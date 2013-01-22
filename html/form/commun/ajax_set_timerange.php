@@ -25,5 +25,7 @@ if (isset($_GET['time_range']) && is_numeric($_GET['time_range'])) {
 	$_SESSION['time_range']=intval($_GET['time_range']);
 	$_SESSION['time_start']='';
 	$_SESSION['time_end']='';
+	
+	echo 'time_range is setted :'.$_SESSION['time_range']."\n";
 }
 ?>

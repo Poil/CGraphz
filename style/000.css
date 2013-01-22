@@ -139,20 +139,19 @@ h4 {
 	margin-bottom:0;
 }
 table.table_admin {
-clear:both;
-white-space: nowrap;
+	clear:both;
+	white-space: nowrap;
 }
 
 table.table_admin tr th {
   background:#507aaa;
-  padding:1pt 5pt 1pt 5pt;
+  padding:1pt 15pt 1pt 15pt;
   color:white;
 }
 
 table.table_admin tr:nth-child(odd) {
   background:#E6EEF7;
 }
-
 
 #popup_information {
 	position:absolute; 
@@ -278,6 +277,87 @@ img {
 	margin-left:-22px;
 }
 
+/********* Datepicker Fix ************/
 #ui-datepicker-div {
   border:1px solid black;
 }
+
+.ui-widget-header {
+	background:#507AAA;
+	background-image:none;
+}
+
+.ui-widget-header a, 
+.ui-widget-header a:link, 
+.ui-widget-header a:visited {
+	color:white;
+}
+
+/********* DataTable Fix ************/
+table.table_admin tr th.sorting_asc {
+        background: url('../../img/sort_asc.png') #507AAA no-repeat center right;
+}
+
+table.table_admin tr th.sorting_desc {
+        background: url('../../img/sort_desc.png') #507AAA no-repeat center right;
+}
+
+table.table_admin tr th.sorting {
+        background: url('../../img/sort_both.png') #507AAA no-repeat center right;
+}
+
+table.table_admin tr th.sorting_asc_disabled {
+        background: url('../../img/sort_asc_disabled.png') #507AAA no-repeat center right;
+}
+
+table.table_admin tr th.sorting_desc_disabled {
+        background: url('../../img/sort_desc_disabled.png') #507AAA no-repeat center right;
+}
+
+.dataTables_wrapper {
+	clear:none;
+	position: static;
+}
+
+.dataTables_length {
+	width: 160px;
+}
+
+.dataTables_filter {
+	width: auto;
+	float:none;
+	text-align:left;
+}
+
+.dataTables_info {
+	width: auto;
+}
+
+.dataTables_paginate {
+	float:left;
+	text-align:left;
+}
+
+.paginate_disabled_previous {
+	background: url('../../img/back_disabled.png') no-repeat top left;
+}
+
+.paginate_enabled_previous {
+	background: url('../../img/back_enabled.png') no-repeat top left;
+}
+
+.paginate_enabled_previous:hover {                                                    
+	background: url('../../img/back_enabled_hover.png') no-repeat top left;       
+}
+
+.paginate_disabled_next {                                                             
+	background: url('../../img/forward_disabled.png') no-repeat top right;        
+}                                                                                     
+                                                                                        
+.paginate_enabled_next {                                                              
+	background: url('../../img/forward_enabled.png') no-repeat top right;         
+}                                                                                     
+
+.paginate_enabled_next:hover {                                                        
+	background: url('../../img/forward_enabled_hover.png') no-repeat top right;   
+}                                           
