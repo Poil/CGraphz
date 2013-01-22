@@ -1,15 +1,15 @@
 <?php
 date_default_timezone_set('Europe/Paris');
 
-define('CGRAPHZ_VERSION','1.52');
+define('CGRAPHZ_VERSION','1.51');
 define('DB_HOST','localhost');
 define('DB_PORT','3306');
-define('DB_DATABASE','visu01g');
+define('DB_DATABASE','myDB');
 define('DB_LOGIN','root');
-define('DB_PASSWD','Zorglub+SQL');
-define('LDAP_HOST','ldaps://192.168.158.3');
+define('DB_PASSWD','MyDBPassword');
+define('LDAP_HOST','ldaps://192.168.1.1');
 define('LDAP_PORT','636');
-define('LDAP_TREE','ou=People,dc=auth,dc=pagesjaunes,dc=fr');
+define('LDAP_TREE','ou=People,dc=auth,dc=mydomain,dc=fr');
 define('DIR_FSROOT',$_SERVER['DOCUMENT_ROOT']);
 define('DIR_WEBROOT', '');
 define('DEBUG',false);
@@ -18,7 +18,7 @@ define('DEF_LANG','fr');
 define('MAX_SRV',4); // Nombre min de serveur avant affichage des catégories
 //define('MAX_ELEM_ADM_TAB',2); // Nombre Max d'elements par table d'admin'
 //define('MAX_ADM_TAB',2);
-define('NOT_LOGGED_MSG','<br />Pour toute demande d\'accès s\'adresser à <a href="mailto:demandes.exploitation@pjdirect.fr">demandes.exploitation@pjdirect.fr</a> en spécifiant les projets/environnements auxquels vous souhaitez avoir accès');
+define('NOT_LOGGED_MSG','<br />Please log-in<br />');
 
 // Liste des plugins à afficher
 $plugins = array('load', 'memory', 'disk-sda', 'cpu', 'interface', 'processes', 'tcpconns');
@@ -38,11 +38,11 @@ $CONFIG['rrdtool_opts'] = '';
 #$CONFIG['cat']['category1'] = array('host1', 'host2');
 
 # default plugins to show on host page
-$CONFIG['overview'] = array('load', 'memory', 'swap'); 
+$CONFIG['overview'] = array('load', 'memory', 'swap');
 
 # default plugins time range
 $CONFIG['time_range']['default'] = 7200;
-$CONFIG['time_range']['uptime']  = 31536000;
+$CONFIG['time_range']['uptime'] = 31536000;
 
 # show load averages on overview page
 $CONFIG['showload'] = true;
@@ -67,17 +67,10 @@ $CONFIG['socket'] = NULL;
 
 $CONFIG['welcome_text'] =
 '<h3>Bienvenue sur cgraphz</h3>
-	<br />En cas de besoin, merci de contacter les équipes suivantes :
-	<dl>
-		<dt>Questions concernant la supervision:</dt>
-		<dd>Équipe PES, Production Exploitation Supervision (<a href=mailto:ael.esl.supervision@pagesjaunes.fr>ael.esl.supervision@pagesjaunes.fr</a>)</dd>
-		<dt>Questions concernant l\'interface: </dt>
-		<dd>Équipe Système et Intégration (<a href=mailto:ael.scs.systeme@pagesjaunes.fr>ael.scs.systeme@pagesjaunes.fr</a>)</dd>
-	</dl>
 ';
 
 function my_autoload ($pClassName) {
-	include(DIR_FSROOT . "/modules/" . $pClassName . ".php");
+include(DIR_FSROOT . "/modules/" . $pClassName . ".php");
 }
 
 spl_autoload_register("my_autoload");
