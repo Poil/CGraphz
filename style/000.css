@@ -295,23 +295,23 @@ img {
 
 /********* DataTable Fix ************/
 table.table_admin tr th.sorting_asc {
-        background: url('../../img/sort_asc.png') #507AAA no-repeat center right;
+        background: url('../img/sort_asc.png') #507AAA no-repeat center right;
 }
 
 table.table_admin tr th.sorting_desc {
-        background: url('../../img/sort_desc.png') #507AAA no-repeat center right;
+        background: url('../img/sort_desc.png') #507AAA no-repeat center right;
 }
 
 table.table_admin tr th.sorting {
-        background: url('../../img/sort_both.png') #507AAA no-repeat center right;
+        background: url('../img/sort_both.png') #507AAA no-repeat center right;
 }
 
 table.table_admin tr th.sorting_asc_disabled {
-        background: url('../../img/sort_asc_disabled.png') #507AAA no-repeat center right;
+        background: url('../img/sort_asc_disabled.png') #507AAA no-repeat center right;
 }
 
 table.table_admin tr th.sorting_desc_disabled {
-        background: url('../../img/sort_desc_disabled.png') #507AAA no-repeat center right;
+        background: url('../img/sort_desc_disabled.png') #507AAA no-repeat center right;
 }
 
 .dataTables_wrapper {
@@ -340,25 +340,25 @@ table.table_admin tr th.sorting_desc_disabled {
 }
 
 .paginate_disabled_previous {
-	background: url('../../img/back_disabled.png') no-repeat top left;
+	background: url('../img/back_disabled.png') no-repeat top left;
 }
 
 .paginate_enabled_previous {
-	background: url('../../img/back_enabled.png') no-repeat top left;
+	background: url('../img/back_enabled.png') no-repeat top left;
 }
 
 .paginate_enabled_previous:hover {                                                    
-	background: url('../../img/back_enabled_hover.png') no-repeat top left;       
+	background: url('../img/back_enabled_hover.png') no-repeat top left;       
 }
 
 .paginate_disabled_next {                                                             
-	background: url('../../img/forward_disabled.png') no-repeat top right;        
+	background: url('../img/forward_disabled.png') no-repeat top right;        
 }                                                                                     
                                                                                         
 .paginate_enabled_next {                                                              
-	background: url('../../img/forward_enabled.png') no-repeat top right;         
+	background: url('../img/forward_enabled.png') no-repeat top right;         
 }                                                                                     
 
 .paginate_enabled_next:hover {                                                        
-	background: url('../../img/forward_enabled_hover.png') no-repeat top right;   
+	background: url('../img/forward_enabled_hover.png') no-repeat top right;   
 }                                           
