@@ -20,7 +20,9 @@ Post Installation
 > mysql -u root -p
 > source /var/www/CGraphz/sql/initial_cgraphz_1.51.sql
 * Configuration
-Edit /var/www/CGraphz/config/config.php
+Edit /var/www/CGraphz/config/config.php.tpl
+Move /var/www/CGraphz/config/config.php.tpl to /var/www/CGraphz/config/config.php
+> mv /var/www/CGraphz/config/config.php.tpl /var/www/CGraphz/config/config.php
 
 Add your first server
 -------
