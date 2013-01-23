@@ -1,5 +1,10 @@
 CGraphz
 =============
+Demo
+-------
+* http://web.quakelive.fr/CGraphz
+* Login/Pass : admin/pass
+* Database is reseted once per hour
 
 Installation on Ubuntu
 -------
