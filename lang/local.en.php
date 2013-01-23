@@ -4,7 +4,7 @@ define('PERF_ANALYSIS','Performance analysis');
 define('SMALL_ADMIN','Small admin');
 define('ADMIN','Administration');
 define('PERMS','Permissions');
-define('CONF','Configuration');
+define('CONF','Settings');
 define('USER','User');
 define('USERS','Users');
 define('PASSWORD','Password');
@@ -81,6 +81,8 @@ define('EDIT','Edit');
 define('ACCESS_AUTH','Access authorization');
 define('CLEAN_SERVER','Clean');
 define('MY_ACCOUNT','My account');
-//define('','');
+define('PLUGIN_FILTER','Plugin filters');
+define('YES','yes');
+define('NO','no') ;
 
 ?>

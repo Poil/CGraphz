@@ -1,8 +1,8 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_group_plugin_filter" class="table_admin">
 <thead>
 <tr>
-	<th>Filtre</th>
-	<th>Ordre d'affichage</th>
+	<th><?php echo FILTER ?></th>
+	<th><?php echo DISPLAYED_ORDER ?></th>
 </tr>
 </thead>
 <tbody>

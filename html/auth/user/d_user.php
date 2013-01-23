@@ -1,7 +1,9 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_user" class="table_admin">
 <thead>
 <tr>
-	<th>Identifiant</th><th>Nom</th><th>Prénom</th>
+	<th><?php echo USER ?></th>
+	<th><?php echo NAME ?></th>
+	<th><?php echo FIRSTNAME ?></th>
 </tr>
 </thead>
 <tbody>

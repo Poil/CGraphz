@@ -11,9 +11,9 @@
 
 for ($i=0; $i<$cpt_group_user;$i++) {
 	if($all_group_user[$i]->manager==1) {
-		$manager='oui';
+		$manager=YES;
 	} else {
-		$manager='non';
+		$manager=NO;
 	}
 	
 	echo '

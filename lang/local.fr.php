@@ -81,6 +81,9 @@ define('EDIT','Editer');
 define('ACCESS_AUTH','Autorisations d\'accès');
 define('CLEAN_SERVER','Purger');
 define('MY_ACCOUNT','Mon compte');
+define('PLUGIN_FILTER','Filtres de plugin');
+define('YES','oui');
+define('NO','non') ;
 //define('','');
 
 ?>

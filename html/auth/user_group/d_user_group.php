@@ -1,17 +1,17 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_user_group" class="table_admin">
 <thead>
 <tr>
-	<th>Groupes Utilisateur</th>
-	<th>Manager </th>
+	<th><?php echo GROUP ?></th>
+	<th><?php echo MANAGER ?></th>
 </tr>
 </thead>
 <tbody>
 <?php 
 for ($i=0; $i<$cpt_user_group; $i++) {
 	if($all_user_group[$i]->manager==1) {
-		$manager='oui';
+		$manager=YES;
 	} else {
-		$manager='non';
+		$manager=NO;
 	}
 	echo '
 	<tr>

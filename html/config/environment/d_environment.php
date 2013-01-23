@@ -1,8 +1,8 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_environment" class="table_admin">
 <thead>
 <tr>
-	<th>Environnements</th>
-	<th>Descriptions</th>
+	<th><?php echo ENV ?></th>
+	<th><?php echo DESC ?></th>
 </tr>
 </thead>
 <tbody>

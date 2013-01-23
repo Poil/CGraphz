@@ -1,8 +1,8 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_server_role" class="table_admin">
 <thead>
 <tr>
-	<th>Rôles</th>
-	<th>Description</th>
+	<th><?php echo ROLE ?></th>
+	<th><?php echo DESC ?></th>
 </tr>
 </thead>
 <tbody>

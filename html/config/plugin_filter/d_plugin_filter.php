@@ -1,12 +1,12 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_plugin_filter" class="table_admin">
 <thead>
 <tr>
-	<th>Description</th>
-	<th>Plugin</th>
-	<th>Plugin instance</th>
-	<th>Type</th>
-	<th>Type instance</th>
-	<th>Ordre d'affichage</th>
+	<th><?php echo DESC ?></th>
+	<th><?php echo PLUGIN ?></th>
+	<th><?php echo PLUGIN_INSTANCE ?></th>
+	<th><?php echo TYPE ?></th>
+	<th><?php echo TYPE_INSTANCE ?></th>
+	<th><?php echo DISPLAYED_ORDER ?></th>
 </tr>
 </thead>
 <tbody>
