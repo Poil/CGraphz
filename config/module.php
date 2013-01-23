@@ -751,7 +751,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				}
 				echo '<fieldset>';
 				if (isset($_GET['f_id_config_dynamic_dashboard'])) {
-					cho '<legend>'.EDIT.'</legend>';
+					echo '<legend>'.EDIT.'</legend>';
 				}
 				else {
 					echo '<legend>'.ADD.'</legend>';
