@@ -20,6 +20,9 @@ define('MAX_SRV',4); // Nombre min de serveur avant affichage des catégories
 //define('MAX_ADM_TAB',2);
 define('NOT_LOGGED_MSG','<br />Please log-in<br />');
 
+/*** Language ***/
+define('DEF_LANG','en');
+
 // Liste des plugins à afficher
 $plugins = array('load', 'memory', 'disk-sda', 'cpu', 'interface', 'processes', 'tcpconns');
 # collectd version
@@ -75,6 +78,7 @@ function my_autoload ($pClassName) {
 
 spl_autoload_register("my_autoload");
 
+include(DIR_FSROOT.'/lang/local.'.DEF_LANG.'.php');
 include(DIR_FSROOT.'/html/form/commun/func_form.php');
 include(DIR_FSROOT.'/modules/functions.inc.php');
 ?>
