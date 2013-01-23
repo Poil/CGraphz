@@ -482,7 +482,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			}
 			echo '<fieldset>';
 			if (isset($_GET['f_id_auth_group'])) {
-				echo '<legend>Editer</legend>';
+				echo '<legend>'.EDIT.'</legend>';
 			}
 			else {
 				echo '<legend>'.ADD.'</legend>';
@@ -608,7 +608,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			}
 			echo '<fieldset>';
 			if (isset($_GET['f_id_perm_module'])) {
-				echo '<legend>Editer</legend>';
+				echo '<legend>'.EDIT.'</legend>';
 			}
 			else {
 				echo '<legend>'.ADD.'</legend>';
@@ -685,7 +685,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				}
 				echo '<fieldset>';
 				if (isset($_GET['f_id_auth_group'])) {
-					echo '<legend>Editer</legend>';
+					echo '<legend>'.EDIT.'</legend>';
 				}
 				else {
 					echo '<legend>'.ADD.'</legend>';
@@ -751,7 +751,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				}
 				echo '<fieldset>';
 				if (isset($_GET['f_id_config_dynamic_dashboard'])) {
-					echo '<legend>Editer</legend>';
+					cho '<legend>'.EDIT.'</legend>';
 				}
 				else {
 					echo '<legend>'.ADD.'</legend>';
