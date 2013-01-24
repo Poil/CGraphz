@@ -84,5 +84,6 @@ define('MY_ACCOUNT','My account');
 define('PLUGIN_FILTER','Plugin filters');
 define('YES','yes');
 define('NO','no') ;
+define('CONTENT','Content') ;
 
 ?>
