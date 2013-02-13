@@ -1,4 +1,4 @@
-CGraphz
+CGraphz - Collectd GraphZ
 =============
 Demo
 -------
