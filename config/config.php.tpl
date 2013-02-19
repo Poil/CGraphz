@@ -23,8 +23,6 @@ define('NOT_LOGGED_MSG','<br />Please log-in<br />');
 /*** Language ***/
 define('DEF_LANG','en');
 
-// Liste des plugins à afficher
-$plugins = array('load', 'memory', 'disk-sda', 'cpu', 'interface', 'processes', 'tcpconns');
 # collectd version
 $CONFIG['version'] = 4;
 
@@ -36,12 +34,6 @@ $CONFIG['rrdtool'] = '/usr/bin/rrdtool';
 
 # rrdtool special options
 $CONFIG['rrdtool_opts'] = '';
-
-# category of hosts to show on main page
-#$CONFIG['cat']['category1'] = array('host1', 'host2');
-
-# default plugins to show on host page
-$CONFIG['overview'] = array('load', 'memory', 'swap'); 
 
 # default plugins time range
 $CONFIG['time_range']['default'] = 7200;
