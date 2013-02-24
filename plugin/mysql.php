@@ -10,15 +10,36 @@ $obj = new Type_GenericStacked($CONFIG);
 $obj->width = $width;
 $obj->heigth = $heigth;
 
-switch($obj->args['type'])
-{
+switch($obj->args['type']) {
+	case 'cache_result':
+		$obj->ds_names = array(
+			'qcache-not_cached' => 'Not Cached',
+			'qcache-inserts' => 'Inserts',
+			'qcache-hits' => 'Hits',
+			'qcache-prunes' => 'Lowmem Prunes',
+		);
+		$obj->colors = array(
+			'qcache-not_cached' => 'f0a000',
+			'qcache-inserts' => '0000ff',
+			'qcache-hits' => '00e000',
+			'qcache-prunes' => 'ff0000',
+		);
+		$obj->rrd_title = sprintf('MySQL query cache (%s)', $obj->args['pinstance']);
+		$obj->rrd_vertical = 'Queries/s';
+	break;
+	case 'cache_size':
+		$obj->ds_names = array(
+			'qcache' => 'Queries',
+		);
+		$obj->rrd_title = sprintf('MySQL query cache size (%s)', $obj->args['pinstance']);
+		$obj->rrd_vertical = 'Queries in cache';
+	break;
 	case 'mysql_commands':
-		$obj->generate_colors();
 		$obj->rrd_title = sprintf('MySQL commands (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Issues/s';
-		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'mysql_handler':
+		$obj->order = array('commit', 'delete',  'read_first', 'read_key', 'read_next', 'read_prev', 'read_rnd', 'read_rnd_next', 'update',  'write', 'rollback');
 		$obj->colors = array(
 			'commit' => 'ff0000',
 			'delete' => 'ff00e7',
@@ -34,7 +55,6 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('MySQL handler (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Invocations';
-		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'mysql_locks':
 		$obj->colors = array(
@@ -43,7 +63,6 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('MySQL locks (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'locks';
-		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'mysql_octets':
 		$obj->data_sources = array('rx', 'tx');
@@ -57,8 +76,29 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('MySQL traffic (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bits per second';
-		$obj->rrd_format = '%5.1lf%s';
 	break;
+	case 'threads':
+		$obj->ds_names = array(
+			'cached' => 'Cached',
+			'connected' => 'Connected',
+			'running' => 'Running',
+		);
+		$obj->colors = array(
+			'cached' => '00e000',
+			'connected' => '0000ff',
+			'running' => 'ff0000',
+		);
+		$obj->rrd_title = sprintf('MySQL threads (%s)', $obj->args['pinstance']);
+		$obj->rrd_vertical = 'Threads';
+	break;
+	case 'total_threads':
+		$obj->ds_names = array(
+			'created' => 'Created',
+		);
+		$obj->rrd_title = sprintf('MySQL created threads (%s)', $obj->args['pinstance']);
+		$obj->rrd_vertical = 'Created Threads';
+	break;
+	# mysql_qcache is removed since commit collectd-4.10.0-104-g9ae3541
 	case 'mysql_qcache':
 		$obj->data_sources = array('not_cached', 'inserts', 'hits', 'lowmem_prunes', 'queries_in_cache');
 		$obj->ds_names = array(
@@ -77,8 +117,8 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('MySQL query cache (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Queries/s';
-		$obj->rrd_format = '%5.1lf%s';
 	break;
+	# mysql_threads is removed since commit collectd-4.10.0-105-g6c48fca
 	case 'mysql_threads':
 		$obj->data_sources = array('cached', 'connected', 'running', 'created');
 		$obj->ds_names = array(
@@ -91,11 +131,10 @@ switch($obj->args['type'])
 			'cached' => '00e000',
 			'connected' => '0000ff',
 			'running' => 'ff0000',
-			'created' => 'ffcc00',
+			'created' => 'cccccc',
 		);
 		$obj->rrd_title = sprintf('MySQL threads (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Threads';
-		$obj->rrd_format = '%5.1lf%s';
 	break;
         case 'mysql_log_position':
                 $obj->colors = array(

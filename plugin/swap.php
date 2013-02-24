@@ -11,7 +11,7 @@ require_once 'modules/collectd.inc.php';
 # swap/swap-free.rrd
 # swap/swap-used.rrd
 
-switch($_GET['t']) {
+switch(GET('t')) {
 	case 'swap':
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG);
@@ -27,8 +27,7 @@ switch($_GET['t']) {
 			'used'   => 'ff0000',
 		);
 		$obj->rrd_title = 'Swap utilization';
-		$obj->rrd_vertical = ucfirst($CONFIG['datasize']);
-		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
+		$obj->rrd_vertical = 'Bytes';
 	break;
 	case 'swap_io':
 		require_once 'type/GenericIO.class.php';

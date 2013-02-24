@@ -62,8 +62,7 @@ switch($obj->args['type'])
 			'value' => '0000ff',
 		);
 		$obj->rrd_title = sprintf('Text Resident Set (%s)', $obj->args['pinstance']);
-		$obj->rrd_vertical = ucfirst($CONFIG['datasize']);
-		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
+		$obj->rrd_vertical = 'Bytes';
 	break;
 
 	case 'ps_count':
@@ -105,8 +104,7 @@ switch($obj->args['type'])
 			'write' => '00b000',
 		);
 		$obj->rrd_title = sprintf('Disk Traffic (%s)', $obj->args['pinstance']);
-		$obj->rrd_vertical = sprintf('%s per second', ucfirst($CONFIG['datasize']));
-		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
+		$obj->rrd_vertical = 'Bytes per second';
 	break;
 
 	case 'ps_disk_ops':
@@ -131,8 +129,7 @@ switch($obj->args['type'])
 			'value' => '0000ff',
 		);
 		$obj->rrd_title = sprintf('Data Resident Set (%s)', $obj->args['pinstance']);
-		$obj->rrd_vertical = ucfirst($CONFIG['datasize']);
-		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
+		$obj->rrd_vertical = 'Bytes';
 	break;
 
 	case 'ps_pagefaults':
@@ -157,8 +154,7 @@ switch($obj->args['type'])
 			'value' => '0000ff',
 		);
 		$obj->rrd_title = sprintf('Resident Segment Size (%s)', $obj->args['pinstance']);
-		$obj->rrd_vertical = ucfirst($CONFIG['datasize']);
-		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
+		$obj->rrd_vertical = 'Bytes';
 	break;
 
 	case 'ps_stacksize':
@@ -169,8 +165,7 @@ switch($obj->args['type'])
 			'value' => '0000ff',
 		);
 		$obj->rrd_title = sprintf('Stacksize (%s)', $obj->args['pinstance']);
-		$obj->rrd_vertical = ucfirst($CONFIG['datasize']);
-		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
+		$obj->rrd_vertical = 'Bytes';
 	break;
 
 	case 'ps_vm':
@@ -181,8 +176,7 @@ switch($obj->args['type'])
 			'value' => '0000ff',
 		);
 		$obj->rrd_title = sprintf('Virtual Memory (%s)', $obj->args['pinstance']);
-		$obj->rrd_vertical = ucfirst($CONFIG['datasize']);
-		$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
+		$obj->rrd_vertical = 'Bytes';
 	break;
 
 }

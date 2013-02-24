@@ -30,6 +30,7 @@ class Type_GenericIO extends Type_Default {
 					$rrdgraph[] = sprintf('CDEF:min_%s=min_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
 					$rrdgraph[] = sprintf('CDEF:avg_%s=avg_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
 					$rrdgraph[] = sprintf('CDEF:max_%s=max_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
+					$rrdgraph[] = sprintf('VDEF:tot_%1$s=avg_%1$s,TOTAL', crc32hex($sources[$i]));
 					$i++;
 				}
 			}
@@ -51,11 +52,12 @@ class Type_GenericIO extends Type_Default {
 
 		foreach($sources as $source) {
 			$dsname = $this->ds_names[$source] != '' ? $this->ds_names[$source] : $source;
-			$rrdgraph[] = sprintf('LINE1:avg_%s#%s:\'%s\'', crc32hex($source), $this->colors[$source], $dsname);
+			$rrdgraph[] = sprintf('LINE1:avg_%s#%s:\'%s\'', crc32hex($source), $this->colors[$source], $this->rrd_escape($dsname));
 			$rrdgraph[] = sprintf('GPRINT:min_%s:MIN:\'%s Min,\'', crc32hex($source), $this->rrd_format);
 			$rrdgraph[] = sprintf('GPRINT:avg_%s:AVERAGE:\'%s Avg,\'', crc32hex($source), $this->rrd_format);
 			$rrdgraph[] = sprintf('GPRINT:max_%s:MAX:\'%s Max,\'', crc32hex($source), $this->rrd_format);
-			$rrdgraph[] = sprintf('GPRINT:avg_%s:LAST:\'%s Last\l\'', crc32hex($source), $this->rrd_format);
+			$rrdgraph[] = sprintf('GPRINT:avg_%s:LAST:\'%s Last\'', crc32hex($source), $this->rrd_format);
+			$rrdgraph[] = sprintf('GPRINT:tot_%s:\'%s Total\l\'',crc32hex($source), $this->rrd_format);
 		}
 		
 		return $rrdgraph;

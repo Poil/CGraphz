@@ -15,7 +15,6 @@ require_once 'modules/collectd.inc.php';
 $obj = new Type_GenericStacked($CONFIG);
 $obj->data_sources = array('value');
 $obj->order = array('reserved', 'free', 'used');
-
 $obj->ds_names = array(
 	'reserved' => 'Reserved',
 	'free' => 'Free',
@@ -30,16 +29,14 @@ $obj->width = $width;
 $obj->heigth = $heigth;
 
 $obj->rrd_title = sprintf('Free space (%s)', $obj->args['pinstance']);
-$obj->rrd_vertical = ucfirst($CONFIG['datasize']);
-$obj->scale = $CONFIG['datasize'] == 'bits' ? 8 : 1;
-$obj->rrd_format = '%5.1lf%s';
+$obj->rrd_vertical = 'Bytes';
+$obj->rrd_format = '%5.1lf%sB';
 
 # backwards compatibility
 if ($CONFIG['version'] < 5) {
 	$obj->data_sources = array('free', 'used');
 	$obj->rrd_title = sprintf('Free space (%s)', $obj->args['tinstance']);
 }
-
 
 collectd_flush($obj->identifiers);
 $obj->rrd_graph();
