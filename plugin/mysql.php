@@ -9,6 +9,7 @@ require_once 'modules/collectd.inc.php';
 $obj = new Type_GenericStacked($CONFIG);
 $obj->width = $width;
 $obj->heigth = $heigth;
+$obj->rrd_format = '%5.1lf%s';
 
 switch($obj->args['type']) {
 	case 'cache_result':
@@ -144,13 +145,11 @@ switch($obj->args['type']) {
                 );
                 $obj->rrd_title = sprintf('MySQL Log Position (%s)', $obj->args['pinstance']);
                 $obj->rrd_vertical = 'Position';
-                $obj->rrd_format = '%5.1lf%s';
         break;
         case 'time_offset': 
                 $obj->data_sources = array('seconds');
                 $obj->rrd_title = sprintf('Time Offset (%s)', $obj->args['pinstance']);
                 $obj->rrd_vertical = 'seconds';
-                $obj->rrd_format = '%5.1lf%s';
         break;
 
 }
