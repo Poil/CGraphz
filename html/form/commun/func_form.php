@@ -254,4 +254,15 @@ function print_nice(&$elem,$max_level=10,$print_nice_stack=array()){
     }
 }
 
+function sortArray($data, $field) {
+	if(!is_array($field)) $field = array($field); 
+	usort($data, function($a, $b) use($field) {
+		 $retval = 0; 
+		 foreach($field as $fieldname) {
+		 	 if($retval == 0) $retval = strnatcmp($a[$fieldname],$b[$fieldname]); 
+		 } 
+		 return $retval; 
+	}); 
+	return $data; 
+}
 ?>
