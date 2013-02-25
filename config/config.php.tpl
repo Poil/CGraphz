@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Europe/Paris');
 
-define('CGRAPHZ_VERSION','1.52');
+define('CGRAPHZ_VERSION','1.53');
 define('DB_HOST','localhost');
 define('DB_PORT','3306');
 define('DB_DATABASE','cgraphz');
