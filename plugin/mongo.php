@@ -66,7 +66,6 @@ switch($obj->args['type']) {
 $obj -> width = $width;
 $obj -> heigth = $heigth;
 $obj -> rrd_format = '%5.1lf%s';
-$obj -> generate_colors();
 
 # backwards compatibility
 if ($CONFIG['version'] < 5 && in_array($obj -> args['type'], array('frequency', 'percent', 'timeleft'))) {

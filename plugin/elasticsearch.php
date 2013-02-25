@@ -32,7 +32,6 @@ if ($obj->args['tinstance'] != "") {
 switch($obj->args['pinstance']) {
 	case (preg_match('/catalina_request_processor.*/', $obj->args['pinstance']) ? true : false) :
 	default :
-		$obj -> generate_colors();
 		$obj -> rrd_title = $rrd_title;
 
 		$obj -> rrd_vertical = sprintf('%s', str_replace('_', ' ', $obj -> args['type']));

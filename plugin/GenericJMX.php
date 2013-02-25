@@ -43,14 +43,12 @@ switch($obj->args['pinstance']) {
 				$obj->rrd_vertical = 'Bytes/s';
 				break;
 			default :
-				$obj->generate_colors();
 				$obj->rrd_title = $rrd_title;
 				$obj->rrd_vertical = sprintf('%s', str_replace('_', ' ', $obj->args['type']));
 				$obj->rrd_format = '%5.1lf%s'; ;;
 		}
 		break;
 	default :
-		$obj->generate_colors();
 		$obj->rrd_title = $rrd_title;
 
 		$obj->rrd_vertical = sprintf('%s', str_replace('_', ' ', $obj->args['type']));

@@ -13,7 +13,6 @@ require_once 'modules/collectd.inc.php';
 $obj = new Type_GenericStacked($CONFIG);
 $obj->width = $width;
 $obj->heigth = $heigth;
-$obj->generate_colors();
 
 $obj->rrd_title = 'Catalog Usage '.$obj->args['pinstance'];
 //$obj->rrd_vertical = 'Bytes';

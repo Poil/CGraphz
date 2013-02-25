@@ -13,7 +13,6 @@ $obj = new Type_Default($CONFIG);
 
 $obj->width = $width;
 $obj->heigth = $heigth;
-$obj->generate_colors();
 $obj->rrd_title = 'RRDCached';
 
 $obj->rrd_vertical = 'count';

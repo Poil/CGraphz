@@ -123,7 +123,6 @@ if ($_GET['pi'] == 'system') {
             'total_ops' => 'Total',
             'write_ops' => 'Write'
          );
-         $obj->generate_colors();
          $obj->rrd_title = 'Operation per second';
          $obj->rrd_vertical = 'Ops/s';
          $obj->rrd_format = '%5.1lf%s';
@@ -140,7 +139,6 @@ if ($_GET['pi'] == 'system') {
             'inode_cache_hit' => 'inode cache hit',
             'name_cache_hit' => 'name cache hit'
          );
-         $obj->generate_colors();
          $obj->rrd_title = sprintf('Hits');
          $obj->rrd_vertical = '%';
          $obj->rrd_format = '%5.1lf%s';
@@ -165,7 +163,6 @@ if ($_GET['pi'] == 'system') {
             'snap_reserve_used' => 'Snap Reserve Used',
             'used' => 'Used'
          );
-         $obj->generate_colors();
          $obj->rrd_title = sprintf('Volume %s', $tab[1]);
          $obj->rrd_vertical = 'Byte';
          $obj->rrd_format = '%5.1lf%s';
