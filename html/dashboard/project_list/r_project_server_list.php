@@ -103,7 +103,7 @@ if (isset($_GET['f_id_config_project'])) {
 		SELECT 
 			cr.id_config_role, 
 			CASE 
-				WHEN cr.role_description IS NULL THEN "Autres"
+				WHEN cr.role_description IS NULL THEN "'.OTHERS.'"
 			ELSE cr.role_description
 			END AS role_description
 		FROM config_server cs
@@ -135,7 +135,7 @@ if (isset($_GET['f_id_config_project'])) {
 	SELECT 
 		ce.id_config_environment, 
 		CASE 
-			WHEN ce.environment_description IS NULL THEN "Autres"
+			WHEN ce.environment_description IS NULL THEN "'.OTHERS.'"
 		ELSE ce.environment_description
 		END AS environment_description
 	FROM config_server cs
