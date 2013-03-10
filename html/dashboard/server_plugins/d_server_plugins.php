@@ -134,7 +134,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 						        }
 						        $old_subpg=$subpg;
 						}
-					} else if (!preg_match('/^(df|interface|oracle)$/', $p) || $CONFIG['version']) {
+					} else if (!preg_match('/^(df|interface|oracle)$/', $p) || $CONFIG['version'] > 5) {
 						$ti='';
 						if ($old_t!=$t or $old_pi!=$pi)	{
 							if ($time_range!='') {						
