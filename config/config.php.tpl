@@ -55,9 +55,12 @@ $CONFIG['heigth'] = 175;
 $CONFIG['detail-width'] = 800;
 $CONFIG['detail-heigth'] = 350;
 
-# collectd's unix socket (unixsock plugin)
-# enabled: 'unix:///var/run/collectd-unixsock'
+# collectd's unix socket (unixsock plugin) or rrd tcp socket (collectd 4)
+# syntax : 'unix:///var/run/collectd-unixsock'
+# syntax : 'tcp:///xxx.xxx.xxx.xxx:xxxx'
 # disabled: NULL
+#$CONFIG['flush_type'] = 'rrd';
+#$CONFIG['flush_type'] = 'collectd';
 $CONFIG['socket'] = NULL;
 
 $CONFIG['welcome_text'] =

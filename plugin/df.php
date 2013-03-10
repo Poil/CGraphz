@@ -34,7 +34,7 @@ $obj->rrd_format = '%5.1lf%sB';
 
 # backwards compatibility
 if ($CONFIG['version'] < 5) {
-	$obj->data_sources = array('free', 'used');
+	$obj->data_sources = array('free', 'used', 'reserved');
 	$obj->rrd_title = sprintf('Free space (%s)', $obj->args['tinstance']);
 }
 
