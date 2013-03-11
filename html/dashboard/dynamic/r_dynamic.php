@@ -7,11 +7,11 @@ if (isset($_SESSION['time_range']) && is_numeric($_SESSION['time_range'])) {
 	if (isset($_SESSION['time_start']) && is_numeric($_SESSION['time_start']) && isset($_SESSION['time_end']) && is_numeric($_SESSION['time_end'])) {
 		$time_start=$_SESSION['time_start'];
 		$time_end=$_SESSION['time_end'];
-		$time_range='';
+		$time_range=null;
 	} else {
 		$time_range=$CONFIG['time_range']['default'];
-		$time_start='';
-		$time_end='';
+		$time_start=null;
+		$time_end=null;
 	}
 }
 
@@ -103,22 +103,36 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 						if (isset($matches[2])) {
 							$plugin_array[$cpt_p]['p']=$matches[2];
 						} else {
-							$plugin_array[$cpt_p]['p']='';
+							$plugin_array[$cpt_p]['p']=null;
 						}
-						if (isset($matches[3]) && $matches[3]!='') {
+						if (isset($matches[3]) && $matches[3]!=null) {
 							$plugin_array[$cpt_p]['pi']=$matches[3];
+							$plugin_array[$cpt_p]['pc']=null;
+							if (substr_count($plugin_array[$cpt_p]['pi'], '-') >= 1) {
+								$tmp=explode('-',$plugin_array[$cpt_p]['pi']);
+								$plugin_array[$cpt_p]['pc']=$tmp[0];
+								$plugin_array[$cpt_p]['pi']=$tmp[1];
+							}
 						} else {
-							$plugin_array[$cpt_p]['pi']='';
+							$plugin_array[$cpt_p]['pc']=null;
+							$plugin_array[$cpt_p]['pi']=null;
 						}						
 						if (isset($matches[4])) {
 							$plugin_array[$cpt_p]['t']=$matches[4];
 						} else {
-							$plugin_array[$cpt_p]['t']='';
+							$plugin_array[$cpt_p]['t']=null;
 						}						
-						if (isset($matches[5]) && $matches[5]!='') {
+						if (isset($matches[5]) && $matches[5]!=null) {
 							$plugin_array[$cpt_p]['ti']=$matches[5];
+							$plugin_array[$cpt_p]['tc']=null;
+							if (substr_count($plugin_array[$cpt_p]['ti'], '-') >= 1) {
+								$tmp=explode('-',$plugin_array[$cpt_p]['ti']);
+								$plugin_array[$cpt_p]['tc']=$tmp[0];
+								$plugin_array[$cpt_p]['ti']=$tmp[1];
+							}
 						} else {
-							$plugin_array[$cpt_p]['ti']='';
+							$plugin_array[$cpt_p]['tc']=null;
+							$plugin_array[$cpt_p]['ti']=null;
 						}
 						
 						$cpt_p++;
@@ -127,45 +141,35 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 			}
 
 			if ($all_content[$i]->rrd_ordering=='S') {
-				$plugin_array = sortArray($plugin_array, array('servername', 'p','pi','t','ti'));
+				$plugin_array = sortArray($plugin_array, array('servername', 'p', 'pc', 'pi', 't', 'tc', 'ti'));
 			} else if ($all_content[$i]->rrd_ordering=='P') {
-				$plugin_array = sortArray($plugin_array, array('p','servername','pi','t','ti'));
+				$plugin_array = sortArray($plugin_array, array('p', 'pc', 'servername', 'pi', 't', 'tc', 'ti'));
 			} else if ($all_content[$i]->rrd_ordering=='PI') {
-				$plugin_array = sortArray($plugin_array, array('pi', 'p','servername', 't','ti'));
+				$plugin_array = sortArray($plugin_array, array('pi', 'p', 'pc', 'servername', 't', 'tc', 'ti'));
 			} else if ($all_content[$i]->rrd_ordering=='T') {
-				$plugin_array = sortArray($plugin_array, array('t','servername', 'p','pi','ti'));
+				$plugin_array = sortArray($plugin_array, array('t','servername', 'p','pc', 'pi', 'tc', 'ti'));
 			} else if ($all_content[$i]->rrd_ordering=='TI') {
-				$plugin_array = sortArray($plugin_array, array('ti','servername', 'p','pi','t'));
+				$plugin_array = sortArray($plugin_array, array('ti','servername', 'p', 'pc', 'pi', 't', 'tc'));
 			}
 
-			$old_t='';
-			$old_ti='';
-			$old_pi='';
-			$old_p='';
-			$old_servername='';
+			$old_t=null;
+			$old_tc=null;
+			$old_ti=null;
+			$old_pc=null;
+			$old_pi=null;
+			$old_p=null;
+			$old_servername=null;
 			
 			//$final_array=array_merge_recursive($plugin_array, $final_array);
 			foreach ($plugin_array as $plugin) {
-				if (preg_match('/^GenericJMX|elasticsearch/', $plugin['p'])) {
-					if (substr_count($plugin['ti'], '-') >= 1) {
-						if ($plugin['ti']!='') {
-							$tmp=explode('-',$plugin['ti']);
-							$plugin['ti']=$tmp[0];
-							if ($plugin['ti']!='') $plugin['ti']=$plugin['ti'].'-*';
-						}
-					} else {
-						$plugin['ti']='';
-					}
-				}
-				
-				if (! isset(${$plugin['servername'].$plugin['p'].$plugin['pi'].$plugin['t'].$plugin['ti']}) ) {
-					${$plugin['servername'].$plugin['p'].$plugin['pi'].$plugin['t'].$plugin['ti']}=true;
+				if (! isset(${$plugin['servername'].$plugin['p'].$plugin['pc'].$plugin['pi'].$plugin['t'].$plugin['tc'].$plugin['ti']}) ) {
+					${$plugin['servername'].$plugin['p'].$plugin['pc'].$plugin['pi'].$plugin['t'].$plugin['tc'].$plugin['ti']}=true;
 					
 					if ($all_content[$i]->rrd_ordering=='S') {
 						
 						if ($old_servername!=$plugin['servername']) {
 							echo '<h1>'.$plugin['servername'].'</h1>';
-							$old_p='';
+							$old_p=null;
 						}
 						if ($old_p!=$plugin['p']) {
 							echo '<h2>'.$plugin['p'].'</h2>';
@@ -174,6 +178,12 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 					} else if ($all_content[$i]->rrd_ordering=='P') {
 						if ($old_p!=$plugin['p']) {
 							echo '<h1>'.$plugin['p'].'</h1>';
+							if ($plugin['pc']!=null) {
+								echo '<h2>'.$plugin['pc'].'</h2>';
+							}
+						}
+						if ($old_pc!=$plugin['pc']) {
+							echo '<h2>'.$plugin['pc'].'</h2>';
 						}
 					} else if ($all_content[$i]->rrd_ordering=='PI') {
 						if ($old_pi!=$plugin['pi']) {
@@ -193,28 +203,13 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 						}
 					}
 				
-					if (preg_match('/^GenericJMX|elasticsearch/', $plugin['p'])) {
-						if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or ($ti!="" && $old_ti!=$plugin['ti'])) {
-						    $tmp=explode('-',$plugin['pi']);
-							if ($time_range!='') {
-								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />';
-							} else {
-								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />';
-							}
-							if (isset($time_start) && isset($time_end)) {
-							        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
-							} else {
-							        echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
-						        }
-						        $old_subpg=$subpg;
-						}
-					} else if (!preg_match('/^(df|interface|oracle)$/', $plugin['p'])) {
-						$plugin['ti']='';
+					if (!preg_match('/^(df|interface|oracle)$/', $plugin['p'])  || $CONFIG['version'] >= 5) {
+						$plugin['ti']=null;
 						if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $plugin['servername']!=$old_servername)	{
-							if ($time_range!='') {
-								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
+							if ($time_range!=null) {
+								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
 							} else {
-								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
+								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
 							}
 							if (isset($time_start) && isset($time_end)) {
 								echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
@@ -223,10 +218,10 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 							}
 						}
 					} else {
-						if ($time_range!='') {
-							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
+						if ($time_range!=null) {
+							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
 						} else {
-							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
+							echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
 						}
 						if (isset($time_start) && isset($time_end)) {
 							echo '<img class="imgzoom" style="cursor:pointer" onClick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
@@ -236,7 +231,9 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 					}
 			
 					$old_t=$plugin['t'];
+					$old_tc=$plugin['tc'];
 					$old_ti=$plugin['ti'];
+					$old_pc=$plugin['pc'];
 					$old_pi=$plugin['pi'];
 					$old_p=$plugin['p'];
 					$old_servername=$plugin['servername'];

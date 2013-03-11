@@ -58,25 +58,17 @@ class Type_Default {
 		}
 	}
 
-	function generate_colors() {
-		$base = array( array(255, 0, 0), array(0, 255, 0), array(0, 0, 255), array(255, 120, 0), array(255, 0, 120), array(0, 255, 120), array(120, 255, 0), array(120, 0, 255), array(0, 120, 255), array(120, 120, 0), array(0, 120, 120), array(120, 0, 120));
-
-		$this -> colors = array();
-		$n = 0;
-		$p = 0;
-		foreach ($base as $b) {
-			$n = $p;
-			for ($i = 100; $i >= 20; $i -= 30) {
-				$this -> colors[$n] = sprintf('%02x%02x%02x', $b[0] * $i / 100, $b[1] * $i / 100, $b[2] * $i / 100);
-				$n += count($base);
-			}
-			$p++;
-		}
-	}
-
 	# parse $_GET values
 	function parse_get() {
-		$this -> args = array('host' => GET('h'), 'plugin' => GET('p'), 'pinstance' => GET('pi'), 'type' => GET('t'), 'tinstance' => GET('ti'), );
+		$this -> args = array(
+			'host' => GET('h'), 
+			'plugin' => GET('p'), 
+			'pcategory' => GET('pc'), 
+			'pinstance' => GET('pi'), 
+			'type' => GET('t'), 
+			'tcategory' => GET('tc'), 
+			'tinstance' => GET('ti'), 
+		);
 		$this -> seconds = GET('s');
 		$this -> seconds_end = GET('e');
 	}
@@ -120,7 +112,9 @@ class Type_Default {
 
 		foreach($files as $filename) {
 			$basename=basename($filename,'.rrd');
-			$instance=strpos($basename,'-') ? substr($basename, strpos($basename, '-') + 1) : 'value';
+			$instance = strpos($basename,'-')
+				? substr($basename, strpos($basename, '-') + 1)
+				: 'value';
 
 			$this->tinstances[] = $instance;
 			$this->files[$instance] = $filename;
@@ -131,7 +125,15 @@ class Type_Default {
 	}
 
 	function get_filenames() {
-		$identifier = sprintf('%s/%s%s%s/%s%s%s', $this->args['host'], $this->args['plugin'], strlen($this->args['pinstance']) ? '-' : '', $this->args['pinstance'], $this->args['type'], strlen($this->args['tinstance']) ? '-' : '', $this->args['tinstance']);
+		$identifier = sprintf('%s/%s%s%s%s%s/%s%s%s%s%s',
+			$this->args['host'],
+			$this->args['plugin'],
+			strlen($this->args['pcategory']) ? '-' : '', $this->args['pcategory'],
+			strlen($this->args['pinstance']) ? '-' : '', $this->args['pinstance'],
+			$this->args['type'],
+			strlen($this->args['tcategory']) ? '-' : '', $this->args['tcategory'],
+			strlen($this->args['tinstance']) ? '-' : '', $this->args['tinstance']
+		);
 
 		$wildcard = strlen($this->args['tinstance']) ? '.' : '[-.]*';
 

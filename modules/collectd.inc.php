@@ -30,6 +30,7 @@ function collectd_plugindata($host, $plugin=NULL) {
 		return false;
 	
 	$data = array();
+/*
 	foreach($files as $item) {
 		preg_match('#([\w_]+)(?:\-(.+))?/([\w_]+)(?:\-(.+))?\.rrd#', $item, $matches);
 
@@ -40,6 +41,28 @@ function collectd_plugindata($host, $plugin=NULL) {
 			'ti' => isset($matches[4]) ? $matches[4] : '',
 		);
 	}
+*/
+
+	foreach($files as $item) {
+		preg_match('`
+			(?P<p>[\w_]+)      # plugin
+			(?:(?<=varnish|curl\w*)(?:\-(?P<c>[\w]+)))? # category
+			(?:\-(?P<pi>.+))?  # plugin instance
+			/
+			(?P<t>[\w_]+)      # type
+			(?:\-(?P<ti>.+))?  # type instance
+			\.rrd
+		`x', $item, $matches);
+
+		$data[] = array(
+			'p'  => $matches['p'],
+			'c'  => isset($matches['c']) ? $matches['c'] : '',
+			'pi' => isset($matches['pi']) ? $matches['pi'] : '',
+			't'  => $matches['t'],
+			'ti' => isset($matches['ti']) ? $matches['ti'] : '',
+		);
+	}
+
 
 	# only return data about one plugin
 	if (!is_null($plugin)) {
