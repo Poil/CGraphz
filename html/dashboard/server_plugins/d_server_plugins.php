@@ -77,7 +77,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				if (substr_count($pi, '-') >= 1) {
 					$tmp=explode('-',$pi);
 					$pc=$tmp[0];
-					$pi=$tmp[1];
+					$pi=implode('-', array_slice($tmp,1));
 				}
 			} else { 
 				$pc=null; 
@@ -94,7 +94,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				if (substr_count($ti, '-') >= 1) {
 					$tmp=explode('-',$ti);
 					$tc=$tmp[0];
-					$ti=$tmp[1];
+					$ti=implode('-', array_slice($tmp,1));
 				}
 			} else { 
 				$tc=null; 

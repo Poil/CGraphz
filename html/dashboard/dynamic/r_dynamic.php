@@ -111,7 +111,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 							if (substr_count($plugin_array[$cpt_p]['pi'], '-') >= 1) {
 								$tmp=explode('-',$plugin_array[$cpt_p]['pi']);
 								$plugin_array[$cpt_p]['pc']=$tmp[0];
-								$plugin_array[$cpt_p]['pi']=$tmp[1];
+								$plugin_array[$cpt_p]['pi']=implode('-',array_slice($tmp,1));
 							}
 						} else {
 							$plugin_array[$cpt_p]['pc']=null;
@@ -128,7 +128,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 							if (substr_count($plugin_array[$cpt_p]['ti'], '-') >= 1) {
 								$tmp=explode('-',$plugin_array[$cpt_p]['ti']);
 								$plugin_array[$cpt_p]['tc']=$tmp[0];
-								$plugin_array[$cpt_p]['ti']=$tmp[1];
+								$plugin_array[$cpt_p]['ti']=implode('-',array_slice($tmp,1));
 							}
 						} else {
 							$plugin_array[$cpt_p]['tc']=null;
