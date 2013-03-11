@@ -131,10 +131,10 @@ class Type_Default {
 			strlen($this->args['pinstance']) ? '-' : '', $this->args['pinstance'],
 			$this->args['type'],
 			strlen($this->args['tcategory']) ? '-' : '', $this->args['tcategory'],
-			strlen($this->args['tinstance']) ? '-' : '', $this->args['tinstance']
+			(strlen($this->args['tcategory'])!=0 && strlen($this->args['tinstance'])) ? '-' : '', $this->args['tinstance']
 		);
 
-		$wildcard = strlen($this->args['tinstance']) ? '.' : '[-.]*';
+		$wildcard = strlen($this->args['tcategory']) ? '.' : '[-.]*';
 
 		$files = glob($this->datadir. '/'.$identifier.$wildcard.'rrd');
 
