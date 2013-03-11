@@ -1,7 +1,7 @@
 <?php
 date_default_timezone_set('Europe/Paris');
 
-define('CGRAPHZ_VERSION','1.53');
+define('CGRAPHZ_VERSION','1.54');
 define('DB_HOST','localhost');
 define('DB_PORT','3306');
 define('DB_DATABASE','cgraphz');
@@ -57,7 +57,7 @@ $CONFIG['detail-heigth'] = 350;
 
 # collectd's unix socket (unixsock plugin) or rrd tcp socket (collectd 4)
 # syntax : 'unix:///var/run/collectd-unixsock'
-# syntax : 'tcp:///xxx.xxx.xxx.xxx:xxxx'
+# syntax : 'xxx.xxx.xxx.xxx:xxxx'
 # disabled: NULL
 #$CONFIG['flush_type'] = 'rrd';
 #$CONFIG['flush_type'] = 'collectd';
