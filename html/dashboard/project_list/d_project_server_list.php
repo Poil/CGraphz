@@ -1,4 +1,5 @@
 <?php
+/*
 if (isset($_GET['auto_refresh'])) {
 	$urlrefresh='<a href="'.removeqsvar($_SERVER['REQUEST_URI'],'auto_refresh').'"><img src="img/auto_refresh_on.png" title="'.STOP_AUTO_REFRESH.'" alt="Auto Refresh" /></a>';
 } else {
@@ -8,7 +9,7 @@ if (isset($_GET['auto_refresh'])) {
 if (isset($_GET['f_id_config_server'])) {
 	include(DIR_FSROOT.'/html/menu/time_selector.php');
 }
-
+*/
 if (isset($_GET['f_id_config_project'])) {
 	if (isset($all_environment) && $cpt_environment>1) {
 		echo '<div id="div_menu_server_environment">';

@@ -2,7 +2,7 @@
 $f_id_config_project=intval($_GET['f_id_config_project']);
 
 
-
+/*
 if (isset($_SESSION['time_range']) && is_numeric($_SESSION['time_range'])) {
 	$time_range=$_SESSION['time_range'];
 } else {
@@ -16,6 +16,11 @@ if (isset($_SESSION['time_range']) && is_numeric($_SESSION['time_range'])) {
 		$time_end='';
 	}
 }
+*/
+if (isset($_GET['f_id_config_server'])) {
+        include(DIR_FSROOT.'/html/menu/time_selector.php');
+}
+
 
 echo '<div id="dashboard">';
 

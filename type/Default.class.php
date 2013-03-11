@@ -119,9 +119,8 @@ class Type_Default {
 			$this->tinstances[] = $instance;
 			$this->files[$instance] = $filename;
 		}
-
-		sort($this->tinstances);
-		ksort($this->files);
+		if ($this->tinstances) { sort($this->tinstances); }
+		if ($this->files) { ksort($this->files); }
 	}
 
 	function get_filenames() {
@@ -143,13 +142,14 @@ class Type_Default {
 	}
 
 	function file2identifier($files) {
-		foreach($files as $key => $file) {
-			if (is_file($file)) {
-				$files[$key] = preg_replace("#^$this->datadir/#u", '', $files[$key]);
-				$files[$key] = preg_replace('#\.rrd$#', '', $files[$key]);
+		if ($files) {
+			foreach($files as $key => $file) {
+				if (is_file($file)) {
+					$files[$key] = preg_replace("#^$this->datadir/#u", '', $files[$key]);
+					$files[$key] = preg_replace('#\.rrd$#', '', $files[$key]);
+				}
 			}
 		}
-
 		return $files;
 	}
 

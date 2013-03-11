@@ -1,6 +1,6 @@
 <?php
 $f_id_config_dynamic_dashboard=intval($_GET['f_id_config_dynamic_dashboard']);
-
+/*
 if (isset($_SESSION['time_range']) && is_numeric($_SESSION['time_range'])) {
 	$time_range=$_SESSION['time_range'];
 } else {
@@ -20,7 +20,7 @@ if (isset($_GET['auto_refresh'])) {
 } else {
 	$urlrefresh='<a href="'.htmlentities($_SERVER['REQUEST_URI']).'&amp;auto_refresh=true"><img src="img/auto_refresh.png" title="'.ENABLE_AUTO_REFRESH.'" alt="Auto Refresh" /></a>';
 }
-
+*/
 if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 	include(DIR_FSROOT.'/html/menu/time_selector.php');
 }
