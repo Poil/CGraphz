@@ -104,11 +104,17 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if ($pc!=null && $$pc!=true) {
 				echo "<h4>$pc</h4>";
                                 $$pc=true;
+			# Use PI if other graph of this P have PC
+			} else if ($old_pc!=null && $pc==null && $old_p==$p) {
+				 echo "<h4>$pi</h4>";
 			}
 
 			if ($tc!=null && $$tc!=true) {
 				echo "<h4>$tc</h4>";
                                 $$tc=true;
+			# Use TI if other graph of this type have TC
+			} else if ($old_tc!=null && $tc==null && $old_t==$t) {
+				 echo "<h4>$ti</h4>";
 			}
 			
 			if (! isset(${$p.$pc.$pi.$t.$tc.$ti}) ) {
@@ -145,7 +151,10 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 						//$cpt++;
 					}
 					$old_t=$t;
+					$old_tc=$tc;
+					$old_p=$p;
 					$old_pi=$pi;
+					$old_pc=$pc;
 				} else if (DEBUG==true){
 					echo 'ERREUR - p='.$p.' pc='.$pc.' pi='.$pi.' t='.$t.' tc='.$tc.' ti='.$ti.'<br />';
 				} 
