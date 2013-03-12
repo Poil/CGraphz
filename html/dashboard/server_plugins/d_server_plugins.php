@@ -91,10 +91,11 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if (isset($matches[5])) {
 				$ti=$matches[5];
 				$tc=null;
-				if (substr_count($ti, '-') >= 1) {
+				if (substr_count($ti, '-') >= 1 && $p!='df') {
 					$tmp=explode('-',$ti);
 					$tc=$tmp[0];
-					$ti=implode('-', array_slice($tmp,1));
+					//$ti=implode('-', array_slice($tmp,1));
+					$ti=null;
 				}
 			} else { 
 				$tc=null; 
@@ -103,23 +104,29 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 
 			
 			if ($$p!=true) {
-				echo "<h3>$p</h3>";
+				$lvl_p=2;
+				$lvl_pc=$lvl_p+1;
+				$lvl_tc=null;
+				echo "<h$lvl_p>".ucfirst($p)."</h$lvl_p>";
 				$$p=true;
 			}
 			if ($pc!=null && $$pc!=true) {
-				echo "<h4>$pc</h4>";
+				echo "<h$lvl_pc>".ucfirst($pc)."</h$lvl_pc>";
+				$lvl_tc=$lvl_pc+1;
                                 $$pc=true;
 			# Use PI if other graph of this P have PC
-			} else if ($old_pc!=null && $pc==null && $old_p==$p) {
-				 echo "<h4>$pi</h4>";
+			} /* else if ($old_pc!=null && $pc==null && $old_p==$p && $old_pi!=$pi) {
+				echo "<h$lvl_pc>".ucfirst($pi)."</h$lvl_pc>";
+			} */ else {
+				$lvl_tc=$lvl_p+1;
 			}
 
 			if ($tc!=null && $$tc!=true) {
-				echo "<h4>$tc</h4>";
+				echo "<h$lvl_tc>".ucfirst($tc)."</h$lvl_tc>";
                                 $$tc=true;
 			# Use TI if other graph of this type have TC
 			} else if ($old_tc!=null && $tc==null && $old_t==$t) {
-				 echo "<h4>$ti</h4>";
+				 echo "<h$lvl_tc>".ucfirst($ti)."</h$lvl_tc>";
 			}
 			
 			if (! isset(${$p.$pc.$pi.$t.$tc.$ti}) ) {

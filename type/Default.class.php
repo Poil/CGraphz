@@ -130,12 +130,22 @@ class Type_Default {
 			strlen($this->args['pcategory']) ? '-' : '', $this->args['pcategory'],
 			strlen($this->args['pinstance']) ? '-' : '', $this->args['pinstance'],
 			$this->args['type'],
-			strlen($this->args['tcategory']) ? '-' : '', $this->args['tcategory'],
-			($this->args['tcategory']!==null && strlen($this->args['tinstance'])) ? '-' : '', $this->args['tinstance']
+			strlen($this->args['tcategory']) ? '-' : '', $this->args['tcategory'].'[-.]*',
+			(strlen($this->args['tcategory'])!=0 && strlen($this->args['tinstance'])) ? '-' : '', $this->args['tinstance']
 		);
+		$identifier = sprintf('%s/%s%s%s/%s%s%s',
+			$this->args['host'],
+                        $this->args['plugin'],
+			strlen($this->args['pcategory']) ? '-'.$this->args['pcategory'] : '',
+			strlen($this->args['pinstance']) ? '-'.$this->args['pinstance'] : '',
+			$this->args['type'],
+			strlen($this->args['tcategory']) ? '-'.$this->args['tcategory'] : '',
+			(!strlen($this->args['tcategory']) && strlen($this->args['tinstance'])) ? '-'.$this->args['tinstance'].'' : ''
+		);
+		
+		$wildcard = strlen($this->args['tinstance']) ? '.' : '[-.]*';
 
-		$wildcard = strlen($this->args['tcategory']) ? '.' : '[-.]*';
-
+		//echo $this->datadir. '/'.$identifier.$wildcard.'rrd';
 		$files = glob($this->datadir. '/'.$identifier.$wildcard.'rrd');
 
 		return $files;
