@@ -29,9 +29,8 @@ if ($obj->args['tinstance'] != "") {
         $rrd_title = sprintf('%s', trim(str_replace('_', ' ', $sub)));
 }
 
-
 switch($obj->args['pinstance']) {
-	case (preg_match('/catalina_request_processor.*/', $obj->args['pinstance']) ? true : false) :
+	case ((preg_match('/catalina_request_processor/', $obj->args['pinstance']) ? true : false) || preg_match('/catalina_request_processor/', $obj->args['pcategory']) ? true : false) :
 		switch ($obj->args['type']) {
 			case 'io_octets' :
 				$obj = new Type_GenericStacked($CONFIG);
