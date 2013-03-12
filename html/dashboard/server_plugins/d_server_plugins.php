@@ -103,31 +103,33 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			}
 
 			
-			if ($$p!=true) {
-				$lvl_p=2;
-				$lvl_pc=$lvl_p+1;
-				$lvl_tc=null;
-				echo "<h$lvl_p>".ucfirst($p)."</h$lvl_p>";
-				$$p=true;
-			}
-			if ($pc!=null && $$pc!=true) {
-				echo "<h$lvl_pc>".ucfirst($pc)."</h$lvl_pc>";
-				$lvl_tc=$lvl_pc+1;
-                                $$pc=true;
-			# Use PI if other graph of this P have PC
-			} /* else if ($old_pc!=null && $pc==null && $old_p==$p && $old_pi!=$pi) {
-				echo "<h$lvl_pc>".ucfirst($pi)."</h$lvl_pc>";
-			} */ else {
-				$lvl_tc=$lvl_p+1;
-			}
-			if ($old_pc!=null && $pc==null && $old_pi==$pi) {
-				echo "<h$lvl_pc>".ucfirst($pi)."</h$lvl_pc>";
-			}
+			if (!isset(${$p.$pc.$pi.$t.$tc.$ti}) ) {
+				if ($$p!=true) {
+					$lvl_p=2;
+					$lvl_pc=$lvl_p+1;
+					$lvl_tc=null;
+					echo "<h$lvl_p>".ucfirst($p)."</h$lvl_p>";
+					$$p=true;
+				}
+				if ($pc!=null && $$pc!=true) {
+					echo "<h$lvl_pc>".ucfirst($pc)."</h$lvl_pc>";
+					$lvl_tc=$lvl_pc+1;
+                        	        $$pc=true;
+				# Use PI if other graph of this P have PC
+				} /* else if ($old_pc!=null && $pc==null && $old_p==$p && $old_pi!=$pi) {
+					echo "<h$lvl_pc>".ucfirst($pi)."</h$lvl_pc>";
+				} */ else {
+					$lvl_tc=$lvl_p+1;
+				}
+				if ($old_pc!=null && $pc==null && $old_pi==$pi) {
+					echo "<h$lvl_pc>".ucfirst($pi)."</h$lvl_pc>";
+				}
 
-			if ($tc!=null && $$tc!=true) {
-				echo "<h$lvl_tc>".ucfirst($tc)."</h$lvl_tc>";
-                                $$tc=true;
-			} 
+				if ($tc!=null && $$tc!=true) {
+					echo "<h$lvl_tc>".ucfirst($tc)."</h$lvl_tc>";
+                        	        $$tc=true;
+				} 
+
 			/*
 			# Use TI if other graph of this type have TC
 			if ($old_tc!=null && $tc==null && $old_t==$t) {
@@ -137,14 +139,13 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				 echo "<h$lvl_tc>Autres</h$lvl_tc>";
 			}*/
 			
-			if (! isset(${$p.$pc.$pi.$t.$tc.$ti}) ) {
 				${$p.$pc.$pi.$t.$tc.$ti}=true;
 				
 				// Verif regex OK
 				if ($p!=null && $t!=null) {
 					if (!preg_match('/^(df|interface|oracle)$/', $p) || $CONFIG['version'] >= 5) {
 						$ti='';
-						if ($old_t!=$t or $old_pi!=$pi)	{
+						if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc)	{
 							if ($time_range!='') {						
 								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pc='.$pc.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;tc='.$tc.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
 							} else {
