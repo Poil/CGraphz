@@ -91,7 +91,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if (isset($matches[5])) {
 				$ti=$matches[5];
 				$tc=null;
-				if (substr_count($ti, '-') >= 1 && $p!='df') {
+				if (substr_count($ti, '-') >= 1 && preg_match('/^(GenericJMX)$/', $p)) {
 					$tmp=explode('-',$ti);
 					$tc=$tmp[0];
 					//$ti=implode('-', array_slice($tmp,1));
@@ -120,14 +120,22 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			} */ else {
 				$lvl_tc=$lvl_p+1;
 			}
+			if ($old_pc!=null && $pc==null && $old_pi==$pi) {
+				echo "<h$lvl_pc>".ucfirst($pi)."</h$lvl_pc>";
+			}
 
 			if ($tc!=null && $$tc!=true) {
 				echo "<h$lvl_tc>".ucfirst($tc)."</h$lvl_tc>";
                                 $$tc=true;
+			} 
+			/*
 			# Use TI if other graph of this type have TC
-			} else if ($old_tc!=null && $tc==null && $old_t==$t) {
+			if ($old_tc!=null && $tc==null && $old_t==$t) {
 				 echo "<h$lvl_tc>".ucfirst($ti)."</h$lvl_tc>";
-			}
+			}*/
+			/*if ($old_tc!=null && $tc==null && $old_p==$p) { 
+				 echo "<h$lvl_tc>Autres</h$lvl_tc>";
+			}*/
 			
 			if (! isset(${$p.$pc.$pi.$t.$tc.$ti}) ) {
 				${$p.$pc.$pi.$t.$tc.$ti}=true;
@@ -162,15 +170,15 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 						}
 						//$cpt++;
 					}
-					$old_t=$t;
-					$old_tc=$tc;
-					$old_p=$p;
-					$old_pi=$pi;
-					$old_pc=$pc;
 				} else if (DEBUG==true){
 					echo 'ERREUR - p='.$p.' pc='.$pc.' pi='.$pi.' t='.$t.' tc='.$tc.' ti='.$ti.'<br />';
 				} 
 			} 
+			$old_t=$t;
+			$old_tc=$tc;
+			$old_p=$p;
+			$old_pi=$pi;
+			$old_pc=$pc;
 		}
 	}
 }
