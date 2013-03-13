@@ -125,7 +125,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 						if (isset($matches[5]) && $matches[5]!=null) {
 							$plugin_array[$cpt_p]['ti']=$matches[5];
 							$plugin_array[$cpt_p]['tc']=null;
-							if (substr_count($plugin_array[$cpt_p]['ti'], '-') >= 1  && preg_match('/^(GenericJMX)$/', $$plugin_array[$cpt_p]['p'])) {
+							if (substr_count($plugin_array[$cpt_p]['ti'], '-') >= 1) {
 								$tmp=explode('-',$plugin_array[$cpt_p]['ti']);
 								$plugin_array[$cpt_p]['tc']=$tmp[0];
 								$plugin_array[$cpt_p]['ti']=implode('-',array_slice($tmp,1));
