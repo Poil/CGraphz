@@ -7,27 +7,13 @@ require_once 'modules/collectd.inc.php';
 
 $obj = new Type_Default($CONFIG);
 
-$pospi = strpos($obj->args['pinstance'], '-');
-if ($pospi !== false) {
-        if (($pospi+1) != strlen($obj->args['pinstance'])) {
-                $sub = substr($obj->args['pinstance'], $pospi+1);
-        } else {
-                $sub = substr($obj->args['pinstance'], 0, -1);
-        }
+if (strlen($obj->args['tcategory'])) {
+	$obj->rrd_vertical = ucfirst(str_replace('_', ' ', $obj->args['tcategory']));
 } else {
-	$sub = $obj->args['pinstance'];
+	$obj->rrd_vertical = ucfirst(str_replace('_', ' ', $obj->args['type']));
 }
-
-
-if ($obj->args['tinstance'] != "") {
-        if (substr($obj->args['tinstance'],-2)=='-*') {
-                $obj->args['tinstance']=substr($obj->args['tinstance'],0,strlen($obj->args['tinstance'])-2);
-        }
-        $rrd_title = sprintf('%s', str_replace('_', ' ', str_replace('*', '', $subpi.' '.$obj->args['tinstance'])));
-
-} else {
-        $rrd_title = sprintf('%s', trim(str_replace('_', ' ', $sub)));
-}
+$obj->rrd_title = ucfirst(str_replace('_', ' ', $obj->args['pinstance']));
+$obj->rrd_format = '%5.1lf%s'; ;;
 
 switch($obj->args['pinstance']) {
 	case ((preg_match('/catalina_request_processor/', $obj->args['pinstance']) ? true : false) || preg_match('/catalina_request_processor/', $obj->args['pcategory']) ? true : false) :
@@ -37,23 +23,11 @@ switch($obj->args['pinstance']) {
 				$obj->data_sources = array('rx', 'tx');
 				$obj->ds_names = array('rx' => 'Receive', 'tx' => 'Transmit', );
 				$obj->colors = array('rx' => '0000ff', 'tx' => '00b000', );
-				//$obj->rrd_title = sprintf('Interface Traffic (%s)', str_replace('_', ' ',$obj->args['pinstance']));
-				$obj->rrd_title = sprintf('Interface Traffic (%s)', trim(str_replace('_', ' ', $sub)));
+				$obj->rrd_title = sprintf('Interface Traffic (%s)', str_replace('_', ' ', $obj->args['pinstance']));
 				$obj->rrd_vertical = 'Bytes/s';
-				break;
-			default :
-				$obj->rrd_title = $rrd_title;
-				$obj->rrd_vertical = sprintf('%s', str_replace('_', ' ', $obj->args['type']));
-				$obj->rrd_format = '%5.1lf%s'; ;;
+			break;
 		}
-		break;
-	default :
-		$obj->rrd_title = $rrd_title;
-
-		$obj->rrd_vertical = sprintf('%s', str_replace('_', ' ', $obj->args['type']));
-		$obj->rrd_format = '%5.1lf%s';
-
-		break;
+	break;
 }
 
 $obj->width = $width;

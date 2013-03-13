@@ -76,8 +76,11 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$pc=null;
 				if (substr_count($pi, '-') >= 1) {
 					$tmp=explode('-',$pi);
-					$pc=$tmp[0];
-					$pi=implode('-', array_slice($tmp,1));
+					// Fix when PI is null after separating PC/PI for example a directory named "MyHost/GenericJMX-cassandra_activity_request-/"
+					if (strlen($tmp[1])) {
+						$pc=$tmp[0];
+						$pi=implode('-', array_slice($tmp,1));
+					}
 				}
 			} else { 
 				$pc=null; 
@@ -124,20 +127,15 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				if ($old_pc!=null && $pc==null && $old_pi==$pi) {
 					echo "<h$lvl_pc>".ucfirst($pi)."</h$lvl_pc>";
 				}
-
+				/*
 				if ($tc!=null && $$tc!=true) {
 					echo "<h$lvl_tc>".ucfirst($tc)."</h$lvl_tc>";
                         	        $$tc=true;
 				} 
-
-			/*
-			# Use TI if other graph of this type have TC
-			if ($old_tc!=null && $tc==null && $old_t==$t) {
-				 echo "<h$lvl_tc>".ucfirst($ti)."</h$lvl_tc>";
-			}*/
-			/*if ($old_tc!=null && $tc==null && $old_p==$p) { 
-				 echo "<h$lvl_tc>Autres</h$lvl_tc>";
-			}*/
+				*/
+				/*if ($old_tc!=null && $tc==null && $old_p==$p) { 
+					 echo "<h$lvl_tc>Autres</h$lvl_tc>";
+				}*/
 			
 				${$p.$pc.$pi.$t.$tc.$ti}=true;
 				
@@ -145,7 +143,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				if ($p!=null && $t!=null) {
 					if (!preg_match('/^(df|interface|oracle)$/', $p) || $CONFIG['version'] >= 5) {
 						$ti='';
-						if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc)	{
+						if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)	{
 							if ($time_range!='') {						
 								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pc='.$pc.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;tc='.$tc.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
 							} else {
