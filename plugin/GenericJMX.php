@@ -8,11 +8,11 @@ require_once 'modules/collectd.inc.php';
 $obj = new Type_Default($CONFIG);
 
 if (strlen($obj->args['tcategory'])) {
-	$obj->rrd_vertical = ucfirst(str_replace('_', ' ', $obj->args['tcategory']));
+	$obj->rrd_title = ucfirst(str_replace('_', ' ', $obj->args['tcategory']));
 } else {
-	$obj->rrd_vertical = ucfirst(str_replace('_', ' ', $obj->args['type']));
+	$obj->rrd_title = ucfirst(str_replace('_', ' ', $obj->args['pinstance']));
 }
-$obj->rrd_title = ucfirst(str_replace('_', ' ', $obj->args['pinstance']));
+$obj->rrd_vertical = ucfirst(str_replace('_', ' ', $obj->args['type']));
 $obj->rrd_format = '%5.1lf%s'; ;;
 
 switch($obj->args['pinstance']) {

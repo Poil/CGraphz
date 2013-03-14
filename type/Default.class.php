@@ -216,30 +216,35 @@ class Type_Default {
 				$this->tinstances = array_merge(array_intersect($this->order, $this->tinstances));
 			}
 			# use tinstances as sources
-			if (is_array($this->data_sources) && count($this->data_sources)>1) {
+			if(is_array($this->data_sources) && count($this->data_sources)>1) {
 				$sources = array();
-				foreach ($this->tinstances as $f) {
-					foreach ($this->data_sources as $s) {
+				foreach($this->tinstances as $f) {
+					foreach($this->data_sources as $s) {
+						//$sources[] = ucfirst(str_replace('_', ' ',$f . '-' . $s));
 						$sources[] = $f . '-' . $s;
 					}
 				}
-			} else {
-				$sources=$this->tinstances;
+			}
+			else {
+				$sources = $this->tinstances;
 			}
 		}
 		# or one file with multiple data_sources
 		else {
-			# use data_sources as sources
-			if (count($this->ds_names) == 0) {
-				if ($this->tinstances[0] == 'value') {
-					$sources = array($this -> args['type']);
-				} else {
-					$sources = $this -> tinstances;
-				}
+			if(is_array($this->data_sources) && count($this->data_sources)==1 && in_array('value', $this->data_sources)) {
+				# use tinstances as sources
+				$sources = $this->tinstances;
+				// ADD for fixing value
+				// Not really fine ...
+				/*if ($sources[0]=='value') {
+					$sources[0]=$this->args['type'];
+				}*/
 			} else {
+				# use data_sources as sources
 				$sources = $this->data_sources;
 			}
 		}
+
 		$this->parse_ds_names($sources);
 		return $sources;
 	}
@@ -318,7 +323,7 @@ class Type_Default {
 		foreach ($sources as $source) {
 			$dsname = $this->ds_names[$source] != '' ? $this->ds_names[$source] : $source;
 			$color = is_array($this->colors) ? (isset($this->colors[$source])?$this->colors[$source]:$this->colors[$c++]): $this->colors;
-			$rrdgraph[] = sprintf('LINE1:avg_%s#%s:\'%s\'', crc32hex($source), $this->validate_color($color), $this->rrd_escape($dsname));
+			$rrdgraph[] = sprintf('LINE1:avg_%s#%s:\'%s\'', crc32hex($source), $this->validate_color($color), $this->rrd_escape(ucfirst(str_replace('_', ' ',$dsname))));
 			$rrdgraph[] = sprintf('GPRINT:min_%s:MIN:\'%s Min,\'', crc32hex($source), $this->rrd_format);
 			$rrdgraph[] = sprintf('GPRINT:avg_%s:AVERAGE:\'%s Avg,\'', crc32hex($source), $this->rrd_format);
 			$rrdgraph[] = sprintf('GPRINT:max_%s:MAX:\'%s Max,\'', crc32hex($source), $this->rrd_format);

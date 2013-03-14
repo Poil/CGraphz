@@ -144,7 +144,7 @@ if ($_GET['pi'] == 'system') {
          $obj->rrd_format = '%5.1lf%s';
       break;
    }
-} else if (preg_match('/^volume-(\w+)/',$_GET['pi'],$tab)) {
+} else if (preg_match('/^volume-(\w+)/',$_GET['pi'],$tab) || preg_match('/^volume-(\w+)/',$_GET['pc'].'-'.$_GET['pi'],$tab)) {
    switch($_GET['t']) {
       case 'df_complex':
          require_once 'type/GenericStacked.class.php';

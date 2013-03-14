@@ -9,10 +9,12 @@ switch($_GET['t']) {
 	case 'players':
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG);
+		/*
 		$obj->ds_names = array(
 			'players' => 'Players',
 			'free_slots'   => 'Free Slots',
 		);
+		*/
 		$obj->rrd_title = 'Connections on '.$obj->args['pinstance'];
 		$obj->rrd_vertical = 'Slots';
 	break;

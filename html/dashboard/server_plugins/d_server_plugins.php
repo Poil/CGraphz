@@ -115,18 +115,17 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 					$$p=true;
 				}
 				if ($pc!=null && $$pc!=true) {
-					echo "<h$lvl_pc>".ucfirst($pc)."</h$lvl_pc>";
+					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ', $pc))."</h$lvl_pc>";
 					$lvl_tc=$lvl_pc+1;
                         	        $$pc=true;
-				# Use PI if other graph of this P have PC
-				} /* else if ($old_pc!=null && $pc==null && $old_p==$p && $old_pi!=$pi) {
-					echo "<h$lvl_pc>".ucfirst($pi)."</h$lvl_pc>";
-				} */ else {
-					$lvl_tc=$lvl_p+1;
+				} else if ($p=='GenericJMX' && strlen($pc)==0 && strlen($pi) && $$pi!=true) {
+					$$pi=true;
+					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pc>";
+				} else	if ($old_pc!=null && $pc==null && $old_pi==$pi) {
+					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pc>";
 				}
-				if ($old_pc!=null && $pc==null && $old_pi==$pi) {
-					echo "<h$lvl_pc>".ucfirst($pi)."</h$lvl_pc>";
-				}
+					
+				
 				/*
 				if ($tc!=null && $$tc!=true) {
 					echo "<h$lvl_tc>".ucfirst($tc)."</h$lvl_tc>";
