@@ -94,7 +94,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if (isset($matches[5])) {
 				$ti=$matches[5];
 				$tc=null;
-				if (substr_count($ti, '-') >= 1 && preg_match('/^(GenericJMX)$/', $p)) {
+				if (substr_count($ti, '-') >= 1 && preg_match('/^(GenericJMX|elasticsearch)$/', $p)) {
 					$tmp=explode('-',$ti);
 					$tc=$tmp[0];
 					//$ti=implode('-', array_slice($tmp,1));
@@ -118,7 +118,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ', $pc))."</h$lvl_pc>";
 					$lvl_tc=$lvl_pc+1;
                         	        $$pc=true;
-				} else if ($p=='GenericJMX' && strlen($pc)==0 && strlen($pi) && $$pi!=true) {
+				} else if (preg_match('/^(GenericJMX|elasticsearch|varnish)$/',$p) && strlen($pc)==0 && strlen($pi) && $$pi!=true) {
 					$$pi=true;
 					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pc>";
 				} else	if ($old_pc!=null && $pc==null && $old_pi==$pi) {
