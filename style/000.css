@@ -20,10 +20,12 @@ div#content {
 	border:1pt solid #555555;
 	border-top:none;
 	padding:5pt;
+	min-height:500pt;
 }
 
 div#dashboard {
   	padding-left:18pt;
+	/*margin-left:120pt;*/
 }
 
 div#displaytest {

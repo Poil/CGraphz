@@ -644,7 +644,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 		} 
 	} else if ($module=='dashboard') {
 		if ($component=='view') {
-			include(DIR_FSROOT.'/html/menu/menu_project.php');
+			if (NEW_MENU) {
+				include(DIR_FSROOT.'/html/dashboard/nav_menu/r_nav_menu.php');
+				include(DIR_FSROOT.'/html/dashboard/nav_menu/d_nav_menu.php');
+			} else {
+				include(DIR_FSROOT.'/html/menu/menu_project.php');
+			}
 			if (isset($_GET['f_id_config_server'])) {
 				include(DIR_FSROOT.'/modules/preg_find.php');
 				include(DIR_FSROOT.'/html/config/server/r_server_wh_id.php');
@@ -653,15 +658,6 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 		} else if ($component == 'dynamic') {
 				include(DIR_FSROOT.'/modules/preg_find.php');
 				include(DIR_FSROOT.'/html/dashboard/dynamic/r_dynamic.php');
-		}
-		/*else if ($component=='compare') {
-			include(DIR_FSROOT.'/html/dashboard/server_compare/r_server.php');
-			include(DIR_FSROOT.'/html/dashboard/server_compare/f_server.php');
-		} */
-		else if ($component=='static_exploit') {
-			include(DIR_FSROOT.'/html/dashboard/static/static_exploit.php');
-		} else if ($component=='static_socle') {
-			include(DIR_FSROOT.'/html/dashboard/static/static_socle.php');
 		}
 	} else if ($module=='small_admin') {
 		if ($component=='mygroup') {
