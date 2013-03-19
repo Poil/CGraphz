@@ -115,29 +115,26 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 					$lvl_tc=null;
 					echo "<h$lvl_p>".ucfirst($p)."</h$lvl_p>";
 					$$p=true;
+					$others=false;
 				}
+				// Displaying Plugin Category if there is a Plugin Category
 				if ($pc!=null && $$pc!=true) {
 					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ', $pc))."</h$lvl_pc>";
-					$lvl_tc=$lvl_pc+1;
+					$lvl_pi=$lvl_pc+1;
                         	        $$pc=true;
-				} else if (preg_match($CONFIG['plugin_pcategory'],$p) && strlen($pc)==0 && strlen($pi) && $$pi!=true) {
-					$$pi=true;
-					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pc>";
-				} else	if ($old_pc!=null && $pc==null && $old_pi==$pi) {
-					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pc>";
-				}
-					
-				
-				/*
-				if ($tc!=null && $$tc!=true) {
-					echo "<h$lvl_tc>".ucfirst($tc)."</h$lvl_tc>";
-                        	        $$tc=true;
+					$others=false;
+				// Displaying a Fake Plugin Category if we had a plugin category for others PI
+				} else if ($old_pc!=null && $pc==null && $p==$old_p && $others==false) {
+					$lvl_pi=$lvl_pc;
+					$others=true;
+					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ', $pi))."</h$lvl_pc>";
 				} 
-				*/
-				/*if ($old_tc!=null && $tc==null && $old_p==$p) { 
-					 echo "<h$lvl_tc>Autres</h$lvl_tc>";
-				}*/
-			
+				// Displaying Plugin Instance for some plugins
+				if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && $$pi!=true) {
+					$$pi=true;
+					echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
+				}
+				
 				${$p.$pc.$pi.$t.$tc.$ti}=true;
 				
 				// Verif regex OK

@@ -1,27 +1,54 @@
 <?php
+# Define timezone
 date_default_timezone_set('Europe/Paris');
 
-define('CGRAPHZ_VERSION','1.60 alpha 1');
+# Cgraphz version
+define('CGRAPHZ_VERSION','1.60 alpha 2');
+
+# DB Version
 define('DB_HOST','localhost');
 define('DB_PORT','3306');
 define('DB_DATABASE','cgraphz');
-define('DB_LOGIN','cgraphz');
-define('DB_PASSWD','mypasswd');
+define('DB_LOGIN','root');
+define('DB_PASSWD','MySup3rP4ssW0Rd');
+
+# LDAP Configuration
+## Host : ldaps://192.168.0.1
 define('LDAP_HOST','');
+## Port : 636
 define('LDAP_PORT','');
+## Tree : ou=People,dc=domain,dc=com
 define('LDAP_TREE','');
+ 
+# Filesystem path to cgraphz (ex: /var/www/cgraphz)
 define('DIR_FSROOT',$_SERVER['DOCUMENT_ROOT'].'/CGraphz/');
+
+# Dir web root (http://mydomain.com/XXXXXX : /XXXXXX)
 define('DIR_WEBROOT', '/CGraphz');
+
+# Enable debug
 define('DEBUG',false);
-define('DIR_CACHE',DIR_FSROOT.'/cache');
-define('DEF_LANG','fr');
-define('MAX_SRV',4); // Nombre min de serveur avant affichage des catégories
-//define('MAX_ELEM_ADM_TAB',2); // Nombre Max d elements par table d admin
-//define('MAX_ADM_TAB',2);
+
+# Text to display for user not logged
 define('NOT_LOGGED_MSG','<br />Please log-in<br />');
 
-/*** Language ***/
+# Menu Option : Min number of servers before displaying role
+define('MAX_SRV',4);
+
+# Replace topNavMenu with a FixedLeftMenu, but I don't like it
+define('NEW_MENU',false);
+
+# Language
 define('DEF_LANG','en');
+
+# Plugin that can have a TypeCategory
+$CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000)$/';
+
+# Plugin that can have a PluginCategory
+$CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000)$/';
+
+# Display PI as title for these plugins
+$CONFIG['title_pinstance']='/^(P2000)$/';
 
 # collectd version
 $CONFIG['version'] = 4;
