@@ -1,6 +1,6 @@
 <?php
 
-# Collectd bind plugin
+# Collectd HP P2000 series plugin
 
 
 require_once 'type/GenericStacked.class.php';
