@@ -45,7 +45,7 @@ define('DEF_LANG','en');
 $CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000)$/';
 
 # Plugin that can have a PluginCategory
-$CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000)$/';
+$CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000|tcpconns)$/';
 
 # Display PI as title for these plugins
 $CONFIG['title_pinstance']='/^(P2000)$/';

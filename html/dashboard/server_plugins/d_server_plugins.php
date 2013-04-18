@@ -112,7 +112,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				if ($$p!=true) {
 					$lvl_p=2;
 					$lvl_pc=$lvl_p+1;
-					$lvl_pi=$lvl_p+1;
+					$lvl_pi=$lvl_pc;
 					$lvl_tc=null;
 					echo "<h$lvl_p>".ucfirst($p)."</h$lvl_p>";
 					$$p=true;

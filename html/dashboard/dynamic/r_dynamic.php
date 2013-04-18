@@ -128,7 +128,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 							if (substr_count($plugin_array[$cpt_p]['ti'], '-') >= 1 && preg_match($CONFIG['plugin_tcategory'], $plugin_array[$cpt_p]['p'])) {
 								$tmp=explode('-',$plugin_array[$cpt_p]['ti']);
 								$plugin_array[$cpt_p]['tc']=$tmp[0];
-								$plugin_array[$cpt_p]['ti']=implode('-',array_slice($tmp,1));
+								//$plugin_array[$cpt_p]['ti']=implode('-',array_slice($tmp,1));
 							}
 						} else {
 							$plugin_array[$cpt_p]['tc']=null;
@@ -166,7 +166,6 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 					${$plugin['servername'].$plugin['p'].$plugin['pc'].$plugin['pi'].$plugin['t'].$plugin['tc'].$plugin['ti']}=true;
 					
 					if ($all_content[$i]->rrd_ordering=='S') {
-						
 						if ($old_servername!=$plugin['servername']) {
 							echo '<h1>'.$plugin['servername'].'</h1>';
 							$old_p=null;
@@ -205,7 +204,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 				
 					if (!preg_match('/^(df|interface|oracle)$/', $plugin['p'])  || $CONFIG['version'] >= 5) {
 						$plugin['ti']=null;
-						if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $plugin['servername']!=$old_servername)	{
+						if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
 							if ($time_range!=null) {
 								echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
 							} else {
