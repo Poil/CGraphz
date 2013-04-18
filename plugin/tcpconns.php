@@ -13,7 +13,7 @@ require_once 'modules/collectd.inc.php';
 $obj = new Type_GenericStacked($CONFIG);
 $obj->width = $width;
 $obj->heigth = $heigth;
-$obj->rrd_title = sprintf('TCP Connections (%s)', $obj->args['pinstance']);
+$obj->rrd_title = sprintf('TCP Connections (%s:%s)', $obj->args['pinstance'], $obj->args['pcategory']);
 $obj->rrd_vertical = '#';
 $obj->rrd_format = '%5.1lf';
 
