@@ -102,22 +102,22 @@ switch($obj->args['type']) {
 	case 'virt_cpu_total':
 		require_once 'type/Default.class.php';
 		$obj = new Type_Default($CONFIG);
-	/*
+	
 		$obj->data_sources = array('value');
 		$obj->ds_names = array(
 			'value' => 'CPU time',
 		);
 		$obj->colors = array(
 			'value' => '0000ff',
-		);*/
+		);
 		$obj->rrd_title = 'CPU usage';
 		$obj->rrd_vertical = 'CPU time';
 	break;
 	case 'virt_vcpu':
 		require_once 'type/Default.class.php';
 		$obj = new Type_Default($CONFIG);
-/*
 		$obj->data_sources = array('value');
+		/*
 		$obj->ds_names = array(
 			'value' => 'VCPU time',
 		);

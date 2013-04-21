@@ -228,7 +228,7 @@ foreach ($vmlist as $vmdir) {
 
 			if (! isset(${$vm.$p.$pi.$t.$ti}) ) {
 				${$vm.$p.$pi.$t.$ti}=true;
-				if ($t!=$old_t) echo '<h4>'.$t.'</h4>';
+				if ($t!=$old_t) echo '<h4>'.ucfirst(str_replace('_', ' ',$t)).'</h4>';
 				$old_t=$t;
 				
 				echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.':'.$vm.'&amp;p='.$p.'&amp;pc='.$pc.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;tc='.$tc.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
