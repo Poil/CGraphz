@@ -24,8 +24,8 @@ require_once 'modules/collectd.inc.php';
 switch(GET('t')) {
 # df-cache.rrd
 	case 'df':
-		require_once 'type/Default.class.php';
-		$obj = new Type_Default($CONFIG);
+		require_once 'type/GenericStacked.class.php';
+		$obj = new Type_GenericStacked($CONFIG);
 		$obj->data_sources = array('used', 'free');
 		$obj->order = array('used', 'free');
 		$obj->ds_names = array(
