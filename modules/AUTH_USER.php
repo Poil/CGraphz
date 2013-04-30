@@ -13,12 +13,26 @@ class AUTH_USER {
 	}
 	
 	function verif_auth() {
-		if (isset($_GET['f_logout'])) {
-			$this->logout();
-		} else if (isset($_POST['f_submit_auth'])) {
+		$try_auth=False;
+		// Auth Form
+		if (isset($_POST['f_submit_auth'])) {
 			$this->user=mysql_escape_string($_POST['f_user']);
 			$this->passwd=mysql_escape_string($_POST['f_passwd']);
-			
+			$try_auth=True;
+		// Auth Basic if "&f_basic_auth=true" WARNING You can't logout with BasicAuth (see http://httpd.apache.org/docs/1.3/howto/auth.html How do I log out?)
+		} else if (isset($_GET['f_basic_auth']) && !isset($_SESSION['S_USER']) && !isset($_SERVER['PHP_AUTH_USER'])) {
+			// Basic Auth ?
+			header('WWW-Authenticate: Basic realm="CGraphz BasicAuth"');
+			header('HTTP/1.0 401 Unauthorized');
+		} else if (isset($_GET['f_basic_auth']) && isset($_SERVER['PHP_AUTH_USER'])) {
+			$this->user = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : '';
+			$this->passwd = isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : '';
+			$try_auth=True;
+		}
+		
+		if (isset($_GET['f_logout'])) {
+			$this->logout();
+		} else if ($try_auth==True) {	
 			$res=$this->connSQL->getRow('SELECT `id_auth_user`, `user`, `type` FROM auth_user WHERE `user`="'.$this->user.'"');
 			if (!$res) {
 				return false;
