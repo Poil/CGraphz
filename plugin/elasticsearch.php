@@ -6,7 +6,7 @@ require_once 'type/GenericStacked.class.php';
 require_once 'modules/collectd.inc.php';
 
 $obj = new Type_Default($CONFIG);
-
+/*
 $pospi = strpos($obj->args['pinstance'], '-');
 if ($pospi !== false) {
         if (($pospi+1) != strlen($obj->args['pinstance'])) {
@@ -28,6 +28,9 @@ if ($obj->args['tinstance'] != "") {
 } else {
         $rrd_title = sprintf('%s', trim(str_replace('_', ' ', $sub)));
 }
+*/
+
+$rrd_title=ucfirst(str_replace('_',' ',$obj->args['tcategory']));
 
 switch($obj->args['pinstance']) {
 	case (preg_match('/catalina_request_processor.*/', $obj->args['pinstance']) ? true : false) :
