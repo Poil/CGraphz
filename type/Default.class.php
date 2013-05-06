@@ -175,7 +175,8 @@ class Type_Default {
 				header("Expires: " . date(DATE_RFC822, strtotime($this->cache." seconds")));
 			header("content-type: image/png");
 			$graphdata = implode(' ', $graphdata);
-			echo `$graphdata`;
+			passthru($graphdata);
+			//echo `$graphdata`;
 		} elseif ($debug == 'cmd') {
 			print '<pre>';
 			foreach ($graphdata as $d) {
