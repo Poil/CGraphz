@@ -130,8 +130,8 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 					$others=true;
 					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ', $pi))."</h$lvl_pc>";
 				} 
-				// Displaying Plugin Instance for some plugins
-				if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && $$pi!=true) {
+				// Displaying Plugin Instance for some plugins except if we use PI as PC before
+				if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && $$pi!=true && $others==false) {
 					$$pi=true;
 					echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
 				}
