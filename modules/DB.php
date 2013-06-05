@@ -100,6 +100,7 @@ class DB {
         $dns = 'mysql:host='.self::$hostname.';dbname='.$this->dbname;
 	try {
 	        self::$instance = new PDO($dns, self::$username, self::$password);
+	        self::$instance->exec("SET CHARACTER SET utf8");
 	} catch (PDOException $e) {
 		echo 'Erreur de connexion à la BDD :'.$e->getMessage().'<br />';
 	}
