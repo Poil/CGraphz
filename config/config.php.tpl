@@ -42,7 +42,7 @@ define('NEW_MENU',false);
 define('DEF_LANG','en');
 
 # Plugin that can have a TypeCategory
-$CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000)$/';
+$CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats)$/';
 
 # Plugin that can have a PluginCategory
 $CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000|tcpconns)$/';
