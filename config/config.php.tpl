@@ -3,7 +3,7 @@
 date_default_timezone_set('Europe/Paris');
 
 # Cgraphz version
-define('CGRAPHZ_VERSION','1.60 alpha 2');
+define('CGRAPHZ_VERSION','2.00 alpha 1');
 
 # DB Version
 define('DB_HOST','localhost');
@@ -41,6 +41,12 @@ define('NEW_MENU',false);
 # Language
 define('DEF_LANG','en');
 
+# use the negative X-axis in I/O graphs
+$CONFIG['negative_io'] = false;
+
+# create smooth graphs (rrdtool -E)
+$CONFIG['graph_smooth'] = false;
+
 # Plugin that can have a TypeCategory
 $CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats)$/';
 
@@ -51,7 +57,7 @@ $CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000
 $CONFIG['title_pinstance']='/^(P2000|GenericJMX|PM710)$/';
 
 # collectd version
-$CONFIG['version'] = 4;
+$CONFIG['version'] = 5;
 
 # collectd's datadir
 $CONFIG['datadir'] = '/var/lib/collectd/rrd/';
@@ -77,10 +83,10 @@ $CONFIG['cache'] = 90;
 
 # default width/height of the graphs
 $CONFIG['width'] = 480;
-$CONFIG['heigth'] = 175;
+$CONFIG['height'] = 175;
 # default width/height of detailed graphs
 $CONFIG['detail-width'] = 800;
-$CONFIG['detail-heigth'] = 350;
+$CONFIG['detail-height'] = 350;
 
 # collectd's unix socket (unixsock plugin) or rrd tcp socket (collectd 4)
 # syntax : 'unix:///var/run/collectd-unixsock'

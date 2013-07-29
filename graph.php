@@ -19,7 +19,7 @@ if ($auth->verif_auth()) {
 		$host=$tmp[0];
 	}
 	$width = empty($_GET['x']) ? $CONFIG['width'] : $_GET['x'];
-	$heigth = empty($_GET['y']) ? $CONFIG['heigth'] : $_GET['y'];
+	$height = empty($_GET['y']) ? $CONFIG['height'] : $_GET['y'];
 	$s=intval($_GET['s']);
 	
 	if (validate_get(GET('h'), 'host') === NULL) {

@@ -24,7 +24,6 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 
 ?>
 
-
 <form onsubmit="refresh_graph('dashboard','',date_to_ts('f_time_start'),date_to_ts('f_time_end'));  Close_Popup(); return false" action="" method="post" name="f_form_time_selection">
 	<img id="move_popup" alt="<->" title="Move" src="img/drag.png" />
 	<img id="close_popup" onclick="Close_Popup();" alt="x" title="Fermer" src="img/close.png" />
@@ -35,11 +34,13 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 		<input id="f_time_end" value="<?php echo $date_end ?>" type="text" maxlength="16" size="16" name="f_time_end" />
 	<br />
 	<input type="submit" value="<?php echo SUBMIT_TO_DASHBOARD ?>" />
-	<!--
-	<input type="button" onclick="refresh_graph('dashboard','',date_to_ts('f_time_start'),date_to_ts('f_time_end')); Close_Popup(); return false" value="<?php echo SUBMIT_TO_DASHBOARD ?>" />
-	!-->
 </form>
 <?php
+	if (empty($_GET['x']))
+	$_GET['x'] = $CONFIG['detail-width'];
+	if (empty($_GET['y']))
+	$_GET['y'] = $CONFIG['detail-height'];
+
 	chdir(DIR_FSROOT);
 	include(DIR_FSROOT.'/plugin/'.GET('p').'.php');
 	echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/CGP.js"></script>';
