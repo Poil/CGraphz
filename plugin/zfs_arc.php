@@ -15,8 +15,6 @@ require_once 'modules/collectd.inc.php';
 # zfs_arc/arc_size.rrd
 
 $obj = new Type_Default($CONFIG);
-$obj->width = $width;
-$obj->heigth = $heigth;
 $obj->rrd_format = '%5.1lf%s';
 
 switch($obj->args['type']) {

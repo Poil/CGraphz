@@ -31,8 +31,6 @@ switch($obj->args['type']) {
 	case 'memory' :
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG);
-		$obj -> width = $width;
-		$obj -> heigth = $heigth;
 
 		//$obj -> data_sources = array('value');
 		$obj -> rrd_title = sprintf('Memory%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
@@ -63,8 +61,6 @@ switch($obj->args['type']) {
 		$obj -> rrd_title = sprintf('Total Operation%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
 		$obj -> rrd_vertical = 'Operation';
 }
-$obj -> width = $width;
-$obj -> heigth = $heigth;
 $obj -> rrd_format = '%5.1lf%s';
 
 # backwards compatibility

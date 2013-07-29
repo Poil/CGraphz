@@ -110,8 +110,6 @@ switch ($_GET['pi']) {
 	break;
 }
 
-$obj->width = $width;
-$obj->heigth = $heigth;
 $obj->rrd_format = '%5.1lf%s';
 
 collectd_flush($obj->identifiers);

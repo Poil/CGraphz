@@ -33,7 +33,6 @@ define('PRESAVED_FILTER','Saved Filter');
 define('SERVER','Server');
 define('PLUGIN','Plugin');
 define('PLUGIN_INSTANCE','Plugin Instance');
-define('TYPE','Type');
 define('TYPE_INSTANCE','Type Instance');
 define('TEST','Test');
 define('CLICK_TO_CLOSE','Click to close');

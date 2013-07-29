@@ -10,8 +10,6 @@ require_once 'modules/collectd.inc.php';
 # ip6tables/ipt_packets-XXX.rrd
 
 $obj = new Type_GenericStacked($CONFIG);
-$obj->width = $width;
-$obj->heigth = $heigth;
 
 $obj->data_sources = array('value');
 switch($_GET['t']) {

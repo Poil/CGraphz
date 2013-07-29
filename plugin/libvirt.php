@@ -129,8 +129,6 @@ switch($obj->args['type']) {
 	break;
 }
 
-$obj->width = $width;
-$obj->heigth = $heigth;
 $obj->rrd_format = '%5.1lf%s';
 
 if ($CONFIG['version'] < 5 && count($obj->data_sources) == 1) {

@@ -15,8 +15,6 @@ require_once 'type/GenericStacked.class.php';
 # processes/ps_state-sleeping.rrd
 
 $obj = new Type_GenericStacked($CONFIG);
-$obj->width = $width;
-$obj->heigth = $heigth;
 $obj->rrd_format = '%5.1lf%s';
 
 switch($obj->args['type'])

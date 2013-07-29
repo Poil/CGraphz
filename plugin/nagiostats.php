@@ -26,8 +26,6 @@ switch(GET('t')) {
 		$obj->rrd_vertical = 'Number';
 	break;
 }
-$obj->width = $width;
-$obj->heigth = $heigth;
 $obj->rrd_title = $obj->args['type'].' : '.$obj->args['tcategory'];
 $obj->rrd_format = '%5.1lf%s';
 

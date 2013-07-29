@@ -219,8 +219,5 @@ if ($_GET['pi'] == 'system') {
    }
 }
 
-$obj->width = $width;
-$obj->heigth = $heigth;
-
 collectd_flush($obj->identifiers);
 $obj->rrd_graph();

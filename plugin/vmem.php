@@ -14,8 +14,6 @@ require_once 'modules/collectd.inc.php';
 # vmem/vmpage_number-<type>.rrd
 
 $obj = new Type_GenericStacked($CONFIG);
-$obj->width = $width;
-$obj->heigth = $heigth;
 switch($obj->args['type']) {
 	case 'vmpage_faults':
 		$obj->data_sources = array('minflt', 'majflt');

@@ -13,8 +13,6 @@ require_once 'modules/collectd.inc.php';
 # battery-X/voltage.rrd
 
 $obj = new Type_Default($CONFIG);
-$obj->width = $width;
-$obj->heigth = $heigth;
 $obj->colors = array(
 	'value' => '0000f0',
 );

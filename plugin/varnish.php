@@ -22,8 +22,6 @@ require_once 'modules/collectd.inc.php';
 #varnish-default-connections/connections-received.rrd
 
 $obj = new Type_Default($CONFIG);
-$obj->width = $width;
-$obj->heigth = $heigth;
 $obj->rrd_format = '%5.1lf%s';
 switch($obj->args['pinstance']) {
 	case 'default-backend':

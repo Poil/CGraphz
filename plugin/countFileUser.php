@@ -8,8 +8,6 @@ require_once 'modules/collectd.inc.php';
 
 
 $obj = new Type_Default($CONFIG);
-$obj->width = $width;
-$obj->heigth = $heigth;
 $obj->ds_names = array(
         'value' => 'Files',
 );

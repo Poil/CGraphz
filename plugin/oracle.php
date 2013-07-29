@@ -13,8 +13,6 @@ switch($_GET['t']) {
                 require_once 'type/GenericStacked.class.php';
                 $obj = new Type_GenericStacked($CONFIG);
                 $obj->data_sources = array('free', 'used');
-                $obj->width = $width;
-                $obj->heigth = $heigth;
                 $obj->ds_names = array(
                         'used' => 'Used',
                         'free' => 'Free',
@@ -32,8 +30,6 @@ switch($_GET['t']) {
                 require_once 'type/GenericStacked.class.php';
                 $obj = new Type_GenericStacked($CONFIG);
                 $obj->data_sources = array('rx', 'tx');
-                $obj->width = $width;
-                $obj->heigth = $heigth;
                 $obj->ds_names = array(
                         'rx' => 'Read',
                         'tx' => 'Write',

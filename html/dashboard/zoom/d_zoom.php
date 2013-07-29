@@ -6,6 +6,8 @@ if (!$auth->verif_auth()) {
         die();
 }
 
+echo '<meta name="viewport" content="width=1050, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />';
+
 $f_url=filter_input(INPUT_GET,'f_url',FILTER_SANITIZE_SPECIAL_CHARS);
 parse_str(parse_url(html_entity_decode($f_url), PHP_URL_QUERY), $url_str);
 
@@ -21,7 +23,9 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 }
 
 ?>
-<form onsubmit="refresh_graph('popup','',date_to_ts('f_time_start'),date_to_ts('f_time_end')); return false" action="" method="post" name="f_form_time_selection">
+
+
+<form onsubmit="refresh_graph('dashboard','',date_to_ts('f_time_start'),date_to_ts('f_time_end'));  Close_Popup(); return false" action="" method="post" name="f_form_time_selection">
 	<img id="move_popup" alt="<->" title="Move" src="img/drag.png" />
 	<img id="close_popup" onclick="Close_Popup();" alt="x" title="Fermer" src="img/close.png" />
 	<label for="f_time_start"><?php echo RANGE_START ?></label>
@@ -30,9 +34,13 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 	<label for="f_time_end"><?php echo RANGE_END ?></label>
 		<input id="f_time_end" value="<?php echo $date_end ?>" type="text" maxlength="16" size="16" name="f_time_end" />
 	<br />
-	<input type="submit" value="<?php echo SUBMIT ?>" />
+	<input type="submit" value="<?php echo SUBMIT_TO_DASHBOARD ?>" />
+	<!--
 	<input type="button" onclick="refresh_graph('dashboard','',date_to_ts('f_time_start'),date_to_ts('f_time_end')); Close_Popup(); return false" value="<?php echo SUBMIT_TO_DASHBOARD ?>" />
+	!-->
 </form>
 <?php
-	echo '<img class="imggraph" src="'.$f_url.'" />';
+	chdir(DIR_FSROOT);
+	include(DIR_FSROOT.'/plugin/'.GET('p').'.php');
+	echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/CGP.js"></script>';
 ?>

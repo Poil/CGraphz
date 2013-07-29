@@ -21,8 +21,6 @@ switch($_GET['t']) {
 
 }
 
-$obj->width = $width;
-$obj->heigth = $heigth;
 $obj->rrd_format = '%5.1lf%s';
 
 collectd_flush($obj->identifiers);

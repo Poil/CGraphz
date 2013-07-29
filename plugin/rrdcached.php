@@ -11,8 +11,6 @@ require_once 'modules/collectd.inc.php';
 require_once 'type/Default.class.php';
 $obj = new Type_Default($CONFIG);
 
-$obj->width = $width;
-$obj->heigth = $heigth;
 $obj->rrd_title = 'RRDCached';
 
 $obj->rrd_vertical = 'count';
