@@ -22,6 +22,7 @@ switch(GET('t')) {
 		$obj->scale = $CONFIG['network_datasize'] == 'bits' ? 8 : 1;
 	break;
 	default:
+		require_once 'type/Default.class.php';
 		$obj = new Type_Default($CONFIG);
 		$obj->rrd_title = sprintf('SNMP: %s (%s)', $obj->args['type'], $obj->args['tinstance']);
 	return;
