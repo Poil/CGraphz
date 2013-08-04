@@ -217,9 +217,9 @@ foreach ($vmlist as $vmdir) {
 				
 				echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.':'.$vm.'&amp;p='.$p.'&amp;pc='.$pc.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;tc='.$tc.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
 				if (isset($time_start) && isset($time_end)) {
-					echo '<img class="imgzoom" style="cursor:pointer" onclick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
+					echo '<img class="imgzoom" style="cursor:pointer" onclick="Show_Popup($(this).prev(\'img\').attr(\'src\').split(\'?\')[1],\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
 				} else {
-					echo '<img class="imgzoom" style="cursor:pointer" onclick="Show_Popup($(this).prev(\'img\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />';
+					echo '<img class="imgzoom" style="cursor:pointer" onclick="Show_Popup($(this).prev(\'img\').attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
 				}
 			}
 		}

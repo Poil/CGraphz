@@ -8,9 +8,6 @@ if (!$auth->verif_auth()) {
 
 echo '<meta name="viewport" content="width=1050, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />';
 
-$f_url=filter_input(INPUT_GET,'f_url',FILTER_SANITIZE_SPECIAL_CHARS);
-parse_str(parse_url(html_entity_decode($f_url), PHP_URL_QUERY), $url_str);
-
 if (isset($_SESSION['time_start']) && $_SESSION['time_start']!='') {
 	$date_start=date('Y-m-d H:i',$_SESSION['time_start']);
 } else {

@@ -42,12 +42,6 @@ class Type_Default {
 		$this->graph_type = GET('graph_type');
 		$this->negative_io = $config['negative_io'];
 		$this->graph_smooth = $config['graph_smooth'];
-		/*
-		// Not clean but how to do this better ...
-		if (basename($_SERVER['PHP_SELF'])=='d_zoom.php') {
-			echo ($CONFIG['detail-width']);
-			echo ($CONFIG['detail-height']);
-		}*/
 	}
 
 	function rainbow_colors() {
@@ -75,7 +69,7 @@ class Type_Default {
 
 	# parse $_GET values
 	function parse_get() {
-		$this -> args = array(
+		$this->args = array(
 			'host' => GET('h'),
 			'plugin' => GET('p'),
 			'pcategory' => GET('pc'),
@@ -84,8 +78,9 @@ class Type_Default {
 			'tcategory' => GET('tc'),
 			'tinstance' => GET('ti'),
 		);
-		$this -> seconds = GET('s');
-		$this -> seconds_end = GET('e');
+
+		$this->seconds = GET('s');
+		$this->seconds_end = GET('e');
 	}
 
 	function validate_color($color) {
@@ -131,6 +126,8 @@ class Type_Default {
 	function parse_filename($file) {
 		if ($this->graph_type == 'canvas') {
 			$file = DIR_WEBROOT.'/rrd.php/' . str_replace($this->datadir . '/', '', $file);
+			# rawurlencode all but /
+			$file = str_replace('%2F', '/', rawurlencode($file));
 		}
 		return $this->rrd_escape($file);
 	}
@@ -141,7 +138,7 @@ class Type_Default {
 		foreach($files as $filename) {
 			$basename=basename($filename,'.rrd');
 			$instance = strpos($basename,'-')
-				? substr($basename, strpos($basename, '-') + 1)
+				? substr($basename, strpos($basename,'-') + 1)
 				: 'value';
 
 			$this->tinstances[] = $instance;
