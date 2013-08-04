@@ -243,7 +243,8 @@ class Type_Default {
 		$rrdgraph[] = sprintf('-h %d', is_numeric($this->height) ? $this->height : 175);
 		$rrdgraph[] = '-l 0';
 		$rrdgraph[] = sprintf('-t "%s on %s"', $this->rrd_title, $this->args['host']);
-		$rrdgraph[] = sprintf('-v "%s"', $this->rrd_vertical);
+		if ($this->rrd_vertical)
+			$rrdgraph[] = sprintf('-v "%s"', $this->rrd_vertical);
 		if ($this->seconds_end == "") {
 			$rrdgraph[] = sprintf('-s e-%d', is_numeric($this->seconds) ? $this->seconds : 86400);
 		} else {
