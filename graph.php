@@ -54,5 +54,4 @@ if ($auth->verif_auth()) {
 		error_image();
 	}
 }
-//ob_end_flush();
 ?>
