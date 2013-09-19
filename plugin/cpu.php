@@ -46,5 +46,4 @@ $obj->rrd_format = '%5.2lf';
 $obj->rrdtool_opts .= ' -u 100';
 
 collectd_flush($obj->identifiers);
-#$obj->rrd_graph(true);
 $obj->rrd_graph();

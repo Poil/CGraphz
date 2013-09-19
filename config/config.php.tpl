@@ -80,7 +80,7 @@ $CONFIG['network_datasize'] = 'bytes';
 
 # Display graphs as png, svg or canvas 
 # Note that svg graph dimensions are defined in "points" (pt) and not pixels, so svg image sizes will be different then png
-$CONFIG['graph_type'] = 'svg';
+$CONFIG['graph_type'] = 'png';
 
 # browser cache time for the graphs (in seconds)
 $CONFIG['cache'] = 90;
