@@ -19,21 +19,21 @@ if ($cur_server->server_name=='') {
 echo '<h1>'.$cur_server->server_name.'</h1>';
 
 $lib = 'SELECT 
-cpf.*         
-FROM 
-config_plugin_filter cpf
-LEFT JOIN config_plugin_filter_group cpfg
-ON cpf.id_config_plugin_filter=cpfg.id_config_plugin_filter
-LEFT JOIN auth_group ag 
-ON cpfg.id_auth_group=ag.id_auth_group
-LEFT JOIN auth_user_group aug 
-ON aug.id_auth_group=ag.id_auth_group
-LEFT JOIN perm_project_group ppg 
-ON ppg.id_auth_group=ag.id_auth_group
-WHERE 
-aug.id_auth_user="'.$_SESSION['S_ID_USER'].'"
-AND ppg.id_config_project="'.$f_id_config_project.'"
-ORDER BY plugin_order, plugin, plugin_instance, type, type_instance';
+		cpf.*         
+	FROM 
+		config_plugin_filter cpf
+		LEFT JOIN config_plugin_filter_group cpfg
+			ON cpf.id_config_plugin_filter=cpfg.id_config_plugin_filter
+		LEFT JOIN auth_group ag 
+			ON cpfg.id_auth_group=ag.id_auth_group
+		LEFT JOIN auth_user_group aug 
+			ON aug.id_auth_group=ag.id_auth_group
+		LEFT JOIN perm_project_group ppg 
+			ON ppg.id_auth_group=ag.id_auth_group
+	WHERE 
+		aug.id_auth_user="'.$_SESSION['S_ID_USER'].'"
+	AND ppg.id_config_project="'.$f_id_config_project.'"
+	ORDER BY plugin_order, plugin, plugin_instance, type, type_instance';
 
 $connSQL=new DB();
 $pg_filters=$connSQL->getResults($lib);
