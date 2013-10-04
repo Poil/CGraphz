@@ -1,6 +1,5 @@
 <?php
 include './config/config.php';
-include DIR_FSROOT.'/modules/functions.inc.php';
 
 if ($file = validateRRDPath($CONFIG['datadir'], $_SERVER['PATH_INFO'])) {
 	header('Content-Type: application/octet-stream');

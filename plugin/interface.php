@@ -22,10 +22,6 @@ $obj->ds_names = array(
 	'rx' => 'Receive',
 	'tx' => 'Transmit',
 );
-$obj->colors = array(
-	'rx' => '0000ff',
-	'tx' => '00b000',
-);
 $obj->rrd_format = '%5.1lf%s';
 
 $instance = $CONFIG['version'] < 5 ? 'tinstance' : 'pinstance';
