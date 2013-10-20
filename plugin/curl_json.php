@@ -4,7 +4,7 @@
 
 require_once 'modules/collectd.inc.php';
 	
-switch($_GET['t']) {
+switch(GET('t')) {
 
 	case 'players':
 		require_once 'type/GenericStacked.class.php';

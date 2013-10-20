@@ -10,9 +10,9 @@ function removeqsvar($url, $varname) {
 
 
 $cur_url=$_SERVER["REQUEST_URI"];
-$module=@$_GET['module'];
-$component=@$_GET['component'];
-$workflow=@$_GET['workflow'];
+$module=GET('module');
+$component=GET('component');
+$workflow=GET('workflow');
 
 $perm_mod = new PERMS();
 if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
@@ -673,7 +673,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			}
 			echo '<div class="spacer">&nbsp;</div>';
 			$perm_grp = new PERMS();
-			$f_id_auth_group=intval($_GET['f_id_auth_group']);
+			$f_id_auth_group=intval(GET('f_id_auth_group'));
 			if (($f_id_auth_group && $perm_grp->auth_user_group($_SESSION['S_ID_USER'],$f_id_auth_group,true)) || !$f_id_auth_group) {
 				echo '<fieldset>';
 				if (isset($cur_group)) {
@@ -739,48 +739,46 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'">'.ADD.'</a> ]';
 			}
 			echo '<div class="spacer">&nbsp;</div>';
-			$f_id_config_dynamic_dashboard=intval($_GET['f_id_config_dynamic_dashboard']);
-			//if ($f_id_config_dynamic_dashboard) {
-				echo '<fieldset>';
-				if (isset($cur_dynamic_dashboard)) {
-					echo '<legend>'.$cur_dynamic_dashboard->title.'</legend>';
+			$f_id_config_dynamic_dashboard=intval(GET('f_id_config_dynamic_dashboard'));
+			echo '<fieldset>';
+			if (isset($cur_dynamic_dashboard)) {
+				echo '<legend>'.$cur_dynamic_dashboard->title.'</legend>';
+			}
+			echo '<fieldset>';
+			if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+				echo '<legend>'.EDIT.'</legend>';
+			}
+			else {
+				echo '<legend>'.ADD.'</legend>';
+			}
+			
+			include(DIR_FSROOT.'/html/small_admin/mydashboard/f_dynamic_dashboard.php');
+			echo '</fieldset>';
+			
+			if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+				echo '<fieldset class="large">';
+				echo '<legend>'.USERS.'</legend>';
+				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/w_dynamic_dashboard_content.php');
+				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/e_dynamic_dashboard_content.php');
+				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content_wh_id.php');
+				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content.php');
+				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/d_dynamic_dashboard_content.php');
+				echo '<div class="spacer">&nbsp;</div>';
+				
+				if (isset($_GET['f_id_auth_user'])) {
+					echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_user').'">'.ADD.'</a> ]';
 				}
-				echo '<fieldset>';
-				if (isset($_GET['f_id_config_dynamic_dashboard'])) {
-					echo '<legend>'.EDIT.'</legend>';
+				echo '<div class="spacer">&nbsp;</div>';
+				if (isset($_GET['f_id_auth_user'])) {
+					echo '<strong>'.DEL.'</strong>';
 				}
 				else {
-					echo '<legend>'.ADD.'</legend>';
+					echo '<strong>'.ADD.'</strong>';
 				}
-			
-				include(DIR_FSROOT.'/html/small_admin/mydashboard/f_dynamic_dashboard.php');
+				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/f_dynamic_dashboard_content.php');
 				echo '</fieldset>';
-				
-				if (isset($_GET['f_id_config_dynamic_dashboard'])) {
-					echo '<fieldset class="large">';
-					echo '<legend>'.USERS.'</legend>';
-					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/w_dynamic_dashboard_content.php');
-					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/e_dynamic_dashboard_content.php');
-					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content_wh_id.php');
-					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content.php');
-					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/d_dynamic_dashboard_content.php');
-					echo '<div class="spacer">&nbsp;</div>';
-					
-					if (isset($_GET['f_id_auth_user'])) {
-						echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_user').'">'.ADD.'</a> ]';
-					}
-					echo '<div class="spacer">&nbsp;</div>';
-					if (isset($_GET['f_id_auth_user'])) {
-						echo '<strong>'.DEL.'</strong>';
-					}
-					else {
-						echo '<strong>'.ADD.'</strong>';
-					}
-					include(DIR_FSROOT.'/html/small_admin/mydashboard_content/f_dynamic_dashboard_content.php');
-					echo '</fieldset>';
-				}
-				echo '</fieldset>';
-			//}
+			}
+			echo '</fieldset>';
 			echo '<div class="spacer">&nbsp;</div>';
 		}
 	} else {

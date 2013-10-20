@@ -33,8 +33,8 @@ require_once 'modules/collectd.inc.php';
 # netapp-volume-logs/disk_ops.rrd
 # netapp-volume-logs/df_complex-snap_reserve_used.rrd
 
-if ($_GET['pi'] == 'system') {
-   switch($_GET['t']) {
+if (GET('pi') == 'system') {
+   switch(GET('t')) {
       # cpu-(system|idle).rrd
       case 'cpu':
          require_once 'type/GenericStackedPercent.class.php';
@@ -128,8 +128,8 @@ if ($_GET['pi'] == 'system') {
          $obj->rrd_format = '%5.1lf%s';
       break;
    }
-} else if ($_GET['pi'] == 'wafl') {
-   switch($_GET['t']) {
+} else if (GET('pi') == 'wafl') {
+   switch(GET('t')) {
       case 'cache_ratio':
          require_once 'type/Default.class.php';
          $obj = new Type_Default($CONFIG);
@@ -144,8 +144,8 @@ if ($_GET['pi'] == 'system') {
          $obj->rrd_format = '%5.1lf%s';
       break;
    }
-} else if (preg_match('/^volume-(\w+)/',$_GET['pi'],$tab) || preg_match('/^volume-(\w+)/',$_GET['pc'].'-'.$_GET['pi'],$tab)) {
-   switch($_GET['t']) {
+} else if (preg_match('/^volume-(\w+)/',GET('pi'),$tab) || preg_match('/^volume-(\w+)/',GET('pc').'-'.GET('pi'),$tab)) {
+   switch(GET('t')) {
       case 'df_complex':
          require_once 'type/GenericStacked.class.php';
          $obj = new Type_GenericStacked($CONFIG);

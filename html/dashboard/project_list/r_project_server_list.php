@@ -1,9 +1,9 @@
 <?php
 $connSQL=new DB();
 if (isset($_GET['f_id_config_project'])) {
-	$f_id_config_project=intval(@$_GET['f_id_config_project']);
-	$f_id_config_role=intval(@$_GET['f_id_config_role']);
-	$f_id_config_environment=intval(@$_GET['f_id_config_environment']);
+	$f_id_config_project=intval(GET('f_id_config_project'));
+	$f_id_config_role=intval(GET('f_id_config_role'));
+	$f_id_config_environment=intval(GET('f_id_config_environment'));
 	
 	if (isset($_GET['f_id_config_environment']) && $f_id_config_environment!==0) {
 		$JOIN_ENV='LEFT OUTER JOIN config_environment_server ces
@@ -97,7 +97,7 @@ if (isset($_GET['f_id_config_project'])) {
 
 	// Si plus de MAX_SRV Serveurs, on affiche des catégories
 	if ($cpt_server>MAX_SRV || isset($_GET['f_id_config_role'])) {
-		$f_id_config_project=intval($_GET['f_id_config_project']);
+		$f_id_config_project=intval(GET('f_id_config_project'));
 		
 		$lib='
 		SELECT 

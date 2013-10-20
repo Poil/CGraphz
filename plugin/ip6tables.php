@@ -12,7 +12,7 @@ require_once 'modules/collectd.inc.php';
 $obj = new Type_GenericStacked($CONFIG);
 
 $obj->data_sources = array('value');
-switch($_GET['t']) {
+switch(GET('t')) {
 	case 'ipt_bytes':
 	  $obj->rrd_title = 'Bytes';
 	  break;

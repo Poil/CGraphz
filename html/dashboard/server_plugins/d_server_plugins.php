@@ -103,13 +103,13 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 					$others=false;
 				}
 				// Displaying Plugin Category if there is a Plugin Category
-				if ($pc!=null && $$pc!=true) {
+				if (isset($pc) && empty($$pc)) {
 					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ', $pc))."</h$lvl_pc>";
 					$lvl_pi=$lvl_pc+1;
 					$$pc=true;
 					$others=false;
 					// Displaying a Fake Plugin Category if we had a plugin category for others PI
-				} else if ($old_pc!=null && $pc==null && $p==$old_p && $others==false) {
+				} else if (isset($old_pc) && isset($pc) && $p==$old_p && $others==false) {
 					$lvl_pi=$lvl_pc;
 					$others=true;
 					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ', $pi))."</h$lvl_pc>";
@@ -123,7 +123,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				${$p.$pc.$pi.$t.$tc.$ti}=true;
 
 				// Verif regex OK
-				if ($p!=null && $t!=null) {
+				if (isset($p) && isset($t)) {
 					if (!preg_match('/^(df|interface|oracle)$/', $p) || $CONFIG['version'] >= 5) {
 						$ti='';
 						if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
@@ -200,7 +200,6 @@ foreach ($vmlist as $vmdir) {
 
 	$tmp=explode(':',$vmdir);
 	$vm=$tmp[1];
-	//$$t=false;
 
 	echo "<h3>$vm</h3>";
 

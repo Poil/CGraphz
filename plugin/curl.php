@@ -7,7 +7,7 @@
 
 require_once 'modules/collectd.inc.php';
 
-switch ($_GET['pi']) {
+switch (GET('pi')) {
 	
 # LAYOUT: APC opcode cache
 # curl-apc/cache_result-hits.rrd
@@ -71,7 +71,7 @@ switch ($_GET['pi']) {
 
 
 	case 'apc':
-		switch($_GET['t']) {
+		switch(GET('t')) {
 		
 		# cache_result-(hits|misses).rrd
 			case 'cache_result':

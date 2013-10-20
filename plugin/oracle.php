@@ -8,7 +8,7 @@ require_once 'modules/collectd.inc.php';
 # oracle-[instance]/io_octets-tablespace-[tablename].rrd
 
 
-switch($_GET['t']) {
+switch(GET('t')) {
         case 'df':
                 require_once 'type/GenericStacked.class.php';
                 $obj = new Type_GenericStacked($CONFIG);
