@@ -396,6 +396,8 @@ INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_grou
 INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (11, 1, 11);
 INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (12, 1, 12);
 INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (13, 1, 13);
+INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (14, 1, 14);
+INSERT INTO `cgraphz`.`perm_module_group` (`id_perm_module_group`, `id_auth_group`, `id_perm_module`) VALUES (15, 1, 15);
 
 COMMIT;
 
