@@ -1,5 +1,6 @@
 <?php
 	include('config/config.php');
+	$auth = new AUTH_USER();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -58,7 +59,6 @@
 <body id="id_body">
 <div id="content">
 <?php
-$auth = new AUTH_USER();
 if ($auth->verif_auth()) {
 	include(DIR_FSROOT.'/html/menu/menu.php');
 	include(DIR_FSROOT.'/config/module.php');

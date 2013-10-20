@@ -60,7 +60,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if (isset($matches[3])) {
 				$pi=$matches[3];
 				$pc=null;
-				if (substr_count($pi, '-') >= 1) {
+				if (substr_count($pi, '-') >= 1 && preg_match($CONFIG['plugin_pcategory'], $p)) {
 					$tmp=explode('-',$pi);
 					// Fix when PI is null after separating PC/PI for example a directory named "MyHost/GenericJMX-cassandra_activity_request-/"
 					if (strlen($tmp[1])) {

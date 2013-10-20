@@ -86,7 +86,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   if (isset($matches[3]) && $matches[3]!=null) {
                      $plugin_array[$cpt_p]['pi']=$matches[3];
                      $plugin_array[$cpt_p]['pc']=null;
-                     if (substr_count($plugin_array[$cpt_p]['pi'], '-') >= 1) {
+                     if (substr_count($plugin_array[$cpt_p]['pi'], '-') >= 1 && preg_match($CONFIG['plugin_pcategory'], $plugin_array[$cpt_p]['p'])) {
                         $tmp=explode('-',$plugin_array[$cpt_p]['pi']);
                         $plugin_array[$cpt_p]['pc']=$tmp[0];
                         $plugin_array[$cpt_p]['pi']=implode('-',array_slice($tmp,1));
