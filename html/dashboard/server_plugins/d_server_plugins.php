@@ -67,6 +67,10 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 						$pc=$tmp[0];
 						$pi=implode('-', array_slice($tmp,1));
 					}
+				// Copy PI to PC if no PC but Plugin can have a PC
+				} else if (preg_match($CONFIG['plugin_pcategory'], $p)) {
+					$pc=$pi;
+					$pi=null;
 				}
 			} else { 
 				$pc=null; 
@@ -84,6 +88,9 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 					$tmp=explode('-',$ti);
 					$tc=$tmp[0];
 					//$ti=implode('-', array_slice($tmp,1));
+					$ti=null;
+				} else if (preg_match($CONFIG['plugin_tcategory'], $p)) {
+					$tc=$ti;
 					$ti=null;
 				}
 			} else { 
@@ -108,12 +115,13 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 					$lvl_pi=$lvl_pc+1;
 					$$pc=true;
 					$others=false;
-					// Displaying a Fake Plugin Category if we had a plugin category for others PI
-				} else if (isset($old_pc) && isset($pc) && $p==$old_p && $others==false) {
+				// Displaying a Fake Plugin Category if we had a plugin category for others PI
+				}
+				 /*else if (isset($old_pc) && isset($pc) && $p==$old_p && $others==false) {
 					$lvl_pi=$lvl_pc;
 					$others=true;
 					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ', $pi))."</h$lvl_pc>";
-				} 
+				} */
 				// Displaying Plugin Instance for some plugins
 				if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && $$pi!=true) {
 					$$pi=true;

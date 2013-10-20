@@ -83,14 +83,17 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   } else {
                      $plugin_array[$cpt_p]['p']=null;
                   }
-                  if (isset($matches[3]) && $matches[3]!=null) {
+                  if (!empty($matches[3])) {
                      $plugin_array[$cpt_p]['pi']=$matches[3];
                      $plugin_array[$cpt_p]['pc']=null;
                      if (substr_count($plugin_array[$cpt_p]['pi'], '-') >= 1 && preg_match($CONFIG['plugin_pcategory'], $plugin_array[$cpt_p]['p'])) {
                         $tmp=explode('-',$plugin_array[$cpt_p]['pi']);
                         $plugin_array[$cpt_p]['pc']=$tmp[0];
                         $plugin_array[$cpt_p]['pi']=implode('-',array_slice($tmp,1));
-                     }
+                     } else if (preg_match($CONFIG['plugin_pcategory'], $plugin_array[$cpt_p]['p'])) {
+                        $plugin_array[$cpt_p]['pc']=$plugin_array[$cpt_p]['pi'];
+                        $plugin_array[$cpt_p]['pi']=null;
+		     }
                   } else {
                      $plugin_array[$cpt_p]['pc']=null;
                      $plugin_array[$cpt_p]['pi']=null;
@@ -100,13 +103,15 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   } else {
                      $plugin_array[$cpt_p]['t']=null;
                   }
-                  if (isset($matches[5]) && $matches[5]!=null) {
+                  if (!empty($matches[5])) {
                      $plugin_array[$cpt_p]['ti']=$matches[5];
                      $plugin_array[$cpt_p]['tc']=null;
                      if (substr_count($plugin_array[$cpt_p]['ti'], '-') >= 1 && preg_match($CONFIG['plugin_tcategory'], $plugin_array[$cpt_p]['p'])) {
                         $tmp=explode('-',$plugin_array[$cpt_p]['ti']);
                         $plugin_array[$cpt_p]['tc']=$tmp[0];
-                        //$plugin_array[$cpt_p]['ti']=implode('-',array_slice($tmp,1));
+                     } else if (preg_match($CONFIG['plugin_tcategory'], $plugin_array[$cpt_p]['p'])) {
+                        $plugin_array[$cpt_p]['tc']=$plugin_array[$cpt_p]['ti'];
+                        $plugin_array[$cpt_p]['ti']=null;
                      }
                   } else {
                      $plugin_array[$cpt_p]['tc']=null;
@@ -151,13 +156,9 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   if ($old_p!=$plugin['p']) {
                      echo '<h2>'.$plugin['p'].'</h2>';
                   }
-
                } else if ($all_content[$i]->rrd_ordering=='P') {
                   if ($old_p!=$plugin['p']) {
                      echo '<h1>'.$plugin['p'].'</h1>';
-                     if ($plugin['pc']!=null) {
-                        echo '<h2>'.$plugin['pc'].'</h2>';
-                     }
                   }
                   if ($old_pc!=$plugin['pc']) {
                      echo '<h2>'.$plugin['pc'].'</h2>';
