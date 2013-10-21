@@ -15,7 +15,7 @@ switch(GET('t')) {
 			'free_slots'   => 'Free Slots',
 		);
 		*/
-		$obj->rrd_title = 'Connections on '.$obj->args['pinstance'];
+		$obj->rrd_title = 'Connections on '.(empty($obj->args['pinstance'])?$obj->args['pcategory']:$obj->args['pinstance']);
 		$obj->rrd_vertical = 'Slots';
 	break;
 
