@@ -54,4 +54,7 @@ function error_image() {
 	exit;
 }
 
+function is_blank($value) {
+	return empty($value) && !is_numeric($value);
+}
 ?>
