@@ -230,6 +230,14 @@ class Type_Default {
 				if (is_numeric($this->cache) && $this->cache > 0)
 					header("Expires: " . date(DATE_RFC822, strtotime($this->cache." seconds")));
 				header("content-type: image/png");
+				$graphname=$this->args['host'];
+				$graphname.='-'.$this->args['plugin'];
+				if (!empty($this->args['pcategory'])) { $graphname.='-'.$this->args['pcategory']; }
+				if (!empty($this->args['pinstance'])) { $graphname.='-'.$this->args['pinstance']; }
+				if (!empty($this->args['type'])) { $graphname.='-'.$this->args['type']; }
+				if (!empty($this->args['tcategory'])) { $graphname.='-'.$this->args['tcategory']; }
+				if (!empty($this->args['tinstance'])) { $graphname.='-'.$this->args['tinstance']; }
+				header('Content-Disposition: attachment; filename="'.$graphname.'.png"'); 
 				$graphdata = implode(' ', $graphdata);
 				passthru($graphdata);
 			break;
