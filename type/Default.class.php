@@ -237,7 +237,7 @@ class Type_Default {
 				if (!empty($this->args['type'])) { $graphname.='-'.$this->args['type']; }
 				if (!empty($this->args['tcategory'])) { $graphname.='-'.$this->args['tcategory']; }
 				if (!empty($this->args['tinstance'])) { $graphname.='-'.$this->args['tinstance']; }
-				header('Content-Disposition: attachment; filename="'.$graphname.'.png"'); 
+				header('Content-Disposition: filename="'.$graphname.'.png"'); 
 				$graphdata = implode(' ', $graphdata);
 				passthru($graphdata);
 			break;
