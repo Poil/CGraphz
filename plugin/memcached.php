@@ -129,14 +129,25 @@ switch(GET('t')) {
 # percent-hitratio.rrd
 	case 'percent':
 		require_once 'type/Default.class.php';
-		$obj = new Type_Default($CONFIG);
-		$obj->data_sources = array('percent');
-		$obj->ds_names = array(
-			'percent ' => 'Percentage',
-		);
-		$obj->colors = array(
-			'percent' => '00e000',
-		);
+		if ($CONFIG['version'] < 5) {
+			$obj = new Type_Default($CONFIG);
+			$obj->data_sources = array('percent');
+			$obj->ds_names = array(
+				'percent ' => 'Percentage',
+			);
+			$obj->colors = array(
+				'percent' => '00e000',
+			);
+		} else {
+			$obj = new Type_Default($CONFIG);
+			$obj->data_sources = array('value');
+			$obj->ds_names = array(
+				'value' => 'Percentage',
+			);
+			$obj->colors = array(
+				'value' => '00e000',
+			);
+		}
 		$obj->rrd_title = 'Memcached Hits/Gets Ratio';
 		$obj->rrd_vertical = 'Percent';
 	break;
