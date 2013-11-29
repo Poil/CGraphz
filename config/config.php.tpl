@@ -60,7 +60,7 @@ $CONFIG['title_pinstance']='/^(P2000|GenericJMX|PM710)$/';
 $CONFIG['version'] = 5;
 
 # collectd's datadir
-$CONFIG['datadir'] = '/var/lib/collectd/rrd/';
+$CONFIG['datadir'] = '/var/lib/collectd/rrd';
 
 # rrdtool executable
 $CONFIG['rrdtool'] = '/usr/bin/rrdtool';
