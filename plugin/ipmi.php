@@ -37,6 +37,11 @@ switch($obj->args['type']) {
 		$obj->rrd_vertical = 'Volt';
 		$obj->rrd_format = '%5.1lf';
 	break;
+	case 'current':
+		$obj->rrd_title = sprintf('Current (%s)', $obj->args['pinstance']);
+		$obj->rrd_vertical = 'Ampere';
+		$obj->rrd_format = '%5.1lf';
+	break;
 }
 
 collectd_flush($obj->identifiers);
