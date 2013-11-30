@@ -129,6 +129,9 @@ class Type_Default {
 			$file = DIR_WEBROOT.'/rrd.php/' . str_replace($this->datadir . '/', '', $file);
 			# rawurlencode all but /
 			$file = str_replace('%2F', '/', rawurlencode($file));
+		} else {
+			# escape characters
+			$file = str_replace(array(' ', '(', ')'), array('\ ', '\(', '\)'), $file);
 		}
 		return $this->rrd_escape($file);
 	}
@@ -215,7 +218,7 @@ class Type_Default {
 				print '<pre>';
 				print_r($graphdata);
 				print '</pre>';
-				break;
+			break;
 			case 'svg':
 				# caching
 				if (is_numeric($this->cache) && $this->cache > 0)

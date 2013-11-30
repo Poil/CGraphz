@@ -132,7 +132,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 
 				// Verif regex OK
 				if (isset($p) && isset($t)) {
-					if (!preg_match('/^(df|interface|oracle)$/', $p) || $CONFIG['version'] >= 5) {
+					if (!preg_match('/^(df|interface|oracle)$/', $p) || ($CONFIG['version'] >= 5 && $p!='oracle' && $t!='df' )) {
 						$ti='';
 						if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
 							if ($CONFIG['graph_type'] == 'canvas') {

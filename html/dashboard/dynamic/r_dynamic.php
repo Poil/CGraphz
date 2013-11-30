@@ -181,7 +181,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   }
                }
             
-               if (!preg_match('/^(df|interface|oracle)$/', $plugin['p'])  || $CONFIG['version'] >= 5) {
+               if (!preg_match('/^(df|interface|oracle)$/', $plugin['p'])  || ($CONFIG['version'] >= 5 && $plugin['p']!='oracle' && $plugin['t']!='df')) {
                   $plugin['ti']=null;
                   if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
                         if ($CONFIG['graph_type'] == 'canvas') {
