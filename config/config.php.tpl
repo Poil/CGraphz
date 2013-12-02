@@ -3,7 +3,7 @@
 date_default_timezone_set('Europe/Paris');
 
 # Cgraphz version
-define('CGRAPHZ_VERSION','2.00 beta');
+define('CGRAPHZ_VERSION','2.00');
 
 # DB Version
 define('DB_HOST','localhost');
@@ -21,7 +21,7 @@ define('LDAP_PORT','');
 define('LDAP_TREE','');
  
 # Filesystem path to cgraphz (ex: /var/www/cgraphz)
-define('DIR_FSROOT',$_SERVER['DOCUMENT_ROOT'].'/CGraphz/');
+define('DIR_FSROOT',$_SERVER['DOCUMENT_ROOT'].'/CGraphz');
 
 # Dir web root (http://mydomain.com/XXXXXX : /XXXXXX)
 define('DIR_WEBROOT', '/CGraphz');
