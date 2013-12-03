@@ -117,15 +117,15 @@ switch($obj->args['type']) {
 		require_once 'type/Default.class.php';
 		$obj = new Type_Default($CONFIG);
 		$obj->data_sources = array('value');
-		/*
-		$obj->ds_names = array(
-			'value' => 'VCPU time',
-		);
-		$obj->colors = array(
-			'value' => '0000ff',
-		);*/
 		$obj->rrd_title = 'VCPU usage';
 		$obj->rrd_vertical = 'VCPU time';
+	break;
+	case 'memory':
+		require_once 'type/Default.class.php';
+		$obj = new Type_Default($CONFIG);
+		$obj->data_sources = array('value');
+		$obj->rrd_title = 'Memory Total';
+		$obj->rrd_vertical = 'Memory Total';
 	break;
 }
 

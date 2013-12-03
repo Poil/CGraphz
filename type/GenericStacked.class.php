@@ -50,9 +50,24 @@ class Type_GenericStacked extends Type_Default {
 			$rrdgraph[] = sprintf('AREA:area_%s#%s', crc32hex($source), $color);
 		}
 
+		$lengths = array_map('strlen', $sources);
+		$max_src = max($lengths);
+		$max_src = $max_src > MAX_LEGEND_LENGTH ? MAX_LEGEND_LENGTH : $max_src; 
+
+		$lengths = array_map('strlen', $this->ds_names);
+		$max_ds = max($lengths);
+		$max_ds = $max_ds > MAX_LEGEND_LENGTH ? MAX_LEGEND_LENGTH : $max_ds;
+
 		$c = 0;
 		foreach ($sources as $source) {
-			$dsname = empty($this->ds_names[$source]) ? $source : $this->ds_names[$source];
+			if (empty($this->ds_names[$source])) {
+				//$dsname =  sprintf('%1$-'.$max_src.'s', $source);
+				$dsname = sprintf('%1$-'.$max_src.'s',preg_replace('/\s+?(\S+)?$/u', '', mb_substr($source, 0, $max_src)));
+			} else {
+				//$dsname = sprintf('%1$-'.$max_ds.'s', $this->ds_names[$source]);
+				$dsname = sprintf('%1$-'.$max_ds.'s',preg_replace('/\s+?(\S+)?$/u', '', mb_substr($this->ds_names[$source], 0, $max_ds)));
+			}
+			//$dsname = empty($this->ds_names[$source]) ? $source : $this->ds_names[$source];
 			$color = is_array($this->colors) ? (isset($this->colors[$source])?$this->colors[$source]:$this->colors[$c++]) : $this->colors;
 			$rrdgraph[] = sprintf('"LINE1:area_%s#%s:%s"', crc32hex($source), $this->validate_color($color), ucfirst(str_replace('_', ' ',$this->rrd_escape($dsname))));
 			$rrdgraph[] = sprintf('"GPRINT:min_%s:MIN:%s Min,"', crc32hex($source), $this->rrd_format);

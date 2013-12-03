@@ -38,6 +38,9 @@ define('MAX_SRV',4);
 # Replace topNavMenu with a FixedLeftMenu, but I don't like it
 define('NEW_MENU',false);
 
+# Max Legend lenght
+define('MAX_LEGEND_LENGTH',20);
+
 # Language
 define('DEF_LANG','en');
 

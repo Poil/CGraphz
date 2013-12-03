@@ -331,6 +331,11 @@ class Type_Default {
 		if (!is_array($this->ds_names)) {
 			$this->ds_names = array_combine($sources, $sources);
 		}
+
+		//$lengths = array_map('strlen', $this->ds_names);
+		//$max = max($lengths);
+
+		/*
 		# detect length of longest ds_name and try to replace long name with a more pertinent shorter name
 		$max = 0;
 		foreach ($this->ds_names as $key=>$ds_name) {
@@ -347,11 +352,12 @@ class Type_Default {
 				$max = $length;
 			}
 		}
+		*/
 		# make all ds_names equal in lenght
 		#$format = sprintf("%%-%ds", $max);
-		foreach ($this->ds_names as $index => $value) {
+		/*foreach ($this->ds_names as $index => $value) {
 			$this->ds_names[$index] = sprintf('%1$-'.$max.'s', $value);
-		}
+		}*/
 	}
 
 	function rrd_gen_graph() {
@@ -396,9 +402,24 @@ class Type_Default {
 			}
 		}
 
+		$lengths = array_map('strlen', $sources);
+		$max_src = max($lengths);
+		$max_src = $max_src > MAX_LEGEND_LENGTH ? MAX_LEGEND_LENGTH : $max_src; 
+
+		$lengths = array_map('strlen', $this->ds_names);
+		$max_ds = max($lengths);
+		$max_ds = $max_ds > MAX_LEGEND_LENGTH ? MAX_LEGEND_LENGTH : $max_ds;
+
 		$c = 0;
 		foreach ($sources as $source) {
-			$dsname = empty($this->ds_names[$source]) ? $source : $this->ds_names[$source];
+			if (empty($this->ds_names[$source])) {
+				//$dsname =  sprintf('%1$-'.$max_src.'s', $source);
+				$dsname = sprintf('%1$-'.$max_src.'s',preg_replace('/\s+?(\S+)?$/u', '', mb_substr($source, 0, $max_src)));
+			} else {
+				//$dsname = sprintf('%1$-'.$max_ds.'s', $this->ds_names[$source]);
+				$dsname = sprintf('%1$-'.$max_ds.'s',preg_replace('/\s+?(\S+)?$/u', '', mb_substr($this->ds_names[$source], 0, $max_ds)));
+			}
+			//$dsname = empty($this->ds_names[$source]) ? $source : $this->ds_names[$source];
 			$color = is_array($this->colors) ? (isset($this->colors[$source])?$this->colors[$source]:$this->colors[$c++]): $this->colors;
 			$rrdgraph[] = sprintf('"LINE1:avg_%s#%s:%s"', crc32hex($source), $this->validate_color($color), $this->rrd_escape(ucfirst(str_replace('_', ' ',$dsname))));
 			$rrdgraph[] = sprintf('"GPRINT:min_%s:MIN:%s Min,"', crc32hex($source), $this->rrd_format);

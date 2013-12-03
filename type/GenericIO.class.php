@@ -54,9 +54,24 @@ class Type_GenericIO extends Type_Default {
 			)
 		);
 
+		$lengths = array_map('strlen', $sources);
+		$max_src = max($lengths);
+		$max_src = $max_src > MAX_LEGEND_LENGTH ? MAX_LEGEND_LENGTH : $max_src; 
+
+		$lengths = array_map('strlen', $this->ds_names);
+		$max_ds = max($lengths);
+		$max_ds = $max_ds > MAX_LEGEND_LENGTH ? MAX_LEGEND_LENGTH : $max_ds;
+
 		$i = 0;
-		foreach($sources as $source) {
-			$dsname = empty($this->ds_names[$source]) ? $source : $this->ds_names[$source];
+		foreach ($sources as $source) {
+			if (empty($this->ds_names[$source])) {
+				//$dsname =  sprintf('%1$-'.$max_src.'s', $source);
+				$dsname = sprintf('%1$-'.$max_src.'s',preg_replace('/\s+?(\S+)?$/u', '', mb_substr($source, 0, $max_src)));
+			} else {
+				//$dsname = sprintf('%1$-'.$max_ds.'s', $this->ds_names[$source]);
+				$dsname = sprintf('%1$-'.$max_ds.'s',preg_replace('/\s+?(\S+)?$/u', '', mb_substr($this->ds_names[$source], 0, $max_ds)));
+			}
+			//$dsname = empty($this->ds_names[$source]) ? $source : $this->ds_names[$source];
 			$rrdgraph[] = sprintf('"LINE1:avg_%s%s#%s:%s"', crc32hex($source), $i == 1 ? '_neg' : '', $this->colors[$source], ucfirst(str_replace('_', ' ',$this->rrd_escape($dsname))));
 			$rrdgraph[] = sprintf('"GPRINT:min_%s:MIN:%s Min,"', crc32hex($source), $this->rrd_format);
 			$rrdgraph[] = sprintf('"GPRINT:avg_%s:AVERAGE:%s Avg,"', crc32hex($source), $this->rrd_format);
