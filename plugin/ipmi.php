@@ -23,22 +23,22 @@ $obj->ds_names = array(
 );
 switch($obj->args['type']) {
 	case 'fanspeed':
-		$obj->rrd_title = sprintf('Fanspeed (%s)', $obj->args['pinstance']);
+		$obj->rrd_title = 'Fanspeed';
 		$obj->rrd_vertical = 'RPM';
 		$obj->rrd_format = '%5.1lf';
 	break;
 	case 'temperature':
-		$obj->rrd_title = sprintf('Temperature (%s)', $obj->args['pinstance']);
+		$obj->rrd_title = 'Temperature';
 		$obj->rrd_vertical = 'Celsius';
 		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'voltage':
-		$obj->rrd_title = sprintf('Voltage (%s)', $obj->args['pinstance']);
+		$obj->rrd_title = 'Voltage';
 		$obj->rrd_vertical = 'Volt';
 		$obj->rrd_format = '%5.1lf';
 	break;
 	case 'current':
-		$obj->rrd_title = sprintf('Current (%s)', $obj->args['pinstance']);
+		$obj->rrd_title = 'Current';
 		$obj->rrd_vertical = 'Ampere';
 		$obj->rrd_format = '%5.1lf';
 	break;
