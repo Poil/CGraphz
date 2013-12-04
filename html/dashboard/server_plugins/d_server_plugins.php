@@ -100,13 +100,18 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 
 
 			if (!isset(${$p.$pc.$pi.$t.$tc.$ti}) ) {
-				if ($$p!=true) {
+				if ($$p!=true && $p!='aggregation') {
 					$lvl_p=2;
 					$lvl_pc=$lvl_p+1;
 					$lvl_pi=$lvl_pc;
 					$lvl_tc=null;
 					echo "<h$lvl_p>".ucfirst($p)."</h$lvl_p>";
 					$$p=true;
+					$others=false;
+				} else if ($p == 'aggregation') {
+					$lvl_pc=$lvl_p;
+					$lvl_pi=$lvl_pc;
+					$lvl_tc=null;
 					$others=false;
 				}
 				// Displaying Plugin Category if there is a Plugin Category
@@ -115,13 +120,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 					$lvl_pi=$lvl_pc+1;
 					$$pc=true;
 					$others=false;
-				// Displaying a Fake Plugin Category if we had a plugin category for others PI
 				}
-				 /*else if (isset($old_pc) && isset($pc) && $p==$old_p && $others==false) {
-					$lvl_pi=$lvl_pc;
-					$others=true;
-					echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ', $pi))."</h$lvl_pc>";
-				} */
 				// Displaying Plugin Instance for some plugins
 				if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && $$pi!=true) {
 					$$pi=true;
