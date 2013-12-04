@@ -400,7 +400,7 @@ class DB {
     * @access public
     */
     public static function escape($str){
-        return mysql_escape_string(stripslashes($str));
+        return mysql_real_escape_string(stripslashes($str));
     }
     
     /**
@@ -434,6 +434,16 @@ class DB {
             else {
                 return FALSE;
             }
-        }    
+        }
+    /**
+     * Prepares as prepared Statement
+     * @param string $statement
+     * @param array $driver_options [optional]
+     * @return PDOStatement
+     */
+    public function prepare($stmt,$driver_options = array() )
+    {
+        return self::$instance->prepare($stmt,$driver_options);
+    }
 }
 ?>

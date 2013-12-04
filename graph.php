@@ -31,7 +31,7 @@ if ($auth->verif_auth()) {
 	        error_log(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $plugin));
 	        error_image();
 	}
-	
+
 	$lib='
 	SELECT cs.server_name
 	FROM config_server cs
@@ -41,13 +41,17 @@ if ($auth->verif_auth()) {
         ON csp.id_config_project=ppg.id_config_project
 	  LEFT JOIN auth_user_group aug 
         ON ppg.id_auth_group=aug.id_auth_group
-	WHERE cs.server_name="'.$host.'" 
-	  AND aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
+	WHERE ( cs.server_name=:host )
+	  AND ( aug.id_auth_user=:user )
 	GROUP BY server_name
 	ORDER BY server_name';
-	$autorized=$connSQL->getRow($lib);
+    $stmt = $connSQL->prepare($lib);
+    $stmt->bindValue(':host', $connSQL->escape($host));
+    $stmt->bindValue(':user',$connSQL->escape(intval($_SESSION['S_ID_USER'])));
+    $stmt->execute();
+	$authorized=$stmt->fetchObject();
 	
-	if ($host==$autorized->server_name) {
+	if ($host==$authorized->server_name) {
 		# load plugin
 		include DIR_FSROOT.'/plugin/'.$plugin.'.php';
 	} else {		
