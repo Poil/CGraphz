@@ -20,8 +20,9 @@ define('LDAP_PORT','');
 ## Tree : ou=People,dc=domain,dc=com
 define('LDAP_TREE','');
  
-# Filesystem path to cgraphz (ex: /var/www/cgraphz)
-define('DIR_FSROOT',$_SERVER['DOCUMENT_ROOT'].'/CGraphz');
+# Filesystem path to cgraphz (ex: /var/www/cgraphz).
+# leave it as defined unless you know what you do.
+define('DIR_FSROOT',realpath(__DIR__.'/../'));
 
 # Dir web root (http://mydomain.com/XXXXXX : /XXXXXX)
 define('DIR_WEBROOT', '/CGraphz');
