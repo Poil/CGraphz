@@ -400,7 +400,7 @@ class DB {
     * @access public
     */
     public static function escape($str){
-        return mysql_real_escape_string(stripslashes($str));
+        return mysql_escape_string(stripslashes($str));
     }
     
     /**

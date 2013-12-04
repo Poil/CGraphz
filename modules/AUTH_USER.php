@@ -16,8 +16,8 @@ class AUTH_USER {
 		$try_auth=False;
 		// Auth Form
 		if (isset($_POST['f_submit_auth'])) {
-			$this->user=mysql_real_escape_string($_POST['f_user']);
-			$this->passwd=mysql_real_escape_string($_POST['f_passwd']);
+			$this->user=mysql_escape_string($_POST['f_user']);
+			$this->passwd=mysql_escape_string($_POST['f_passwd']);
 			$try_auth=True;
 		// Auth Basic if "&f_basic_auth=true" WARNING You can't logout with BasicAuth (see http://httpd.apache.org/docs/1.3/howto/auth.html How do I log out?)
 		} else if (isset($_GET['f_basic_auth']) && !isset($_SESSION['S_USER']) && !isset($_SERVER['PHP_AUTH_USER'])) {
@@ -33,42 +33,42 @@ class AUTH_USER {
 		if (isset($_GET['f_logout'])) {
 			$this->logout();
 		} else if ($try_auth==True) {
-            $stmt = $this->connSQL->prepare('SELECT `id_auth_user`, `user`, `type` FROM auth_user WHERE `user`= :user');
-            $stmt->bindValue(':user',$this->user);
-            $stmt->execute();
+			$stmt = $this->connSQL->prepare('SELECT `id_auth_user`, `user`, `type` FROM auth_user WHERE `user`=:user');
+			$stmt->bindValue(':user',$this->user);
+			$stmt->execute();
 			if ($stmt->rowCount() !=1 ) {
 				return false;
 			}
 			else {
-                $res=$stmt->fetchObject();
-                if ($res->user) { // L'utilisateur est connu dans la BDD
-                    $this->id_auth_user=$res->id_auth_user;
+				$res=$stmt->fetchObject();
+				if ($res->user) { // L'utilisateur est connu dans la BDD
+					$this->id_auth_user=$res->id_auth_user;
 
-                    if ($res->type=='mysql'){ // est ce un compte mysql
-                        if ($this->verif_auth_mysql(true)) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    } else if ($res->type=='ldap') { // est ce un compte LDAP
-                        if ($this->verif_auth_ldap(true)) { // on verifie dans le LDAP
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    }
-                } else { // L'utilisateur n'est pas connu -- On renvoi true mais le mec aura le droit a rien ?
-                    if ($this->verif_auth_ldap(false)) { // on verifie dans le LDAP et on enregistre en base
-                        echo 'Vous ne semblez pas avoir accès à cette application<br />';
-                        return false;
-                    } else {
-                        return false;
-                    }
-                }
-            }
+					if ($res->type=='mysql'){ // est ce un compte mysql
+						if ($this->verif_auth_mysql(true)) {
+							return true;
+						} else {
+							return false;
+						}
+					} else if ($res->type=='ldap') { // est ce un compte LDAP
+						if ($this->verif_auth_ldap(true)) { // on verifie dans le LDAP
+							return true;
+						} else {
+							return false;
+						}
+					}
+				} else { // L'utilisateur n'est pas connu -- On renvoi true mais le mec aura le droit a rien ?
+					if ($this->verif_auth_ldap(false)) { // on verifie dans le LDAP et on enregistre en base
+						echo 'Vous ne semblez pas avoir accès à cette application<br />';
+						return false;
+					} else {
+						return false;
+					}
+				}
+			}
 		} else if (isset($_SESSION['S_USER'])) {
-			$this->user=mysql_real_escape_string($_SESSION['S_USER']);
-			$this->passwd=mysql_real_escape_string($_SESSION['S_PASSWD']);
+			$this->user=mysql_escape_string($_SESSION['S_USER']);
+			$this->passwd=mysql_escape_string($_SESSION['S_PASSWD']);
 			$this->id_auth_user=intval($_SESSION['S_ID_USER']);
 			if ($this->verif_auth_mysql(false)) {
 				return true;
