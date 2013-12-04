@@ -41,8 +41,11 @@ class PERMS {
 				JOIN auth_user_group aug
 					ON ag.id_auth_group=aug.id_auth_group AND ag.group="Admin"
 				JOIN auth_user au
-					ON aug.id_auth_user=au.id_auth_user	AND au.user="'.$_SESSION['S_USER'].'"';
-		$res=$this->connSQL->getRow($lib);
+					ON aug.id_auth_user=au.id_auth_user	AND au.user=:user';
+        $stmt = $this->connSQL->prepare($lib);
+        $stmt->bindValue(':user',$_SESSION['S_USER']);
+        $stmt->execute();
+		$res=$stmt->fetchObject();
 		if ($res->mycpt > 0) {
 			return true;
 		} else { // Sinon			
@@ -51,13 +54,18 @@ class PERMS {
 				FROM
 				perm_module pm
 					JOIN perm_module_group pmg 
-						ON pm.id_perm_module=pmg.id_perm_module AND pm.module="'.$module.'" AND pm.component="'.$component.'"
+						ON pm.id_perm_module=pmg.id_perm_module AND pm.module=:module AND pm.component=:component
 					JOIN auth_user_group aug
 						ON pmg.id_auth_group=aug.id_auth_group
 					JOIN auth_user au
-						ON aug.id_auth_user=au.id_auth_user AND au.user="'.$_SESSION['S_USER'].'"';
-						
-			$res=$this->connSQL->getRow($lib);
+						ON aug.id_auth_user=au.id_auth_user AND au.user=:user';
+
+            $stmt = $this->connSQL->prepare($lib);
+            $stmt->bindValue(':user',$_SESSION['S_USER']);
+            $stmt->bindValue(':module',$module);
+            $stmt->bindValue(':component',$component);
+            $stmt->execute();
+            $res=$stmt->fetchObject();
 			if ($res->mycpt > 0) {
 				return true;
 			} else {
@@ -80,12 +88,16 @@ class PERMS {
 					ON ag.id_auth_group=aug.id_auth_group
 				LEFT JOIN auth_user au 
 					ON aug.id_auth_user=au.id_auth_user
-			WHERE au.user="'.$_SESSION['S_USER'].'" AND pm.module="'.$module.'"
+			WHERE au.user=:user AND pm.module=:module
 			'.$libmenu.'
 			GROUP BY component
 			ORDER BY menu_order';
-		
-		$components=$this->connSQL->getResults($lib);
+
+        $stmt = $this->connSQL->prepare($lib);
+        $stmt->bindValue(':user',$_SESSION['S_USER']);
+        $stmt->bindValue(':module',$module);
+        $stmt->execute();
+        $components=$stmt->fetchAll(PDO::FETCH_OBJ);
 		
 		if (isset($components)) {
 			return $components;
@@ -101,10 +113,13 @@ class PERMS {
 		if ($id_auth_user!=$_SESSION['S_ID_USER']) {
 			return false;
 		} else {
-			$lib='SELECT count(id_auth_group) as mycpt FROM auth_user_group WHERE id_auth_user="'.$id_auth_user.'" AND id_auth_group="'.$id_auth_group.'"';
+			$lib='SELECT count(id_auth_group) as mycpt FROM auth_user_group WHERE id_auth_user=:user AND id_auth_group=:group';
 			if ($manager===true) $lib.=' AND manager="1"';
-
-			$res=$this->connSQL->getRow($lib);
+            $stmt = $this->connSQL->prepare($lib);
+            $stmt->bindValue(':user',$id_auth_user);
+            $stmt->bindValue(':group',$id_auth_group);
+            $stmt->execute();
+            $res=$stmt->fetchObject();
 			if ($res->mycpt > 0) {
 				return true;
 			} else {
