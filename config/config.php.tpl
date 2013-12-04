@@ -42,6 +42,9 @@ define('NEW_MENU',false);
 # Max Legend lenght
 define('MAX_LEGEND_LENGTH',20);
 
+# Max image size in pixel (8388608 = 4096x2048)
+define('MAX_IMG_SIZE',8388608);
+
 # Language
 define('DEF_LANG','en');
 
