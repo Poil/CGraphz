@@ -67,9 +67,6 @@ switch(GET('t')) {
 		$obj->ds_names = array(
 			'value' => 'Connections',
 		);
-		$obj->colors = array(
-			'percent' => '00b000',
-		);
 		$obj->rrd_title = 'Memcached Number of Connections';
 		$obj->rrd_vertical = 'Connections';
 	break;
@@ -81,9 +78,6 @@ switch(GET('t')) {
 		$obj->data_sources = array('value');
 		$obj->ds_names = array(
 			'value ' => 'Items',
-		);
-		$obj->colors = array(
-			'value' => '00b000',
 		);
 		$obj->rrd_title = 'Number of Items in Memcached';
 		$obj->rrd_vertical = 'Items';
@@ -135,17 +129,11 @@ switch(GET('t')) {
 			$obj->ds_names = array(
 				'percent ' => 'Percentage',
 			);
-			$obj->colors = array(
-				'percent' => '00e000',
-			);
 		} else {
 			$obj = new Type_Default($CONFIG);
 			$obj->data_sources = array('value');
 			$obj->ds_names = array(
 				'value' => 'Percentage',
-			);
-			$obj->colors = array(
-				'value' => '00e000',
 			);
 		}
 		$obj->rrd_title = 'Memcached Hits/Gets Ratio';

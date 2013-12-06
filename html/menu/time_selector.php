@@ -42,4 +42,14 @@ echo '
 	<br />
 	'.$urlrefresh.'
 </div>';
+if (isset($_GET['auto_refresh'])) {
+	echo '
+	<script type="text/javascript">
+	$(document).ready(function() {
+	  var auto_refresh=setInterval(function() {
+	     refresh_graph(\'dashboard\',\'\',\'\',\'\');
+	  }, 60000)
+	});
+	</script>';
+}
 ?>
