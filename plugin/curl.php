@@ -2,12 +2,12 @@
 
 # Collectd Curl plugin
 
-
-
-
 require_once 'modules/collectd.inc.php';
 
-switch (GET('pi')) {
+if (!GET('pi')) $pi=GET(pc);
+else $pi=GET(pi);
+
+switch ($pi) {
 	
 # LAYOUT: APC opcode cache
 # curl-apc/cache_result-hits.rrd
