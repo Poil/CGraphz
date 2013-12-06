@@ -12,6 +12,8 @@ switch(GET('t')) {
 		$obj->rrd_title = 'Connections on '.(empty($obj->args['pinstance'])?$obj->args['pcategory']:$obj->args['pinstance']);
 		$obj->rrd_vertical = 'Slots';
 	break;
+	
+	// APC : https://github.com/Poil/CGraphz-extra-plugins/tree/master/php-apc
 	case 'cache_result':
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG);
