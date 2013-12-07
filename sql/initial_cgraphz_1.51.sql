@@ -417,7 +417,7 @@ INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin
 INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (9, 'tcpconns', '\\d+-\\w+', 'tcp_connections', '\\w+', 'tcpconns', 5);
 INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (10, 'df', '', 'df', '.+', 'df', 7);
 INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (11, 'cpu', '\\d+', 'cpu', '\\w+', 'cpu', 8);
-INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (12, 'df', '\\w+', 'df_complex', '.+', 'df_complex', 6);
+INSERT INTO `cgraphz`.`config_plugin_filter` (`id_config_plugin_filter`, `plugin`, `plugin_instance`, `type`, `type_instance`, `plugin_filter_desc`, `plugin_order`) VALUES (12, 'df', '.*', 'df_complex', '.+', 'df_complex', 6);
 
 COMMIT;
 
