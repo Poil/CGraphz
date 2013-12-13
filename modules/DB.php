@@ -21,6 +21,12 @@ class DB {
      */
     private static $hostname    =    DB_HOST;
     /**
+     * Socket
+     * @see connect()
+     * @var string
+     */
+    private static $socket    =    DB_SOCKET;
+    /**
      * Database username.
      * @see connect()
      * @var string
@@ -97,7 +103,13 @@ class DB {
      * @access private
      */
     private function connect(){
-        $dns = 'mysql:host='.self::$hostname.';dbname='.$this->dbname;
+        if(self::$socket)
+        {
+            $dns = 'mysql:unix_socket='.self::$socket.';dbname='.$this->dbname;
+        }
+        else {
+            $dns = 'mysql:host='.self::$hostname.';dbname='.$this->dbname;
+        }
 	try {
 	        self::$instance = new PDO($dns, self::$username, self::$password);
 	        self::$instance->exec("SET CHARACTER SET utf8");
