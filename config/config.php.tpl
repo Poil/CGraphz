@@ -7,6 +7,7 @@ define('CGRAPHZ_VERSION','2.00');
 
 # DB Version
 define('DB_HOST','localhost');
+define('DB_SOCKET',false);
 define('DB_PORT','3306');
 define('DB_DATABASE','cgraphz');
 define('DB_LOGIN','root');
