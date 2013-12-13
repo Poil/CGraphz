@@ -41,6 +41,7 @@ CREATE  TABLE IF NOT EXISTS `cgraphz`.`config_server` (
   `id_config_server` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `server_name` VARCHAR(45) NOT NULL ,
   `server_description` TEXT NULL ,
+  `collectd_version` smallint(5) unsigned DEFAULT '5',
   PRIMARY KEY (`id_config_server`) ,
   UNIQUE INDEX `ix_cs_server_name` (`server_name` ASC) )
 ENGINE = InnoDB;

@@ -199,7 +199,15 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/server_environment/f_server_environment.php');
 				echo '</fieldset>';
 			}
-			
+            if (isset($_GET['f_id_config_server'])) {
+
+                include(DIR_FSROOT.'/html/config/server/w_server_version.php');
+                echo '<fieldset>';
+                echo '<legend>'.COLLECTD_VERSION.'</legend>';
+                include(DIR_FSROOT.'/html/config/server/f_server_version.php');
+
+                echo '</fieldset>';
+            }
 			echo '</fieldset>';
 			echo '<div class="spacer">&nbsp;</div>';
 		} else if ($component=='role') {
