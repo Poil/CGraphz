@@ -46,7 +46,7 @@
 					}
 				}
 				else {
-					  if(mkdir($this->path) === true) {
+					  if(mkdir($this->path,2750) === true) {
  						 $this->write($message);  
 					  }	
 				}

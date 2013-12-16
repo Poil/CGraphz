@@ -20,8 +20,8 @@ if (isset($cur_server->id_config_server)) {
 ?>		
 	<label for="f_server_description"><?php echo DESC ?></label>
 	<input type="text" name="f_server_description" id="f_server_description" value="<?php echo @$cur_server->server_description; ?>" /><br />
-	<label for="f_server_version"><?php echo COLLECTD_VERSION;?></label>
-	<select name="f_server_version" id="f_server_version">
+	<label for="f_collectd_version"><?php echo COLLECTD_VERSION;?></label>
+	<select name="f_collectd_version" id="f_collectd_version">
 	<?php
 	if (!empty($cur_server->collectd_version)) {
 		$cur_version=$cur_server->collectd_version;
