@@ -3,15 +3,7 @@
 date_default_timezone_set('Europe/Paris');
 
 # Cgraphz version
-define('CGRAPHZ_VERSION','2.00');
-
-# DB Version
-define('DB_HOST','localhost');
-define('DB_SOCKET',false);
-define('DB_PORT','3306');
-define('DB_DATABASE','cgraphz');
-define('DB_LOGIN','root');
-define('DB_PASSWD','MySup3rP4ssW0Rd');
+define('CGRAPHZ_VERSION','2.10 alpha 1');
 
 # LDAP Configuration
 ## Host : ldaps://192.168.0.1

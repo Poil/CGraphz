@@ -1,13 +1,13 @@
 <?php
 if (isset($_GET['f_id_config_environment'])) {
-	$f_id_config_project=intval($_GET['f_id_config_environment']);
+	$f_id_config_environment=filter_input(INPUT_GET,'f_id_config_environment',FILTER_SANITIZE_NUMBER_INT);
 		
 	$connSQL=new DB();
 	$lib='SELECT 
 			crs.id_config_environment, 
 			crs.id_config_server, 
-			cr.`environment`, 
-			cs.`server_name`,
+			cr.environment, 
+			cs.server_name,
 			cs.server_description
 		FROM
 			config_environment_server crs
@@ -15,11 +15,14 @@ if (isset($_GET['f_id_config_environment'])) {
 					ON crs.id_config_server=cs.id_config_server
 				LEFT JOIN config_environment cr
 					ON crs.id_config_environment=cr.id_config_environment
-		WHERE crs.id_config_environment="'.$f_id_config_environment.'"';
+		WHERE crs.id_config_environment=:f_id_config_environment';
 
-	$all_environment_server=$connSQL->getResults($lib);
+	$connSQL->bind('f_id_config_environment',$f_id_config_environment);
+	$all_environment_server=$connSQL->query($lib);
 	$cpt_environment_server=count($all_environment_server);
 	
+	$connSQL=new DB();
+	// To check !
 	if ($f_filter_server_in_environment!='true') {
 		$lib='SELECT 
 			* 
@@ -29,10 +32,11 @@ if (isset($_GET['f_id_config_environment'])) {
 			id_config_server NOT IN (
 				SELECT id_config_server 
 				FROM config_environment_server
-				WHERE id_config_environment="'.$f_id_config_environment.'"
+				WHERE id_config_environment=:f_id_config_environment
 			)
 		ORDER BY 
-			`server_name`';
+			server_name';
+		$connSQL->bind('f_id_config_environment',$f_id_config_environment);
 	} else {
 		$lib='SELECT 
 			* 
@@ -44,10 +48,9 @@ if (isset($_GET['f_id_config_environment'])) {
 				FROM config_environment_server
 			)
 		ORDER BY 
-			`server_name`';
+			server_name';
 	}
-	$connSQL=new DB();
-	$all_server=$connSQL->getResults($lib);
+	$all_server=$connSQL->query($lib);
 	$cpt_server=count($all_server);
 }
 ?>

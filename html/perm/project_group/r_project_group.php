@@ -1,13 +1,12 @@
 <?php
 if (isset($_GET['f_id_config_project'])) {
-	$f_id_config_project=intval($_GET['f_id_config_project']);
+	$f_id_config_project=filter_input(INPUT_GET,'f_id_config_project',FILTER_SANITIZE_NUMBER_INT);
 		
-	$connSQL=new DB();
 	$lib='SELECT 
 			ppg.id_config_project, 
 			ppg.id_auth_group, 
-			cp.`project`, 
-			ag.`group`,
+			cp.project, 
+			ag.group,
 			ag.group_description
 		FROM
 			perm_project_group ppg
@@ -15,27 +14,30 @@ if (isset($_GET['f_id_config_project'])) {
 					ON ppg.id_config_project=cp.id_config_project
 				LEFT JOIN auth_group ag
 					ON ppg.id_auth_group=ag.id_auth_group
-		WHERE ppg.id_config_project="'.$f_id_config_project.'"';
+		WHERE ppg.id_config_project=:f_id_config_project';
 
-	$all_project_group=$connSQL->getResults($lib);
+	$connSQL=new DB();
+	$connSQL->bind('f_id_config_project',$f_id_config_project);
+	$all_project_group=$connSQL->query($lib);
 	$cpt_project_group=count($all_project_group);
 	
 	
 	$lib='SELECT 
 			* 
 		FROM 
-			auth_group
+			auth_group ag
 		WHERE 
-			id_auth_group NOT IN (
+			ag.id_auth_group NOT IN (
 				SELECT id_auth_group 
 				FROM perm_project_group
-				WHERE id_config_project="'.$f_id_config_project.'"
+				WHERE id_config_project=:f_id_config_project
 			)
 		ORDER BY 
-			`group`';
+			ag.group';
 	
 	$connSQL=new DB();
-	$all_group=$connSQL->getResults($lib);
+	$connSQL->bind('f_id_config_project',$f_id_config_project);
+	$all_group=$connSQL->query($lib);
 	$cpt_group=count($all_group);
 }
 ?>

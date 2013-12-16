@@ -1,9 +1,10 @@
 <?php
 $connSQL=new DB();
 if (isset($_GET['f_id_config_project'])) {
-	$f_id_config_project=intval(GET('f_id_config_project'));
-	$f_id_config_role=intval(GET('f_id_config_role'));
-	$f_id_config_environment=intval(GET('f_id_config_environment'));
+	$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
+	$f_id_config_project=filter_input(INPUT_GET,'f_id_config_project',FILTER_SANITIZE_NUMBER_INT);
+	$f_id_config_role=filter_input(INPUT_GET,'f_id_config_role',FILTER_SANITIZE_NUMBER_INT);
+	$f_id_config_environment=filter_input(INPUT_GET,'f_id_config_environment',FILTER_SANITIZE_NUMBER_INT);
 	
 	if (isset($_GET['f_id_config_environment']) && $f_id_config_environment!==0) {
 		$JOIN_ENV='LEFT OUTER JOIN config_environment_server ces
@@ -18,6 +19,8 @@ if (isset($_GET['f_id_config_project'])) {
 		$WHERE_ENV='';
 	}
 	
+	$connSQL->bind('f_id_config_project',$f_id_config_project);
+	$connSQL->bind('s_id_user',$s_id_user);
 	if (isset($_GET['f_id_config_role']) && $f_id_config_role!==0) {
 		$lib='
 		SELECT 
@@ -37,12 +40,14 @@ if (isset($_GET['f_id_config_project'])) {
 				ON ag.id_auth_group=ppg.id_auth_group
 			LEFT JOIN auth_user_group aug 
 				ON aug.id_auth_group=ag.id_auth_group
-		WHERE   csp.id_config_project='.$f_id_config_project.' 
-			AND aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
-			AND cr.id_config_role='.$f_id_config_role.'
+		WHERE   csp.id_config_project=:f_id_config_project
+			AND aug.id_auth_user=:s_id_user
+			AND cr.id_config_role=:f_id_config_role
 			'.$WHERE_ENV.'
 		GROUP BY id_config_server, server_name
 		ORDER BY server_name';
+		$connSQL->bind('f_id_config_role',$f_id_config_role);
+	
 	} else if (isset($_GET['f_id_config_role']) &&  $f_id_config_role===0) {
 		$lib='
 		SELECT 
@@ -62,8 +67,8 @@ if (isset($_GET['f_id_config_project'])) {
 				ON ag.id_auth_group=ppg.id_auth_group
 			LEFT JOIN auth_user_group aug 
 				ON aug.id_auth_group=ag.id_auth_group
-		WHERE   csp.id_config_project='.$f_id_config_project.' 
-			AND aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
+		WHERE   csp.id_config_project=:f_id_config_project
+			AND aug.id_auth_user=:s_id_user
 			AND crs.id_config_role IS NULL
 			'.$WHERE_ENV.'
 		GROUP BY id_config_server, server_name
@@ -83,15 +88,15 @@ if (isset($_GET['f_id_config_project'])) {
 				ON ag.id_auth_group=ppg.id_auth_group
 			LEFT JOIN auth_user_group aug 
 				ON aug.id_auth_group=ag.id_auth_group
-		WHERE  csp.id_config_project='.$f_id_config_project.' 
-			AND aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
+		WHERE  csp.id_config_project=:f_id_config_project
+			AND aug.id_auth_user=:s_id_user
 			'.$WHERE_ENV.'
 		GROUP BY id_config_server, server_name
 		ORDER BY server_name';
 	}
 	
 	
-	$all_server=$connSQL->getResults($lib);
+	$all_server=$connSQL->query($lib);
 	$cpt_server=count($all_server);
 
 
@@ -120,13 +125,13 @@ if (isset($_GET['f_id_config_project'])) {
 				ON ag.id_auth_group=ppg.id_auth_group
 			LEFT JOIN auth_user_group aug 
 				ON aug.id_auth_group=ag.id_auth_group
-		WHERE  csp.id_config_project='.$f_id_config_project.' 
-			AND aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
+		WHERE  csp.id_config_project=:f_id_config_project
+			AND aug.id_auth_user=:s_id_user
 			'.$WHERE_ENV.'
 		GROUP BY id_config_role, role_description
 		ORDER BY role_description';
 		
-		$all_role=$connSQL->getResults($lib);
+		$all_role=$connSQL->query($lib);
 		$cpt_role=count($all_role);
 	}	
 	
@@ -151,12 +156,12 @@ if (isset($_GET['f_id_config_project'])) {
 			ON ag.id_auth_group=ppg.id_auth_group
 		LEFT JOIN auth_user_group aug 
 			ON aug.id_auth_group=ag.id_auth_group
-	WHERE  csp.id_config_project='.$f_id_config_project.' 
-		AND aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
+	WHERE  csp.id_config_project=:f_id_config_project
+		AND aug.id_auth_user=:s_id_user
 	GROUP BY id_config_environment, environment_description
 	ORDER BY environment_description';
 	
-	$all_environment=$connSQL->getResults($lib);
+	$all_environment=$connSQL->query($lib);
 	$cpt_environment=count($all_environment);
 
 }

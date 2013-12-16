@@ -199,7 +199,6 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/server_environment/f_server_environment.php');
 				echo '</fieldset>';
 			}
-			
 			echo '</fieldset>';
 			echo '<div class="spacer">&nbsp;</div>';
 		} else if ($component=='role') {

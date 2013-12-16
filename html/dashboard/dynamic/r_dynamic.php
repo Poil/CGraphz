@@ -1,5 +1,7 @@
 <?php
-$f_id_config_dynamic_dashboard=intval($_GET['f_id_config_dynamic_dashboard']);
+$f_id_config_dynamic_dashboard=filter_input(INPUT_GET,'f_id_config_dynamic_dashboard',FILTER_SANITIZE_NUMBER_INT);
+$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
+
 if (isset($_GET['f_id_config_dynamic_dashboard'])) {
    include(DIR_FSROOT.'/html/menu/time_selector.php');
 }
@@ -8,7 +10,6 @@ echo '<div id="dashboard">';
 
 if ($_GET['f_id_config_dynamic_dashboard']) {
 
-   $connSQL=new DB();
    
    $lib='SELECT 
          cddg.* 
@@ -22,12 +23,14 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
          ON cddg.id_auth_group=aug.id_auth_group
       LEFT JOIN auth_user au
          ON aug.id_auth_user=au.id_auth_user
-      WHERE aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
-      AND cdd.id_config_dynamic_dashboard='.$f_id_config_dynamic_dashboard.'
+      WHERE aug.id_auth_user=:s_id_user
+      AND cdd.id_config_dynamic_dashboard=:f_id_config_dynamic_dashboard
       ORDER BY dash_ordering';
-      
-   $cur_dashboard=$connSQL->getRow($lib);
-   //$final_array = array();
+   
+   $connSQL=new DB();
+   $connSQL->bind('s_id_user',$s_id_user);
+   $connSQL->bind('f_id_config_dynamic_dashboard',$f_id_config_dynamic_dashboard);
+   $cur_dashboard=$connSQL->row($lib);
    
    if ($cur_dashboard->id_auth_group) {
       $lib='SELECT
@@ -35,11 +38,13 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
          FROM
             config_dynamic_dashboard_content cddc
          WHERE
-            cddc.id_config_dynamic_dashboard='.$f_id_config_dynamic_dashboard.'
+            cddc.id_config_dynamic_dashboard=:f_id_config_dynamic_dashboard
          ORDER BY dash_ordering';
             
-         $all_content=$connSQL->getResults($lib);
-         $cpt_content=count($all_content);
+      $connSQL=new DB();
+      $connSQL->bind('f_id_config_dynamic_dashboard',$f_id_config_dynamic_dashboard);
+      $all_content=$connSQL->query($lib);
+      $cpt_content=count($all_content);
          
       
       for ($i=0; $i<$cpt_content; $i++) {
@@ -58,12 +63,15 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   ON ag.id_auth_group=ppg.id_auth_group
                LEFT JOIN auth_user_group aug 
                   ON aug.id_auth_group=ag.id_auth_group
-            WHERE aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
-               AND cs.server_name REGEXP "'.$all_content[$i]->regex_srv.'"
+            WHERE aug.id_auth_user=:s_id_user
+               AND cs.server_name REGEXP :regex_srv
             GROUP BY id_config_server, server_name
             ORDER BY server_name';
 
-         $all_server=$connSQL->getResults($lib);
+         $connSQL=new DB();
+         $connSQL->bind('s_id_user',$s_id_user);
+         $connSQL->bind('regex_srv',$all_content[$i]->regex_srv);
+         $all_server=$connSQL->query($lib);
          $cpt_server=count($all_server);         
          
          for ($j=0; $j<$cpt_server; $j++) {

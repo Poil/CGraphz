@@ -14,7 +14,7 @@ function select_template($name, $id, $table, $row_display, $row_value, $selected
 			row_value';
 	//echo $lib;
 	$connSQL=new DB();
-	$res=$connSQL->getResults($lib);
+	$res=$connSQL->query($lib);
 	$cpt_res=count($res);
 	
 	$s='<select name="'.$name.'" id="'.$id.'"';
@@ -46,7 +46,7 @@ function select_count_template($name, $id, $table, $row_value, $selected='', $js
 	
 	//echo $lib;
 	$connSQL=new DB();
-	$res=$connSQL->getRow($lib);
+	$res=$connSQL->row($lib);
 	
 	$s='<select name="'.$name.'" id="'.$id.'"';
 	if ($js_func!='') {
@@ -93,7 +93,7 @@ function options_template($table, $row_display, $row_value, $filter='', $typefil
 				row_value';
 	}
 	$connSQL=new DB();
-	$res=$connSQL->getResults($lib);
+	$res=$connSQL->query($lib);
 	$cpt_res=count($res);
 
 	$s='[';	
@@ -119,7 +119,7 @@ function options_count_template($table, $row_value) {
 			row_value';
 	
 	$connSQL=new DB();
-	$res=$connSQL->getRow($lib);
+	$res=$connSQL->row($lib);
 
 	$s='[';
 	for ($i=1; $i<=$res->row_value; $i++) {
@@ -139,7 +139,7 @@ function single_value($table, $row_value) {
 			'.$table;
 	
 	$connSQL=new DB();
-	$res=$connSQL->getRow($lib);
+	$res=$connSQL->row($lib);
 	echo '[{optionValue:'.php2js($res->row_value).'}]';
 }
 
@@ -151,7 +151,7 @@ function load_profile($table, $myurl, $mycpt, $mytarget, $mylabelname) {
 			'.$table;
 
 	$connSQL=new DB();
-	$res=$connSQL->getResults($lib);
+	$res=$connSQL->query($lib);
 	$cpt_res=count($res);
 	echo '<script type="text/javascript">'."\n";
 	echo 'removeFormFields(\''.$mytarget.'\');'."\n";

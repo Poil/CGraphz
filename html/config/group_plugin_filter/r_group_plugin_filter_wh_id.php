@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['f_id_config_plugin_filter']) && isset($_GET['f_id_auth_group'])) {
-	$f_id_config_plugin_filter=intval($_GET['f_id_config_plugin_filter']);
-	$f_id_auth_group=intval($_GET['f_id_auth_group']);
+	$f_id_config_plugin_filter=filter_input(INPUT_GET,'f_id_config_plugin_filter',FILTER_SANITIZE_NUMBER_INT);
+	$f_id_auth_group=filter_input(INPUT_GET,'f_id_auth_group',FILTER_SANITIZE_NUMBER_INT);
 		
 	$connSQL=new DB();
 	$lib='SElECT 
@@ -14,9 +14,11 @@ if (isset($_GET['f_id_config_plugin_filter']) && isset($_GET['f_id_auth_group'])
 					ON cpfg.id_auth_group=ag.id_auth_group
 				LEFT JOIN config_plugin_filter cpf
 					ON cpf.id_config_plugin_filter=cpfg.id_config_plugin_filter
-		WHERE cpfg.id_config_plugin_filter="'.$f_id_config_plugin_filter.'"
-		AND cpfg.id_auth_group="'.$f_id_auth_group.'"';
-	
-	$cur_plugin_filter_group=$connSQL->getRow($lib);
+		WHERE cpfg.id_config_plugin_filter=:f_id_config_plugin_filter
+		AND cpfg.id_auth_group=:f_id_auth_group';
+
+	$connSQL->bind('f_id_auth_group',$f_id_auth_group);
+	$connSQL->bind('f_id_config_plugin_filter',$f_id_config_plugin_filter);
+	$cur_plugin_filter_group=$connSQL->row($lib);
 }
 ?>

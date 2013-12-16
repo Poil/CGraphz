@@ -89,5 +89,6 @@ define('YES','oui');
 define('NO','non') ;
 define('CONTENT','Contenu') ;
 define('OTHERS','Autres');
+define('COLLECTD_VERSION','Collectd Version') ;
 
 ?>

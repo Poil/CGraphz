@@ -97,4 +97,3 @@ function collectd_flush($identifier) {
 	}
 }
 
-?>

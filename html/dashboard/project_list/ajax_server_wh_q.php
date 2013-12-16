@@ -6,7 +6,9 @@ if ($auth->verif_auth()) {
 
 if ($_GET['f_q']) {
 	$connSQL=new DB();
-	$f_q=filter_input(INPUT_GET,'f_q',FILTER_SANITIZE_SPECIAL_CHARS);
+	$f_q='%'.filter_input(INPUT_GET,'f_q',FILTER_SANITIZE_SPECIAL_CHARS).'%';
+	$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
+$f_id_config_dynamic_dashboard=filter_input(INPUT_GET,'f_id_config_dynamic_dashboard',FILTER_SANITIZE_NUMBER_INT);
 	
 	$lib='
 	SELECT 
@@ -22,12 +24,14 @@ if ($_GET['f_q']) {
 			ON ag.id_auth_group=ppg.id_auth_group
 		LEFT JOIN auth_user_group aug 
 			ON aug.id_auth_group=ag.id_auth_group
-	WHERE aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
-	AND cs.server_name LIKE "%'.$f_q.'%"
+	WHERE aug.id_auth_user=:s_id_user
+	AND cs.server_name LIKE :f_q
 	GROUP BY id_config_server, server_name
 	ORDER BY server_name';
-	
-	$all_server=$connSQL->getResults($lib);
+
+	$connSQL->bind('s_id_user',$s_id_user);
+	$connSQL->bind('f_q',$f_q);
+	$all_server=$connSQL->query($lib);
 	$cpt_server=count($all_server);
 	
 	for ($i=0; $i<$cpt_server; $i++) {

@@ -32,38 +32,32 @@ class AUTH_USER {
 		
 		if (isset($_GET['f_logout'])) {
 			$this->logout();
-		} else if ($try_auth==True) {
-			$stmt = $this->connSQL->prepare('SELECT `id_auth_user`, `user`, `type` FROM auth_user WHERE `user`=:user');
-			$stmt->bindValue(':user',$this->user);
-			$stmt->execute();
-			if ($stmt->rowCount() !=1 ) {
+		} else if ($try_auth==True) {	
+			$res=$this->connSQL->row('SELECT id_auth_user, user, type FROM auth_user WHERE user="'.$this->user.'"');
+			if (!$res) {
 				return false;
 			}
-			else {
-				$res=$stmt->fetchObject();
-				if ($res->user) { // L'utilisateur est connu dans la BDD
-					$this->id_auth_user=$res->id_auth_user;
-
-					if ($res->type=='mysql'){ // est ce un compte mysql
-						if ($this->verif_auth_mysql(true)) {
-							return true;
-						} else {
-							return false;
-						}
-					} else if ($res->type=='ldap') { // est ce un compte LDAP
-						if ($this->verif_auth_ldap(true)) { // on verifie dans le LDAP
-							return true;
-						} else {
-							return false;
-						}
-					}
-				} else { // L'utilisateur n'est pas connu -- On renvoi true mais le mec aura le droit a rien ?
-					if ($this->verif_auth_ldap(false)) { // on verifie dans le LDAP et on enregistre en base
-						echo 'Vous ne semblez pas avoir accès à cette application<br />';
-						return false;
+			else if ($res->user) { // L'utilisateur est connu dans la BDD
+				$this->id_auth_user=$res->id_auth_user;
+				if ($res>type=='mysql'){ // est ce un compte mysql
+					if ($this->verif_auth_mysql(true)) {
+						return true;
 					} else {
 						return false;
 					}
+				} else if ($res->type=='ldap') { // est ce un compte LDAP
+					if ($this->verif_auth_ldap(true)) { // on verifie dans le LDAP
+						return true;
+					} else {
+						return false;
+					}
+				}
+			} else { // L'utilisateur n'est pas connu -- On renvoi true mais le mec aura le droit a rien ?
+				if ($this->verif_auth_ldap(false)) { // on verifie dans le LDAP et on enregistre en base
+					echo 'Vous ne semblez pas avoir accès à cette application<br />';
+					return false;
+				} else {
+					return false;
 				}
 			}
 		} else if (isset($_SESSION['S_USER'])) {
@@ -101,18 +95,12 @@ class AUTH_USER {
 	
 	function verif_auth_mysql($new_ident) {
 		if ($new_ident==true) {
-			$lib='SELECT `user`,`passwd` FROM auth_user WHERE `user`=:user AND `passwd`=password(:password)';
+			$lib='SELECT `user`,`passwd` FROM auth_user WHERE `user`="'.$this->user.'" AND `passwd`=password("'.$this->passwd.'")';
 		} else {
-			$lib='SELECT `user`,`passwd` FROM auth_user WHERE `user`=:user AND `passwd`=:password';
+			$lib='SELECT `user`,`passwd` FROM auth_user WHERE `user`="'.$this->user.'" AND `passwd`="'.$this->passwd.'"';
 		}
-
-        $stmt = $this->connSQL->prepare($lib);
-        $stmt->bindValue(':user',$this->user);
-        $stmt->bindValue(':password',$this->passwd);
-        $stmt->execute();
-
-		$res=$stmt->fetchObject();
-		if (@$res->user == $this->user) {
+		$res=$this->connSQL->row($lib);
+		if ($res->user == $this->user) {
 			$_SESSION['S_USER']=$res->user;
 			$_SESSION['S_PASSWD']=$res->passwd;
 			$_SESSION['S_ID_USER']=$this->id_auth_user;
@@ -134,4 +122,3 @@ class AUTH_USER {
 		die();
 	}
 }
-?>

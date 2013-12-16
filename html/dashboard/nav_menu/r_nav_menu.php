@@ -1,5 +1,6 @@
 <?php
 $connSQL=new DB();
+$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 
 $lib='SELECT
 		cp.id_config_project,
@@ -24,10 +25,10 @@ $lib='SELECT
 	LEFT JOIN auth_user_group aug 
 		ON aug.id_auth_group=ag.id_auth_group
 	WHERE 
-		aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
+		aug.id_auth_user=:s_id_user
 	ORDER BY project_description, role_description, server_name';
 
-
-$all_nav=$connSQL->getResults($lib);
+$connSQL->bind('s_id_user',$s_id_user);
+$all_nav=$connSQL->query($lib);
 $cpt_nav=count($all_nav);
 

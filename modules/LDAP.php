@@ -84,4 +84,3 @@ class LDAP {
 	} //fin de déconnexion
 }
 
-?>

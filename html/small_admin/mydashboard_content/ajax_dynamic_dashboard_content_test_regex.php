@@ -8,7 +8,8 @@ if (!$auth->verif_auth()) {
 }
 
 if ($_POST['f_regex_srv']) {
-	$f_regex_srv=mysql_escape_string(filter_input(INPUT_POST,'f_regex_srv',FILTER_SANITIZE_SPECIAL_CHARS));
+	$f_regex_srv=filter_input(INPUT_POST,'f_regex_srv',FILTER_SANITIZE_SPECIAL_CHARS);
+	$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 	
 	$connSQL=new DB();
 	$lib='
@@ -24,12 +25,14 @@ if ($_POST['f_regex_srv']) {
 			ON ag.id_auth_group=ppg.id_auth_group
 		LEFT JOIN auth_user_group aug 
 			ON aug.id_auth_group=ag.id_auth_group
-	WHERE aug.id_auth_user='.intval($_SESSION['S_ID_USER']).'
-		AND cs.server_name REGEXP "'.$f_regex_srv.'"
+	WHERE aug.id_auth_user=:s_id_user
+		AND cs.server_name REGEXP :f_regex_srv
 	GROUP BY id_config_server, server_name
 	ORDER BY server_name';
 	
-	$all_server=$connSQL->getResults($lib);
+	$connSQL->bind('f_regex_srv',$f_regex_srv);
+	$connSQL->bind('s_id_user',$s_id_user);
+	$all_server=$connSQL->query($lib);
 	$cpt_server=count($all_server);
 	
 	$f_regex_p=filter_input(INPUT_POST,'f_regex_p',FILTER_SANITIZE_SPECIAL_CHARS);

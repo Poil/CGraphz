@@ -1,5 +1,6 @@
 <?php
-$f_id_config_project=intval($_GET['f_id_config_project']);
+$f_id_config_project=filter_input(INPUT_GET,'f_id_config_project',FILTER_SANITIZE_NUMBER_INT);
+$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 
 if (isset($_GET['f_id_config_server'])) {
 	include(DIR_FSROOT.'/html/menu/time_selector.php');
@@ -31,12 +32,14 @@ $lib = 'SELECT
 		LEFT JOIN perm_project_group ppg 
 			ON ppg.id_auth_group=ag.id_auth_group
 	WHERE 
-		aug.id_auth_user="'.$_SESSION['S_ID_USER'].'"
-	AND ppg.id_config_project="'.$f_id_config_project.'"
+		aug.id_auth_user=:s_id_user
+	AND ppg.id_config_project=:f_id_config_project
 	ORDER BY plugin_order, plugin, plugin_instance, type, type_instance';
 
 $connSQL=new DB();
-$pg_filters=$connSQL->getResults($lib);
+$connSQL->bind('s_id_user',$s_id_user);
+$connSQL->bind('f_id_config_project',$f_id_config_project);
+$pg_filters=$connSQL->query($lib);
 
 
 if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {

@@ -1,15 +1,13 @@
 <?php
 //session_cache_limiter("private");
-//ob_start();
 include './config/config.php';
 	
 session_name('CGRAPHZ');
 session_start();
-		
-$connSQL=new DB();
 
 $auth = new AUTH_USER();
 if ($auth->verif_auth()) {
+	$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 
 	$plugin = validate_get(GET('p'), 'plugin');
 	$host=validate_get(GET('h'), 'host');
@@ -32,6 +30,7 @@ if ($auth->verif_auth()) {
 		        error_image();
 		}
 	
+		$connSQL=new DB();
 		$lib='
 		SELECT cs.server_name
 		FROM config_server cs
@@ -41,17 +40,16 @@ if ($auth->verif_auth()) {
 	        ON csp.id_config_project=ppg.id_config_project
 		  LEFT JOIN auth_user_group aug 
 	        ON ppg.id_auth_group=aug.id_auth_group
-		WHERE ( cs.server_name=:host )
-		  AND ( aug.id_auth_user=:user )
+		WHERE (cs.server_name=:host)
+		  AND (aug.id_auth_user=:s_id_user)
 		GROUP BY server_name
 		ORDER BY server_name';
 
-		$stmt = $connSQL->prepare($lib);
-		$stmt->bindValue(':host', $connSQL->escape($host));
-		$stmt->bindValue(':user',$connSQL->escape(intval($_SESSION['S_ID_USER'])));
-		$stmt->execute();
-		$authorized=$stmt->fetchObject();
-		
+		$connSQL->bind('host', $host);
+		$connSQL->bind('s_id_user',$s_id_user);
+
+		$authorized=$connSQL->row($lib);
+
 		if ($host==$authorized->server_name) {
 			# load plugin
 			include DIR_FSROOT.'/plugin/'.$plugin.'.php';
@@ -63,4 +61,3 @@ if ($auth->verif_auth()) {
 		error_image();
 	}
 }
-?>

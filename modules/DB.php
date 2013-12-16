@@ -1,461 +1,249 @@
 <?php
 /**
- * Database abstraction class, make very easy to work with databases.
- * Created : 2009 - March - 05 
- * @author Gombos Lorand (glorand@gmail.com)
- * @name simpleSQL - PDO
- * @version 1.1
- * http://www.phpclasses.org/package/5206-PHP-Execute-database-queries-from-parameters-using-PDO.html
- */
-
-
-/**
- * Database specific class - mySQL
+ *  DB - A simple database class 
+ *
+ * @author		Author: Vivek Wicky Aswal. (https://twitter.com/#!/VivekWickyAswal)
+ * @git 		https://github.com/indieteq-vivek/PHP-MySQL-PDO-Database-Class
+ * @version      0.2ab
  *
  */
+require(DIR_FSROOT.'/modules/LOG.php');
 class DB {
-    /**
-     * Host name.
-     * @see connect()
-     * @var string 
-     */
-    private static $hostname    =    DB_HOST;
-    /**
-     * Socket
-     * @see connect()
-     * @var string
-     */
-    private static $socket    =    DB_SOCKET;
-    /**
-     * Database username.
-     * @see connect()
-     * @var string
-     */
-    private static $username    =    DB_LOGIN;
-    /**
-     * User password for database.
-     * @var string
-     */
-    private static $password    =    DB_PASSWD;
-    /**
-     * Database name.
-     * @see connect()
-     * @var string
-     */
-    private $dbname                =    DB_DATABASE; 
-    /**
-     * Represented the DD class instance. 
-     * Help to implement the Singleton design pattern.
-     * @var boolean|object DB 
-     */
-    private static $instance = FALSE;
-    /**
-     * PDO fetch mode.
-     * This variable use we to setting the PDO fetching mode.
-     * @var string
-     */
-    public $fetch_mode = PDO::FETCH_OBJ;
-    /**
-     * Last query, used by this class.
-     * @var string
-     */
-    private $last_query        = NULL;
-    /**
-     * After we execute the last query, we obtain a PDO statement.
-     * @var PDO::Statement 
-     */
-    private $last_statement = NULL;
-    /**
-     * Contain the last result.
-     * @var array|object
-     */
-    private $last_result    = NULL;
-    /**
-     * Row count, returned by last query.
-     * @var integer
-     */
-    private $row_count        = NULL;
-    /**
-     * Affected row, returned by last query (DML Queryes).
-     * @var integer
-     */
-    private $affected_row    = NULL;
-    
-    /**
-     * Constructor.
-     * Implements the Singleton design pattern.
-     * 
-     * @return object DB
-     * @access public
-     * @uses connect() connect to database.
-     */
-    public function __construct() {
-        if (!self::$instance){
-            self::connect();
-        }
-        return self::$instance;        
-    }
-    
-    /**
-     * Connect to the database and set the error mode to Exception.
-     * 
-     * @return void
-     * @access private
-     */
-    private function connect(){
-        if(self::$socket)
-        {
-            $dns = 'mysql:unix_socket='.self::$socket.';dbname='.$this->dbname;
-        }
-        else {
-            $dns = 'mysql:host='.self::$hostname.';dbname='.$this->dbname;
-        }
-	try {
-	        self::$instance = new PDO($dns, self::$username, self::$password);
-	        self::$instance->exec("SET CHARACTER SET utf8");
-	} catch (PDOException $e) {
-		echo 'Erreur de connexion à la BDD :'.$e->getMessage().'<br />';
-	}
-    }
-    
-    /**
-     * Select a database.
-     * 
-     * @param string $dbname
-     * @return void
-     * @access public
-     */
-    public function selectDB($dbname){
-        $this->dbname = $dbname;
-        $this->connect();
-    }
-    
-    /**
-     * Execute a query. 
-     * This function can be used from external. 
-     * The function separate the simple queryes and the INSERT, UPADTE, DELETE queries.
-     * Do not use this function without escape the data with function DB::escape
-     * 
-     * @param string $query
-     * @return result/affected row depending on query type.
-     * @access public
-     */
-    public function query($query = NULL){
-        $this->flush(); 
-        $query = trim($query);
-        $this->last_query = $query;
-        // Query was an insert, delete, update, replace
-        if ( preg_match("/^(insert|delete|update|replace|drop|create)\\s+/i",$query) ){
-            $this->affected_row = self::$instance->exec($query);
-            if ( $this->catch_error() ) return false;
-            else return $this->affected_row;
-        }
-        else {
-            //Query was an simple query.
-            $stmt = self::$instance->query($query);
-            if ( $this->catch_error() ) return false;
-            else {
-                $stmt->setFetchMode($this->fetch_mode);
-                $this->last_statement = $stmt;
-                $this->last_result = $this->last_statement->fetchAll();
-                return $this->last_result;
-            }
-        }
-    }
-    
-    /**
-     * Execute a query.
-     * This function can be used from DB class methods.
-     * 
-     * @param string $query
-     * @return bool
-     * @access private
-     */
-    private function internalQuery($query = NULL){
-        $this->flush();
-        $query = trim($query);
-        $this->last_query = $query;
-        
-        $stmt = self::$instance->query($query);
-        if ( $this->catch_error() ) return false;
-        $stmt->setFetchMode($this->fetch_mode);
-        $this->last_statement = $stmt;
-        return TRUE;
-    }
+	# @object, The PDO object
+	private $pdo;
 
-    /**
-     * Execute a query (INSERT, UPDATE, DELETE).
-     * This function can be used from DB class methids.
-     * 
-     * @param string $query
-     * @return int
-     * @access private
-     */
-    private function execute($query = NULL){
-        $this->flush();
-        $query = trim($query);
-        $this->last_query = $query;
-        $this->affected_row = self::$instance->exec($query);
-        if ($this->catch_error()) return false;
-        return $this->affected_row;
-    }    
-    
-    /**
-     * Return a result set.
-     *
-     * @param string $query
-     * @return result set
-     * @access public.
-     */
-    public function getResults($query = NULL){
-        $this->internalQuery($query);
-        $result = $this->last_statement->fetchAll();
-        $this->last_result = $result;
-        return $result;
-    }
-    
-    /**
-     * Get one row from the DB.
-     *
-     * @param string $query
-     * @return reulst set
-     * @access public
-     */
-    public function getRow($query = NULL){
-        $this->internalQuery($query);
-        $result = $this->last_statement->fetch();
-        $this->last_result = $result;
-        return $result;        
-    }
-    
-    /**
-     * Helper function, walk the array, and modify the values.
-     *
-     * @param pointer $item
-     * @return void
-     * @access private 
-     */
-    private static function prepareDbValues(&$item){
-        $item = self::$instance->quote(self::escape($item));
-    }
+	# @object, PDO statement object
+	private $sQuery;
 
-    /**
-     * Insert a value into a table.
-     *
-     * @param string $table
-     * @param array $data
-     * @return integer 
-     * @access public
-     */
-    public function insert($table = NULL, $data = NULL){
-        array_walk($data,'DB::prepareDbValues');
-        
-        $query = "INSERT INTO `".$table."` 
-                 (`".implode('`, `', array_keys($data))."`) 
-                 VALUES ( ".implode(', ', $data).")";
-        return $this->execute($query);
-    }
-    
-    /**
-     * Update a value(s) in a table
-     * Ex: 
-     * $table = 'tableName';
-     * $data = array('text'=> 'value', 'date'=> '2009-12-01');
-     * $where = array('id=12','AND name="John"'); OR $where = 'id = 12';
-     *
-     * @param string $table
-     * @param array $data
-     * @param array/string $where
-     * @return void
-     * @access public
-     */
-    public function update($table = NULL, $data = NULL, $where = NULL){
-        array_walk($data,'DB::prepareDbValues');
-        foreach ($data as $key => $val){
-            $valstr[]= '`'.$key.'` = '.$val;
-        }
+	# @array,  The database settings
+	private $settings;
 
-        $query = "UPDATE `".$table."` SET ".implode(', ', $valstr);
-        if (is_array($where)){
-            $query.= " WHERE ".implode(" ",$where);
-        }
-        else {
-            $query.= " WHERE ".$where;
-        }
-        
-        return $this->execute($query);
-    }
-    
-    /**
-     * Delete a record from a table.
-     * Ex.
-     * $table = 'tableName';
-     * $where = array('id = 12','AND name = "John"'); OR $where = 'id = 12';
-     *
-     * @param string $table
-     * @param array/string $where
-     * @return void
-     * @access public
-     */
-    public function delete($table = NULL, $where = NULL){
-        $query = "DELETE FROM `".$table."` WHERE ";
-        if (is_array($where)){
-            $query.= implode(" ",$where);
-        }
-        else{
-            $query.= $where;
-        }
-        
-        return $this->execute($query);
-    }
-    
-    /**
-     * Return  a result set.
-     * Similar to {@link getResults()}, but in this case not need to write a query.
-     * The generated query is based on $where associative Array and $table.
-     * 
-     * Ex.
-     * <code>
-     * $where = array();
-     * $where['username'] = 'testUsername';
-     * $where['id'] = '1';
-     * $result =  $c->buildQuery('user',$where);
-     * print_r($result);
-     * </code>
-     * 
-     * @param string $table
-     * @param array $where
-     * @return array - result set
-     * @access public
-     */
-    public function buildQuery($table,$where){
-        array_walk($where,'DB::prepareDbValues');
-        $query = "SELECT * FROM `{$table}` WHERE ";
-        $valstr = array();
-        foreach ($where as $key => $value){
-            $valstr[] = "`{$key}` = {$value}";
-        }
-        $query.= implode(" AND ",$valstr);
-        
-        $this->internalQuery($query);
-        $result = $this->last_statement->fetchAll();
-        $this->last_result = $result;
-        return $result;
-    }
-    
-    /**
-     * Return the last insert id.
-     *
-     * @return integer
-     * @access public
-     */
-    public function getLastInsertId(){
-        return self::$instance->lastInsertId();
-    }
-    
-    /**
-     * Return the last executed query.
-     *
-     * @return string
-     * @access public
-     */
-    public function getLastQuesry(){
-        return $this->last_query;
-    }
-    
-    /**
-     * Returns the number of rows affected by the last SQL statement.
-     *
-     * @return int
-     * @access public
-     */
-    public function getRowCount(){
-        if (!is_null($this->last_statement)){
-            return $this->last_statement->rowCount();
-        }
-        else {
-            return 0;
-        }
-    }
-    
-    /**
-     * Set the PDO fetch mode.
-     *
-     * @param string $fetch_mode
-     * @return void
-     * @access public
-     */
-    public function setFetchMode($fetch_mode){
-        $this->fetch_mode = $fetch_mode;
-    }
-    
-    /**
-     * Set to NULL all cached data.
-     * 
-     * @return void
-     * @access private
-     */
-    private function flush(){
-        $this->last_query        = NULL;
-        $this->last_statement     = NULL;
-        $this->last_result        = NULL;
-        $this->row_count        = NULL;
-        $this->affected_row        = NULL;
-    }
-    
-    /**
-    *  Format a mySQL string correctly for safe mySQL insert
-    *  (no mater if magic quotes are on or not)
-    *
-    * @param string $str
-    * @return string
-    * @access public
-    */
-    public static function escape($str){
-        return mysql_escape_string(stripslashes($str));
-    }
-    
-    /**
-     * Print the error if exist.
-     * 
-     * @return vois
-     * @access private
-     */
-    private function catch_error()
-        {
-            $err_array = self::$instance->errorInfo();
-            // Note: Ignoring error - bind or column index out of range
-            if ( isset($err_array[1]) && $err_array[1] != 25)
-            {
-                try {
-                    throw new Exception();
-                }
-                catch (Exception  $e){
-                    print "<div style='background-color:#D8D8D8; color:#000000; padding:10px;
-                    border:2px red solid;>";
-                    print "<p style='font-size:25px; color:#7F0000'>DATABASE ERROR</p>";
-                    print "<p style='font-size:20px; color:#7F0000'>Query:<br />
-                    <span style='font-size:15px; color:#000000;'>{$this->getLastQuesry()}</span></p>";
-                    print "<p style='font-size:20px; color:#7F0000'>Message:<br />
-                    <span style='font-size:15px; color:#000000;'>{$err_array[2]}</span></p>";
-                    print "</div>";
-                    die();
-                }
-                return TRUE;
-            }
-            else {
-                return FALSE;
-            }
-        }
-    /**
-     * Prepares as prepared Statement
-     * @param string $statement
-     * @param array $driver_options [optional]
-     * @return PDOStatement
-     */
-    public function prepare($stmt,$driver_options = array() )
-    {
-        return self::$instance->prepare($stmt,$driver_options);
-    }
+	# @bool ,  Connected to the database
+	private $bConnected = false;
+
+	# @object, Object for logging exceptions	
+	private $log;
+
+	# @array, The parameters of the SQL query
+	private $parameters;
+		
+       /**
+	*   Default Constructor 
+	*
+	*	1. Instantiate Log class.
+	*	2. Connect to database.
+	*	3. Creates the parameter array.
+	*/
+		public function __construct()
+		{ 			
+			$this->log = new Log();	
+			$this->Connect();
+			$this->parameters = array();
+		}
+	
+       /**
+	*	This method makes connection to the database.
+	*	
+	*	1. Reads the database settings from a ini file. 
+	*	2. Puts  the ini content into the settings array.
+	*	3. Tries to connect to the database.
+	*	4. If connection failed, exception is displayed and a log file gets created.
+	*/
+		private function Connect()
+		{
+			$this->settings = parse_ini_file(DIR_FSROOT.'/config/settings.ini.php');
+			$dsn = 'mysql:dbname='.$this->settings["dbname"].';host='.$this->settings["host"].'';
+			try 
+			{
+				# Read settings from INI file
+				$this->pdo = new PDO($dsn, $this->settings["user"], $this->settings["password"]);
+				
+				# We can now log any exceptions on Fatal error. 
+				$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+				
+				# Disable emulation of prepared statements, use REAL prepared statements instead.
+				$this->pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+				
+				# Connection succeeded, set the boolean to true.
+				$this->bConnected = true;
+			}
+			catch (PDOException $e) 
+			{
+				# Write into log
+				echo $this->ExceptionLog($e->getMessage());
+				die();
+			}
+		}
+       /**
+	*	Every method which needs to execute a SQL query uses this method.
+	*	
+	*	1. If not connected, connect to the database.
+	*	2. Prepare Query.
+	*	3. Parameterize Query.
+	*	4. Execute Query.	
+	*	5. On exception : Write Exception into the log + SQL query.
+	*	6. Reset the Parameters.
+	*/	
+		private function Init($query,$parameters = "")
+		{
+		# Connect to database
+		if(!$this->bConnected) { $this->Connect(); }
+		try {
+				# Prepare query
+				$this->sQuery = $this->pdo->prepare($query);
+				
+				# Add parameters to the parameter array	
+				$this->bindMore($parameters);
+
+				# Bind parameters
+				if(!empty($this->parameters)) {
+					foreach($this->parameters as $param)
+					{
+						$parameters = explode("\x7F",$param);
+						$this->sQuery->bindParam($parameters[0],$parameters[1]);
+					}		
+				}
+
+				# Execute SQL 
+				$this->succes 	= $this->sQuery->execute();		
+			}
+			catch(PDOException $e)
+			{
+					# Write into log and display Exception
+					echo $this->ExceptionLog($e->getMessage(), $query );
+					die();
+			}
+
+			# Reset the parameters
+			$this->parameters = array();
+		}
+		
+       /**
+	*	@void 
+	*
+	*	Add the parameter to the parameter array
+	*	@param string $para  
+	*	@param string $value 
+	*/	
+		public function bind($para, $value)
+		{	
+			$this->parameters[sizeof($this->parameters)] = ":" . $para . "\x7F" . $value;
+		}
+       /**
+	*	@void
+	*	
+	*	Add more parameters to the parameter array
+	*	@param array $parray
+	*/	
+		public function bindMore($parray)
+		{
+			if(empty($this->parameters) && is_array($parray)) {
+				$columns = array_keys($parray);
+				foreach($columns as $i => &$column)	{
+					$this->bind($column, $parray[$column]);
+				}
+			}
+		}
+       /**
+	*   	If the SQL query  contains a SELECT statement it returns an array containing all of the result set row
+	*	If the SQL statement is a DELETE, INSERT, or UPDATE statement it returns the number of affected rows
+	*
+	*   	@param  string $query
+	*	@param  array  $params
+	*	@param  int    $fetchmode
+	*	@return mixed
+	*/			
+		public function query($query,$params = null,$fetchmode = PDO::FETCH_OBJ)
+		{
+			$query = trim($query);
+
+			$this->Init($query,$params);
+
+			if (stripos($query, 'select') === 0){
+				return $this->sQuery->fetchAll($fetchmode);
+			}
+			elseif (stripos($query, 'insert') === 0 ||  stripos($query, 'update') === 0 || stripos($query, 'delete') === 0) {
+				return $this->sQuery->rowCount();	
+			}	
+			else {
+				return NULL;
+			}
+		}
+		
+      /**
+       *  Returns the last inserted id.
+       *  @return string
+       */	
+		public function lastInsertId() {
+			return $this->pdo->lastInsertId();
+		}	
+		
+       /**
+	*	Returns an array which represents a column from the result set 
+	*
+	*	@param  string $query
+	*	@param  array  $params
+	*	@return array
+	*/	
+		public function column($query,$params = null)
+		{
+			$this->Init($query,$params);
+			$Columns = $this->sQuery->fetchAll(PDO::FETCH_NUM);		
+			
+			$column = null;
+
+			foreach($Columns as $cells) {
+				$column[] = $cells[0];
+			}
+
+			return $column;
+			
+		}	
+       /**
+	*	Returns an array which represents a row from the result set 
+	*
+	*	@param  string $query
+	*	@param  array  $params
+	*   	@param  int    $fetchmode
+	*	@return array
+	*/	
+		public function row($query,$params = null,$fetchmode = PDO::FETCH_OBJ)
+		{				
+			$this->Init($query,$params);
+			return $this->sQuery->fetch($fetchmode);			
+		}
+       /**
+	*	Returns the value of one single field/column
+	*
+	*	@param  string $query
+	*	@param  array  $params
+	*	@return string
+	*/	
+		public function single($query,$params = null)
+		{
+			$this->Init($query,$params);
+			return $this->sQuery->fetchColumn();
+		}
+       /**	
+	* Writes the log and returns the exception
+	*
+	* @param  string $message
+	* @param  string $sql
+	* @return string
+	*/
+	private function ExceptionLog($message , $sql = "")
+	{
+		$exception  = 'Unhandled Exception. <br />';
+		$exception .= $message;
+		$exception .= "<br /> You can find the error back in the log.";
+
+		if(!empty($sql)) {
+			# Add the Raw SQL to the Log
+			$message .= "\r\nRaw SQL : "  . $sql;
+		}
+			# Write into log
+			$this->log->write($message);
+
+		return $exception;
+	}			
 }
-?>
