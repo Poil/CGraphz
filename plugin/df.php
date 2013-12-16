@@ -2,7 +2,6 @@
 
 # Collectd Df plugin
 
-
 require_once 'type/GenericStacked.class.php';
 require_once 'modules/collectd.inc.php';
 

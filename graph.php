@@ -7,6 +7,7 @@ session_start();
 
 $auth = new AUTH_USER();
 if ($auth->verif_auth()) {
+	$CONFIG['version']=$authorized->collectd_version;
 	$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 
 	$plugin = validate_get(GET('p'), 'plugin');
@@ -53,8 +54,8 @@ if ($auth->verif_auth()) {
 		$authorized=$connSQL->row($lib);
 
 		if ($host==$authorized->server_name) {
-			$CONFIG['version']=$authorized->collectd_version;
 			# load plugin
+			$CONFIG['version']=$authorized->collectd_version;
 			include DIR_FSROOT.'/plugin/'.$plugin.'.php';
 		} else {		
 			error_image();
@@ -64,3 +65,4 @@ if ($auth->verif_auth()) {
 		error_image();
 	}
 }
+

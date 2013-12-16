@@ -6,6 +6,12 @@ if (!$auth->verif_auth()) {
         die();
 }
 
+$f_server_name=filter_input(INPUT_GET,'h',FILTER_SANITIZE_STRING);
+$connSQL=new DB();
+$lib='SELECT COALESCE(collectd_version,"'.COLLECTD_DEFAULT_VERSION.'") as collectd_version FROM config_server WHERE server_name=:f_server_name';
+$connSQL->bind('f_server_name',$f_server_name);
+$cur_server=$connSQL->row($lib);
+
 echo '<meta name="viewport" content="width=1050, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />';
 
 if (isset($_SESSION['time_start']) && $_SESSION['time_start']!='') {
@@ -39,6 +45,7 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 	$_GET['y'] = $CONFIG['detail-height'];
 
 	chdir(DIR_FSROOT);
+	$CONFIG['version']=$cur_server->collectd_version;
 	include(DIR_FSROOT.'/plugin/'.GET('p').'.php');
 	echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/CGP.js"></script>';
 ?>
