@@ -32,7 +32,9 @@ if ($auth->verif_auth()) {
 	
 		$connSQL=new DB();
 		$lib='
-		SELECT cs.server_name
+		SELECT 
+			cs.server_name, 
+			COALESCE(cs.collectd_version,'.COLLECTD_DEFAULT_VERSION.') as collectd_version
 		FROM config_server cs
 		  LEFT JOIN config_server_project csp 
 	        ON cs.id_config_server=csp.id_config_server
@@ -51,6 +53,7 @@ if ($auth->verif_auth()) {
 		$authorized=$connSQL->row($lib);
 
 		if ($host==$authorized->server_name) {
+			$CONFIG['version']=$authorized->collectd_version;
 			# load plugin
 			include DIR_FSROOT.'/plugin/'.$plugin.'.php';
 		} else {		
