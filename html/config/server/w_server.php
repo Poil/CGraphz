@@ -22,12 +22,12 @@ if (isset($_POST['f_submit_server'])) {
 		$connSQL=new DB();
 		$f_server_name=filter_input(INPUT_POST,'f_server_name',FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY);
 		foreach ($f_server_name as $server_name) {
-			$connSQL->bind('f_server_name',$f_server_name);
+			$connSQL->bind('server_name',$server_name);
 			$connSQL->bind('f_collectd_version',$f_collectd_version);
 			$connSQL->bind('f_server_description',$f_server_description);
 
 			$lib='INSERT INTO config_server (server_name, server_description, collectd_version) 
-				VALUES (:f_server_name, :f_server_description, :f_collectd_version)';
+				VALUES (:server_name, :f_server_description, :f_collectd_version)';
 			$connSQL->query($lib);
 		}
 	}
