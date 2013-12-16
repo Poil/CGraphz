@@ -1,7 +1,7 @@
 <?php
 $f_id_config_project=filter_input(INPUT_GET,'f_id_config_project',FILTER_SANITIZE_NUMBER_INT);
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
-$CONFIG['version'] = $cur_server->collectd_version;
+
 if (isset($_GET['f_id_config_server'])) {
 	include(DIR_FSROOT.'/html/menu/time_selector.php');
 }
@@ -134,7 +134,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 
 				// Verif regex OK
 				if (isset($p) && isset($t)) {
-					if (!preg_match('/^(df|interface|oracle)$/', $p) || ($CONFIG['version'] >= 5 && $p!='oracle' && $t!='df' )) {
+					if (!preg_match('/^(df|interface|oracle)$/', $p) || ($cur_server->collectd_version >= 5 && $p!='oracle' && $t!='df' )) {
 						$ti='';
 						if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
 							if ($CONFIG['graph_type'] == 'canvas') {
