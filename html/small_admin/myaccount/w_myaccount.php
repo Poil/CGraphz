@@ -7,16 +7,23 @@ if (isset($_POST['f_submit_user'])) {
 	$f_mail=filter_input(INPUT_POST,'f_mail',FILTER_SANITIZE_SPECIAL_CHARS);
 	$f_passwd=$_POST['f_passwd'];
 	$f_type=filter_input(INPUT_POST,'f_type',FILTER_SANITIZE_SPECIAL_CHARS);
+	$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 
 		
-	if ($_POST['f_id_auth_user'] && $_POST['f_id_auth_user']==$_SESSION['S_ID_USER']) { // UPDATE
+	if ($_POST['f_id_auth_user'] && $f_id_auth_user==$s_id_user) { // UPDATE
+		if ($f_passwd) { 
+			$libpasswd='passwd=PASSWORD(:f_passwd),';
+			$connSQL->bind('f_passwd',$f_passwd);
+		} else {
+			$libpasswd ='';
+		}
 		$lib='
 			UPDATE auth_user SET
 				nom=:f_nom,
 				prenom=:f_prenom,
 				user=:f_user,
 				mail=:f_mail,
-				passwd=PASSWORD(:f_passwd),
+				'.$libpasswd.'
 				type=:f_type
 			WHERE
 				id_auth_user=:f_id_auth_user';
@@ -26,11 +33,12 @@ if (isset($_POST['f_submit_user'])) {
 		$connSQL->bind('f_prenom',$f_prenom);
 		$connSQL->bind('f_user',$f_user);
 		$connSQL->bind('f_mail',$f_mail);
-		$connSQL->bind('f_passwd',$f_passwd);
 		$connSQL->bind('f_type',$f_type);
 
 		$connSQL=new DB();
-		$connSQL->query($lib);
-	} 
+		$res=$connSQL->query($lib);
+	} else {
+		echo 'Beuuarrhhhh !!';
+	}
 }
 ?>

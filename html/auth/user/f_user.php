@@ -8,7 +8,7 @@
 			<option value="ldap" <?php if (@$cur_user->type=='ldap') echo ' selected="selected" '; ?>>LDAP</option>
 		</select><br />
 	<label for="f_passwd"><?php echo PASSWORD ?></label>
-		<input type="password" name="f_passwd" id="f_passwd" value="<?php echo @$cur_user->passwd; ?>" /><br />
+		<input type="password" name="f_passwd" id="f_passwd" value="" autocomplete="off" /><br />
 	<label for="f_prenom"><?php echo FIRSTNAME ?></label>
 		<input type="text" name="f_prenom" id="f_prenom" value="<?php echo @$cur_user->prenom; ?>" /><br />
 	<label for="f_nom"><?php echo NAME ?></label>

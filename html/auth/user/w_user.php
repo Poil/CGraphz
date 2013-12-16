@@ -12,17 +12,24 @@ if (isset($_POST['f_submit_user'])) {
 	$connSQL=new DB();
 	if ($_POST['f_id_auth_user']) { // UPDATE
 		$connSQL->bind('f_id_auth_user',$f_id_auth_user);
+		if (!empty($f_passwd)) {
+			$libpasswd='passwd=PASSWORD(:f_passwd),';
+			$connSQL->bind('f_passwd',$f_passwd);
+		} else {
+			$libpasswd='';
+		}
 		$lib='
 			UPDATE auth_user SET
 				nom=:f_nom,
 				prenom=:f_prenom,
 				user=:f_user,
 				mail=:f_mail,
-				passwd=PASSWORD(:f_passwd),
+				'.$libpasswd.'
 				type=:f_type
 			WHERE
 				id_auth_user=:f_id_auth_user';
 	} else { // INSERT
+		$connSQL->bind('f_passwd',$f_passwd);
 		$lib='INSERT INTO auth_user (
 				nom,
 				prenom,
@@ -44,7 +51,6 @@ if (isset($_POST['f_submit_user'])) {
 	$connSQL->bind('f_prenom',$f_prenom);
 	$connSQL->bind('f_user',$f_user);
 	$connSQL->bind('f_mail',$f_mail);
-	$connSQL->bind('f_passwd',$f_passwd);
 	$connSQL->bind('f_type',$f_type);
 	$connSQL->query($lib);
 }
