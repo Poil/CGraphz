@@ -8,15 +8,15 @@ if (isset($_POST['f_submit_group'])) {
 	if ($_POST['f_id_auth_group']) { // UPDATE
 		$connSQL->bind('f_id_auth_group',$f_id_auth_group);
 		$lib='
-			UPDATE auth_group ag SET
-				ag.group=:f_group,
-				ag.group_description=:f_group_description
+			UPDATE auth_group SET
+				`group`=:f_group,
+				group_description=:f_group_description
 			WHERE
 				ag.id_auth_group=:f_id_auth_group';
 	} else { // INSERT
-		$lib='INSERT INTO auth_group ag (
-				ag.group, 
-				ag.group_description
+		$lib='INSERT INTO auth_group (
+				`group`, 
+				group_description
 			) 
 			VALUES (
 				:f_group,
