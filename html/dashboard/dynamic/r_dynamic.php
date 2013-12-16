@@ -53,7 +53,8 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
          $lib='
             SELECT 
                cs.id_config_server, 
-               cs.server_name 
+               cs.server_name,
+               COALESCE(cs.collectd_version,5) as collectd_version
             FROM config_server cs
                LEFT JOIN config_server_project csp 
                   ON cs.id_config_server=csp.id_config_server
@@ -83,6 +84,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                
                foreach ($plugins as $plugin) {
                   $plugin_array[$cpt_p]['servername']=$all_server[$j]->server_name;
+                  $plugin_array[$cpt_p]['collectd_version']=$all_server[$j]->collectd_version;
 
                   preg_match($myregex, $plugin, $matches);
                   
@@ -189,7 +191,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   }
                }
             
-               if (!preg_match('/^(df|interface|oracle)$/', $plugin['p'])  || ($CONFIG['version'] >= 5 && $plugin['p']!='oracle' && $plugin['t']!='df')) {
+               if (!preg_match('/^(df|interface|oracle)$/', $plugin['p'])  || ($plugin['collectd_version'] >= 5 && $plugin['p']!='oracle' && $plugin['t']!='df')) {
                   $plugin['ti']=null;
                   if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
                         if ($CONFIG['graph_type'] == 'canvas') {
