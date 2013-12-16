@@ -1,7 +1,7 @@
 <?php
 $f_id_config_project=filter_input(INPUT_GET,'f_id_config_project',FILTER_SANITIZE_NUMBER_INT);
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
-
+$CONFIG['version'] = $cur_server->collectd_version;
 if (isset($_GET['f_id_config_server'])) {
 	include(DIR_FSROOT.'/html/menu/time_selector.php');
 }
