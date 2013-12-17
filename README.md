@@ -36,6 +36,8 @@ Post Installation
 
 > mv /var/www/CGraphz/config/config.php.tpl /var/www/CGraphz/config/config.php
 
+> mv /var/www/CGraphz/config/databases.ini.php.tpl /var/www/CGraphz/config/databases.ini.php
+
 Add your first server
 -------
 1. Open your webbrowser and goto http://localhost/CGraphz
