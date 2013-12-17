@@ -1,4 +1,4 @@
-<form name="f_form_del_server_check" method="post" action="">
+<form name="f_form_del_server_check" method="post" action="" onsubmit="return validate_del(this);">
 	<select name="f_server_name_to_del[]" id="f_server_name_to_del" class="multiselect" multiple="multiple">
 		<?php 
 		for ($i=0; $i<$cpt_deleted_server; $i++) {

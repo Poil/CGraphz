@@ -40,7 +40,7 @@ if (isset($cur_server->id_config_server)) {
 <?php
 if (isset($_GET['f_id_config_server'])) {
 	?>
-	<form name="f_form_del_server" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_server'); ?>">
+	<form name="f_form_del_server" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_server'); ?>" onsubmit="return validate_del(this);">
 	<input type="hidden" name="f_id_config_server" id="f_del_id_config_server" value="<?php echo $cur_server->id_config_server; ?>" />
 	<input type="submit" name="f_del_server" id="f_del_server" value="<?php echo DEL ?>" />
 	</form>

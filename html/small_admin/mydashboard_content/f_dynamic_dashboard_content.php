@@ -56,7 +56,7 @@
 <?php
 if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
 ?>
-	<form name="f_form_del_dynamic_dashboard_content" method="post" action="">
+	<form name="f_form_del_dynamic_dashboard_content" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_dynamic_dashboard_content'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_config_dynamic_dashboard_content" id="f_del_id_config_dynamic_dashboard_content" value="<?php echo $cur_dynamic_dashboard_content->id_config_dynamic_dashboard_content; ?>" />
 		<input type="submit" name="f_del_dynamic_dashboard_content" id="f_del_dynamic_dashboard_content" value="<?php echo DEL?>" />
 	</form>

@@ -24,7 +24,7 @@
 <?php 
 if (isset($_GET['f_id_auth_user'])) {
 ?>
-	<form name="f_form_group_user" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_user'); ?>">
+	<form name="f_form_group_user" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_user'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo @$cur_group->id_auth_group; ?>" />
 		<input type="hidden" name="f_id_auth_user" id="f_id_auth_user" value="<?php echo @$f_id_auth_user; ?>" />
 		<input type="submit" name="f_delete_group_user" id="f_delete_group_user" value="<?php echo DEL ?>" />

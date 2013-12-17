@@ -18,3 +18,6 @@ $(document).ready(function() {
    });
 });
 
+function validate_del(form) {
+    return confirm('<?php echo CONFIRM_DELETE ?>');
+}

@@ -14,7 +14,7 @@
 <?php
 if (isset($_GET['f_id_perm_module'])) {
 ?>
-	<form name="f_form_del_module" method="post" action="">
+	<form name="f_form_del_module" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_perm_module'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_perm_module" id="f_del_id_perm_module" value="<?php echo $cur_module->id_perm_module; ?>" />
 		<input type="submit" name="f_del_module" id="f_del_module" value="<?php echo DEL ?>" />
 	</form>

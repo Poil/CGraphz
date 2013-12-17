@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['f_id_config_plugin_filter'])) {
 ?>
-	<form name="f_form_group_plugin_filter" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_plugin_filter'); ?>">
+	<form name="f_form_group_plugin_filter" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_plugin_filter'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo @$cur_group->id_auth_group; ?>" />
 		<input type="hidden" name="f_id_config_plugin_filter" id="f_id_config_plugin_filter" value="<?php echo @$f_id_config_plugin_filter; ?>" />
 		<input readonly="readonly" type="text" name="f_plugin_filter_desc" id="f_plugin_filter_desc" value="<?php echo @$cur_plugin_filter_group->plugin_filter_desc; ?>" />

@@ -17,7 +17,7 @@
 </form>
 
 
-<form name="f_form_del_plugin_filter" method="post" action="">
+<form name="f_form_del_plugin_filter" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_plugin_filter'); ?>" onsubmit="return validate_del(this);">
 	<input type="hidden" name="f_id_config_plugin_filter" id="f_del_id_config_plugin_filter" value="<?php echo $cur_plugin_filter->id_config_plugin_filter; ?>" />
 	<input type="submit" name="f_del_plugin_filter" id="f_del_plugin_filter" value="<?php echo DEL ?>" />
 </form>

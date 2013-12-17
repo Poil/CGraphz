@@ -21,6 +21,8 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 		if ($component=='project') {
 			echo '<h1>'.MANAGE_PROJECTS.'</h1>';
 			include(DIR_FSROOT.'/html/config/project/w_project.php');
+			include(DIR_FSROOT.'/html/config/project_server/e_project_server_wh_id.php');
+			include(DIR_FSROOT.'/html/perm/project_group/e_project_group_wh_id.php');
 			include(DIR_FSROOT.'/html/config/project/e_project.php');
 			include(DIR_FSROOT.'/html/config/project/r_project_wh_id.php');
 			include(DIR_FSROOT.'/html/config/project/r_project.php');
@@ -95,8 +97,15 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/config/server_check/e_server_check.php');
 			
 			// Continue with standard implementation
+				// Insert/Update
 			include(DIR_FSROOT.'/html/config/server/w_server.php');
+				// Remove all mapped object
+			include(DIR_FSROOT.'/html/config/server_project/e_server_project_wh_id.php');
+			include(DIR_FSROOT.'/html/config/server_role/e_server_role_wh_id.php');
+			include(DIR_FSROOT.'/html/config/server_environment/e_server_environment_wh_id.php');
+				// Then delete the server
 			include(DIR_FSROOT.'/html/config/server/e_server.php');
+				// Read and display
 			include(DIR_FSROOT.'/html/config/server/r_server_wh_id.php');
 			include(DIR_FSROOT.'/html/config/server/r_server.php');
 			include(DIR_FSROOT.'/html/config/server/d_server.php');
@@ -334,6 +343,8 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 		} else if ($component=='dynamic_dashboard') {
 			echo '<h1>'.MANAGE_DYNAMIC_DASHBOARDS.'</h1>';
 			include(DIR_FSROOT.'/html/config/dynamic_dashboard/w_dynamic_dashboard.php');
+			include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/e_dynamic_dashboard_group_wh_id.php');
+			include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/e_dynamic_dashboard_content_wh_id.php');
 			include(DIR_FSROOT.'/html/config/dynamic_dashboard/e_dynamic_dashboard.php');
 			include(DIR_FSROOT.'/html/config/dynamic_dashboard/r_dynamic_dashboard_wh_id.php');
 			include(DIR_FSROOT.'/html/config/dynamic_dashboard/r_dynamic_dashboard.php');

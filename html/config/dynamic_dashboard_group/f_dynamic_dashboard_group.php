@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['f_id_auth_group'])) {
 ?>
-	<form name="f_form_user_group" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_group'); ?>">
+	<form name="f_form_user_group" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_group'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_config_dynamic_dashboard" id="f_id_config_dynamic_dashboard" value="<?php echo @$cur_dynamic_dashboard->id_config_dynamic_dashboard; ?>" />
 		<input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo @$f_id_auth_group; ?>" />
 		<input readonly="readonly" type="text" name="f_group" id="f_group" value="<?php echo @$cur_dynamic_dashboard_group->group; ?>" />

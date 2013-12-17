@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['f_id_config_server'])) {
 ?>
-	<form name="f_form_project_server" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_server'); ?>">
+	<form name="f_form_project_server" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_server'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_config_project" id="f_id_config_project" value="<?php echo $cur_project->id_config_project; ?>" />
 		<input type="hidden" name="f_id_config_server" id="f_id_config_server" value="<?php echo $f_id_config_server; ?>" />
 		<input readonly="readonly" type="text" name="f_server_name" id="f_server_name" value="<?php echo $cur_project_server->server_name; ?>" />

@@ -10,7 +10,7 @@
 <?php
 if (isset($_GET['f_id_config_project'])) {
 ?>
-	<form name="f_form_del_project" method="post" action="">
+	<form name="f_form_del_project" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_project'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_config_project" id="f_del_id_config_project" value="<?php echo $cur_project->id_config_project; ?>" />
 		<input type="submit" name="f_del_project" id="f_del_project" value="<?php echo DEL ?>" />
 	</form>

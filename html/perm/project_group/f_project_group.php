@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['f_id_auth_group'])) {
 ?>
-	<form name="f_form_project_group" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_group'); ?>">
+	<form name="f_form_project_group" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_group'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_config_project" id="f_id_config_project" value="<?php echo $cur_project->id_config_project; ?>" />
 		<input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo $f_id_auth_group; ?>" />
 		<input readonly="readonly" type="text" name="f_group" id="f_group" value="<?php echo $cur_project_group->group; ?>" />

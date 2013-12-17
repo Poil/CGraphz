@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['f_id_config_server'])) {
 ?>
-	<form name="f_form_role_server" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_server'); ?>">
+	<form name="f_form_role_server" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_server'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_config_role" id="f_id_config_role" value="<?php echo @$cur_role->id_config_role; ?>" />
 		<input type="hidden" name="f_id_config_server" id="f_id_config_server" value="<?php echo @$f_id_config_server; ?>" />
 		<input readonly="readonly" type="text" name="f_server_name" id="f_server_name" value="<?php echo @$cur_role_server->server_name; ?>" />

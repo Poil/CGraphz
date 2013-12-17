@@ -8,7 +8,7 @@
 <?php
 if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 ?>
-	<form name="f_form_del_dynamic_dashboard" method="post" action="">
+	<form name="f_form_del_dynamic_dashboard" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_dynamic_dashboard'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_config_dynamic_dashboard" id="f_del_id_config_dynamic_dashboard" value="<?php echo $cur_dynamic_dashboard->id_config_dynamic_dashboard; ?>" />
 		<input type="submit" name="f_del_dynamic_dashboard" id="f_del_dynamic_dashboard" value="<?php echo DEL ?>" />
 	</form>

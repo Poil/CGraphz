@@ -10,7 +10,7 @@
 <?php
 if (isset($_GET['f_id_auth_group'])) {
 ?>
-	<form name="f_form_del_group" method="post" action="">
+	<form name="f_form_del_group" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_group'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_auth_group" id="f_del_id_auth_group" value="<?php echo $cur_group->id_auth_group; ?>" />
 		<input type="submit" name="f_del_group" id="f_del_group" value="<?php echo DEL; ?>" />
 	</form>

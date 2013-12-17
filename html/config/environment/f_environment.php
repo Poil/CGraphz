@@ -10,7 +10,7 @@
 <?php
 if (isset($_GET['f_id_config_environment'])) {
 ?>
-	<form name="f_form_del_environment" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_environment'); ?>">
+	<form name="f_form_del_environment" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_environment'); ?>" onsubmit="return validate_del(this);">
 		<input type="hidden" name="f_id_config_environment" id="f_del_id_config_environment" value="<?php echo $cur_environment->id_config_environment; ?>" />
 		<input type="submit" name="f_del_environment" id="f_del_environment" value="<?php echo DEL ?>" />
 	</form>
