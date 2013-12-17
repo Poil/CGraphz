@@ -24,7 +24,7 @@ Clone Git
 
 Post Installation
 -----
-* MySQL : mysql -u root -p -e "source /var/www/CGraphz/sql/initial_cgraphz_1.51.sql;"
+* MySQL : mysql -u root -p -e "source /var/www/CGraphz/sql/initial_cgraphz_2.10.sql;"
 * Configuration
  * Edit /var/www/CGraphz/config/config.php.tpl
  * Move /var/www/CGraphz/config/config.php.tpl to /var/www/CGraphz/config/config.php
