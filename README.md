@@ -31,7 +31,8 @@ Post Installation
 * Configuration
  * Edit /var/www/CGraphz/config/config.php.tpl
  * Move /var/www/CGraphz/config/config.php.tpl to /var/www/CGraphz/config/config.php
-
+ * Edit /var/www/CGraphz/config/databases.ini.php.tpl
+ * Move /var/www/CGraphz/config/databases.ini.php.tpl to /var/www/CGraphz/config/databases.ini.php
 > mv /var/www/CGraphz/config/config.php.tpl /var/www/CGraphz/config/config.php
 
 Add your first server
