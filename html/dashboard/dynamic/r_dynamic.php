@@ -54,7 +54,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
             SELECT 
                cs.id_config_server, 
                cs.server_name,
-               COALESCE(cs.collectd_version,5) as collectd_version
+               COALESCE(cs.collectd_version,'.COLLECTD_DEFAULT_VERSION.') as collectd_version
             FROM config_server cs
                LEFT JOIN config_server_project csp 
                   ON cs.id_config_server=csp.id_config_server
