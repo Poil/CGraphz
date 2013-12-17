@@ -28,6 +28,7 @@ if (isset($_POST['f_submit_user'])) {
 			WHERE
 				id_auth_user=:f_id_auth_user';
 
+		$connSQL=new DB();
 		$connSQL->bind('f_id_auth_user',$f_id_auth_user);
 		$connSQL->bind('f_nom',$f_nom);
 		$connSQL->bind('f_prenom',$f_prenom);
@@ -35,7 +36,6 @@ if (isset($_POST['f_submit_user'])) {
 		$connSQL->bind('f_mail',$f_mail);
 		$connSQL->bind('f_type',$f_type);
 
-		$connSQL=new DB();
 		$res=$connSQL->query($lib);
 	} else {
 		echo 'Beuuarrhhhh !!';
