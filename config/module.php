@@ -760,13 +760,19 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			echo '<div class="spacer">&nbsp;</div>';
 		} else if ($component=='myaccount') {
 			echo '<h1>'.MY_ACCOUNT.'</h1>';
+			echo '<fieldset>';
+			echo '<legend>'.EDIT.'</legend>';
 			include(DIR_FSROOT.'/html/small_admin/myaccount/w_myaccount.php');
 			include(DIR_FSROOT.'/html/small_admin/myaccount/r_myaccount_wh_id.php');
 			include(DIR_FSROOT.'/html/small_admin/myaccount/f_myaccount.php');
+			echo '</fieldset>';
 		} else if ($component=='newuser') {
 			echo '<h1>'.ADD_USER.'</h1>';
+			echo '<fieldset>';
+			echo '<legend>'.EDIT.'</legend>';
 			include(DIR_FSROOT.'/html/small_admin/newuser/w_user.php');
 			include(DIR_FSROOT.'/html/small_admin/newuser/f_user.php');
+			echo '</fieldset>';
 		} else if ($component=='mydashboard') {
 			echo '<h1>'.MANAGE_MY_DYN_DASHBOARDS.'</h1>';
 			include(DIR_FSROOT.'/html/small_admin/mydashboard/r_dynamic_dashboard_wh_id.php');
