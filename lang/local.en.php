@@ -90,5 +90,6 @@ define('CONTENT','Content') ;
 define('OTHERS','Others') ;
 define('COLLECTD_VERSION','Collectd version') ;
 define('CONFIRM_DELETE','Do you really want to delete this?') ;
-
+define('DASHBOARD','Dashboard');
+define('DYNAMIC_DASHBOARDS','Dynamic dashboards');
 ?>

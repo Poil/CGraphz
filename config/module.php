@@ -213,6 +213,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 		} else if ($component=='role') {
 			echo '<h1>'.MANAGE_ROLES.'</h1>';
 			include(DIR_FSROOT.'/html/config/role/w_role.php');
+			include(DIR_FSROOT.'/html/config/role_server/e_role_server_wh_id.php');
 			include(DIR_FSROOT.'/html/config/role/e_role.php');
 			include(DIR_FSROOT.'/html/config/role/r_role_wh_id.php');
 			include(DIR_FSROOT.'/html/config/role/r_role.php');
@@ -264,6 +265,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 		} else if ($component=='environment') {
 			echo '<h1>'.MANAGE_ENVS.'</h1>';
 			include(DIR_FSROOT.'/html/config/environment/w_environment.php');
+			include(DIR_FSROOT.'/html/config/environment_server/e_environment_server_wh_id.php');
 			include(DIR_FSROOT.'/html/config/environment/e_environment.php');
 			include(DIR_FSROOT.'/html/config/environment/r_environment_wh_id.php');
 			include(DIR_FSROOT.'/html/config/environment/r_environment.php');
@@ -423,6 +425,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 		if ($component=='user') {
 			echo '<h1>'.MANAGE_USERS.'</h1>';
 			include(DIR_FSROOT.'/html/auth/user/w_user.php');
+			include(DIR_FSROOT.'/html/auth/user_group/e_user_group_wh_id.php');
 			include(DIR_FSROOT.'/html/auth/user/e_user.php');
 			include(DIR_FSROOT.'/html/auth/user/r_user_wh_id.php');
 			include(DIR_FSROOT.'/html/auth/user/r_user.php');
@@ -476,6 +479,11 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 		else if ($component=='group') {
 			echo '<h1>'.MANAGE_GROUPS.'</h1>';
 			include(DIR_FSROOT.'/html/auth/group/w_group.php');
+			include(DIR_FSROOT.'/html/auth/group_user/e_group_user_wh_id.php');
+			include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/e_group_dynamic_dashboard_wh_id.php');
+			include(DIR_FSROOT.'/html/perm/group_module/e_group_module_wh_id.php');
+			include(DIR_FSROOT.'/html/config/group_plugin_filter/e_group_plugin_filter_wh_id.php');
+			include(DIR_FSROOT.'/html/perm/group_project/e_group_project_wh_id.php');
 			include(DIR_FSROOT.'/html/auth/group/e_group.php');
 			include(DIR_FSROOT.'/html/auth/group/r_group_wh_id.php');
 			include(DIR_FSROOT.'/html/auth/group/r_group.php');
@@ -595,6 +603,29 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/perm/group_module/f_group_module.php');
 				echo '</fieldset>';
 			}
+			if (isset($_GET['f_id_auth_group'])) {
+				echo '<fieldset>';
+				echo '<legend>'.DYNAMIC_DASHBOARDS.'</legend>';
+				include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/w_group_dynamic_dashboard.php');
+				include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/e_group_dynamic_dashboard.php');
+				include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/r_group_dynamic_dashboard_wh_id.php');
+				include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/r_group_dynamic_dashboard.php');
+				include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/d_group_dynamic_dashboard.php');
+				echo '<div class="spacer">&nbsp;</div>';
+				
+				if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'">'.ADD.'</a> ]';
+				}
+				echo '<div class="spacer">&nbsp;</div>';
+				if (isset($_GET['f_id_config_dynamic_dashboard'])) {
+					echo '<strong>'.DEL.'</strong>';
+				}
+				else {
+					echo '<strong>'.ADD.'</strong>';
+				}
+				include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/f_group_dynamic_dashboard.php');
+				echo '</fieldset>';
+			}
 			echo '</fieldset>';
 			echo '<div class="spacer">&nbsp;</div>';
 		}
@@ -602,6 +633,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 		if ($component=='module') {
 			echo '<h1>'.MANAGE_MODULES.'</h1>';
 			include(DIR_FSROOT.'/html/perm/module/w_module.php');
+			include(DIR_FSROOT.'/html/perm/module_group/e_module_group_wh_id.php');
 			include(DIR_FSROOT.'/html/perm/module/e_module.php');
 			include(DIR_FSROOT.'/html/perm/module/r_module_wh_id.php');
 			include(DIR_FSROOT.'/html/perm/module/r_module.php');
