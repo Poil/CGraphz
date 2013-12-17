@@ -18,7 +18,9 @@ Clone Git
 > cd /var/www/
 
 > wget https://github.com/Poil/CGraphz/archive/v2.10alpha6.tar.gz
-    # Or
+
+Or
+
 > git clone http://github.com/Poil/CGraphz.git
 > git checkout -b v2.10
 
