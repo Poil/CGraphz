@@ -8,7 +8,7 @@
 <?php 
 
 
-for ($i=0; $i<$cpt_dynamic_dashboard;$i++) {
+for ($i=0; $i<$cpt_dynamic_dashboard_group;$i++) {
 
 	echo '
 	<tr>
