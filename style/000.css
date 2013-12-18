@@ -94,7 +94,6 @@ fieldset.large label {
 table {
 	margin:2pt;	
 	border: solid black 1pt;
-	/*padding-left:2pt;*/
 }
 
 table tr th {
@@ -154,7 +153,7 @@ table.table_admin tr th {
 table.table_admin tr:nth-child(odd) {
   background:#E6EEF7;
 }
-
+*
 #popup_information {
 	position:absolute; 
 	border:1px solid black; 
@@ -214,6 +213,12 @@ select {
 	height:16pt;
 }
 
+select.multiselect {
+	min-height:200pt;
+	vertical-align:inherit;
+	width:350pt;
+}
+
 input[type=checkbox] {
 	margin: 2pt 0pt 2pt 0pt;
 }
@@ -256,7 +261,6 @@ img {
 	border: 1px solid #000000;
 	background: #C5D6EA;
 	left: 50% ;
-	/* Moitié de la width */
 	margin-left:-450px;
 	
 	top: 50px;	
@@ -363,4 +367,5 @@ table.table_admin tr th.sorting_desc_disabled {
 
 .paginate_enabled_next:hover {                                                        
 	background: url('../img/forward_enabled_hover.png') no-repeat top right;   
-}                                           
+}
+                                          

@@ -9,13 +9,13 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<!--<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />!-->
 	
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/redmond/jquery-ui-1.10.0.custom.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/redmond/jquery-ui-1.10.3.custom.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/jquery-ui-timepicker-addon.css" />
-	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-1.9.0.min.js"></script>
-	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-1.10.0.custom.min.js"></script>
+	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-1.10.3.custom.min.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-timepicker-addon.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.strtotime.js"></script>
-	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.localisation.min.js"></script>
+	<!--<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.localisation.min.js"></script>!-->
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.liveSearch.js"></script>
 	
 	<?php
@@ -31,23 +31,25 @@
 	<?php
 	// Javascript and css of admin
 	if ($_GET['module'] != 'dashboard') {
-	?>
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/demo_table.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/multiselect/css/common.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/multiselect/css/ui.multiselect.css" />
-	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/dyn_js.php"></script>
-	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/multiselect/js/jquery.tmpl.1.1.1.js"></script>
-	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/multiselect/js/ui.multiselect.js"></script>
-	<?php
+		?>
+		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/demo_table.css" />
+		<!--<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/multiselect/css/common.css" />
+		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/multiselect/css/ui.multiselect.css" />
+		<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/multiselect/js/jquery.tmpl.1.1.1.js"></script>
+		<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/multiselect/js/ui.multiselect.js"></script>!-->
+		<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/js/jquery.uix.multiselect.min.js"></script>
+		<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/js/locales/jquery.uix.multiselect_fr.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/css/jquery.uix.multiselect.css" />
+		<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/dyn_js.php"></script>
+		<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.dataTables.min.js"></script>
+		<?php
 	}
 	?>
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/000.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/menu.css" />	 
-	
 
 	<?php
-
+	if ($_GET['module'] == 'dashboard') {
       	echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/sprintf.js"></script>
 	        <script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/strftime.js"></script>
 	        <script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/RrdRpn.js"></script>
@@ -58,6 +60,7 @@
 	        <script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/rrdFile.js"></script>
 	        <script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/RrdDataFile.js"></script>
 	        <script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/RrdCmdLine.js"></script>';
+	}
 	?>
 
 	
