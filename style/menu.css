@@ -20,7 +20,7 @@ div#div_menu_project_server {
 	font-size: 90%; 
 	width:100%;
 	background: #2c4056;
-	border-bottom:2pt solid #2c4056;
+	border-bottom:1pt solid #2c4056;
 }
 
 div#div_menu {
@@ -114,10 +114,8 @@ div#div_menu ul.niveau1 {
 	float:left;
 	padding:0;
 	margin:0;
-	/*margin-right:2pt;*/
 	display:block;
 	list-style:none;
-/*	margin-top:10pt; */
 }
 
 
@@ -159,12 +157,12 @@ div#div_menu li:hover{
 }
 
 div#div_menu li li {
-	border:2pt solid #2C4056;
+	border:1pt solid #2C4056;
 	border-top:none;
 }
 
 div#div_menu li li:first-child {
-	border-top:2pt solid #2c4056;
+	border-top:1pt solid #2c4056;
 }
 
 /*
@@ -182,14 +180,8 @@ div#div_menu li:hover ul.niveau2 {
 	left:0;
 	top:15pt;
 	background-color:#2C4056;
-	/*border:2pt solid #2c4056;
-	border-top:none;*/
 }
-/*
-div#div_menu li:hover ul.niveau2 li {
-	border-top:2pt solid #2c4056;
-}
-*/
+
 div#div_menu li li:hover ul.niveau3 {
 	display:block;
 	background-color:#2c4056;
