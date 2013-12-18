@@ -24,7 +24,7 @@ if (isset($_GET['f_id_config_server'])) {
 			}
 		echo '</select>';
 		?>
-		<br />
+		<div class="spacer">&nbsp;</div><br />
 		<input type="submit" name="f_submit_role_server" id="f_submit_role_server" value="<?php echo SUBMIT ?>" />
 	</form>
 	<?php 

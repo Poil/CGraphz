@@ -214,7 +214,7 @@ select {
 }
 
 select.multiselect {
-	min-height:200pt;
+	height:150pt;
 	vertical-align:inherit;
 	width:350pt;
 }
