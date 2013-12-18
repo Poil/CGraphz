@@ -1,9 +1,3 @@
-div#div_header {
-	width:100%;
-	height:14pt;
-	background:#2c4056;
-}
-
 div#div_header a {
 	font-size:80%;
 	font-weight:bold;
@@ -23,15 +17,14 @@ div#div_menu_project,
 div#div_menu_server_role,
 div#div_menu_server_environment,
 div#div_menu_project_server {
-	font-weight: bold; 
 	font-size: 90%; 
 	width:100%;
-	background:#507aaa;
+	background: #2c4056;
 	border-bottom:2pt solid #2c4056;
 }
 
 div#div_menu {
-	height:52pt;
+	height:42pt;
 }
 
 div#div_menu_project,
@@ -89,7 +82,7 @@ div#div_menu_server_environment span a:active {
 }
 
 div#div_menu_project input {
-	width:80pt;
+	width:100pt;
 }
 
 div#div_menu_project label {
@@ -98,11 +91,11 @@ div#div_menu_project label {
 
 div#div_menu_project label, 
 div#div_menu_project input {
-	font-size: 80%; 
-	height:10pt;
+	font-size: 90%; 
+	height:11pt;
 	margin:0;
-	margin-top:1pt;
-	margin-right:1pt;
+	margin-top:0.4pt;
+	margin-right:0.4pt;
 	float:right;
 }
 
@@ -124,7 +117,7 @@ div#div_menu ul.niveau1 {
 	/*margin-right:2pt;*/
 	display:block;
 	list-style:none;
-	margin-top:10pt;
+/*	margin-top:10pt; */
 }
 
 
@@ -166,7 +159,7 @@ div#div_menu li:hover{
 }
 
 div#div_menu li li {
-	border:2pt solid #2c4056;
+	border:2pt solid #2C4056;
 	border-top:none;
 }
 
@@ -188,7 +181,7 @@ div#div_menu li:hover ul.niveau2 {
 	display:block;
 	left:0;
 	top:15pt;
-	background-color:#507aaa;
+	background-color:#2C4056;
 	/*border:2pt solid #2c4056;
 	border-top:none;*/
 }
@@ -199,12 +192,12 @@ div#div_menu li:hover ul.niveau2 li {
 */
 div#div_menu li li:hover ul.niveau3 {
 	display:block;
-	background-color:#507aaa;
+	background-color:#2c4056;
 }
 
 div#div_menu li.sfhover ul.niveau2 {
 	display:block;
-	background-color:#507aaa;
+	background-color:#759FCF;
 }
 /*
 div#div_menu li li.sfhover ul.niveau3 {

@@ -1,8 +1,3 @@
-<div id="div_header">
-	<a href="index.php" style="float:left">Home</a>
-	<a href="index.php" style="float:left">Help</a>
-	<a href="index.php?f_logout=exit" style="float:right">Logout</a>
-</div>
 <div id="div_menu">
 
 

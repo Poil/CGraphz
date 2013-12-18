@@ -92,4 +92,4 @@ define('COLLECTD_VERSION','Collectd version') ;
 define('CONFIRM_DELETE','Do you really want to delete this?') ;
 define('DASHBOARD','Dashboard');
 define('DYNAMIC_DASHBOARDS','Dynamic dashboards');
-?>
+define('DBL_CLICK_ZOOM','Double click to Zoom');
