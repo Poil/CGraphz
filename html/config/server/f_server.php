@@ -25,8 +25,6 @@ if (isset($cur_server->id_config_server)) {
 	<?php
 	if (!empty($cur_server->collectd_version)) {
 		$cur_version=$cur_server->collectd_version;
-	} else {
-		$cur_version=COLLECTD_DEFAULT_VERSION;
 	}
 	foreach(unserialize(COLLECTD_VERSIONS) as $collectd_version) {
 		echo '<option value="'.$collectd_version.'" '.(($collectd_version == $cur_version)?' selected="selected"':'').'>';
