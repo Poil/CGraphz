@@ -17,13 +17,12 @@ Clone Git
 -----
 > cd /var/www/
 
-> wget https://github.com/Poil/CGraphz/archive/v2.10alpha6.tar.gz
+> wget https://github.com/Poil/CGraphz/archive/v2.10alpha7.tar.gz
 
 Or
 
 > git clone http://github.com/Poil/CGraphz.git
 
-> git checkout -b v2.10
 =======
 
 Post Installation
