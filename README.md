@@ -24,6 +24,7 @@ Or
 > git clone http://github.com/Poil/CGraphz.git
 
 > git checkout -b v2.10
+=======
 
 Post Installation
 -----
