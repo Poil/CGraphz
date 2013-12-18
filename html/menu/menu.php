@@ -1,5 +1,5 @@
 <div id="div_menu">
-
+<div id="div_logout"><a href="index.php?f_logout=true">Logout</a></div>
 
 <h1>CGRAPHZ</h1>
 <?php

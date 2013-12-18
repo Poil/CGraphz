@@ -11,6 +11,16 @@ body {
 	background:#dcdad5;
 }
 
+div#div_logout {
+	position:absolute;
+	right:0.4pt;
+}
+
+div#div_logout a {
+	color: white;
+	font-size:8pt;
+}
+
 div#content {
 	position:relative;	
 	margin-top:0;	
