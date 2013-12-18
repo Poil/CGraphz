@@ -67,20 +67,22 @@
 	<title>CGRAPHZ <?php echo CGRAPHZ_VERSION; ?></title>
 </head>
 <body id="id_body">
-<div id="content">
 <?php
 if ($auth->verif_auth()) {
+?>
+<div id="content">
+<?php
 	include(DIR_FSROOT.'/html/menu/menu.php');
 	include(DIR_FSROOT.'/config/module.php');
-} else {
-	include(DIR_FSROOT.'/html/auth/auth/f_auth.php');
-	echo NOT_LOGGED_MSG;
-}
-
-?> 
+?>
 </div>
-
 <div id="mask" style="display: none;"></div>
 <div id="popup" style="display: none;"></div>
+<?php
+} else {
+	include(DIR_FSROOT.'/html/auth/auth/f_auth.php');
+}
+?> 
+
 </body>
 </html>

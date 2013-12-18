@@ -1,3 +1,4 @@
+<div id="div_login">
 <h1>CGRAPHZ</h1>
 <br />
 <img class="img_menu" height="64" width="64" style="float:left" src="img/auth.png" />
@@ -9,3 +10,4 @@
 		<input type="password" name="f_passwd" id="f_passwd" value="" /><br />
 	<input type="submit" name="f_submit_auth" id="f_submit_auth" value="<?php echo SUBMIT ?>" />
 </form>
+</div>
