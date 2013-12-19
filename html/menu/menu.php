@@ -1,3 +1,9 @@
+<?php
+$cur_url=$_SERVER["REQUEST_URI"];
+$module=GET('module');
+$component=GET('component');
+$workflow=GET('workflow');
+?>
 <div id="div_menu">
 <div id="div_logout"><a href="index.php?f_logout=true">Logout</a></div>
 
@@ -98,3 +104,13 @@ echo '
 }
 ?>
 </div>
+<?php
+if ($module == 'dashboard' && $component == 'view') {
+	if (NEW_MENU) {
+		include(DIR_FSROOT.'/html/dashboard/nav_menu/r_nav_menu.php');
+		include(DIR_FSROOT.'/html/dashboard/nav_menu/d_nav_menu.php');
+	} else {
+		include(DIR_FSROOT.'/html/menu/menu_project.php');
+	}
+}
+?>

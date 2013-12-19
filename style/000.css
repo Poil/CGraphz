@@ -41,6 +41,7 @@ div#content {
 	border:1pt solid #555555;
 	border-top:none;
 	min-height:500pt;
+	padding:0 5pt 0 5pt;
 }
 
 div#dashboard {
@@ -76,11 +77,11 @@ form label {
 fieldset {
 	margin:5pt;
 	padding:1pt;
-	float:left;
 }
 
 fieldset fieldset {
 	width:350pt;  
+	float:left;
 }
 
 fieldset legend {
@@ -93,11 +94,11 @@ fieldset legend {
 fieldset fieldset legend {
 	font-size:120%;
 }
-
+/*
 fieldset fieldset:nth-child(even) {
 	clear:both;  
 }
-
+*/
 fieldset.large {
 	width:715pt;
 }
@@ -111,14 +112,15 @@ fieldset.large label {
 table {
 	margin:2pt;	
 	border: solid black 1pt;
+	overflow: hidden;
+}
+
+table tr {
+	position: relative;
 }
 
 table tr th {
-	border-right:1px solid grey;
-}
-
-table tr th:last-child {
-	border-right:none;
+	font-weight:normal;
 }
 
 table tr td {
@@ -138,8 +140,8 @@ table tr td:last-child {
 
 h1 {
 	font-size:18pt;
+	margin-top:0;
 	margin-bottom:0;
-	margin-top:5pt;
 	font-weight:normal;
 }
 
@@ -164,15 +166,18 @@ h4 {
 table.table_admin {
 	clear:both;
 	white-space: nowrap;
+	border-radius: 5pt 5pt 0 0pt;
+	min-width:180pt;
 }
 
-table.table_admin tr th {
-	background:#507aaa;
+table.table_admin thead tr th {
+	border-bottom:1pt solid black;
+	background:#2C4056;
 	padding:1pt 15pt 1pt 15pt;
 	color:white;
 }
 
-table.table_admin tr:nth-child(odd) {
+table.table_admin tbody tr:nth-child(odd) {
 	background:#E6EEF7;
 }
 
@@ -324,23 +329,23 @@ img {
 
 /********* DataTable Fix ************/
 table.table_admin tr th.sorting_asc {
-        background: url('../img/sort_asc.png') #507AAA no-repeat center right;
+        background: url('../img/sort_asc.png') #2C4056 no-repeat center right;
 }
 
 table.table_admin tr th.sorting_desc {
-        background: url('../img/sort_desc.png') #507AAA no-repeat center right;
+        background: url('../img/sort_desc.png') #2C4056 no-repeat center right;
 }
 
 table.table_admin tr th.sorting {
-        background: url('../img/sort_both.png') #507AAA no-repeat center right;
+        background: url('../img/sort_both.png') #2C4056 no-repeat center right;
 }
 
 table.table_admin tr th.sorting_asc_disabled {
-        background: url('../img/sort_asc_disabled.png') #507AAA no-repeat center right;
+        background: url('../img/sort_asc_disabled.png') #2C4056 no-repeat center right;
 }
 
 table.table_admin tr th.sorting_desc_disabled {
-        background: url('../img/sort_desc_disabled.png') #507AAA no-repeat center right;
+        background: url('../img/sort_desc_disabled.png') #2C4056 no-repeat center right;
 }
 
 .dataTables_wrapper {
@@ -391,4 +396,32 @@ table.table_admin tr th.sorting_desc_disabled {
 .paginate_enabled_next:hover {                                                        
 	background: url('../img/forward_enabled_hover.png') no-repeat top right;   
 }
-                                          
+ 
+/** Redmon Override **/                                         
+.uix-multiselect .option-element,
+.header-text {
+	font-weight:normal;
+}
+
+.uix-list-container {
+	border:1pt solid black;
+}
+
+.multiselect-selected-list .uix-list-container {
+	border-right: none;
+}
+
+.ui-widget-header {
+	background: #2C4056;
+	border:none;
+	border-top:1pt solid black;
+}
+
+.ui-corner-tr {
+	border-right:1pt solid black;
+}
+
+.ui-corner-tl {
+	border-left:1pt solid black;
+}
+

@@ -15,7 +15,7 @@ if (isset($cur_server->id_config_server)) {
 	}
 	?>
 	</select>
-	<div class="spacer">&nbsp;</div>
+	<div class="spacer">&nbsp;</div><br />
 <?php 
 } 
 ?>		

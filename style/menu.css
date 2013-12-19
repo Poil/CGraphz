@@ -157,12 +157,11 @@ div#div_menu li:hover{
 }
 
 div#div_menu li li {
-	border:1pt solid #2C4056;
-	border-top:none;
+	border-top:1pt solid white;
 }
 
-div#div_menu li li:first-child {
-	border-top:1pt solid #2c4056;
+div#div_menu li li li:first-child {
+	border-top:none;
 }
 
 /*

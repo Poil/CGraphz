@@ -69,16 +69,12 @@
 <body id="id_body">
 <?php
 if ($auth->verif_auth()) {
-?>
-<div id="content">
-<?php
 	include(DIR_FSROOT.'/html/menu/menu.php');
+	echo '<div id="content">';
 	include(DIR_FSROOT.'/config/module.php');
-?>
-</div>
-<div id="mask" style="display: none;"></div>
-<div id="popup" style="display: none;"></div>
-<?php
+	echo '</div>
+		<div id="mask" style="display: none;"></div>
+		<div id="popup" style="display: none;"></div>';
 } else {
 	include(DIR_FSROOT.'/html/auth/auth/f_auth.php');
 }
