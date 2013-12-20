@@ -259,6 +259,7 @@ div#jquery-live-search {
 	overflow-y: auto;
 	max-height:250pt;
 	max-width: none;
+	z-index:99;
 }
 
 div#nav_menu {
