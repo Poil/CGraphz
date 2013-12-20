@@ -81,7 +81,8 @@ fieldset {
 
 fieldset fieldset {
 	width:350pt;  
-	float:left;
+	display:inline-block;
+	vertical-align:top;
 }
 
 fieldset legend {
