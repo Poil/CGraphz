@@ -69,6 +69,9 @@ $CONFIG['datadir'] = '/var/lib/collectd/rrd/';
 # rrdtool executable
 $CONFIG['rrdtool'] = '/usr/bin/rrdtool';
 
+# rrd fetch method async/sync
+$CONFIG['rrd_fetch_method'] = 'async';
+
 # rrdtool special options
 $CONFIG['rrdtool_opts'] = '';
 

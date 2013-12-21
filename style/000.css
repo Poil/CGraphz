@@ -12,12 +12,9 @@ body {
 }
 
 div#div_login {
-	position:relative;
 	width:300pt;
 	height:120pt;
-	left:50%;
-	margin-left:-150pt;
-	top:150pt;
+	margin: 10pt auto;
 	border:1pt solid #555555;
 	padding:8pt;
 	border-radius:8pt;
