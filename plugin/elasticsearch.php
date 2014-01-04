@@ -16,7 +16,10 @@ switch($obj->args['pinstance']) {
 		$obj -> rrd_vertical = sprintf('%s', str_replace('_', ' ', $obj -> args['type']));
 		$obj -> rrd_format = '%5.1lf%s';
 
-		break;
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 $obj -> rrd_format = '%5.1lf%s';

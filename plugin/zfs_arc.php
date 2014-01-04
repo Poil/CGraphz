@@ -47,7 +47,7 @@ switch($obj->args['type']) {
 		);
 		$obj->rrd_title = 'arc counts';
 		$obj->rrd_vertical = 'count';
-		break;
+	break;
 	case 'arc_size':
 		$obj->data_sources = array('current','target','minlimit','maxlimit');
 		$obj->order = array(
@@ -58,7 +58,7 @@ switch($obj->args['type']) {
 		);
 		$obj->rrd_title = 'Arc size';
 		$obj->rrd_vertical = 'bytes';
-		break;
+	break;
 	case 'arc_l2_bytes':
 		$obj->data_sources = array(
 			'write',
@@ -74,7 +74,7 @@ switch($obj->args['type']) {
 		);
 		$obj->rrd_title = 'Arc L2 bytes';
 		$obj->rrd_vertical = 'bytes';
-		break;
+	break;
 	case 'arc_l2_size':
 		$obj->data_sources = array(
 			'value',
@@ -87,12 +87,15 @@ switch($obj->args['type']) {
 		);
 		$obj->rrd_title = 'Arc L2 size';
 		$obj->rrd_vertical = 'bytes';
-		break;
+	break;
 	case 'arc_ratio':
 		$obj->data_sources = array('value');
 		$obj->rrd_title = 'Arc ratio';
 		$obj->rrd_vertical = 'ratio';
-		break;
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 collectd_flush($obj->identifiers);
 $obj->rrd_graph();

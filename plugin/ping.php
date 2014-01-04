@@ -25,14 +25,17 @@ switch($obj->args['type']) {
 			$obj->data_sources = array('ping');
 		$obj->rrd_title = 'Ping latency';
 		$obj->rrd_vertical = 'Milliseconds';
-		break;
+	break;
 	case 'ping_stddev':
 		$obj->rrd_title = 'Ping standard deviation'; 
 		$obj->rrd_vertical = 'Milliseconds';
-		break;
+	break;
 	case 'ping_droprate':
 		$obj->rrd_title = 'Ping droprate';
-		break;
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 collectd_flush($obj->identifiers);

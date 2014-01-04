@@ -20,13 +20,16 @@ switch($obj->args['type']) {
 		$obj->colors = array('value' => '0000ff');
 		$obj->rrd_title = sprintf('Filecount: size (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bytes';
-		break;
+	break;
 	case 'files':
 		$obj->ds_names = array('value' => 'Files');
 		$obj->colors = array('value' => 'f0a000');
 		$obj->rrd_title = sprintf('Filecount: number of files (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Files';
-		break;
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 collectd_flush($obj->identifiers);

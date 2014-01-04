@@ -32,6 +32,9 @@ switch($obj->args['type']) {
 		$obj->rrd_title = sprintf('Voltage (Battery %s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Volt';
 	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 $obj->rrd_format = '%4.1lf';
 

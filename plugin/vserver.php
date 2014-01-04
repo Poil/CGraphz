@@ -53,7 +53,7 @@ switch($obj->args['type']) {
 
 		collectd_flush($obj->identifiers);
 		$obj->rrd_graph();
-		break;
+	break;
 	case 'vs_threads':
 		$obj = new Type_GenericStacked($CONFIG);
 		$obj->order = array('running', 'uninterruptable', 'onhold', 'total');
@@ -77,7 +77,7 @@ switch($obj->args['type']) {
 
 		collectd_flush($obj->identifiers);
 		$obj->rrd_graph();
-		break;
+	break;
 	case 'if_octets':
 		$obj->data_sources = array('rx', 'tx');
 		$obj->ds_names = array(
@@ -105,7 +105,7 @@ switch($obj->args['type']) {
 
 		collectd_flush($obj->identifiers);
 		$obj->rrd_graph();
-		break;
+	break;
 	case 'vs_processes':
 		$obj->data_sources = array('value');
 		$obj->ds_names = array(
@@ -118,8 +118,8 @@ switch($obj->args['type']) {
 
 		collectd_flush($obj->identifiers);
 		$obj->rrd_graph();
-		break;
-
+	break;
 	default:
-		die('Not implemented yet.');
-		break;
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
+}

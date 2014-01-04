@@ -24,7 +24,7 @@ switch($obj->args['type']) {
 		$obj->rrd_title = 'Page faults';
 		$obj->rrd_vertical = '';
 		$obj->rrd_format = '%5.1lf%s';
-		break;
+	break;
 	case 'vmpage_io':
 		$obj->data_sources = array('in', 'out');
 		$obj->ds_names = array('memory-in'  => 'Memory (in)',
@@ -38,7 +38,7 @@ switch($obj->args['type']) {
 		$obj->rrd_title = 'Page IO';
 		$obj->rrd_vertical = '';
 		$obj->rrd_format = '%5.1lf%s';
-		break;
+	break;
 	case 'vmpage_number':
 		$obj->data_sources = array('value');
 		$obj->order = array('active_anon', 'active_file',
@@ -54,7 +54,10 @@ switch($obj->args['type']) {
 		$obj->rrd_title = 'Pages';
 		$obj->rrd_vertical = '';
 		$obj->rrd_format = '%5.1lf%s';
-		break;
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 collectd_flush($obj->identifiers);

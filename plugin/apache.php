@@ -146,6 +146,9 @@ switch ($obj->args['type']) {
 			!empty($obj->args['pinstance']) ? ' ('.$obj->args['pinstance'].')' : '');
 		$obj->rrd_vertical = 'Slots';
 	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 $obj->rrd_format = '%5.1lf';

@@ -44,6 +44,9 @@ switch($obj->args['type']) {
 		$obj->rrd_format = '%5.1lf%ss';
 		$obj->scale = '0.001';
 	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 collectd_flush($obj->identifiers);

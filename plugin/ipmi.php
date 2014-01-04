@@ -42,6 +42,9 @@ switch($obj->args['type']) {
 		$obj->rrd_vertical = 'Ampere';
 		$obj->rrd_format = '%5.1lf';
 	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 collectd_flush($obj->identifiers);

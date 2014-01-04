@@ -127,6 +127,9 @@ if (GET('pi') == 'system') {
          $obj->rrd_vertical = 'Ops/s';
          $obj->rrd_format = '%5.1lf%s';
       break;
+      default:
+         error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+      break;
    }
 } else if (GET('pi') == 'wafl') {
    switch(GET('t')) {
@@ -215,7 +218,9 @@ if (GET('pi') == 'system') {
          $obj->rrd_vertical = 'us';
          $obj->rrd_format = '%5.1lf%s';
       break;
-
+      default:
+         error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+      break;
    }
 }
 

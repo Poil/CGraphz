@@ -117,7 +117,10 @@ switch($obj->args['type']) {
 		);
 		$obj->rrd_title = sprintf('Interface transmit errors (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Errors/s';
-		break;
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 collectd_flush($obj->identifiers);

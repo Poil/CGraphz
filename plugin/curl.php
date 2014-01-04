@@ -68,45 +68,48 @@ switch ($pi) {
 </Plugin>
  */
 
-
-
-	case 'apc':
-		switch(GET('t')) {
-		
+case 'apc':
+	switch(GET('t')) {
 		# cache_result-(hits|misses).rrd
-			case 'cache_result':
-				require_once 'type/GenericStacked.class.php';
-				$obj = new Type_GenericStacked($CONFIG);
-				$obj->order = array('hits', 'misses');
-				$obj->ds_names = array(
+		case 'cache_result':
+			require_once 'type/GenericStacked.class.php';
+			$obj = new Type_GenericStacked($CONFIG);
+			$obj->order = array('hits', 'misses');
+			$obj->ds_names = array(
 					'hits' => 'Hits',
 					'misses'   => 'Misses',
-				);
-				$obj->colors = array(
+					);
+			$obj->colors = array(
 					'hits' => '00e000',
 					'misses'   => '0000ff',
-				);
-				$obj->rrd_title = 'APC Hits/Misses';
-				$obj->rrd_vertical = 'Count';
+					);
+			$obj->rrd_title = 'APC Hits/Misses';
+			$obj->rrd_vertical = 'Count';
 			break;
-		
+
 		# cache_size-(used|free).rrd
-			case 'cache_size':
-				require_once 'type/GenericStacked.class.php';
-				$obj = new Type_GenericStacked($CONFIG);
-				$obj->order = array('used', 'free');
-				$obj->ds_names = array(
+		case 'cache_size':
+			require_once 'type/GenericStacked.class.php';
+			$obj = new Type_GenericStacked($CONFIG);
+			$obj->order = array('used', 'free');
+			$obj->ds_names = array(
 					'used' => 'Used',
 					'free'   => 'Free',
-				);
-				$obj->colors = array(
+					);
+			$obj->colors = array(
 					'used' => '00e000',
 					'free'   => '0000ff',
-				);
-				$obj->rrd_title = 'APC Memory usage';
-				$obj->rrd_vertical = 'Memory';
+					);
+			$obj->rrd_title = 'APC Memory usage';
+			$obj->rrd_vertical = 'Memory';
 			break;
-		}
+		default:
+			error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+			break;
+	}
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 	break;
 }
 

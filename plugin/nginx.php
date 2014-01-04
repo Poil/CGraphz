@@ -59,6 +59,9 @@ switch($obj->args['type']) {
 		$obj->rrd_title = sprintf('nginx requests');
 		$obj->rrd_vertical = 'Requests per second';
 	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 $obj->rrd_format = '%5.1lf%s';

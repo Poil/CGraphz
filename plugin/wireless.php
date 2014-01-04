@@ -15,15 +15,18 @@ switch($obj->args['type']) {
 	case 'signal_noise':
 		$obj->rrd_title = sprintf('Noise level (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'dBm';
-		break;
+	break;
 	case 'signal_power':
 		$obj->rrd_title = sprintf('Signal level (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'dBm';
-		break;
+	break;
 	case 'signal_quality':
 		$obj->rrd_title = sprintf('Link Quality (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'quality';
-		break;
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 collectd_flush($obj->identifiers);

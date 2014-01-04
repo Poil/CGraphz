@@ -149,6 +149,9 @@ switch($obj->args['type']) {
                 $obj->rrd_title = sprintf('Time Offset (%s)', $obj->args['pinstance']);
                 $obj->rrd_vertical = 'seconds';
         break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 
 }
 
