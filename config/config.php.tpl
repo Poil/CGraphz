@@ -45,6 +45,9 @@ define('MAX_IMG_SIZE',8388608);
 # Language
 define('DEF_LANG','en');
 
+# system default timezone when not set
+define('DEFAULT_TIMEZONE', 'UTC');
+
 # use the negative X-axis in I/O graphs
 $CONFIG['negative_io'] = false;
 
@@ -120,4 +123,6 @@ spl_autoload_register("my_autoload");
 include(DIR_FSROOT.'/lang/local.'.DEF_LANG.'.php');
 include(DIR_FSROOT.'/html/form/commun/func_form.php');
 include(DIR_FSROOT.'/modules/functions.inc.php');
+
+if (!ini_get('date.timezone')) { date_default_timezone_set(DEFAULT_TIMEZONE); }
 ?>
