@@ -28,6 +28,7 @@ switch(GET('t')) {
 		);
 		$obj->rrd_title = 'Swap utilization';
 		$obj->rrd_vertical = 'Bytes';
+		$obj->base = $CONFIG['default_base'];
 	break;
 	case 'swap_io':
 		require_once 'type/GenericIO.class.php';

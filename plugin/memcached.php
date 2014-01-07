@@ -38,6 +38,7 @@ switch(GET('t')) {
 		);
 		$obj->rrd_title = 'Memcached Memory Usage';
 		$obj->rrd_vertical = 'bytes';
+		$obj->base = $CONFIG['default_base'];
 	break;
 
 # memcached_command-(flush|get|set).rrd

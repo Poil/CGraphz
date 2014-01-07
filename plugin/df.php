@@ -28,6 +28,7 @@ $obj->colors = array(
 $obj->rrd_title = sprintf('Free space (%s)', $obj->args['pinstance']);
 $obj->rrd_vertical = 'Bytes';
 $obj->rrd_format = '%5.1lf%sB';
+$obj->base = $CONFIG['default_base'];
 
 # backwards compatibility
 if ($CONFIG['version'] < 5) {

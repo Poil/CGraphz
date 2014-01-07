@@ -88,6 +88,11 @@ $CONFIG['showload'] = true;
 # show graphs in bits or bytes
 $CONFIG['network_datasize'] = 'bytes';
 
+# Base value 
+## 1000 -> 1 Megabyte = 1000 Kilobyte 
+## 1024 -> 1 Megabyte = 1024 Kilobyte)
+$CONFIG['default_base']=1024;
+
 # Display graphs as png, svg or canvas 
 # Note that svg graph dimensions are defined in "points" (pt) and not pixels, so svg image sizes will be different then png
 $CONFIG['graph_type'] = 'png';

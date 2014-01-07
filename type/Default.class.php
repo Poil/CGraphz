@@ -26,6 +26,7 @@ class Type_Default {
 	var $files;
 	var $tinstances;
 	var $identifiers;
+	var $base;
 
 	function __construct($config) {
 		$this->datadir = $config['datadir'];
@@ -266,6 +267,8 @@ class Type_Default {
 			$rrdgraph[] = $this->rrdtool_opts;
 		if ($this->graph_smooth)
 			$rrdgraph[] = '-E';
+		if (!empty($this->base))
+			$rrdgraph[] = '--base '.$this->base;
 
 		# In the case of SVG files, we will want to have rrdgraph generate it at a higher "resolution"
 		# Then use a width= attribute in the <img> tag to scale it to the desired width
