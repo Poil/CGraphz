@@ -7,7 +7,7 @@ define('CGRAPHZ_VERSION','2.10 beta 3');
 
 # Collectd
 define('COLLECTD_DEFAULT_VERSION',5);
-define('COLLECTD_VERSIONS',serialize(array(3,4,5.0,5.1,5.2)));
+define('COLLECTD_VERSIONS',serialize(array(NULL,3,4,5.0,5.1,5.2)));
 
 # LDAP Configuration
 ## Host : ldaps://192.168.0.1
