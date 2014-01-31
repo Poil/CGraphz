@@ -39,7 +39,7 @@ class AUTH_USER {
 			}
 			else if ($res->user) { // L'utilisateur est connu dans la BDD
 				$this->id_auth_user=$res->id_auth_user;
-				if ($res>type=='mysql'){ // est ce un compte mysql
+				if ($res->type=='mysql'){ // est ce un compte mysql
 					if ($this->verif_auth_mysql(true)) {
 						return true;
 					} else {
