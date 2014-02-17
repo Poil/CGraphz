@@ -41,7 +41,7 @@ Post Installation
 
 * Better file permissions to root / apache
 
-> chown root.www-data /var/www/CGraphz/
+> chown -R root.www-data /var/www/CGraphz/
 
 > find /var/www/CGraphz/ -type d -print0 | xargs -0 -r chmod 2750
 
