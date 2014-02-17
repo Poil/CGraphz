@@ -17,7 +17,7 @@ Clone Git
 -----
 > cd /var/www/
 
-> wget https://github.com/Poil/CGraphz/archive/v2.10rc1.tar.gz
+> wget https://github.com/Poil/CGraphz/archive/v2.10beta4.tar.gz
 
 Or
 
@@ -58,3 +58,4 @@ Add your first server
  * Put some servers in this project
  * Add the admin group to the permissions tab
 1. You can now go on dashboard and view your RRDs
+

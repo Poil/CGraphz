@@ -94,3 +94,4 @@ define('CONFIRM_DELETE','Voulez-vous réellement effacer cet élément?') ;
 define('DASHBOARD','Dashboard');
 define('DYNAMIC_DASHBOARDS','Dynamic dashboards');
 define('DBL_CLICK_ZOOM','Double click pour Zoom');
+define('DEFAULT_VERSION','Version par défaut');
