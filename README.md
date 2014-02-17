@@ -49,6 +49,8 @@ Post Installation
 
 * Create LOGS dir must be apache writable :
 
+> mkdir -p /var/www/CGraphz/logs
+
 > chmod 2770 /var/www/CGraphz/logs
 
 Add your first server
