@@ -41,7 +41,8 @@ if (isset($_POST['f_submit_dynamic_dashboard'])) {
 				$lib='INSERT INTO config_dynamic_dashboard_group 
 						(id_config_dynamic_dashboard, id_auth_group, group_manager) 
 					VALUES 
-					(:id_config_dynamic_dashboard, :id_auth_group ,"1")';
+					(:id_config_dynamic_dashboard, :id_auth_group ,1)';
+				$connSQL->bind('id_config_dynamic_dashboard',$id_config_dynamic_dashboard);
 				$connSQL->bind('id_auth_group',$id_auth_group);
 				$connSQL->query($lib);
 			}
