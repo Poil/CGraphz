@@ -38,6 +38,15 @@ Post Installation
 
 > mv /var/www/CGraphz/config/databases.ini.php.tpl /var/www/CGraphz/config/databases.ini.php
 
+* Better file permissions to root / apache
+> chown root.www-data /var/www/CGraphz/
+> find /var/www/CGraphz/ -type d -print0 | xargs -0 -r chmod 2750
+> find /var/www/CGraphz/ -type f -print0 | xargs -0 -r chmod 640
+
+* Create LOGS dir must be apache writable :
+
+> chmod 2770 /var/www/CGraphz/logs
+
 Add your first server
 -------
 1. Open your webbrowser and goto http://localhost/CGraphz
