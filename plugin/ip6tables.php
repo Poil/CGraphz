@@ -14,12 +14,15 @@ $obj = new Type_GenericStacked($CONFIG);
 $obj->data_sources = array('value');
 switch(GET('t')) {
 	case 'ipt_bytes':
-	  $obj->rrd_title = 'Bytes';
-	  break;
+		$obj->rrd_title = 'Bytes';
+	break;
 	case 'ipt_packets':
-	  $obj->rrd_title = 'Packets';
-	  break;
- }
+		$obj->rrd_title = 'Packets';
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
+}
 $obj->rrd_vertical = '';
 $obj->rrd_format = '%5.1lf%s';
 

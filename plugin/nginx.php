@@ -8,6 +8,8 @@ require_once 'modules/collectd.inc.php';
 
 ## LAYOUT
 # nginx/
+# nginx/connections-accepted.rrd
+# nginx/connections-handled.rrd
 # nginx/nginx_connections-active.rrd
 # nginx/nginx_connections-reading.rrd
 # nginx/nginx_connections-waiting.rrd
@@ -16,8 +18,20 @@ require_once 'modules/collectd.inc.php';
 
 $obj = new Type_Default($CONFIG);
 
-switch($obj->args['type'])
-{
+switch($obj->args['type']) {
+	case 'connections':
+		$obj->order = array('accepted', 'handled');
+		$obj->ds_names = array(
+			'accepted'  => 'Accepted',
+			'handled' => 'Handled',
+		);
+		$obj->colors = array(
+			'accepted' => 'ff0000',
+			'handled' => '0000ff',
+		);
+		$obj->rrd_title = sprintf('nginx connections');
+		$obj->rrd_vertical = 'Connections/s';
+	break;
 	case 'nginx_connections':
 		$obj->order = array('active', 'reading', 'waiting', 'writing');
 		$obj->ds_names = array(
@@ -44,6 +58,9 @@ switch($obj->args['type'])
 		);
 		$obj->rrd_title = sprintf('nginx requests');
 		$obj->rrd_vertical = 'Requests per second';
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 	break;
 }
 

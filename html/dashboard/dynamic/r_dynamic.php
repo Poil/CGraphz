@@ -75,6 +75,12 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
          $all_server=$connSQL->query($lib);
          $cpt_server=count($all_server);         
          
+         if (isset($time_start) && isset($time_end)) {
+             $zoom='ondblclick="Show_Popup($(this).attr(\'src\').split(\'?\')[1],\'\',\''.$time_start.'\',\''.$time_end.'\')"';
+         } else {
+             $zoom='ondblclick="Show_Popup($(this).attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\')"';
+         }
+
          for ($j=0; $j<$cpt_server; $j++) {
             
             if (is_dir($CONFIG['datadir'].'/'.$all_server[$j]->server_name.'/')) {
@@ -194,29 +200,24 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                if (!preg_match('/^(df|interface|oracle)$/', $plugin['p'])  || ($plugin['collectd_version'] >= 5 && $plugin['p']!='oracle' && $plugin['t']!='df')) {
                   $plugin['ti']=null;
                   if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
-                        if ($CONFIG['graph_type'] == 'canvas') {
-                           $_GET['h'] = $plugin['servername'];
-                           $_GET['p'] = $plugin['p'];
-                           $_GET['pc'] = $plugin['pc'];
-                           $_GET['pi'] = $plugin['pi'];
-                           $_GET['t'] = $plugin['t'];
-                           $_GET['tc'] = $plugin['tc'];
-                           $_GET['ti'] = $plugin['ti'];
+                      if ($CONFIG['graph_type'] == 'canvas') {
+                         $_GET['h'] = $plugin['servername'];
+                         $_GET['p'] = $plugin['p'];
+                         $_GET['pc'] = $plugin['pc'];
+                         $_GET['pi'] = $plugin['pi'];
+                         $_GET['t'] = $plugin['t'];
+                         $_GET['tc'] = $plugin['tc'];
+                         $_GET['ti'] = $plugin['ti'];
                            
-                           chdir(DIR_FSROOT);
-                           include DIR_FSROOT.'/plugin/'.$plugin['p'].'.php';
-                        } else {
-                           if ($time_range!=null) {
-                              echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
-                           } else {
-                              echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
-                           }
-                        }
-                     if (isset($time_start) && isset($time_end)) {
-                        echo '<img class="imgzoom" style="cursor:pointer" onclick="Show_Popup($(this).prev(\'img\').attr(\'src\').split(\'?\')[1],\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
-                     } else {
-                        echo '<img class="imgzoom" style="cursor:pointer" onclick="Show_Popup($(this).prev(\'img\').attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
-                     }
+                         chdir(DIR_FSROOT);
+                         include DIR_FSROOT.'/plugin/'.$plugin['p'].'.php';
+                      } else {
+                         if ($time_range!=null) {
+                            echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
+                         } else {
+                            echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
+                         }
+                      }
                   }
                } else {
                   if ($CONFIG['graph_type'] == 'canvas') {
@@ -232,18 +233,13 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                      include DIR_FSROOT.'/plugin/'.$plugin['p'].'.php';
                   } else {
                      if ($time_range!=null) {
-                        echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
+                        echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_range.' />'."\n";
                      } else {
-                        echo '<img class="imggraph" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
+                        echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src='.DIR_WEBROOT.'/graph.php?h='.$plugin['servername'].'&amp;p='.$plugin['p'].'&amp;pc='.$plugin['pc'].'&amp;pi='.$plugin['pi'].'&amp;t='.$plugin['t'].'&amp;tc='.$plugin['tc'].'&amp;ti='.$plugin['ti'].'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
                      }
                   }
-                  if (isset($time_start) && isset($time_end)) {
-                     echo '<img class="imgzoom" style="cursor:pointer" onclick="Show_Popup($(this).prev(\'img\').attr(\'src\').split(\'?\')[1],\'\',\''.$time_start.'\',\''.$time_end.'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
-                  } else {
-                     echo '<img class="imgzoom" style="cursor:pointer" onclick="Show_Popup($(this).prev(\'img\').attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\')" src="img/zoom.png" title="Zoom" alt="=O" />'."\n";
-                  }
                }
-         
+        
                $old_t=$plugin['t'];
                $old_tc=$plugin['tc'];
                $old_ti=$plugin['ti'];

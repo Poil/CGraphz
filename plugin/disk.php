@@ -32,6 +32,7 @@ switch($obj->args['type']) {
 		$obj->rrd_title = sprintf('Disk Traffic (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bytes per second';
 		$obj->rrd_format = '%5.1lf%s';
+		$obj->base = $CONFIG['default_base'];
 	break;
 	case 'disk_ops':
 		$obj->rrd_title = sprintf('Disk Operations (%s)', $obj->args['pinstance']);
@@ -43,6 +44,9 @@ switch($obj->args['type']) {
 		$obj->rrd_vertical = 'Avg. Time/Op';
 		$obj->rrd_format = '%5.1lf%ss';
 		$obj->scale = '0.001';
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 	break;
 }
 

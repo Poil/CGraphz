@@ -26,7 +26,13 @@ switch($obj->args['pinstance']) {
 				$obj->rrd_title = sprintf('Interface Traffic (%s)', str_replace('_', ' ', (empty($obj->args['pinstance'])?$obj->args['pcategory']:$obj->args['pinstance'])));
 				$obj->rrd_vertical = 'Bytes/s';
 			break;
+			default:
+				error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+			break;
 		}
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 	break;
 }
 

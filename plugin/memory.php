@@ -29,6 +29,7 @@ $obj->colors = array(
 	'used' => 'ff0000',
 );
 
+$obj->base=$CONFIG['default_base'];
 $obj->rrd_title = 'Physical memory utilization';
 $obj->rrd_vertical = 'Bytes';
 $obj->rrd_format = '%5.1lf%s';

@@ -52,7 +52,7 @@ switch($obj->args['type']) {
 		$obj->ds_names = array('value' => 'Time Left');
 		$obj->colors = array('value' => '0000f0');
 		$obj->rrd_title = sprintf('UPS Time Left');
-		$obj->rrd_vertical = 'Minutes';
+		$obj->rrd_vertical = 'Seconds';
 	break;
 	case 'voltage':
 		$obj->order = array('battery', 'input', 'output');
@@ -68,6 +68,9 @@ switch($obj->args['type']) {
 		);
 		$obj->rrd_title = sprintf('UPS Voltage');
 		$obj->rrd_vertical = 'Volt';
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 	break;
 }
 $obj->rrd_format = '%5.1lf%s';

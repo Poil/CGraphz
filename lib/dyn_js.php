@@ -5,8 +5,9 @@ include('../config/config.php');
 ?>
 
 $(function(){
-       	$.localise('ui.multiselect', {language: '<?php echo DEF_LANG ?>',  path: 'lib/multiselect/locale/'});
-       	$(".multiselect").multiselect();
+       	$('.multiselect').multiselect({
+		locale: '<?php echo DEF_LANG ?>'
+	});
 });
 
 $(document).ready(function() {
@@ -21,3 +22,4 @@ $(document).ready(function() {
 function validate_del(form) {
     return confirm('<?php echo CONFIRM_DELETE ?>');
 }
+

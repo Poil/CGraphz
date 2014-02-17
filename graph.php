@@ -22,12 +22,12 @@ if ($auth->verif_auth()) {
 	if (($width * $height) <= MAX_IMG_SIZE) {	
 		if (validate_get(GET('h'), 'host') === NULL) {
 		        error_log('CGRAPHZ ERROR: plugin contains unknown characters');
-		        error_image();
+		        error_image('[ERROR] plugin contains unknown characters');
 		}
 		
 		if (!file_exists(DIR_FSROOT.'/plugin/'.$plugin.'.php')) {
 		        error_log(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $plugin));
-		        error_image();
+		        error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 		}
 	
 		$connSQL=new DB();
@@ -57,11 +57,11 @@ if ($auth->verif_auth()) {
 			$CONFIG['version']=$authorized->collectd_version;
 			include DIR_FSROOT.'/plugin/'.$plugin.'.php';
 		} else {		
-			error_image();
+			error_image('[ERROR] Permission denied');
 		}
 	} else {
 	        error_log('CGRAPHZ ERROR: image request is too big');
-		error_image();
+		error_image('[ERROR] Image request is too big');
 	}
 }
 

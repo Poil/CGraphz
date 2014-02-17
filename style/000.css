@@ -2,8 +2,7 @@
 
 html * {
 	font-size:9pt;
-	/*font-family: trebuchet ms,arial,tahoma,verdana,sans-serif;*/
-	font-family:Verdana,sans-serif;
+	font-family:Verdana,Arial,sans-serif;
 }
 
 body {
@@ -12,20 +11,38 @@ body {
 	background:#dcdad5;
 }
 
+div#div_login {
+	width:300pt;
+	height:120pt;
+	margin: 10pt auto;
+	border:1pt solid #555555;
+	padding:8pt;
+	border-radius:8pt;
+	background:white;
+}
+
+div#div_logout {
+	position:absolute;
+	right:0.4pt;
+}
+
+div#div_logout a {
+	color: white;
+	font-size:8pt;
+}
+
 div#content {
 	position:relative;	
-	margin:8pt;
 	margin-top:0;	
 	background:white;
 	border:1pt solid #555555;
 	border-top:none;
-	padding:5pt;
 	min-height:500pt;
+	padding:0 5pt 0 5pt;
 }
 
 div#dashboard {
   	padding-left:18pt;
-	/*margin-left:120pt;*/
 }
 
 div#displaytest {
@@ -36,8 +53,6 @@ div#displaytest {
 	margin:80pt;
 	padding:10pt;
 	min-height:200pt;
-	/*max-height:300pt;
-	overflow:auto;*/
 }
 
 a, a:link, a:visited {
@@ -59,28 +74,29 @@ form label {
 fieldset {
 	margin:5pt;
 	padding:1pt;
-	float:left;
 }
 
 fieldset fieldset {
 	width:350pt;  
+	display:inline-block;
+	vertical-align:top;
 }
 
 fieldset legend {
-  padding: 1pt 3pt;
-  margin:0pt 3pt 0pt 3pt;
-  font-weight:bold;
-  font-size:140%;
+	padding: 1pt 3pt;
+	margin:0pt 3pt 0pt 3pt;
+	font-weight:bold;
+	font-size:140%;
 }
 
 fieldset fieldset legend {
-    font-size:120%;
+	font-size:120%;
 }
-
+/*
 fieldset fieldset:nth-child(even) {
-  clear:both;  
+	clear:both;  
 }
-
+*/
 fieldset.large {
 	width:715pt;
 }
@@ -94,15 +110,15 @@ fieldset.large label {
 table {
 	margin:2pt;	
 	border: solid black 1pt;
-	/*padding-left:2pt;*/
+	overflow: hidden;
+}
+
+table tr {
+	position: relative;
 }
 
 table tr th {
-	border-right:1px solid grey;
-}
-
-table tr th:last-child {
-	border-right:none;
+	font-weight:normal;
 }
 
 table tr td {
@@ -122,37 +138,45 @@ table tr td:last-child {
 
 h1 {
 	font-size:18pt;
+	margin-top:0;
 	margin-bottom:0;
-	margin-top:5pt;
+	font-weight:normal;
 }
 
 h2 {
-	font-size:16pt;
+	font-size:14pt;
 	margin-bottom:0;
+	font-weight:normal;
 }
 
 h3 {
-	font-size:14pt;
+	font-size:12pt;
 	margin-bottom:0;
+	font-weight:normal;
 }
 
 h4 {
-	font-size:12pt;
+	font-size:10pt;
 	margin-bottom:0;
+	font-weight:normal;
 }
+
 table.table_admin {
 	clear:both;
 	white-space: nowrap;
+	border-radius: 5pt 5pt 0 0pt;
+	min-width:180pt;
 }
 
-table.table_admin tr th {
-  background:#507aaa;
-  padding:1pt 15pt 1pt 15pt;
-  color:white;
+table.table_admin thead tr th {
+	border-bottom:1pt solid black;
+	background:#2C4056;
+	padding:1pt 15pt 1pt 15pt;
+	color:white;
 }
 
-table.table_admin tr:nth-child(odd) {
-  background:#E6EEF7;
+table.table_admin tbody tr:nth-child(odd) {
+	background:#E6EEF7;
 }
 
 #popup_information {
@@ -214,6 +238,12 @@ select {
 	height:16pt;
 }
 
+select.multiselect {
+	height:150pt;
+	vertical-align:inherit;
+	width:350pt;
+}
+
 input[type=checkbox] {
 	margin: 2pt 0pt 2pt 0pt;
 }
@@ -232,6 +262,7 @@ img {
 .imggraph {
 	padding:3px;
 	vertical-align:top;
+	cursor: url(../img/zoom.png), pointer;
 }
 
 #mask {
@@ -256,7 +287,6 @@ img {
 	border: 1px solid #000000;
 	background: #C5D6EA;
 	left: 50% ;
-	/* Moitié de la width */
 	margin-left:-450px;
 	
 	top: 50px;	
@@ -297,23 +327,23 @@ img {
 
 /********* DataTable Fix ************/
 table.table_admin tr th.sorting_asc {
-        background: url('../img/sort_asc.png') #507AAA no-repeat center right;
+        background: url('../img/sort_asc.png') #2C4056 no-repeat center right;
 }
 
 table.table_admin tr th.sorting_desc {
-        background: url('../img/sort_desc.png') #507AAA no-repeat center right;
+        background: url('../img/sort_desc.png') #2C4056 no-repeat center right;
 }
 
 table.table_admin tr th.sorting {
-        background: url('../img/sort_both.png') #507AAA no-repeat center right;
+        background: url('../img/sort_both.png') #2C4056 no-repeat center right;
 }
 
 table.table_admin tr th.sorting_asc_disabled {
-        background: url('../img/sort_asc_disabled.png') #507AAA no-repeat center right;
+        background: url('../img/sort_asc_disabled.png') #2C4056 no-repeat center right;
 }
 
 table.table_admin tr th.sorting_desc_disabled {
-        background: url('../img/sort_desc_disabled.png') #507AAA no-repeat center right;
+        background: url('../img/sort_desc_disabled.png') #2C4056 no-repeat center right;
 }
 
 .dataTables_wrapper {
@@ -363,4 +393,33 @@ table.table_admin tr th.sorting_desc_disabled {
 
 .paginate_enabled_next:hover {                                                        
 	background: url('../img/forward_enabled_hover.png') no-repeat top right;   
-}                                           
+}
+ 
+/** Redmon Override **/                                         
+.uix-multiselect .option-element,
+.header-text {
+	font-weight:normal;
+}
+
+.uix-list-container {
+	border:1pt solid black;
+}
+
+.multiselect-selected-list .uix-list-container {
+	border-right: none;
+}
+
+.ui-widget-header {
+	background: #2C4056;
+	border:none;
+	border-top:1pt solid black;
+}
+
+.ui-corner-tr {
+	border-right:1pt solid black;
+}
+
+.ui-corner-tl {
+	border-left:1pt solid black;
+}
+

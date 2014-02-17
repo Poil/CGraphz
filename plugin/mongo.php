@@ -22,12 +22,12 @@ switch($obj->args['type']) {
 		//$obj -> data_sources = array('value');
 		$obj -> rrd_title = sprintf('Cache Ratio%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
 		$obj -> rrd_vertical = 'Hits';
-		break;
+	break;
 	case 'connections' :
 		//$obj -> data_sources = array('value');
 		$obj -> rrd_title = sprintf('Connections%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
 		$obj -> rrd_vertical = 'Numbers';
-		break;
+	break;
 	case 'memory' :
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG);
@@ -35,31 +35,35 @@ switch($obj->args['type']) {
 		//$obj -> data_sources = array('value');
 		$obj -> rrd_title = sprintf('Memory%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
 		$obj -> rrd_vertical = 'MB';
-		break;
+	break;
 	case 'counter' :
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG);
 		//$obj -> data_sources = array('value');
 		$obj -> rrd_title = sprintf('Counter%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
 		$obj -> rrd_vertical = 'Number';
-		break;
+	break;
 	case 'percent' :
 		//$obj -> data_sources = array('value');
 		$obj -> rrd_title = sprintf('Lock Ratio Time%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
 		$obj -> rrd_vertical = '%';
-		break;
+	break;
 	case 'file_size' :
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG);
 		$obj -> data_sources = array('bytes');
 		$obj -> rrd_title = sprintf('File Size%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
 		$obj -> rrd_vertical = 'Bytes';
-		break;
+	break;
 	case 'total_operations' :
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG);
 		$obj -> rrd_title = sprintf('Total Operation%s', !empty($obj -> args['pinstance']) ? ' (' . $obj -> args['pinstance'] . ')' : '');
 		$obj -> rrd_vertical = 'Operation';
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 $obj -> rrd_format = '%5.1lf%s';
 

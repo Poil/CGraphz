@@ -19,6 +19,11 @@ if (isset($_GET['auto_refresh'])) {
         $urlrefresh='<a href="'.htmlentities($_SERVER['REQUEST_URI']).'&amp;auto_refresh=true"><img src="img/auto_refresh.png" title="'.ENABLE_AUTO_REFRESH.'" alt="Auto Refresh" /></a>';
 }
 
+if (isset($time_start) && isset($time_end)) {
+	$zoom='onclick="Show_Popup($(\'.imggraph:first\').attr(\'src\').split(\'?\')[1],\'\',\''.$time_start.'\',\''.$time_end.'\'); $(\'#left_menu_show\').hide(\'400\'); return false"';
+} else {
+	$zoom='onclick="Show_Popup($(\'.imggraph:first\').attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false"';
+}
 echo '
 <div id="left_menu">
 	<div id="left_menu_show">
@@ -33,7 +38,7 @@ echo '
 			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'2592000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 '.MONTH.'</a></li>
 			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'15552000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">6 '.MONTHS.'</a></li>
 			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'31104000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 '.YEAR.'</a></li>
-			<li><a href="#" onclick="Show_Popup($(\'.imggraph:first\').attr(\'src\')+\'&amp;x=800&amp;y=350\',\'\',\''.$time_start.'\',\''.$time_end.'\'); $(\'#left_menu_show\').hide(\'400\'); return false">'.CUSTOM.'</a></li>
+			<li><a href="#" '.$zoom.'>'.CUSTOM.'</a></li>
 		</ul>
 	</div>
 	<img src="img/refresh.png" style="cursor:pointer" onclick="refresh_graph(\'dashboard\',\'\',\'\',\'\'); return false" title="',REFRESH,'" alt="Refresh" />

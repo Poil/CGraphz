@@ -27,15 +27,18 @@ switch($obj->args['pinstance']) {
 	case 'default-backend':
 		$obj->rrd_title = 'backend';
 		$obj->rrd_vertical = 'hits';
-		break;
+	break;
 	case 'default-cache':
 		$obj->rrd_title = 'cache';
 		$obj->rrd_vertical = 'hits';
-		break;
+	break;
 	case 'default-connections':
 		$obj->rrd_title = 'connections';
 		$obj->rrd_vertical = 'hits';
-		break;
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 collectd_flush($obj->identifiers);
 $obj->rrd_graph();

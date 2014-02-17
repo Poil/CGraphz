@@ -3,11 +3,11 @@
 date_default_timezone_set('Europe/Paris');
 
 # Cgraphz version
-define('CGRAPHZ_VERSION','2.10 alpha 6');
+define('CGRAPHZ_VERSION','2.10 beta 3');
 
 # Collectd
 define('COLLECTD_DEFAULT_VERSION',5);
-define('COLLECTD_VERSIONS',serialize(array(3,4,5.0,5.1,5.2)));
+define('COLLECTD_VERSIONS',serialize(array(NULL,3,4,5.0,5.1,5.2)));
 
 # LDAP Configuration
 ## Host : ldaps://192.168.0.1
@@ -45,6 +45,9 @@ define('MAX_IMG_SIZE',8388608);
 # Language
 define('DEF_LANG','en');
 
+# system default timezone when not set
+define('DEFAULT_TIMEZONE', 'UTC');
+
 # use the negative X-axis in I/O graphs
 $CONFIG['negative_io'] = false;
 
@@ -69,6 +72,9 @@ $CONFIG['datadir'] = '/var/lib/collectd/rrd/';
 # rrdtool executable
 $CONFIG['rrdtool'] = '/usr/bin/rrdtool';
 
+# rrd fetch method async/sync
+$CONFIG['rrd_fetch_method'] = 'async';
+
 # rrdtool special options
 $CONFIG['rrdtool_opts'] = '';
 
@@ -81,6 +87,11 @@ $CONFIG['showload'] = true;
 
 # show graphs in bits or bytes
 $CONFIG['network_datasize'] = 'bytes';
+
+# Base value 
+## 1000 -> 1 Megabyte = 1000 Kilobyte 
+## 1024 -> 1 Megabyte = 1024 Kilobyte)
+$CONFIG['default_base']=1024;
 
 # Display graphs as png, svg or canvas 
 # Note that svg graph dimensions are defined in "points" (pt) and not pixels, so svg image sizes will be different then png
@@ -117,4 +128,6 @@ spl_autoload_register("my_autoload");
 include(DIR_FSROOT.'/lang/local.'.DEF_LANG.'.php');
 include(DIR_FSROOT.'/html/form/commun/func_form.php');
 include(DIR_FSROOT.'/modules/functions.inc.php');
+
+if (!ini_get('date.timezone')) { date_default_timezone_set(DEFAULT_TIMEZONE); }
 ?>

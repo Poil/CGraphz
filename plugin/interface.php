@@ -39,6 +39,9 @@ switch($obj->args['type']) {
 		$obj->rrd_title = sprintf('Interface Packets (%s)', $obj->args[$instance]);
 		$obj->rrd_vertical = 'Packets per second';
 	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	break;
 }
 
 collectd_flush($obj->identifiers);

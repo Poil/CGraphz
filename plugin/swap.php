@@ -28,6 +28,7 @@ switch(GET('t')) {
 		);
 		$obj->rrd_title = 'Swap utilization';
 		$obj->rrd_vertical = 'Bytes';
+		$obj->base = $CONFIG['default_base'];
 	break;
 	case 'swap_io':
 		require_once 'type/GenericIO.class.php';
@@ -43,6 +44,9 @@ switch(GET('t')) {
 		);
 		$obj->rrd_title = 'Swapped I/O pages';
 		$obj->rrd_vertical = 'Pages';
+	break;
+	default:
+		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 	break;
 }
 

@@ -30,6 +30,7 @@ switch($obj->args['type']) {
 		$obj->rrd_title = sprintf('Free space (%s)', $obj->args['pinstance']);
 		$obj->rrd_vertical = 'Bytes';
 		$obj->rrd_format = '%5.1lf%sB';
+		$obj->base = $CONFIG['default_base'];
 		break;
 	case 'df_inodes':
 		$obj->rrd_title = sprintf('Free inodes (%s)', $obj->args['pinstance']);

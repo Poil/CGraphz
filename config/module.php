@@ -686,12 +686,6 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 		} 
 	} else if ($module=='dashboard') {
 		if ($component=='view') {
-			if (NEW_MENU) {
-				include(DIR_FSROOT.'/html/dashboard/nav_menu/r_nav_menu.php');
-				include(DIR_FSROOT.'/html/dashboard/nav_menu/d_nav_menu.php');
-			} else {
-				include(DIR_FSROOT.'/html/menu/menu_project.php');
-			}
 			if (isset($_GET['f_id_config_server'])) {
 				include(DIR_FSROOT.'/modules/preg_find.php');
 				include(DIR_FSROOT.'/html/config/server/r_server_wh_id.php');
@@ -805,7 +799,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			
 			if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 				echo '<fieldset class="large">';
-				echo '<legend>'.USERS.'</legend>';
+				echo '<legend>'.PLUGIN_FILTER.'</legend>';
 				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/w_dynamic_dashboard_content.php');
 				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/e_dynamic_dashboard_content.php');
 				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content_wh_id.php');
