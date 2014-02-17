@@ -17,7 +17,7 @@ Clone Git
 -----
 > cd /var/www/
 
-> wget https://github.com/Poil/CGraphz/archive/v2.10beta4.tar.gz
+> wget https://github.com/Poil/CGraphz/archive/v2.10rc1.tar.gz
 
 Or
 
@@ -35,14 +35,22 @@ Post Installation
  * Move /var/www/CGraphz/config/databases.ini.php.tpl to /var/www/CGraphz/config/databases.ini.php
 
 > mv /var/www/CGraphz/config/config.php.tpl /var/www/CGraphz/config/config.php
+
 > mv /var/www/CGraphz/config/databases.ini.php.tpl /var/www/CGraphz/config/databases.ini.php
 
+
 * Better file permissions to root / apache
-> chown root.www-data /var/www/CGraphz/
+
+> chown -R root.www-data /var/www/CGraphz/
+
 > find /var/www/CGraphz/ -type d -print0 | xargs -0 -r chmod 2750
+
 > find /var/www/CGraphz/ -type f -print0 | xargs -0 -r chmod 640
 
 * Create LOGS dir must be apache writable :
+
+> mkdir -p /var/www/CGraphz/logs
+
 > chmod 2770 /var/www/CGraphz/logs
 
 Add your first server
