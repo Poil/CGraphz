@@ -134,7 +134,7 @@ switch($obj->args['type']) {
 
 $obj->rrd_format = '%5.1lf%s';
 
-if ($CONFIG['version'] < 5 && count($obj->data_sources) == 1) {
+if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5  && count($obj->data_sources) == 1) {
 	$obj->data_sources = array('ns');
 
 	$obj->ds_names['ns'] = $obj->ds_names['value'];

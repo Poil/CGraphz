@@ -39,8 +39,9 @@ switch($obj->args['type']) {
 		break;
 }
 
+
 # backwards compatibility
-if ($CONFIG['version'] < 5) {
+if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 	$obj->data_sources = array('free', 'used');
 	$obj->rrd_title = sprintf('Free space (%s)', $obj->args['tinstance']);
 }

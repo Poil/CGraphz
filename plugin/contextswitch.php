@@ -19,7 +19,7 @@ $obj->rrd_vertical = 'switch per second Bits';
 $obj->rrd_format = '%4.0lf';
 
 # backwards compatibility
-if ($CONFIG['version'] < 5) {
+if (preg_replace('/[^0-9]\./','',$CONFIG['version']) < 5) {
 	$obj->data_sources = array('contextswitches');
 
 	$obj->ds_names['contextswitches'] = $obj->ds_names['value'];

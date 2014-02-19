@@ -124,7 +124,7 @@ switch(GET('t')) {
 # percent-hitratio.rrd
 	case 'percent':
 		require_once 'type/Default.class.php';
-		if ($CONFIG['version'] < 5) {
+		if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 			$obj = new Type_Default($CONFIG);
 			$obj->data_sources = array('percent');
 			$obj->ds_names = array(

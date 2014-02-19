@@ -34,7 +34,7 @@ if ($auth->verif_auth()) {
 		$lib='
 		SELECT 
 			cs.server_name, 
-			COALESCE(cs.collectd_version,'.COLLECTD_DEFAULT_VERSION.') as collectd_version
+			COALESCE(cs.collectd_version,"'.COLLECTD_DEFAULT_VERSION.'") as collectd_version
 		FROM config_server cs
 		  LEFT JOIN config_server_project csp 
 	        ON cs.id_config_server=csp.id_config_server

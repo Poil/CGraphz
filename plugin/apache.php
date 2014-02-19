@@ -154,7 +154,7 @@ switch ($obj->args['type']) {
 $obj->rrd_format = '%5.1lf';
 
 # backwards compatibility
-if ($CONFIG['version'] < 5) {
+if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 	$obj->data_sources = array('count');
 	if (count($obj->ds_names) == 1) {
 		$obj->ds_names['count'] = $obj->ds_names['value'];

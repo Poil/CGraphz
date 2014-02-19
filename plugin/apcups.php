@@ -76,7 +76,7 @@ switch($obj->args['type']) {
 $obj->rrd_format = '%5.1lf%s';
 
 # backwards compatibility
-if ($CONFIG['version'] < 5 &&
+if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 	in_array($obj->args['type'], array('frequency', 'percent', 'timeleft'))) {
 
 	$obj->data_sources = array($obj->args['type']);

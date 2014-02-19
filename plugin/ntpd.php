@@ -21,25 +21,25 @@ $obj->rrd_format = '%5.1lf%s';
 
 switch($obj->args['type']) {
 	case 'delay':
-		if ($CONFIG['version'] < 5)
+		if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 			$obj->data_sources = array('seconds');
 		$obj->rrd_title = sprintf('Delay');
 		$obj->rrd_vertical = 'Seconds';
 		break;
 	case 'frequency_offset':
-		if ($CONFIG['version'] < 5)
+		if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 			$obj->data_sources = array('ppm');
 		$obj->rrd_title = 'Frequency offset';
 		$obj->rrd_vertical = 'ppm';
 		break;
 	case 'time_dispersion':
-		if ($CONFIG['version'] < 5)
+		if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 			$obj->data_sources = array('seconds');
 		$obj->rrd_title = 'Time dispersion';
 		$obj->rrd_vertical = 'Seconds';
 		break;
 	case 'time_offset':
-		if ($CONFIG['version'] < 5)
+		if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 			$obj->data_sources = array('seconds');
 		$obj->rrd_title = 'Time offset';
 		$obj->rrd_vertical = 'Seconds';

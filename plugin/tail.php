@@ -12,7 +12,7 @@ $obj->rrd_title = sprintf('tail: %s (%s)', $obj->args['pinstance'], $obj->args['
 $obj->rrd_format = '%5.1lf%s';
 
 # backwards compatibility
-if ($CONFIG['version'] < 5) {
+if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 	if (strcmp($obj->args['type'], 'gauge') != 0) {
 		$obj->data_sources = array('count');
 		if (count($obj->ds_names) == 1) {

@@ -22,7 +22,7 @@ $obj->rrd_vertical = 'Users';
 $obj->rrd_format = '%.1lf';
 
 # backwards compatibility
-if ($CONFIG['version'] < 5) {
+if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 	$obj->data_sources = array('users');
 
 	$obj->ds_names['users'] = $obj->ds_names['value'];

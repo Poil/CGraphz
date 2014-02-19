@@ -16,7 +16,7 @@ require_once 'modules/collectd.inc.php';
 $obj = new Type_Default($CONFIG);
 switch($obj->args['type']) {
 	case 'frequency':
-		if ($CONFIG['version'] < 5) {
+		if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 			$obj->data_sources = array('frequency');
 		} else {
 			$obj->data_sources = array('value');
@@ -27,7 +27,7 @@ switch($obj->args['type']) {
 		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'percent':
-		if ($CONFIG['version'] < 5) {
+		if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 			$obj->data_sources = array('percent');
 		} else {
 			$obj->data_sources = array('value');
@@ -46,7 +46,7 @@ switch($obj->args['type']) {
 		$obj->rrd_format = '%5.1lf%s';
 	break;
 	case 'timeleft':
-		if ($CONFIG['version'] < 5) {
+		if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
 			$obj->data_sources = array('timeleft');
 		} else {
 			$obj->data_sources = array('value');

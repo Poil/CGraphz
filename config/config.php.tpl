@@ -6,8 +6,16 @@ date_default_timezone_set('Europe/Paris');
 define('CGRAPHZ_VERSION','2.10 rc2');
 
 # Collectd
-define('COLLECTD_DEFAULT_VERSION',5);
-define('COLLECTD_VERSIONS',serialize(array(NULL,3,4,5.0,5.1,5.2)));
+define('COLLECTD_DEFAULT_VERSION','Collectd 5.0');
+define('COLLECTD_VERSIONS',serialize(array(
+	NULL,
+	'Collectd 3',
+	'Collectd 4',
+	'Collectd 5.0',
+	'Collectd 5.1',
+	'Collectd 5.2',
+	'SSC 3.0'
+)));
 
 # LDAP Configuration
 ## Host : ldaps://192.168.0.1
