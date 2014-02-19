@@ -3,7 +3,7 @@
 date_default_timezone_set('Europe/Paris');
 
 # Cgraphz version
-define('CGRAPHZ_VERSION','2.10 rc1');
+define('CGRAPHZ_VERSION','2.10 rc2');
 
 # Collectd
 define('COLLECTD_DEFAULT_VERSION',5);
