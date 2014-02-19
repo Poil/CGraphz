@@ -21,31 +21,49 @@ require_once 'modules/collectd.inc.php';
 # memory/memory-system_code.rrd
 # memory/memory-system_driver.rrd
 # memory/memory-working_set.rrd
+# memory-pagefile/memory-free.rrd
+# memory-pagefile/memory-used.rrd
 
 
 $obj = new Type_GenericStacked($CONFIG);
 # SCC/Windows
 if (preg_replace('/[^a-zA-Z]/','',$CONFIG['version']) == 'SSC') {
-	$obj->order = array('available', 'pool_nonpaged', 'pool_paged', 'system_cache', 'system_code','system_driver','working_set');
-	$obj->ds_names = array(
-		'available'     => 'Available',
-		'pool_nonpaged' => 'Pool non paged',
-		'pool_paged'    => 'Pool paged',
-		'system_cache'  => 'System cache',
-		'system_code'   => 'System code',
-		'system_driver' => 'System driver',
-		'working_set'   => 'Working set',
-	);
+	switch(GET('pi')) {
+		case 'pagefile':
+			$obj->order = array('free', 'used');
+			$obj->ds_names = array(
+				'free'     => 'Free',
+				'used'     => 'Used',
+			);
+			$obj->colors = array(
+				'free' => '00e000',
+				'used' => 'ff0000',
+			);
 
-	$obj->colors = array(
-		'available'     => '00e000',
-		'pool_nonpaged' => '0000ff',
-		'pool_paged'    => 'ffb000',
-		'system_cache'  => 'ff00ff',
-		'system_code'   => 'ff0000',
-		'system_driver' => 'ffff00',
-		'working_set'   => 'ff0f0f',
-	);
+		break;
+		default:
+			$obj->order = array('available', 'pool_nonpaged', 'pool_paged', 'system_cache', 'system_code','system_driver','working_set');
+			$obj->ds_names = array(
+				'available'     => 'Available',
+				'pool_nonpaged' => 'Pool non paged',
+				'pool_paged'    => 'Pool paged',
+				'system_cache'  => 'System cache',
+				'system_code'   => 'System code',
+				'system_driver' => 'System driver',
+				'working_set'   => 'Working set',
+			);
+
+			$obj->colors = array(
+				'available'     => '00e000',
+				'pool_nonpaged' => '0000ff',
+				'pool_paged'    => 'ffb000',
+				'system_cache'  => 'ff00ff',
+				'system_code'   => 'ff0000',
+				'system_driver' => 'ffff00',
+				'working_set'   => 'ff0f0f',
+			);
+		break;
+	};
 } else { # Unix like
 	$obj->order = array('free', 'buffered', 'cached', 'locked', 'used');
 	$obj->ds_names = array(
