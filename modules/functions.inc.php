@@ -30,6 +30,11 @@ function validate_get($value, $type) {
 }
 
 function validateRRDPath($base, $path) {
+	$base=preg_replace('{/$}','',$base);
+	if (is_link($base)) {
+		$base=realpath($base);
+	}
+
 	$realpath = realpath(sprintf('%s/%s', $base, $path));
 
 	if (strpos($realpath, $base) === false)
@@ -81,4 +86,5 @@ function error_image($text="[ERROR] Permission denied") {
 function is_blank($value) {
 	return empty($value) && !is_numeric($value);
 }
+
 ?>
