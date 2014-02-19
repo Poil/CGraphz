@@ -137,9 +137,15 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 
 				${$p.$pc.$pi.$t.$tc.$ti}=true;
 
+
 				// Verif regex OK
 				if (isset($p) && isset($t)) {
-					if (!preg_match('/^(df|interface|oracle)$/', $p) || ($cur_server->collectd_version >= 5 && $p!='oracle' && $t!='df' )) {
+					if (!preg_match('/^(df|interface|oracle)$/', $p) || 
+					   (((preg_replace('/[^0-9\.]/','',$cur_server->collectd_version) >= 5)
+					     && (preg_replace('/[^a-zA-Z]/','',$cur_server->collectd_version) == 'Collectd') 
+					     && $p!='oracle' && $t!='df'))
+					   || (preg_replace('/[^a-zA-Z]/','',$cur_server->collectd_version) == 'SSC')
+				    ) {
 						$ti='';
 						if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
 							if ($CONFIG['graph_type'] == 'canvas') {

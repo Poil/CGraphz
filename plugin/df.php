@@ -41,10 +41,11 @@ switch($obj->args['type']) {
 
 
 # backwards compatibility
-if (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) {
+if ((preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) &&
+    (preg_replace('/[^a-zA-Z]/','',$CONFIG['version']) == 'Collectd')) {
 	$obj->data_sources = array('free', 'used');
 	$obj->rrd_title = sprintf('Free space (%s)', $obj->args['tinstance']);
-}
+} 
 
 collectd_flush($obj->identifiers);
 $obj->rrd_graph();
