@@ -174,8 +174,7 @@ class Type_Default {
 		);
 
 		$wildcard = strlen($this->args['tinstance']) ? '.' : '[-.]*';
-
-		$files = glob($this->datadir. '/'.$identifier.$wildcard.'rrd');
+		$files = glob($this->datadir. '/'.preg_quote($identifier).$wildcard.'rrd');
 
 		return $files;
 	}

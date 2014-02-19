@@ -24,7 +24,12 @@ $obj->ds_names = array(
 );
 $obj->rrd_format = '%5.1lf%s';
 
-$instance = (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) ? 'tinstance' : 'pinstance';
+
+if (preg_replace('/[^a-zA-Z]/','',$CONFIG['version']) == 'Collectd') {
+	$instance = (preg_replace('/[^0-9\.]/','',$CONFIG['version']) < 5) ? 'tinstance' : 'pinstance';
+} else {
+	 $instance = 'pinstance';
+}
 switch($obj->args['type']) {
 	case 'if_errors':
 		$obj->rrd_title = sprintf('Interface Errors (%s)', $obj->args[$instance]);
