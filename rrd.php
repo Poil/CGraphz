@@ -10,14 +10,4 @@ if ($file = validateRRDPath($CONFIG['datadir'], $_SERVER['PATH_INFO'])) {
 	readfile($file);
 } else {
 	header('HTTP/1.0 403 Forbidden');
-
-	html_start();
-	echo <<<EOT
-<fieldset id="forbidden">
-<legend>forbidden</legend>
-<p><a href="{$CONFIG['weburl']}">Return home...</a></p>
-</fieldset>
-
-EOT;
-	html_end();
 }
