@@ -1,13 +1,14 @@
 <?php
 
-# Collectd Users plugin
+# Collectd Terminal_services plugin
 
 
 require_once 'type/Default.class.php';
 require_once 'modules/collectd.inc.php';
 
 ## LAYOUT
-# users/users.rrd
+# terminal_services/users-active.rrd
+# terminal_services/users-inactive.rrd
 
 $obj = new Type_Default($CONFIG);
 $obj->rrd_title = 'Users';
