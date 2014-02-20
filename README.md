@@ -17,7 +17,7 @@ Clone Git
 -----
 > cd /var/www/
 
-> wget https://github.com/Poil/CGraphz/archive/v2.10rc1.tar.gz
+> wget https://github.com/Poil/CGraphz/archive/v2.20alpha1.tar.gz
 
 Or
 
@@ -27,7 +27,10 @@ Or
 
 Post Installation
 -----
-* MySQL : mysql -u root -p -e "source /var/www/CGraphz/sql/initial_cgraphz_2.10.sql;"
+* MySQL : 
+
+> mysql -u root -p -e "source /var/www/CGraphz/sql/initial_cgraphz_2.10.sql; source /var/www/CGraphz/sql/upgrade_from_2.10_to_2_20.sql;"
+
 * Configuration
  * Edit /var/www/CGraphz/config/config.php.tpl
  * Move /var/www/CGraphz/config/config.php.tpl to /var/www/CGraphz/config/config.php
