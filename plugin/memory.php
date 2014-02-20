@@ -30,6 +30,7 @@ $obj = new Type_GenericStacked($CONFIG);
 if (preg_replace('/[^a-zA-Z]/','',$CONFIG['version']) == 'SSC') {
 	switch(GET('pi')) {
 		case 'pagefile':
+			$obj->rrd_title = 'Pagefile utilization';
 			$obj->order = array('free', 'used');
 			$obj->ds_names = array(
 				'free'     => 'Free',
@@ -42,6 +43,7 @@ if (preg_replace('/[^a-zA-Z]/','',$CONFIG['version']) == 'SSC') {
 
 		break;
 		default:
+			$obj->rrd_title = 'Physical memory utilization';
 			$obj->order = array('available', 'pool_nonpaged', 'pool_paged', 'system_cache', 'system_code','system_driver','working_set');
 			$obj->ds_names = array(
 				'available'     => 'Available',
@@ -65,6 +67,7 @@ if (preg_replace('/[^a-zA-Z]/','',$CONFIG['version']) == 'SSC') {
 		break;
 	};
 } else { # Unix like
+	$obj->rrd_title = 'Physical memory utilization';
 	$obj->order = array('free', 'buffered', 'cached', 'locked', 'used');
 	$obj->ds_names = array(
 		'free'     => 'Free',
@@ -83,7 +86,6 @@ if (preg_replace('/[^a-zA-Z]/','',$CONFIG['version']) == 'SSC') {
 }
 
 $obj->base=$CONFIG['default_base'];
-$obj->rrd_title = 'Physical memory utilization';
 $obj->rrd_vertical = 'Bytes';
 $obj->rrd_format = '%5.1lf%s';
 
