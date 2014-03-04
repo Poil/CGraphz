@@ -255,5 +255,8 @@ foreach ($vmlist as $vmdir) {
 	}
 }
 echo '</div>';
+if (PLUGIN_BAR === true) {
+   echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/plugin_anchor.js"></script>';
+}
 echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/CGP.js"></script>';
 ?>

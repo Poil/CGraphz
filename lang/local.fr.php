@@ -95,3 +95,4 @@ define('DASHBOARD','Dashboard');
 define('DYNAMIC_DASHBOARDS','Dynamic dashboards');
 define('DBL_CLICK_ZOOM','Double click pour Zoom');
 define('DEFAULT_VERSION','Version par défaut');
+define('GOTO_TOP_OF_PAGE','Retourner en haut de page');

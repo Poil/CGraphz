@@ -16,7 +16,8 @@ div#div_menu,
 div#div_menu_project,
 div#div_menu_server_role,
 div#div_menu_server_environment,
-div#div_menu_project_server {
+div#div_menu_project_server,
+div#div_plugin_bar {
 	font-size: 90%; 
 	width:100%;
 	background: #2c4056;
@@ -30,7 +31,8 @@ div#div_menu {
 div#div_menu_project,
 div#div_menu_server_role,
 div#div_menu_server_environment,
-div#div_menu_project_server {
+div#div_menu_project_server,
+div#div_plugin_bar {
 	font-weight: normal;
 	min-height:16pt;
 	background:#aabed5;
@@ -40,11 +42,15 @@ div#div_menu_project_server {
 	background:#c5d6ea;
 }
 
+div#div_plugin_bar {
+	background:#c0d0e0;
+}
 
 div#div_menu_project span,
 div#div_menu_project_server span,
 div#div_menu_server_role span,
-div#div_menu_server_environment span {
+div#div_menu_server_environment span,
+div#div_plugin_bar span {
 	padding: 0pt 5pt;
 	margin:0;
 	min-width:60px;
@@ -54,12 +60,6 @@ div#div_menu_server_environment span {
 	text-align:center;
 }
 
-/*
-div#div_menu_project span:hover,
-div#div_menu_project_server span:hover {
-	background:#759FCF;
-}
-*/
 div#div_menu_project span a, 
 div#div_menu_project span a:link, 
 div#div_menu_project span a:hover, 
@@ -75,7 +75,11 @@ div#div_menu_server_role span a:active,
 div#div_menu_server_environment span a,
 div#div_menu_server_environment span a:link,
 div#div_menu_server_environment span a:hover,
-div#div_menu_server_environment span a:active {
+div#div_menu_server_environment span a:active,
+div#div_plugin_bar span a,
+div#div_plugin_bar span a:link,
+div#div_plugin_bar span a:hover,
+div#div_plugin_bar span a:active {
 	color:black;
 	text-decoration:none;
 	line-height:14pt;
@@ -100,7 +104,8 @@ div#div_menu_project input {
 }
 
 div#div_menu_project span a:hover, 
-div#div_menu_project_server span a:hover {
+div#div_menu_project_server span a:hover,
+div#div_plugin_bar span a:hover {
 	color: #2C4056;
 }
 
