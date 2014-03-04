@@ -55,8 +55,8 @@ class DB {
 			$dsn = 'mysql:dbname='.$this->settings["dbname"].';host='.$this->settings["host"].'';
 			try 
 			{
-				# Read settings from INI file
-				$this->pdo = new PDO($dsn, $this->settings["user"], $this->settings["password"],array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+				# Read settings from INI file, set UTF8
+				$this->pdo = new PDO($dsn, $this->settings["user"], $this->settings["password"], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 				
 				# We can now log any exceptions on Fatal error. 
 				$this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -74,6 +74,17 @@ class DB {
 				die();
 			}
 		}
+	/*
+	 *   You can use this little method if you want to close the PDO connection
+	 *
+	 */
+	 	public function CloseConnection()
+	 	{
+	 		# Set the PDO object to null to close the connection
+	 		# http://www.php.net/manual/en/pdo.connections.php
+	 		$this->pdo = null;
+	 	}
+		
        /**
 	*	Every method which needs to execute a SQL query uses this method.
 	*	
@@ -153,16 +164,19 @@ class DB {
 	*	@param  int    $fetchmode
 	*	@return mixed
 	*/			
-		public function query($query,$params = null,$fetchmode = PDO::FETCH_OBJ)
+		public function query($query,$params = null, $fetchmode = PDO::FETCH_OBJ)
 		{
 			$query = trim($query);
 
 			$this->Init($query,$params);
 
-			if (stripos($query, 'select') === 0){
+			# The first six letters of the sql statement -> insert, select, etc...
+			$statement = strtolower(substr($query, 0 , 6));
+			
+			if ($statement === 'select') {
 				return $this->sQuery->fetchAll($fetchmode);
 			}
-			elseif (stripos($query, 'insert') === 0 ||  stripos($query, 'update') === 0 || stripos($query, 'delete') === 0) {
+			elseif ( $statement === 'insert' ||  $statement === 'update' || $statement === 'delete' ) {
 				return $this->sQuery->rowCount();	
 			}	
 			else {

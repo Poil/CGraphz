@@ -41,6 +41,8 @@ echo '
 			<li><a href="#" '.$zoom.'>'.CUSTOM.'</a></li>
 		</ul>
 	</div>
+	<img src="img/go-top.png" style="cursor:pointer" onclick="$(\'html, body\').animate({ scrollTop: 0 }, \'slow\');"  title="',GOTO_TOP_OF_PAGE,'" alt="Top" />
+	<br />
 	<img src="img/refresh.png" style="cursor:pointer" onclick="refresh_graph(\'dashboard\',\'\',\'\',\'\'); return false" title="',REFRESH,'" alt="Refresh" />
 	<br />
 	<img src="img/clock.png" style="cursor:pointer" onclick="$(\'#left_menu_show\').toggle(\'400\'); return false;" title="',TIME_SELECTOR,'" alt="Time Selector" />

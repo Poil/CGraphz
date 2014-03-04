@@ -3,7 +3,7 @@
 date_default_timezone_set('Europe/Paris');
 
 # Cgraphz version
-define('CGRAPHZ_VERSION','2.20 alpha1');
+define('CGRAPHZ_VERSION','2.20 alpha2');
 
 # Collectd
 define('COLLECTD_DEFAULT_VERSION','Collectd 5.0');
@@ -37,6 +37,9 @@ define('DEBUG',false);
 
 # Text to display for user not logged
 define('NOT_LOGGED_MSG','<br />Please log-in<br />');
+
+# Display a quick navigate to plugin bar or not (true/false)
+define('PLUGIN_BAR',true);
 
 # Menu Option : Min number of servers before displaying role
 define('MAX_SRV',4);

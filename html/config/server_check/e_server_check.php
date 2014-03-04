@@ -9,17 +9,19 @@ if (isset($_POST['f_del_server_check'])) {
 		$lib='SELECT id_config_server FROM config_server WHERE server_name=:server_name';
 		$cur_todelete_server=$connSQL->row($lib);
 		
-		$connSQL=new DB();
 		$connSQL->bind('id_config_server',$cur_todelete_server->id_config_server);
 		$lib='DELETE FROM config_role_server WHERE id_config_server=:id_config_server';
 		$connSQL->query($lib);
 		
+		$connSQL->bind('id_config_server',$cur_todelete_server->id_config_server);
 		$lib='DELETE FROM config_environment_server WHERE id_config_server=:id_config_server';
 		$connSQL->query($lib);
 		
+		$connSQL->bind('id_config_server',$cur_todelete_server->id_config_server);
 		$lib='DELETE FROM config_server_project WHERE id_config_server=:id_config_server';
 		$connSQL->query($lib);
 		
+		$connSQL->bind('id_config_server',$cur_todelete_server->id_config_server);
 		$lib='DELETE FROM config_server WHERE id_config_server=:id_config_server';
 		$connSQL->query($lib);
 	}

@@ -1,8 +1,34 @@
 <?php
-$f_id_config_project=filter_input(INPUT_GET,'f_id_config_project',FILTER_SANITIZE_NUMBER_INT);
+$f_host=filter_input(INPUT_GET,'f_host',FILTER_SANITIZE_STRING);
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 
-if (isset($_GET['f_id_config_server'])) {
+$connSQL=new DB();
+
+$lib='
+	SELECT 
+		cs.id_config_server, 
+		cs.server_name,
+		MAX(csp.id_config_project) as  id_config_project
+	FROM config_server cs
+		LEFT JOIN config_server_project csp 
+			ON cs.id_config_server=csp.id_config_server 
+		LEFT JOIN perm_project_group ppg 
+			ON ppg.id_config_project=csp.id_config_project
+		LEFT JOIN auth_group ag 
+			ON ag.id_auth_group=ppg.id_auth_group
+		LEFT JOIN auth_user_group aug 
+			ON aug.id_auth_group=ag.id_auth_group
+	WHERE aug.id_auth_user=:s_id_user
+	AND cs.server_name=:f_host
+	GROUP BY id_config_server, server_name
+	ORDER BY server_name';
+
+	$connSQL->bind('s_id_user',$s_id_user);
+	$connSQL->bind('f_host',$f_host);
+
+	$cur_server=$connSQL->row($lib);
+
+if (isset($cur_server->id_config_server)) {
 	include(DIR_FSROOT.'/html/menu/time_selector.php');
 }
 
@@ -33,12 +59,12 @@ $lib = 'SELECT
 			ON ppg.id_auth_group=ag.id_auth_group
 	WHERE 
 		aug.id_auth_user=:s_id_user
-	AND ppg.id_config_project=:f_id_config_project
+	AND ppg.id_config_project=:r_id_config_project
 	ORDER BY plugin_order, plugin, plugin_instance, type, type_instance';
 
 $connSQL=new DB();
 $connSQL->bind('s_id_user',$s_id_user);
-$connSQL->bind('f_id_config_project',$f_id_config_project);
+$connSQL->bind('r_id_config_project',$cur_server->id_config_project);
 $pg_filters=$connSQL->query($lib);
 
 if (isset($time_start) && isset($time_end)) {
