@@ -11,7 +11,7 @@ $workflow=GET('workflow');
 <?php
 // Affichage du menu Dashboard si l'utilisateur a les droits
 $perm_mod = new PERMS();
-if ($perm_mod->perm_list_module('dashboard')) { 
+if ($perm_mod->perm_list_module('dashboard',false)) { 
 	echo '
 	<ul class="niveau1">
 		<li>',PERF_ANALYSIS,'
