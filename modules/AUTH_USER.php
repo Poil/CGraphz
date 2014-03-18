@@ -110,6 +110,36 @@ class AUTH_USER {
 		}
 	}
 	
+	function check_access_right($host) {
+		if (!$this->verif_auth()) { return false; }
+
+		$lib='
+		SELECT 
+			cs.server_name, 
+			COALESCE(cs.collectd_version,"'.COLLECTD_DEFAULT_VERSION.'") as collectd_version
+		FROM config_server cs
+		  LEFT JOIN config_server_project csp 
+	        ON cs.id_config_server=csp.id_config_server
+		  LEFT JOIN perm_project_group ppg 
+	        ON csp.id_config_project=ppg.id_config_project
+		  LEFT JOIN auth_user_group aug 
+	        ON ppg.id_auth_group=aug.id_auth_group
+		WHERE (cs.server_name=:host)
+		  AND (aug.id_auth_user=:s_id_user)
+		GROUP BY server_name
+		ORDER BY server_name';
+
+		$this->connSQL->bind('host', $host);
+		$this->connSQL->bind('s_id_user',$_SESSION['S_ID_USER']);
+		$authorized=$this->connSQL->row($lib);
+
+		if ($host===$authorized->server_name) {
+			return true;
+		} else {		
+			return false;
+		}
+	}
+
 	function logout(){ // détruire la session
 		session_unset();
 		session_destroy();
