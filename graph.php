@@ -29,7 +29,6 @@ if ($auth->verif_auth()) {
 			        error_log(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $plugin));
 			        error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 			}
-
 			$CONFIG['version']=$authorized->collectd_version;
 			include DIR_FSROOT.'/plugin/'.$plugin.'.php';
 		} else {
