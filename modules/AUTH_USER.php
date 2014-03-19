@@ -133,8 +133,8 @@ class AUTH_USER {
 		$this->connSQL->bind('s_id_user',$_SESSION['S_ID_USER']);
 		$authorized=$this->connSQL->row($lib);
 
-		if ($host===$authorized->server_name) {
-			return true;
+		if ($host==$authorized->server_name) {
+			return $authorized;
 		} else {		
 			return false;
 		}
