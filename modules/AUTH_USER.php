@@ -28,6 +28,17 @@ class AUTH_USER {
 			$this->user = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : '';
 			$this->passwd = isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : '';
 			$try_auth=True;
+		} else if(USE_MODE=="claranet" && isset($_SESSION["user"])){
+	        if(isset($_SESSION["profile"]) && ($_SESSION["profile"]=="admin")){
+		        $this->user = isset($_SESSION['user']) ? 'admin' : '';
+                $this->passwd = isset($_SESSION['user']) ? 'pass' : '';
+			}else{
+				$_GET['component']='view';
+				$this->user = isset($_SESSION['user']) ? 'guest' : '';
+                $this->passwd = isset($_SESSION['user']) ? 'guest' : '';
+			}
+            $component="dashboard";
+			$try_auth=True;
 		}
 		
 		if (isset($_GET['f_logout'])) {

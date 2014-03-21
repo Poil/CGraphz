@@ -113,4 +113,7 @@ if ($module == 'dashboard' && $component == 'view') {
 		include(DIR_FSROOT.'/html/menu/menu_project.php');
 	}
 }
+if(USE_MODE=="claranet"){
+	include(DIR_FSROOT.'/modules/claranet/menuServer.php');
+}
 ?>
