@@ -1,12 +1,15 @@
 <?php
-foreach ($all_project as $project) {
-	if (intval(GET('f_id_config_project'))==$project->id_config_project) {
-		$style=' style="font-weight: bold;" '; 
-	} else { 
-		$style=''; 
+$perm_mod = new PERMS();
+if ($perm_mod->perm_list_module('dashboard',false)) { 
+	foreach ($all_project as $project) {
+		if (intval(GET('f_id_config_project'))==$project->id_config_project) {
+			$style=' style="font-weight: bold;" '; 
+		} else { 
+			$style=''; 
+		}
+		
+		echo '<span><a '.$style.' href="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$project->id_config_project.'">'.$project->project_description.'</a></span>';
 	}
-	
-	echo '<span><a '.$style.' href="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$project->id_config_project.'">'.$project->project_description.'</a></span>';
 }
 ?>
 <div id="f_form_find_server">

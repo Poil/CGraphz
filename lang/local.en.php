@@ -95,3 +95,6 @@ define('DYNAMIC_DASHBOARDS','Dynamic dashboards');
 define('DBL_CLICK_ZOOM','Double click to Zoom');
 define('DEFAULT_VERSION','Default version');
 define('GOTO_TOP_OF_PAGE','To top of page');
+define('NO_ACCESS','Access denied, please contact your administrator');
+define('NO_GRAPH','Sorry there is no graph to display for your query');
+

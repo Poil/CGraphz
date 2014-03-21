@@ -72,12 +72,13 @@ if (isset($time_start) && isset($time_end)) {
 } else {
 	$zoom='ondblclick="Show_Popup($(this).attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\')"';
 }
-
+$dgraph=0;
 if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 	foreach ($pg_filters as $filter) {
 		$myregex='#^('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd#';
 
 		$plugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+		if ($plugins) $dgraph=1;
 
 		$old_t='';
 		$old_pi='';
@@ -279,6 +280,9 @@ foreach ($vmlist as $vmdir) {
 			}
 		}
 	}
+}
+if ($dgraph===0) {
+  echo NO_GRAPH;
 }
 echo '</div>';
 if (PLUGIN_BAR === true) {
