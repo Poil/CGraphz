@@ -1,7 +1,7 @@
 <?php
 # Define mode d'utilisation
 define('USE_MODE','default');
-//define('USE_MODE','claranet')
+//define('USE_MODE','claranet');
 
 # Define timezone
 date_default_timezone_set('Europe/Paris');
