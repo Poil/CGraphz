@@ -4,7 +4,7 @@ $module=GET('module');
 $component=GET('component');
 $workflow=GET('workflow');
 ?>
-<div class="navbar navbar-inverse navbar-fixed-top" id="div_menu">
+<div id="div_menu">
 <div id="div_logout"><a href="index.php?f_logout=true">Logout</a></div>
 
 <h1>CGRAPHZ</h1>
