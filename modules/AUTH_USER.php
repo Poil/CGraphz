@@ -33,7 +33,6 @@ class AUTH_USER {
 		        $this->user = isset($_SESSION['user']) ? 'admin' : '';
                 $this->passwd = isset($_SESSION['user']) ? 'pass' : '';
 			}else{
-				$_GET['component']='view';
 				$this->user = isset($_SESSION['user']) ? 'guest' : '';
                 $this->passwd = isset($_SESSION['user']) ? 'guest' : '';
 			}
