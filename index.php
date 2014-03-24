@@ -21,7 +21,6 @@
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.liveSearch.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/css/bootstrap/js/bootstrap.js"></script>
-
 	
 	<?php
 	/* If Lang defined, erase default jquery regional */
@@ -50,8 +49,8 @@
 		<?php
 	}
 	?>
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/000.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/menu.css" /> 
+	<!--<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/000.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/menu.css" /> !-->
 
 	<?php
 	if ($_GET['module'] == 'dashboard') {
