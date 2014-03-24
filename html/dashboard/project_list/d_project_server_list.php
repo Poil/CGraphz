@@ -47,13 +47,9 @@ if ($perm_mod->perm_list_module('dashboard',false)) {
 				echo '</div>';
 			}
 			if (($cpt_server<MAX_SRV || $cpt_role<=1 || isset($_GET['f_id_config_role'])) && $cpt_server!==0) {
-				echo '<div id="div_menu_project_server">';
+				
 				foreach ($all_server as $server) {
-					if (intval(GET('f_id_config_server'))==$server->id_config_server) { 
-						$style=' style="font-weight: bold;" '; 
-					} else { 
-						$style=''; 
-					}
+					
 					if (($cpt_server>MAX_SRV && $cpt_role>1) || isset($_GET['f_id_config_role'])) $str_role='&amp;f_id_config_role='.$f_id_config_role;
 					else $str_role='';
 					if (isset($_GET['f_id_config_environment'])) $str_environment='&amp;f_id_config_environment='.$f_id_config_environment;
@@ -61,10 +57,9 @@ if ($perm_mod->perm_list_module('dashboard',false)) {
 
 					// if (isset($_GET['f_id_config_role']) && $_GET['f_id_config_role']!="") $str_role='&amp;f_id_config_role='.$_GET['f_id_config_role'];
 
-					echo '<span><a '.$style.' href="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$f_id_config_project.$str_role.$str_environment.'&amp;f_id_config_server='.$server->id_config_server.'">'.$server->server_name.'</a></span>';
+					echo '<option value="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$f_id_config_project.$str_role.$str_environment.'&amp;f_id_config_server='.$server->id_config_server.'">'.$server->server_name.'</option>';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
-				echo '</div>';
+				
 			}
 		}
 	}
