@@ -153,7 +153,6 @@ echo '
 	<?php
 }
 ?>
-
 			<p class="navbar-text pull-right" style="margin-top : 0px;">
 				<a href="/logout" style="color: #ffffff; background-color: transparent; text-decoration: none;">Logout</a>
 			</p>
