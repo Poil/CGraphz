@@ -153,12 +153,7 @@ echo '
 	<?php
 }
 ?>
-			<p class="navbar-text pull-right" style="margin-top : 0px;">
-				<a href="/logout" style="color: #ffffff; background-color: transparent; text-decoration: none;">Logout</a>
-			</p>
-		</ul>
-	</div>
-</nav>
+			
 <?php
 if ($module == 'dashboard' && $component == 'view') {
 	if (NEW_MENU) {
@@ -173,3 +168,9 @@ if(USE_MODE=="claranet"){
 	include(DIR_FSROOT.'/modules/claranet/menuServer.php');
 }
 ?>
+			<p class="navbar-text pull-right" style="margin-top : 0px;">
+				<a href="/logout" style="color: #ffffff; background-color: transparent; text-decoration: none;">Logout</a>
+			</p>
+		</ul>
+	</div>
+</nav>
