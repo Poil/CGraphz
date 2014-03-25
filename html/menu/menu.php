@@ -35,9 +35,6 @@ $workflow=GET('workflow');
 		margin-top : 10px;
 	}	
 	
-	.navbar-default a{
-		margin-top : 10px;
-	} 
 </style>
 <div id="navigation">
 <nav style="margin-bottom:-2px;" class="navbar navbar-inverse navbar-static-top" role="navigation">
