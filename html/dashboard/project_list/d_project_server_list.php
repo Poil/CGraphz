@@ -1,6 +1,8 @@
 <?php
 $perm_mod = new PERMS();
-if ($perm_mod->perm_module('dashboard','view')) {  
+if ($perm_mod->perm_module('dashboard','view')) { 
+	echo '	<p class="navbar-text" style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:5px;">Serveurs : </p>
+						<select class="nav navbar-nav">';
 	if (isset($_GET['f_id_config_project'])) {
 		if (isset($all_environment) && $cpt_environment>1) {
 			echo '<div id="div_menu_server_environment">';
@@ -47,8 +49,7 @@ if ($perm_mod->perm_module('dashboard','view')) {
 				echo '</div>';
 			}
 			if (($cpt_server<MAX_SRV || $cpt_role<=1 || isset($_GET['f_id_config_role'])) && $cpt_server!==0) {
-				echo '	<p class="navbar-text" style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:5px;">Serveurs : </p>
-						<select class="nav navbar-nav">';
+				
 				foreach ($all_server as $server) {
 					
 					if (($cpt_server>MAX_SRV && $cpt_role>1) || isset($_GET['f_id_config_role'])) $str_role='&amp;f_id_config_role='.$f_id_config_role;
@@ -60,11 +61,12 @@ if ($perm_mod->perm_module('dashboard','view')) {
 
 					echo '	<option value="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$f_id_config_project.$str_role.$str_environment.'&amp;f_id_config_server='.$server->id_config_server.'">'.$server->server_name.'</option>';
 				}
-				echo '	</select>';
+				
 			}
 		}
 	}
 ?>
+	</select>
 	<form style="margin-top : -2px;" class="navbar-form navbar-left" role="search">
 		<div id="f_form_find_server" class="form-group">
 		  <input type="text" name="f_find_server" class="form-control" placeholder="<?php echo SEARCH ?>">
