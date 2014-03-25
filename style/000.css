@@ -55,15 +55,6 @@ div#displaytest {
 	min-height:200pt;
 }
 
-a, a:link, a:visited {
-	color:#2a5685;
-	text-decoration:none;
-}
-
-a:hover, a:active {
-	color:#C61A1A;
-	text-decoration:underline;
-}
 
 form label {
 	display:inline;
