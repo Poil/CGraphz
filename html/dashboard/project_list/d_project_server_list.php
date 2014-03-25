@@ -51,7 +51,10 @@ if ($perm_mod->perm_module('dashboard','view')) {
 			if (($cpt_server<MAX_SRV || $cpt_role<=1 || isset($_GET['f_id_config_role'])) && $cpt_server!==0) {
 				
 				foreach ($all_server as $server) {
-					
+					$selected="";
+					if($_GET["f_id_config_server"]==$server->id_config_server){
+						$selected="selected ";
+					}
 					if (($cpt_server>MAX_SRV && $cpt_role>1) || isset($_GET['f_id_config_role'])) $str_role='&amp;f_id_config_role='.$f_id_config_role;
 					else $str_role='';
 					if (isset($_GET['f_id_config_environment'])) $str_environment='&amp;f_id_config_environment='.$f_id_config_environment;
@@ -59,7 +62,7 @@ if ($perm_mod->perm_module('dashboard','view')) {
 
 					// if (isset($_GET['f_id_config_role']) && $_GET['f_id_config_role']!="") $str_role='&amp;f_id_config_role='.$_GET['f_id_config_role'];
 
-					echo '	<option value="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$f_id_config_project.$str_role.$str_environment.'&amp;f_id_config_server='.$server->id_config_server.'">'.$server->server_name.'</option>';
+					echo '	<option '.$selected.'value="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$f_id_config_project.$str_role.$str_environment.'&amp;f_id_config_server='.$server->id_config_server.'">'.$server->server_name.'</option>';
 				}
 				
 			}
