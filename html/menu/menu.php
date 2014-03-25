@@ -49,35 +49,9 @@ $workflow=GET('workflow');
       </button>
     </div>
 	<div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-1" style="height: auto;">
-
 		<ul class="nav navbar-nav">
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Performance analysis <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li>
-						<a href="index.php?module=dashboard&amp;component=view">Dashboards</a>
-					</li>
-					<li class="dropdown-submenu">
-						<a tabindex="-1" href="#">Dynamic Dashboards</a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="index.php?module=dashboard&amp;component=dynamic&amp;f_id_config_dynamic_dashboard=7">allcpu</a>
-							</li>
-							<li>
-								<a href="index.php?module=dashboard&amp;component=dynamic&amp;f_id_config_dynamic_dashboard=8">game</a>
-							</li>
-							<li>
-								<a href="index.php?module=dashboard&amp;component=dynamic&amp;f_id_config_dynamic_dashboard=18">load analysis</a>
-							</li>
-							<li>
-								<a href="index.php?module=dashboard&amp;component=dynamic&amp;f_id_config_dynamic_dashboard=21">test</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
+			<p>CGraphZ</p>
 		</ul>
-		
 <?php
 // Affichage du menu Dashboard si l'utilisateur a les droits
 $perm_mod = new PERMS();
