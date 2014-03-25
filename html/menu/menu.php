@@ -50,7 +50,7 @@ $workflow=GET('workflow');
     </div>
 	<div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-1" style="height: auto;">
 		<ul class="nav navbar-nav">
-			<p>CGraphZ</p>
+			<a class="navbar-brand" href="" style="color: #ffffff; background-color: transparent; text-decoration: none;">CGraphZ</a>
 		</ul>
 <?php
 // Affichage du menu Dashboard si l'utilisateur a les droits
