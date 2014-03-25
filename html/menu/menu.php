@@ -40,7 +40,7 @@ $workflow=GET('workflow');
 	} 
 </style>
 <div id="navigation">
-<nav style="margin-bottom:-2px;" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav style="margin-bottom:-2px;" class="navbar navbar-inverse navbar-static-top" role="navigation">
 	<div class="container-fluid"> 
 		<div class="navbar-inner">
 		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
