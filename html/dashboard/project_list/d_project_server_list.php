@@ -47,7 +47,8 @@ if ($perm_mod->perm_module('dashboard','view')) {
 				echo '</div>';
 			}
 			if (($cpt_server<MAX_SRV || $cpt_role<=1 || isset($_GET['f_id_config_role'])) && $cpt_server!==0) {
-				
+				echo '	<p class="navbar-text" style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:5px;">Serveurs : </p>
+						<select class="nav navbar-nav">';
 				foreach ($all_server as $server) {
 					
 					if (($cpt_server>MAX_SRV && $cpt_role>1) || isset($_GET['f_id_config_role'])) $str_role='&amp;f_id_config_role='.$f_id_config_role;
@@ -57,11 +58,21 @@ if ($perm_mod->perm_module('dashboard','view')) {
 
 					// if (isset($_GET['f_id_config_role']) && $_GET['f_id_config_role']!="") $str_role='&amp;f_id_config_role='.$_GET['f_id_config_role'];
 
-					echo '<option value="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$f_id_config_project.$str_role.$str_environment.'&amp;f_id_config_server='.$server->id_config_server.'">'.$server->server_name.'</option>';
+					echo '	<option value="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$f_id_config_project.$str_role.$str_environment.'&amp;f_id_config_server='.$server->id_config_server.'">'.$server->server_name.'</option>';
 				}
-				
+				echo '	</select>';
 			}
 		}
 	}
+?>
+	<form style="margin-top : -2px;" class="navbar-form navbar-left" role="search">
+		<div id="f_form_find_server" class="form-group">
+		  <input type="text" name="f_find_server" class="form-control" placeholder="<?php echo SEARCH ?>">
+		</div>
+	</form>
+	<script type="text/javascript">
+		jQuery('#f_form_find_server input[name="f_find_server"]').liveSearch({url: '<?php echo DIR_WEBROOT ?>/html/dashboard/project_list/ajax_server_wh_q.php' + '?f_q='});
+	</script>
+<?php
 }
 ?>

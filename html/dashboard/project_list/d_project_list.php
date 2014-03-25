@@ -1,12 +1,17 @@
 <?php
 $perm_mod = new PERMS();
 if ($perm_mod->perm_module('dashboard','view')) {
+	echo '	<p class="navbar-text" style="color: #ffffff; background-color: transparent; text-decoration: none;">Projets : </p>
+			<select class="nav navbar-nav demi-spacer">';
 	foreach ($all_project as $project) {
-		echo '<option value="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$project->id_config_project.'">'.$project->project_description.'</option>';
+		echo '	<option value="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$project->id_config_project.'">'.$project->project_description.'</option>';
 	}
+	echo '</select>';
 }
 if ($perm_mod->perm_module('dashboard','search')) {
-?><!--
+?>
+			
+<!--
 <div id="f_form_find_server">
 <label for="f_find_server"><?php echo SEARCH ?>:&nbsp;<input type="text" id="f_find_server" name="f_find_server" /></label>
 </div>
