@@ -36,7 +36,7 @@ $workflow=GET('workflow');
 	}	
 	
 	.navbar-default a{
-		margin-top : 8px;
+		margin-top : 10px;
 	} 
 </style>
 <div id="navigation">
