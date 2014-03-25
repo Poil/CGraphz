@@ -5,6 +5,10 @@ class PERMS {
 	}
 	
 	function perm_module($module, $component) {
+		$module=filter_var($module,FILTER_SANITIZE_STRING);
+		$component=filter_var($component,FILTER_SANITIZE_STRING);
+		$s_id_auth_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
+
 		// Check si Admin
 		$lib='
 			SELECT count(*) AS mycpt
@@ -13,10 +17,9 @@ class PERMS {
 				JOIN auth_user_group aug
 					ON ag.id_auth_group=aug.id_auth_group AND ag.group="Admin"
 				JOIN auth_user au
-					ON aug.id_auth_user=au.id_auth_user AND au.user=:s_user';
+					ON aug.id_auth_user=au.id_auth_user AND au.id_auth_user=:s_id_auth_user';
 
-		$s_user=filter_var($_SESSION['S_USER'],FILTER_SANITIZE_STRING);
-		$this->connSQL->bind('s_user',$s_user);
+		$this->connSQL->bind('s_id_auth_user',$s_id_auth_user);
 		$res=$this->connSQL->row($lib);
  
 		if ($res->mycpt > 0) {
@@ -27,14 +30,17 @@ class PERMS {
 				FROM
 				perm_module pm
 					JOIN perm_module_group pmg 
-						ON pm.id_perm_module=pmg.id_perm_module AND pm.module="'.$module.'" AND pm.component="'.$component.'"
+						ON pm.id_perm_module=pmg.id_perm_module AND pm.module=:module AND pm.component=:component
 					JOIN auth_user_group aug
 						ON pmg.id_auth_group=aug.id_auth_group
 					JOIN auth_user au
-						ON aug.id_auth_user=au.id_auth_user AND au.user=:s_user';
+						ON aug.id_auth_user=au.id_auth_user AND au.id_auth_user=:s_id_auth_user';
+  			
 			
+			$this->connSQL->bind('s_id_auth_user',$s_id_auth_user);
+			$this->connSQL->bind('module',$module);
+			$this->connSQL->bind('component',$component);
 			
-			$this->connSQL->bind('s_user',$s_user);
 			$res=$this->connSQL->row($lib);
 			if ($res->mycpt > 0) {
 				return true;
@@ -45,6 +51,9 @@ class PERMS {
 	}
 	
 	function perm_list_module($module, $show_no_menu=true) {
+		$s_id_auth_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
+		$module=filter_var($module,FILTER_SANITIZE_STRING);
+
 		if ($show_no_menu!==true) $libmenu=' AND menu_name != "" AND menu_name IS NOT NULL ';
 		else $libmenu='';
 		$lib='
@@ -58,11 +67,14 @@ class PERMS {
 					ON ag.id_auth_group=aug.id_auth_group
 				LEFT JOIN auth_user au 
 					ON aug.id_auth_user=au.id_auth_user
-			WHERE au.user="'.$_SESSION['S_USER'].'" AND pm.module="'.$module.'"
+			WHERE au.id_auth_user=:s_id_auth_user
+            AND pm.module=:module
 			'.$libmenu.'
 			GROUP BY component
 			ORDER BY menu_order';
 		
+		$this->connSQL->bind('s_id_auth_user',$s_id_auth_user);
+		$this->connSQL->bind('module',$module);
 		$components=$this->connSQL->query($lib);
 		
 		if (isset($components)) {
@@ -73,15 +85,17 @@ class PERMS {
 	}
 	
 	function auth_user_group($id_auth_user, $id_auth_group, $manager=false) {
-		$id_auth_user=intval($id_auth_user);
-		$id_auth_group=intval($id_auth_group);
-		
+		$id_auth_user=filter_var($id_auth_user,FILTER_SANITIZE_NUMBER_INT);
+		$id_auth_group=filter_var($id_auth_group,FILTER_SANITIZE_NUMBER_INT);
+
 		if ($id_auth_user!=$_SESSION['S_ID_USER']) {
 			return false;
 		} else {
-			$lib='SELECT count(id_auth_group) as mycpt FROM auth_user_group WHERE id_auth_user="'.$id_auth_user.'" AND id_auth_group="'.$id_auth_group.'"';
+			$lib='SELECT count(id_auth_group) as mycpt FROM auth_user_group WHERE id_auth_user=:id_auth_user AND id_auth_group=:id_auth_group';
 			if ($manager===true) $lib.=' AND manager="1"';
 
+			$this->connSQL->bind('id_auth_user',$id_auth_user);
+			$this->connSQL->bind('id_auth_group',$id_auth_group);
 			$res=$this->connSQL->row($lib);
 			if ($res->mycpt > 0) {
 				return true;

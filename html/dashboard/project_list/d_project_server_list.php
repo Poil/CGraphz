@@ -1,6 +1,6 @@
 <?php
 $perm_mod = new PERMS();
-if ($perm_mod->perm_list_module('dashboard',false)) { 
+if ($perm_mod->perm_module('dashboard','view')) {  
 	if (isset($_GET['f_id_config_project'])) {
 		if (isset($all_environment) && $cpt_environment>1) {
 			echo '<div id="div_menu_server_environment">';
