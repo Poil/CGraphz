@@ -67,6 +67,10 @@ if ($perm_mod->perm_module('dashboard','view')) {
 	}
 ?>
 	</select>
+<?php	
+	if ($perm_mod->perm_module('dashboard','search')) {
+?>
+
 	<form style="margin-top : -2px;" class="navbar-form navbar-left" role="search">
 		<div id="f_form_find_server" class="form-group">
 		  <input type="text" name="f_find_server" class="form-control" placeholder="<?php echo SEARCH ?>">
@@ -75,6 +79,7 @@ if ($perm_mod->perm_module('dashboard','view')) {
 	<script type="text/javascript">
 		jQuery('#f_form_find_server input[name="f_find_server"]').liveSearch({url: '<?php echo DIR_WEBROOT ?>/html/dashboard/project_list/ajax_server_wh_q.php' + '?f_q='});
 	</script>
+<?php } ?>
 <?php
 }
 ?>
