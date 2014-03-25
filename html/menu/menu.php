@@ -39,6 +39,7 @@ $workflow=GET('workflow');
 		margin-top : 8px;
 	} 
 </style>
+<div id="navigation">
 <nav style="margin-bottom:-2px;" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container-fluid"> 
 		<div class="navbar-inner">
@@ -194,3 +195,4 @@ if(!$haveNav){
 		</div>
 	</div>
 </nav>
+</div>
