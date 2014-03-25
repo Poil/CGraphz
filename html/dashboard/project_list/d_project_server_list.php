@@ -73,7 +73,7 @@ if ($perm_mod->perm_module('dashboard','view')) {
 
 	<form style="margin-top : -2px;" class="navbar-form navbar-left" role="search">
 		<div id="f_form_find_server" class="form-group">
-		  <input type="text" name="f_find_server" class="form-control" placeholder="<?php echo SEARCH ?>">
+		  <input type="text" name="f_find_server" class="form-control" placeholder="<?php echo SEARCH ?>" autocomplete="off">
 		</div>
 	</form>
 	<script type="text/javascript">
