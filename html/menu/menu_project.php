@@ -1,5 +1,5 @@
 <ul>
-	<!--<div class="demi-spacer"></div>!-->
+	<div class="demi-spacer"></div>
 	<select class="nav navbar-nav" style="margin-right : 10px;">
 <?php
 include(DIR_FSROOT.'/html/dashboard/project_list/r_project_list.php');
