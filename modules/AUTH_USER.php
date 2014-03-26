@@ -145,7 +145,9 @@ class AUTH_USER {
 
 		if ($host==$authorized->server_name) {
 			return $authorized;
-		} else {		
+		} else if(USE_MODE=="claranet"){
+			include(DIR_FSROOT."/modules/claranet/claranet_auth.php");
+		}else{
 			return false;
 		}
 	}
