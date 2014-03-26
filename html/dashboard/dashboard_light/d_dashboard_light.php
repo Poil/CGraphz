@@ -79,7 +79,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 
 		$plugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
 		if ($plugins) $dgraph=1;
-		
+
 		$old_t='';
 		$old_pi='';
 		$old_subpg='';
@@ -276,13 +276,13 @@ foreach ($vmlist as $vmdir) {
 				if ($t!=$old_t) echo '<h4>'.ucfirst(str_replace('_', ' ',$t)).'</h4>';
 				$old_t=$t;
 
-				echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src='.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.':'.$vm.'&amp;p='.$p.'&amp;pc='.$pc.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;tc='.$tc.'&amp;ti='.$ti.'&amp;s='.$time_range.' />';
+				echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src='.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.' />';
 			}
 		}
 	}
 }
 if ($dgraph===0) {
-	echo NO_GRAPH;
+  echo NO_GRAPH;
 }
 echo '</div>';
 if (PLUGIN_BAR === true) {

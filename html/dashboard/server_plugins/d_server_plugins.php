@@ -53,7 +53,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 
 		$plugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
 		if ($plugins) $dgraph=1;
-		
+
 		$old_t='';
 		$old_pi='';
 		$old_subpg='';
