@@ -15,6 +15,4 @@ if ($perm_mod->perm_module('dashboard','view')) {
 	}
 	echo '</select>';
 }
-if ($perm_mod->perm_module('dashboard','search')) {
 ?>
-<?php } ?>
