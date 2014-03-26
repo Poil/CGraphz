@@ -11,11 +11,11 @@ if ($auth->verif_auth()) {
 
 	$plugin = validate_get(GET('p'), 'plugin');
 	$host=validate_get(GET('h'), 'host');
+	if (strpos($host,':')!=FALSE) {
+		$tmp=explode(':',$host);
+		$host=$tmp[0];
+	}
 	if ($authorized=$auth->check_access_right($host)) {
-		if (strpos($host,':')!=FALSE) {
-			$tmp=explode(':',$host);
-			$host=$tmp[0];
-		}
 		$width = empty($_GET['x']) ? $CONFIG['width'] : $_GET['x'];
 		$height = empty($_GET['y']) ? $CONFIG['height'] : $_GET['y'];
 		$s=intval($_GET['s']);

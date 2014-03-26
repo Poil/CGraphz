@@ -188,9 +188,9 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 								include DIR_FSROOT.'/plugin/'.$p.'.php';
 							} else {
 								if ($time_range!='') {
-									echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pc='.$pc.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;tc='.$tc.'&amp;ti='.$ti.'&amp;s='.$time_range.'" />'."\n";
+									echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />'."\n";
 								} else {
-									echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pc='.$pc.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;tc='.$tc.'&amp;ti='.$ti.'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
+									echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
 								}
 							}
 						}
@@ -208,9 +208,9 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 							include DIR_FSROOT.'/plugin/'.$p.'.php';
 						} else {
 							if ($time_range!='') {
-								echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pc='.$pc.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;tc='.$tc.'&amp;ti='.$ti.'&amp;s='.$time_range.'" />'."\n";
+								echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />'."\n";
 							} else {
-								echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.$cur_server->server_name.'&amp;p='.$p.'&amp;pc='.$pc.'&amp;pi='.$pi.'&amp;t='.$t.'&amp;tc='.$tc.'&amp;ti='.$ti.'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
+								echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
 							}
 						}
 					}
