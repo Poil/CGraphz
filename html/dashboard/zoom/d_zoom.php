@@ -29,16 +29,13 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 ?>
 
 <form onsubmit="refresh_graph('dashboard','',date_to_ts('f_time_start'),date_to_ts('f_time_end'));  Close_Popup(); return false" action="" method="post" name="f_form_time_selection">
-	<img id="move_popup" alt="<->" title="Move" src="img/drag.png" />
-	<!--<img id="close_popup" onclick="Close_Popup();" alt="x" title="Fermer" src="img/close.png" />
-	!-->
+	<!--<img id="move_popup" alt="<->" title="Move" src="img/drag.png" />!-->
 	<div class="input-group">
-		<div class="input-group input-group-sm">
+		<div class="input-group input-group-sm" style="margin-bottom:5px;">
 			<span class="input-group-addon"><?php echo RANGE_START ?></span>
 			<input id="f_time_start" value="<?php echo $date_start ?>" type="text" maxlength="16" size="16" name="f_time_start" class="form-control" />
 		</div>
-		<br/>
-		<div class="input-group input-group-sm">
+		<div class="input-group input-group-sm" style="margin-bottom:5px;">
 			<span class="input-group-addon"><?php echo RANGE_END ?></span>
 			<input id="f_time_end" value="<?php echo $date_end ?>" type="text" maxlength="16" size="16" name="f_time_end" class="form-control" />
 			<span class="input-group-btn">
