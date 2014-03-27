@@ -2,7 +2,7 @@
 $perm_mod = new PERMS();
 if ($perm_mod->perm_module('dashboard','view')) { 
 	echo '	<p class="navbar-text" style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:5px;">Serveurs : </p>
-						<select id="selectProjet" class="nav navbar-nav">';
+						<select id="selectServer" class="nav navbar-nav">';
 	if (isset($_GET['f_id_config_project'])) {
 		if (isset($all_environment) && $cpt_environment>1) {
 			
@@ -67,19 +67,12 @@ if ($perm_mod->perm_module('dashboard','view')) {
 	</select>
 	
 	<script type='text/javascript'>
-		$('#selectProject').change(function(){
-			var prj='';
-			$('#selectProject option:selected').each(function(){
-				prj=$(this).text();
+		$('#selectServer').change(function(){
+			var url='';
+			$('#selectServer option:selected').each(function(){
+				url=$(this).text();
 			});
-			$.ajax({
-				type: 'GET',
-				url: '".DIR_WEBROOT."/lib/ajax/getServerByProject.ajax.php',
-				data: 'f_id_config_project='+prj,
-				success: function(msg){
-					$('#selectServer').html(msg);
-				}
-			});
+			window.location.href = '<?php echo DIR_WEBROOT; ?>/index.php?module=dashboard&component=view&'+url;
 		});
 	</script>
 <?php	

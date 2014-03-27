@@ -2,7 +2,7 @@
 $perm_mod = new PERMS();
 if ($perm_mod->perm_module('dashboard','view')) {
 	echo '	<p class="navbar-text" style="color: #ffffff; background-color: transparent; text-decoration: none;">Projets : </p>
-			<select class="nav navbar-nav demi-spacer">';
+			<select id="selectProject" class="nav navbar-nav demi-spacer">';
 	if(!isset($_GET["f_id_config_project"])){
 		echo '<option selected value=""> </option>';
 	}
@@ -16,3 +16,19 @@ if ($perm_mod->perm_module('dashboard','view')) {
 	echo '</select>';
 }
 ?>
+<script type='text/javascript'>
+	$('#selectProject').change(function(){
+		var prj='';
+		$('#selectProject option:selected').each(function(){
+			prj=$(this).text();
+		});
+		$.ajax({
+			type: 'GET',
+			url: '".DIR_WEBROOT."/lib/ajax/getServerByProject.ajax.php',
+			data: 'f_id_config_project='+prj,
+			success: function(msg){
+				$('#selectServer').html(msg);
+			}
+		});
+	});
+</script>
