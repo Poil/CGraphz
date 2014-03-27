@@ -74,8 +74,8 @@ if ($perm_mod->perm_module('dashboard','view')) {
 			});
 			$.ajax({
 				type: 'GET',
-				url: '".DIR_WEBROOT."/modules/claranet/ajax/getServerByProject.ajax.php',
-				data: 'project='+prj,
+				url: '".DIR_WEBROOT."/lib/ajax/getServerByProject.ajax.php',
+				data: 'f_id_config_project='+prj,
 				success: function(msg){
 					$('#selectServer').html(msg);
 				}
