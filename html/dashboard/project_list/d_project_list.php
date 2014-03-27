@@ -27,7 +27,6 @@ if ($perm_mod->perm_module('dashboard','view')) {
             url: '<?php echo DIR_WEBROOT; ?>/lib/ajax/getServerByProject.ajax.php',
             data: 'f_id_config_project='+prj,
             success: function(msg){
-                alert(msg);
                 $('#selectServer').html(msg);
             }
         });
