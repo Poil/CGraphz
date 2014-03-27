@@ -35,7 +35,7 @@ $workflow=GET('workflow');
 		margin-top : 10px;
 	}	
 	
-	#navigation *{
+	.navbar-static-top{
         z-index : 99;
     }
 </style>
