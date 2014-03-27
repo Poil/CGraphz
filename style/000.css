@@ -1,10 +1,5 @@
 @CHARSET "UTF-8";
 
-html * {
-	font-size:9pt;
-	font-family:Verdana,Arial,sans-serif;
-}
-
 body {
 	padding:0;
 	margin:0;
@@ -269,7 +264,6 @@ img {
 }
 
 #popup {
-	width: 900px;
 	position:fixed;
 	
   	-moz-border-radius: 5pt;
