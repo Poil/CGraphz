@@ -143,13 +143,14 @@ class AUTH_USER {
 		$this->connSQL->bind('s_id_user',$_SESSION['S_ID_USER']);
 		$authorized=$this->connSQL->row($lib);
 
-		if ($host==$authorized->server_name) {
-			return $authorized;
-		} else if(USE_MODE=="claranet"){
-			include(DIR_FSROOT."/modules/claranet/claranet_auth.php");
-		}else{
-			return false;
-		}
+		 if ($host==$authorized->server_name) {
+            if(USE_MODE=="claranet"){
+                include(DIR_FSROOT."/modules/claranet/verifDroit.php");
+            }
+            return $authorized;
+        }else{
+            return false;
+        }
 	}
 
 	function logout(){ // détruire la session
