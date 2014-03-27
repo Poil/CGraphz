@@ -70,7 +70,7 @@ if ($perm_mod->perm_module('dashboard','view')) {
 		$('#selectServer').change(function(){
 			var url='';
 			$('#selectServer option:selected').each(function(){
-				url=$(this).text();
+				url=$(this).val();
 			});
 			window.location.href = '<?php echo DIR_WEBROOT; ?>/index.php?module=dashboard&component=view&'+url;
 		});

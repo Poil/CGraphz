@@ -11,7 +11,7 @@ if ($perm_mod->perm_module('dashboard','view')) {
 		if($_GET["f_id_config_project"]==$project->id_config_project){
 			$selected="selected ";
 		}
-		echo '	<option '.$selected.'value="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$project->id_config_project.'">'.$project->project_description.'</option>';
+		echo '	<option '.$selected.'value="'.$project->id_config_project.'">'.$project->project_description.'</option>';
 	}
 	echo '</select>';
 }
@@ -19,16 +19,17 @@ if ($perm_mod->perm_module('dashboard','view')) {
 <script type='text/javascript'>
 	$('#selectProject').change(function(){
 		var prj='';
-		$('#selectProject option:selected').each(function(){
-			prj=$(this).text();
-		});
-		$.ajax({
-			type: 'GET',
-			url: '".DIR_WEBROOT."/lib/ajax/getServerByProject.ajax.php',
-			data: 'f_id_config_project='+prj,
-			success: function(msg){
-				$('#selectServer').html(msg);
-			}
-		});
+        $('#selectProject option:selected').each(function(){
+            prj=$(this).val();
+        });
+        $.ajax({
+            type: 'GET',
+            url: '<?php echo DIR_WEBROOT; ?>/lib/ajax/getServerByProject.ajax.php',
+            data: 'f_id_config_project='+prj,
+            success: function(msg){
+                alert(msg);
+                $('#selectServer').html(msg);
+            }
+        });
 	});
 </script>
