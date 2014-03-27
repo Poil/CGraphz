@@ -32,13 +32,20 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 	<img id="move_popup" alt="<->" title="Move" src="img/drag.png" />
 	<!--<img id="close_popup" onclick="Close_Popup();" alt="x" title="Fermer" src="img/close.png" />
 	!-->
-	<label for="f_time_start"><?php echo RANGE_START ?></label>
-		<input id="f_time_start" value="<?php echo $date_start ?>" type="text" maxlength="16" size="16" name="f_time_start" />
-	<br />
-	<label for="f_time_end"><?php echo RANGE_END ?></label>
-		<input id="f_time_end" value="<?php echo $date_end ?>" type="text" maxlength="16" size="16" name="f_time_end" />
-	<br />
-	<input type="submit" value="<?php echo SUBMIT_TO_DASHBOARD ?>" />
+	<div class="input-group">
+		<div class="input-group input-group-sm">
+			<span class="input-group-addon"><?php echo RANGE_START ?></span>
+			<input id="f_time_start" value="<?php echo $date_start ?>" type="text" maxlength="16" size="16" name="f_time_start form-control" />
+		</div>
+		<br/>
+		<div class="input-group input-group-sm">
+			<span class="input-group-addon"><?php echo RANGE_END ?></span>
+			<input id="f_time_end" value="<?php echo $date_end ?>" type="text" maxlength="16" size="16" name="f_time_end form-control" />
+			<span class="input-group-btn">
+				<button class="btn btn-default" type="submit"><?php echo SUBMIT_TO_DASHBOARD ?></button>
+			</span>
+		</div>
+	</div>
 </form>
 <?php
 	if (empty($_GET['x']))
