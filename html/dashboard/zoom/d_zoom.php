@@ -12,6 +12,7 @@ $lib='SELECT COALESCE(collectd_version,"'.COLLECTD_DEFAULT_VERSION.'") as collec
 $connSQL->bind('f_server_name',$f_server_name);
 $cur_server=$connSQL->row($lib);
 
+echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
 echo '<meta name="viewport" content="width=1050, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />';
 
 if (isset($_SESSION['time_start']) && $_SESSION['time_start']!='') {
@@ -29,7 +30,8 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 
 <form onsubmit="refresh_graph('dashboard','',date_to_ts('f_time_start'),date_to_ts('f_time_end'));  Close_Popup(); return false" action="" method="post" name="f_form_time_selection">
 	<img id="move_popup" alt="<->" title="Move" src="img/drag.png" />
-	<img id="close_popup" onclick="Close_Popup();" alt="x" title="Fermer" src="img/close.png" />
+	<!--<img id="close_popup" onclick="Close_Popup();" alt="x" title="Fermer" src="img/close.png" />
+	!-->
 	<label for="f_time_start"><?php echo RANGE_START ?></label>
 		<input id="f_time_start" value="<?php echo $date_start ?>" type="text" maxlength="16" size="16" name="f_time_start" />
 	<br />
