@@ -35,6 +35,9 @@ $workflow=GET('workflow');
 		margin-top : 10px;
 	}	
 	
+	#navigation *{
+        z-index : 99;
+    }
 </style>
 <div id="navigation">
 <nav style="margin-bottom:-2px;" class="navbar navbar-inverse navbar-static-top" role="navigation">
