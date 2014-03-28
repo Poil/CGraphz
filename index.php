@@ -24,9 +24,10 @@
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/js/bootstrap.js"></script>
 	
+	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/moment.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/bootstrap-datetimepicker.fr.js"></script>
-	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/moment.js"></script>
+	
 	
 	<?php
 	/* If Lang defined, erase default jquery regional */
