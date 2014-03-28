@@ -10,11 +10,10 @@
 	<!--<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type" />!-->
 	
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/redmond/jquery-ui-1.10.3.custom.min.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/jquery-ui-timepicker-addon.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/css/bootstrap.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/css/bootstrap-responsive.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/css/bootstrap-datetimepicker-min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/css/bootstrap-datetimepicker.min.css">
 	
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-1.10.3.custom.min.js"></script>
@@ -25,7 +24,7 @@
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/js/bootstrap.js"></script>
 	
-	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/bootstrap-datetimepicker-min.js"></script>
+	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/bootstrap-datetimepicker.fr.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/moment.js"></script>
 	
