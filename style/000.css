@@ -93,34 +93,6 @@ fieldset.large label {
 
 .spacer { clear : both; height:0pt;}
 
-table {
-	margin:2pt;	
-	border: solid black 1pt;
-	overflow: hidden;
-}
-
-table tr {
-	position: relative;
-}
-
-table tr th {
-	font-weight:normal;
-}
-
-table tr td {
-	padding-right:4pt;
-	padding-left:4pt;
-	border-right:1px solid grey;
-}
-
-table tr td:first-child {
-	padding-left:2pt;
-}
-
-table tr td:last-child {
-	padding-right:2pt;
-	border-right:none;
-}
 
 h1 {
 	font-size:18pt;
@@ -293,21 +265,6 @@ img {
 	margin-left:-22px;
 }
 
-/********* Datepicker Fix ************/
-#ui-datepicker-div {
-  border:1px solid black;
-}
-
-.ui-widget-header {
-	background:#507AAA;
-	background-image:none;
-}
-
-.ui-widget-header a, 
-.ui-widget-header a:link, 
-.ui-widget-header a:visited {
-	color:white;
-}
 
 /********* DataTable Fix ************/
 table.table_admin tr th.sorting_asc {
