@@ -42,7 +42,6 @@ class AUTH_USER {
                 $this->user = isset($_SESSION['user']) ? 'guest' : '';
                 $this->passwd = isset($_SESSION['user']) ? 'guest' : '';
             }
-
             $component="dashboard";
 			$try_auth=True;
 		}
