@@ -8,6 +8,7 @@ $lib='
 	SELECT 
 		cs.id_config_server, 
 		cs.server_name,
+		COALESCE(cs.collectd_version,"'.COLLECTD_DEFAULT_VERSION.'") as collectd_version,
 		MAX(csp.id_config_project) as  id_config_project
 	FROM config_server cs
 		LEFT JOIN config_server_project csp 

@@ -17,6 +17,9 @@ define('COLLECTD_VERSIONS',serialize(array(
 	'SSC 3.0'
 )));
 
+# AUTH type (default or ...) - don't touch this except if you want to use AUTH of an another software
+define('AUTH_TYPE','default');
+
 # LDAP Configuration
 ## Host : ldaps://192.168.0.1
 define('LDAP_HOST','');
@@ -139,6 +142,8 @@ spl_autoload_register("my_autoload");
 include(DIR_FSROOT.'/lang/local.'.DEF_LANG.'.php');
 include(DIR_FSROOT.'/html/form/commun/func_form.php');
 include(DIR_FSROOT.'/modules/functions.inc.php');
+
+if (AUTH_TYPE != 'default') include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/claranet_auth.php');
 
 if (!ini_get('date.timezone')) { date_default_timezone_set(DEFAULT_TIMEZONE); }
 ?>

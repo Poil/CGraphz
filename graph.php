@@ -39,3 +39,4 @@ if ($auth->verif_auth()) {
 		error_image('[ERROR] Permission denied');
 	}
 }
+

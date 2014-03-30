@@ -28,6 +28,8 @@ class AUTH_USER {
 			$this->user = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : '';
 			$this->passwd = isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : '';
 			$try_auth=True;
+		} else if (AUTH_TYPE != 'default') {
+			include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/extend_auth.php');
 		}
 		
 		if (isset($_GET['f_logout'])) {
@@ -135,6 +137,8 @@ class AUTH_USER {
 
 		if ($host==$authorized->server_name) {
 			return $authorized;
+		} else if (AUTH_TYPE != 'default') {
+			include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/extend_access_right.php');
 		} else {		
 			return false;
 		}
