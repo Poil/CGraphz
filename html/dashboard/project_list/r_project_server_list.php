@@ -19,8 +19,6 @@ if (isset($_GET['f_id_config_project'])) {
 		$WHERE_ENV='';
 	}
 	
-	$connSQL->bind('f_id_config_project',$f_id_config_project);
-	$connSQL->bind('s_id_user',$s_id_user);
 	if (isset($_GET['f_id_config_role']) && $f_id_config_role!==0) {
 		$lib='
 		SELECT 
@@ -94,8 +92,9 @@ if (isset($_GET['f_id_config_project'])) {
 		GROUP BY id_config_server, server_name
 		ORDER BY server_name';
 	}
-	
-	
+
+	$connSQL->bind('f_id_config_project',$f_id_config_project);
+	$connSQL->bind('s_id_user',$s_id_user);
 	$all_server=$connSQL->query($lib);
 	$cpt_server=count($all_server);
 
@@ -130,7 +129,10 @@ if (isset($_GET['f_id_config_project'])) {
 			'.$WHERE_ENV.'
 		GROUP BY id_config_role, role_description
 		ORDER BY role_description';
-		
+
+		$connSQL->bind('f_id_config_project',$f_id_config_project);
+		$connSQL->bind('s_id_user',$s_id_user);
+
 		$all_role=$connSQL->query($lib);
 		$cpt_role=count($all_role);
 	}	
@@ -161,6 +163,9 @@ if (isset($_GET['f_id_config_project'])) {
 	GROUP BY id_config_environment, environment_description
 	ORDER BY environment_description';
 	
+	$connSQL->bind('f_id_config_project',$f_id_config_project);
+	$connSQL->bind('s_id_user',$s_id_user);
+
 	$all_environment=$connSQL->query($lib);
 	$cpt_environment=count($all_environment);
 
