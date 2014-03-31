@@ -386,6 +386,7 @@
     "dropdown.js",
     "modal.js",
     "tab.js",
+    "collapse.js",
     "transition.js"
   ]
 }
