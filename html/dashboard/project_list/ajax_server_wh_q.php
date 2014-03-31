@@ -35,8 +35,7 @@ $f_id_config_dynamic_dashboard=filter_input(INPUT_GET,'f_id_config_dynamic_dashb
 	$cpt_server=count($all_server);
 	
 	for ($i=0; $i<$cpt_server; $i++) {
-		echo '<a href="'.DIR_WEBROOT.'/index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$all_server[$i]->id_config_project.'&amp;f_id_config_server='.$all_server[$i]->id_config_server.'" 
-			onclick="window.location.href=genUrl(\''.$all_server[$i]->id_config_server.'\',\''.$all_server[$i]->id_config_project.'\'); return false;">'.$all_server[$i]->server_name.'</a><br />';
+		echo '<a href="'.DIR_WEBROOT.'/index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$all_server[$i]->id_config_project.'&amp;f_id_config_server='.$all_server[$i]->id_config_server.'">'.$all_server[$i]->server_name.'</a><br />';
 	}
 }
 }
