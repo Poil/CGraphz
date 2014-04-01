@@ -14,6 +14,8 @@ if (isset($_POST['f_submit_dynamic_dashboard'])) {
 			WHERE
 				id_config_dynamic_dashboard=:f_id_config_dynamic_dashboard';		
 
+		$connSQL->bind('f_id_config_dynamic_dashboard',$f_id_config_dynamic_dashboard);
+		$connSQL->bind('f_title',$f_title);
 		$connSQL->query($lib);
 		
 	} else { // INSERT
