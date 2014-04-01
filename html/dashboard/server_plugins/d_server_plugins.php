@@ -1,4 +1,5 @@
 <?php
+
 $f_id_config_project=filter_input(INPUT_GET,'f_id_config_project',FILTER_SANITIZE_NUMBER_INT);
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 
@@ -58,15 +59,16 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 	}
 	$myregex=$myregex.')#';
 
-	$plugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
-	if ($plugins) $dgraph=1;
+	$tplugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+	if ($tplugins) $dgraph=1;
+	$plugins = (sort_plugins($tplugins, $pg_filters));
 
 	$old_t='';
 	$old_pi='';
 	$old_subpg='';
 	$myregex='#^('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)(\w+)(?:\-(\w*))?/(\w+)(?:\-(\w*))?\.rrd#';
 	foreach ($plugins as $plugin) {
-		preg_match($myregex, $plugin, $matches);
+		preg_match($myregex, $plugin['content'], $matches);
 
 		if (isset($matches[2])) {
 			$p=$matches[2];

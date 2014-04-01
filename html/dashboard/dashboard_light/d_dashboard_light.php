@@ -85,7 +85,9 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 	}
 	$myregex=$myregex.')#';
 
-	$plugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+	$tplugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+	if ($tplugins) $dgraph=1;
+	$plugins = (sort_plugins($tplugins, $pg_filters));
 
 	if ($plugins) $dgraph=1;
 
@@ -94,7 +96,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 	$old_subpg='';
 	$myregex='#^('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)(\w+)(?:\-(\w*))?/(\w+)(?:\-(\w*))?\.rrd#';
 	foreach ($plugins as $plugin) {
-		preg_match($myregex, $plugin, $matches);
+		preg_match($myregex, $plugin['content'], $matches);
 
 		if (isset($matches[2])) {
 			$p=$matches[2];
