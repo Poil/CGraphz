@@ -59,8 +59,6 @@ if ($perm_mod->perm_module('dashboard','view')) {
 					if (isset($_GET['f_id_config_environment'])) $str_environment='&amp;f_id_config_environment='.$f_id_config_environment;
 					else $str_environment='';
 					
-					// if (isset($_GET['f_id_config_role']) && $_GET['f_id_config_role']!="") $str_role='&amp;f_id_config_role='.$_GET['f_id_config_role'];
-					
 					echo '<span><a '.$style.' href="index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$f_id_config_project.$str_role.$str_environment.'&amp;f_id_config_server='.$server->id_config_server.'">'.$server->server_name.'</a></span>';
 				}
 				echo '<div class="spacer">&nbsp;</div>';
