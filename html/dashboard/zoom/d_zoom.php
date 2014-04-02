@@ -44,8 +44,14 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 		</div>
 		<script type="text/javascript">
 			$(function () {
-                $('#f_time_start').datetimepicker();
-				$('#f_time_end').datetimepicker();
+                $('#f_time_start').datetimepicker({
+					language:'en-24h',
+					maxDate:moment().format('YYYY-MM-DD HH:mm')
+				});
+				$('#f_time_end').datetimepicker({
+					language:'en-24h',
+					maxDate:moment().format('YYYY-MM-DD HH:mm')
+				});
             });
 		</script>
 	</div>

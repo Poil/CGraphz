@@ -26,7 +26,7 @@
 	
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/moment.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/bootstrap-datetimepicker.fr.js"></script>
+	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/datetimepicker/js/bootstrap-datetimepicker.en-24h.js"></script>
 	
 	
 	<?php
