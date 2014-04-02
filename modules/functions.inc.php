@@ -87,4 +87,23 @@ function is_blank($value) {
 	return empty($value) && !is_numeric($value);
 }
 
+function sort_plugins($plugins, $filters) {
+	$plugins_ordered = array();
+	$i=0;
+	foreach ($plugins as $plugin) {
+		foreach ($filters as $filter) {
+			if (strpos($plugin,$filter->plugin)) {
+				$plugins_ordered[$i]['index']=$filter->plugin_order;
+				$plugins_ordered[$i]['content']=$plugin;
+			}
+		}
+		if (empty($plugins_ordered[$i]['index'])) {
+			$plugins_ordered[$i]['index']=99999;
+			$plugins_ordered[$i]['content']=$plugin;
+		}
+		$i++;
+	}
+	asort($plugins_ordered);
+	return $plugins_ordered;
+}
 ?>
