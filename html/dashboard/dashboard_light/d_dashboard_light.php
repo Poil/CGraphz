@@ -85,9 +85,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 	}
 	$myregex=$myregex.')#';
 
-	tplugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
-	if ($tplugins) $dgraph=1;
-	$plugins = (sort_plugins($tplugins, $pg_filters));
+	$plugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
 
 	if ($plugins) $dgraph=1;
 
