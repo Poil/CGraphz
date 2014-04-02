@@ -8,7 +8,7 @@ $lib='
 	SELECT 
 		cs.id_config_server, 
 		cs.server_name,
-		COALESCE(cs.collectd_version,"'.COLLECTD_DEFAULT_VERSION.'") as collectd_version,
+		cs.collectd_version,
 		MAX(csp.id_config_project) as  id_config_project
 	FROM config_server cs
 		LEFT JOIN config_server_project csp 
@@ -75,34 +75,29 @@ if (isset($time_start) && isset($time_end)) {
 }
 $dgraph=0;
 if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
-	$myregex='';
-	foreach ($pg_filters as $filter) {
-		if (empty($myregex)) {
-			$myregex='#^((('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
-		} else {
-			$myregex=$myregex.'|(('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
-		}
-	}
+	
+	foreach ($pg_filters as $cur_filter) {
+        if ($myregex == "") {
+            $myregex='#^((('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)('.$cur_filter->plugin.')(?:\-('.$cur_filter->plugin_instance.'))?/('.$cur_filter->type.')(?:\-('.$cur_filter->type_instance.'))?\.rrd)';
+        } else {
+            $myregex=$myregex.'|(('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)('.$cur_filter->plugin.')(?:\-('.$cur_filter->plugin_instance.'))?/('.$cur_filter->type.')(?:\-('.$cur_filter->type_instance.'))?\.rrd)';
+        }
+    }
 	$myregex=$myregex.')#';
+    $plugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+    if ($plugins) $dgraph=1;
 
-	$tplugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
-	if ($tplugins) $dgraph=1;
-	$plugins = (sort_plugins($tplugins, $pg_filters));
-
-	if ($plugins) $dgraph=1;
-
-	$old_t='';
-	$old_pi='';
-	$old_subpg='';
-	$myregex='#^('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
+    $old_t='';
+    $old_pi='';
+    $old_subpg='';
+    $myregex='#^('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
 	foreach ($plugins as $plugin) {
-		preg_match($myregex, $plugin['content'], $matches);
+		preg_match($myregex, $plugin, $matches);
 
 		if (isset($matches[2])) {
 			$p=$matches[2];
 			if (!isset($$p)) $$p=false;
 		} else { 
-			continue;
 			$p=null; 
 		}
 		if (isset($matches[3])) {
@@ -182,10 +177,10 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if (isset($p) && isset($t)) {
 				if (!preg_match('/^(df|interface|oracle)$/', $p) || 
 				   (((preg_replace('/[^0-9\.]/','',$cur_server->collectd_version) >= 5)
-				     && (preg_replace('/[^a-zA-Z]/','',$cur_server->collectd_version) == 'Collectd') 
-				     && $p!='oracle' && $t!='df'))
+					 && (preg_replace('/[^a-zA-Z]/','',$cur_server->collectd_version) == 'Collectd') 
+					 && $p!='oracle' && $t!='df'))
 				   || (preg_replace('/[^a-zA-Z]/','',$cur_server->collectd_version) == 'SSC')
-			    ) {
+				) {
 					$ti='';
 					if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
 						if ($CONFIG['graph_type'] == 'canvas') {
