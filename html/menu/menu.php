@@ -180,8 +180,8 @@ if ($module == 'dashboard' && $component == 'view') {
 	}
 }
 
-if(USE_MODE=="claranet"){
-	include(DIR_FSROOT.'/modules/claranet/menuServer.php');
+if(USE_MODE!="default"){
+	include(DIR_FSROOT.'/modules/'.USE_MODE.'/menu.php');
 }
 ?>
 <?php
