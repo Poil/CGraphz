@@ -33,11 +33,11 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 	<div class="input-group">
 		<div class="input-group input-group-sm" style="margin-bottom:5px;">
 			<span class="input-group-addon" style="width:65px;"><?php echo RANGE_START ?></span>
-			<input id="f_time_start" data-date-format="YYYY-MM-DD hh:mm" value="<?php echo $date_start ?>" type="text" maxlength="16" size="16" name="f_time_start" class="form-control" />
+			<input id="f_time_start" value="<?php echo $date_start ?>" type="text" maxlength="16" size="16" name="f_time_start" class="form-control" />
 		</div>
 		<div class="input-group input-group-sm" style="margin-bottom:5px;">
 			<span class="input-group-addon" style="width:65px;"><?php echo RANGE_END ?></span>
-			<input id="f_time_end" data-date-format="YYYY-MM-DD hh:mm" value="<?php echo $date_end ?>" type="text" maxlength="16" size="16" name="f_time_end" class="form-control" />
+			<input id="f_time_end" value="<?php echo $date_end ?>" type="text" maxlength="16" size="16" name="f_time_end" class="form-control" />
 			<span class="input-group-btn">
 				<button class="btn btn-default" type="submit"><?php echo SUBMIT_TO_DASHBOARD ?></button>
 			</span>
