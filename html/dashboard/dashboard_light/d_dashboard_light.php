@@ -96,7 +96,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 	$old_subpg='';
 	$myregex='#^('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)(\w+)(?:\-(\w*))?/(\w+)(?:\-(\w*))?\.rrd#';
 	foreach ($plugins as $plugin) {
-		preg_match($myregex, $plugin['content'], $matches);
+		preg_match($myregex, $plugin, $matches);
 
 		if (isset($matches[2])) {
 			$p=$matches[2];
