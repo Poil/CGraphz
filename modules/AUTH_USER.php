@@ -137,7 +137,7 @@ class AUTH_USER {
 
 		 if ($host==$authorized->server_name) {
             if(USE_MODE!="default"){
-                include(DIR_FSROOT."/modules/".USE_MODE."/verifDroit.php");
+                include(DIR_FSROOT."/modules/".USE_MODE."/check_access_right.php");
             }
             return $authorized;
         }else{
