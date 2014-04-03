@@ -87,14 +87,16 @@ function is_blank($value) {
 	return empty($value) && !is_numeric($value);
 }
 
-function sort_plugins($plugins, $filters) {
+function sort_plugins($hostpath, $plugins, $filters) {
 	$plugins_ordered = array();
 	$i=0;
 	foreach ($plugins as $plugin) {
 		foreach ($filters as $filter) {
-			if (strpos($plugin,$filter->plugin)) {
+			$myregex='#^('.$hostpath.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd#';
+			if (preg_match($myregex, $plugin)) {
 				$plugins_ordered[$i]['index']=$filter->plugin_order;
 				$plugins_ordered[$i]['content']=$plugin;
+				break;
 			}
 		}
 		if (empty($plugins_ordered[$i]['index'])) {

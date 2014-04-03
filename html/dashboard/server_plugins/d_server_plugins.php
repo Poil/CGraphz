@@ -61,7 +61,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 
 	$tplugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
 	if ($tplugins) $dgraph=1;
-	$plugins = (sort_plugins($tplugins, $pg_filters));
+	$plugins = (sort_plugins($CONFIG['datadir'].'/'.$cur_server->server_name,$tplugins, $pg_filters));
 
 	$old_t='';
 	$old_pi='';
