@@ -136,8 +136,8 @@ class AUTH_USER {
 		$authorized=$this->connSQL->row($lib);
 
 		 if ($host==$authorized->server_name) {
-            if(USE_MODE=="claranet"){
-                include(DIR_FSROOT."/modules/claranet/verifDroit.php");
+            if(USE_MODE!="default"){
+                include(DIR_FSROOT."/modules/".USE_MODE."/check_access_right.php");
             }
             return $authorized;
         }else{
