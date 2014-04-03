@@ -28,23 +28,8 @@ class AUTH_USER {
 			$this->user = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : '';
 			$this->passwd = isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : '';
 			$try_auth=True;
-		} else if(USE_MODE=="claranet" && isset($_SESSION["user"])){
-	          if($_SESSION["user"]=="bdd_admin"){
-                $this->user = isset($_SESSION['user']) ? 'admin' : '';
-                $this->passwd = isset($_SESSION['user']) ? 'pass' : '';
-            }else if(isset($_SESSION["profile"]) && ($_SESSION["profile"]=="admin")){
-                $this->user = isset($_SESSION['user']) ? 'staff' : '';
-                $this->passwd = isset($_SESSION['user']) ? 'staff' : '';
-            }else if(isset($_SESSION["profile"]) && ($_SESSION["profile"]=="staff")){
-                $this->user = isset($_SESSION['user']) ? 'staff' : '';
-                $this->passwd = isset($_SESSION['user']) ? 'staff' : '';
-            }else{
-                $this->user = isset($_SESSION['user']) ? 'guest' : '';
-                $this->passwd = isset($_SESSION['user']) ? 'guest' : '';
-            }
-
-            $component="dashboard";
-			$try_auth=True;
+		} else if(USE_MODE!="default"){
+			include(DIR_FSROOT.'/modules/'.USE_MODE.'/AUTH_USER.php');
 		}
 		
 		if (isset($_GET['f_logout'])) {
