@@ -12,6 +12,8 @@ $workflow=GET('workflow');
 	.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
 	.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
 
+	body { padding-top: 70px; }
+	
 	select {
 		margin-top : 10px;
 		width : 220px;
@@ -39,160 +41,162 @@ $workflow=GET('workflow');
         z-index : 99;
     }
 </style>
-<div id="navigation">
-<nav style="margin-bottom:0px;" class="navbar navbar-inverse navbar-static-top" role="navigation">
-	<div class="container-fluid"> 
-		<div class="navbar-inner">
-		  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		  </button>
-		</div>
-		<div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-1" style="height: auto;">
-			<div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-2" style="height: auto;">
-				<ul class="nav navbar-nav">
-					<a class="navbar-brand" href="./index.php" style="color: #ffffff; background-color: transparent; text-decoration: none;">CGraphZ</a>
-				</ul>
-<?php
-$haveNav=false;
-// Affichage du menu Dashboard si l'utilisateur a les droits
-$perm_mod = new PERMS();
-if ($perm_mod->perm_list_module('dashboard',false)) { 
-	$haveNav=true;
-	echo '
-				<ul class="nav navbar-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">',PERF_ANALYSIS,' <b class="caret"></b></a>
-						<ul class="dropdown-menu">';
-	$allowed_perm=$perm_mod->perm_list_module('dashboard', false);			
-	if ($allowed_perm) {
-		foreach ($allowed_perm as $allowed) {
-			if ($allowed->component=='dynamic') {
-				echo '		<li class="dropdown-submenu">
-								<a tabindex="-1" href="#">'.$allowed->menu_name.'</a>';
-				echo '	  		<ul class="dropdown-menu">';						
-				include(DIR_FSROOT.'/html/menu/menu_dynamic_dashboard.php');
-				echo '	  		</ul>';
-				echo '		</li>';
-			} else {
-				echo '		<li><a href="index.php?module=dashboard&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div id="navigation">
+	<nav style="margin-bottom:0px;" class="navbar navbar-inverse navbar-static-top" role="navigation">
+		<div class="container-fluid"> 
+			<div class="navbar-inner">
+			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			</div>
+			<div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-1" style="height: auto;">
+				<div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-2" style="height: auto;">
+					<ul class="nav navbar-nav">
+						<a class="navbar-brand" href="./index.php" style="color: #ffffff; background-color: transparent; text-decoration: none;">CGraphZ</a>
+					</ul>
+	<?php
+	$haveNav=false;
+	// Affichage du menu Dashboard si l'utilisateur a les droits
+	$perm_mod = new PERMS();
+	if ($perm_mod->perm_list_module('dashboard',false)) { 
+		$haveNav=true;
+		echo '
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">',PERF_ANALYSIS,' <b class="caret"></b></a>
+							<ul class="dropdown-menu">';
+		$allowed_perm=$perm_mod->perm_list_module('dashboard', false);			
+		if ($allowed_perm) {
+			foreach ($allowed_perm as $allowed) {
+				if ($allowed->component=='dynamic') {
+					echo '		<li class="dropdown-submenu">
+									<a tabindex="-1" href="#">'.$allowed->menu_name.'</a>';
+					echo '	  		<ul class="dropdown-menu">';						
+					include(DIR_FSROOT.'/html/menu/menu_dynamic_dashboard.php');
+					echo '	  		</ul>';
+					echo '		</li>';
+				} else {
+					echo '		<li><a href="index.php?module=dashboard&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
+				}
 			}
 		}
+			echo '			</ul>
+						</li>
+					</ul>';
 	}
-		echo '			</ul>
-					</li>
-				</ul>';
-}
-?>
+	?>
 
-<?php
-// Affichage du menu Dashboard si l'utilisateur a les droits
-$perm_mod = new PERMS();
-if ($perm_mod->perm_list_module('small_admin')) { 
-	$haveNav=true;
-	echo '
-				<ul class="nav navbar-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">',SMALL_ADMIN,' <b class="caret"></b></a>
-						<ul class="dropdown-menu">';
-	$allowed_perm=$perm_mod->perm_list_module('small_admin', false);			
-	if ($allowed_perm) {
-		foreach ($allowed_perm as $allowed) {
-			echo '  		<li>
-								<a href="index.php?module=small_admin&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a>
-							</li>';
-		}
-	}
-	echo '				</ul>
-					</li>
-				</ul>';
-}
-?>
-
-<?php
-// Affichage du menu Configuration si l'utilisateur a les droits
-if ($perm_mod->perm_list_module('perm') or $perm_mod->perm_list_module('auth') or $perm_mod->perm_list_module('config')) {
-	$haveNav=true;
-	echo '
-			<ul class="nav navbar-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">',ADMIN,' <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li class="dropdown-submenu">
-								<a tabindex="-1" href="#">',PERMS,'</a>
-								<ul class="dropdown-menu">';
-		
-	$allowed_perm=$perm_mod->perm_list_module('perm', false);
-	if ($allowed_perm) {
-		foreach ($allowed_perm as $allowed) {
-			echo ' 					<li><a href="index.php?module=perm&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
-		}
-	}
-						?>
-						
-						<?php
-	$allowed_auth=$perm_mod->perm_list_module('auth', false);
-	if ($allowed_auth) {
-		foreach ($allowed_auth as $allowed) {
-			echo ' 					<li><a href="index.php?module=auth&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
-		}
-	}
-	echo '
-								</ul>
-							</li>
-							<li class="dropdown-submenu">
-								<a tabindex="-1" href="#">',CONF,'</a>
-								<ul class="dropdown-menu">';
-	$allowed_config=$perm_mod->perm_list_module('config', false);
-	if ($allowed_config) {
-		foreach ($allowed_config as $allowed) {
-			echo ' 					<li><a href="index.php?module=config&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
-		}
-	}
-						?>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
 	<?php
-}
-if($haveNav){
-?>
-				<p class="navbar-text pull-right" style="margin-top : 0px;">
-					<a href="/logout" style="color: #ffffff; background-color: transparent; text-decoration: none;">Logout</a>
-				</p>
-			</div>
-			<div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-2" style="height: auto; margin-left : 50px;">
-<?php	
-}
-?>
-			
-<?php
-if ($module == 'dashboard' && $component == 'view') {
-	if (NEW_MENU) {
-		include(DIR_FSROOT.'/html/dashboard/nav_menu/r_nav_menu.php');
-		include(DIR_FSROOT.'/html/dashboard/nav_menu/d_nav_menu.php');
-	} else {
-		include(DIR_FSROOT.'/html/menu/menu_project.php');
+	// Affichage du menu Dashboard si l'utilisateur a les droits
+	$perm_mod = new PERMS();
+	if ($perm_mod->perm_list_module('small_admin')) { 
+		$haveNav=true;
+		echo '
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">',SMALL_ADMIN,' <b class="caret"></b></a>
+							<ul class="dropdown-menu">';
+		$allowed_perm=$perm_mod->perm_list_module('small_admin', false);			
+		if ($allowed_perm) {
+			foreach ($allowed_perm as $allowed) {
+				echo '  		<li>
+									<a href="index.php?module=small_admin&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a>
+								</li>';
+			}
+		}
+		echo '				</ul>
+						</li>
+					</ul>';
 	}
-}
+	?>
 
-if(USE_MODE!="default"){
-	include(DIR_FSROOT.'/modules/'.USE_MODE.'/menu.php');
-}
-?>
-<?php
-if(!$haveNav){
-	echo '		<p class="navbar-text pull-right" style="margin-top : 0px;">
-					<a href="/logout" style="color: #ffffff; background-color: transparent; text-decoration: none;">Logout</a>
-				</p>';
-}
-?>
+	<?php
+	// Affichage du menu Configuration si l'utilisateur a les droits
+	if ($perm_mod->perm_list_module('perm') or $perm_mod->perm_list_module('auth') or $perm_mod->perm_list_module('config')) {
+		$haveNav=true;
+		echo '
+				<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">',ADMIN,' <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu">
+									<a tabindex="-1" href="#">',PERMS,'</a>
+									<ul class="dropdown-menu">';
+			
+		$allowed_perm=$perm_mod->perm_list_module('perm', false);
+		if ($allowed_perm) {
+			foreach ($allowed_perm as $allowed) {
+				echo ' 					<li><a href="index.php?module=perm&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
+			}
+		}
+							?>
+							
+							<?php
+		$allowed_auth=$perm_mod->perm_list_module('auth', false);
+		if ($allowed_auth) {
+			foreach ($allowed_auth as $allowed) {
+				echo ' 					<li><a href="index.php?module=auth&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
+			}
+		}
+		echo '
+									</ul>
+								</li>
+								<li class="dropdown-submenu">
+									<a tabindex="-1" href="#">',CONF,'</a>
+									<ul class="dropdown-menu">';
+		$allowed_config=$perm_mod->perm_list_module('config', false);
+		if ($allowed_config) {
+			foreach ($allowed_config as $allowed) {
+				echo ' 					<li><a href="index.php?module=config&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
+			}
+		}
+							?>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+		<?php
+	}
+	if($haveNav){
+	?>
+					<p class="navbar-text pull-right" style="margin-top : 0px;">
+						<a href="/logout" style="color: #ffffff; background-color: transparent; text-decoration: none;">Logout</a>
+					</p>
+				</div>
+				<div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-2" style="height: auto; margin-left : 50px;">
+	<?php	
+	}
+	?>
+				
+	<?php
+	if ($module == 'dashboard' && $component == 'view') {
+		if (NEW_MENU) {
+			include(DIR_FSROOT.'/html/dashboard/nav_menu/r_nav_menu.php');
+			include(DIR_FSROOT.'/html/dashboard/nav_menu/d_nav_menu.php');
+		} else {
+			include(DIR_FSROOT.'/html/menu/menu_project.php');
+		}
+	}
+
+	if(USE_MODE!="default"){
+		include(DIR_FSROOT.'/modules/'.USE_MODE.'/menu.php');
+	}
+	?>
+	<?php
+	if(!$haveNav){
+		echo '		<p class="navbar-text pull-right" style="margin-top : 0px;">
+						<a href="/logout" style="color: #ffffff; background-color: transparent; text-decoration: none;">Logout</a>
+					</p>';
+	}
+	?>
+				</div>
 			</div>
 		</div>
+	</nav>
 	</div>
 </nav>
-</div>
