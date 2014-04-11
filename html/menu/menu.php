@@ -12,7 +12,15 @@ $workflow=GET('workflow');
 	.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
 	.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
 
-	body { padding-top: 95px; }
+	#content h1:before, #content h2 a:before {
+        display: block;
+        content: "";
+        height: 105px;
+    }
+    #content h2 a:before {
+        margin: -75px 0 0;
+    }
+
 	
 	select {
 		margin-top : 10px;
