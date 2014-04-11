@@ -1,5 +1,5 @@
 <?php
-
+include("../../../config/config.php");
 session_name('CGRAPHZ');
 session_start();
 
