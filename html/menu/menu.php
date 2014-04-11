@@ -18,7 +18,7 @@ $workflow=GET('workflow');
         height: 105px;
     }
     #content h2 a:before {
-        margin: -75px 0 0;
+        margin: -105px 0 0;
     }
 
 	
