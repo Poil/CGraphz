@@ -45,7 +45,7 @@ $workflow=GET('workflow');
 		margin-top : 10px;
 	}	
 	
-	.navbar-static-top{
+	.navbar-fixed-top{
         z-index : 99;
     }
 </style>
