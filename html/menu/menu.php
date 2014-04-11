@@ -64,7 +64,7 @@ $workflow=GET('workflow');
 			<div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-1" style="height: auto;">
 				<div class="navbar-collapse collapse in" id="bs-example-navbar-collapse-2" style="height: auto;">
 					<ul class="nav navbar-nav">
-						<a class="navbar-brand" href="./index.php" style="color: #ffffff; background-color: transparent; text-decoration: none;">CGraphZ</a>
+						<a class="navbar-brand" href="./index.php" style="color: #ffffff; background-color: transparent; text-decoration: none; margin-left : 0px;">CGraphZ</a>
 					</ul>
 	<?php
 	$haveNav=false;
