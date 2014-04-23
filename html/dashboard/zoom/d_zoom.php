@@ -17,6 +17,9 @@ echo '<meta name="viewport" content="width=1050, initial-scale=1.0, maximum-scal
 
 if (isset($_SESSION['time_start']) && $_SESSION['time_start']!='') {
 	$date_start=date('Y-m-d H:i',$_SESSION['time_start']);
+} else if(isset($_SESSION['time_range'])) {
+    $_GET['s']=$_SESSION['time_range'];
+    $date_start=date('Y-m-d H:i',mktime() - intval($_SESSION['time_range']) );
 } else {
 	$date_start=date('Y-m-d H:i',mktime() - intval($_GET['s']) );
 }
