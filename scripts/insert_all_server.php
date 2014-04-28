@@ -42,18 +42,18 @@ if ($find=='1') {
         	  ) ORDER BY server_name
 		)';
 	$connSQL->query($lib);
-
-	/////////////////////////////////////
-    // Link, server not linked, to all_servers project
-    $lib = 'insert into config_server_project (id_config_server,id_config_project) (
-        select id_config_server, 7
-        from config_server
-        where id_config_server not in (
-            select id_config_server from config_server_project
-        ) order by id_config_server
-    )';
-    $connSQL->query($lib);
 	
+	/////////////////////////////////////
+    // Link server not linked to all_servers project
+	$lib = 'insert into config_server_project (id_config_server,id_config_project) (
+		select id_config_server, 7 
+		from config_server 
+		where id_config_server not in (
+			select id_config_server from config_server_project
+		) order by id_config_server
+	)';
+	$connSQL->query($lib);
+
 	/////////////////////////////////////
 	// Purge removed server
 	$lib='
