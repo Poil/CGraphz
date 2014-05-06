@@ -2,7 +2,7 @@
 @font-face {
 	font-family: "Ubuntu Mono";
 	font-style: normal;
-	font-weight: 400;
+	font-weight: 500;
 	src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(../fonts/UbuntuMono-R.woff) format('woff');
 }
 
