@@ -68,20 +68,27 @@ if (preg_replace('/[^a-zA-Z]/','',$CONFIG['version']) == 'SSC') {
 	};
 } else { # Unix like
 	$obj->rrd_title = 'Physical memory utilization';
-	$obj->order = array('free', 'buffered', 'cached', 'locked', 'used');
+	$obj->order = array('free', 'inactive', 'buffered', 'cached', 'cache', 'locked', 'used', 'active', 'wired');
 	$obj->ds_names = array(
 		'free'     => 'Free',
+		'inactive' => 'Inactive',
 		'cached'   => 'Cached',
+		'cache'    => 'Cache',
 		'buffered' => 'Buffered',
 		'locked'   => 'Locked',
 		'used'     => 'Used',
+		'wired'    => 'Wired',
 	);
 	$obj->colors = array(
 		'free' => '00e000',
+		'inactive' => '00b000',
 		'cached' => '0000ff',
+		'cache' => '0000ff',
 		'buffered' => 'ffb000',
 		'locked' => 'ff00ff',
 		'used' => 'ff0000',
+		'active' => 'ff00ff',
+		'wired' => 'ff0000',
 	);
 }
 
