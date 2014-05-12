@@ -77,7 +77,7 @@
 	?>
 
 	
-	<title>CGRAPHZ <?php echo CGRAPHZ_VERSION; ?></title>
+	<title>CGRAPHZ <?php if(isset($_GET['f_host'])){ echo $_GET['f_host']; } ?></title>
 </head>
 <body id="id_body">
 <?php
