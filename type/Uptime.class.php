@@ -1,8 +1,8 @@
 <?php
 
-require_once 'Default.class.php';
+require_once 'Base.class.php';
 
-class Type_Uptime extends Type_Default {
+class Type_Uptime extends Type_Base {
 
 	function rrd_gen_graph() {
 		$rrdgraph = $this->rrd_options();
@@ -39,28 +39,13 @@ class Type_Uptime extends Type_Default {
 			$rrdgraph[] = sprintf('AREA:area_%s#%s', crc32hex($source), $color);
 		}
 
-		$lengths = array_map('strlen', $sources);
-		$max_src = max($lengths);
-		$max_src = $max_src > MAX_LEGEND_LENGTH ? MAX_LEGEND_LENGTH : $max_src; 
-
-		$lengths = array_map('strlen', $this->ds_names);
-		$max_ds = max($lengths);
-		$max_ds = $max_ds > MAX_LEGEND_LENGTH ? MAX_LEGEND_LENGTH : $max_ds;
-
 		$c = 0;
 		foreach ($sources as $source) {
-			if (empty($this->ds_names[$source])) {
-				//$dsname =  sprintf('%1$-'.$max_src.'s', $source);
-				$dsname = sprintf('%1$-'.$max_src.'s',preg_replace('/\s+?(\S+)?$/u', '', mb_substr($source, 0, $max_src)));
-			} else {
-				//$dsname = sprintf('%1$-'.$max_ds.'s', $this->ds_names[$source]);
-				$dsname = sprintf('%1$-'.$max_ds.'s',preg_replace('/\s+?(\S+)?$/u', '', mb_substr($this->ds_names[$source], 0, $max_ds)));
-			}
-			//$dsname = $this->ds_names[$source] != '' ? $this->ds_names[$source] : $source;
+			$legend = empty($this->legend[$source]) ? $source : $this->legend[$source];
 			$color = is_array($this->colors) ? (isset($this->colors[$source])?$this->colors[$source]:$this->colors[$c++]) : $this->colors;
 
 			//current value
-			$rrdgraph[] = sprintf('"LINE1:area_%s#%s:%s"', crc32hex($source), $this->validate_color($color), $this->rrd_escape($dsname));
+			$rrdgraph[] = sprintf('"LINE1:area_%s#%s:%s"', crc32hex($source), $this->validate_color($color), $this->rrd_escape($legend));
 			$rrdgraph[] = sprintf('"GPRINT:c_avg_%s:LAST:%s days\\l"', crc32hex($source), $this->rrd_format);
 
 			//max value

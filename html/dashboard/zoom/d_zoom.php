@@ -46,6 +46,6 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 
 	chdir(DIR_FSROOT);
 	$CONFIG['version']=$cur_server->collectd_version;
-	include(DIR_FSROOT.'/plugin/'.GET('p').'.php');
+	include(DIR_FSROOT.'/graph.php');
 	echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/CGP.js"></script>';
 ?>
