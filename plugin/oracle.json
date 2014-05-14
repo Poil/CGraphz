@@ -1,0 +1,12 @@
+{
+	"df": {
+		"title": "Tablespace usage",
+		"vertical": "Bytes",
+		"legend_format": "%5.1lf%s"
+	},
+	"io_octets": {
+		"title": "Database i/o",
+		"vertical": "Bytes/s",
+		"legend_format": "%5.1lf%s"
+	}
+}

@@ -39,8 +39,7 @@ if (($width * $height) > MAX_IMG_SIZE) {
 $typesdb = parse_typesdb_file($CONFIG['typesdb']);
 
 if ($plugin == 'aggregation') {
-	$pi = explode("-", GET('pi'));
-	$plugin = $_GET['p'] = $pi[0];
+	$plugin = GET('pc');
 }
 
 # plugin json
@@ -52,7 +51,7 @@ if (file_exists('plugin/'.$plugin.'.json')) {
 		error_log('CGP Error: invalid json in plugin/'.$plugin.'.json');
 } else {
         error_log(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $plugin));
-        error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+        error_image('Unknown graph type :'.$plugin.' '.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 }
 
 switch ($plugin_json[$type]['type']) {
