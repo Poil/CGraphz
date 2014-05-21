@@ -62,6 +62,9 @@ define('DEF_LANG','en');
 # system default timezone when not set
 define('DEFAULT_TIMEZONE', 'UTC');
 
+# location of the types.db file
+$CONFIG['typesdb'] = DIR_FSROOT.'/inc/types_collectd_5.db';
+
 # use the negative X-axis in I/O graphs
 $CONFIG['negative_io'] = false;
 

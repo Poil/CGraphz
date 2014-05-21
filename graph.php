@@ -124,5 +124,5 @@ if (isset($plugin_json[$type]['base']))
 if (isset($plugin_json[$type]['legend_format']))
 	$obj->rrd_format = $plugin_json[$type]['legend_format'];
 
-$obj->rrd_graph();
+$obj->rrd_graph(true);
 
