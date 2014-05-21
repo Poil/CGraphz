@@ -55,6 +55,10 @@ if (file_exists('plugin/'.$plugin.'.json')) {
 }
 
 switch ($plugin_json[$type]['type']) {
+	case 'stackedtotal':
+		require_once 'type/GenericStackedTotal.class.php';
+		$obj = new Type_GenericStackedTotal($CONFIG, $_GET);
+		break;
 	case 'stacked':
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG, $_GET);
@@ -93,7 +97,9 @@ if (isset($plugin_json[$type]['legend'])) {
 if (isset($plugin_json[$type]['title'])) {
 	$obj->rrd_title = $plugin_json[$type]['title'];
 	$obj->rrd_title = str_replace('{{PI}}', GET('pi'), $obj->rrd_title);
+	$obj->rrd_title = str_replace('{{PC}}', GET('pc'), $obj->rrd_title);
 	$obj->rrd_title = str_replace('{{TI}}', GET('ti'), $obj->rrd_title);
+	$obj->rrd_title = str_replace('{{TC}}', GET('tc'), $obj->rrd_title);
 }
 
 if (isset($plugin_json[$type]['vertical'])) {

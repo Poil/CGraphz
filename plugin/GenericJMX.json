@@ -1,1 +1,44 @@
-{}
+{
+	"memory": {
+		"title": "{{TC}} {{PI}} for {{PC}}",
+		"vertical": "{{ND}}",
+		"legend": {
+			"heap-committed": {
+				"name": "Committed"
+			},
+			"heap-init": {
+				"name": "Init"
+			},
+			"heap-used": {
+				"name": "Used"
+			},
+			"heap-max": {
+				"name": "Total"
+			},
+			"nonheap-committed": {
+				"name": "Committed"
+			},
+			"nonheap-init": {
+				"name": "Init"
+			},
+			"nonheap-used": {
+				"name": "Used"
+			},
+			"nonheap-max": {
+				"name": "Total"
+			},
+			"committed": {
+				"name": "Committed"
+			},
+			"init": {
+				"name": "Init"
+			},
+			"used": {
+				"name": "Used"
+			},
+			"max": {
+				"name": "Total"
+			}
+		}
+	}
+}
