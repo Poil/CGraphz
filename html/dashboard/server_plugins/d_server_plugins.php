@@ -109,10 +109,10 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$tc=$tmp[0];
 				//$ti=implode('-', array_slice($tmp,1));
 				$ti=null;
-			} else if (preg_match($CONFIG['plugin_tcategory'], $p)) {
+			} /*else if (preg_match($CONFIG['plugin_tcategory'], $p)) {
 				$tc=$ti;
 				$ti=null;
-			}
+			}*/
 		} else { 
 			$tc=null; 
 			$ti=null; 

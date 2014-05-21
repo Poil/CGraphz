@@ -171,7 +171,7 @@ class Type_Base {
 	function get_filenames() {
 		$identifier = sprintf('%s/%s%s%s/%s%s%s',
 			$this->args['host'],
-                        $this->args['plugin'],
+			$this->args['plugin'],
 			strlen($this->args['pcategory']) ? '-'.$this->args['pcategory'] : '',
 			strlen($this->args['pinstance']) ? '-'.$this->args['pinstance'] : '',
 			$this->args['type'],
