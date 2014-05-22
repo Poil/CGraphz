@@ -1,4 +1,10 @@
 @CHARSET "UTF-8";
+@font-face {
+	font-family: "Ubuntu Mono";
+	font-style: normal;
+	font-weight: 500;
+	src: local('Ubuntu Mono'), local('UbuntuMono-Regular'), url(../fonts/UbuntuMono-R.woff) format('woff');
+}
 
 body {
 	padding:0;
@@ -229,6 +235,7 @@ img {
 	background: #000000;
 	position: fixed;
 	top: 0;
+	font-family: "Ubuntu Mono"; /* hack for preload font */
 	-moz-opacity:0.75;
 	-khtml-opacity: 0.75;
 	opacity: 0.75;
