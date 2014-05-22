@@ -22,9 +22,6 @@ switch($obj->args['pinstance']) {
 	case 'v3client':
 		$obj->order = array('access', 'commit', 'create', 'fsinfo', 'fsstat', 'getattr', 'link', 'lookup', 'mkdir', 'mknod', 'null', 'pathconf', 'read', 'readdir', 'readdirplus', 'readlink', 'remove', 'rename', 'rmdir', 'setattr', 'symlink', 'write');
 	break;
-	default:
-		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
-	break;
 }
 
 $obj->rrd_title = sprintf('NFS-%s Procedures', $obj->args['pinstance']);
