@@ -31,9 +31,6 @@ switch($obj->args['pinstance']) {
 			break;
 		}
 	break;
-	default:
-		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
-	break;
 }
 
 $obj->rrd_format = '%5.1lf%s';
