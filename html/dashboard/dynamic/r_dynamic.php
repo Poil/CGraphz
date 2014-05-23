@@ -199,9 +199,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
             
                if (!preg_match('/^(df|interface|oracle)$/', $plugin['p']) || 
 				  (((preg_replace('/[^0-9\.]/','',$plugin['collectd_version']) >= 5)
-				  && (preg_replace('/[^a-zA-Z]/','',$plugin['collectd_version']) == 'Collectd') 
 				  && $p!='oracle' && $t!='df'))
-				  || (preg_replace('/[^a-zA-Z]/','',$plugin['collectd_version']) == 'SSC')
 			   ) {
                   $plugin['ti']=null;
                   if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
