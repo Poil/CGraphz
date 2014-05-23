@@ -3,7 +3,8 @@
 		"title": "Tablespace usage",
 		"vertical": "Bytes",
 		"legend_format": "%5.1lf%s",
-		"base": "1024"
+		"base": "1024",
+		"type": "stacked"
 	},
 	"io_octets": {
 		"title": "Database i/o",
