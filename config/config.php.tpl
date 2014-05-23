@@ -3,18 +3,14 @@
 date_default_timezone_set('Europe/Paris');
 
 # Cgraphz version
-define('CGRAPHZ_VERSION','2.20 alpha8');
+define('CGRAPHZ_VERSION','2.30 dev1');
 
 # Collectd
-define('COLLECTD_DEFAULT_VERSION','Collectd 5.0');
+define('COLLECTD_DEFAULT_VERSION','collectd_5');
 define('COLLECTD_VERSIONS',serialize(array(
 	NULL,
-	'Collectd 3',
-	'Collectd 4',
-	'Collectd 5.0',
-	'Collectd 5.1',
-	'Collectd 5.2',
-	'SSC 3.0'
+	'collectd_4',
+	'collectd_5'
 )));
 
 # AUTH type (default or ...) - don't touch this except if you want to use AUTH of an another software
@@ -62,9 +58,6 @@ define('DEF_LANG','en');
 # system default timezone when not set
 define('DEFAULT_TIMEZONE', 'UTC');
 
-# location of the types.db file
-$CONFIG['typesdb'] = DIR_FSROOT.'/inc/types_collectd_5.db';
-
 # use the negative X-axis in I/O graphs
 $CONFIG['negative_io'] = false;
 
@@ -78,7 +71,7 @@ $CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats)$/';
 $CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000|tcpconns)$/';
 
 # Display PI as title for these plugins
-$CONFIG['title_pinstance']='/^(P2000|GenericJMX|PM710)$/';
+$CONFIG['title_pinstance']='/^(tail|P2000|GenericJMX|PM710)$/';
 
 # collectd version
 $CONFIG['version'] = 5;

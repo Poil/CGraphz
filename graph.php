@@ -37,7 +37,13 @@ if (($width * $height) > MAX_IMG_SIZE) {
 	error_image('[ERROR] Image request is too big');
 }
 
-$typesdb = parse_typesdb_file($CONFIG['typesdb']);
+if ($authorized->collectd_version) {
+	$mytypesdb=$authorized->collectd_version;
+} else {
+	$mytypesdb=COLLECTD_VERSIONS;
+}
+
+$typesdb = parse_typesdb_file(DIR_FSROOT.'/inc/types_'.$mytypesdb.'.db');
 
 if ($plugin == 'aggregation') {
 	$plugin = GET('pc');
