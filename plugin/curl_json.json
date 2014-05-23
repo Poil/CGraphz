@@ -2,6 +2,7 @@
 	"players": {
 		"title": "Connections",
 		"vertical": "Slots",
+		"type": "stacked",
 		"legend": {
 			"free_slots": {
 				"name": "Free Slots"
