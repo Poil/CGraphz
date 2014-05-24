@@ -1,7 +1,7 @@
 {
 	"def_time_range": 7200,
 	"negative_io": false,
-	"network_datasize": "bytes"
+	"network_datasize": "bytes",
 	"graph_smooth": false,
 	"graph_width": 480,
 	"graph_height": 175,
