@@ -18,6 +18,6 @@ if ($perm_mod->perm_module('dashboard','search')) {
 </div>
 <div class="spacer">&nbsp;</div>
 <script type="text/javascript">
-	jQuery('#f_form_find_server input[name="f_find_server"]').liveSearch({url: '<?php echo DIR_WEBROOT ?>/html/dashboard/project_list/ajax_server_wh_q.php' + '?f_q='});
+	jQuery('#f_form_find_server input[name="f_find_server"]').liveSearch({url: '<?php echo $WEB['webroot_dir'] ?>/html/dashboard/project_list/ajax_server_wh_q.php' + '?f_q='});
 </script>
 <?php } ?>

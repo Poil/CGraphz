@@ -32,7 +32,7 @@ if (validate_get(GET('h'), 'host') === NULL) {
 	error_image('[ERROR] plugin contains unknown characters');
 }
 
-if (($width * $height) > MAX_IMG_SIZE) {
+if (($width * $height) > $WEB['max_img_size']) {
         error_log('CGRAPHZ ERROR: image request is too big');
 	error_image('[ERROR] Image request is too big');
 }
@@ -40,7 +40,7 @@ if (($width * $height) > MAX_IMG_SIZE) {
 if ($authorized->collectd_version) {
 	$mytypesdb=$authorized->collectd_version;
 } else {
-	$mytypesdb=COLLECTD_VERSIONS;
+	$mytypesdb=$COLLECTD['def_collectd_version'];
 }
 
 $typesdb = parse_typesdb_file(DIR_FSROOT.'/inc/types_'.$mytypesdb.'.db');

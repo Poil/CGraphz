@@ -19,6 +19,6 @@ for ($i=0; $i<$cpt_nav; $i++) {
 	}
 	
 	echo '<li class="last">
-		<a href="'.DIR_WEBROOT.'/index.php?module=dashboard&component=view&amp;f_id_config_project='. $all_nav[$i]->id_config_project.'&amp;f_id_config_role='.$all_nav[$i-1]->id_config_role.'&amp;f_id_config_server='.$all_nav[$i]->id_config_server.'"><span>'.$all_nav[$i]->server_name.'</span></a></li>';
+		<a href="'.$WEB['webroot_dir'].'/index.php?module=dashboard&component=view&amp;f_id_config_project='. $all_nav[$i]->id_config_project.'&amp;f_id_config_role='.$all_nav[$i-1]->id_config_role.'&amp;f_id_config_server='.$all_nav[$i]->id_config_server.'"><span>'.$all_nav[$i]->server_name.'</span></a></li>';
 }
 echo '</ul></li></ul></li></ul></div>';

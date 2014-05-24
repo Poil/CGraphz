@@ -827,7 +827,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			echo '<div class="spacer">&nbsp;</div>';
 		}
 	} else {
-		echo $CONFIG['welcome_text'];
+		echo utf8_encode(file_get_contents(DIR_FSROOT.'/welcome.php'));
 	} 
 } else {
 	if ($component && $module) {

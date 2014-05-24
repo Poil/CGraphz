@@ -1,12 +1,12 @@
 <?php
 header("Content-type: text/javascript");
 
-include('../config/config.php');
+include('../modules/config.php');
 ?>
 
 $(function(){
        	$('.multiselect').multiselect({
-		locale: '<?php echo DEF_LANG ?>'
+		locale: '<?php echo $WEB['def_lang'] ?>'
 	});
 });
 
@@ -14,7 +14,7 @@ $(document).ready(function() {
    $('.table_admin').dataTable( {
       "bStateSave": true,
       "oLanguage": {
-         "sUrl": "lib/dataTables/locale/ui.dataTables-<?php echo DEF_LANG ?>.js"
+         "sUrl": "lib/dataTables/locale/ui.dataTables-<?php echo $WEB['def_lang'] ?>.js"
       }
    });
 });

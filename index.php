@@ -32,8 +32,6 @@
 	if (GET('module') != 'dashboard') {
 		?>
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $WEB['webroot_dir']; ?>/lib/css/demo_table.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $WEB['webroot_dir']; ?>/lib/multiselect/css/ui.multiselect.css" />
-		<script type="text/javascript" src="<?php echo $WEB['webroot_dir']; ?>/lib/multiselect/js/jquery.tmpl.1.1.1.js"></script>
 		<script type="text/javascript" src="<?php echo $WEB['webroot_dir']; ?>/lib/jquery.uix.multiselect/js/jquery.uix.multiselect.min.js"></script>
 		<script type="text/javascript" src="<?php echo $WEB['webroot_dir']; ?>/lib/jquery.uix.multiselect/js/locales/jquery.uix.multiselect_fr.js"></script>
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo $WEB['webroot_dir']; ?>/lib/jquery.uix.multiselect/css/jquery.uix.multiselect.css" />
@@ -57,7 +55,7 @@
 	        <script type="text/javascript" src="'.$WEB['webroot_dir'].'/lib/javascriptrrd/rrdFile.js"></script>
 	        <script type="text/javascript" src="'.$WEB['webroot_dir'].'/lib/javascriptrrd/RrdDataFile.js"></script>
 	        <script type="text/javascript" src="'.$WEB['webroot_dir'].'/lib/javascriptrrd/RrdCmdLine.js"></script>';
-		if ($CONFIG['rrd_fetch_method'] == 'async') echo '<script type="text/javascript" src="'.$WEB['webroot_dir'].'/lib/javascriptrrd/get_rrd_async.js"></script>';
+		if ($RRD['rrd_fetch_method'] == 'async') echo '<script type="text/javascript" src="'.$WEB['webroot_dir'].'/lib/javascriptrrd/get_rrd_async.js"></script>';
 		else echo'<script type="text/javascript" src="'.$WEB['webroot_dir'].'/lib/javascriptrrd/get_rrd_sync.js"></script>';
 	}
 	?>
@@ -70,7 +68,7 @@
 if ($auth->verif_auth()) {
 	include(DIR_FSROOT.'/html/menu/menu.php');
 	echo '<div id="content">';
-	include(DIR_FSROOT.'/module/module.php');
+	include(DIR_FSROOT.'/modules/module.php');
 	echo '</div>
 		<div id="mask" style="display: none;"></div>
 		<div id="popup" style="display: none;"></div>';

@@ -106,11 +106,6 @@ echo '
 </div>
 <?php
 if ($module == 'dashboard' && $component == 'view') {
-	if (NEW_MENU) {
-		include(DIR_FSROOT.'/html/dashboard/nav_menu/r_nav_menu.php');
-		include(DIR_FSROOT.'/html/dashboard/nav_menu/d_nav_menu.php');
-	} else {
-		include(DIR_FSROOT.'/html/menu/menu_project.php');
-	}
+	include(DIR_FSROOT.'/html/menu/menu_project.php');
 }
 ?>

@@ -10,6 +10,8 @@ $WEB=json_clean_decode(DIR_FSROOT.'/config/web_config.json');
 $AUTH=json_clean_decode(DIR_FSROOT.'/config/auth_config.json');
 $VERSION=json_clean_decode(DIR_FSROOT.'/config/version_config.json');
 $COLLECTD=json_clean_decode(DIR_FSROOT.'/config/collectd_config.json');
+$GRAPH=json_clean_decode(DIR_FSROOT.'/config/graph_config.json');
+$RRD=json_clean_decode(DIR_FSROOT.'/config/rrd_config.json');
 
 function my_autoload ($pClassName) {
 	include(DIR_FSROOT . "/modules/" . $pClassName . ".php");
