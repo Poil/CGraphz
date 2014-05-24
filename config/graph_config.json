@@ -1,0 +1,10 @@
+{
+	"def_time_range": 7200,
+	"negative_io": false,
+	"network_datasize": "bytes"
+	"graph_smooth": false,
+	"graph_width": 480,
+	"graph_height": 175,
+	"zoom_graph_width": 800,
+	"zoom_graph_height":  350
+}
