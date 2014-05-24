@@ -14,8 +14,8 @@ if (!$auth->verif_auth()) {
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 $plugin = validate_get(GET('p'), 'plugin');
 $type = validate_get(GET('t'), 'type');
-$width = empty($_GET['x']) ? $CONFIG['width'] : $_GET['x'];
-$height = empty($_GET['y']) ? $CONFIG['height'] : $_GET['y'];
+$width = empty($_GET['x']) ? $GRAPH['graph_width'] : $_GET['x'];
+$height = empty($_GET['y']) ? $GRAPH['graph_height'] : $_GET['y'];
 $host=validate_get(GET('h'), 'host');
 $s=intval($_GET['s']);
 if (!$authorized=$auth->check_access_right($host)) {
@@ -64,23 +64,23 @@ if (file_exists('plugin/'.$plugin.'.json')) {
 switch ($plugin_json[$type]['type']) {
 	case 'stackedtotal':
 		require_once 'type/GenericStackedTotal.class.php';
-		$obj = new Type_GenericStackedTotal($CONFIG, $_GET);
+		$obj = new Type_GenericStackedTotal($GRAPH, $_GET);
 		break;
 	case 'stacked':
 		require_once 'type/GenericStacked.class.php';
-		$obj = new Type_GenericStacked($CONFIG, $_GET);
+		$obj = new Type_GenericStacked($GRAPH, $_GET);
 		break;
 	case 'io':
 		require_once 'type/GenericIO.class.php';
-		$obj = new Type_GenericIO($CONFIG, $_GET);
+		$obj = new Type_GenericIO($GRAPH, $_GET);
 		break;
 	case 'uptime':
 		require_once 'type/Uptime.class.php';
-		$obj = new Type_Uptime($CONFIG, $_GET);
+		$obj = new Type_Uptime($GRAPH, $_GET);
 		break;
 	default:
 		require_once 'type/Default.class.php';
-		$obj = new Type_Default($CONFIG, $_GET);
+		$obj = new Type_Default($GRAPH, $_GET);
 		break;
 }
 
@@ -111,7 +111,7 @@ if (isset($plugin_json[$type]['title'])) {
 
 if (isset($plugin_json[$type]['vertical'])) {
 	$obj->rrd_vertical = $plugin_json[$type]['vertical'];
-	$obj->rrd_vertical = str_replace('{{ND}}', ucfirst($CONFIG['network_datasize']), $obj->rrd_vertical);
+	$obj->rrd_vertical = str_replace('{{ND}}', ucfirst($GRAPH['network_datasize']), $obj->rrd_vertical);
 }
 
 if (isset($plugin_json[$type]['rrdtool_opts'])) {
@@ -119,7 +119,7 @@ if (isset($plugin_json[$type]['rrdtool_opts'])) {
 }
 
 if (isset($plugin_json[$type]['datasize']) and $plugin_json[$type]['datasize'])
-	$obj->scale = $CONFIG['network_datasize'] == 'bits' ? 8 : 1;
+	$obj->scale = $GRAPH['network_datasize'] == 'bits' ? 8 : 1;
 
 if (isset($plugin_json[$type]['scale']))
 	$obj->scale = $plugin_json[$type]['scale'];

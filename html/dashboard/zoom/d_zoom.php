@@ -41,12 +41,12 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 </form>
 <?php
 	if (empty($_GET['x']))
-	$_GET['x'] = $CONFIG['detail-width'];
+	$_GET['x'] = $GRAPH['zoom_graph_width'];
 	if (empty($_GET['y']))
-	$_GET['y'] = $CONFIG['detail-height'];
+	$_GET['y'] = $GRAPH['zoom_graph_height'];
 
 	chdir(DIR_FSROOT);
-	$CONFIG['version']=$cur_server->collectd_version;
+	$COLLECTD['def_collectd_version']=$cur_server->collectd_version;
 	include(DIR_FSROOT.'/graph.php');
 	echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/CGP.js"></script>';
 ?>

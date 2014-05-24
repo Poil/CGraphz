@@ -100,7 +100,7 @@ if (isset($_GET['f_id_config_project'])) {
 
 
 	// Si plus de MAX_SRV Serveurs, on affiche des catégories
-	if ($cpt_server>MAX_SRV || isset($_GET['f_id_config_role'])) {
+	if (isset($_GET['f_id_config_role'])) {
 		$f_id_config_project=intval(GET('f_id_config_project'));
 		
 		$lib='

@@ -74,27 +74,27 @@ if (isset($time_start) && isset($time_end)) {
 	$zoom='ondblclick="Show_Popup($(this).attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\')"';
 }
 $dgraph=0;
-if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
+if (is_dir($RRD['rrdroot_dir']."/$cur_server->server_name/")) {
 	$myregex='';
 	foreach ($pg_filters as $filter) {
 		if (empty($myregex)) {
-			$myregex='#^((('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
+			$myregex='#^((('.$RRD['rrdroot_dir'].'/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
 		} else {
-			$myregex=$myregex.'|(('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
+			$myregex=$myregex.'|(('.$RRD['rrdroot_dir'].'/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
 		}
 	}
 	$myregex=$myregex.')#';
 
-	$tplugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+	$tplugins = preg_find($myregex, $RRD['rrd_rootdir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
 	if ($tplugins) $dgraph=1;
-	$plugins = (sort_plugins($CONFIG['datadir'].'/'.$cur_server->server_name,$tplugins, $pg_filters));
+	$plugins = (sort_plugins($RRD['rrdroot_dir'].'/'.$cur_server->server_name,$tplugins, $pg_filters));
 
 	if ($plugins) $dgraph=1;
 
 	$old_t='';
 	$old_pi='';
 	$old_subpg='';
-	$myregex='#^('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
+	$myregex='#^('.$RRD['rrd_rootdir'].'/'.$cur_server->server_name.'/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
 	foreach ($plugins as $plugin) {
 		preg_match($myregex, $plugin['content'], $matches);
 
@@ -108,7 +108,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 		if (isset($matches[3])) {
 			$pi=$matches[3];
 			$pc=null;
-			if (substr_count($pi, '-') >= 1 && preg_match($CONFIG['plugin_pcategory'], $p)) {
+			if (substr_count($pi, '-') >= 1 && preg_match('^'.join('|',$DASHBOARD['plugin_pcategory']).'$', $p)) {
 				$tmp=explode('-',$pi);
 				// Fix when PI is null after separating PC/PI for example a directory named "MyHost/GenericJMX-cassandra_activity_request-/"
 				if (strlen($tmp[1])) {
@@ -116,7 +116,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 					$pi=implode('-', array_slice($tmp,1));
 				}
 			// Copy PI to PC if no PC but Plugin can have a PC
-			} else if (preg_match($CONFIG['plugin_pcategory'], $p)) {
+			} else if (preg_match('^'.join('|',$DASHBOARD['plugin_pcategory']).'$', $p)) {
 				$pc=$pi;
 				$pi=null;
 			}
@@ -132,12 +132,11 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 		if (isset($matches[5])) {
 			$ti=$matches[5];
 			$tc=null;
-			if (substr_count($ti, '-') >= 1 && preg_match($CONFIG['plugin_tcategory'], $p)) {
+			if (substr_count($ti, '-') >= 1 && preg_match('^'.join('|',$DASHBOARD['plugin_tcategory']).'$', $p)) {
 				$tmp=explode('-',$ti);
 				$tc=$tmp[0];
-				//$ti=implode('-', array_slice($tmp,1));
 				$ti=null;
-			} else if (preg_match($CONFIG['plugin_tcategory'], $p)) {
+			} else if (preg_match('^'.join('|',$DASHBOARD['plugin_tcategory']).'$', $p)) {
 				$tc=$ti;
 				$ti=null;
 			}
@@ -170,7 +169,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$others=false;
 			}
 			// Displaying Plugin Instance for some plugins
-			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && $$pi!=true) {
+			if (preg_match('^'.join('|',$DASHBOARD['title_pinstance']).'$',$p) && strlen($pi) && $$pi!=true) {
 				$$pi=true;
 				echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
 			}
@@ -186,7 +185,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			    ) {
 					$ti='';
 					if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
-						if ($CONFIG['graph_type'] == 'canvas') {
+						if ($GRAPH['graph_type'] == 'canvas') {
 							$_GET['h'] = $cur_server->server_name;
 							$_GET['p'] = $p;
 							$_GET['pc'] = $pc;
@@ -206,7 +205,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 						}
 					}
 				} else {
-					if ($CONFIG['graph_type'] == 'canvas') {
+					if ($GRAPH['graph_type'] == 'canvas') {
 						$_GET['h'] = $cur_server->server_name;
 						$_GET['p'] = $p;
 						$_GET['pc'] = $pc;
@@ -238,7 +237,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 }
 
 /* VMHOST LibVirt */
-$vmlist = preg_find('#^'.$cur_server->server_name.':#', $CONFIG['datadir'].'/', PREG_FIND_DIRMATCH|PREG_FIND_SORTBASENAME);
+$vmlist = preg_find('#^'.$cur_server->server_name.':#', $RRD['rrdroot_dir'].'/', PREG_FIND_DIRMATCH|PREG_FIND_SORTBASENAME);
 
 //print_r($vmlist);
 

@@ -46,7 +46,7 @@ if ($perm_mod->perm_module('dashboard','view')) {
 				echo '<div class="spacer">&nbsp;</div>';
 				echo '</div>';
 			}
-			if (($cpt_server<MAX_SRV || $cpt_role<=1 || isset($_GET['f_id_config_role'])) && $cpt_server!==0) {
+			if (($cpt_role<=1 || isset($_GET['f_id_config_role'])) && $cpt_server!==0) {
 				echo '<div id="div_menu_project_server">';
 				foreach ($all_server as $server) {
 					if (intval(GET('f_id_config_server'))==$server->id_config_server) { 
@@ -54,7 +54,7 @@ if ($perm_mod->perm_module('dashboard','view')) {
 					} else { 
 						$style=''; 
 					}
-					if (($cpt_server>MAX_SRV && $cpt_role>1) || isset($_GET['f_id_config_role'])) $str_role='&amp;f_id_config_role='.$f_id_config_role;
+					if (($cpt_role>1) || isset($_GET['f_id_config_role'])) $str_role='&amp;f_id_config_role='.$f_id_config_role;
 					else $str_role='';
 					if (isset($_GET['f_id_config_environment'])) $str_environment='&amp;f_id_config_environment='.$f_id_config_environment;
 					else $str_environment='';

@@ -7,7 +7,7 @@ if (isset($_SESSION['time_range']) && is_numeric($_SESSION['time_range'])) {
                 $time_end=$_SESSION['time_end'];
                 $time_range=null;
         } else {
-                $time_range=$CONFIG['time_range']['default'];
+                $time_range=$GRAPH['def_time_range'];
                 $time_start=null;
                 $time_end=null;
         }

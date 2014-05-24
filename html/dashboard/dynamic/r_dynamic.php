@@ -83,10 +83,10 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 
          for ($j=0; $j<$cpt_server; $j++) {
             
-            if (is_dir($CONFIG['datadir'].'/'.$all_server[$j]->server_name.'/')) {
-               $myregex='#^('.$CONFIG['datadir'].'/'.$all_server[$j]->server_name.'/)('.$all_content[$i]->regex_p_filter.')(?:\-('.$all_content[$i]->regex_pi_filter.'))?/('.$all_content[$i]->regex_t_filter.')(?:\-('.$all_content[$i]->regex_ti_filter.'))?\.rrd#';
+            if (is_dir($RRD['rrdroot_dir'].'/'.$all_server[$j]->server_name.'/')) {
+               $myregex='#^('.$RRD['rrdroot_dir'].'/'.$all_server[$j]->server_name.'/)('.$all_content[$i]->regex_p_filter.')(?:\-('.$all_content[$i]->regex_pi_filter.'))?/('.$all_content[$i]->regex_t_filter.')(?:\-('.$all_content[$i]->regex_ti_filter.'))?\.rrd#';
 
-               $plugins = preg_find($myregex, $CONFIG['datadir'].'/'.$all_server[$j]->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+               $plugins = preg_find($myregex, $RRD['rrdroot_dir'].'/'.$all_server[$j]->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
                
                foreach ($plugins as $plugin) {
                   $plugin_array[$cpt_p]['servername']=$all_server[$j]->server_name;
@@ -102,11 +102,11 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   if (!is_blank($matches[3])) {
                      $plugin_array[$cpt_p]['pi']=$matches[3];
                      $plugin_array[$cpt_p]['pc']=null;
-                     if (substr_count($plugin_array[$cpt_p]['pi'], '-') >= 1 && preg_match($CONFIG['plugin_pcategory'], $plugin_array[$cpt_p]['p'])) {
+                     if (substr_count($plugin_array[$cpt_p]['pi'], '-') >= 1 && preg_match('^'.join('|',$DASHBOARD['plugin_pcategory']).'$', $plugin_array[$cpt_p]['p'])) {
                         $tmp=explode('-',$plugin_array[$cpt_p]['pi']);
                         $plugin_array[$cpt_p]['pc']=$tmp[0];
                         $plugin_array[$cpt_p]['pi']=implode('-',array_slice($tmp,1));
-                     } else if (preg_match($CONFIG['plugin_pcategory'], $plugin_array[$cpt_p]['p'])) {
+                     } else if (preg_match('^'.join('|',$DASHBOARD['plugin_pcategory']).'$', $plugin_array[$cpt_p]['p'])) {
                         $plugin_array[$cpt_p]['pc']=$plugin_array[$cpt_p]['pi'];
                         $plugin_array[$cpt_p]['pi']=null;
 		     }
@@ -122,10 +122,10 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   if (!is_blank($matches[5])) {
                      $plugin_array[$cpt_p]['ti']=$matches[5];
                      $plugin_array[$cpt_p]['tc']=null;
-                     if (substr_count($plugin_array[$cpt_p]['ti'], '-') >= 1 && preg_match($CONFIG['plugin_tcategory'], $plugin_array[$cpt_p]['p'])) {
+                     if (substr_count($plugin_array[$cpt_p]['ti'], '-') >= 1 && preg_match('^'.join('|',$DASHBOARD['plugin_tcategory']).'$', $plugin_array[$cpt_p]['p'])) {
                         $tmp=explode('-',$plugin_array[$cpt_p]['ti']);
                         $plugin_array[$cpt_p]['tc']=$tmp[0];
-                     } else if (preg_match($CONFIG['plugin_tcategory'], $plugin_array[$cpt_p]['p'])) {
+                     } else if (preg_match('^'.join('|',$DASHBOARD['plugin_tcategory']).'$', $plugin_array[$cpt_p]['p'])) {
                         $plugin_array[$cpt_p]['tc']=$plugin_array[$cpt_p]['ti'];
                         $plugin_array[$cpt_p]['ti']=null;
                      }
@@ -203,7 +203,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 			   ) {
                   $plugin['ti']=null;
                   if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
-                      if ($CONFIG['graph_type'] == 'canvas') {
+                      if ($GRAPH['graph_type'] == 'canvas') {
                          $_GET['h'] = $plugin['servername'];
                          $_GET['p'] = $plugin['p'];
                          $_GET['pc'] = $plugin['pc'];
@@ -223,7 +223,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                       }
                   }
                } else {
-                  if ($CONFIG['graph_type'] == 'canvas') {
+                  if ($GRAPH['graph_type'] == 'canvas') {
                      $_GET['h'] = $plugin['servername'];
                      $_GET['p'] = $plugin['p'];
                      $_GET['pc'] = $plugin['pc'];

@@ -2,13 +2,13 @@
 
 # generate identifier that collectd's FLUSH command understands
 function collectd_identifier($host, $plugin, $pinst, $type, $tinst) {
-	global $CONFIG;
+	global $RRD;
 
 	$identifier = sprintf('%s/%s%s%s/%s%s%s', $host,
 		$plugin, strlen($pinst) ? '-' : '', $pinst,
 		$type, strlen($tinst) ? '-' : '', $tinst);
 
-	if (is_file($CONFIG['datadir'].'/'.$identifier.'.rrd'))
+	if (is_file($RRD['rrdroot_dir'].'/'.$identifier.'.rrd'))
 		return $identifier;
 	else
 		return FALSE;
@@ -38,9 +38,9 @@ function socket_cmd($socket, $cmd) {
 
 # tell collectd to FLUSH all data of the identifier(s)
 function collectd_flush($identifier) {
-	global $CONFIG;
+	global $COLLECTD;
 
-	if (!$CONFIG['socket'])
+	if (!$COLLECT['socket'])
 		return FALSE;
 
 	if (!$identifier || (is_array($identifier) && count($identifier) == 0) ||
@@ -52,20 +52,20 @@ function collectd_flush($identifier) {
 
 	$u_errno  = 0;
 	$u_errmsg = '';
-	if (! $socket = @fsockopen($CONFIG['socket'], 0, $u_errno, $u_errmsg)) {
+	if (! $socket = @fsockopen($COLLECTD['socket'], 0, $u_errno, $u_errmsg)) {
 		error_log(sprintf('ERROR: Failed to open unix-socket to %s (%d: %s)',
-			$CONFIG['socket'], $u_errno, $u_errmsg));
+			$COLLECTD['socket'], $u_errno, $u_errmsg));
 		return FALSE;
 	}
 
-	if ($CONFIG['flush_type'] == 'collectd'){
+	if ($COLLECTD['flush_type'] == 'collectd'){
 		$cmd = 'FLUSH';
 		foreach ($identifier as $val)
 			$cmd .= sprintf(' identifier="%s"', $val);
 		$cmd .= "\n";
 		socket_cmd($socket, $cmd);
 	}
-	elseif ($CONFIG['flush_type'] == 'rrdcached') {
+	elseif ($COLLECTD['flush_type'] == 'rrdcached') {
 		foreach ($identifier as $val) {
 			$cmd = sprintf("FLUSH %s.rrd\n", $val);
 			socket_cmd($socket, $cmd);

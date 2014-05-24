@@ -7,7 +7,7 @@ class RRDTool {
 		if (file_exists($rrdtool)) {
 			$this->rrdtool = $rrdtool;
 		} else {
-			printf('<p class="warn">Error: RRDTool (<em>%s</em>) is not executable. Please install RRDTool it and configure <em>$CONFIG[\'rrdtool\'].</em></p>', $rrdtool);
+			printf('<p class="warn">Error: RRDTool (<em>%s</em>) is not executable. Please install RRDTool it and configure in rrd_config.json</p>', $rrdtool);
 			die();
 		}
 	}

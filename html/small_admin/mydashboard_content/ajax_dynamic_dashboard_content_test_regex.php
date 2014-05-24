@@ -41,10 +41,10 @@ if ($_POST['f_regex_srv']) {
 	$f_regex_ti=filter_input(INPUT_POST,'f_regex_ti',FILTER_SANITIZE_SPECIAL_CHARS);
 
 	for ($i=0; $i<$cpt_server; $i++) {
-		if (is_dir($CONFIG['datadir'].'/'.$all_server[$i]->server_name.'/')) {
-			$myregex='#^('.$CONFIG['datadir'].'/'.$all_server[$i]->server_name.'/)('.$f_regex_p.')(?:\-('.$f_regex_pi.'))?/('.$f_regex_t.')(?:\-('.$f_regex_ti.'))?\.rrd#';
+		if (is_dir($RRD['rrd_rootdir'].'/'.$all_server[$i]->server_name.'/')) {
+			$myregex='#^('.$RRD['rrdroot_dir'].'/'.$all_server[$i]->server_name.'/)('.$f_regex_p.')(?:\-('.$f_regex_pi.'))?/('.$f_regex_t.')(?:\-('.$f_regex_ti.'))?\.rrd#';
 
-			$plugins = preg_find($myregex, $CONFIG['datadir'].'/'.$all_server[$i]->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+			$plugins = preg_find($myregex, $RRD['rrdroot_dir'].'/'.$all_server[$i]->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
 			foreach ($plugins as $plugin) {
 				preg_match($myregex, $plugin, $matches);
 				if (isset($matches[2])) {

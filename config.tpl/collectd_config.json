@@ -2,5 +2,5 @@
 	"flush_type": "collectd",
 	"socket": "unix:///var/run/collectd-unixsock",
 	"def_collectd_version": "collectd_5",
-	"collectd_versions": [ "NULL", "collectd_4", "collectd_5" ]
+	"collectd_versions": [ false, "collectd_4", "collectd_5" ]
 }

@@ -54,9 +54,9 @@ function crc32hex($str) {
 }
 
 function error_image($text="[ERROR] Permission denied") {
-	global $CONFIG;
-	$width=$CONFIG['width']+98;
-	$height=$CONFIG['height']+72;
+	global $GRAPH;
+	$width=$GRAPH['graph_width']+98;
+	$height=$GRAPH['graph_height']+72;
 
 	header("Content-Type: image/png");
 	// Création de l'image
