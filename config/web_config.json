@@ -1,8 +1,0 @@
-{
-	"webroot_dir": "/CGraphz_2.30",
-	"debug": false,
-	"def_lang": "en",
-	"def_timezone": "UTC",
-	"max_legend_length":  20,
-	"max_img_size": 8388608
-}

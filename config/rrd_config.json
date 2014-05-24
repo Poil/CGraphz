@@ -1,6 +1,0 @@
-{
-	"rrdroot_dir": "/var/lib/collectd/rrd/",
-	"rrdtool_path": "/usr/bin/rrdtool",
-	"rrd_fetch_method": "async",
-	"rrdtool_opts": ""
-}

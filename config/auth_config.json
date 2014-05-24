@@ -1,6 +1,0 @@
-{
-	"auth_type": "default",
-	"ldap_host": "ldaps://192.168.0.1",
-	"ldap_port": "636",
-	"ldap_tree": "ou=People,dc=domain,dc=com"
-}
