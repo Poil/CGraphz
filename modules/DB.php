@@ -51,7 +51,7 @@ class DB {
 	*/
 		private function Connect()
 		{
-			$this->settings = parse_ini_file(DIR_FSROOT.'/config/databases.ini.php');
+			$this->settings = json_clean_decode(DIR_FSROOT.'/config/databases_config.json');
 			$dsn = 'mysql:dbname='.$this->settings["dbname"].';host='.$this->settings["host"].'';
 			try 
 			{

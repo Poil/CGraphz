@@ -1,4 +1,2 @@
-config/config.php
-config/*.ini.php
-config/databases_config.json
+config/*
 logs/*

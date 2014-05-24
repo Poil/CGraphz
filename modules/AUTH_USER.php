@@ -28,8 +28,8 @@ class AUTH_USER {
 			$this->user = isset($_SERVER['PHP_AUTH_USER']) ? $_SERVER['PHP_AUTH_USER'] : '';
 			$this->passwd = isset($_SERVER['PHP_AUTH_PW']) ? $_SERVER['PHP_AUTH_PW'] : '';
 			$try_auth=True;
-		} else if (AUTH_TYPE != 'default') {
-			include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/extend_auth.php');
+		} else if ($AUTH['auth_type'] != 'default') {
+			include(DIR_FSROOT.'/modules/'.$AUTH['auth_type'].'/extend_auth.php');
 		}
 		
 		if (isset($_GET['f_logout'])) {
@@ -118,7 +118,7 @@ class AUTH_USER {
 		$lib='
 		SELECT 
 			cs.server_name, 
-			COALESCE(cs.collectd_version,"'.COLLECTD_DEFAULT_VERSION.'") as collectd_version
+			COALESCE(cs.collectd_version,"'.$COLLECTD['def_collectd_version'].'") as collectd_version
 		FROM config_server cs
 		  LEFT JOIN config_server_project csp 
 	        ON cs.id_config_server=csp.id_config_server
@@ -137,8 +137,8 @@ class AUTH_USER {
 
 		if ($host==$authorized->server_name) {
 			return $authorized;
-		} else if (AUTH_TYPE != 'default') {
-			include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/extend_access_right.php');
+		} else if ($AUTH['auth_type'] != 'default') {
+			include(DIR_FSROOT.'/modules/'.$AUTH['auth_type'].'/extend_access_right.php');
 		} else {		
 			return false;
 		}
@@ -149,9 +149,9 @@ class AUTH_USER {
 		session_destroy();
 		//header('Location: https://'.$_SERVER['SERVER_NAME'].DIR_WEBROOT);
 		if (isset($_SERVER['HTTPS'])) {
-        	header('Location: https://'.$_SERVER['SERVER_NAME'].DIR_WEBROOT);
+        	header('Location: https://'.$_SERVER['SERVER_NAME'].$WEB['webroot_dir']);
       	} else {
-       		header('Location: http://'.$_SERVER['SERVER_NAME'].DIR_WEBROOT);
+       		header('Location: http://'.$_SERVER['SERVER_NAME'].$WEB['webroot_dir']);
       	}
 		die();
 	}
