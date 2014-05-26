@@ -42,7 +42,7 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 			<span class="input-group-addon" style="width:65px;"><?php echo RANGE_END ?></span>
 			<input id="f_time_end" value="<?php echo $date_end ?>" type="text" maxlength="16" size="16" name="f_time_end" class="form-control" />
 			<span class="input-group-btn">
-				<button id="f_time_submit" class="btn btn-default" ><?php echo SUBMIT ?></button>
+				<button id="f_time_submit" class="btn btn-default" type="button" ><?php echo SUBMIT ?></button>
 				<button class="btn btn-default" type="submit"><?php echo SUBMIT_TO_DASHBOARD ?></button>
 			</span>
 		</div>
