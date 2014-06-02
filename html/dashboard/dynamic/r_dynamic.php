@@ -144,6 +144,8 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
             $plugin_array = sortArray($plugin_array, array('servername', 'p', 'pc', 'pi', 't', 'tc', 'ti'));
          } else if ($all_content[$i]->rrd_ordering=='P') {
             $plugin_array = sortArray($plugin_array, array('p', 'pc', 'servername', 'pi', 't', 'tc', 'ti'));
+         } else if ($all_content[$i]->rrd_ordering=='PC') {
+            $plugin_array = sortArray($plugin_array, array('pc', 'p', 'servername', 'pi', 't', 'tc', 'ti'));
          } else if ($all_content[$i]->rrd_ordering=='PI') {
             $plugin_array = sortArray($plugin_array, array('pi', 'p', 'pc', 'servername', 't', 'tc', 'ti'));
          } else if ($all_content[$i]->rrd_ordering=='T') {
@@ -179,6 +181,13 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   }
                   if ($old_pc!=$plugin['pc']) {
                      echo '<h2>'.$plugin['pc'].'</h2>';
+                  }
+               } else if ($all_content[$i]->rrd_ordering=='PC') {
+                  if ($old_pc!=$plugin['pc']) {
+                     echo '<h1>'.$plugin['pc'].'</h1>';
+                  }
+                  if ($old_servername!=$plugin['servername']) {
+                     echo '<h2>'.$plugin['servername'].'</h2>';
                   }
                } else if ($all_content[$i]->rrd_ordering=='PI') {
                   if ($old_pi!=$plugin['pi']) {
