@@ -197,7 +197,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                      echo '<h1>'.$plugin['t'].'</h1>';
                   }
                }
-            
+               if ($CONFIG['no_break'] == true) { echo '<span style="white-space:nowrap">'; }
                if (!preg_match('/^(df|interface|oracle)$/', $plugin['p']) || 
 				  (((preg_replace('/[^0-9\.]/','',$plugin['collectd_version']) >= 5)
 				  && $p!='oracle' && $t!='df'))
@@ -243,6 +243,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                      }
                   }
                }
+               if ($CONFIG['no_break'] == true) { echo '</span>'; }
         
                $old_t=$plugin['t'];
                $old_tc=$plugin['tc'];

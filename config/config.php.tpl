@@ -73,6 +73,9 @@ $CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000
 # Display PI as title for these plugins
 $CONFIG['title_pinstance']='/^(tail|P2000|GenericJMX|PM710)$/';
 
+# prevent a linebreak between the img tag (true/false)
+$CONFIG['no_break'] = false;
+
 # collectd version
 $CONFIG['version'] = 5;
 
