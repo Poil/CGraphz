@@ -15,7 +15,6 @@
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-1.10.3.custom.min.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-timepicker-addon.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.strtotime.js"></script>
-	<!--<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.localisation.min.js"></script>!-->
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.liveSearch.js"></script>
 	<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.blockUI.js"></script>
 	
@@ -23,7 +22,6 @@
 	/* If Lang defined, erase default jquery regional */
 	if (DEF_LANG!='') {
 		echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/development-bundle/ui/i18n/jquery.ui.datepicker-'.DEF_LANG.'.js"></script>';
-		//echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/development-bundle/ui/i18n/jquery.ui.timepicker-'.DEF_LANG.'.js"></script>';
 		echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/development-bundle/ui/i18n/jquery.ui.timepicker-addon-'.DEF_LANG.'.js"></script>';
 	}
 	?>
@@ -34,10 +32,6 @@
 	if (GET('module') != 'dashboard') {
 		?>
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/demo_table.css" />
-		<!--<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/multiselect/css/common.css" />
-		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/multiselect/css/ui.multiselect.css" />
-		<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/multiselect/js/jquery.tmpl.1.1.1.js"></script>
-		<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/multiselect/js/ui.multiselect.js"></script>!-->
 		<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/js/jquery.uix.multiselect.min.js"></script>
 		<script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/js/locales/jquery.uix.multiselect_fr.js"></script>
 		<link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/css/jquery.uix.multiselect.css" />
