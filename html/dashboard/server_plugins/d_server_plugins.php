@@ -142,8 +142,8 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$others=false;
 			}
 			// Displaying Plugin Instance for some plugins
-			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && $$pi!=true) {
-				$$pi=true;
+			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
+				${$pc.$pi}=true;
 				echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
 			}
 
