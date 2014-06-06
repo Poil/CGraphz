@@ -32,6 +32,7 @@ class Type_Base {
 	var $flush_type;
 
 	function __construct($config, $_get) {
+		$this->log = new LOG();
 		$this->datadir = $config['datadir'];
 		$this->rrdtool = $config['rrdtool'];
 		$this->rrdtool_opts = $config['rrdtool_opts'];
@@ -329,14 +330,14 @@ class Type_Base {
 	function socket_cmd($socket, $cmd) {
 		$r = fwrite($socket, $cmd, strlen($cmd));
 		if ($r === false || $r != strlen($cmd)) {
-			error_log(sprintf('ERROR: Failed to write full command to unix-socket: %d out of %d written',
+			$this->log->write(sprintf('ERROR: Failed to write full command to unix-socket: %d out of %d written',
 				$r === false ? -1 : $r, strlen($cmd)));
 			return FALSE;
 		}
 
 		$resp = fgets($socket,128);
 		if ($resp === false) {
-			error_log(sprintf('ERROR: Failed to read response from collectd for command: %s',
+			$this->log->write(sprintf('ERROR: Failed to read response from collectd for command: %s',
 				trim($cmd)));
 			return FALSE;
 		}
@@ -349,8 +350,9 @@ class Type_Base {
 	}
 
 	# tell collectd to FLUSH all data of the identifier(s)
-	function collectd_flush() {
+	function collectd_flush($debug=false) {
 		$identifier = $this->identifiers;
+		if ($debug == true) { $this->log->write('[Flush] - Identifiers : '.join($identifier,' -- ')); }
 
 		if (!$this->flush_socket)
 			return FALSE;
@@ -365,7 +367,7 @@ class Type_Base {
 		$u_errno  = 0;
 		$u_errmsg = '';
 		if (! $socket = @fsockopen($this->flush_socket, 0, $u_errno, $u_errmsg)) {
-			error_log(sprintf('ERROR: Failed to open unix-socket to %s (%d: %s)',
+			$this->log->write(sprintf('ERROR: Failed to open unix-socket to %s (%d: %s)',
 				$this->flush_socket, $u_errno, $u_errmsg));
 			return FALSE;
 		}
@@ -379,7 +381,8 @@ class Type_Base {
 		}
 		elseif ($this->flush_type == 'rrdcached') {
 			foreach ($identifier as $val) {
-				$cmd = sprintf("FLUSH %s.rrd\n", $val);
+				$cmd = sprintf("FLUSH %s.rrd\n", $this->datadir.'/'.$val);
+				if ($debug == true) { $this->log->write('[Flush] - Commands : FLUSH '.$this->datadir.'/'.$val.'.rrd'); }
 				$this->socket_cmd($socket, $cmd);
 			}
 		}

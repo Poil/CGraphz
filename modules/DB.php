@@ -7,7 +7,7 @@
  * @version      0.2ab
  *
  */
-require(DIR_FSROOT.'/modules/LOG.php');
+//require(DIR_FSROOT.'/modules/LOG.php');
 class DB {
 	# @object, The PDO object
 	private $pdo;
@@ -36,7 +36,7 @@ class DB {
 	*/
 		public function __construct()
 		{ 			
-			$this->log = new Log();	
+			$this->log = new LOG();	
 			$this->Connect();
 			$this->parameters = array();
 		}

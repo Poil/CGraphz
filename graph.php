@@ -6,6 +6,8 @@ require_once 'modules/collectd.inc.php';
 session_name('CGRAPHZ');
 session_start();
 
+$log = new LOG();	
+
 $auth = new AUTH_USER();
 if (!$auth->verif_auth()) {
 	error_image('[ERROR] Permission denied');
@@ -28,12 +30,12 @@ if (strpos($host,':')!=FALSE) {
 }
 
 if (validate_get(GET('h'), 'host') === NULL) {
-	error_log('CGRAPHZ ERROR: plugin contains unknown characters');
+	$log->write('CGRAPHZ ERROR: plugin contains unknown characters');
 	error_image('[ERROR] plugin contains unknown characters');
 }
 
 if (($width * $height) > MAX_IMG_SIZE) {
-        error_log('CGRAPHZ ERROR: image request is too big');
+	$log->write('CGRAPHZ ERROR: image request is too big');
 	error_image('[ERROR] Image request is too big');
 }
 
@@ -55,9 +57,9 @@ if (file_exists('plugin/'.$plugin.'.json')) {
 	$plugin_json = json_decode($json, true);
 
 	if (is_null($plugin_json))
-		error_log('CGP Error: invalid json in plugin/'.$plugin.'.json');
+		$log->write('CGP Error: invalid json in plugin/'.$plugin.'.json');
 } else {
-        error_log(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $plugin));
+        $log->write(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $plugin));
         error_image('Unknown graph type :'.$plugin.' '.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 }
 
