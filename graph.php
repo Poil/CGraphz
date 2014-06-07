@@ -20,13 +20,14 @@ $width = empty($_GET['x']) ? $CONFIG['width'] : $_GET['x'];
 $height = empty($_GET['y']) ? $CONFIG['height'] : $_GET['y'];
 $host=validate_get(GET('h'), 'host');
 $s=intval($_GET['s']);
-if (!$authorized=$auth->check_access_right($host)) {
-	error_image('[ERROR] Permission denied');
-}
 
 if (strpos($host,':')!=FALSE) {
 	$tmp=explode(':',$host);
 	$host=$tmp[0];
+}
+
+if (!$authorized=$auth->check_access_right($host)) {
+	error_image('[ERROR] Permission denied');
 }
 
 if (validate_get(GET('h'), 'host') === NULL) {
