@@ -68,7 +68,7 @@ $CONFIG['graph_smooth'] = false;
 $CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats)$/';
 
 # Plugin that can have a PluginCategory
-$CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000|tcpconns)$/';
+$CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000|tcpconns|aggregation)$/';
 
 # Display PI as title for these plugins
 $CONFIG['title_pinstance']='/^(tail|P2000|GenericJMX|PM710)$/';
