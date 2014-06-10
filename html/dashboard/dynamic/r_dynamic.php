@@ -119,7 +119,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   } else {
                      $plugin_array[$cpt_p]['t']=null;
                   }
-                  if (!is_blank($matches[5])) {
+                  if (isset($matches[5]) && !is_blank($matches[5])) {
                      $plugin_array[$cpt_p]['ti']=$matches[5];
                      $plugin_array[$cpt_p]['tc']=null;
                      if (substr_count($plugin_array[$cpt_p]['ti'], '-') >= 1 && preg_match($CONFIG['plugin_tcategory'], $plugin_array[$cpt_p]['p'])) {
