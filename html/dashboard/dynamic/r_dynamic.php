@@ -226,9 +226,9 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                          include DIR_FSROOT.'/plugin/'.$plugin['p'].'.php';
                       } else {
                          if ($time_range!=null) {
-                            echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src='.DIR_WEBROOT.'/graph.php?h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.' />'."\n";
+                            echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.'" />'."\n";
                          } else {
-                            echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src='.DIR_WEBROOT.'/graph.php?h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
+                            echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
                          }
                       }
                   }
@@ -246,9 +246,9 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                      include DIR_FSROOT.'/plugin/'.$plugin['p'].'.php';
                   } else {
                      if ($time_range!=null) {
-                        echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src='.DIR_WEBROOT.'/graph.php?h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.' />'."\n";
+                        echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.'" />'."\n";
                      } else {
-                        echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src='.DIR_WEBROOT.'/graph.php?h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.' />'."\n";
+                        echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
                      }
                   }
                }

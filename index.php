@@ -22,6 +22,7 @@ else { header("Content-type: text/html"); }
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/css/bootstrap.min.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/css/bootstrap-theme.min.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/bootstrap_menu.css" />
+   <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/bootstrap_extra.css" />
 
    <?php
    /* If Lang defined, erase default jquery regional */
@@ -71,7 +72,7 @@ if ($auth->verif_auth()) {
    include(DIR_FSROOT.'/html/menu/nav_menu.php');
    include(DIR_FSROOT.'/html/menu/end_navmenu.php');
 
-   if (GET('module') == 'dashboard') {
+   if (GET('module') == 'dashboard' && GET('component') == 'view') {
       include(DIR_FSROOT.'/html/menu/menu_project.php');
    }
 ?>
