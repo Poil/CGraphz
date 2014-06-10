@@ -1,3 +1,44 @@
 div#dashboard {
   margin-left:25px;
 }
+
+form label {
+	display:inline;
+	float:left;
+	width:85pt;
+}
+
+fieldset {
+	margin:5pt;
+	padding:1pt;
+}
+
+fieldset fieldset {
+	width:350pt;  
+	display:inline-block;
+	vertical-align:top;
+}
+
+fieldset legend {
+	padding: 1pt 3pt;
+	margin:0pt 3pt 0pt 3pt;
+	font-weight:bold;
+	font-size:140%;
+}
+
+fieldset fieldset legend {
+	font-size:120%;
+}
+/*
+fieldset fieldset:nth-child(even) {
+	clear:both;  
+}
+*/
+fieldset.large {
+	width:715pt;
+}
+
+fieldset.large label {
+	width:120pt;
+}
+
