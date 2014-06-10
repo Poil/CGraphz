@@ -15,7 +15,7 @@ if (isset($cur_server->id_config_server)) {
 	}
 	?>
 	</select>
-	<div class="spacer">&nbsp;</div><br />
+	<div class="clearfix"></div><br />
 <?php 
 } 
 ?>		
@@ -34,7 +34,7 @@ if (isset($cur_server->id_config_server)) {
 	}
 ?>
 </select>
-<div class="spacer">&nbsp;</div><br />
+<div class="clearfix"></div><br />
 <input type="submit" name="f_submit_server" id="f_submit_server" value="<?php echo SUBMIT ?>" />
 </form>
 <?php

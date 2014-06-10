@@ -258,7 +258,7 @@ foreach ($vmlist as $vmdir) {
 				if ($t!=$old_t) echo '<h4>'.ucfirst(str_replace('_', ' ',$t)).'</h4>';
 				$old_t=$t;
 
-				echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src='.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.' />';
+				echo '<img class="imggraph" '.$zoom.' title="'.DBL_CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />';
 			}
 		}
 	}

@@ -1,13 +1,37 @@
-<div id="div_login">
-<h1>CGRAPHZ</h1>
-<br />
-<img class="img_menu" height="64" width="64" style="float:left" src="img/auth.png" />
-<br />
-<form name="f_form_auth" method="post" action="">
-	<label for="f_user"><?php echo USER; ?></label>
-		<input type="text" name="f_user" id="f_user" value="<?php @$_POST['f_user']?>" /><br />
-	<label for="f_passwd"><?php echo PASSWORD; ?></label>
-		<input type="password" name="f_passwd" id="f_passwd" value="" /><br />
-	<input type="submit" name="f_submit_auth" id="f_submit_auth" value="<?php echo SUBMIT ?>" />
-</form>
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+    <form class="form-horizontal" method="post" action="">
+      <fieldset>
+        <!-- Form Name -->
+        <h1>CGraphz</h1>
+        
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="f_user"><?php echo USER; ?></label>  
+          <div class="col-md-4">
+          <input id="f_user" name="f_user" placeholder="placeholder" class="form-control input-md" type="text" value="<?php @$_POST['f_user']?>" />
+          </div>
+        </div>
+        
+        <!-- Password input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="f_passwd"><?php echo PASSWORD; ?></label>
+          <div class="col-md-4">
+            <input id="f_passwd" name="f_passwd" placeholder="placeholder" class="form-control input-md" type="password" />
+          </div>
+        </div>
+        
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="f_submit_auth"></label>
+          <div class="col-md-4">
+            <button type="submit" name="f_submit_auth" class="btn btn-primary"><?php echo SUBMIT ?></button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  </div>
 </div>
+

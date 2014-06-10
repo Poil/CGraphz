@@ -8,7 +8,7 @@
 		}
 		?>
 	</select>
-	<div class="spacer">&nbsp;</div><br />
+	<div class="clearfix"></div><br />
 
 	<input type="submit" name="f_del_server_check" id="f_del_server_check" value="<?php echo DEL ?>" />
 </form>

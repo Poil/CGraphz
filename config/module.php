@@ -9,7 +9,7 @@ function removeqsvar($url, $varname) {
 }
 
 
-$cur_url=$_SERVER["REQUEST_URI"];
+$cur_url=htmlspecialchars($_SERVER["REQUEST_URI"]);
 $module=GET('module');
 $component=GET('component');
 $workflow=GET('workflow');
@@ -27,12 +27,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/config/project/r_project_wh_id.php');
 			include(DIR_FSROOT.'/html/config/project/r_project.php');
 			include(DIR_FSROOT.'/html/config/project/d_project.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_config_project'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_project').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			echo '<fieldset>';
 			if (isset($cur_project)) {
 				echo '<legend>'.$cur_project->project_description.'</legend>';
@@ -54,12 +54,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/perm/project_group/r_project_group_wh_id.php');
 				include(DIR_FSROOT.'/html/perm/project_group/r_project_group.php');
 				include(DIR_FSROOT.'/html/perm/project_group/d_project_group.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_auth_group'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_group').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_auth_group'])) {
 					echo '<strong>'.DEL.'</strong>';
 				} else {
@@ -75,12 +75,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/project_server/r_project_server_wh_id.php');
 				include(DIR_FSROOT.'/html/config/project_server/r_project_server.php');
 				include(DIR_FSROOT.'/html/config/project_server/d_project_server.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_server'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_server').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_server'])) {
 					echo '<strong>'.DEL.'</strong>';
 				} else {
@@ -90,7 +90,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				echo '</fieldset>';
 			}		
 			echo '</fieldset>';
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 		} elseif ($component=='server') {
 			echo '<h1>'.MANAGE_SERVERS.'</h1>';
 			// Module server_check delete post before read.
@@ -109,12 +109,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/config/server/r_server_wh_id.php');
 			include(DIR_FSROOT.'/html/config/server/r_server.php');
 			include(DIR_FSROOT.'/html/config/server/d_server.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_config_server'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_server').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			echo '<fieldset>';
 			if (isset($cur_server)) {
 				echo '<legend>'.$cur_server->server_name.'</legend>';
@@ -145,12 +145,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/server_project/r_server_project_wh_id.php');
 				include(DIR_FSROOT.'/html/config/server_project/r_server_project.php');
 				include(DIR_FSROOT.'/html/config/server_project/d_server_project.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_project'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_project').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_project'])) {
 					echo '<legend>'.DEL.'</legend>';
 				}
@@ -169,12 +169,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/server_role/r_server_role_wh_id.php');
 				include(DIR_FSROOT.'/html/config/server_role/r_server_role.php');
 				include(DIR_FSROOT.'/html/config/server_role/d_server_role.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_role'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_role').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_role'])) {
 					echo '<legend>'.DEL.'</legend>';
 				}
@@ -193,12 +193,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/server_environment/r_server_environment_wh_id.php');
 				include(DIR_FSROOT.'/html/config/server_environment/r_server_environment.php');
 				include(DIR_FSROOT.'/html/config/server_environment/d_server_environment.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_environment'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_role').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_environment'])) {
 					echo '<legend>'.DEL.'</legend>';
 				}
@@ -209,7 +209,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				echo '</fieldset>';
 			}
 			echo '</fieldset>';
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 		} else if ($component=='role') {
 			echo '<h1>'.MANAGE_ROLES.'</h1>';
 			include(DIR_FSROOT.'/html/config/role/w_role.php');
@@ -218,12 +218,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/config/role/r_role_wh_id.php');
 			include(DIR_FSROOT.'/html/config/role/r_role.php');
 			include(DIR_FSROOT.'/html/config/role/d_role.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_config_role'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_role').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			echo '<fieldset>';
 			if (isset($cur_role)) {
 				echo '<legend>'.$cur_role->role_description.'</legend>';
@@ -245,12 +245,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/role_server/r_role_server_wh_id.php');
 				include(DIR_FSROOT.'/html/config/role_server/r_role_server.php');
 				include(DIR_FSROOT.'/html/config/role_server/d_role_server.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_server'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_server').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_server'])) {
 					echo '<legend>'.DEL.'</legend>';
 				}
@@ -261,7 +261,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				echo '</fieldset>';
 			}
 			echo '</fieldset>';
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 		} else if ($component=='environment') {
 			echo '<h1>'.MANAGE_ENVS.'</h1>';
 			include(DIR_FSROOT.'/html/config/environment/w_environment.php');
@@ -270,12 +270,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/config/environment/r_environment_wh_id.php');
 			include(DIR_FSROOT.'/html/config/environment/r_environment.php');
 			include(DIR_FSROOT.'/html/config/environment/d_environment.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_config_environment'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_environment').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			echo '<fieldset>';
 			if (isset($cur_environment)) {
 				echo '<legend>'.$cur_environment->environment_description.'</legend>';
@@ -297,12 +297,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/environment_server/r_environment_server_wh_id.php');
 				include(DIR_FSROOT.'/html/config/environment_server/r_environment_server.php');
 				include(DIR_FSROOT.'/html/config/environment_server/d_environment_server.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_server'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_server').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_server'])) {
 					echo '<legend>'.DEL.'</legend>';
 				}
@@ -313,7 +313,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				echo '</fieldset>';
 			}
 			echo '</fieldset>';
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 		} else if ($component=='plugin') {
 			echo '<h1>'.MANAGE_PLUGINS.'</h1>';
 			include(DIR_FSROOT.'/html/config/plugin_filter/w_plugin_filter.php');
@@ -321,12 +321,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/config/plugin_filter/r_plugin_filter_wh_id.php');
 			include(DIR_FSROOT.'/html/config/plugin_filter/r_plugin_filter.php');
 			include(DIR_FSROOT.'/html/config/plugin_filter/d_plugin_filter.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_config_plugin_filter'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_plugin_filter').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			echo '<fieldset>';
 			if (isset($cur_plugin_filter)) {
 				echo '<legend>'.$cur_plugin_filter->plugin_filter_desc.'</legend>';
@@ -341,7 +341,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/config/plugin_filter/f_plugin_filter.php');
 			echo '</fieldset>';
 			echo '</fieldset>';
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 		} else if ($component=='dynamic_dashboard') {
 			echo '<h1>'.MANAGE_DYNAMIC_DASHBOARDS.'</h1>';
 			include(DIR_FSROOT.'/html/config/dynamic_dashboard/w_dynamic_dashboard.php');
@@ -351,12 +351,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/config/dynamic_dashboard/r_dynamic_dashboard_wh_id.php');
 			include(DIR_FSROOT.'/html/config/dynamic_dashboard/r_dynamic_dashboard.php');
 			include(DIR_FSROOT.'/html/config/dynamic_dashboard/d_dynamic_dashboard.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			echo '<fieldset>';
 			if (isset($cur_dynamic_dashboard)) {
 				echo '<legend>'.$cur_dynamic_dashboard->title.'</legend>';
@@ -378,12 +378,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/r_dynamic_dashboard_group_wh_id.php');
 				include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/r_dynamic_dashboard_group.php');
 				include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/d_dynamic_dashboard_group.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_dynamic_dashboard_group'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard_group').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_dynamic_dashboard_group'])) {
 					echo '<legend>'.EDIT.'</legend>';
 				}
@@ -402,12 +402,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/r_dynamic_dashboard_content_wh_id.php');
 				include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/r_dynamic_dashboard_content.php');
 				include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/d_dynamic_dashboard_content.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard_content').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
 					echo '<legend>'.EDIT.'</legend>';
 				}
@@ -419,7 +419,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			}
 			
 			echo '</fieldset>';
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 		}
 	} else if ($module=='auth') {
 		if ($component=='user') {
@@ -430,12 +430,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/auth/user/r_user_wh_id.php');
 			include(DIR_FSROOT.'/html/auth/user/r_user.php');
 			include(DIR_FSROOT.'/html/auth/user/d_user.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_auth_user'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_user').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			echo '<fieldset>';
 			if (isset($cur_user)) {
 				echo '<legend>'.$cur_user->user.'</legend>';
@@ -458,12 +458,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/auth/user_group/r_user_group_wh_id.php');
 				include(DIR_FSROOT.'/html/auth/user_group/r_user_group.php');
 				include(DIR_FSROOT.'/html/auth/user_group/d_user_group.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_auth_group'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_group').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_auth_group'])) {
 					echo '<legend>'.DEL.'</legend>';
 				}
@@ -474,7 +474,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				echo '</fieldset>';
 			}		
 			echo '</fieldset>';
-			echo '<div class="spacer">&nbsp;</div>';		
+			echo '<div class="clearfix"></div>';		
 		}
 		else if ($component=='group') {
 			echo '<h1>'.MANAGE_GROUPS.'</h1>';
@@ -488,12 +488,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/auth/group/r_group_wh_id.php');
 			include(DIR_FSROOT.'/html/auth/group/r_group.php');
 			include(DIR_FSROOT.'/html/auth/group/d_group.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_auth_group'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_group').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			echo '<fieldset>';
 			if (isset($cur_group)) {
 				echo '<legend>'.$cur_group->group.'</legend>';
@@ -516,12 +516,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/auth/group_user/r_group_user_wh_id.php');
 				include(DIR_FSROOT.'/html/auth/group_user/r_group_user.php');
 				include(DIR_FSROOT.'/html/auth/group_user/d_group_user.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_auth_user'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_user').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_auth_user'])) {
 					echo '<strong>'.DEL.'</strong>';
 				}
@@ -540,12 +540,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/perm/group_project/r_group_project_wh_id.php');
 				include(DIR_FSROOT.'/html/perm/group_project/r_group_project.php');
 				include(DIR_FSROOT.'/html/perm/group_project/d_group_project.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_project'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_project').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_project'])) {
 					echo '<strong>'.DEL.'</strong>';
 				}
@@ -564,12 +564,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/group_plugin_filter/r_group_plugin_filter_wh_id.php');
 				include(DIR_FSROOT.'/html/config/group_plugin_filter/r_group_plugin_filter.php');
 				include(DIR_FSROOT.'/html/config/group_plugin_filter/d_group_plugin_filter.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_plugin_filter'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_plugin_filter').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_plugin_filter'])) {
 					echo '<strong>'.DEL.'</strong>';
 				}
@@ -588,12 +588,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/perm/group_module/r_group_module_wh_id.php');
 				include(DIR_FSROOT.'/html/perm/group_module/r_group_module.php');
 				include(DIR_FSROOT.'/html/perm/group_module/d_group_module.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_perm_module'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_perm_module').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_perm_module'])) {
 					echo '<strong>'.DEL.'</strong>';
 				}
@@ -611,12 +611,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/r_group_dynamic_dashboard_wh_id.php');
 				include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/r_group_dynamic_dashboard.php');
 				include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/d_group_dynamic_dashboard.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 					echo '<strong>'.DEL.'</strong>';
 				}
@@ -627,7 +627,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				echo '</fieldset>';
 			}
 			echo '</fieldset>';
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 		}
 	} else if ($module=='perm') {
 		if ($component=='module') {
@@ -638,12 +638,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/perm/module/r_module_wh_id.php');
 			include(DIR_FSROOT.'/html/perm/module/r_module.php');
 			include(DIR_FSROOT.'/html/perm/module/d_module.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_perm_module'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_perm_module').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			echo '<fieldset>';
 			if (isset($cur_module)) {
 				echo '<legend>'.$cur_module->module.' '.$cur_module->component.'</legend>';
@@ -666,12 +666,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/perm/module_group/r_module_group_wh_id.php');
 				include(DIR_FSROOT.'/html/perm/module_group/r_module_group.php');
 				include(DIR_FSROOT.'/html/perm/module_group/d_module_group.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_auth_group'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_group').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_auth_group'])) {
 					echo '<strong>'.DEL.'</strong>';
 				}
@@ -682,7 +682,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				echo '</fieldset>';
 			}
 			echo '</fieldset>';
-			echo '<div class="spacer">&nbsp;</div>';	
+			echo '<div class="clearfix"></div>';	
 		} 
 	} else if ($module=='dashboard') {
 		if ($component=='view') {
@@ -705,15 +705,15 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/small_admin/mygroup/r_group_wh_id.php');
 			include(DIR_FSROOT.'/html/small_admin/mygroup/r_group.php');
 			include(DIR_FSROOT.'/html/small_admin/mygroup/d_group.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_auth_group'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_group').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			$perm_grp = new PERMS();
 			$f_id_auth_group=intval(GET('f_id_auth_group'));
-			if (($f_id_auth_group && $perm_grp->auth_user_group($_SESSION['S_ID_USER'],$f_id_auth_group,true)) || !$f_id_auth_group) {
+			if (($f_id_auth_group && $perm_grp->auth_user_group($f_id_auth_group,true)) || !$f_id_auth_group) {
 				echo '<fieldset>';
 				if (isset($cur_group)) {
 					echo '<legend>'.$cur_group->group.'</legend>';
@@ -737,12 +737,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 					include(DIR_FSROOT.'/html/small_admin/mygroup_user/r_group_user_wh_id.php');
 					include(DIR_FSROOT.'/html/small_admin/mygroup_user/r_group_user.php');
 					include(DIR_FSROOT.'/html/small_admin/mygroup_user/d_group_user.php');
-					echo '<div class="spacer">&nbsp;</div>';
+					echo '<div class="clearfix"></div>';
 					
 					if (isset($_GET['f_id_auth_user'])) {
 						echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_user').'">'.ADD.'</a> ]';
 					}
-					echo '<div class="spacer">&nbsp;</div>';
+					echo '<div class="clearfix"></div>';
 					if (isset($_GET['f_id_auth_user'])) {
 						echo '<strong>'.DEL.'</strong>';
 					}
@@ -754,7 +754,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				}
 				echo '</fieldset>';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 		} else if ($component=='myaccount') {
 			echo '<h1>'.MY_ACCOUNT.'</h1>';
 			echo '<fieldset>';
@@ -778,12 +778,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 			include(DIR_FSROOT.'/html/small_admin/mydashboard/r_dynamic_dashboard_wh_id.php');
 			include(DIR_FSROOT.'/html/small_admin/mydashboard/r_dynamic_dashboard.php');
 			include(DIR_FSROOT.'/html/small_admin/mydashboard/d_dynamic_dashboard.php');
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			
 			if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 				echo '[ <a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'">'.ADD.'</a> ]';
 			}
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 			$f_id_config_dynamic_dashboard=intval(GET('f_id_config_dynamic_dashboard'));
 			echo '<fieldset>';
 			if (isset($cur_dynamic_dashboard)) {
@@ -808,12 +808,12 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content_wh_id.php');
 				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content.php');
 				include(DIR_FSROOT.'/html/small_admin/mydashboard_content/d_dynamic_dashboard_content.php');
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				
 				if (isset($_GET['f_id_auth_user'])) {
 					echo '[ <a href="'.removeqsvar($cur_url,'f_id_auth_user').'">'.ADD.'</a> ]';
 				}
-				echo '<div class="spacer">&nbsp;</div>';
+				echo '<div class="clearfix"></div>';
 				if (isset($_GET['f_id_auth_user'])) {
 					echo '<strong>'.DEL.'</strong>';
 				}
@@ -824,7 +824,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
 				echo '</fieldset>';
 			}
 			echo '</fieldset>';
-			echo '<div class="spacer">&nbsp;</div>';
+			echo '<div class="clearfix"></div>';
 		}
 	} else {
 		echo $CONFIG['welcome_text'];
