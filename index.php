@@ -14,19 +14,30 @@ else { header("Content-type: text/html"); }
 <head>
    <meta charset="UTF-8" />
    
-   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-1.10.2.min.js"></script>
+   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-2.1.1.min.js"></script>
+   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-1.10.4.custom.min.js"></script>
+   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-timepicker-addon.js"></script>
+   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.strtotime.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.liveSearch/js/jquery.liveSearch.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.blockUI.js"></script>
+
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/func.js"></script>
+   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/dateformat.js"></script>
    
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/css/bootstrap.min.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/css/bootstrap-theme.min.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/bootstrap_menu.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/bootstrap_extra.css" />
+   <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css" />
+   <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.theme.css" />
+   <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/jquery-ui-timepicker-addon.css" />
 
    <?php
    /* If Lang defined, erase default jquery regional */
    if (DEF_LANG!='') {
+      echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/development-bundle/ui/i18n/jquery.ui.datepicker-'.DEF_LANG.'.js"></script>';
+      echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/development-bundle/ui/i18n/jquery.ui.timepicker-addon-'.DEF_LANG.'.js"></script>';
    }
    ?>
    <?php

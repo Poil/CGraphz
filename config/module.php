@@ -5,11 +5,11 @@ function removeqsvar($url, $varname) {
 }
 */
 function removeqsvar($url, $varname) {
-    return preg_replace('/([?&])'.$varname.'=[^&]+(&|$)/','$1',$url);
+    return htmlspecialchars(preg_replace('/([?&])'.$varname.'=[^&]+(&|$)/','$1',$url));
 }
 
 
-$cur_url=htmlspecialchars($_SERVER["REQUEST_URI"]);
+$cur_url=$_SERVER["REQUEST_URI"];
 $module=GET('module');
 $component=GET('component');
 $workflow=GET('workflow');

@@ -14,7 +14,7 @@ fieldset {
 }
 
 fieldset fieldset {
-	width:350pt;  
+	width:33%;  
 	display:inline-block;
 	vertical-align:top;
 }
@@ -35,7 +35,7 @@ fieldset fieldset:nth-child(even) {
 }
 */
 fieldset.large {
-	width:715pt;
+	width:50%;
 }
 
 fieldset.large label {

@@ -2,13 +2,7 @@
 header("Content-type: text/javascript");
 
 include('../config/config.php');
-/*
-$(function(){
-       	$('.multiselect').multiselect({
-		locale: '<?php echo DEF_LANG ?>'
-	});
-});
-*/
+
 ?>
 
 $(document).ready(function() {
@@ -25,4 +19,10 @@ $(document).ready(function() {
 function validate_del(form) {
     return confirm('<?php echo CONFIRM_DELETE ?>');
 }
+
+$(function(){
+       	$('.multiselect').multiselect({
+		locale: '<?php echo DEF_LANG ?>'
+	});
+});
 
