@@ -109,10 +109,10 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$tc=$tmp[0];
 				//$ti=implode('-', array_slice($tmp,1));
 				$ti=null;
-			} else if (preg_match($CONFIG['plugin_tcategory'], $p)) {
+			} /*else if (preg_match($CONFIG['plugin_tcategory'], $p)) {
 				$tc=$ti;
 				$ti=null;
-			}
+			}*/
 		} else { 
 			$tc=null; 
 			$ti=null; 
@@ -140,23 +140,21 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$lvl_pi=$lvl_pc+1;
 				$$pc=true;
 				$others=false;
+				$$pi=false;
 			}
 			// Displaying Plugin Instance for some plugins
-			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && $$pi!=true) {
-				$$pi=true;
+			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
+				${$pc.$pi}=true;
 				echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
 			}
 
 			${$p.$pc.$pi.$t.$tc.$ti}=true;
 
-
 			// Verif regex OK
 			if (isset($p) && isset($t)) {
 				if (!preg_match('/^(df|interface|oracle)$/', $p) || 
 				   (((preg_replace('/[^0-9\.]/','',$cur_server->collectd_version) >= 5)
-				     && (preg_replace('/[^a-zA-Z]/','',$cur_server->collectd_version) == 'Collectd') 
 				     && $p!='oracle' && $t!='df'))
-				   || (preg_replace('/[^a-zA-Z]/','',$cur_server->collectd_version) == 'SSC')
 			    ) {
 					$ti='';
 					if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {

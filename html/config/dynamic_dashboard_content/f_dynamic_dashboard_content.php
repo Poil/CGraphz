@@ -43,6 +43,7 @@
 		<select name="f_rrd_ordering" id="f_rrd_ordering">
 			<option value="S" <?php echo (@$cur_dynamic_dashboard_content->rrd_ordering=='S')?'selected="selected"':''; ?>><?php echo SERVER ?></option>
 			<option value="P" <?php echo (@$cur_dynamic_dashboard_content->rrd_ordering=='P')?'selected="selected"':''; ?>><?php echo PLUGIN ?></option>
+			<option value="PC" <?php echo (@$cur_dynamic_dashboard_content->rrd_ordering=='PC')?'selected="selected"':''; ?>><?php echo PLUGIN_CATEGORY ?></option>
 			<option value="PI" <?php echo (@$cur_dynamic_dashboard_content->rrd_ordering=='PI')?'selected="selected"':''; ?>><?php echo PLUGIN_INSTANCE ?></option>
 			<option value="T" <?php echo (@$cur_dynamic_dashboard_content->rrd_ordering=='T')?'selected="selected"':''; ?>><?php echo TYPE ?></option>
 			<option value="TI" <?php echo (@$cur_dynamic_dashboard_content->rrd_ordering=='TI')?'selected="selected"':''; ?>><?php echo TYPE_INSTANCE ?></option>

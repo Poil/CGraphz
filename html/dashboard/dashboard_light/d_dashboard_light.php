@@ -170,8 +170,8 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$others=false;
 			}
 			// Displaying Plugin Instance for some plugins
-			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && $$pi!=true) {
-				$$pi=true;
+			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
+				${$pc.$pi}=true;
 				echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
 			}
 
@@ -182,9 +182,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if (isset($p) && isset($t)) {
 				if (!preg_match('/^(df|interface|oracle)$/', $p) || 
 				   (((preg_replace('/[^0-9\.]/','',$cur_server->collectd_version) >= 5)
-				     && (preg_replace('/[^a-zA-Z]/','',$cur_server->collectd_version) == 'Collectd') 
 				     && $p!='oracle' && $t!='df'))
-				   || (preg_replace('/[^a-zA-Z]/','',$cur_server->collectd_version) == 'SSC')
 			    ) {
 					$ti='';
 					if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {

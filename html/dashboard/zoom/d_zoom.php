@@ -36,6 +36,7 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 	<label for="f_time_end"><?php echo RANGE_END ?></label>
 		<input id="f_time_end" value="<?php echo $date_end ?>" type="text" maxlength="16" size="16" name="f_time_end" />
 	<br />
+	<input id="f_time_submit" type="button" value="<?php echo SUBMIT ?>" />
 	<input type="submit" value="<?php echo SUBMIT_TO_DASHBOARD ?>" />
 </form>
 <?php
@@ -46,6 +47,6 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 
 	chdir(DIR_FSROOT);
 	$CONFIG['version']=$cur_server->collectd_version;
-	include(DIR_FSROOT.'/plugin/'.GET('p').'.php');
+	include(DIR_FSROOT.'/graph.php');
 	echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/CGP.js"></script>';
 ?>
