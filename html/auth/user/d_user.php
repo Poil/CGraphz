@@ -1,4 +1,4 @@
-<table border="0" cellpadding="0" cellspacing="0" id="table_user" class="table_admin table table-bordered table-hover  table-condensed table-striped">
+<table border="0" cellpadding="0" cellspacing="0" id="table_user" class="table_admin">
 <thead>
 <tr>
 	<th><?php echo USER ?></th>

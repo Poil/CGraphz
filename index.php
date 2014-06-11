@@ -39,6 +39,8 @@ else { header("Content-type: text/html"); }
       <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/css/jquery.uix.multiselect.css" />
       <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/dyn_js.php"></script>
       <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/dataTables.bootstrap.js"></script>
+      <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/dataTables.bootstrap.css" />
       <?php
    }
    ?>
