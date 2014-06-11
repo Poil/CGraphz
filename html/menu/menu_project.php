@@ -17,67 +17,80 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
       </button>
     </div>
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-2">
-      <select name="f_id_config_project" id="f_id_config_project">
-         <option disabled="disabled" selected="selected"><?php echo PROJECT; ?></option>
-         <?php
-		foreach ($perm->perm_list_project() as $cur_project) {
-			if ($f_id_config_project==$cur_project->id_config_project) {
-				echo '<option value="'.$cur_project->id_config_project.'" selected="selected">'.$cur_project->project_description.'</option>';
-			} else {
-				echo '<option value="'.$cur_project->id_config_project.'">'.$cur_project->project_description.'</option>';
-			}
-		} 
-         ?>
-      </select>
+      <form class="form-inline" role="form">
+      <div class="form-group">
+        <select name="f_id_config_project" id="f_id_config_project">
+          <option disabled="disabled" selected="selected"><?php echo PROJECT; ?></option>
+          <?php
+          foreach ($perm->perm_list_project() as $cur_project) {
+            if ($f_id_config_project==$cur_project->id_config_project) {
+              echo '<option value="'.$cur_project->id_config_project.'" selected="selected">'.$cur_project->project_description.'</option>';
+            } else {
+              echo '<option value="'.$cur_project->id_config_project.'">'.$cur_project->project_description.'</option>';
+            }
+          }
+          ?>
+        </select>
+      </div>
       &gt;&gt;
-      <select name="f_id_config_environment" id="f_id_config_environment">
-         <option><?php echo ENV; ?></option>
-         <?php
-         if (!empty($f_id_config_project)) {
-		$project=new PROJECT($f_id_config_project);
-		foreach ($project->get_servers_environments($f_id_config_role) as $cur_environment) {
-echo 'ici';
-			if ($f_id_config_environment==$cur_environment->id_config_environment) {
-				echo '<option value="'.$cur_environment->id_config_environment.'" selected="selected">'.$cur_environment->environment_description.'</option>';
-			} else {
-				echo '<option value="'.$cur_environment->id_config_environment.'">'.$cur_environment->environment_description.'</option>';
-			}
-		} 
-         }
-         ?>
-      </select>
+      <div class="form-group">
+        <select name="f_id_config_environment" id="f_id_config_environment">
+          <option><?php echo ENV; ?></option>
+          <?php
+          if (!empty($f_id_config_project)) {
+            $project=new PROJECT($f_id_config_project);
+            foreach ($project->get_servers_environments($f_id_config_role) as $cur_environment) {
+              if ($f_id_config_environment==$cur_environment->id_config_environment) {
+                echo '<option value="'.$cur_environment->id_config_environment.'" selected="selected">'.$cur_environment->environment_description.'</option>';
+              } else {
+                echo '<option value="'.$cur_environment->id_config_environment.'">'.$cur_environment->environment_description.'</option>';
+              }
+            } 
+          }
+          ?>
+        </select>
+      </div>
       &lt;&gt;
-      <select name="f_id_config_role" id="f_id_config_role">
-         <option><?php echo ROLE; ?></option>
-         <?php
-         if (!empty($f_id_config_project)) {
-		$project=new PROJECT($f_id_config_project);
-		foreach ($project->get_servers_roles($f_id_config_environment) as $cur_role) {
-			if ($f_id_config_role==$cur_role->id_config_role) {
-				echo '<option value="'.$cur_role->id_config_role.'" selected="selected">'.$cur_role->role_description.'</option>';
-			} else {
-				echo '<option value="'.$cur_role->id_config_role.'">'.$cur_role->role_description.'</option>';
-			}
-		} 
-         }
-         ?>
-      </select>
+      <div class="form-group">
+        <select name="f_id_config_role" id="f_id_config_role">
+          <option><?php echo ROLE; ?></option>
+          <?php
+	  if (!empty($f_id_config_project)) {
+            $project=new PROJECT($f_id_config_project);
+            foreach ($project->get_servers_roles($f_id_config_environment) as $cur_role) {
+              if ($f_id_config_role==$cur_role->id_config_role) {
+                echo '<option value="'.$cur_role->id_config_role.'" selected="selected">'.$cur_role->role_description.'</option>';
+              } else {
+                echo '<option value="'.$cur_role->id_config_role.'">'.$cur_role->role_description.'</option>';
+              }
+            } 
+          }
+          ?>
+        </select>
+      </div>
       &gt;&gt;
-      <select name="f_id_config_server" id="f_id_config_server">
-         <option><?php echo SERVER; ?></option>
-         <?php
-         if (!empty($f_id_config_project)) {
-		$project=new PROJECT($f_id_config_project);
-		foreach ($project->get_servers($f_id_config_environment, $f_id_config_role) as $cur_server) {
-			if ($f_id_config_server==$cur_server->id_config_server) {
-				echo '<option value="'.$cur_server->id_config_server.'" selected="selected">'.$cur_server->server_name.'</option>';
-			} else {
-				echo '<option value="'.$cur_server->id_config_server.'">'.$cur_server->server_name.'</option>';
-			}
-		} 
-         }
-         ?>
-      </select>
+      <div class="form-group">
+        <select name="f_id_config_server" id="f_id_config_server">
+          <option><?php echo SERVER; ?></option>
+          <?php
+          if (!empty($f_id_config_project)) {
+            $project=new PROJECT($f_id_config_project);
+              foreach ($project->get_servers($f_id_config_environment, $f_id_config_role) as $cur_server) {
+                if ($f_id_config_server==$cur_server->id_config_server) {
+                  echo '<option value="'.$cur_server->id_config_server.'" selected="selected">'.$cur_server->server_name.'</option>';
+                } else {
+                  echo '<option value="'.$cur_server->id_config_server.'">'.$cur_server->server_name.'</option>';
+                }
+              } 
+            }
+            ?>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="f_filter_server"><?php echo FILTER; ?></label>
+        <input type="text" name="f_filter_server" id="f_filter_server" placeholder="<?php echo FILTER.' '.SERVER; ?>" />
+      </div>
+      </form>
     </div>
   </div>
 </nav>
