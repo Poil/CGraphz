@@ -29,7 +29,6 @@ else { header("Content-type: text/html"); }
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/css/bootstrap-theme.min.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/bootstrap_menu.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/bootstrap_extra.css" />
-   <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.theme.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/jquery-ui-timepicker-addon.css" />
 
@@ -87,9 +86,11 @@ if ($auth->verif_auth()) {
 
    if (GET('module') == 'dashboard' && GET('component') == 'view') {
       include(DIR_FSROOT.'/html/menu/menu_project.php');
+      echo '<section style="margin-top: 110px">';
+   } else {
+      echo '<section style="margin-top: 60px">';
    }
 ?>
-<section style="margin-top: 110px">
    <?php include(DIR_FSROOT.'/config/module.php'); ?>
    <div id="mask" style="display: none;"></div>
    <div id="popup" style="display: none;"></div>

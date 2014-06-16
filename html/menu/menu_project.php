@@ -87,8 +87,7 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
         </select>
       </div>
       <div class="form-group">
-        <label class="sr-only" for="f_filter_server"><?php echo FILTER; ?></label>
-        <input type="text" name="f_filter_server" id="f_filter_server" placeholder="<?php echo FILTER.' '.SERVER; ?>" />
+        <input type="text" name="f_filter_server" id="f_filter_server" placeholder="<?php echo FIND.' '.SERVER; ?>" autocomplete="off"/>
       </div>
       </form>
     </div>
@@ -189,5 +188,7 @@ $(document).ready(function(){
 
     });
 });
+jQuery('#f_form_find_server input[name="f_find_server"]').liveSearch({url: '<?php echo DIR_WEBROOT ?>/ajax/json_server.php' + '?f_q='});
+
 ]]>
 </script>

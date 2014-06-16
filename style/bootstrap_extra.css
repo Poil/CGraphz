@@ -2,43 +2,51 @@ div#dashboard {
   margin-left:25px;
 }
 
+div#table_project_wrapper {
+    margin:0 11px;
+}
+
 form label {
-	display:inline;
-	float:left;
-	width:85pt;
+    display:inline;
+    float:left;
+    width:85px;
+}
+
+legend {
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
 }
 
 fieldset {
-	margin:5pt;
-	padding:1pt;
+    margin:5px;
+    padding:1px;
 }
 
 fieldset fieldset {
-	width:33%;  
-	display:inline-block;
-	vertical-align:top;
+    width:33%;  
+    display:inline-block;
+    vertical-align:top;
+    border:1px solid #ddd;
+    padding:5px;
 }
 
 fieldset legend {
-	padding: 1pt 3pt;
-	margin:0pt 3pt 0pt 3pt;
-	font-weight:bold;
-	font-size:140%;
+    padding: 1px 3px;
+    margin:0pt 3px 0pt 3px;
+    font-weight:bold;
+    font-size:140%;
 }
 
 fieldset fieldset legend {
-	font-size:120%;
+    font-size:120%;
 }
-/*
-fieldset fieldset:nth-child(even) {
-	clear:both;  
-}
-*/
+
 fieldset.large {
-	width:50%;
+     width:50%;
 }
 
 fieldset.large label {
-	width:120pt;
+    width:120px;
 }
 
