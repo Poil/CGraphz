@@ -50,3 +50,7 @@ fieldset.large label {
     width:120px;
 }
 
+div.option-element div {
+    line-height: 1.42857;
+    padding: 5px;
+}
