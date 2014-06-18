@@ -54,3 +54,10 @@ div.option-element div {
     line-height: 1.42857;
     padding: 5px;
 }
+
+/* fix datatable width more than 100% */
+.dataTables_wrapper .row {
+    margin-left:0;
+    margin-right:0;
+}
+
