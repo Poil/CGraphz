@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-6">
-            <input class="btn btn-default" type="submit" name="f_submit_module" id="f_submit_module" value="<?php echo SUBMIT ?>" />
+            <input class="btn btn-success" type="submit" name="f_submit_module" id="f_submit_module" value="<?php echo SUBMIT ?>" />
         </div>
     </div>
 </form>
@@ -38,7 +38,7 @@ if (isset($_GET['f_id_perm_module'])) {
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-6">
             <input type="hidden" name="f_id_perm_module" id="f_del_id_perm_module" value="<?php echo $cur_module->id_perm_module; ?>" />
-            <input class="btn btn-default" type="submit" name="f_del_module" id="f_del_module" value="<?php echo DEL ?>" />
+            <input class="btn btn-danger" type="submit" name="f_del_module" id="f_del_module" value="<?php echo DEL ?>" />
         </div>
     </div>
     </form>

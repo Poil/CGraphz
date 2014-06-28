@@ -67,3 +67,11 @@ div.dataTables_wrapper {
     margin:0 11px;
 }
 
+.imggraph {
+    vertical-align:top;
+    cursor: url(../img/zoom.png), pointer;
+}
+
+form.form-inline div.form-group select.form-control {
+   margin-top:0;
+}
