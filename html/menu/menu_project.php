@@ -95,7 +95,6 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
 </nav>
 
 <script type="text/javascript">
-<![CDATA[
 $(document).ready(function(){
     $('#f_id_config_project').on('change', function (){
         $.getJSON('ajax/json_server.php', {f_id_config_project: $(this).val()}, function(data){
@@ -190,5 +189,4 @@ $(document).ready(function(){
 });
 jQuery('#f_form_find_server input[name="f_find_server"]').liveSearch({url: '<?php echo DIR_WEBROOT ?>/ajax/json_server.php' + '?f_q='});
 
-]]>
 </script>
