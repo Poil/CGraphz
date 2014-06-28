@@ -8,5 +8,5 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-    <a href="#" class="navbar-brand">CGraphz</a>
+    <a href="index.php" class="navbar-brand">CGraphz</a>
     </div>
