@@ -48,7 +48,7 @@ class Type_Base {
 				? sprintf(' (%s)', str_replace('"','',$this->args['pinstance']))
 				: '',
 			(isset($this->args['pcategory']) and $this->args['pcategory'] != '')
-				? sprintf(' (%s)', str_replace('"',$this->args['pcategory']))
+				? sprintf(' (%s)', str_replace('"','',$this->args['pcategory']))
 				: ''
 		);
 		$this->rrd_files();
