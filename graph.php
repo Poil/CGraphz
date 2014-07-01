@@ -46,7 +46,12 @@ if ($authorized->collectd_version) {
 	$mytypesdb=COLLECTD_VERSIONS;
 }
 
-$typesdb = parse_typesdb_file(DIR_FSROOT.'/inc/types_'.$mytypesdb.'.db');
+if (isset($CONFIG['typesdb']) && is_array($CONFIG['typesdb'])) {
+	array_unshift($CONFIG['typesdb'],DIR_FSROOT.'/inc/types_'.$mytypesdb.'.db');
+	 $typesdb = parse_typesdb_file($CONFIG['typesdb']);
+} else {
+	$typesdb = parse_typesdb_file(DIR_FSROOT.'/inc/types_'.$mytypesdb.'.db');
+}
 
 if ($plugin == 'aggregation') {
 	$plugin = GET('pc');
@@ -63,6 +68,9 @@ if (file_exists('plugin/'.$plugin.'.json')) {
         $log->write(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $plugin));
         error_image('Unknown graph type :'.$plugin.' '.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 }
+
+if (!isset($plugin_json[$type]['type']))
+	$plugin_json[$type]['type'] = 'default';
 
 switch ($plugin_json[$type]['type']) {
 	case 'stackedtotal':
@@ -120,6 +128,9 @@ if (isset($plugin_json[$type]['vertical'])) {
 if (isset($plugin_json[$type]['rrdtool_opts'])) {
 	$obj->rrdtool_opts = $plugin_json[$type]['rrdtool_opts'];
 }
+
+if ($type == 'if_octets')
+	$obj->percentile = $CONFIG['percentile'];
 
 if (isset($plugin_json[$type]['datasize']) and $plugin_json[$type]['datasize'])
 	$obj->scale = $CONFIG['network_datasize'] == 'bits' ? 8 : 1;
