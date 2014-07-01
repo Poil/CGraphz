@@ -27,7 +27,7 @@ function parse_typesdb_file($file) {
 	foreach ($file as $single_file) {
 		if (!file_exists($single_file))
 			continue;
-		foreach (file($file) as $type) {
+		foreach (file($single_file) as $type) {
 			if(!preg_match('/^(?P<dataset>[\w_]+)\s+(?P<datasources>.*)/', $type, $matches))
 				continue;
 			$dataset = $matches['dataset'];
