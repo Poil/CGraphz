@@ -69,6 +69,9 @@ if (file_exists('plugin/'.$plugin.'.json')) {
         error_image('Unknown graph type :'.$plugin.' '.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 }
 
+if (!isset($plugin_json[$type]['type']))
+	$plugin_json[$type]['type'] = 'default';
+
 switch ($plugin_json[$type]['type']) {
 	case 'stackedtotal':
 		require_once 'type/GenericStackedTotal.class.php';
