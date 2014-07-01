@@ -58,8 +58,15 @@ define('DEF_LANG','en');
 # system default timezone when not set
 define('DEFAULT_TIMEZONE', 'UTC');
 
+# extra typesdb config to merge to default
+#$CONFIG['typesdb'][] = '/usr/share/collectd/my_extra_types.db';
+
 # use the negative X-axis in I/O graphs
 $CONFIG['negative_io'] = false;
+
+# add XXth percentile line + legend to network graphs
+# false = disabled; 95 = 95th percentile
+$CONFIG['percentile'] = false;
 
 # create smooth graphs (rrdtool -E)
 $CONFIG['graph_smooth'] = false;
