@@ -46,7 +46,12 @@ if ($authorized->collectd_version) {
 	$mytypesdb=COLLECTD_VERSIONS;
 }
 
-$typesdb = parse_typesdb_file(DIR_FSROOT.'/inc/types_'.$mytypesdb.'.db');
+if (isset($CONFIG['typesdb']) && is_array($CONFIG['typesdb'])) {
+	array_unshift($CONFIG['typesdb'],DIR_FSROOT.'/inc/types_'.$mytypesdb.'.db');
+	 $typesdb = parse_typesdb_file($CONFIG['typesdb']);
+} else {
+	$typesdb = parse_typesdb_file(DIR_FSROOT.'/inc/types_'.$mytypesdb.'.db');
+}
 
 if ($plugin == 'aggregation') {
 	$plugin = GET('pc');
