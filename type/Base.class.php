@@ -42,13 +42,13 @@ class Type_Base {
 			'%s%s%s%s',
 			$this->args['plugin'],
 			$this->args['type'] != $this->args['plugin']
-				? sprintf(' %s', $this->args['type'])
+				? sprintf(' %s', str_replace('"','',$this->args['type']))
 				: '',
 			(isset($this->args['pinstance']) and $this->args['pinstance'] != '')
-				? sprintf(' (%s)', $this->args['pinstance'])
+				? sprintf(' (%s)', str_replace('"','',$this->args['pinstance']))
 				: '',
 			(isset($this->args['pcategory']) and $this->args['pcategory'] != '')
-				? sprintf(' (%s)', $this->args['pcategory'])
+				? sprintf(' (%s)', str_replace('"','',$this->args['pcategory']))
 				: ''
 		);
 		$this->rrd_files();
@@ -132,10 +132,10 @@ class Type_Base {
 	function rrd_escape($value) {
 		if ($this->graph_type == 'canvas') {
 			# http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#IEscaping_the_colon
-			return str_replace(':', '\:', $value);
+			return str_replace(array(':','"'), array('\:','\"'), $value);
 		} else {
 			# php needs it double escaped to execute rrdtool correctly
-			return str_replace(':', '\\\:', $value);
+			return str_replace(array(':','"'), array('\\\:','\\"'), $value);
 		}
 	}
 
