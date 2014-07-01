@@ -135,7 +135,7 @@ class Type_Base {
 			return str_replace(array(':','"'), array('\:','\"'), $value);
 		} else {
 			# php needs it double escaped to execute rrdtool correctly
-			return str_replace(array(':','"'), array('\\:','\\"'), $value);
+			return str_replace(array(':','"'), array('\\\:','\\"'), $value);
 		}
 	}
 
