@@ -46,7 +46,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-6">
-        <input class="btn btn-default" type="submit" name="f_submit_user" id="f_submit_user" value="<?php echo SUBMIT ?>" />
+        <input class="btn btn-success" type="submit" name="f_submit_user" id="f_submit_user" value="<?php echo SUBMIT ?>" />
         </div>
     </div>
 </form>
@@ -54,7 +54,7 @@
 <?php
 if (isset($_GET['f_id_auth_user'])) {
 ?>
-    <form name="f_form_del_user" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_user'); ?>" onsubmit="return validate_del(this);">
+    <form class="form-horizontal" role="form" name="f_form_del_user" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_user'); ?>" onsubmit="return validate_del(this);">
         <input type="hidden" name="f_id_auth_user" id="f_del_id_auth_user" value="<?php echo $cur_user->id_auth_user; ?>" />
         <input type="submit" name="f_del_user" id="f_del_user" value="<?php echo DEL ?>" />
     </form>
