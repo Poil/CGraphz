@@ -132,10 +132,10 @@ class Type_Base {
 	function rrd_escape($value) {
 		if ($this->graph_type == 'canvas') {
 			# http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#IEscaping_the_colon
-			return str_replace(array(':','"'), array('\:','\"'), $value);
+			return str_replace(':', '\:', $value);
 		} else {
 			# php needs it double escaped to execute rrdtool correctly
-			return str_replace(array(':','"'), array('\\\:','\\"'), $value);
+			return str_replace(':', '\\\:', $value);
 		}
 	}
 
