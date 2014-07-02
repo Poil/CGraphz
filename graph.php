@@ -43,7 +43,7 @@ if (($width * $height) > MAX_IMG_SIZE) {
 if ($authorized->collectd_version) {
 	$mytypesdb=$authorized->collectd_version;
 } else {
-	$mytypesdb=COLLECTD_VERSIONS;
+	$mytypesdb=COLLECTD_DEFAULT_VERSION;
 }
 
 if (isset($CONFIG['typesdb']) && is_array($CONFIG['typesdb'])) {
