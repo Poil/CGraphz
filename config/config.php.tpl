@@ -71,6 +71,9 @@ $CONFIG['percentile'] = false;
 # create smooth graphs (rrdtool -E)
 $CONFIG['graph_smooth'] = false;
 
+# draw min/max spikes in a lighter color in graphs with type default
+$CONFIG['graph_minmax'] = false;
+
 # Plugin that can have a TypeCategory
 $CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats)$/';
 
