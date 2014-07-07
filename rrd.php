@@ -10,6 +10,10 @@ if ($auth->verif_auth()) {
 	if ($file = validateRRDPath($CONFIG['datadir'], $_SERVER['PATH_INFO'])) {  
 		$tmp=trim(substr($file,strlen(realpath($CONFIG['datadir']))),'/');
 		$host=substr($tmp,0,strpos($tmp,'/'));
+		if (strpos($host,':')!=FALSE) {
+			$tmp=explode(':',$host);
+			$host=$tmp[0];
+		}
 	
 		if ($auth->check_access_right($host)) {
 			header('Content-Type: application/octet-stream');
