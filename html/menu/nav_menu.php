@@ -1,3 +1,15 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-inner">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-dashboard">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    <a href="index.php" class="navbar-brand">CGraphz</a>
+    </div>
 <?php
 $cur_url=$_SERVER["REQUEST_URI"];
 $module=GET('module');
@@ -6,7 +18,7 @@ $workflow=GET('workflow');
 ?>
 
 <!-- Collect the nav links, forms, and other content for toggling -->
-<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+<div class="collapse navbar-collapse" id="bs-navbar-collapse-dashboard">
 <?php
 // Affichage du menu Dashboard si l'utilisateur a les droits
 $perm_mod = new PERMS();
@@ -96,3 +108,5 @@ if ($perm_mod->perm_list_module('perm') or $perm_mod->perm_list_module('auth') o
 }
 ?>
 </div>
+</div>
+</nav>

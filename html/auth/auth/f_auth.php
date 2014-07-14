@@ -10,7 +10,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="f_user"><?php echo USER; ?></label>  
           <div class="col-md-4">
-          <input id="f_user" name="f_user" placeholder="placeholder" class="form-control input-md" type="text" value="<?php @$_POST['f_user']?>" />
+          <input id="f_user" name="f_user" placeholder="<?php echo USER; ?>" class="form-control input-md" type="text" value="<?php @$_POST['f_user']?>" />
           </div>
         </div>
         
@@ -18,7 +18,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label" for="f_passwd"><?php echo PASSWORD; ?></label>
           <div class="col-md-4">
-            <input id="f_passwd" name="f_passwd" placeholder="placeholder" class="form-control input-md" type="password" />
+            <input id="f_passwd" name="f_passwd" placeholder="<?php echo PASSWORD; ?>" class="form-control input-md" type="password" />
           </div>
         </div>
         

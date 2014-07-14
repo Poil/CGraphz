@@ -17,7 +17,6 @@ else { header("Content-type: text/html"); }
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    
-   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/innerxhtml.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-2.1.1.min.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-1.10.4.custom.min.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-timepicker-addon.js"></script>
@@ -81,13 +80,14 @@ else { header("Content-type: text/html"); }
 <body id="id_body">
 <?php
 if ($auth->verif_auth()) {
-   include(DIR_FSROOT.'/html/menu/start_navmenu.php');
    include(DIR_FSROOT.'/html/menu/nav_menu.php');
-   include(DIR_FSROOT.'/html/menu/end_navmenu.php');
 
    if (GET('module') == 'dashboard' && GET('component') == 'view') {
       include(DIR_FSROOT.'/html/menu/menu_project.php');
-      echo '<section style="margin-top: 110px">';
+      if (!empty(GET('f_id_config_server'))) {
+          include(DIR_FSROOT.'/html/menu/menu_plugin.php');
+      }
+      echo '<section style="margin-top: 140px">';
    } else {
       echo '<section style="margin-top: 60px">';
    }

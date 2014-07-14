@@ -9,14 +9,14 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
   <div class="container-fluid" id="project_menu">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-inner">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-2">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-project">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
     </div>
-    <div class="collapse navbar-collapse" id="bs-navbar-collapse-2">
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse-project">
       <form class="form-inline" role="form">
       <div class="form-group">
         <select name="f_id_config_project" id="f_id_config_project">
