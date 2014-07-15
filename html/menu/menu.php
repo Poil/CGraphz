@@ -199,7 +199,10 @@ $workflow=GET('workflow');
 	if(!$haveNav){
 		echo '		<p class="navbar-text pull-right" style="margin-top : 0px;">
 						<a href="/logout" style="color: #ffffff; background-color: transparent; text-decoration: none;">Logout</a>
-					</p>';
+					</p>
+					<p class="navbar-text pull-right" style="margin-top : 0px;">
+                        <a href="../#/details/'.$_GET['f_host'].'?grp='.$_GET['id_project'].'" style="color: #ffffff; background-color: transparent; text-decoration: none;">PeekIn</a>
+                    </p>';
 	}
 	?>
 				</div>
