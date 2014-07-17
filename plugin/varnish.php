@@ -20,7 +20,7 @@ require_once 'modules/collectd.inc.php';
 #varnish-default-connections/connections-accepted.rrd
 #varnish-default-connections/connections-dropped.rrd
 #varnish-default-connections/connections-received.rrd
-# TESTBGA
+
 $obj = new Type_Default($CONFIG);
 $obj->rrd_format = '%5.1lf%s';
 switch($obj->args['pinstance']) {
@@ -39,6 +39,22 @@ switch($obj->args['pinstance']) {
 	case 'shm':
         $obj->rrd_title = 'shm';
         $obj->rrd_vertical = 'total_operations';
+    break;
+    case 'fetch':
+    	$obj->rrd_title = 'fetch';
+        $obj->rrd_vertical = 'http_operations';
+    break;
+    case 'sm':
+    	$obj->rrd_title = 'sm';
+        $obj->rrd_vertical = 'total_operations';
+    break;
+    case 'totals':
+    	$obj->rrd_title = 'totals';
+        $obj->rrd_vertical = 'total';
+    break;
+    case 'workers':
+    	$obj->rrd_title = 'workers';
+        $obj->rrd_vertical = 'total';
     break;
 	default:
 		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
