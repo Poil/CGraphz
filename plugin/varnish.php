@@ -24,18 +24,22 @@ require_once 'modules/collectd.inc.php';
 $obj = new Type_Default($CONFIG);
 $obj->rrd_format = '%5.1lf%s';
 switch($obj->args['pinstance']) {
-	case 'default-backend':
+	case 'backend':
 		$obj->rrd_title = 'backend';
 		$obj->rrd_vertical = 'hits';
 	break;
-	case 'default-cache':
+	case 'cache':
 		$obj->rrd_title = 'cache';
 		$obj->rrd_vertical = 'hits';
 	break;
-	case 'default-connections':
+	case 'connections':
 		$obj->rrd_title = 'connections';
 		$obj->rrd_vertical = 'hits';
 	break;
+	case 'shm':
+        $obj->rrd_title = 'shm';
+        $obj->rrd_vertical = 'total_operations';
+    break;
 	default:
 		error_image('Unknown graph type :'.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
 	break;
