@@ -20,7 +20,7 @@ require_once 'modules/collectd.inc.php';
 #varnish-default-connections/connections-accepted.rrd
 #varnish-default-connections/connections-dropped.rrd
 #varnish-default-connections/connections-received.rrd
-
+# TESTBGA
 $obj = new Type_Default($CONFIG);
 $obj->rrd_format = '%5.1lf%s';
 switch($obj->args['pinstance']) {
