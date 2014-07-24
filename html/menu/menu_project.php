@@ -182,11 +182,11 @@ $(document).ready(function(){
     $('#f_id_config_server').on('change', function (){
        window.location = 'index.php?module=dashboard&component=view'
 		+'&f_id_config_project=' + $('#f_id_config_project').val()
-		+'&f_id_config_environment=' + $('#f_id_config_project').val()
+		+'&f_id_config_environment=' + $('#f_id_config_environment').val()
 		+'&f_id_config_role=' + $('#f_id_config_role').val()
 		+'&f_id_config_server=' + $(this).val();
-
     });
+
 });
 jQuery('#f_form_find_server input[name="f_find_server"]').liveSearch({url: '<?php echo DIR_WEBROOT ?>/ajax/json_server.php' + '?f_q='});
 
