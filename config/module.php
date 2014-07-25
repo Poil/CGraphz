@@ -68,7 +68,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
                 include(DIR_FSROOT.'/html/perm/project_group/f_project_group.php');
                 
                 echo '</fieldset>';
-                echo '<fieldset>';
+                echo '<fieldset class="large">';
                 echo '<legend>'.PROJECT_SERVERS.'</legend>';
                 include(DIR_FSROOT.'/html/config/project_server/w_project_server.php');
                 include(DIR_FSROOT.'/html/config/project_server/e_project_server.php');

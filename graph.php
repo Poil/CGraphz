@@ -1,6 +1,6 @@
 <?php
 //session_cache_limiter("private");
-include './config/config.php';
+require_once './config/config.php';
 require_once 'modules/collectd.inc.php';
 
 session_name('CGRAPHZ');

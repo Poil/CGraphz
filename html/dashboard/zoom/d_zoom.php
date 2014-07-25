@@ -1,5 +1,5 @@
 <?php
-include('../../../config/config.php');
+require_once('../../../config/config.php');
 
 $auth = new AUTH_USER();
 if (!$auth->verif_auth()) {

@@ -88,7 +88,7 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
         </select>
       </div>
       <div class="form-group">
-        <input type="text" name="f_filter_server" id="f_filter_server" placeholder="<?php echo FIND.' '.SERVER; ?>" autocomplete="off"/>
+        <input type="search" name="f_filter_server" id="f_filter_server" placeholder="<?php echo FIND.' '.SERVER; ?>" class="form-control input-sm" aria-controls="table_module">
       </div>
       </form>
     </div>
