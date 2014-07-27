@@ -16,7 +16,14 @@ if (!$auth->verif_auth()) {
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 $plugin = validate_get(GET('p'), 'plugin');
 $type = validate_get(GET('t'), 'type');
-$width = empty($_GET['x']) ? $CONFIG['width'] : $_GET['x'];
+$width = GET('x') ? filter_input(INPUT_GET, 'x', FILTER_VALIDATE_INT, array(
+	'min_range' => 10,
+	'max_range' => $CONFIG['max-width']
+)) : $CONFIG['width'];
+$height = GET('y') ? filter_input(INPUT_GET, 'y', FILTER_VALIDATE_INT, array(
+	'min_range' => 10,
+	'max_range' => $CONFIG['max-height']
+)) : $CONFIG['height'];
 $height = empty($_GET['y']) ? $CONFIG['height'] : $_GET['y'];
 $host=validate_get(GET('h'), 'host');
 $s=intval($_GET['s']);
@@ -31,9 +38,14 @@ if (!$authorized=$auth->check_access_right($host)) {
 }
 
 if (validate_get(GET('h'), 'host') === NULL) {
-	$log->write('CGRAPHZ ERROR: plugin contains unknown characters');
-	error_image('[ERROR] plugin contains unknown characters');
+	$log->write('CGRAPHZ ERROR: host contains unknown characters');
+	error_image('[ERROR] host contains unknown characters');
 }
+
+if ($width === NULL || $height === NULL) {
+	log->write(sprintf('CGRAPHZ ERROR: Invalid image dimension, x="%s", y="%s"',
+		urlencode(GET('x')),
+		urlencode(GET('y'))));
 
 if (($width * $height) > MAX_IMG_SIZE) {
 	$log->write('CGRAPHZ ERROR: image request is too big');

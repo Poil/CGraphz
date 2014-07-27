@@ -58,7 +58,7 @@ function error_image($text="[ERROR] Permission denied") {
 	$width=$CONFIG['width']+98;
 	$height=$CONFIG['height']+72;
 
-	header("Content-Type: image/png");
+	header("Content-Type: image/png", true, 400);
 	// Création de l'image
 	$im = imagecreatetruecolor($width, $height);
 	
