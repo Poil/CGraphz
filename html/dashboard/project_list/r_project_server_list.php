@@ -3,7 +3,7 @@ $connSQL=new DB();
 if (isset($_GET['f_id_config_project'])) {
 	$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 	$f_id_config_project=filter_input(INPUT_GET,'f_id_config_project',FILTER_SANITIZE_NUMBER_INT);
-	$f_id_config_role=filter_input(INPUT_GET,'f_id_config_role',FILTER_SANITIZE_NUMBER_INT);
+	$f_id_config_role=intval(filter_input(INPUT_GET,'f_id_config_role',FILTER_SANITIZE_NUMBER_INT));
 	$f_id_config_environment=filter_input(INPUT_GET,'f_id_config_environment',FILTER_SANITIZE_NUMBER_INT);
 	
 	if (isset($_GET['f_id_config_environment']) && $f_id_config_environment!=0) {
