@@ -34,7 +34,8 @@ if (strpos($host,':')!=FALSE) {
 }
 
 if (!$authorized=$auth->check_access_right($host)) {
-	error_image('[ERROR] Permission denied');
+	$log->write('CGRAPHZ ERROR: Permission denied for host : '.$host);
+	error_image('[ERROR] Permission denied to '.$host);
 }
 
 if (validate_get(GET('h'), 'host') === NULL) {

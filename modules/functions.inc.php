@@ -11,7 +11,7 @@ function GET($index) {
 function validate_get($value, $type) {
 	switch($type) {
 		case 'host':
-			if (!preg_match('/^[\w-.]+$/u', $value))
+			if (!preg_match('/^[\w-.:]+$/u', $value))
 				return NULL;
 		break;
 		case 'plugin':
