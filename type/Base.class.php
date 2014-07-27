@@ -167,6 +167,7 @@ class Type_Base {
 		$this->files = array();
 		$this->identifiers = array();
 
+		$datadir_prefix = preg_quote($this->datadir, '#');
 		foreach($files as $filename) {
 			$basename=basename($filename,'.rrd');
 			$instance = strpos($basename,'-')
@@ -175,7 +176,9 @@ class Type_Base {
 
 			$this->tinstances[] = $instance;
 			$this->files[$instance] = $filename;
-			$this->identifiers[$instance] = preg_replace("#^$this->datadir/(.*)\.rrd$#", '$1', $filename);
+			$this->identifiers[$instance] = preg_replace(
+				"#^{$datadir_prefix}/(.*)\.rrd$#", '$1',
+				$filename);
 		}
 
 		sort($this->tinstances);
@@ -253,7 +256,10 @@ class Type_Base {
 					$shellcmd
 				);
 				$shellcmd = implode(' ', $shellcmd);
-				passthru($shellcmd);
+				passthru($shellcmd, $exitcode);
+				if ($exitcode !== 0) {
+					header('HTTP/1.1 500 Internal Server Error');
+				}
 			break;
 		}
 	}
