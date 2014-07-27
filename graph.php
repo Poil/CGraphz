@@ -43,9 +43,10 @@ if (validate_get(GET('h'), 'host') === NULL) {
 }
 
 if ($width === NULL || $height === NULL) {
-	log->write(sprintf('CGRAPHZ ERROR: Invalid image dimension, x="%s", y="%s"',
+	$log->write(sprintf('CGRAPHZ ERROR: Invalid image dimension, x="%s", y="%s"',
 		urlencode(GET('x')),
 		urlencode(GET('y'))));
+}
 
 if (($width * $height) > MAX_IMG_SIZE) {
 	$log->write('CGRAPHZ ERROR: image request is too big');
