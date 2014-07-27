@@ -52,7 +52,12 @@ class DB {
 		private function Connect()
 		{
 			$this->settings = parse_ini_file(DIR_FSROOT.'/config/databases.ini.php');
-			$dsn = 'mysql:dbname='.$this->settings["dbname"].';host='.$this->settings["host"].'';
+			$dsn = 'mysql:dbname='.$this->settings["dbname"].';';
+			if($this->settings["socket"]) {
+				$dsn .= 'unix_socket='.$this->settings["socket"];
+			} else {
+				$dsn .= 'host='.$this->settings["host"];
+			}
 			try 
 			{
 				# Read settings from INI file, set UTF8
