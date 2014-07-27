@@ -157,6 +157,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$$p=true;
 				$others=false;
 			} else if ($p == 'aggregation') {
+				$lvl_p=2;
 				$lvl_pc=$lvl_p;
 				$lvl_pi=$lvl_pc;
 				$lvl_tc=null;
