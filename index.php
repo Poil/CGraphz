@@ -103,7 +103,6 @@ if ($auth->verif_auth()) {
    </div>
 </section>
 
-
 <?php
 } else {
    include(DIR_FSROOT.'/html/auth/auth/f_auth.php');

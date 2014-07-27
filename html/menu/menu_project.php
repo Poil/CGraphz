@@ -32,7 +32,7 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
           ?>
         </select>
       </div>
-      &gt;&gt;
+      <span class="glyphicon glyphicon-chevron-right"></span>
       <div class="form-group">
         <select name="f_id_config_environment" id="f_id_config_environment">
           <option><?php echo ENV; ?></option>
@@ -51,7 +51,8 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
           ?>
         </select>
       </div>
-      &lt;&gt;
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="glyphicon glyphicon-chevron-right"></span>
       <div class="form-group">
         <select name="f_id_config_role" id="f_id_config_role">
           <option><?php echo ROLE; ?></option>
@@ -69,7 +70,7 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
           ?>
         </select>
       </div>
-      &gt;&gt;
+      <span class="glyphicon glyphicon-filter"></span>
       <div class="form-group">
         <select name="f_id_config_server" id="f_id_config_server">
           <option><?php echo SERVER; ?></option>
@@ -86,9 +87,6 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
             }
             ?>
         </select>
-      </div>
-      <div class="form-group">
-        <input type="search" name="f_filter_server" id="f_filter_server" placeholder="<?php echo FIND.' '.SERVER; ?>" class="form-control input-sm" aria-controls="table_module">
       </div>
       </form>
     </div>
