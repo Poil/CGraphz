@@ -84,7 +84,7 @@ if ($auth->verif_auth()) {
 
    if (GET('module') == 'dashboard' && GET('component') == 'view') {
       include(DIR_FSROOT.'/html/menu/menu_project.php');
-      if (!empty(GET('f_id_config_server'))) {
+      if (GET('f_id_config_server')) {
           include(DIR_FSROOT.'/html/menu/menu_plugin.php');
       }
       echo '<section style="margin-top: 140px">';
