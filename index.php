@@ -25,6 +25,7 @@ else { header("Content-type: text/html"); }
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/js/bootstrap.min.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.blockUI.js"></script>
 
+   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/common.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/func.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/dateformat.js"></script>
    

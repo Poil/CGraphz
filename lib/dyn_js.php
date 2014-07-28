@@ -21,8 +21,8 @@ function validate_del(form) {
 }
 
 $(function(){
-       	$('.multiselect').multiselect({
-		locale: '<?php echo DEF_LANG ?>'
-	});
+    $('.multiselect').multiselect({
+        locale: '<?php echo DEF_LANG ?>'
+    });
 });
 
