@@ -191,19 +191,19 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   }
                } else if ($all_content[$i]->rrd_ordering=='PI') {
                   if ($old_pi!=$plugin['pi']) {
-                     echo '<h1>'.$plugin['p'].' '.$plugin['pi'].'</h1>';
+                     echo '<h2>'.$plugin['p'].' '.$plugin['pi'].'</h2>';
                   } else if (!$plugin['pi'] && $old_p!=$plugin['p']) {
-                     echo '<h1>'.$plugin['p'].'</h1>';
+                     echo '<h2>'.$plugin['p'].'</h2>';
                   }
                } else if ($all_content[$i]->rrd_ordering=='T') {
                   if ($old_t!=$plugin['t']) {
-                     echo '<h1>'.$plugin['t'].'</h1>';
+                     echo '<h2>'.$plugin['t'].'</h2>';
                   }
                } else if ($all_content[$i]->rrd_ordering=='TI') {
                   if ($old_ti!=$plugin['ti']) {
-                     echo '<h1>'.$plugin['ti'].'</h1>';
+                     echo '<h2>'.$plugin['ti'].'</h2>';
                   } else if (!$plugin['ti'] && $old_t!=$plugin['t']) {
-                     echo '<h1>'.$plugin['t'].'</h1>';
+                     echo '<h2>'.$plugin['t'].'</h2>';
                   }
                }
                if ($CONFIG['no_break'] == true) { echo '<span style="white-space:nowrap">'; }
