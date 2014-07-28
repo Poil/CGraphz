@@ -49,9 +49,6 @@ define('NEW_MENU',false);
 # Max Legend lenght
 define('MAX_LEGEND_LENGTH',20);
 
-# Max image size in pixel (8388608 = 4096x2048)
-define('MAX_IMG_SIZE',8388608);
-
 # Language
 define('DEF_LANG','en');
 
@@ -129,6 +126,9 @@ $CONFIG['height'] = 175;
 # default width/height of detailed graphs
 $CONFIG['detail-width'] = 800;
 $CONFIG['detail-height'] = 350;
+# max allowed width/height of the graphs
+$CONFIG['max-width'] = 1280;
+$CONFIG['max-height'] = 1024;
 
 # collectd's unix socket (unixsock plugin) or rrd tcp socket (collectd 4)
 # syntax : 'unix:///var/run/collectd-unixsock'

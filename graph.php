@@ -3,8 +3,10 @@
 require_once './config/config.php';
 require_once 'modules/collectd.inc.php';
 
-session_name('CGRAPHZ');
-session_start();
+if (!isset($_SESSION)) {
+	session_name('CGRAPHZ');
+	session_start();
+}
 
 $log = new LOG();	
 
@@ -47,11 +49,6 @@ if ($width === NULL || $height === NULL) {
 	$log->write(sprintf('CGRAPHZ ERROR: Invalid image dimension, x="%s", y="%s"',
 		urlencode(GET('x')),
 		urlencode(GET('y'))));
-}
-
-if (($width * $height) > MAX_IMG_SIZE) {
-	$log->write('CGRAPHZ ERROR: image request is too big');
-	error_image('[ERROR] Image request is too big');
 }
 
 if ($authorized->collectd_version) {
