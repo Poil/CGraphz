@@ -82,3 +82,8 @@ form.form-inline div.form-group select.form-control {
    margin-top:0;
 }
 
+/* fix anchor with fixed header */
+div#dashboard h2 a {
+    padding-top: 140px;
+    margin-top: -140px;
+}
