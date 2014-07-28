@@ -270,5 +270,6 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 
 echo '</div>';
 echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/CGP.js"></script>';
+echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/plugin_anchor.js"></script>';
 
 ?>
