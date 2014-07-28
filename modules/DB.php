@@ -53,7 +53,7 @@ class DB {
 		{
 			$this->settings = parse_ini_file(DIR_FSROOT.'/config/databases.ini.php');
 			$dsn = 'mysql:dbname='.$this->settings["dbname"].';';
-			if($this->settings["socket"]) {
+			if(!empty($this->settings["socket"])) {
 				$dsn .= 'unix_socket='.$this->settings["socket"];
 			} else {
 				$dsn .= 'host='.$this->settings["host"];
