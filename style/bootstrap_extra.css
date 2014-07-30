@@ -92,3 +92,10 @@ div#dashboard h2 a {
 body.wait *, body.wait {
     cursor: progress !important;
 }
+
+/* icon size for plugin navbar when reduced */
+div#project_plugin > div > button.navbar-toggle {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 3px 10px;
+}

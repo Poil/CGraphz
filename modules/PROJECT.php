@@ -29,6 +29,7 @@ class PROJECT {
 			$JOIN_ROLE='';
 			$WHERE_ROLE='';
 		}
+
 		$lib='
 		SELECT cs.* 
 		FROM config_server cs
