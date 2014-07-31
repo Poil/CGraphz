@@ -94,6 +94,11 @@ div#project_plugin > div > button.navbar-toggle {
     padding: 3px 10px;
 }
 
+div#project_plugin > div > ul {
+    margin:0 0;
+    background:white;
+}
+
 div#project_plugin > div > ul > li > a{
     padding-top:0;
     padding-bottom:2px;
