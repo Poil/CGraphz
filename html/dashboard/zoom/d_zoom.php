@@ -14,7 +14,6 @@ $cur_server=$connSQL->row($lib);
 
 echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
 echo '<meta name="viewport" content="width=1050, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />';
-
 if (isset($_SESSION['time_start']) && $_SESSION['time_start']!='') {
 	$date_start=date('Y-m-d H:i',$_SESSION['time_start']);
 } else {
@@ -27,7 +26,6 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 }
 
 ?>
-
 
 <form  class="form-inline" role="form" onsubmit="refresh_graph('dashboard','',date_to_ts('f_time_start'),date_to_ts('f_time_end'));  Close_Popup(); return false" action="" method="post" name="f_form_time_selection">
   <div class="form-group">
@@ -44,10 +42,10 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 
 <?php
 
-if (empty($_SESSION['detail-width'])) $_SESSION['detail-width'] = $CONFIG['detail-width'] + 150;
-if (empty($_SESSION['detail-height'])) $_SESSION['detail-height'] = $CONFIG['detail-height'] + 150;
+if (empty($_SESSION['detail-width'])) $_SESSION['detail-width'] = $CONFIG['detail-width'];
+if (empty($_SESSION['detail-height'])) $_SESSION['detail-height'] = $CONFIG['detail-height'];
 if (empty($_GET['x'])) $_GET['x'] = $_SESSION['detail-width'] - 150;
-if (empty($_GET['y'])) $_GET['y'] = $_SESSION['detail-height'] - 150;
+if (empty($_GET['y'])) $_GET['y'] = $_SESSION['detail-height'] - 200;
 
 chdir(DIR_FSROOT);
 $CONFIG['version']=$cur_server->collectd_version;

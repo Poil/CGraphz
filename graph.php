@@ -3,14 +3,9 @@
 require_once './config/config.php';
 require_once 'modules/collectd.inc.php';
 
-if (!isset($_SESSION)) {
-	session_name('CGRAPHZ');
-	session_start();
-}
-
+$auth = new AUTH_USER();
 $log = new LOG();	
 
-$auth = new AUTH_USER();
 if (!$auth->verif_auth()) {
 	error_image('[ERROR] Permission denied');
 }
