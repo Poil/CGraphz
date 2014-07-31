@@ -1,5 +1,5 @@
 <?php
-include('../../../config/config.php');
+include('../config/config.php');
 
 $auth = new AUTH_USER();
 if ($auth->verif_auth()) {
@@ -8,7 +8,7 @@ if ($_GET['f_q']) {
 	$connSQL=new DB();
 	$f_q='%'.filter_input(INPUT_GET,'f_q',FILTER_SANITIZE_SPECIAL_CHARS).'%';
 	$s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
-$f_id_config_dynamic_dashboard=filter_input(INPUT_GET,'f_id_config_dynamic_dashboard',FILTER_SANITIZE_NUMBER_INT);
+	$f_id_config_dynamic_dashboard=filter_input(INPUT_GET,'f_id_config_dynamic_dashboard',FILTER_SANITIZE_NUMBER_INT);
 	
 	$lib='
 	SELECT 
@@ -33,7 +33,7 @@ $f_id_config_dynamic_dashboard=filter_input(INPUT_GET,'f_id_config_dynamic_dashb
 	$connSQL->bind('f_q',$f_q);
 	$all_server=$connSQL->query($lib);
 	$cpt_server=count($all_server);
-	
+
 	for ($i=0; $i<$cpt_server; $i++) {
 		echo '<a href="'.DIR_WEBROOT.'/index.php?module=dashboard&amp;component=view&amp;f_id_config_project='.$all_server[$i]->id_config_project.'&amp;f_id_config_server='.$all_server[$i]->id_config_server.'" 
 			onclick="window.location.href=genUrl(\''.$all_server[$i]->id_config_server.'\',\''.$all_server[$i]->id_config_project.'\'); return false;">'.$all_server[$i]->server_name.'</a><br />';

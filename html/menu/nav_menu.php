@@ -106,7 +106,7 @@ if ($perm_mod->perm_list_module('perm') or $perm_mod->perm_list_module('auth') o
   </ul>
 <?php
   if ($perm_mod->perm_module('dashboard','search')) {
-    echo '<form class="navbar-form navbar-left" role="search">
+    echo '<form id="f_form_find_server" class="navbar-form navbar-left" role="search">
    <div class="form-group">
       <input id="f_find_server" type="text" name="f_find_server" class="typeahead form-control" placeholder="Find server" autocomplete="off" />
    </div>

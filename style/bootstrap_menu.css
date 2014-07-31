@@ -125,6 +125,7 @@ div#jquery-live-search {
   overflow-x: hidden;
   overflow-y: auto;
   max-height:250pt;
+  z-index:2000;
 }
 
 .navbar {
