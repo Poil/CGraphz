@@ -1,6 +1,7 @@
 <?php
    include('config/config.php');
    $auth = new AUTH_USER();
+
 /*
 if (stristr($_SERVER["HTTP_ACCEPT"],"application/xhtml+xml")) {
     header("Content-type: application/xhtml+xml");
