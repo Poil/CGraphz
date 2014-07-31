@@ -24,6 +24,7 @@ $height = GET('y') ? filter_input(INPUT_GET, 'y', FILTER_VALIDATE_INT, array(
 $height = empty($_GET['y']) ? $CONFIG['height'] : $_GET['y'];
 $host=validate_get(GET('h'), 'host');
 $s=intval($_GET['s']);
+$e=intval($_GET['e']);
 
 if (strpos($host,':')!=FALSE) {
 	$tmp=explode(':',$host);

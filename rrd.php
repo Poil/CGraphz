@@ -1,9 +1,6 @@
 <?php
 include './config/config.php';
 
-session_name('CGRAPHZ');
-session_start();
-
 $auth = new AUTH_USER();
 
 if ($auth->verif_auth()) {

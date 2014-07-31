@@ -9,6 +9,7 @@ class Type_Base {
 	var $cache;
 	var $args;
 	var $seconds;
+	var $seconds_end;
 	var $data_sources = array('value');
 	var $order;
 	var $legend = array();
@@ -288,12 +289,15 @@ class Type_Base {
 			$rrdgraph[] = '-v';
 			$rrdgraph[] = $this->rrd_vertical;
 		}
+
 		$rrdgraph[] = '-s';
 		if ($this->seconds_end == "") {
-			$rrdgraph[] = sprintf('e-%d', is_numeric($this->seconds) ? $this->seconds : 86400);
+			$rrdgraph[] = sprintf(' e-%d', is_numeric($this->seconds) ? $this->seconds : 86400);
 		} else {
-			$rrdgraph[] = sprintf('e-%d', is_numeric($this->seconds) ? $this->seconds : 86400);
-			$rrdgraph[] = sprintf(' %s -e %s', is_numeric($this -> seconds) ? $this -> seconds : 'now-86400', is_numeric($this -> seconds_end) ? $this -> seconds_end : 'now');
+			$rrdgraph[] = is_numeric($this -> seconds) ? $this -> seconds : 'now-86400';
+			$rrdgraph[] = '-e';
+			$rrdgraph[] = is_numeric($this -> seconds_end) ? $this -> seconds_end : 'now';
+			//$rrdgraph[] = sprintf(' %s -e %s', is_numeric($this -> seconds) ? $this -> seconds : 'now-86400', is_numeric($this -> seconds_end) ? $this -> seconds_end : 'now');
 		}
 
 		return $rrdgraph;

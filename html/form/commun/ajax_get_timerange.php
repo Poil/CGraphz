@@ -1,6 +1,7 @@
 <?php
-session_name('CGRAPHZ');
-session_start();
+include '../../../config/config.php';
+
+$auth = new AUTH_USER();
 
 header('Content-type: application/json');
 $time_start = (!empty($_SESSION['time_start']) ? $_SESSION['time_start'] : null);
