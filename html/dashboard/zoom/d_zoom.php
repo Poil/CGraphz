@@ -36,7 +36,7 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
     <label class="sr-only" for="f_time_end"><?php echo RANGE_END ?></label>
     <input type="text" value="<?php echo $date_end ?>" class="form-control" id="f_time_end" placeholder="<?php echo RANGE_END ?>"  maxlength="16" size="16" name="f_time_end">
   </div>
-  <button id="f_time_submit" class="btn btn-default" type="button" ><?php echo SUBMIT ?></button>
+  <button id="f_time_submit" class="btn btn-default" type="button" ><?php echo APPLY ?></button>
   <button class="btn btn-default" type="submit"><?php echo SUBMIT_TO_DASHBOARD ?></button>
 </form>
 

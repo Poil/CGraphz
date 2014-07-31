@@ -101,3 +101,4 @@ define('GOTO_TOP_OF_PAGE','Retourner en haut de page');
 define('NO_ACCESS','Accès refusé, contactez votre administrateur');
 define('NO_GRAPH','Désolé, aucun graph affichable correspondant à votre requête');
 define('FIND','Rechercher');
+define('APPLY','Appliquer');
