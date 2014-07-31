@@ -186,5 +186,4 @@ $(document).ready(function(){
     });
 
 });
-jQuery('#f_form_find_server input[name="f_find_server"]').liveSearch({url: '<?php echo DIR_WEBROOT ?>/ajax/json_server_wh_q.php' + '?f_q='});
 </script>
