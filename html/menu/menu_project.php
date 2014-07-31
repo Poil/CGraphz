@@ -41,7 +41,7 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
             $project=new PROJECT($f_id_config_project);
             $environments=$project->get_servers_environments($f_id_config_role);
             foreach ($environments as $cur_environment) {
-              if (count($environments)==1 ||  $f_id_config_environment==$cur_environment->id_config_environment) {
+              if (count($environments)==1 || ($f_id_config_environment==$cur_environment->id_config_environment && $f_id_config_environment!=0)) {
                 echo '<option value="'.$cur_environment->id_config_environment.'" selected="selected">'.$cur_environment->environment_description.'</option>';
               } else {
                 echo '<option value="'.$cur_environment->id_config_environment.'">'.$cur_environment->environment_description.'</option>';
@@ -60,7 +60,7 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
           if (!empty($f_id_config_project)) {
             $project=new PROJECT($f_id_config_project);
             foreach ($project->get_servers_roles($f_id_config_environment) as $cur_role) {
-              if ($f_id_config_role==$cur_role->id_config_role) {
+              if ($f_id_config_role==$cur_role->id_config_role && $f_id_config_role!=0) {
                 echo '<option value="'.$cur_role->id_config_role.'" selected="selected">'.$cur_role->role_description.'</option>';
               } else {
                 echo '<option value="'.$cur_role->id_config_role.'">'.$cur_role->role_description.'</option>';
