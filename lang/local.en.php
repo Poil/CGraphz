@@ -94,7 +94,7 @@ define('COLLECTD_VERSION','Collectd version') ;
 define('CONFIRM_DELETE','Do you really want to delete this?') ;
 define('DASHBOARD','Dashboard');
 define('DYNAMIC_DASHBOARDS','Dynamic dashboards');
-define('DBL_CLICK_ZOOM','Double click to Zoom');
+define('CLICK_ZOOM','Click to Zoom');
 define('DEFAULT_VERSION','Default version');
 define('GOTO_TOP_OF_PAGE','To top of page');
 define('NO_ACCESS','Access denied, please contact your administrator');

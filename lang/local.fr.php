@@ -95,7 +95,7 @@ define('COLLECTD_VERSION','Collectd Version') ;
 define('CONFIRM_DELETE','Voulez-vous réellement effacer cet élément?') ;
 define('DASHBOARD','Dashboard');
 define('DYNAMIC_DASHBOARDS','Dynamic dashboards');
-define('DBL_CLICK_ZOOM','Double click pour Zoom');
+define('CLICK_ZOOM','Click pour Zoom');
 define('DEFAULT_VERSION','Version par défaut');
 define('GOTO_TOP_OF_PAGE','Retourner en haut de page');
 define('NO_ACCESS','Accès refusé, contactez votre administrateur');
