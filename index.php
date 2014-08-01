@@ -98,7 +98,6 @@ if ($auth->verif_auth()) {
    }
 ?>
    <?php include(DIR_FSROOT.'/config/module.php'); ?>
-   <div id="mask" style="display: none;"></div>
    <div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
      <div class="modal-dialog">
        <div class="modal-content" style="display:inline-block">
