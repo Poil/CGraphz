@@ -16,5 +16,5 @@
     git checkout 2.40
     git add *
     git commit -a
-    git push -u Claranet_2.40 Claranet_2.40
-
+    git push 
+    # ou en cas de soucis : git push -u Claranet_2.40 Claranet_2.40
