@@ -71,8 +71,6 @@ else { header("Content-type: text/html"); }
          <script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/rrdFile.js"></script>
          <script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/RrdDataFile.js"></script>
          <script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/RrdCmdLine.js"></script>';
-      if ($CONFIG['rrd_fetch_method'] == 'async') echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/get_rrd_async.js"></script>';
-      else echo'<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/get_rrd_sync.js"></script>';
    }
    ?>
 
