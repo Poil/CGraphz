@@ -92,9 +92,6 @@ $CONFIG['datadir'] = '/var/lib/collectd/rrd/';
 # rrdtool executable
 $CONFIG['rrdtool'] = '/usr/bin/rrdtool';
 
-# rrd fetch method async/sync
-$CONFIG['rrd_fetch_method'] = 'async';
-
 # rrdtool special command-line options
 $CONFIG['rrdtool_opts'] = array();
 
@@ -113,7 +110,7 @@ $CONFIG['network_datasize'] = 'bytes';
 ## 1024 -> 1 Megabyte = 1024 Kilobyte)
 $CONFIG['default_base']=1024;
 
-# Display graphs as png, svg or canvas 
+# Display graphs as png, svg
 # Note that svg graph dimensions are defined in "points" (pt) and not pixels, so svg image sizes will be different then png
 $CONFIG['graph_type'] = 'png';
 
