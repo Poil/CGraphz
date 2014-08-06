@@ -174,16 +174,20 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
 				${$pc.$pi}=true;
 				echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
-			}
+			// Displaying Type for SNMP
+			} else if ($p=='snmp' && ${$p.$t}!=true) {
+				${$p.$t}=true;
+				echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$t))."</h$lvl_pi>";
+            }
 
 			${$p.$pc.$pi.$t.$tc.$ti}=true;
 
 
 			// Verif regex OK
 			if (isset($p) && isset($t)) {
-				if (!preg_match('/^(df|interface|oracle)$/', $p) || 
+				if (!preg_match('/^(df|interface|oracle|snmp)$/', $p) || 
 				   (((preg_replace('/[^0-9\.]/','',$cur_server->collectd_version) >= 5)
-				     && $p!='oracle' && $t!='df'))
+				     && !preg_match('/^(oracle|snmp)$/', $p) && $t!='df'))
 			    ) {
 					$ti='';
 					if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
