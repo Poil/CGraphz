@@ -83,7 +83,6 @@ div#left_menu img {
 }
 
 div#left_menu {
-  font-weight:bold;
   position:fixed;
   top:200pt;
   float:left;
@@ -93,35 +92,25 @@ div#left_menu {
 div#left_menu_show {
   position:fixed;
   margin-left:18pt;
-  width:120pt;
-  padding:3pt;
-  border:1px solid #759FCF;
+  min-width: 120pt;
   display:none;
-  background:#c5d6ea;
   text-align:left;
-  -moz-border-radius: 5pt;
-  border-radius: 5pt;
 }
 
 div#left_menu_show ul {
   list-style:none;
   margin:0;
-  padding:0;
-  padding-left:8pt;
-  padding-top:3pt;
-  border:5px;
+  padding:3pt 8pt;
 }
 
 div#left_menu_show a {
-  text-decoration:none;
   color:black;
 }
 
 div#jquery-live-search {
-  background:white;
-  border:1px solid #759FCF;
   padding-left:5pt;
   padding-right:5pt;
+  min-width: 170px;
   overflow-x: hidden;
   overflow-y: auto;
   max-height:250pt;
