@@ -147,6 +147,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
 				${$pc.$pi}=true;
 				echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
+			// Displaying Type for snmp
 			} else if ($p=='snmp' && ${$p.$t}!=true) {
 				${$p.$t}=true;
 				echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$t))."</h$lvl_pi>";
