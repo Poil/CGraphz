@@ -26,7 +26,7 @@ if (isset($time_start) && isset($time_end)) {
 }
 echo '
 <div id="left_menu">
-	<div id="left_menu_show">
+	<div id="left_menu_show" class="modal-content">
 		<ul>			
 			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'3600\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1h</a></li>
 			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'7200\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">2h</a></li>
