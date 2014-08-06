@@ -77,9 +77,16 @@ form.form-inline div.form-group select.form-control {
 }
 
 /* fix anchor with fixed header */
-div#dashboard h2 a {
+div#dashboard h2 a,
+div#dashboard h3 a {
+    display:block;
+    position:relative;
+    top: -140px;
+    visibility: hidden;
+    /*
     padding-top: 140px;
     margin-top: -140px;
+    */
 }
 
 /* Cursor on ajax request */
