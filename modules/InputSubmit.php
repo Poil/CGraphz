@@ -14,6 +14,7 @@ class InputSubmit extends Field{
                 $this->btnclass.='btn-'.$this->itype;
             break;
         }
+        $field = '';
 
         switch($this->formtype) {
             case 'horizontal':
