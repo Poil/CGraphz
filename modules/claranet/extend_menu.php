@@ -26,7 +26,7 @@
 			include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/menu/nav_menu.php');
 		}
 
-		echo '<p class="navbar-text pull-right" style="margin-top : 5px;">';
+		echo '<p class="navbar-text pull-right">';
 
 
         if(isset($_GET['f_host'])){

@@ -1,8 +1,12 @@
 <?php
 	//Affichage du select des projet
 	echo '
-		<p class="navbar-text" style="color: #ffffff; background-color: transparent; text-decoration: none;">Projets : </p>
-        <select id="selectProject" class="nav navbar-nav demi-spacer">';
+	<form class="navbar-form navbar-left" role="search" style="margin-top : 0px;">
+        <div class="form-group">
+			<p style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top : 15px;">Projets : </p>
+        </div>
+		<div class="form-group">
+			<select id="selectProject">';
 
 	//Si on est un user alors on affiche les projets contenu dans la session.
 
@@ -22,13 +26,20 @@
 		}
 		echo '<option '.$selected.'class="projetLink">'.$nomProjet.'</option>';
 	}
-	echo '</select>';
+	echo '</select>
+	</div>';
 
+	echo '
+	<div style="width : 5px; height : 1px; display : inline-block;">
+		<!-- Permet de mettre un espace horizontal ( width ) sur grand ecran et un epsace vertical ( height ) en responsive !-->
+	</div>';
 
 	//Affichage du select des serveurs
-	echo '<div class="demi-spacer"></div>
-		  <p class="navbar-text" style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:5px;">Serveurs : </p>
-		  <select id="selectServer" class="nav navbar-nav">';
+	echo '<div class="form-group">
+			<p style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:15px;">Serveurs : </p>
+		  </div>
+		  <div class="form-group">
+			<select id="selectServer">';
 
 	//Contiendra tous les noms de serveurs contenu dans la session si on veut afficher tous les serveurs ( sert pour le tri alphabétique des serveurs).
 	$allNameServer=array();
@@ -62,11 +73,15 @@
 	}
 
 ?>
-</select>
+		</select>
+	</div>
 
-<form style="margin-top : -2px;" class="navbar-form navbar-left" role="search">
+	<div style="width : 10px; height : 5px; display : inline-block;">
+        <!-- Permet de mettre un espace horizontal ( width ) sur grand ecran et un epsace vertical ( height ) en responsive !-->
+    </div>	
+
 	<div id="f_form_find_server" class="form-group">
-		<input type="text" name="f_find_server" class="form-control" placeholder="<?php echo SEARCH ?>" autocomplete="off">
+		<input type="text" name="f_find_server" class="form-control" placeholder="<?php echo SEARCH ?>" autocomplete="off" style="margin-top : 8px;">
 	</div>
 </form>
 <script type="text/javascript">

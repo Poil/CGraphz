@@ -1,8 +1,11 @@
 <?php
 	echo '
-		<p class="navbar-text" style="color: #ffffff; background-color: transparent; text-decoration: none;">Projets : </p>
-        <select id="selectProject" class="nav navbar-nav demi-spacer">';
-
+	<form class="navbar-form navbar-left" role="search" style="margin-top : 0px;">
+		<div class="form-group">
+			<p style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top : 15px;">Projets : </p>
+        </div>
+		<div class="form-group">
+			<select id="selectProject" >';
 
 	$curl = curl_init();
 
@@ -28,14 +31,16 @@
 		echo '  <option '.$selected.'value="'.$project->id.'">'.$project->name.'</option>';
 	}
 
-	echo '</select>';
+	echo '</select></div>';
 ?>
 
 <?php
 	//Affichage du select des serveurs
-	echo '<div class="demi-spacer"></div>
-			  <p class="navbar-text" style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:5px;">Serveurs : </p>
-			  <select id="selectServer" class="nav navbar-nav">';
+	echo '<div class="form-group">
+			  <p style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:15px;">Serveurs : </p>
+		  </div>
+		  <div class="form-group">  
+			<select id="selectServer">';
 
 	if($nameProject==""){
 		$nameHost=(isset($_GET['f_host'])) ? $_GET['f_host'] : "";
@@ -77,14 +82,18 @@
 	}
 
 
-	echo '</select>';
+	echo '</select>
+		</div>';
 
 ?>
-<form style="margin-top : -2px;" class="navbar-form navbar-left" role="search">
-	<div id="f_form_find_server" class="form-group">
-		<input type="text" name="f_find_server" class="form-control" placeholder="<?php echo SEARCH ?>" autocomplete="off">
+	<div style="width : 10px; height : 5px; display : inline-block;">
+		<!-- Permet de mettre un espace horizontal ( width ) sur grand ecran et un epsace vertical ( height ) en responsive !-->
 	</div>
-</form>
+
+	<div id="f_form_find_server" class="form-group">
+		<input type="text" name="f_find_server" class="form-control" placeholder="<?php echo SEARCH ?>" autocomplete="off" style="margin-top : 8px;">
+	</div>
+
 <script type="text/javascript">
 	//Permet l'autocomplete du search
 	jQuery('#f_form_find_server input[name="f_find_server"]').liveSearch({url: '<?php echo DIR_WEBROOT."/modules/".AUTH_TYPE ?>/ajax/serverSearchStaff.ajax.php' + '?f_q='});
@@ -114,13 +123,17 @@
 
 ?>
 
+<div style="width : 10px; height : 5px; display : inline-block;">
+	<!-- Permet de mettre un espace horizontal ( width ) sur grand ecran et un epsace vertical ( height ) en responsive !-->
+</div>
 
-<div class="input-group navbar-left" id="checkFiltre" style="width : 30px;">
+<div class="input-group" id="checkFiltre" style="width : 30px; margin-top : 8px;">
 	<span class="input-group-addon">
 		<input <?php if($_SESSION['filtre']!=$idStaff){ echo "checked ";}?>id="filtreClient"type="checkbox">
 	</span>
 	<span id="textCheckFiltre" class="input-group-addon" style="width:65px;padding-left:0px;">Vue client</span>
 </div>
+</form>
 
 <script type="text/javascript">
 	function modifeFiltre(){
