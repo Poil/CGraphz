@@ -113,7 +113,13 @@ if ($perm_mod->perm_list_module('perm') or $perm_mod->perm_list_module('auth') o
 </form>';
   }
 }
+echo '<p class="navbar-text pull-right" >
+		  <a href="'.DIR_WEBROOT.'/index.php?f_logout=" style="color: #ffffff; background-color: transparent; text-decoration: none;">Logout</a>
+	  </p>';
+
+if (AUTH_TYPE != 'default') include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/extend_menu.php');
 ?>
+
 </div>
 </div>
 </nav>

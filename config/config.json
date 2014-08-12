@@ -1,0 +1,11 @@
+{
+	"rrd_cached" : {
+		"default" : "10.7.79.67:42217",
+		"rrd cached cpu" : "10.7.79.18:42217",
+		"rrd cached load" : "10.7.79.67:42217"
+	},
+	"plugin": {
+		"load": "rrd cached load",		
+		"cpu": "rrd cached cpu"
+	}
+}
