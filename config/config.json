@@ -1,11 +1,17 @@
 {
-	"rrd_cached" : {
-		"default" : "10.7.79.67:42217",
-		"rrd cached cpu" : "10.7.79.18:42217",
-		"rrd cached load" : "10.7.79.67:42217"
-	},
-	"plugin": {
-		"load": "rrd cached load",		
-		"cpu": "rrd cached cpu"
-	}
+        "rrd_cached" : {
+                "default" : "10.7.79.76:42217",
+                "rrd cached pn01" : "10.7.79.75:42217",
+                "rrd cached pn02" : "10.7.79.76:42217",
+                "rrd cached pn03" : "10.7.79.77:42217"
+        },
+        "plugin": {
+                "df": "rrd cached pn01",
+                "disk": "rrd cached pn01",
+                "cpu": "rrd cached pn01",
+                "load": "rrd cached pn01",
+                "memory": "rrd cached pn01",
+                "swap": "rrd cached pn01",
+                "wpm": "rrd cached pn01"
+        }
 }

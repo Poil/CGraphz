@@ -69,6 +69,8 @@ class Type_Base {
 		$this->graph_minmax = $config['graph_minmax'];
 		$this->flush_socket = $config['socket'];
 		$this->flush_type = $config['flush_type'];
+		$this->flush_multi_socket=$config['socket_plugin'];
+		$this->flush_list_sockets=$config['list_socket'];
 	}
 
 	function rainbow_colors() {
@@ -379,6 +381,10 @@ class Type_Base {
 
 	# tell collectd to FLUSH all data of the identifier(s)
 	function collectd_flush($debug=false) {
+		// Tableau contenant les connections au sockets en fonction du plugin
+		$sockets=array();
+		$socket_defaut=null;
+
 		$identifier = $this->identifiers;
 		if ($debug == true) { $this->log->write('[Flush] - Identifiers : '.join($identifier,' -- ')); }
 
@@ -399,6 +405,7 @@ class Type_Base {
 				$this->flush_socket, $u_errno, $u_errmsg));
 			return FALSE;
 		}
+		$socket_defaut=$socket;
 
 		if ($this->flush_type == 'collectd'){
 			$cmd = 'FLUSH';
@@ -409,8 +416,35 @@ class Type_Base {
 		}
 		elseif ($this->flush_type == 'rrdcached') {
 			foreach ($identifier as $val) {
+				// Permet de prendre un compte une socket différentes pour certain plugin (en fonction de la config).
+                $explode1=explode("/",$val);
+                $explode2=explode("-", $explode1[1]);
+                $plugin=$explode2[0];
+
 				$cmd = sprintf("FLUSH %s.rrd\n", $this->datadir.'/'.$val);
 				if ($debug == true) { $this->log->write('[Flush] - Commands : FLUSH '.$this->datadir.'/'.$val.'.rrd'); }
+				/*
+				//On verifie si le plugin à une config special
+                if(isset($this->flush_multi_socket) && isset($this->flush_multi_socket[$plugin])){
+					if(!isset($sockets[$this->flush_multi_socket[$plugin]])){
+						echo " >test< ";
+						
+						 
+						if (isset($this->flush_list_sockets[$this->flush_multi_socket[$plugin]]) && !$socket = @fsockopen($this->flush_list_sockets[$this->flush_multi_socket[$plugin]], 0, $u_errno, $u_errmsg)) {
+							$socket=$socket_defaut;
+
+						}else{
+							echo "first .... ";
+							$sockets[$this->flush_multi_socket[$plugin]]=$socket;
+						}
+					}else{
+						$socket=$sockets[$this->flush_multi_socket[$plugin]];
+					}
+				}else{
+					$socket=$socket_defaut;
+				}
+				echo $plugin." / ".$this->flush_list_sockets[$this->flush_multi_socket[$plugin]];
+				*/
 				$this->socket_cmd($socket, $cmd);
 			}
 		}
