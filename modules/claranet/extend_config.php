@@ -1,5 +1,5 @@
 <?php
-$jsonCommun = file_get_contents("/data/www/sites/CGraphz/config/config.json");
+$jsonCommun = file_get_contents(DIR_FSROOT."/config/config.json");
 $configCommune=json_decode($jsonCommun);
 
 $rrd_cached=$configCommune->rrd_cached;
