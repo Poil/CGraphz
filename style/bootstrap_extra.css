@@ -109,6 +109,11 @@ div#project_plugin > div > ul > li > a{
     margin-top:5px;
     color: #428bca;
 }
+
+div#project_plugin > div > ul > li > ul > li > a {
+    margin-top:0;
+    color: #428bca;
+}
  
 /* fix popup modal position */
 div#popupModal .modal-dialog {
