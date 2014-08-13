@@ -110,9 +110,16 @@ div#project_plugin > div > ul > li > a{
     color: #428bca;
 }
 
+div#project_plugin > div > ul > li > ul > li.droppdown-header  {
+    margin-top:0;
+    font-size:12px;
+    font-width:bold;
+}
+
 div#project_plugin > div > ul > li > ul > li > a {
     margin-top:0;
     color: #428bca;
+    font-size:12px;
 }
  
 /* fix popup modal position */
