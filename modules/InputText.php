@@ -61,7 +61,7 @@ class InputText extends Field{
     }
 
     public function itype($v) {
-        $this->iType = $v;
+        $this->itype = $v;
         return $this;
     }
 }
