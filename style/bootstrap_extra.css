@@ -110,7 +110,7 @@ div#project_plugin > div > ul > li > a{
     color: #428bca;
 }
 
-div#project_plugin > div > ul > li > ul > li.droppdown-header  {
+div#project_plugin > div > ul > li > ul > li.dropdown-header  {
     margin-top:0;
     font-size:12px;
     font-width:bold;
