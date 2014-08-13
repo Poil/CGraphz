@@ -32,22 +32,33 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
             if (isset($_GET['f_id_config_project'])) {
                 echo '<a href="'.removeqsvar($cur_url,'f_id_config_project').'"><button type="button" class="btn btn-primary">'.ADD.' '.PROJECT.'</button></a>';
             }
-            echo '<div class="clearfix"></div>';
-            echo '<fieldset>';
             if (isset($cur_project)) {
-                echo '<legend>'.$cur_project->project_description.'</legend>';
+                $project_href='edit';
+                $project_title=EDIT.' '.PROJECT;
+            } else {
+                $project_href='add';
+                $project_title=ADD.' '.PROJECT;
             }
-            echo '<fieldset>';
+            echo '<div class="clearfix"></div><br />';
+            echo '
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="active"><a href="#project_'.$project_href.'" role="tab" data-toggle="tab">'.$project_title.'</a></li>
+                  <li><a href="#project_group" role="tab" data-toggle="tab">Project Groups</a></li>
+                  <li><a href="#project_server" role="tab" data-toggle="tab">Project Servers</a></li>
+                </ul>
+                <div class="tab-content">';
+
+            echo '<div class="tab-pane active" id="project_'.$project_href.'"><fieldset>';
             if (isset($_GET['f_id_config_project'])) {
                 echo '<legend>'.EDIT.'</legend>';
             } else {
                 echo '<legend>'.ADD.'</legend>';
             }
             include(DIR_FSROOT.'/html/config/project/f_project.php');
-            echo '</fieldset>';
+            echo '</fieldset></div>';
     
             if (isset($_GET['f_id_config_project'])) {
-                echo '<fieldset>';
+                echo '<div class="tab-pane" id="project_group"><fieldset>';
                 echo '<legend>'.PROJECT_PERMS.'</legend>';
                 include(DIR_FSROOT.'/html/perm/project_group/w_project_group.php');
                 include(DIR_FSROOT.'/html/perm/project_group/e_project_group.php');
@@ -67,8 +78,9 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
                 }
                 include(DIR_FSROOT.'/html/perm/project_group/f_project_group.php');
                 
-                echo '</fieldset>';
-                echo '<fieldset class="large">';
+                echo '</div>';
+
+                echo '<div class="tab-pane" id="project_server"><fieldset>';
                 echo '<legend>'.PROJECT_SERVERS.'</legend>';
                 include(DIR_FSROOT.'/html/config/project_server/w_project_server.php');
                 include(DIR_FSROOT.'/html/config/project_server/e_project_server.php');
@@ -87,9 +99,9 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
                     echo '<strong>'.ADD.'</strong>';
                 }
                 include(DIR_FSROOT.'/html/config/project_server/f_project_server.php');
-                echo '</fieldset>';
+                echo '</div>';
             }        
-            echo '</fieldset>';
+            echo '</div>';
             echo '<div class="clearfix"></div>';
         } elseif ($component=='server') {
             echo '<h1>'.MANAGE_SERVERS.'</h1>';
