@@ -218,52 +218,54 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 $vmlist = preg_find('#^'.$cur_server->server_name.':#', $CONFIG['datadir'].'/', PREG_FIND_DIRMATCH|PREG_FIND_SORTBASENAME);
 
 //print_r($vmlist);
-
-foreach ($vmlist as $vmdir) {
-
-	$tmp=explode(':',$vmdir);
-	$vm=$tmp[1];
-
-	echo "<h3>$vm</h3>";
-
-	foreach ($pg_filters as $filter) {
-		$myregex='#^('.$vmdir.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd#';
-
-		$plugins = preg_find($myregex, $vmdir, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
-
-		$old_t='';
-		$old_pi='';
-		foreach ($plugins as $plugin) {
-			preg_match($myregex, $plugin, $matches);
-
-			if (isset($matches[2])) {
-				$p=$matches[2];
-				if (!isset($$p)) $$p=false;
-			} else { 
-				$p=null; 
-			}
-			if (isset($matches[3])) {
-				$pi=$matches[3];
-			} else { 
-				$pi=null; 
-			}
-			if (isset($matches[4])) {
-				$t=$matches[4];
-			} else { 
-				$t=null; 
-			}
-			if (isset($matches[5])) {
-				$ti=$matches[5];
-			} else { 
-				$ti=null; 
-			}
-
-			if (! isset(${$vm.$p.$pi.$t.$ti}) ) {
-				${$vm.$p.$pi.$t.$ti}=true;
-				if ($t!=$old_t) echo '<h4>'.ucfirst(str_replace('_', ' ',$t)).'</h4>';
-				$old_t=$t;
-
-				echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />';
+if (!empty($vmlist)) {
+	echo "<h2>Libvirt</h2>";
+	foreach ($vmlist as $vmdir) {
+	
+		$tmp=explode(':',$vmdir);
+		$vm=$tmp[1];
+	
+		echo "<h3>$vm</h3>";
+	
+		foreach ($pg_filters as $filter) {
+			$myregex='#^('.$vmdir.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd#';
+	
+			$plugins = preg_find($myregex, $vmdir, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+	
+			$old_t='';
+			$old_pi='';
+			foreach ($plugins as $plugin) {
+				preg_match($myregex, $plugin, $matches);
+	
+				if (isset($matches[2])) {
+					$p=$matches[2];
+					if (!isset($$p)) $$p=false;
+				} else { 
+					$p=null; 
+				}
+				if (isset($matches[3])) {
+					$pi=$matches[3];
+				} else { 
+					$pi=null; 
+				}
+				if (isset($matches[4])) {
+					$t=$matches[4];
+				} else { 
+					$t=null; 
+				}
+				if (isset($matches[5])) {
+					$ti=$matches[5];
+				} else { 
+					$ti=null; 
+				}
+	
+				if (! isset(${$vm.$p.$pi.$t.$ti}) ) {
+					${$vm.$p.$pi.$t.$ti}=true;
+					if ($t!=$old_t) echo '<h4>'.ucfirst(str_replace('_', ' ',$t)).'</h4>';
+					$old_t=$t;
+	
+					echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />';
+				}
 			}
 		}
 	}
