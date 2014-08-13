@@ -78,7 +78,7 @@ $CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats)$/';
 $CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000|tcpconns|aggregation)$/';
 
 # Display PI as title for these plugins
-$CONFIG['title_pinstance']='/^(tail|P2000|GenericJMX|PM710)$/';
+$CONFIG['title_pinstance']='/^(tail|P2000|GenericJMX|PM710|mysql)$/';
 
 # prevent a linebreak between the img tag (true/false)
 $CONFIG['no_break'] = false;

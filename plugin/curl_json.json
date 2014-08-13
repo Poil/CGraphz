@@ -16,16 +16,19 @@
 	"cache_result": {
 		"title": "Cache query",
 		"vertical": "Queries",
+		"type": "stacked",
 		"legend_format": "%5.1lf%s"
 	},
 	"cache_size": {
 		"title": "Cache query",
 		"vertical": "Bytes",
+		"type": "stacked",
 		"legend_format": "%5.1lf%s"
 	},
 	"files": {
 		"title": "Files",
 		"vertical": "Files",
+		"type": "stacked",
 		"legend_format": "%5.1lf%s"
 	}
 }
