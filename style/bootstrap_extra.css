@@ -84,10 +84,6 @@ div#dashboard h4 a {
     position:relative;
     top: -140px;
     visibility: hidden;
-    /*
-    padding-top: 140px;
-    margin-top: -140px;
-    */
 }
 
 /* Cursor on ajax request */
