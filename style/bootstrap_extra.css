@@ -78,7 +78,8 @@ form.form-inline div.form-group select.form-control {
 
 /* fix anchor with fixed header */
 div#dashboard h2 a,
-div#dashboard h3 a {
+div#dashboard h3 a,
+div#dashboard h4 a {
     display:block;
     position:relative;
     top: -140px;
