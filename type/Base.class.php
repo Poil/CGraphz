@@ -34,6 +34,11 @@ class Type_Base {
 	var $flush_socket;
 	var $flush_type;
 
+	
+	var $flush_multi_socket=null;
+    var $flush_list_sockets=null;
+	
+
 	function __construct($config, $_get) {
 		$this->log = new LOG();
 		$this->datadir = $config['datadir'];
@@ -342,7 +347,7 @@ class Type_Base {
 	function parse_legend($sources) {
 		# fill up legend by items that are not defined by plugin
 		$this->legend = $this->legend + array_combine($sources, $sources);
-
+	
 		# detect length of longest legend
 		$max = 0;
 		foreach ($this->legend as $legend) {
@@ -400,6 +405,7 @@ class Type_Base {
 
 		$u_errno  = 0;
 		$u_errmsg = '';
+
 		if (! $socket = @fsockopen($this->flush_socket, 0, $u_errno, $u_errmsg)) {
 			$this->log->write(sprintf('ERROR: Failed to open unix-socket to %s (%d: %s)',
 				$this->flush_socket, $u_errno, $u_errmsg));
@@ -423,18 +429,13 @@ class Type_Base {
 
 				$cmd = sprintf("FLUSH %s.rrd\n", $this->datadir.'/'.$val);
 				if ($debug == true) { $this->log->write('[Flush] - Commands : FLUSH '.$this->datadir.'/'.$val.'.rrd'); }
-				/*
+				
 				//On verifie si le plugin à une config special
                 if(isset($this->flush_multi_socket) && isset($this->flush_multi_socket[$plugin])){
 					if(!isset($sockets[$this->flush_multi_socket[$plugin]])){
-						echo " >test< ";
-						
-						 
 						if (isset($this->flush_list_sockets[$this->flush_multi_socket[$plugin]]) && !$socket = @fsockopen($this->flush_list_sockets[$this->flush_multi_socket[$plugin]], 0, $u_errno, $u_errmsg)) {
 							$socket=$socket_defaut;
-
 						}else{
-							echo "first .... ";
 							$sockets[$this->flush_multi_socket[$plugin]]=$socket;
 						}
 					}else{
@@ -443,8 +444,6 @@ class Type_Base {
 				}else{
 					$socket=$socket_defaut;
 				}
-				echo $plugin." / ".$this->flush_list_sockets[$this->flush_multi_socket[$plugin]];
-				*/
 				$this->socket_cmd($socket, $cmd);
 			}
 		}
