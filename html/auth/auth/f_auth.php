@@ -1,36 +1,34 @@
 <div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content">
-    <form class="form-horizontal" method="post" action="">
-      <fieldset>
-        <!-- Form Name -->
-        <h1>CGraphz</h1>
-        
-        <!-- Text input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="f_user"><?php echo USER; ?></label>  
-          <div class="col-md-4">
-          <input id="f_user" name="f_user" placeholder="<?php echo USER; ?>" class="form-control input-md" type="text" value="<?php @$_POST['f_user']?>" />
-          </div>
-        </div>
-        
-        <!-- Password input-->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="f_passwd"><?php echo PASSWORD; ?></label>
-          <div class="col-md-4">
-            <input id="f_passwd" name="f_passwd" placeholder="<?php echo PASSWORD; ?>" class="form-control input-md" type="password" />
-          </div>
-        </div>
-        
-        <!-- Button -->
-        <div class="form-group">
-          <label class="col-md-4 control-label" for="f_submit_auth"></label>
-          <div class="col-md-4">
-            <button type="submit" name="f_submit_auth" class="btn btn-primary"><?php echo SUBMIT ?></button>
-          </div>
-        </div>
-      </fieldset>
-    </form>
+<?php
+   /* formulaire */
+   $form = new Form('horizontal');
+   $form->fieldset(true);
+
+   $form->add('html', '<h1>CGraphz</h1>');
+   $form->add('text', 'f_user')
+        ->label(USER)
+        ->labelGrid('col-xs-3 col-md-4')
+        ->inputGrid('col-xs-6 col-md-4"')
+        ->placeholder(USER);
+    
+   $form->add('text', 'f_passwd')
+        ->iType('password')
+        ->label(PASSWORD)
+        ->labelGrid('col-xs-3 col-md-4')
+        ->inputGrid('col-xs-6 col-md-4"')
+        ->placeholder(PASSWORD);
+
+   $form->add('submit', 'f_submit_auth')
+        ->iType('primary')
+        ->labelGrid('col-xs-offset-3 col-md-offset-4')
+        ->inputGrid('col-xs-6 col-md-4"')
+        ->value(SUBMIT);
+ 
+   $form->bindValues($_POST); // Ici on lie automatiquement un tableau de variable ou une entité de la couche modèle
+   echo $form->bindForm();
+?>
   </div>
   </div>
 </div>

@@ -29,7 +29,7 @@ class InputSubmit extends Field{
             break;
         }
         
-        $field.= '<button type="submit" class="btn '.$this->btnclass.'">'.$this->value.'</button>';
+        $field.= '<button name="'.$this->name.'" id="'.$this->name.'" type="submit" class="btn '.$this->btnclass.'">'.$this->value.'</button>';
 
         switch($this->formtype) {
             case 'horizontal':

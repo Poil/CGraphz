@@ -1,6 +1,7 @@
 <?php
 class InputText extends Field{
     private $maxlength;
+    private $itype='text';
     
     public function buildField(){
         $field = '<div class="form-group">';
@@ -32,7 +33,7 @@ class InputText extends Field{
             $field.= '<div class="'.$this->inputgrid.'">';
         }
         
-        $field.= '<input class="form-control" type="text" ';
+        $field.= '<input class="form-control" type="'.$this->itype.'" ';
             if(!empty($this->name))
                 $field.= 'name="'.$this->name.'" ';
             if(!empty($this->value))
@@ -57,5 +58,10 @@ class InputText extends Field{
         $v = intval($v);
         if($v > 0)
             $this->maxlength = $v;
+    }
+
+    public function itype($v) {
+        $this->itype = $v;
+        return $this;
     }
 }
