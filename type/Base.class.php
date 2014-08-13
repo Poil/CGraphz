@@ -346,7 +346,7 @@ class Type_Base {
 
 	function parse_legend($sources) {
 		# fill up legend by items that are not defined by plugin
-		$this->legend = $this->legend + array_combine($sources, $sources);
+		//$this->legend = $this->legend + array_combine($sources, $sources);
 	
 		# detect length of longest legend
 		$max = 0;
