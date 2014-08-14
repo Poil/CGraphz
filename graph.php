@@ -100,6 +100,10 @@ switch ($plugin_json[$type]['type']) {
 		 require_once 'type/GenericIOWPM.class.php';
         $obj = new Type_GenericIOWPM($CONFIG, $_GET);
         break;
+	case 'aggregation':
+		require_once 'type/GenericAggregation.class.php';
+        $obj = new Type_GenericAggregation($CONFIG, $_GET);
+		break;
 	default:
 		require_once 'type/Default.class.php';
 		$obj = new Type_Default($CONFIG, $_GET);
