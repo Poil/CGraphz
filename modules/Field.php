@@ -2,6 +2,7 @@
 abstract class Field{
     protected $label = null;
     protected $labelclasses = null;
+    protected $fieldclasses = null;
     protected $labelgrid = null;
     protected $inputgrid = null;
     protected $name;
@@ -9,6 +10,9 @@ abstract class Field{
     protected $value;
     protected $placeholder;
     protected $important = false;
+    protected $readonly = false;
+    protected $onchange = null;
+    protected $onclick = null;
     
     public function __construct($formtype, $name){
         $this->name($name);
@@ -62,4 +66,25 @@ abstract class Field{
         $this->important = $v;
         return $this;
     }
+
+    public function readonly($v){
+        $this->readonly = $v;
+        return $this;
+    }
+
+    public function onchange($v){
+        $this->onchange = 'onchange="'.$v.'"';
+        return $this;
+    }
+
+    public function onclick($v){
+        $this->onclick = 'onclick="'.$v.'"';
+        return $this;
+    }
+
+    public function fieldClasses($v){
+        $this->fieldclasses = $v;
+        return $this;
+    }
+   
 }

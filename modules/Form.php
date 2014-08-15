@@ -23,6 +23,8 @@ class Form{
             case 'html': $this->items[] = $value; break;
             case 'text': $this->items[$value] = new InputText($this->formtype, $value);
                 return $this->items[$value]; break;
+            case 'hidden': $this->items[$value] = new InputHidden($this->formtype, $value);
+                return $this->items[$value]; break;
             case 'password': $this->items[$value] = new InputPassword($this->formtype, $value);
                 return $this->items[$value]; break;
             case 'hidden': $this->items[$value] = new InputHidden($this->formtype, $value);

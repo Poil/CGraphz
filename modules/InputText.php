@@ -17,6 +17,7 @@ class InputText extends Field{
                 $this->labelclass.='';
             break;
         }
+        if ($this->readonly) { $ro='readonly="readonly"'; }
 
         if(!empty($this->label)){
             if (!empty($this->labelgrid)) {
@@ -33,7 +34,7 @@ class InputText extends Field{
             $field.= '<div class="'.$this->inputgrid.'">';
         }
         
-        $field.= '<input class="form-control" type="'.$this->itype.'" ';
+        $field.= '<input '.$ro.' class="form-control" type="'.$this->itype.'" ';
             if(!empty($this->name))
                 $field.= 'name="'.$this->name.'" ';
             if(!empty($this->value))
@@ -42,7 +43,7 @@ class InputText extends Field{
                 $field.= 'placeholder="'.$this->placeholder.'" ';
             if(!empty($this->maxlength))
                 $field.= 'maxlength="'.$this->maxlength.'" ';
-            $field.= 'id="input_'.$this->name.'"/>';
+            $field.= 'id="'.$this->name.'"/>';
        
         if (!empty($this->inputgrid)) {
             $field.= '</div>';

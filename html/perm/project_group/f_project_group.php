@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['f_id_auth_group'])) {
 ?>
-    <form class="form-inline" role="form" name="f_form_project_group" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_group'); ?>" onsubmit="return validate_del(this);">
+    <form class="form-inline" role="form" name="f_form_project_group" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_group').'&amp;last_action=edit_group'; ?>" onsubmit="return validate_del(this);">
         <div class="form-group">
         <input type="hidden" name="f_id_config_project" id="f_id_config_project" value="<?php echo $cur_project->id_config_project; ?>" />
         <input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo $f_id_auth_group; ?>" />
@@ -12,7 +12,7 @@ if (isset($_GET['f_id_auth_group'])) {
 <?php
 } else {
     ?> 
-    <form class="form-inline" role="form" name="f_form_project_group" method="post" action="">
+    <form class="form-inline" role="form" name="f_form_project_group" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_group').'&amp;last_action=edit_group'; ?>">
         <div class="form-group">
         <input type="hidden" name="f_id_config_project" id="f_id_config_project" value="<?php echo $cur_project->id_config_project; ?>" />
         <label class="sr-only" for="f_id_auth_group"><?php echo GROUP ?></label>

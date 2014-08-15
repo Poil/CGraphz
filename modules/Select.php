@@ -1,32 +1,47 @@
 <?php
 class Select extends Field{
-    private $_options = array();
-    private $_selected = false;
-    private $_multiple = false;
+    private $options;
+    private $col_id;
+    private $col_text;
+    private $selected = false;
+    private $multiple = false;
     
     public function buildField(){
         $field = '';
+      
+        if($this->multiple) {
+           $name_prefix='[]';
+        } else {
+           $name_prefix='';
+        }
+
+        if(!empty($this->fieldclasses)) {
+           $fieldclass=$this->fieldclasses;
+        } else {
+           $fieldclass='';
+        }
+
         if(!empty($this->label)){
-            $labelclass='sr-only'
-            $field = '<div class="form-group">';
-            $field.= '<label class="'.$labelclass.'" for="'.$this->name.'"> '.$this->label; 
+            $labelclass='sr-only';
+            $field.= '<div class="form-group">';
+            $field.= '<label class="'.$labelclass.'" for="'.$this->name.$name_prefix.'"> '.$this->label; 
                 if($this->important)
                     $field.= ' <span class="red">*</span>'; 
             $field.= '</label>';
         }
             
-        $field.= '<select name="'.$this->name.'" id="'.$this->name.'" ';
+        $field.= '<select class="'.$fieldclass.'" name="'.$this->name.$name_prefix.'" id="'.$this->name.'" ';
         
-        if($this->_multiple)
+        if($this->multiple)
             $field.= 'multiple="multiple" ';
             
         $field.= '>';
-        
-        foreach($this->_options as $k=>$v){
-            $field.= '<option value="'.$k.'"';
-            if($this->_selected == $k)
-                $field.= ' selected';
-            $field.= ' >'.$v.'</option>';
+
+        $cpt_elem=count($this->options);
+        for ($i=0; $i<$cpt_elem; $i++) {
+            $field.= '<option value="'.$this->options[$i]->{$this->col_id}.'">';
+                $field.= $this->options[$i]->{$this->col_text};
+            $field.= '</option>';
         }
         
         $field.= '</select>';
@@ -36,22 +51,20 @@ class Select extends Field{
         return $field.'<br/>';
     }
     
-    public function options($k, $v=null){
-        if(\is_array($k)){
-            $options = $this->_options;
-            $this->_options = \array_merge($options, $k);
-        }else
-            $this->_options[$k] = $v;
+    public function options($options, $col_id, $col_text){
+        $this->options=$options;
+        $this->col_id=$col_id;
+        $this->col_text=$col_text;
         
         return $this;
     }
     public function selected($k){
-        $this->_selected = $k;
+        $this->selected = $k;
         return $this;
     }
     
     public function multiple($k=true){
-        $this->_multiple = $k;
+        $this->multiple = $k;
         return $this;
     }
 }
