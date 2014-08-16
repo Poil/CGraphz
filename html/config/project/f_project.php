@@ -1,5 +1,5 @@
 <?php
-$p_form = new Form('horizontal');
+$p_form = new Form('horizontal', removeqsvar($cur_url, 'f_id_config_project'));
 
 $p_form->add('hidden', 'f_id_config_project')
         ->value(@$cur_project->id_config_project);
@@ -25,7 +25,7 @@ $p_form->add('submit', 'f_submit_project')
 echo $p_form->bindForm();
 
 if (isset($_GET['f_id_config_project'])) {
-   $p_dform = new Form('horizontal');
+   $p_dform = new Form('horizontal', removeqsvar($cur_url, 'f_id_config_project'));
    $p_dform->add('hidden', 'f_id_config_project')
            ->value($cur_project->id_config_project);
 
