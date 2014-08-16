@@ -1,64 +1,65 @@
-<form name="f_form_user" method="post" action="" class="form-horizontal" role="form">
-    <input type="hidden" name="f_id_auth_user" id="f_id_auth_user" value="<?php echo @$cur_user->id_auth_user; ?>" />
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="f_user"><?php echo USER ?></label>
-        <div class="col-sm-6">
-            <input class="form-control" type="text" name="f_user" id="f_user" value="<?php echo @$cur_user->user; ?>" /> 
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="f_type"><?php echo TYPE ?></label>
-        <div class="col-sm-6">
-            <select class="form-control" name="f_type" id="f_type">
-                <option value="mysql" <?php if (@$cur_user->type=='mysql') echo ' selected="selected" '; ?>>MySQL</option>
-                <option value="ldap" <?php if (@$cur_user->type=='ldap') echo ' selected="selected" '; ?>>LDAP</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="f_passwd"><?php echo PASSWORD ?></label>
-        <div class="col-sm-6">
-            <input class="form-control"  type="password" name="f_passwd" id="f_passwd" value="" autocomplete="off" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="f_prenom"><?php echo FIRSTNAME ?></label>
-        <div class="col-sm-6">
-            <input class="form-control"  type="text" name="f_prenom" id="f_prenom" value="<?php echo @$cur_user->prenom; ?>" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="f_nom"><?php echo NAME ?></label>
-        <div class="col-sm-6">
-            <input class="form-control"  type="text" name="f_nom" id="f_nom" value="<?php echo @$cur_user->nom; ?>" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="f_mail"><?php echo EMAIL ?></label>
-        <div class="col-sm-6">
-            <input class="form-control"  type="text" name="f_mail" id="f_mail" value="<?php echo @$cur_user->mail; ?>" />
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-6">
-        <input class="btn btn-success" type="submit" name="f_submit_user" id="f_submit_user" value="<?php echo SUBMIT ?>" />
-        </div>
-    </div>
-</form>
-
 <?php
+$u_form = new Form('horizontal', removeqsvar($cur_url, array('f_id_auth_group','last_action')).'&amp;last_action=edit_user');
+
+$u_form->add('hidden', 'f_id_auth_user')
+        ->value(@$cur_user->id_auth_user);
+
+$u_form->add('text', 'f_user')
+        ->value(@$cur_user->user)
+        ->label(USER)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$u_form->add('select', 'f_type')
+        ->value(@$cur_user->type)
+        ->label(MENU_NAME)
+        ->options(array('mysql','ldap'))
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$u_form->add('text', 'f_passwd')
+        ->iType('password')
+        ->label(PASSWORD)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$u_form->add('text', 'f_prenom')
+        ->value(@$cur_user->prenom)
+        ->label(FIRSTNAME)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$u_form->add('text', 'f_nom')
+        ->value(@$cur_user->nom)
+        ->label(NAME)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$u_form->add('text', 'f_mail')
+        ->value(@$cur_user->mail)
+        ->label(EMAIL)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$u_form->add('submit', 'f_submit_user')
+        ->iType('add')
+        ->labelGrid('col-xs-offset-3 col-md-offset-1')
+        ->inputGrid('col-xs-4 col-md-3"')
+        ->value(SUBMIT);
+
+echo $u_form->bindForm();
+
 if (isset($_GET['f_id_auth_user'])) {
-?>
-    <form class="form-horizontal" role="form" name="f_form_del_user" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_user'); ?>" onsubmit="return validate_del(this);">
-        <input type="hidden" name="f_id_auth_user" id="f_del_id_auth_user" value="<?php echo $cur_user->id_auth_user; ?>" />
-        <input type="submit" name="f_del_user" id="f_del_user" value="<?php echo DEL ?>" />
-    </form>
-<?php
+   $u_dform = new Form('horizontal', removeqsvar($cur_url, array('f_id_auth_user','last_action')).'&amp;last_action=edit_user');
+   $u_dform->add('hidden', 'f_id_auth_user')
+           ->value($cur_user->id_auth_user);
+
+   $u_dform->add('submit', 'f_del_user')
+           ->iType('delete')
+           ->labelGrid('col-xs-offset-3 col-md-offset-1')
+           ->inputGrid('col-xs-4 col-md-3"')
+           ->value(DEL);
+   echo $u_dform->bindForm();
 }
 ?>
 

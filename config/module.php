@@ -5,7 +5,14 @@ function removeqsvar($url, $varname) {
 }
 */
 function removeqsvar($url, $varname) {
-    return htmlspecialchars(preg_replace('/([?&])'.$varname.'=[^&]+(&|$)/','$1',$url));
+    if (is_array($varname)) {
+        foreach ($varname as $cur_var) {
+            $url=preg_replace('/([?&])'.$cur_var.'=[^&]+(&|$)/','$1',$url);
+        }
+    } else {
+        $url=preg_replace('/([?&])'.$varname.'=[^&]+(&|$)/','$1',$url);
+    }
+    return htmlspecialchars($url);
 }
 
 
@@ -352,58 +359,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
         }
     } else if ($module=='auth') {
         if ($component=='user') {
-            echo '<h1>'.MANAGE_USERS.'</h1>';
-            include(DIR_FSROOT.'/html/auth/user/w_user.php');
-            include(DIR_FSROOT.'/html/auth/user_group/e_user_group_wh_id.php');
-            include(DIR_FSROOT.'/html/auth/user/e_user.php');
-            include(DIR_FSROOT.'/html/auth/user/r_user_wh_id.php');
-            include(DIR_FSROOT.'/html/auth/user/r_user.php');
-            include(DIR_FSROOT.'/html/auth/user/d_user.php');
-            echo '<div class="clearfix"></div>';
-            
-            if (isset($_GET['f_id_auth_user'])) {
-                echo '<a href="'.removeqsvar($cur_url,'f_id_auth_user').'"><button type="button" class="btn btn-primary">'.ADD.' '.USER.'</button></a>';
-            }
-            echo '<div class="clearfix"></div>';
-            echo '<fieldset>';
-            if (isset($cur_user)) {
-                echo '<legend>'.$cur_user->user.'</legend>';
-            }
-            echo '<fieldset>';
-            if (isset($_GET['f_id_auth_user'])) {
-                echo '<legend>'.EDIT.'</legend>';
-            }
-            else {
-                echo '<legend>'.ADD.'</legend>';
-            }
-            include(DIR_FSROOT.'/html/auth/user/f_user.php');
-            echo '</fieldset>';
-            
-            if (isset($_GET['f_id_auth_user'])) {
-                echo '<fieldset>';
-                echo '<legend>'.GROUPS.'</legend>';
-                include(DIR_FSROOT.'/html/auth/user_group/w_user_group.php');
-                include(DIR_FSROOT.'/html/auth/user_group/e_user_group.php');
-                include(DIR_FSROOT.'/html/auth/user_group/r_user_group_wh_id.php');
-                include(DIR_FSROOT.'/html/auth/user_group/r_user_group.php');
-                include(DIR_FSROOT.'/html/auth/user_group/d_user_group.php');
-                echo '<div class="clearfix"></div>';
-                
-                if (isset($_GET['f_id_auth_group'])) {
-                    echo '<a href="'.removeqsvar($cur_url,'f_id_auth_group').'"><button type="button" class="btn btn-primary">'.ADD.' '.GROUP.'</button></a>';
-                }
-                echo '<div class="clearfix"></div>';
-                if (isset($_GET['f_id_auth_group'])) {
-                    echo '<legend>'.DEL.'</legend>';
-                }
-                else {
-                    echo '<legend>'.ADD.'</legend>';
-                }
-                include(DIR_FSROOT.'/html/auth/user_group/f_user_group.php');
-                echo '</fieldset>';
-            }        
-            echo '</fieldset>';
-            echo '<div class="clearfix"></div>';        
+            include(DIR_FSROOT.'/view/backend/v_user.php');
         }
         else if ($component=='group') {
             echo '<h1>'.MANAGE_GROUPS.'</h1>';
