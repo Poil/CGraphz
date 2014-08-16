@@ -9,31 +9,29 @@ class InputCheckbox extends Field{
 
         switch($this->formtype) {
             case 'horizontal':
-                $this->labelclass.='control-label';
+                $field.= '<div class="checkbox">';
+                $this->labelclass.='';
             break;
             case 'inline':
-                $this->labelclass.='sr-only';
+                // In inline case we reset field, because not the same div
+                $field = '<div class="checkbox">';
+                $this->labelclass.='';
             break;
             default:
+                // In default case we reset field, because not the same div
+                $field = '<div class="checkbox">';
                 $this->labelclass.='';
             break;
         }
         if ($this->readonly) { $ro='readonly="readonly"'; }
         else { $ro=''; }
 
-        if(!empty($this->label)){
-            if (!empty($this->labelgrid)) {
-                $this->labelclass.=' '.$this->labelgrid;
-            }
-
-            $field.= '<label class="'.$this->labelclass.'" for="'.$this->name.'">'.$this->label; 
-                if($this->important)
-                    $field.= ' <span class="red">*</span>'; 
-            $field.= '</label>';
-        }
-
         if (!empty($this->inputgrid)) {
             $field.= '<div class="'.$this->inputgrid.'">';
+        }
+
+        if(!empty($this->label)){
+            $field.= '<label class="'.$this->labelclass.'" for="'.$this->name.'">';
         }
 
         $field.= '<input type="checkbox" name="'.$this->name.'" id="'.$this->name.'" '.$this->onclick.' value="'.$this->value.'" ';
@@ -42,7 +40,17 @@ class InputCheckbox extends Field{
         else
             $field.= ' /> ';
         
+        if(!empty($this->label)){
+            $field.=$this->label; 
+            if($this->important)
+                $field.= ' <span class="red">*</span>'; 
+            $field.= '</label>';
+        }
+
         if (!empty($this->inputgrid)) {
+            $field.= '</div>';
+        }
+        if ($this->formtype=='horizontal') {
             $field.= '</div>';
         }
 

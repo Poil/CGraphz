@@ -362,6 +362,8 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
             include(DIR_FSROOT.'/view/backend/v_user.php');
         }
         else if ($component=='group') {
+            include(DIR_FSROOT.'/view/backend/v_group.php');
+/*
             echo '<h1>'.MANAGE_GROUPS.'</h1>';
             include(DIR_FSROOT.'/html/auth/group/w_group.php');
             include(DIR_FSROOT.'/html/auth/group_user/e_group_user_wh_id.php');
@@ -513,6 +515,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
             }
             echo '</fieldset>';
             echo '<div class="clearfix"></div>';
+*/
         }
     } else if ($module=='perm') {
         if ($component=='module') {
