@@ -24,3 +24,4 @@
 .uix-multiselect .grouped-option { position:relative; padding-left:16px }
 .uix-multiselect .grouped-option .ui-icon { position:absolute; left:0; }
 .uix-multiselect > .multiselect-available-list > .ui-widget-header > .uix-search { height:24px; }
+.multiselect-available-list, .multiselect-selected-list { border-bottom: 1px solid #ddd }
