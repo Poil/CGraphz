@@ -36,8 +36,10 @@ if (isset($_GET['f_id_config_server'])) {
 
 <?php
 $ps_form = new Form('inline');
+$ps_form->fieldset(true);
 
 if (isset($_GET['f_id_config_server'])) {
+   $ps_form->legend(DEL);
    $ps_form->add('hidden', 'f_id_config_project')
            ->value($cur_project->id_config_project);
 
@@ -49,9 +51,10 @@ if (isset($_GET['f_id_config_server'])) {
            ->value($cur_project_server->server_name);
 
    $ps_form->add('submit', 'f_delete_project_server')
-           ->iType('del')
+           ->iType('delete')
            ->value(DEL);
 } else {
+   $ps_form->legend(ADD);
    $ps_form->add('checkbox','f_filter_server_in_project')
            ->value('true')
            ->checked($f_filter_server_in_project)

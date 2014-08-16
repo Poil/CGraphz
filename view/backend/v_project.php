@@ -72,11 +72,6 @@ if (isset($_GET['f_id_config_project'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_auth_group').'&amp;last_action=edit_group"><button type="button" class="btn btn-primary">'.ADD.' '.GROUP.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
-    if (isset($_GET['f_id_auth_group'])) {
-        echo '<strong>'.DEL.'</strong>';
-    } else {
-        echo '<strong>'.ADD.'</strong>';
-    }
     include(DIR_FSROOT.'/html/perm/project_group/f_project_group.php');
     
     echo '</div>';
@@ -94,11 +89,6 @@ if (isset($_GET['f_id_config_project'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_server').'&amp;last_action=edit_server"><button type="button" class="btn btn-primary">'.ADD.' '.SERVER.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
-    if (isset($_GET['f_id_config_server'])) {
-        echo '<strong>'.DEL.'</strong>';
-    } else {
-        echo '<strong>'.ADD.'</strong>';
-    }
     include(DIR_FSROOT.'/html/config/project_server/f_project_server.php');
     echo '</div>';
 }        
