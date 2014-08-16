@@ -18,6 +18,7 @@ class InputText extends Field{
             break;
         }
         if ($this->readonly) { $ro='readonly="readonly"'; }
+        else { $ro=''; }
 
         if(!empty($this->label)){
             if (!empty($this->labelgrid)) {

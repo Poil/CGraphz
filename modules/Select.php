@@ -48,7 +48,7 @@ class Select extends Field{
         if(!empty($this->label))
             $field.= '</div>';
         
-        return $field.'<br/>';
+        return $field;
     }
     
     public function options($options, $col_id, $col_text){
