@@ -71,7 +71,7 @@ define('MANAGE_MY_DYN_DASHBOARDS','Gérer mes TdBs dynamiques');
 define('PROJECT_SERVERS','Serveurs du projet');
 define('PROJECT_PERMS','Groupes du projet');
 define('MODULE','Module');
-define('COMPONANT','Composant');
+define('COMPONENT','Composant');
 define('PROJECT','Projet');
 define('PROJECTS','Projets');
 define('ROLE','Rôle');

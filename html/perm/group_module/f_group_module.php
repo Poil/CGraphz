@@ -9,7 +9,7 @@ if (isset($_GET['f_id_perm_module'])) {
         <input class="form-control" readonly="readonly" type="text" name="f_module" id="f_module" value="<?php echo $cur_group_module->module; ?>" /><br />
         </div>
         <div class="form-group">
-        <label class="sr-only" for="f_component"><?php echo COMPONANT ?></label>
+        <label class="sr-only" for="f_component"><?php echo COMPONENT ?></label>
         <input class="form-control" readonly="readonly" type="text" name="f_component" id="f_component" value="<?php echo $cur_group_module->component; ?>" /><br />
         </div>
         <input class="btn btn-danger" type="submit" name="f_delete_group_module" id="f_delete_group_module" value="<?php echo DEL ?>" />

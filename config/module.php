@@ -560,58 +560,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
         }
     } else if ($module=='perm') {
         if ($component=='module') {
-            echo '<h1>'.MANAGE_MODULES.'</h1>';
-            include(DIR_FSROOT.'/html/perm/module/w_module.php');
-            include(DIR_FSROOT.'/html/perm/module_group/e_module_group_wh_id.php');
-            include(DIR_FSROOT.'/html/perm/module/e_module.php');
-            include(DIR_FSROOT.'/html/perm/module/r_module_wh_id.php');
-            include(DIR_FSROOT.'/html/perm/module/r_module.php');
-            include(DIR_FSROOT.'/html/perm/module/d_module.php');
-            echo '<div class="clearfix"></div>';
-            
-            if (isset($_GET['f_id_perm_module'])) {
-                echo '<a href="'.removeqsvar($cur_url,'f_id_perm_module').'"><button type="button" class="btn btn-primary">'.ADD.' '.PERM.'</button></a>';
-            }
-            echo '<div class="clearfix"></div>';
-            echo '<fieldset>';
-            if (isset($cur_module)) {
-                echo '<legend>'.$cur_module->module.' '.$cur_module->component.'</legend>';
-            }
-            echo '<fieldset>';
-            if (isset($_GET['f_id_perm_module'])) {
-                echo '<legend>'.EDIT.'</legend>';
-            }
-            else {
-                echo '<legend>'.ADD.'</legend>';
-            }
-            include(DIR_FSROOT.'/html/perm/module/f_module.php');
-            echo '</fieldset>';
-            
-            if (isset($_GET['f_id_perm_module'])) {
-                echo '<fieldset>';
-                echo '<legend>'.ACCESS_AUTH.'</legend>';
-                include(DIR_FSROOT.'/html/perm/module_group/w_module_group.php');
-                include(DIR_FSROOT.'/html/perm/module_group/e_module_group.php');
-                include(DIR_FSROOT.'/html/perm/module_group/r_module_group_wh_id.php');
-                include(DIR_FSROOT.'/html/perm/module_group/r_module_group.php');
-                include(DIR_FSROOT.'/html/perm/module_group/d_module_group.php');
-                echo '<div class="clearfix"></div>';
-                
-                if (isset($_GET['f_id_auth_group'])) {
-                    echo '<a href="'.removeqsvar($cur_url,'f_id_auth_group').'"><button type="button" class="btn btn-primary">'.ADD.' '.GROUP.'</button></a>';
-                }
-                echo '<div class="clearfix"></div>';
-                if (isset($_GET['f_id_auth_group'])) {
-                    echo '<strong>'.DEL.'</strong>';
-                }
-                else {
-                    echo '<strong>'.ADD.'</strong>';
-                }
-                include(DIR_FSROOT.'/html/perm/module_group/f_module_group.php');
-                echo '</fieldset>';
-            }
-            echo '</fieldset>';
-            echo '<div class="clearfix"></div>';    
+            include(DIR_FSROOT.'/view/backend/v_module.php');
         } 
     } else if ($module=='dashboard') {
         if ($component=='view') {

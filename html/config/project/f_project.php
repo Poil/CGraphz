@@ -26,6 +26,7 @@ echo $p_form->bindForm();
 
 if (isset($_GET['f_id_config_project'])) {
    $p_dform = new Form('horizontal', removeqsvar($cur_url, 'f_id_config_project'));
+
    $p_dform->add('hidden', 'f_id_config_project')
            ->value($cur_project->id_config_project);
 
@@ -34,6 +35,7 @@ if (isset($_GET['f_id_config_project'])) {
            ->labelGrid('col-xs-offset-3 col-md-offset-1')
            ->inputGrid('col-xs-4 col-md-3"')
            ->value(DEL);
+
    echo $p_dform->bindForm();
 }
 ?>
