@@ -1,5 +1,5 @@
 <?php
-$m_form = new Form('horizontal', removeqsvar($cur_url, 'f_id_perm_module'));
+$m_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_module');
 
 $m_form->add('hidden', 'f_id_perm_module')
         ->value(@$cur_module->id_perm_module);
@@ -37,7 +37,7 @@ $m_form->add('submit', 'f_submit_module')
 echo $m_form->bindForm();
 
 if (isset($_GET['f_id_perm_module'])) {
-   $m_dform = new Form('horizontal', removeqsvar($cur_url, 'f_id_perm_module'));
+   $m_dform = new Form('horizontal', removeqsvar($cur_url, array('f_id_perm_module','last_action')).'&amp;last_action=edit_module');
    $m_dform->add('hidden', 'f_id_perm_module')
            ->value($cur_module->id_perm_module);
 

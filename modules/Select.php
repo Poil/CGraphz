@@ -52,7 +52,7 @@ class Select extends Field{
         }
         
 
-        $field.= '<select class="'.$fieldclass.'" name="'.$this->name.$name_prefix.'" id="'.$this->name.'" ';
+        $field.= '<select class="form-control '.$fieldclass.'" name="'.$this->name.$name_prefix.'" id="'.$this->name.'" ';
         
         if($this->multiple)
             $field.= 'multiple="multiple" ';

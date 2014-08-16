@@ -1,5 +1,5 @@
 <?php
-$ps_form = new Form('inline', removeqsvar($cur_url, 'f_id_config_server').'&amp;last_action=edit_server');
+$ps_form = new Form('inline', removeqsvar($cur_url, array('f_id_config_server','last_action')).'&amp;last_action=edit_server');
 $ps_form->fieldset(true);
 
 if (isset($_GET['f_id_config_server'])) {

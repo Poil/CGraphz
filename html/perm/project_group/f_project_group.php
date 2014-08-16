@@ -1,5 +1,5 @@
 <?php
-$pg_form = new Form('inline', removeqsvar($cur_url, 'f_id_auth_group').'&amp;last_action=edit_group');
+$pg_form = new Form('inline', removeqsvar($cur_url, array('f_id_auth_group','last_action')).'&amp;last_action=edit_group');
 $pg_form->fieldset(true);
 
 if (isset($_GET['f_id_auth_group'])) {
@@ -18,7 +18,7 @@ if (isset($_GET['f_id_auth_group'])) {
            ->iType('delete')
            ->value(DEL);
 } else {
-   $pg_form->legend(ADD, removeqsvar($cur_url, 'f_id_auth_group').'&amp;last_action=edit_group');
+   $pg_form->legend(ADD, removeqsvar($cur_url, array('f_id_auth_group','last_action')).'&amp;last_action=edit_group');
 
    $pg_form->add('hidden', 'f_id_config_project')
            ->value($cur_project->id_config_project);
