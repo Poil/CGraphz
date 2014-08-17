@@ -163,7 +163,7 @@ if (isset($_GET['f_id_auth_group'])) {
     echo '<div class="clearfix"></div>';
     
     if (isset($_GET['f_id_perm_module'])) {
-        echo '<a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'&amp;last_action=edit_dynamic_dashboard"><button type="button" class="btn btn-primary">'.ADD.' '.DYNAMIC_DASHBOARD.'</button></a>';
+        echo '<a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'&amp;last_action=edit_dynamic_dashboard"><button type="button" class="btn btn-primary">'.ADD.' '.DASHBOARD.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/f_group_dynamic_dashboard.php');

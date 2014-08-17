@@ -19,6 +19,6 @@ if (isset($_GET['f_id_config_dynamic_dashboard']) && isset($_GET['f_id_auth_grou
 
 	$connSQL->bind('f_id_auth_group',$f_id_auth_group);
 	$connSQL->bind('f_id_config_dynamic_dashboard',$f_id_config_dynamic_dashboard);
-	$cur_dynamic_dashboard_group=$connSQL->row($lib);
+	$cur_group_dynamic_dashboard=$connSQL->row($lib);
 }
 ?>
