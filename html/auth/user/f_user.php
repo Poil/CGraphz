@@ -14,7 +14,6 @@ $u_form->add('text', 'f_user')
 $u_form->add('select', 'f_type')
         ->value(@$cur_user->type)
         ->label(MENU_NAME)
-        ->autocomplete(false)
         ->options(array('mysql','ldap'))
         ->labelGrid('col-xs-4 col-md-2')
         ->inputGrid('col-xs-4 col-md-3');

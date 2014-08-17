@@ -77,6 +77,8 @@ class Select extends Field{
                         } else {
                            $data='data-'.$this->col_text.'="'.$this->options[$i]->{$this->col_text}.'"';
                         }
+                    } else {
+                        $data='';
                     }
                     $field.= '<option '.$selected.' value="'.$this->options[$i]->{$this->col_id}.'" '.$data.'>';
                         if (is_array($this->col_text)) {

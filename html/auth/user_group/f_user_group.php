@@ -35,8 +35,7 @@ if (isset($_GET['f_id_auth_group'])) {
    $ug_form->add('checkbox','f_manager')
            ->value('manager')
            ->label(MANAGER)
-           ->inputGrid('col-sm-offset-2 col-md-3')
-           ->checked($f_manager);
+           ->inputGrid('col-sm-offset-2 col-md-3');
 
    $ug_form->add('submit', 'f_submit_user_group')
            ->iType('add')
