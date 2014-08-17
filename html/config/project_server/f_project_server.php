@@ -25,7 +25,6 @@ if (isset($_GET['f_id_config_server'])) {
    $ps_form->add('checkbox','f_filter_server_in_project')
            ->value('true')
            ->label('filter server')
-           ->autocomplete(false)
            ->inputGrid('col-sm-offset-2 col-md-9')
            ->checked($f_filter_server_in_project)
            ->onclick("$('#f_submit_project_server').click()");
