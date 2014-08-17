@@ -67,7 +67,14 @@ class Select extends Field{
                 for ($i=0; $i<$cpt_elem; $i++) {
                     $selected=($this->options[$i]->{$this->col_id}==$this->value) ? ' selected="selected" ' : '';
                     $field.= '<option '.$selected.' value="'.$this->options[$i]->{$this->col_id}.'">';
-                        $field.= $this->options[$i]->{$this->col_text};
+                        if (is_array($this->col_text)) {
+                            foreach ($this->col_text as $curcol_text) {
+                                $field.= $this->options[$i]->{$curcol_text}.' ';
+                            }
+                            $field=trim($field);
+                        } else {
+                            $field.= $this->options[$i]->{$this->col_text};
+                        }
                     $field.= '</option>';
                 }
             } else {

@@ -17,7 +17,7 @@ $last_action=isset($_GET['last_action']) ? $_GET['last_action'] : '';
 $tab_group_user_class='';
 $tab_group_project_class='';
 $tab_group_plugin_filter_class='';
-$tab_group_perm_module_class='';
+$tab_group_module_class='';
 $tab_group_dynamic_dashboard_class='';
 $tab_group_class='active';
 
@@ -35,8 +35,8 @@ if (isset($_GET['f_id_auth_group'])) {
         $tab_group_plugin_filter_class='active';
         $tab_group_class='';
     }
-    elseif (isset($_GET['f_id_perm_module']) || $last_action=='edit_perm_module') {
-        $tab_group_perm_module_class='active';
+    elseif (isset($_GET['f_id_perm_module']) || $last_action=='edit_module') {
+        $tab_group_module_class='active';
         $tab_group_class='';
     }
     elseif (isset($_GET['f_id_config_dynamic_dashboard']) || $last_action=='edit_dynamic_dashboard') {
@@ -55,7 +55,7 @@ if (isset($cur_group)) {
           <li class="'.$tab_group_user_class.'"><a href="#group_user" role="tab" data-toggle="tab">'.USER.'</a></li>
           <li class="'.$tab_group_project_class.'"><a href="#group_project" role="tab" data-toggle="tab">'.PROJECT.'</a></li>
           <li class="'.$tab_group_plugin_filter_class.'"><a href="#group_plugin_filter" role="tab" data-toggle="tab">'.PLUGIN_FILTER.'</a></li>
-          <li class="'.$tab_group_perm_module_class.'"><a href="#group_perm_module" role="tab" data-toggle="tab">'.PERMS.'</a></li>
+          <li class="'.$tab_group_module_class.'"><a href="#group_module" role="tab" data-toggle="tab">'.PERMS.'</a></li>
           <li class="'.$tab_group_dynamic_dashboard_class.'"><a href="#group_dynamic_dashboard" role="tab" data-toggle="tab">'.DYNAMIC_DASHBOARDS.'</a></li>
         </ul>
         <div class="tab-content">';
@@ -136,7 +136,7 @@ if (isset($_GET['f_id_auth_group'])) {
     echo '</div>';
 
     /* PERMS */
-    echo '<div class="tab-pane '.$tab_group_perm_module_class.'" id="group_perm_module"><fieldset>';
+    echo '<div class="tab-pane '.$tab_group_module_class.'" id="group_module"><fieldset>';
     echo '<legend>'.PERMS.'</legend>';
     include(DIR_FSROOT.'/html/perm/group_module/w_group_module.php');
     include(DIR_FSROOT.'/html/perm/group_module/e_group_module.php');
