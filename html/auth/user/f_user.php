@@ -44,7 +44,7 @@ $u_form->add('text', 'f_mail')
 $u_form->add('submit', 'f_submit_user')
         ->iType('add')
         ->labelGrid('col-xs-offset-4 col-md-offset-2')
-        ->inputGrid('col-xs-4 col-md-3"')
+        ->inputGrid('col-xs-4 col-md-3')
         ->value(SUBMIT);
 
 echo $u_form->bindForm();
@@ -57,7 +57,7 @@ if (isset($_GET['f_id_auth_user'])) {
    $u_dform->add('submit', 'f_del_user')
            ->iType('delete')
            ->labelGrid('col-xs-offset-3 col-md-offset-2')
-           ->inputGrid('col-xs-4 col-md-3"')
+           ->inputGrid('col-xs-4 col-md-3')
            ->value(DEL);
    echo $u_dform->bindForm();
 }

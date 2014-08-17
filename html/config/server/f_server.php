@@ -35,7 +35,7 @@ $s_form->add('select','f_collectd_version')
 $s_form->add('submit', 'f_submit_server')
         ->iType('add')
         ->labelGrid('col-xs-offset-3 col-md-offset-1')
-        ->inputGrid('col-xs-4 col-md-3"')
+        ->inputGrid('col-xs-4 col-md-3')
         ->value(SUBMIT);
 
 echo $s_form->bindForm();
@@ -49,7 +49,7 @@ if (isset($_GET['f_id_config_server'])) {
    $s_dform->add('submit', 'f_del_server')
            ->iType('delete')
            ->labelGrid('col-xs-offset-3 col-md-offset-1')
-           ->inputGrid('col-xs-4 col-md-3"')
+           ->inputGrid('col-xs-4 col-md-3')
            ->value(DEL);
 
    echo $s_dform->bindForm();

@@ -12,7 +12,7 @@ $sc_form->add('select','f_server_name_to_del')
 $sc_form->add('submit', 'f_del_server_check')
         ->iType('add')
         ->labelGrid('col-xs-offset-3 col-md-offset-1')
-        ->inputGrid('col-xs-4 col-md-3"')
+        ->inputGrid('col-xs-4 col-md-3')
         ->value(SUBMIT);
 
 echo $sc_form->bindForm();

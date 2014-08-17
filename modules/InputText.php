@@ -5,7 +5,7 @@ class InputText extends Field{
     private $autocomplete=true;
     
     public function buildField(){
-        $field = '<div class="form-group">';
+        $field = '<div class="form-group">'."\n";
 
         switch($this->formtype) {
             case 'horizontal':
@@ -32,11 +32,11 @@ class InputText extends Field{
             $field.= '<label class="'.$this->labelclass.'" for="'.$this->name.'">'.$this->label; 
                 if($this->important)
                     $field.= ' <span class="red">*</span>'; 
-            $field.= '</label>';
+            $field.= '</label>'."\n";
         }
 
         if (!empty($this->inputgrid)) {
-            $field.= '<div class="'.$this->inputgrid.'">';
+            $field.= '<div class="'.$this->inputgrid.'">'."\n";
         }
         
         $field.= '<input '.$ro.' '.$autocomplete.' class="form-control" type="'.$this->itype.'" ';
@@ -48,14 +48,14 @@ class InputText extends Field{
                 $field.= 'placeholder="'.$this->placeholder.'" ';
             if(!empty($this->maxlength))
                 $field.= 'maxlength="'.$this->maxlength.'" ';
-            $field.= 'id="'.$this->name.'"/>';
+            $field.= 'id="'.$this->name.'"/>'."\n";
        
         if (!empty($this->inputgrid)) {
-            $field.= '</div>';
+            $field.= '</div>'."\n";
         }
 
         # formgroup     
-        $field.= '</div>';
+        $field.= '</div>'."\n";
         
         return $field;
     }

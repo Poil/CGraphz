@@ -36,7 +36,7 @@ if (isset($_GET['f_id_config_role'])) {
    $m_dform->add('submit', 'f_del_role')
            ->iType('delete')
            ->labelGrid('col-xs-offset-4 col-md-offset-2 col-lg-offset-2')
-           ->inputGrid('col-xs-6 col-md-5 col-lg-5"')
+           ->inputGrid('col-xs-6 col-md-5 col-lg-5')
            ->value(DEL);
    echo $m_dform->bindForm();
 }

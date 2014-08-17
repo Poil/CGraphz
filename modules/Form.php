@@ -7,13 +7,13 @@ class Form{
     protected $items = array();
     protected $fieldset = false;
     protected $legend = null;
-    protected $method = 'POST';
+    protected $method = 'post';
     
     public function __construct($formtype='', $action='', $enctype='', $onsubmit=''){
         $this->action = $action;
         $this->formtype = $formtype;
         $this->enctype = $enctype;
-        $this->onsubmit = ' onSubmit="'.$onsubmit.'"';
+        $this->onsubmit = ' onsubmit="'.$onsubmit.'"';
         
         return $this;
     }
@@ -75,9 +75,9 @@ class Form{
             break;
         }
 
-        $view = '<form role="form" class="'.$formclass.'" action="'.$this->action.'" method="'.$this->method.'" '.$this->onsubmit.' '.$enctype.'>';
-        if($this->fieldset) $view.='<fieldset>';
-        if(!empty($this->legend)) $view.='<legend>'.$this->legend.'</legend>';
+        $view = '<form role="form" class="'.$formclass.'" action="'.$this->action.'" method="'.$this->method.'" '.$this->onsubmit.' '.$enctype.'>'."\n";
+        if($this->fieldset) $view.='<fieldset>'."\n";
+        if(!empty($this->legend)) $view.='<legend>'.$this->legend.'</legend>'."\n";
 
         foreach($this->items as $output){
             if($output instanceof field)
@@ -86,8 +86,8 @@ class Form{
                 $view.= $output;
         }
             
-        if($this->fieldset) $view.='</fieldset>';
-        return $view.'</form>';
+        if($this->fieldset) $view.='</fieldset>'."\n";
+        return $view.'</form>'."\n";
     }
 
     public function fieldset($v) {

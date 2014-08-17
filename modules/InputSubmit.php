@@ -18,22 +18,22 @@ class InputSubmit extends Field{
 
         switch($this->formtype) {
             case 'horizontal':
-                $field = '<div class="form-group">';
+                $field = '<div class="form-group">'."\n";
                 if (!empty($this->labelgrid)) { $divclass = $this->labelgrid; }
                 else { $divclass = 'col-sm-10'; }
                 if (!empty($this->inputgrid)) { $divclass.= ' '.$this->inputgrid; }
                 else { $divclass .= ' col-sm-offset-2'; }
-                $field.= '<div class="'.$divclass.'">';
+                $field.= '<div class="'.$divclass.'">'."\n";
             break;
             default:
             break;
         }
         
-        $field.= '<button name="'.$this->name.'" id="'.$this->name.'" type="submit" class="btn '.$this->btnclass.'">'.$this->value.'</button>';
+        $field.= '<button name="'.$this->name.'" id="'.$this->name.'" type="submit" class="btn '.$this->btnclass.'">'.$this->value.'</button>'."\n";
 
         switch($this->formtype) {
             case 'horizontal':
-                $field.= '</div></div>';
+                $field.= '</div>'."\n".'</div>'."\n";
             break;
             default:
             break;
