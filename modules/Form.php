@@ -33,6 +33,8 @@ class Form{
                 return $this->items[$value]; break;
             case 'submit': $this->items[$value] = new InputSubmit($this->formtype, $value);
                 return $this->items[$value]; break;
+            case 'button': $this->items[$value] = new Button($this->formtype, $value);
+                return $this->items[$value]; break;
             case 'select': $this->items[$value] = new Select($this->formtype, $value);
                 return $this->items[$value]; break;
             case 'checkbox': $this->items[$value] = new InputCheckbox($this->formtype, $value);
