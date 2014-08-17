@@ -1,30 +1,35 @@
 <?php
 if (isset($_GET['f_id_config_plugin_filter'])) {
-?>
-	<form name="f_form_group_plugin_filter" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_plugin_filter'); ?>" onsubmit="return validate_del(this);">
-		<input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo @$cur_group->id_auth_group; ?>" />
-		<input type="hidden" name="f_id_config_plugin_filter" id="f_id_config_plugin_filter" value="<?php echo @$f_id_config_plugin_filter; ?>" />
-		<input readonly="readonly" type="text" name="f_plugin_filter_desc" id="f_plugin_filter_desc" value="<?php echo @$cur_plugin_filter_group->plugin_filter_desc; ?>" />
-		<input type="submit" name="f_delete_group_plugin_filter" id="f_delete_group_plugin_filter" value="<?php echo DEL ?>" />
-	</form>
-<?php
+   $gpf_form = new Form('inline', removeqsvar($cur_url, array('f_id_config_plugin_filter','last_action')).'&amp;last_action=edit_plugin_filter');
+   $gpf_form->fieldset(true);
+   $gpf_form->legend(DEL);
+   $gpf_form->add('hidden', 'f_id_config_plugin_filter')
+           ->value($f_id_config_plugin_filter);
+
+   $gpf_form->add('hidden', 'f_id_auth_group')
+           ->value($cur_group->id_auth_group);
+
+   $gpf_form->add('text', 'f_project')
+           ->readonly(true)
+           ->value($cur_group_plugin_filter->plugin_filter_desc);
+
+   $gpf_form->add('submit', 'f_delete_group_plugin_filter')
+           ->iType('delete')
+           ->value(DEL);
 } else {
-	?> 
-	<form name="f_form_group_plugin_filter" method="post" action="">
-		<input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo @$cur_group->id_auth_group; ?>" />
-		<label for="f_id_config_plugin_filter"><?php echo USER ?></label>
-		<?php 
-		echo '<select name="f_id_config_plugin_filter" id="f_id_config_plugin_filter">';
-			for ($i=0; $i<$cpt_plugin_filter; $i++) {
-				echo '<option value="'.$all_plugin_filter[$i]->id_config_plugin_filter.'">';
-					echo $all_plugin_filter[$i]->plugin_filter_desc;
-				echo '</option>';
-			}
-		echo '</select>';
-		?>
-		<br />
-		<input type="submit" name="f_submit_group_plugin_filter" id="f_submit_group_plugin_filter" value="<?php echo SUBMIT ?>" />
-	</form>
-	<?php 
+   $gpf_form = new Form('inline', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_plugin_filter');
+   $gpf_form->fieldset(true);
+   $gpf_form->legend(ADD);
+
+   $gpf_form->add('hidden', 'f_id_auth_group')
+           ->value($cur_group->id_auth_group);
+
+   $gpf_form->add('select','f_id_config_plugin_filter')
+            ->options($all_plugin_filter, 'id_config_plugin_filter', 'plugin_filter_desc');
+
+   $gpf_form->add('submit', 'f_submit_group_plugin_filter')
+           ->iType('add')
+           ->value(SUBMIT);
 }
+echo $gpf_form->bindForm();
 ?>

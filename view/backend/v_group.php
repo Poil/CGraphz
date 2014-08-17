@@ -128,8 +128,8 @@ if (isset($_GET['f_id_auth_group'])) {
     include(DIR_FSROOT.'/html/config/group_plugin_filter/d_group_plugin_filter.php');
     echo '<div class="clearfix"></div>';
     
-    if (isset($_GET['f_id_perm_module'])) {
-        echo '<a href="'.removeqsvar($cur_url,'f_id_perm_module').'&amp;last_action=edit_project"><button type="button" class="btn btn-primary">'.ADD.' '.PLUGIN_FILTER.'</button></a>';
+    if (isset($_GET['f_id_config_plugin_filter'])) {
+        echo '<a href="'.removeqsvar($cur_url,'f_id_config_plugin_filter').'&amp;last_action=edit_plugin_filter"><button type="button" class="btn btn-primary">'.ADD.' '.PLUGIN_FILTER.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/group_plugin_filter/f_group_plugin_filter.php');
