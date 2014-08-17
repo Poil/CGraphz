@@ -18,7 +18,7 @@ if (isset($_GET['f_id_auth_group'])) {
            ->iType('delete')
            ->value(DEL);
 } else {
-   $mg_form->legend(ADD, removeqsvar($cur_url, array('f_id_auth_group','last_action')).'&amp;last_action=edit_group');
+   $mg_form->legend(ADD);
 
    $mg_form->add('hidden', 'f_id_perm_module')
            ->value($cur_module->id_perm_module);

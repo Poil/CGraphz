@@ -18,7 +18,7 @@ $tab_group_user_class='';
 $tab_group_project_class='';
 $tab_group_plugin_filter_class='';
 $tab_group_perm_module_class='';
-$tab_group_dynamic_class='';
+$tab_group_dynamic_dashboard_class='';
 $tab_group_class='active';
 
 if (isset($_GET['f_id_auth_group'])) {
@@ -136,7 +136,7 @@ if (isset($_GET['f_id_auth_group'])) {
     echo '</div>';
 
     /* PERMS */
-    echo '<div class="tab-pane '.$tab_group_module_class.'" id="group_perm_module"><fieldset>';
+    echo '<div class="tab-pane '.$tab_group_perm_module_class.'" id="group_perm_module"><fieldset>';
     echo '<legend>'.PERMS.'</legend>';
     include(DIR_FSROOT.'/html/perm/group_module/w_group_module.php');
     include(DIR_FSROOT.'/html/perm/group_module/e_group_module.php');

@@ -2,7 +2,7 @@
 $gu_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_user');
 
 $gu_form->add('hidden', 'f_id_auth_group')
-        ->value($cur_group->id_auth_group);
+        ->value(@$cur_group->id_auth_group);
 
 $gu_form->add('select','f_id_auth_user')
         ->options($all_user, 'id_auth_user', 'user')
@@ -14,7 +14,7 @@ $gu_form->add('checkbox','f_manager')
         ->value('manager')
         ->label(MANAGER)
         ->inputGrid('col-sm-offset-3 col-md-9')
-        ->checked($cur_group_user->manager);
+        ->checked(@$cur_group_user->manager);
 
 $gu_form->add('submit', 'f_submit_group_user')
         ->iType('add')

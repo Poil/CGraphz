@@ -33,6 +33,10 @@ class Select extends Field{
                 $this->labelclass.='';
             break;
         }
+
+        $cpt_elem=count($this->options);
+        if ($cpt_elem==0) { $this->readonly=true; }
+
         if ($this->readonly) { $ro='readonly="readonly"'; }
         else { $ro=''; }
 
@@ -58,33 +62,32 @@ class Select extends Field{
             $field.= 'multiple="multiple" ';
             
         $field.= '>';
-
-        $cpt_elem=count($this->options);
-        if (is_object($this->options[0])) {
-            for ($i=0; $i<$cpt_elem; $i++) {
-                $selected=($this->options[$i]->{$this->col_id}==$this->value) ? ' selected="selected" ' : '';
-                $field.= '<option '.$selected.' value="'.$this->options[$i]->{$this->col_id}.'">';
-                    $field.= $this->options[$i]->{$this->col_text};
-                $field.= '</option>';
-            }
-        } else {
-            if ($this->col_id!=null) {
+        if ($cpt_elem > 0) {
+            if (is_object($this->options[0])) {
                 for ($i=0; $i<$cpt_elem; $i++) {
-                    $selected=($this->options[$i][$this->col_id]==$this->value) ? ' selected="selected" ' : '';
-                    $field.= '<option '.$selected.' value="'.$this->options[$i][$this->col_id].'">';
-                        $field.= $this->options[$i][$this->col_text];
+                    $selected=($this->options[$i]->{$this->col_id}==$this->value) ? ' selected="selected" ' : '';
+                    $field.= '<option '.$selected.' value="'.$this->options[$i]->{$this->col_id}.'">';
+                        $field.= $this->options[$i]->{$this->col_text};
                     $field.= '</option>';
                 }
             } else {
-                for ($i=0; $i<$cpt_elem; $i++) {
-                    $selected=($this->options[$i]==$this->value) ? ' selected="selected" ' : '';
-                    $field.= '<option '.$selected.' value="'.$this->options[$i].'">';
-                        $field.= $this->options[$i];
-                    $field.= '</option>';
+                if ($this->col_id!=null) {
+                    for ($i=0; $i<$cpt_elem; $i++) {
+                        $selected=($this->options[$i][$this->col_id]==$this->value) ? ' selected="selected" ' : '';
+                        $field.= '<option '.$selected.' value="'.$this->options[$i][$this->col_id].'">';
+                            $field.= $this->options[$i][$this->col_text];
+                        $field.= '</option>';
+                    }
+                } else {
+                    for ($i=0; $i<$cpt_elem; $i++) {
+                        $selected=($this->options[$i]==$this->value) ? ' selected="selected" ' : '';
+                        $field.= '<option '.$selected.' value="'.$this->options[$i].'">';
+                            $field.= $this->options[$i];
+                        $field.= '</option>';
+                    }
                 }
             }
         }
-        
         $field.= '</select>';
         if (!empty($this->inputgrid)) {
             $field.= '</div>';
