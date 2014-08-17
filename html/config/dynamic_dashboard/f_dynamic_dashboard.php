@@ -7,7 +7,6 @@ $d_form->add('hidden', 'f_id_config_dynamic_dashboard')
 $d_form->add('text', 'f_title')
         ->value(@$cur_dynamic_dashboard->title)
         ->label(TITLE)
-        ->placeholder('text')
         ->autocomplete(false)
         ->labelGrid('col-xs-4 col-md-2 col-lg-2')
         ->inputGrid('col-xs-6 col-md-5 col-lg-5');

@@ -7,12 +7,14 @@ $g_form->add('hidden', 'f_id_auth_group')
 $g_form->add('text', 'f_group')
         ->value(@$cur_group->group)
         ->label(GROUP)
+        ->autocomplete(false)
         ->labelGrid('col-xs-4 col-md-2')
         ->inputGrid('col-xs-4 col-md-3');
 
 $g_form->add('text', 'f_group_description')
         ->value(@$cur_group->group_description)
         ->label(DESC)
+        ->autocomplete(false)
         ->labelGrid('col-xs-4 col-md-2')
         ->inputGrid('col-xs-4 col-md-3');
 

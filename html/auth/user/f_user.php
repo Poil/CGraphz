@@ -7,12 +7,14 @@ $u_form->add('hidden', 'f_id_auth_user')
 $u_form->add('text', 'f_user')
         ->value(@$cur_user->user)
         ->label(USER)
+        ->autocomplete(false)
         ->labelGrid('col-xs-4 col-md-2')
         ->inputGrid('col-xs-4 col-md-3');
 
 $u_form->add('select', 'f_type')
         ->value(@$cur_user->type)
         ->label(MENU_NAME)
+        ->autocomplete(false)
         ->options(array('mysql','ldap'))
         ->labelGrid('col-xs-4 col-md-2')
         ->inputGrid('col-xs-4 col-md-3');
@@ -20,24 +22,28 @@ $u_form->add('select', 'f_type')
 $u_form->add('text', 'f_passwd')
         ->iType('password')
         ->label(PASSWORD)
+        ->autocomplete(false)
         ->labelGrid('col-xs-4 col-md-2')
         ->inputGrid('col-xs-4 col-md-3');
 
 $u_form->add('text', 'f_prenom')
         ->value(@$cur_user->prenom)
         ->label(FIRSTNAME)
+        ->autocomplete(false)
         ->labelGrid('col-xs-4 col-md-2')
         ->inputGrid('col-xs-4 col-md-3');
 
 $u_form->add('text', 'f_nom')
         ->value(@$cur_user->nom)
         ->label(NAME)
+        ->autocomplete(false)
         ->labelGrid('col-xs-4 col-md-2')
         ->inputGrid('col-xs-4 col-md-3');
 
 $u_form->add('text', 'f_mail')
         ->value(@$cur_user->mail)
         ->label(EMAIL)
+        ->autocomplete(false)
         ->labelGrid('col-xs-4 col-md-2')
         ->inputGrid('col-xs-4 col-md-3');
 

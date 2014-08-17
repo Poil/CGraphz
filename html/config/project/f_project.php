@@ -7,12 +7,14 @@ $p_form->add('hidden', 'f_id_config_project')
 $p_form->add('text', 'f_project')
         ->value(@$cur_project->project)
         ->label(PROJECT)
+        ->autocomplete(false)
         ->labelGrid('col-xs-3 col-md-1')
         ->inputGrid('col-xs-4 col-md-3');
 
 $p_form->add('text', 'f_project_description')
         ->value(@$cur_project->project_description)
         ->label(DESC)
+        ->autocomplete(false)
         ->labelGrid('col-xs-3 col-md-1')
         ->inputGrid('col-xs-4 col-md-3');
 

@@ -13,6 +13,7 @@ if (isset($_GET['f_id_auth_user'])) {
            ->value($cur_group_user->user)
            ->readonly(true)
            ->label(USER)
+           ->autocomplete(false)
            ->labelGrid('col-xs-3 col-md-3')
            ->inputGrid('col-xs-9 col-md-9');
    

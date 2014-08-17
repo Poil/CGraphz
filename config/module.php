@@ -41,8 +41,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
     } else if ($module=='auth') {
         if ($component=='user') {
             include(DIR_FSROOT.'/view/backend/v_user.php');
-        }
-        else if ($component=='group') {
+        } else if ($component=='group') {
             include(DIR_FSROOT.'/view/backend/v_group.php');
         }
     } else if ($module=='perm') {
@@ -110,8 +109,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
                     echo '<div class="clearfix"></div>';
                     if (isset($_GET['f_id_auth_user'])) {
                         echo '<strong>'.DEL.'</strong>';
-                    }
-                    else {
+                    } else {
                         echo '<strong>'.ADD.'</strong>';
                     }
                     include(DIR_FSROOT.'/html/small_admin/mygroup_user/f_group_user.php');
@@ -157,8 +155,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
             echo '<fieldset>';
             if (isset($_GET['f_id_config_dynamic_dashboard'])) {
                 echo '<legend>'.EDIT.'</legend>';
-            }
-            else {
+            } else {
                 echo '<legend>'.ADD.'</legend>';
             }
             
@@ -181,8 +178,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
                 echo '<div class="clearfix"></div>';
                 if (isset($_GET['f_id_auth_user'])) {
                     echo '<strong>'.DEL.'</strong>';
-                }
-                else {
+                } else {
                     echo '<strong>'.ADD.'</strong>';
                 }
                 include(DIR_FSROOT.'/html/small_admin/mydashboard_content/f_dynamic_dashboard_content.php');

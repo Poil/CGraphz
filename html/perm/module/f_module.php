@@ -7,23 +7,27 @@ $m_form->add('hidden', 'f_id_perm_module')
 $m_form->add('text', 'f_module')
         ->value(@$cur_module->module)
         ->label(MODULE)
+        ->autocomplete(false)
         ->labelGrid('col-xs-3 col-md-1')
         ->inputGrid('col-xs-4 col-md-3');
 
 $m_form->add('text', 'f_menu_name')
         ->value(@$cur_module->menu_name)
         ->label(MENU_NAME)
+        ->autocomplete(false)
         ->labelGrid('col-xs-3 col-md-1')
         ->inputGrid('col-xs-4 col-md-3');
 
 $m_form->add('text', 'f_menu_order')
         ->value(@$cur_module->menu_order)
         ->label(MENU_ORDER)
+        ->autocomplete(false)
         ->labelGrid('col-xs-3 col-md-1')
         ->inputGrid('col-xs-4 col-md-3');
 
 $m_form->add('text', 'f_component')
         ->value(@$cur_module->component)
+        ->autocomplete(false)
         ->label(COMPONENT)
         ->labelGrid('col-xs-3 col-md-1')
         ->inputGrid('col-xs-4 col-md-3');

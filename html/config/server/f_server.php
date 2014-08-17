@@ -8,6 +8,7 @@ if (isset($cur_server->id_config_server)) {
    $s_form->add('text', 'f_server_name')
            ->value(@$cur_server->server_name)
            ->label(SERVER)
+           ->autocomplete(false)
            ->labelGrid('col-xs-3 col-md-1')
            ->inputGrid('col-xs-4 col-md-3');
 } else {
@@ -22,6 +23,7 @@ if (isset($cur_server->id_config_server)) {
 $s_form->add('text', 'f_server_description')
         ->value(@$cur_server->server_description)
         ->label(DESC)
+        ->autocomplete(false)
         ->labelGrid('col-xs-3 col-md-1')
         ->inputGrid('col-xs-4 col-md-3');
 

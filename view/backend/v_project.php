@@ -34,8 +34,8 @@ if (isset($cur_project)) {
     echo '
         <ul class="nav nav-tabs" role="tablist">
           <li class="'.$tab_project_class.'"><a href="#project_'.$project_href.'" role="tab" data-toggle="tab">'.$project_title.'</a></li>
-          <li class="'.$tab_project_group_class.'"><a href="#project_group" role="tab" data-toggle="tab">Project Groups</a></li>
-          <li class="'.$tab_project_server_class.'" ><a href="#project_server" role="tab" data-toggle="tab">Project Servers</a></li>
+          <li class="'.$tab_project_group_class.'"><a href="#project_group" role="tab" data-toggle="tab">'.GROUP.'</a></li>
+          <li class="'.$tab_project_server_class.'" ><a href="#project_server" role="tab" data-toggle="tab">'.SERVER.'</a></li>
         </ul>
         <div class="tab-content">';
 } else {

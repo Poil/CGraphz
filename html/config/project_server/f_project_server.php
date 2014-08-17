@@ -25,6 +25,7 @@ if (isset($_GET['f_id_config_server'])) {
    $ps_form->add('checkbox','f_filter_server_in_project')
            ->value('true')
            ->label('filter server')
+           ->autocomplete(false)
            ->inputGrid('col-sm-offset-2 col-md-9')
            ->checked($f_filter_server_in_project)
            ->onclick("$('#f_submit_project_server').click()");
@@ -33,12 +34,12 @@ if (isset($_GET['f_id_config_server'])) {
            ->value($cur_project->id_config_project);
 
    $ps_form->add('select','f_id_config_server')
-            ->label(SERVER)
-            ->labelGrid('col-xs-2 col-md-2')
-            ->inputGrid('col-xs-9 col-md-9')
-            ->multiple(true)
-            ->fieldClasses('multiselect')
-            ->options($all_server, 'id_config_server', 'server_name');
+           ->label(SERVER)
+           ->labelGrid('col-xs-2 col-md-2')
+           ->inputGrid('col-xs-9 col-md-9')
+           ->multiple(true)
+           ->fieldClasses('multiselect')
+           ->options($all_server, 'id_config_server', 'server_name');
 
    $ps_form->add('submit', 'f_submit_project_server')
            ->iType('add')
