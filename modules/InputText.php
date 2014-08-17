@@ -2,6 +2,7 @@
 class InputText extends Field{
     private $maxlength;
     private $itype='text';
+    private $autocomplete=true;
     
     public function buildField(){
         $field = '<div class="form-group">';
@@ -20,6 +21,9 @@ class InputText extends Field{
         if ($this->readonly) { $ro='readonly="readonly"'; }
         else { $ro=''; }
 
+        if (!$this->autocomplete) { $autocomplete='autocomplete="off"'; }
+        else { $autocomplete=''; }
+
         if(!empty($this->label)){
             if (!empty($this->labelgrid)) {
                 $this->labelclass.=' '.$this->labelgrid;
@@ -35,7 +39,7 @@ class InputText extends Field{
             $field.= '<div class="'.$this->inputgrid.'">';
         }
         
-        $field.= '<input '.$ro.' class="form-control" type="'.$this->itype.'" ';
+        $field.= '<input '.$ro.' '.$autocomplete.' class="form-control" type="'.$this->itype.'" ';
             if(!empty($this->name))
                 $field.= 'name="'.$this->name.'" ';
             if(!empty($this->value))
@@ -64,6 +68,11 @@ class InputText extends Field{
 
     public function itype($v) {
         $this->itype = $v;
+        return $this;
+    }
+
+    public function autocomplete($v) {
+        $this->autocomplete = $v;
         return $this;
     }
 }

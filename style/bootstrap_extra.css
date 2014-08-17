@@ -6,12 +6,6 @@ div#dashboard {
   margin-left:25px;
 }
 
-form label {
-    display:inline;
-    float:left;
-    width:85px;
-}
-
 legend {
     width:auto; /* Or auto */
     padding:0 10px; /* To give a bit of padding on the left and right */
