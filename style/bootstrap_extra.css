@@ -1,3 +1,7 @@
+body {
+  margin-bottom:100px;
+}
+
 div#dashboard {
   margin-left:25px;
 }

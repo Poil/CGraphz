@@ -60,12 +60,12 @@ if (isset($cur_group)) {
         </ul>
         <div class="tab-content">';
 } else {
-    $user_href='add';
-    $user_title=ADD.' '.GROUP;
+    $group_href='add';
+    $group_title=ADD.' '.GROUP;
     echo '<div class="clearfix"></div><br />';
     echo '
         <ul class="nav nav-tabs" role="tablist">
-          <li class="active"><a href="#user_'.$user_href.'" role="tab" data-toggle="tab">'.$user_title.'</a></li>
+          <li class="active"><a href="#group_'.$group_href.'" role="tab" data-toggle="tab">'.$group_title.'</a></li>
         </ul>
         <div class="tab-content">';
 }
