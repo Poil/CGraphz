@@ -1,32 +1,65 @@
 <?php
 class InputCheckbox extends Field{
-    private $onclick = null;
     private $checked = false;
     private $default = false;
     private $display = 'inline';
     
     public function buildField(){
-        $field = '<label for="input_'.$this->name.'" class="checkbox '.$this->display.'">';
-            if($this->default !== false)
-                $field.= '<input type="hidden" name="'.$this->name.'" value="'.$this->default.'"/> ';
+        $field = '<div class="form-group">'."\n";
 
-            $field.= '<input type="checkbox" name="'.$this->name.'" id="input_'.$this->name.'" '.$this->onclick.' value="'.$this->value.'" ';
-            if($this->checked)
-                $field.= ' checked /> ';
-            else
-                $field.= ' /> ';
-        $field.= $this->label.'</label>';
+        switch($this->formtype) {
+            case 'horizontal':
+                $field.= '<div class="checkbox">'."\n";
+                $this->labelclass.='';
+            break;
+            case 'inline':
+                // In inline case we reset field, because not the same div
+                $field = '<div class="checkbox">'."\n";
+                $this->labelclass.='';
+            break;
+            default:
+                // In default case we reset field, because not the same div
+                $field = '<div class="checkbox">'."\n";
+                $this->labelclass.='';
+            break;
+        }
+        if ($this->readonly) { $ro='readonly="readonly"'; }
+        else { $ro=''; }
+
+        if (!empty($this->inputgrid)) {
+            $field.= '<div class="'.$this->inputgrid.'">'."\n";
+        }
+
+        if(!empty($this->label)){
+            $field.= '<label class="'.$this->labelclass.'" for="'.$this->name.'">'."\n";
+        }
+
+        $field.= '<input type="checkbox" name="'.$this->name.'" id="'.$this->name.'" '.$this->onclick.' value="'.$this->value.'" ';
+        if($this->checked)
+            $field.= ' checked />'."\n";
+        else
+            $field.= ' />'."\n";
         
-        if($this->display == 'inline')
-            $field.='<br/>';
-        
+        if(!empty($this->label)){
+            $field.=$this->label; 
+            if($this->important)
+                $field.= '<span class="red">*</span>'."\n"; 
+            $field.= '</label>'."\n";
+        }
+
+        if (!empty($this->inputgrid)) {
+            $field.= '</div>'."\n";
+        }
+        if ($this->formtype=='horizontal') {
+            $field.= '</div>'."\n";
+        }
+
+        # formgroup     
+        $field.= '</div>'."\n";
+
         return $field;
     }
     
-    public function onclick($v){
-        $this->onclick = 'onClick="'.$v.'"';
-        return $this;
-    }
     
     public function checked($v=true){
         $this->checked = $v;

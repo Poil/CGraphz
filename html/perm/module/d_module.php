@@ -2,7 +2,7 @@
 <thead>
 <tr>
 	<th><?php echo MODULE ?></th>
-	<th><?php echo COMPONANT ?></th>
+	<th><?php echo COMPONENT ?></th>
 	<th><?php echo MENU_NAME ?></th>
 	<th><?php echo MENU_ORDER ?></th>
 </tr>

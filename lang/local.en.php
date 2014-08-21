@@ -70,7 +70,7 @@ define('MANAGE_MY_DYN_DASHBOARDS','Manage my dynamic dashboards');
 define('PROJECT_SERVERS','Project servers');
 define('PROJECT_PERMS','Project groups');
 define('MODULE','Module');
-define('COMPONANT','Component');
+define('COMPONENT','Component');
 define('PROJECT','Project');
 define('PROJECTS','Projects');
 define('ROLE','Role');

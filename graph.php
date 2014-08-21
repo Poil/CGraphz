@@ -24,7 +24,7 @@ $height = GET('y') ? filter_input(INPUT_GET, 'y', FILTER_VALIDATE_INT, array(
 $height = empty($_GET['y']) ? $CONFIG['height'] : $_GET['y'];
 $host=validate_get(GET('h'), 'host');
 $s=intval($_GET['s']);
-$e=intval($_GET['e']);
+$e=isset($_GET['e']) ? intval($_GET['e']) : null;
 
 if (strpos($host,':')!=FALSE) {
 	$tmp=explode(':',$host);
@@ -39,12 +39,6 @@ if (!$authorized=$auth->check_access_right($host)) {
 if (validate_get(GET('h'), 'host') === NULL) {
 	$log->write('CGRAPHZ ERROR: host contains unknown characters');
 	error_image('[ERROR] host contains unknown characters');
-}
-
-if ($width === NULL || $height === NULL) {
-	$log->write(sprintf('CGRAPHZ ERROR: Invalid image dimension, x="%s", y="%s"',
-		urlencode(GET('x')),
-		urlencode(GET('y'))));
 }
 
 if ($authorized->collectd_version) {

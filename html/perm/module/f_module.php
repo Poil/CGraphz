@@ -1,47 +1,55 @@
-<form class="form-horizontal" role="form" name="f_form_module" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_perm_module'); ?>">
-    <input type="hidden" name="f_id_perm_module" id="f_id_perm_module" value="<?php echo @$cur_module->id_perm_module; ?>" />
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="f_module"><?php echo MODULE ?></label>
-        <div class="col-sm-6">
-            <input class="form-control" type="text" name="f_module" id="f_module" value="<?php echo @$cur_module->module; ?>" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="f_component"><?php echo COMPONANT ?></label>
-        <div class="col-sm-6">
-            <input class="form-control" type="text" name="f_component" id="f_component" value="<?php echo @$cur_module->component; ?>" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="f_menu_name"><?php echo MENU_NAME ?></label>
-        <div class="col-sm-6">
-            <input class="form-control" type="text" name="f_menu_name" id="f_menu_name" value="<?php echo @$cur_module->menu_name; ?>" />
-        </div>
-    </div>
-    <div class="form-group">
-    <label class="col-sm-3 control-label" for="f_menu_order"><?php echo MENU_ORDER ?></label>
-        <div class="col-sm-6">
-            <input class="form-control" type="text" name="f_menu_order" id="f_menu_order" value="<?php echo @$cur_module->menu_order; ?>" />
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-6">
-            <input class="btn btn-success" type="submit" name="f_submit_module" id="f_submit_module" value="<?php echo SUBMIT ?>" />
-        </div>
-    </div>
-</form>
+<?php
+$m_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_module');
 
-<?php
+$m_form->add('hidden', 'f_id_perm_module')
+        ->value(@$cur_module->id_perm_module);
+
+$m_form->add('text', 'f_module')
+        ->value(@$cur_module->module)
+        ->label(MODULE)
+        ->autocomplete(false)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$m_form->add('text', 'f_menu_name')
+        ->value(@$cur_module->menu_name)
+        ->label(MENU_NAME)
+        ->autocomplete(false)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$m_form->add('text', 'f_menu_order')
+        ->value(@$cur_module->menu_order)
+        ->label(MENU_ORDER)
+        ->autocomplete(false)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$m_form->add('text', 'f_component')
+        ->value(@$cur_module->component)
+        ->autocomplete(false)
+        ->label(COMPONENT)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$m_form->add('submit', 'f_submit_module')
+        ->iType('add')
+        ->labelGrid('col-xs-offset-3 col-md-offset-1')
+        ->inputGrid('col-xs-4 col-md-3')
+        ->value(SUBMIT);
+
+echo $m_form->bindForm();
+
 if (isset($_GET['f_id_perm_module'])) {
-?>
-    <form class="form-horizontal" name="f_form_del_module" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_perm_module'); ?>" onsubmit="return validate_del(this);" role="form">
-    <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-6">
-            <input type="hidden" name="f_id_perm_module" id="f_del_id_perm_module" value="<?php echo $cur_module->id_perm_module; ?>" />
-            <input class="btn btn-danger" type="submit" name="f_del_module" id="f_del_module" value="<?php echo DEL ?>" />
-        </div>
-    </div>
-    </form>
-<?php
+   $m_dform = new Form('horizontal', removeqsvar($cur_url, array('f_id_perm_module','last_action')).'&amp;last_action=edit_module');
+   $m_dform->add('hidden', 'f_id_perm_module')
+           ->value($cur_module->id_perm_module);
+
+   $m_dform->add('submit', 'f_del_module')
+           ->iType('delete')
+           ->labelGrid('col-xs-offset-3 col-md-offset-1')
+           ->inputGrid('col-xs-4 col-md-3')
+           ->value(DEL);
+   echo $m_dform->bindForm();
 }
 ?>

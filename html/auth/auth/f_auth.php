@@ -10,20 +10,20 @@
    $form->add('text', 'f_user')
         ->label(USER)
         ->labelGrid('col-xs-3 col-md-4')
-        ->inputGrid('col-xs-6 col-md-4"')
+        ->inputGrid('col-xs-6 col-md-4')
         ->placeholder(USER);
     
    $form->add('text', 'f_passwd')
         ->iType('password')
         ->label(PASSWORD)
         ->labelGrid('col-xs-3 col-md-4')
-        ->inputGrid('col-xs-6 col-md-4"')
+        ->inputGrid('col-xs-6 col-md-4')
         ->placeholder(PASSWORD);
 
    $form->add('submit', 'f_submit_auth')
         ->iType('primary')
         ->labelGrid('col-xs-offset-3 col-md-offset-4')
-        ->inputGrid('col-xs-6 col-md-4"')
+        ->inputGrid('col-xs-6 col-md-4')
         ->value(SUBMIT);
  
    $form->bindValues($_POST); // Ici on lie automatiquement un tableau de variable ou une entité de la couche modèle
