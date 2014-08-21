@@ -53,7 +53,7 @@ define('MONTH','month');
 define('MONTHS','months');
 define('YEAR','year');
 define('CUSTOM','Custom');
-define('UNKNOWN_SERVER','Unknown serve');
+define('UNKNOWN_SERVER','Unknown server');
 define('SERVERS_FOUND','Servers found');
 define('RRDS_FOUND','RRDs found');
 define('MANAGE_MODULES','Manage modules');
