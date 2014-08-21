@@ -1,63 +1,59 @@
-<form class="form-horizontal" role="form" name="f_form_server" method="post" action="">
-<input type="hidden" name="f_id_config_server" id="f_id_config_server" value="<?php echo @$cur_server->id_config_server; ?>" />
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="f_server_name">Server name</label>
-    <div class="col-sm-6">
-    <?php if (isset($cur_server->id_config_server)) { ?>
-        <input id="f_server_name" name="f_server_name" value="<?php echo $cur_server->server_name ?>" readonly="readonly" />
-    <?php } else { ?>
-            <select name="f_server_name[]" id="f_server_name" class="multiselect" multiple="multiple">
-            <?php 
-            for ($i=0; $i<$cpt_rrdserver; $i++) {
-                echo '<option value="'.$all_rrdserver[$i]->server_name.'">';
-                echo $all_rrdserver[$i]->server_name;
-                echo '</option>';
-            } 
-            ?>
-            </select>
-    <?php } ?>        
-    </div>
-</div>
+<?php
+$s_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_server');
 
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="f_server_description"><?php echo DESC ?></label>
-    <div class="col-sm-6">
-        <input type="text" name="f_server_description" id="f_server_description" value="<?php echo @$cur_server->server_description; ?>" />
-    </div>
-</div>
+$s_form->add('hidden', 'f_id_config_server')
+        ->value(@$cur_server->id_config_server);
 
-<div class="form-group">
-    <label class="col-sm-4 control-label" for="f_collectd_version"><?php echo COLLECTD_VERSION;?></label>
-    <div class="col-sm-6">
-        <select name="f_collectd_version" id="f_collectd_version">
-        <?php
-        if (!empty($cur_server->collectd_version)) {
-            $cur_version=$cur_server->collectd_version;
-        }
-        foreach(unserialize(COLLECTD_VERSIONS) as $collectd_version) {
-            echo '<option value="'.$collectd_version.'" '.(($collectd_version == $cur_version)?' selected="selected"':'').'>';
-            echo ((!is_null($collectd_version)) ? $collectd_version : DEFAULT_VERSION);
-            echo '</option>';
-        }
-        ?>
-        </select>
-    </div>
-</div>
+if (isset($cur_server->id_config_server)) {
+   $s_form->add('text', 'f_server_name')
+           ->value(@$cur_server->server_name)
+           ->label(SERVER)
+           ->autocomplete(false)
+           ->labelGrid('col-xs-3 col-md-1')
+           ->inputGrid('col-xs-4 col-md-3');
+} else {
+   $s_form->add('select','f_server_name')
+           ->label(SERVER)
+           ->labelGrid('col-xs-3 col-md-1')
+           ->inputGrid('col-xs-4 col-md-3')
+           ->multiple(true)
+           ->fieldClasses('multiselect')
+           ->options($all_rrdserver, 'server_name', 'server_name');
+}
+$s_form->add('text', 'f_server_description')
+        ->value(@$cur_server->server_description)
+        ->label(DESC)
+        ->autocomplete(false)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
 
-<div class="form-group">
-    <div class="col-sm-offset-4 col-sm-6">
-        <input class="btn btn-success" type="submit" name="f_submit_server" id="f_submit_server" value="<?php echo SUBMIT ?>" />
-    </div>
-</div>
-</form>
+$s_form->add('select','f_collectd_version')
+       ->label(COLLECTD_VERSION)
+       ->options(unserialize(COLLECTD_VERSIONS))
+       ->value(@$cur_server->collectd_version)
+       ->labelGrid('col-xs-3 col-md-1')
+       ->inputGrid('col-xs-4 col-md-3');
 
-<?php if (isset($_GET['f_id_config_server'])) { ?>
-    <form class="form-horizontal" role="form" name="f_form_del_server" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_server'); ?>" onsubmit="return validate_del(this);">
-    <div class="form-group">
-        <input type="hidden" name="f_id_config_server" id="f_del_id_config_server" value="<?php echo $cur_server->id_config_server; ?>" />
-        <div class="col-sm-offset-4 col-sm-6">
-            <input class="btn btn-danger" type="submit" name="f_del_server" id="f_del_server" value="<?php echo DEL ?>" />
-        </div>
-    </div>
-    </form>
-<?php } ?>
+$s_form->add('submit', 'f_submit_server')
+        ->iType('add')
+        ->labelGrid('col-xs-offset-3 col-md-offset-1')
+        ->inputGrid('col-xs-4 col-md-3')
+        ->value(SUBMIT);
+
+echo $s_form->bindForm();
+
+if (isset($_GET['f_id_config_server'])) {
+   $s_dform = new Form('horizontal', removeqsvar($cur_url, array('f_id_config_server','last_action')).'&amp;last_action=edit_server');
+
+   $s_dform->add('hidden', 'f_id_config_server')
+           ->value($cur_server->id_config_server);
+
+   $s_dform->add('submit', 'f_del_server')
+           ->iType('delete')
+           ->labelGrid('col-xs-offset-3 col-md-offset-1')
+           ->inputGrid('col-xs-4 col-md-3')
+           ->value(DEL);
+
+   echo $s_dform->bindForm();
+}
+?>

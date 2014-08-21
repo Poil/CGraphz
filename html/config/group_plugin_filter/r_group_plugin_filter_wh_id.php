@@ -19,6 +19,6 @@ if (isset($_GET['f_id_config_plugin_filter']) && isset($_GET['f_id_auth_group'])
 
 	$connSQL->bind('f_id_auth_group',$f_id_auth_group);
 	$connSQL->bind('f_id_config_plugin_filter',$f_id_config_plugin_filter);
-	$cur_plugin_filter_group=$connSQL->row($lib);
+	$cur_group_plugin_filter=$connSQL->row($lib);
 }
 ?>

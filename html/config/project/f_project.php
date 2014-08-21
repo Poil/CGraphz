@@ -1,36 +1,43 @@
-<form class="form-horizontal" role="form" name="f_form_project" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_project'); ?>">
-    <input type="hidden" name="f_id_config_project" id="f_id_config_project" value="<?php echo @$cur_project->id_config_project; ?>" />
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="f_project"><?php echo PROJECT ?></label>
-        <div class="col-sm-6">
-            <input type="text" name="f_project" id="f_project" value="<?php echo @$cur_project->project; ?>" />
-        </div>
-    </div>
-
-    <div class="form-group">
-    <label class="col-sm-3 control-label" for="f_project_description"><?php echo DESC ?></label>
-        <div class="col-sm-6">
-            <input type="text" name="f_project_description" id="f_project_description" value="<?php echo @$cur_project->project_description; ?>" />
-        </div>
-    </div>
-    <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-6">
-            <input class="btn btn-success" type="submit" name="f_submit_project" id="f_submit_project" value="<?php echo SUBMIT ?>" />
-        </div>
-    </div>
-</form>
-
 <?php
+$p_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_project');
+
+$p_form->add('hidden', 'f_id_config_project')
+        ->value(@$cur_project->id_config_project);
+
+$p_form->add('text', 'f_project')
+        ->value(@$cur_project->project)
+        ->label(PROJECT)
+        ->autocomplete(false)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$p_form->add('text', 'f_project_description')
+        ->value(@$cur_project->project_description)
+        ->label(DESC)
+        ->autocomplete(false)
+        ->labelGrid('col-xs-3 col-md-1')
+        ->inputGrid('col-xs-4 col-md-3');
+
+$p_form->add('submit', 'f_submit_project')
+        ->iType('add')
+        ->labelGrid('col-xs-offset-3 col-md-offset-1')
+        ->inputGrid('col-xs-4 col-md-3')
+        ->value(SUBMIT);
+
+echo $p_form->bindForm();
+
 if (isset($_GET['f_id_config_project'])) {
-?>
-    <form  class="form-horizontal" name="f_form_del_project" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_project'); ?>" onsubmit="return validate_del(this);">
-        <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-6">
-        <input class="form-control" type="hidden" name="f_id_config_project" id="f_del_id_config_project" value="<?php echo $cur_project->id_config_project; ?>" />
-        <input class="btn btn-danger" type="submit" name="f_del_project" id="f_del_project" value="<?php echo DEL ?>" />
-        </div>
-        </div>
-    </form>
-<?php
+   $p_dform = new Form('horizontal', removeqsvar($cur_url, array('f_id_config_project','last_action')).'&amp;last_action=edit_project');
+
+   $p_dform->add('hidden', 'f_id_config_project')
+           ->value($cur_project->id_config_project);
+
+   $p_dform->add('submit', 'f_del_project')
+           ->iType('delete')
+           ->labelGrid('col-xs-offset-3 col-md-offset-1')
+           ->inputGrid('col-xs-4 col-md-3')
+           ->value(DEL);
+
+   echo $p_dform->bindForm();
 }
 ?>

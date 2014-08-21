@@ -1,15 +1,13 @@
+body {
+  margin-bottom:100px;
+}
+
 div#dashboard {
   margin-left:25px;
 }
 
-form label {
-    display:inline;
-    float:left;
-    width:85px;
-}
-
 legend {
-    width:inherit; /* Or auto */
+    width:auto; /* Or auto */
     padding:0 10px; /* To give a bit of padding on the left and right */
     border-bottom:none;
 }
@@ -21,7 +19,7 @@ fieldset {
 }
 
 fieldset fieldset {
-    min-width:400px;
+    min-width:470px;
     width:32%;  
     display:inline-block;
     vertical-align:top;
@@ -41,7 +39,7 @@ fieldset strong {
 }
 
 fieldset fieldset legend {
-    font-size:100%;
+    font-size:120%;
 }
 
 fieldset.large {

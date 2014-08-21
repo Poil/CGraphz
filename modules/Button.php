@@ -1,5 +1,5 @@
 <?php
-class InputSubmit extends Field{
+class Button extends Field{
     private $itype = 'default';
     
     public function buildField(){
@@ -29,7 +29,7 @@ class InputSubmit extends Field{
             break;
         }
         
-        $field.= '<button name="'.$this->name.'" id="'.$this->name.'" type="submit" class="btn '.$this->btnclass.'">'.$this->value.'</button>'."\n";
+        $field.= '<button name="'.$this->name.'" id="'.$this->name.'" class="btn '.$this->btnclass.'">'.$this->value.'</button>'."\n";
 
         switch($this->formtype) {
             case 'horizontal':

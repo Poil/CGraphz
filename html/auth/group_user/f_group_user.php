@@ -1,34 +1,77 @@
-<form name="f_form_group_user" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_user'); ?>">
-	<input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo @$cur_group->id_auth_group; ?>" />
-	<label for="f_id_auth_user"><?php echo USER ?></label>
-	<?php 
-	if ($cur_group_user->id_auth_user) {
-		echo '<input type="text" value="'.$cur_group_user->user.'" readonly="readonly" />';
-		echo '<input type="hidden" name="f_id_auth_user" id="f_id_auth_user" value="'.$cur_group_user->id_auth_user.'" />';
-	} else {
-		echo '<select name="f_id_auth_user" id="f_id_auth_user">';
-			for ($i=0; $i<$cpt_user; $i++) {
-				echo '<option value="'.$all_user[$i]->id_auth_user.'">';
-					echo $all_user[$i]->user.' ('.$all_user[$i]->nom.' '.$all_user[$i]->prenom.')';
-				echo '</option>';
-			}
-		echo '</select>';
-	}
-	?>
-	<br />
-	<label for="f_manager"><?php echo MANAGER ?></label>
-	<?php if ($cur_group_user->manager) { $check=' checked="checked" '; } ?>
-	<input type="checkbox" name="f_manager" id="f_manager" value="manager" <?php echo $check; ?>/><br />
-	<input type="submit" name="f_submit_group_user" id="f_submit_group_user" value="<?php echo SUBMIT ?>" />
-</form>
-<?php 
-if (isset($_GET['f_id_auth_user'])) {
-?>
-	<form name="f_form_group_user" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_auth_user'); ?>" onsubmit="return validate_del(this);">
-		<input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo @$cur_group->id_auth_group; ?>" />
-		<input type="hidden" name="f_id_auth_user" id="f_id_auth_user" value="<?php echo @$f_id_auth_user; ?>" />
-		<input type="submit" name="f_delete_group_user" id="f_delete_group_user" value="<?php echo DEL ?>" />
-	</form>
 <?php
+if (isset($_GET['f_id_auth_user'])) {
+   /* Edit */
+   $gu_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_user');
+   
+   $gu_form->add('hidden', 'f_id_auth_group')
+           ->value($cur_group->id_auth_group);
+
+   $gu_form->add('hidden', 'f_id_auth_user')
+           ->value($f_id_auth_user);
+   
+   $gu_form->add('text','f_user')
+           ->value($cur_group_user->user)
+           ->readonly(true)
+           ->label(USER)
+           ->autocomplete(false)
+           ->labelGrid('col-xs-3 col-md-3')
+           ->inputGrid('col-xs-9 col-md-9');
+   
+   $gu_form->add('checkbox','f_manager')
+           ->value('manager')
+           ->label(MANAGER)
+           ->inputGrid('col-sm-offset-3 col-md-9')
+           ->checked(@$cur_group_user->manager);
+   
+   $gu_form->add('submit', 'f_submit_group_user')
+           ->iType('add')
+           ->labelGrid('col-xs-offset-3 col-md-offset-3')
+           ->inputGrid('col-xs-9 col-md-9')
+           ->value(SUBMIT);
+   
+   echo $gu_form->bindForm();
+
+   /* Delete */
+   $gud_form = new Form('horizontal', removeqsvar($cur_url, array('f_id_auth_user','last_action')).'&amp;last_action=edit_user');
+
+   $gud_form->add('hidden', 'f_id_auth_user')
+           ->value($cur_group_user->id_auth_user);
+
+   $gud_form->add('hidden', 'f_id_auth_group')
+           ->value($f_id_auth_group);
+
+   $gud_form->add('submit', 'f_delete_group_user')
+           ->iType('delete')
+           ->labelGrid('col-xs-offset-3 col-md-offset-3')
+           ->inputGrid('col-xs-9 col-md-8')
+           ->value(DEL);
+
+   echo $gud_form->bindForm();
+} else {
+   /* Add */
+   $gu_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_user');
+   
+   $gu_form->add('hidden', 'f_id_auth_group')
+           ->value($cur_group->id_auth_group);
+   
+   $gu_form->add('select','f_id_auth_user')
+           ->options($all_user, 'id_auth_user', 'user')
+           ->label(USER)
+           ->labelGrid('col-xs-3 col-md-3')
+           ->inputGrid('col-xs-9 col-md-9');
+   
+   $gu_form->add('checkbox','f_manager')
+           ->value('manager')
+           ->label(MANAGER)
+           ->inputGrid('col-sm-offset-3 col-md-9');
+   
+   $gu_form->add('submit', 'f_submit_group_user')
+           ->iType('add')
+           ->labelGrid('col-xs-offset-3 col-md-offset-3')
+           ->inputGrid('col-xs-9 col-md-9')
+           ->value(SUBMIT);
+   
+   echo $gu_form->bindForm();
+
 }
 ?>

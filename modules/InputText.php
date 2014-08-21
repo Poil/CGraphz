@@ -2,9 +2,10 @@
 class InputText extends Field{
     private $maxlength;
     private $itype='text';
+    private $autocomplete=true;
     
     public function buildField(){
-        $field = '<div class="form-group">';
+        $field = '<div class="form-group">'."\n";
 
         switch($this->formtype) {
             case 'horizontal':
@@ -17,6 +18,11 @@ class InputText extends Field{
                 $this->labelclass.='';
             break;
         }
+        if ($this->readonly) { $ro='readonly="readonly"'; }
+        else { $ro=''; }
+
+        if (!$this->autocomplete) { $autocomplete='autocomplete="off"'; }
+        else { $autocomplete=''; }
 
         if(!empty($this->label)){
             if (!empty($this->labelgrid)) {
@@ -26,14 +32,14 @@ class InputText extends Field{
             $field.= '<label class="'.$this->labelclass.'" for="'.$this->name.'">'.$this->label; 
                 if($this->important)
                     $field.= ' <span class="red">*</span>'; 
-            $field.= '</label>';
+            $field.= '</label>'."\n";
         }
 
         if (!empty($this->inputgrid)) {
-            $field.= '<div class="'.$this->inputgrid.'">';
+            $field.= '<div class="'.$this->inputgrid.'">'."\n";
         }
         
-        $field.= '<input class="form-control" type="'.$this->itype.'" ';
+        $field.= '<input '.$ro.' '.$autocomplete.' class="form-control" type="'.$this->itype.'" ';
             if(!empty($this->name))
                 $field.= 'name="'.$this->name.'" ';
             if(!empty($this->value))
@@ -42,14 +48,14 @@ class InputText extends Field{
                 $field.= 'placeholder="'.$this->placeholder.'" ';
             if(!empty($this->maxlength))
                 $field.= 'maxlength="'.$this->maxlength.'" ';
-            $field.= 'id="input_'.$this->name.'"/>';
+            $field.= 'id="'.$this->name.'"/>'."\n";
        
         if (!empty($this->inputgrid)) {
-            $field.= '</div>';
+            $field.= '</div>'."\n";
         }
 
         # formgroup     
-        $field.= '</div>';
+        $field.= '</div>'."\n";
         
         return $field;
     }
@@ -62,6 +68,11 @@ class InputText extends Field{
 
     public function itype($v) {
         $this->itype = $v;
+        return $this;
+    }
+
+    public function autocomplete($v) {
+        $this->autocomplete = $v;
         return $this;
     }
 }

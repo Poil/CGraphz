@@ -1,29 +1,35 @@
 <?php
 if (isset($_GET['f_id_config_project'])) {
-?>
-	<form name="f_form_server_project" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_project'); ?>" onsubmit="return validate_del(this);">
-		<input type="hidden" name="f_id_config_project" id="f_id_config_project" value="<?php echo $f_id_config_project; ?>" />
-		<input type="hidden" name="f_id_config_server" id="f_id_config_server" value="<?php echo $cur_server->id_config_server; ?>" />
-		<input readonly="readonly" type="text" name="f_project_desc" id="f_project_desc" value="<?php echo $cur_server_project->project_description; ?>" />
-		<input type="submit" name="f_delete_server_project" id="f_delete_server_project" value="<?php echo DEL ?>" />
-	</form>
-<?php
+   $sp_form = new Form('inline', removeqsvar($cur_url, array('f_id_config_project','last_action')).'&amp;last_action=edit_project');
+   $sp_form->fieldset(true);
+   $sp_form->legend(DEL);
+   $sp_form->add('hidden', 'f_id_config_project')
+           ->value($f_id_config_project);
+
+   $sp_form->add('hidden', 'f_id_config_server')
+           ->value($cur_server->id_config_server);
+
+   $sp_form->add('text', 'f_project')
+           ->readonly(true)
+           ->value($cur_server_project->project);
+
+   $sp_form->add('submit', 'f_delete_server_project')
+           ->iType('delete')
+           ->value(DEL);
 } else {
-	?> 
-	<form name="f_formserver_project_" method="post" action="">
-		<input type="hidden" name="f_id_config_server" id="f_id_config_server" value="<?php echo $cur_server->id_config_server; ?>" />
-		<label for="f_id_config_project"><?php echo PROJECT ?></label>
-		<?php 
-		echo '<select name="f_id_config_project" id="f_id_config_project">';
-			for ($i=0; $i<$cpt_project; $i++) {
-				echo '<option value="'.$all_project[$i]->id_config_project.'">';
-					echo $all_project[$i]->project.' ('.$all_project[$i]->project_description.')';
-				echo '</option>';
-			}
-		echo '</select>';
-		?>
-		<input type="submit" name="f_submit_server_project" id="f_submit_server_project" value="<?php echo SUBMIT ?>" />
-	</form>
-	<?php 
+   $sp_form = new Form('inline', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_project');
+   $sp_form->fieldset(true);
+   $sp_form->legend(ADD);
+
+   $sp_form->add('hidden', 'f_id_config_server')
+           ->value($cur_server->id_config_server);
+
+   $sp_form->add('select','f_id_config_project')
+            ->options($all_project, 'id_config_project', 'project');
+
+   $sp_form->add('submit', 'f_submit_server_project')
+           ->iType('add')
+           ->value(SUBMIT);
 }
+echo $sp_form->bindForm();
 ?>

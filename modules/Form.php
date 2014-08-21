@@ -7,13 +7,13 @@ class Form{
     protected $items = array();
     protected $fieldset = false;
     protected $legend = null;
-    protected $method = 'POST';
+    protected $method = 'post';
     
     public function __construct($formtype='', $action='', $enctype='', $onsubmit=''){
         $this->action = $action;
         $this->formtype = $formtype;
         $this->enctype = $enctype;
-        $this->onsubmit = ' onSubmit="'.$onsubmit.'"';
+        $this->onsubmit = ' onsubmit="'.$onsubmit.'"';
         
         return $this;
     }
@@ -23,6 +23,8 @@ class Form{
             case 'html': $this->items[] = $value; break;
             case 'text': $this->items[$value] = new InputText($this->formtype, $value);
                 return $this->items[$value]; break;
+            case 'hidden': $this->items[$value] = new InputHidden($this->formtype, $value);
+                return $this->items[$value]; break;
             case 'password': $this->items[$value] = new InputPassword($this->formtype, $value);
                 return $this->items[$value]; break;
             case 'hidden': $this->items[$value] = new InputHidden($this->formtype, $value);
@@ -30,6 +32,8 @@ class Form{
             case 'textarea': $this->items[$value] = new Textarea($this->formtype, value);
                 return $this->items[$value]; break;
             case 'submit': $this->items[$value] = new InputSubmit($this->formtype, $value);
+                return $this->items[$value]; break;
+            case 'button': $this->items[$value] = new Button($this->formtype, $value);
                 return $this->items[$value]; break;
             case 'select': $this->items[$value] = new Select($this->formtype, $value);
                 return $this->items[$value]; break;
@@ -73,9 +77,9 @@ class Form{
             break;
         }
 
-        $view = '<form role="form" class="'.$formclass.'" action="'.$this->action.'" method="'.$this->method.'" '.$this->onsubmit.' '.$enctype.'>';
-        if($this->fieldset) $view.='<fieldset>';
-        if(!empty($this->legend)) $view.='<legend>'.$this->legend.'</legend>';
+        $view = '<form role="form" class="'.$formclass.'" action="'.$this->action.'" method="'.$this->method.'" '.$this->onsubmit.' '.$enctype.'>'."\n";
+        if($this->fieldset) $view.='<fieldset>'."\n";
+        if(!empty($this->legend)) $view.='<legend>'.$this->legend.'</legend>'."\n";
 
         foreach($this->items as $output){
             if($output instanceof field)
@@ -84,8 +88,8 @@ class Form{
                 $view.= $output;
         }
             
-        if($this->fieldset) $view.='</fieldset>';
-        return $view.'</form>';
+        if($this->fieldset) $view.='</fieldset>'."\n";
+        return $view.'</form>'."\n";
     }
 
     public function fieldset($v) {

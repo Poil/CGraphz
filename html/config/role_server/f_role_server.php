@@ -1,32 +1,47 @@
+			
 <?php
 if (isset($_GET['f_id_config_server'])) {
-?>
-	<form name="f_form_role_server" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_server'); ?>" onsubmit="return validate_del(this);">
-		<input type="hidden" name="f_id_config_role" id="f_id_config_role" value="<?php echo @$cur_role->id_config_role; ?>" />
-		<input type="hidden" name="f_id_config_server" id="f_id_config_server" value="<?php echo @$f_id_config_server; ?>" />
-		<input readonly="readonly" type="text" name="f_server_name" id="f_server_name" value="<?php echo @$cur_role_server->server_name; ?>" />
-		<input type="submit" name="f_delete_role_server" id="f_delete_role_server" value="<?php echo DEL ?>" />
-	</form>
-<?php
+   $rs_form = new Form('horizontal', removeqsvar($cur_url, array('f_id_config_server','last_action')).'&amp;last_action=edit_server');
+   $rs_form->fieldset(true);
+   $rs_form->legend(DEL);
+   $rs_form->add('hidden', 'f_id_config_server')
+           ->value($f_id_config_server);
+
+   $rs_form->add('hidden', 'f_id_config_role')
+           ->value($cur_role->id_config_role);
+
+   $rs_form->add('text', 'f_server')
+           ->readonly(true)
+           ->value($cur_role_server->server);
+
+   $rs_form->add('submit', 'f_delete_role_server')
+           ->iType('delete')
+           ->value(DEL);
 } else {
-	?> 
-	<form name="f_form_role_server" method="post" action="">
-		<label style="width:420px" for="f_filter_server_in_role"><?php echo FILTER_SRV_ALREADY_DEF_ROLE ?></label>
-			<input type="checkbox" name="f_filter_server_in_role" id="f_filter_server_in_role" value="true" <?php if ($f_filter_server_in_role=="true") echo ' checked="checked" '; ?> onclick="$('#f_submit_role_server').click();" /><br />
-			
-		<input type="hidden" name="f_id_config_role" id="f_id_config_role" value="<?php echo @$cur_role->id_config_role; ?>" />
-		<?php 
-		echo '<select name="f_id_config_server[]" id="f_id_config_server" class="multiselect" multiple="multiple">';
-			for ($i=0; $i<$cpt_server; $i++) {
-				echo '<option value="'.$all_server[$i]->id_config_server.'">';
-					echo $all_server[$i]->server_name.' ('.$all_server[$i]->server_description.')';
-				echo '</option>';
-			}
-		echo '</select>';
-		?>
-		<div class="clearfix"></div><br />
-		<input type="submit" name="f_submit_role_server" id="f_submit_role_server" value="<?php echo SUBMIT ?>" />
-	</form>
-	<?php 
+   $rs_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_server');
+   $rs_form->fieldset(true);
+   $rs_form->legend(ADD);
+
+   $rs_form->add('hidden', 'f_id_config_role')
+           ->value($cur_role->id_config_role);
+
+   $rs_form->add('checkbox','f_filter_server_in_role')
+           ->value('true')
+           ->checked($f_filter_server_in_role)
+           ->label('filter server')
+           ->labelGrid('col-xs-3 col-md-2')
+           ->inputGrid('col-xs-4 col-md-3')
+           ->onclick("$('#f_submit_role_server').click()");
+
+   $rs_form->add('select','f_id_config_server')
+            ->label(SERVER)
+            ->labelGrid('col-xs-3 col-md-2')
+            ->inputGrid('col-xs-4 col-md-3')
+            ->options($all_server, 'id_config_server', 'server_name');
+
+   $rs_form->add('submit', 'f_submit_role_server')
+           ->iType('add')
+           ->value(SUBMIT);
 }
+echo $rs_form->bindForm();
 ?>
