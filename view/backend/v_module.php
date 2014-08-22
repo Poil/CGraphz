@@ -48,7 +48,9 @@ if (isset($_GET['f_id_perm_module'])) {
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
+echo '<fieldset>';
 include(DIR_FSROOT.'/html/perm/module/f_module.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 if (isset($_GET['f_id_perm_module'])) {

@@ -55,7 +55,9 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
+echo '<fieldset>';
 include(DIR_FSROOT.'/html/config/dynamic_dashboard/f_dynamic_dashboard.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 if (isset($_GET['f_id_config_dynamic_dashboard'])) {

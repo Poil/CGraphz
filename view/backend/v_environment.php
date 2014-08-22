@@ -47,7 +47,9 @@ if (isset($_GET['f_id_config_environment'])) {
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
+echo '<fieldset>';
 include(DIR_FSROOT.'/html/config/environment/f_environment.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 if (isset($_GET['f_id_config_environment'])) {

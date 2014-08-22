@@ -76,7 +76,9 @@ if (isset($_GET['f_id_auth_group'])) {
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
+echo '<fieldset>';
 include(DIR_FSROOT.'/html/auth/group/f_group.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 if (isset($_GET['f_id_auth_group'])) {

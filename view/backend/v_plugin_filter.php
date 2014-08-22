@@ -41,7 +41,9 @@ if (isset($_GET['f_id_config_plugin_filter'])) {
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
+echo '<fieldset>';
 include(DIR_FSROOT.'/html/config/plugin_filter/f_plugin_filter.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 echo '</div>';

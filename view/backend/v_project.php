@@ -55,7 +55,9 @@ if (isset($_GET['f_id_config_project'])) {
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
+echo '<fieldset>';
 include(DIR_FSROOT.'/html/config/project/f_project.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 if (isset($_GET['f_id_config_project'])) {

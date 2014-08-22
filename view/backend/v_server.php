@@ -77,7 +77,9 @@ if (isset($_GET['f_id_config_server'])) {
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
+echo '<fieldset>';
 include(DIR_FSROOT.'/html/config/server/f_server.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 /* Clean */
