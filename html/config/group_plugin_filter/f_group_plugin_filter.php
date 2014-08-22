@@ -17,7 +17,7 @@ if (isset($_GET['f_id_config_plugin_filter'])) {
            ->iType('delete')
            ->value(DEL);
 } else {
-   $gpf_form = new Form('inline', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_plugin_filter');
+   $gpf_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_plugin_filter');
    $gpf_form->fieldset(true);
    $gpf_form->legend(ADD);
 
@@ -25,7 +25,10 @@ if (isset($_GET['f_id_config_plugin_filter'])) {
            ->value($cur_group->id_auth_group);
 
    $gpf_form->add('select','f_id_config_plugin_filter')
-            ->options($all_plugin_filter, 'id_config_plugin_filter', 'plugin_filter_desc');
+            ->options($all_plugin_filter, 'id_config_plugin_filter', 'plugin_filter_desc')
+            ->inputGrid('col-xs-12 col-md-12')
+            ->multiple(true)
+            ->fieldClasses('multiselect');
 
    $gpf_form->add('submit', 'f_submit_group_plugin_filter')
            ->iType('add')
