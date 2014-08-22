@@ -50,6 +50,7 @@ if (isset($_GET['f_id_perm_module'])) {
            ->labelGrid('col-xs-offset-3 col-md-offset-1')
            ->inputGrid('col-xs-4 col-md-3')
            ->value(DEL);
+
    echo $m_dform->bindForm();
 }
 ?>

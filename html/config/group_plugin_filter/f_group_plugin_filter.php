@@ -32,6 +32,8 @@ if (isset($_GET['f_id_config_plugin_filter'])) {
 
    $gpf_form->add('submit', 'f_submit_group_plugin_filter')
            ->iType('add')
+           ->labelGrid('col-xs-offset-0 col-md-offset-0')
+           ->inputGrid('col-xs-12 col-md-12')
            ->value(SUBMIT);
 }
 echo $gpf_form->bindForm();

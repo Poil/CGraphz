@@ -36,6 +36,8 @@ if (isset($_GET['f_id_perm_module'])) {
 
    $gpm_form->add('submit', 'f_submit_group_module')
            ->iType('add')
+           ->labelGrid('col-xs-offset-0 col-md-offset-0')
+           ->inputGrid('col-xs-12 col-md-12')
            ->value(SUBMIT);
 }
 echo $gpm_form->bindForm();
