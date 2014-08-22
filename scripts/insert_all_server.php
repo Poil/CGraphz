@@ -1,6 +1,7 @@
 <?php
 include('../config/config.php');
 
+$prod=false;
 $file_reporting="./insertion_doublon_reporting.json";
 
 $connSQL=new DB();
@@ -42,83 +43,83 @@ if ($find=='1') {
 
 	//////////////////////////////////////
 	// Reporting des server en doublon
-
-	$serverDoublon=$connSQL->query($lib);	
-	if(sizeof($serverDoublon) > 0){	
-		$json = file_get_contents($file_reporting);
-		if($json==NULL){
-			$json="{}";	
-		}
-		$parsed_json=json_decode($json);
-		
-		$jsonServer="[";
-		$serverMail="";
-		$i=0;
-		foreach($serverDoublon as $server){
-			if($i>0) $jsonServer.=",";
-			$jsonServer.='"'.$server->server_name.'"';
-			$serverMail.=" - ".htmlentities($server->server_name)."<br>";
-			$i++;
-		}
-		$jsonServer.="]";
-
-		$parsed_json->server=json_decode($jsonServer);
-
-		// Envoi de mail une fois par jours si il y a des doublons
-		$toReport=false;
-		if(isset($parsed_json->reporting)){
-			$date_reporting=new DateTime($parsed_json->reporting);
-			$date_reporting->add(new DateInterval("P1D"));
-			$now=new DateTime();
-
-			// Si le dernier reporting a etait fait il ya plus d'un jour alors on doit faire le reporting 
-			if($date_reporting < $now ) $toReport=true;
+	if($prod){
+		$serverDoublon=$connSQL->query($lib);	
+		if(sizeof($serverDoublon) > 0){	
+			$json = file_get_contents($file_reporting);
+			if($json==NULL){
+				$json="{}";	
+			}
+			$parsed_json=json_decode($json);
+			
+			$jsonServer="[";
+			$serverMail="";
+			$i=0;
+			foreach($serverDoublon as $server){
+				if($i>0) $jsonServer.=",";
+				$jsonServer.='"'.$server->server_name.'"';
+				$serverMail.=" - ".htmlentities($server->server_name)."<br>";
+				$i++;
+			}
+			$jsonServer.="]";
+	
+			$parsed_json->server=json_decode($jsonServer);
+	
+			// Envoi de mail une fois par jours si il y a des doublons
+			$toReport=false;
+			if(isset($parsed_json->reporting)){
+				$date_reporting=new DateTime($parsed_json->reporting);
+				$date_reporting->add(new DateInterval("P1D"));
+				$now=new DateTime();
+	
+				// Si le dernier reporting a etait fait il ya plus d'un jour alors on doit faire le reporting 
+				if($date_reporting < $now ) $toReport=true;
+			}else{
+				$toReport=true;
+			}
+	
+			if($toReport){
+				$from="Glenn INIZAN <glenn.inizan@fr.clara.net>";
+				$to="FR-si@fr.clara.net";
+				$passage_ligne = "\n";
+				$header = "From: ".$from.$passage_ligne;
+				$header .= "Reply-to: ".$from.$passage_ligne;
+				$header .= "MIME-Version: 1.0".$passage_ligne;
+				$header .= "Content-Type: text/html; charset=\"UTF-8\"".$passage_ligne;
+	
+			    $sujet="[Reporting CGraphZ] Probléme sur l'insertion de serveur dans CGraphZ";
+	
+				$messageHTML="
+			    <html>
+			        <body style='font-size : 12px; font-family : Verdana;'>
+			            <p>
+						Vous trouverez ci dessous la liste des serveurs en doublon dans CGraphZ. Ce probl&egrave;me vient d'un doublon des repertoires de graphe RRD pour ces serveurs (un en majuscule l'autre en minuscule). Afin d'etre sure d'afficher les bons graphes dans CGraphZ il est important de supprimer les repertoires qui ne sont plus à jours.
+			            </p>
+						<br>
+						Les serveurs sont : <br>".
+						$serverMail."
+			        </body>
+			    </html>";
+				echo $messageHTML."\n";
+			    mail($to,$sujet,$messageHTML,$header);
+	
+				$now=new DateTime();
+				$parsed_json->reporting=$now->format("Y-m-d H:i:s");
+			}
+	
+			$monfichier = fopen($file_reporting, 'a');
+			ftruncate($monfichier,0);
+			fputs($monfichier,json_encode($parsed_json));
+			fclose($monfichier);
+		// Sinon vide le fichier de reporting des doublons
 		}else{
-			$toReport=true;
+			$monfichier = fopen($file_reporting, 'a');
+	        ftruncate($monfichier,0);
+	        fputs($monfichier,"{}");
+	        fclose($monfichier);
 		}
-
-		if($toReport){
-			$from="Glenn INIZAN <glenn.inizan@fr.clara.net>";
-			$to="FR-si@fr.clara.net";
-			$passage_ligne = "\n";
-			$header = "From: ".$from.$passage_ligne;
-			$header .= "Reply-to: ".$from.$passage_ligne;
-			$header .= "MIME-Version: 1.0".$passage_ligne;
-			$header .= "Content-Type: text/html; charset=\"UTF-8\"".$passage_ligne;
-
-		    $sujet="[Reporting CGraphZ] Probléme sur l'insertion de serveur dans CGraphZ";
-
-			$messageHTML="
-		    <html>
-		        <body style='font-size : 12px; font-family : Verdana;'>
-		            <p>
-					Vous trouverez ci dessous la liste des serveurs en doublon dans CGraphZ. Ce probl&egrave;me vient d'un doublon des repertoires de graphe RRD pour ces serveurs (un en majuscule l'autre en minuscule). Afin d'etre sure d'afficher les bons graphes dans CGraphZ il est important de supprimer les repertoires qui ne sont plus à jours.
-		            </p>
-					<br>
-					Les serveurs sont : <br>".
-					$serverMail."
-		        </body>
-		    </html>";
-			echo $messageHTML."\n";
-		    mail($to,$sujet,$messageHTML,$header);
-
-			$now=new DateTime();
-			$parsed_json->reporting=$now->format("Y-m-d H:i:s");
-		}
-
-		$monfichier = fopen($file_reporting, 'a');
-		ftruncate($monfichier,0);
-		fputs($monfichier,json_encode($parsed_json));
-		fclose($monfichier);
-	// Sinon vide le fichier de reporting des doublons
-	}else{
-		$monfichier = fopen($file_reporting, 'a');
-        ftruncate($monfichier,0);
-        fputs($monfichier,"{}");
-        fclose($monfichier);
+	
 	}
-
-
 
 
 
