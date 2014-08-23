@@ -43,12 +43,13 @@ if (isset($cur_module)) {
 }
 
 echo '<div class="tab-pane '.$tab_module_class.'" id="module_'.$module_href.'"><fieldset>';
+echo '<legend>'.MODULE.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_perm_module'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
-echo '<fieldset>';
 include(DIR_FSROOT.'/html/perm/module/f_module.php');
 echo '</fieldset>';
 echo '</fieldset></div>';

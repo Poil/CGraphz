@@ -29,17 +29,19 @@ if (isset($_GET['f_id_auth_group'])) {
    $ug_form->add('select','f_id_auth_group')
            ->options($all_group, 'id_auth_group', 'group')
            ->label(GROUP)
-           ->labelGrid('col-xs-3 col-md-2')
-           ->inputGrid('col-xs-4 col-md-3');
+           ->labelGrid(IL_CSS)
+           ->inputGrid(I_CSS);
 
    $ug_form->add('checkbox','f_manager')
            ->value('manager')
            ->label(MANAGER)
-           ->inputGrid('col-sm-offset-2 col-md-3');
+           ->inputGrid(C_CSS);
 
    $ug_form->add('submit', 'f_submit_user_group')
            ->iType('add')
-           ->value(SUBMIT);
+           ->value(SUBMIT)
+           ->labelGrid(SL_CSS)
+           ->inputGrid(S_CSS);
 }
 echo $ug_form->bindForm();
 ?>

@@ -23,6 +23,7 @@ define('EMAIL','Email');
 define('MANAGER','Manager');
 define('TITLE','Title');
 define('DISPLAYED_ORDER','Displayed order');
+define('ORDER','Order');
 define('GRAPH_ORDER','Graphs order');
 define('REGEX_SRV','Regex Server');
 define('REGEX_PLUGIN','Regex Plugin');

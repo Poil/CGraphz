@@ -14,20 +14,20 @@ if (isset($_GET['f_id_auth_user'])) {
            ->readonly(true)
            ->label(USER)
            ->autocomplete(false)
-           ->labelGrid('col-xs-3 col-sm-3 col-md-3 col-lg-3')
-           ->inputGrid('col-xs-6 col-sm-6 col-md-6 col-lg-6');
+           ->labelGrid(IL_CSS)
+           ->inputGrid(I_CSS);
    
    $gu_form->add('checkbox','f_manager')
            ->value('manager')
            ->label(MANAGER)
-           ->inputGrid('col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-9 col-sm-9 col-md-9 col-lg-9')
-           ->checked(@$cur_group_user->manager);
+           ->checked(@$cur_group_user->manager)
+           ->inputGrid(C_CSS);
    
    $gu_form->add('submit', 'f_submit_group_user')
            ->iType('add')
-           ->labelGrid('col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3')
-           ->inputGrid('col-xs-9 col-sm-9 col-md-9 col-lg-9')
-           ->value(SUBMIT);
+           ->value(SUBMIT)
+           ->labelGrid(SL_CSS)
+           ->inputGrid(S_CSS);
    
    echo $gu_form->bindForm();
 
@@ -42,9 +42,9 @@ if (isset($_GET['f_id_auth_user'])) {
 
    $gud_form->add('submit', 'f_delete_group_user')
            ->iType('delete')
-           ->labelGrid('col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3')
-           ->inputGrid('col-xs-9 col-sm-9 col-md-9 col-lg-9')
-           ->value(DEL);
+           ->value(DEL)
+           ->labelGrid(SL_CSS)
+           ->inputGrid(S_CSS);
 
    echo $gud_form->bindForm();
 } else {
@@ -57,19 +57,19 @@ if (isset($_GET['f_id_auth_user'])) {
    $gu_form->add('select','f_id_auth_user')
            ->options($all_user, 'id_auth_user', 'user')
            ->label(USER)
-           ->labelGrid('col-xs-3 col-sm-3 col-md-3 col-lg-3')
-           ->inputGrid('col-xs-6 col-sm-6 col-md-6 col-lg-6');
+           ->labelGrid(IL_CSS)
+           ->inputGrid(I_CSS);
    
    $gu_form->add('checkbox','f_manager')
            ->value('manager')
            ->label(MANAGER)
-           ->inputGrid('col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-9 col-sm-9 col-md-9 col-lg-9');
+           ->inputGrid(C_CSS);
    
    $gu_form->add('submit', 'f_submit_group_user')
            ->iType('add')
-           ->labelGrid('col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3')
-           ->inputGrid('col-xs-9 col-sm-9 col-md-9 col-lg-9')
-           ->value(SUBMIT);
+           ->value(SUBMIT)
+           ->labelGrid(SL_CSS)
+           ->inputGrid(S_CSS);
    
    echo $gu_form->bindForm();
 

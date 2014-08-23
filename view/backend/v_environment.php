@@ -42,12 +42,13 @@ if (isset($cur_environment)) {
 }
 
 echo '<div class="tab-pane '.$tab_environment_class.'" id="environment_'.$environment_href.'"><fieldset>';
+echo '<legend>'.ENV.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_config_environment'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
-echo '<fieldset>';
 include(DIR_FSROOT.'/html/config/environment/f_environment.php');
 echo '</fieldset>';
 echo '</fieldset></div>';

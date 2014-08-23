@@ -50,12 +50,13 @@ if (isset($cur_dynamic_dashboard)) {
 }
 
 echo '<div class="tab-pane '.$tab_dynamic_dashboard_class.'" id="dynamic_dashboard_'.$dynamic_dashboard_href.'"><fieldset>';
+echo '<legend>'.DASHBOARD.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
-echo '<fieldset>';
 include(DIR_FSROOT.'/html/config/dynamic_dashboard/f_dynamic_dashboard.php');
 echo '</fieldset>';
 echo '</fieldset></div>';
@@ -76,7 +77,8 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/f_dynamic_dashboard_group.php');
-    echo '</fieldset></div>';
+    echo '</fieldset>';
+    echo '</div>';
 
     /* content */
     echo '<div class="tab-pane '.$tab_dynamic_dashboard_content_class.'" id="dynamic_dashboard_content"><fieldset>';
@@ -93,7 +95,8 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/f_dynamic_dashboard_content.php');
-    echo '</fieldset></div>';
+    echo '</fieldset>';
+    echo '</div>';
 }        
 echo '</div>';
 echo '<div class="clearfix"></div>';

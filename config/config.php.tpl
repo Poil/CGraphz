@@ -1,7 +1,5 @@
 <?php
-# Define timezone
-date_default_timezone_set('Europe/Paris');
-
+/************************* CGraphz **********************/
 # Cgraphz version
 define('CGRAPHZ_VERSION','2.40 dev1');
 
@@ -40,21 +38,20 @@ define('NOT_LOGGED_MSG','<br />Please log-in<br />');
 # Display a quick navigate to plugin bar or not (true/false)
 define('PLUGIN_BAR',true);
 
-# Menu Option : Min number of servers before displaying role
-define('MAX_SRV',4);
-
-# Replace topNavMenu with a FixedLeftMenu, but I don't like it
-define('NEW_MENU',false);
-
-# Max Legend lenght
-define('MAX_LEGEND_LENGTH',20);
-
 # Language
 define('DEF_LANG','en');
 
 # system default timezone when not set
 define('DEFAULT_TIMEZONE', 'UTC');
 
+# Form elements size
+define('I_CSS','col-xs-6 col-sm-6 col-md-6 col-lg-6');
+define('IL_CSS','col-xs-3 col-sm-3 col-md-3 col-lg-3');
+define('S_CSS', 'col-xs-6 col-sm-6 col-md-6 col-lg-6');
+define('SL_CSS','col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3');
+define('C_CSS','col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-9 col-sm-9 col-md-9 col-lg-9');
+
+/************************* CGP *************************/
 # extra typesdb config to merge to default
 #$CONFIG['typesdb'][] = '/usr/share/collectd/my_extra_types.db';
 
@@ -63,7 +60,7 @@ $CONFIG['negative_io'] = false;
 
 # add XXth percentile line + legend to network graphs
 # false = disabled; 95 = 95th percentile
-$CONFIG['percentile'] = false;
+$CONFIG['percentile'] = 95;
 
 # create smooth graphs (rrdtool -E)
 $CONFIG['graph_smooth'] = false;
@@ -127,11 +124,11 @@ $CONFIG['detail-height'] = 350;
 $CONFIG['max-width'] = 1280;
 $CONFIG['max-height'] = 1024;
 
-# collectd's unix socket (unixsock plugin) or rrd tcp socket (collectd 4)
+# collectd's unix socket (unixsock plugin) or rrdcached tcp socket
 # syntax : 'unix:///var/run/collectd-unixsock'
 # syntax : 'xxx.xxx.xxx.xxx:xxxx'
 # disabled: NULL
-#$CONFIG['flush_type'] = 'rrd';
+#$CONFIG['flush_type'] = 'rrdcached';
 #$CONFIG['flush_type'] = 'collectd';
 $CONFIG['socket'] = NULL;
 
@@ -139,6 +136,8 @@ $CONFIG['welcome_text'] =
 '<h3>Welcome on cgraphz</h3>
 ';
 
+
+/******************* End config **********************/
 function my_autoload ($pClassName) {
 	include(DIR_FSROOT . "/modules/" . $pClassName . ".php");
 }

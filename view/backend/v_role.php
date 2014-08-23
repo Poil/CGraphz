@@ -36,12 +36,13 @@ if (isset($cur_role)) {
 }
 
 echo '<div class="tab-pane '.$tab_role_class.'" id="role_'.$role_href.'"><fieldset>';
+echo '<legend>'.ROLE.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_config_role'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
-echo '<fieldset>';
 include(DIR_FSROOT.'/html/config/role/f_role.php');
 echo '</fieldset>';
 echo '</fieldset></div>';

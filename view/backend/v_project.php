@@ -50,12 +50,13 @@ if (isset($cur_project)) {
 }
 
 echo '<div class="tab-pane '.$tab_project_class.'" id="project_'.$project_href.'"><fieldset>';
+echo '<legend>'.PROJECT.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_config_project'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
-echo '<fieldset>';
 include(DIR_FSROOT.'/html/config/project/f_project.php');
 echo '</fieldset>';
 echo '</fieldset></div>';

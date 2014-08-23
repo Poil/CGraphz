@@ -33,11 +33,7 @@ if (isset($cur_server->id_config_server)) {
 	include(DIR_FSROOT.'/html/menu/time_selector.php');
 }
 
-if (NEW_MENU) {
-	echo '<div id="dashboard" style="margin-left:100pt;">';
-} else {
-	echo '<div id="dashboard">';
-}
+echo '<div id="dashboard">';
 if ($cur_server->server_name=='') {
 	echo '<h1>'.UNKNOWN_SERVER.'</h1>';
 	echo '</div>';

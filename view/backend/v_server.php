@@ -72,12 +72,13 @@ if (isset($cur_server)) {
 }
 
 echo '<div class="tab-pane '.$tab_server_class.'" id="server_'.$server_href.'"><fieldset>';
+echo '<legend>'.SERVER.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_config_server'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
-echo '<fieldset>';
 include(DIR_FSROOT.'/html/config/server/f_server.php');
 echo '</fieldset>';
 echo '</fieldset></div>';
