@@ -1,19 +1,42 @@
-<form name="f_form_role" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_role'); ?>">
-	<input type="hidden" name="f_id_config_role" id="f_id_config_role" value="<?php echo @$cur_role->id_config_role; ?>" />
-	<label for="f_role"><?php echo ROLE ?></label>
-		<input type="text" name="f_role" id="f_role" value="<?php echo @$cur_role->role; ?>" /><br />
-	<label for="f_role_description"><?php echo DESC ?></label>
-		<input type="text" name="f_role_description" id="f_role_description" value="<?php echo @$cur_role->role_description; ?>" /><br />
-	<input type="submit" name="f_submit_role" id="f_submit_role" value="<?php echo SUBMIT ?>" />
-</form>
+<?php
+$m_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_role');
 
-<?php
+$m_form->add('hidden', 'f_id_config_role')
+        ->value(@$cur_role->id_config_role);
+
+$m_form->add('text', 'f_role')
+        ->value(@$cur_role->role)
+        ->label(ROLE)
+        ->autocomplete(false)
+        ->labelGrid(IL_CSS)
+        ->inputGrid(I_CSS);
+
+$m_form->add('text', 'f_role_desc')
+        ->value(@$cur_role->role_description)
+        ->label(DESC)
+        ->autocomplete(false)
+        ->labelGrid(IL_CSS)
+        ->inputGrid(I_CSS);
+
+$m_form->add('submit', 'f_submit_role')
+        ->iType('add')
+        ->value(SUBMIT)
+        ->labelGrid(SL_CSS)
+        ->inputGrid(S_CSS);
+
+echo $m_form->bindForm();
+
 if (isset($_GET['f_id_config_role'])) {
-?>
-	<form name="f_form_del_role" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_role'); ?>" onsubmit="return validate_del(this);">
-		<input type="hidden" name="f_id_config_role" id="f_del_id_config_role" value="<?php echo $cur_role->id_config_role; ?>" />
-		<input type="submit" name="f_del_role" id="f_del_role" value="<?php echo DEL ?>" />
-	</form>
-<?php
+   $m_dform = new Form('horizontal', removeqsvar($cur_url, array('f_id_config_role','last_action')).'&amp;last_action=edit_role');
+   $m_dform->add('hidden', 'f_id_config_role')
+           ->value($cur_role->id_config_role);
+
+   $m_dform->add('submit', 'f_del_role')
+           ->iType('delete')
+           ->value(DEL)
+           ->labelGrid(SL_CSS)
+           ->inputGrid(S_CSS);
+
+   echo $m_dform->bindForm();
 }
 ?>

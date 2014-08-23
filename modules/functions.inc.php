@@ -11,7 +11,7 @@ function GET($index) {
 function validate_get($value, $type) {
 	switch($type) {
 		case 'host':
-			if (!preg_match('/^[\d\w\W]+$/u', $value))
+			if (!preg_match('/^[\w-.:]+$/u', $value))
 				return NULL;
 		break;
 		case 'plugin':
@@ -21,7 +21,7 @@ function validate_get($value, $type) {
 		break;
 		case 'pinstance':
 		case 'tinstance':
-			if (!preg_match('/^[\d\w-]+$/u', $value))
+			if (!preg_match('/^[\w-]+$/u', $value))
 				return NULL;
 		break;
 	}
@@ -58,7 +58,7 @@ function error_image($text="[ERROR] Permission denied") {
 	$width=$CONFIG['width']+98;
 	$height=$CONFIG['height']+72;
 
-	header("Content-Type: image/png");
+	header("Content-Type: image/png", true, 400);
 	// Création de l'image
 	$im = imagecreatetruecolor($width, $height);
 	

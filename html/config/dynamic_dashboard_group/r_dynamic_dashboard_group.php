@@ -30,14 +30,15 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 			auth_group
 		WHERE 
 			id_auth_group NOT IN (
-				SELECT id_auth_group 
-				FROM auth_user_group
-				WHERE id_auth_user=:f_id_auth_user
+				SELECT DISTINCT(id_auth_group)
+				FROM config_dynamic_dashboard_group
+				WHERE id_config_dynamic_dashboard=:f_id_config_dynamic_dashboard
+				GROUP BY id_auth_group
 			)
 		ORDER BY 
 			`group`';
-	// TO Check !
-	$connSQL->bind('f_id_auth_user',$f_id_auth_user);
+
+	$connSQL->bind('f_id_config_dynamic_dashboard',$f_id_config_dynamic_dashboard);
 	$all_group=$connSQL->query($lib);
 	$cpt_group=count($all_group);
 }

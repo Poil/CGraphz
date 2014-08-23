@@ -1,7 +1,6 @@
 <?php
-
-session_name('CGRAPHZ');
-session_start();
+include('../../../config/config.php');
+$auth = new AUTH_USER();
 
 if (isset($_GET['time_start']) && isset($_GET['time_end'])) {
 	if (strlen($_GET['time_start']) == strlen($_GET['time_end'])) {

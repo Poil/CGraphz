@@ -1,0 +1,127 @@
+@CHARSET "UTF-8";
+
+.dropdown-submenu{
+  position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  -webkit-border-radius: 0 6px 6px 6px;
+  -moz-border-radius: 0 6px 6px 6px;
+  border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-submenu > a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style:solid;border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+
+.dropdown-submenu:hover > a:after {
+  border-left-color: #ffffff;
+}
+
+.dropdown-submenu.pull-left {
+  float: none;
+}
+
+.dropdown-submenu.pull-left > .dropdown-menu{
+  left: -100%;
+  margin-left: 10px;
+  -webkit-border-radius: 6px 0 6px 6px;
+  -moz-border-radius: 6px 0 6px 6px;
+  border-radius: 6px 0 6px 6px;
+}
+
+select {
+  margin-top : 10px;
+  width : 220px;
+  background-color : #ffffff;
+  border : 1px solid #cccccc;
+  height : 30px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 4px 6px;
+}
+
+.navbar-inner > .container-fluid {
+  text-align: center;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.demi-spacer {
+  margin-top: 10px;
+}  
+
+.navbar-default a {
+  margin-top: 10px;
+}
+
+ 
+div#left_menu img {
+  border:0;
+  height:22px;
+  width:22px;
+  padding-bottom:2pt;
+}
+
+div#left_menu {
+  position:fixed;
+  top:200pt;
+  float:left;
+  text-align:center;
+}
+
+div#left_menu_show {
+  position:fixed;
+  margin-left:18pt;
+  min-width: 120pt;
+  display:none;
+  text-align:left;
+}
+
+div#left_menu_show ul {
+  list-style:none;
+  margin:0;
+  padding:3pt 8pt;
+}
+
+div#left_menu_show a {
+  color:black;
+}
+
+div#jquery-live-search {
+  padding-left:5pt;
+  padding-right:5pt;
+  min-width: 170px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height:250pt;
+  z-index:2000;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+.submenu > li > a {
+  padding: 3px 5px;
+  min-height: 10px;
+}

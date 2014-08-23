@@ -1,33 +1,47 @@
 <?php
 if (isset($_GET['f_id_config_server'])) {
-?>
-	<form name="f_form_environment_server" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_server'); ?>" onsubmit="return validate_del(this);">
-		<input type="hidden" name="f_id_config_environment" id="f_id_config_environment" value="<?php echo @$cur_environment->id_config_environment; ?>" />
-		<input type="hidden" name="f_id_config_server" id="f_id_config_server" value="<?php echo @$f_id_config_server; ?>" />
-		<input readonly="readonly" type="text" name="f_server_name" id="f_server_name" value="<?php echo @$cur_environment_server->server_name; ?>" />
-		<input type="submit" name="f_delete_environment_server" id="f_delete_environment_server" value="<?php echo DEL ?>" />
-	</form>
-<?php
-} else {
-	?> 
-	<form name="f_form_environment_server" method="post" action="">
-		<label style="width:420px" for="f_filter_server_in_environment"><?php echo FILTER_SRV_ALREADY_DEF_ENV ?></label>
-			<input type="checkbox" name="f_filter_server_in_environment" id="f_filter_server_in_environment" value="true" <?php if ($f_filter_server_in_environment=="true") echo ' checked="checked" '; ?> onclick="$('#f_submit_environment_server').click();" /><br />
-			
-		<input type="hidden" name="f_id_config_environment" id="f_id_config_environment" value="<?php echo @$cur_environment->id_config_environment; ?>" />
-		<?php 
-		echo '<select name="f_id_config_server[]" id="f_id_config_server" class="multiselect" multiple="multiple">';
-			for ($i=0; $i<$cpt_server; $i++) {
-				echo '<option value="'.$all_server[$i]->id_config_server.'">';
-					echo $all_server[$i]->server_name.' ('.$all_server[$i]->server_description.')';
-				echo '</option>';
-			}
-		echo '</select>';
-		?>
-		<div class="spacer">&nbsp;</div><br />
-		<input type="submit" name="f_submit_environment_server" id="f_submit_environment_server" value="<?php echo SUBMIT ?>" />
-	</form>
-	<?php 
-}
-?>
+   $es_form = new Form('inline', removeqsvar($cur_url, array('f_id_config_server','last_action')).'&amp;last_action=edit_server');
+   $es_form->fieldset(true);
+   $es_form->legend(DEL);
+   $es_form->add('hidden', 'f_id_config_server')
+           ->value($f_id_config_server);
 
+   $es_form->add('hidden', 'f_id_config_environment')
+           ->value($cur_environment->id_config_environment);
+
+   $es_form->add('text', 'f_server_name')
+           ->readonly(true)
+           ->value($cur_environment_server->server_name);
+
+   $es_form->add('submit', 'f_delete_environment_server')
+           ->iType('delete')
+           ->value(DEL);
+} else {
+   $es_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_server');
+   $es_form->fieldset(true);
+   $es_form->legend(ADD);
+
+   $es_form->add('hidden', 'f_id_config_environment')
+           ->value($cur_environment->id_config_environment);
+
+   $es_form->add('checkbox','f_filter_server_in_environment')
+           ->value('true')
+           ->label(FILTER_SRV_ALREADY_DEF_ENV)
+           ->checked($f_filter_server_in_environment)
+           ->onclick("$('#f_submit_environment_server').click()")
+           ->inputGrid('col-xs-12 col-md-12');
+
+   $es_form->add('select','f_id_config_server')
+           ->multiple(true)
+           ->fieldClasses('multiselect')
+           ->options($all_server, 'id_config_server', 'server_name')
+           ->inputGrid('col-xs-12 col-md-12');
+
+   $es_form->add('submit', 'f_submit_environment_server')
+           ->iType('add')
+           ->value(SUBMIT)
+           ->labelGrid('col-xs-offset-0 col-md-offset-0')
+           ->inputGrid('col-xs-12 col-md-12');
+}
+echo $es_form->bindForm();
+?>

@@ -1,14 +1,11 @@
 <?php
 //session_cache_limiter("private");
-include './config/config.php';
+require_once './config/config.php';
 require_once 'modules/collectd.inc.php';
 
-session_name('CGRAPHZ');
-session_start();
-
+$auth = new AUTH_USER();
 $log = new LOG();	
 
-$auth = new AUTH_USER();
 if (!$auth->verif_auth()) {
 	error_image('[ERROR] Permission denied');
 }
@@ -16,10 +13,18 @@ if (!$auth->verif_auth()) {
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 $plugin = validate_get(GET('p'), 'plugin');
 $type = validate_get(GET('t'), 'type');
-$width = empty($_GET['x']) ? $CONFIG['width'] : $_GET['x'];
+$width = GET('x') ? filter_input(INPUT_GET, 'x', FILTER_VALIDATE_INT, array(
+	'min_range' => 10,
+	'max_range' => $CONFIG['max-width']
+)) : $CONFIG['width'];
+$height = GET('y') ? filter_input(INPUT_GET, 'y', FILTER_VALIDATE_INT, array(
+	'min_range' => 10,
+	'max_range' => $CONFIG['max-height']
+)) : $CONFIG['height'];
 $height = empty($_GET['y']) ? $CONFIG['height'] : $_GET['y'];
 $host=validate_get(GET('h'), 'host');
 $s=intval($_GET['s']);
+$e=isset($_GET['e']) ? intval($_GET['e']) : null;
 
 if (strpos($host,':')!=FALSE) {
 	$tmp=explode(':',$host);
@@ -27,23 +32,19 @@ if (strpos($host,':')!=FALSE) {
 }
 
 if (!$authorized=$auth->check_access_right($host)) {
-	error_image('[ERROR] Permission denied');
+	$log->write('CGRAPHZ ERROR: Permission denied for host : '.$host);
+	error_image('[ERROR] Permission denied to '.$host);
 }
 
 if (validate_get(GET('h'), 'host') === NULL) {
-	$log->write('CGRAPHZ ERROR: plugin contains unknown characters');
-	error_image('[ERROR] plugin contains unknown characters');
-}
-
-if (($width * $height) > MAX_IMG_SIZE) {
-	$log->write('CGRAPHZ ERROR: image request is too big');
-	error_image('[ERROR] Image request is too big');
+	$log->write('CGRAPHZ ERROR: host contains unknown characters');
+	error_image('[ERROR] host contains unknown characters');
 }
 
 if ($authorized->collectd_version) {
 	$mytypesdb=$authorized->collectd_version;
 } else {
-	$mytypesdb=COLLECTD_VERSIONS;
+	$mytypesdb=COLLECTD_DEFAULT_VERSION;
 }
 
 if (isset($CONFIG['typesdb']) && is_array($CONFIG['typesdb'])) {
@@ -58,7 +59,7 @@ if ($plugin == 'aggregation') {
 }
 
 # plugin json
-if (file_exists('plugin/'.$plugin.'.json')) {
+if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'.json')) {
 	$json = file_get_contents('plugin/'.$plugin.'.json');
 	$plugin_json = json_decode($json, true);
 
@@ -126,7 +127,16 @@ if (isset($plugin_json[$type]['vertical'])) {
 }
 
 if (isset($plugin_json[$type]['rrdtool_opts'])) {
-	$obj->rrdtool_opts = $plugin_json[$type]['rrdtool_opts'];
+	$rrdtool_extra_opts = $plugin_json[$type]['rrdtool_opts'];
+	# compatibility with plugins which specify arguments as string
+	if (is_string($rrdtool_extra_opts)) {
+		$rrdtool_extra_opts = explode(' ', $rrdtool_extra_opts);
+	}
+
+	$obj->rrdtool_opts = array_merge(
+		$obj->rrdtool_opts,
+		$rrdtool_extra_opts
+	);
 }
 
 if ($type == 'if_octets')

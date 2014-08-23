@@ -1,5 +1,5 @@
 <?php
-include('../../../config/config.php');
+require_once('../../../config/config.php');
 
 $auth = new AUTH_USER();
 if (!$auth->verif_auth()) {
@@ -12,8 +12,8 @@ $lib='SELECT COALESCE(collectd_version,"'.COLLECTD_DEFAULT_VERSION.'") as collec
 $connSQL->bind('f_server_name',$f_server_name);
 $cur_server=$connSQL->row($lib);
 
+echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
 echo '<meta name="viewport" content="width=1050, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />';
-
 if (isset($_SESSION['time_start']) && $_SESSION['time_start']!='') {
 	$date_start=date('Y-m-d H:i',$_SESSION['time_start']);
 } else {
@@ -27,26 +27,30 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 
 ?>
 
-<form onsubmit="refresh_graph('dashboard','',date_to_ts('f_time_start'),date_to_ts('f_time_end'));  Close_Popup(); return false" action="" method="post" name="f_form_time_selection">
-	<img id="move_popup" alt="<->" title="Move" src="img/drag.png" />
-	<img id="close_popup" onclick="Close_Popup();" alt="x" title="Fermer" src="img/close.png" />
-	<label for="f_time_start"><?php echo RANGE_START ?></label>
-		<input id="f_time_start" value="<?php echo $date_start ?>" type="text" maxlength="16" size="16" name="f_time_start" />
-	<br />
-	<label for="f_time_end"><?php echo RANGE_END ?></label>
-		<input id="f_time_end" value="<?php echo $date_end ?>" type="text" maxlength="16" size="16" name="f_time_end" />
-	<br />
-	<input id="f_time_submit" type="button" value="<?php echo SUBMIT ?>" />
-	<input type="submit" value="<?php echo SUBMIT_TO_DASHBOARD ?>" />
+<form  class="form-inline" role="form" onsubmit="refresh_graph('dashboard','',date_to_ts('f_time_start'),date_to_ts('f_time_end'));  Close_Popup(); return false" action="" method="post" name="f_form_time_selection">
+  <div class="form-group">
+    <label class="sr-only" for="f_time_start"><?php echo RANGE_START ?></label>
+    <input type="text" value="<?php echo $date_start ?>" class="form-control" id="f_time_start" placeholder="<?php echo RANGE_START ?>"  maxlength="16" size="16" name="f_time_start">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="f_time_end"><?php echo RANGE_END ?></label>
+    <input type="text" value="<?php echo $date_end ?>" class="form-control" id="f_time_end" placeholder="<?php echo RANGE_END ?>"  maxlength="16" size="16" name="f_time_end">
+  </div>
+  <button id="f_time_submit" class="btn btn-default" type="button" ><?php echo APPLY ?></button>
+  <button class="btn btn-default" type="submit"><?php echo SUBMIT_TO_DASHBOARD ?></button>
 </form>
-<?php
-	if (empty($_GET['x']))
-	$_GET['x'] = $CONFIG['detail-width'];
-	if (empty($_GET['y']))
-	$_GET['y'] = $CONFIG['detail-height'];
 
-	chdir(DIR_FSROOT);
-	$CONFIG['version']=$cur_server->collectd_version;
-	include(DIR_FSROOT.'/graph.php');
-	echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/CGP.js"></script>';
+<?php
+
+if (empty($_SESSION['detail-width'])) $_SESSION['detail-width'] = $CONFIG['detail-width'];
+if (empty($_SESSION['detail-height'])) $_SESSION['detail-height'] = $CONFIG['detail-height'];
+if (empty($_GET['x'])) $_GET['x'] = $_SESSION['detail-width'] - 150;
+if (empty($_GET['y'])) $_GET['y'] = $_SESSION['detail-height'] - 350;
+
+chdir(DIR_FSROOT);
+$CONFIG['version']=$cur_server->collectd_version;
+include(DIR_FSROOT.'/graph.php');
+echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/javascriptrrd/CGP.js"></script>';
+echo '<script type="text/javascript" src="'.DIR_WEBROOT.'/lib/zoom.js"></script>';
 ?>
+<script> $('#popupModal').modal('show'); </script>

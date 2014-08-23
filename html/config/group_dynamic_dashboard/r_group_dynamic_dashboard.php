@@ -17,11 +17,11 @@ if ($_GET['f_id_auth_group']) {
 		ORDER BY title';
 
 	$connSQL->bind('f_id_auth_group',$f_id_auth_group);
-	$all_dynamic_dashboard_group=$connSQL->query($lib);
-	$cpt_dynamic_dashboard_group=count($all_dynamic_dashboard_group);
+	$all_group_dynamic_dashboard=$connSQL->query($lib);
+	$cpt_group_dynamic_dashboard=count($all_group_dynamic_dashboard);
 
 	$lib='SELECT 
-			* 
+			*
 		FROM 
 			config_dynamic_dashboard
 		WHERE 

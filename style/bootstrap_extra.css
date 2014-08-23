@@ -1,0 +1,126 @@
+body {
+  margin-bottom:100px;
+}
+
+div#dashboard {
+  margin-left:25px;
+}
+
+legend {
+    width:auto; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+}
+
+fieldset {
+    margin:5px;
+    padding:1px;
+    border:1px solid #ddd;
+}
+
+fieldset fieldset {
+    min-width:470px;
+    width:32%;  
+    display:inline-block;
+    vertical-align:top;
+    border:1px solid #ddd;
+    padding:5px;
+}
+
+fieldset legend {
+    padding: 1px 3px;
+    margin:0pt 3px 0pt 3px;
+    font-weight:bold;
+    font-size:140%;
+}
+
+fieldset strong {
+    font-size:120%;
+}
+
+fieldset fieldset legend {
+    font-size:120%;
+}
+
+fieldset.large {
+     width:50%;
+}
+
+fieldset.large label {
+    width:120px;
+}
+
+div.option-element div {
+    line-height: 1.42857;
+    padding: 5px;
+}
+
+/* fix datatable width more than 100% */
+.dataTables_wrapper .row {
+    margin-left:0;
+    margin-right:0;
+}
+
+div.dataTables_wrapper {
+    margin:0 11px;
+}
+
+.imggraph {
+    vertical-align:top;
+    cursor: url(../img/zoom.png), pointer;
+}
+
+form.form-inline div.form-group select.form-control {
+   margin-top:0;
+}
+
+/* fix anchor with fixed header */
+div#dashboard h2 a,
+div#dashboard h3 a,
+div#dashboard h4 a {
+    display:block;
+    position:relative;
+    top: -140px;
+    visibility: hidden;
+}
+
+/* Cursor on ajax request */
+body.wait *, body.wait {
+    cursor: progress !important;
+}
+
+/* icon size for plugin navbar when reduced */
+div#project_plugin > div > button.navbar-toggle {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 3px 10px;
+}
+
+div#project_plugin > div > ul {
+    margin:0 0;
+    background:white;
+}
+
+div#project_plugin > div > ul > li > a{
+    padding-top:0;
+    padding-bottom:2px;
+    margin-top:5px;
+    color: #428bca;
+}
+
+div#project_plugin > div > ul > li > ul > li.dropdown-header > a {
+    margin-top: 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+div#project_plugin > div > ul > li > ul > li > a {
+    margin-top:0;
+    color: #428bca;
+    font-size:12px;
+}
+ 
+/* fix popup modal position */
+div#popupModal .modal-dialog {
+    margin: 10px;
+}

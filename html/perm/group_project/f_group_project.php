@@ -1,29 +1,40 @@
 <?php
 if (isset($_GET['f_id_config_project'])) {
-?>
-	<form name="f_form_group_project" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_config_project'); ?>" onsubmit="return validate_del(this);">
-		<input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo $cur_group->id_auth_group; ?>" />
-		<input type="hidden" name="f_id_config_project" id="f_id_config_project" value="<?php echo @$f_id_config_project; ?>" />
-		<input readonly="readonly" type="text" name="f_project" id="f_project" value="<?php echo $cur_group_project->project; ?>" />
-		<input type="submit" name="f_delete_group_project" id="f_delete_group_project" value="<?php echo DEL ?>" />
-	</form>
-<?php
+   $gp_form = new Form('inline', removeqsvar($cur_url, array('f_id_config_project','last_action')).'&amp;last_action=edit_project');
+   $gp_form->fieldset(true);
+   $gp_form->legend(DEL);
+   $gp_form->add('hidden', 'f_id_config_project')
+           ->value($f_id_config_project);
+
+   $gp_form->add('hidden', 'f_id_auth_group')
+           ->value($cur_group->id_auth_group);
+
+   $gp_form->add('text', 'f_project')
+           ->readonly(true)
+           ->value($cur_group_project->project);
+
+   $gp_form->add('submit', 'f_delete_group_project')
+           ->iType('delete')
+           ->value(DEL);
 } else {
-	?> 
-	<form name="f_form_group_project" method="post" action="">
-		<input type="hidden" name="f_id_auth_group" id="f_id_auth_group" value="<?php echo $cur_group->id_auth_group; ?>" />
-		<label for="f_id_config_project"><?php echo PROJECT ?></label>
-		<?php 
-		echo '<select name="f_id_config_project" id="f_id_config_project">';
-			for ($i=0; $i<$cpt_project; $i++) {
-				echo '<option value="'.$all_project[$i]->id_config_project.'">';
-					echo $all_project[$i]->project.' ('.$all_project[$i]->project_description.')';
-				echo '</option>';
-			}
-		echo '</select>';
-		?>
-		<input type="submit" name="f_submit_group_project" id="f_submit_group_project" value="<?php echo SUBMIT ?>" />
-	</form>
-	<?php 
+   $gp_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_project');
+   $gp_form->fieldset(true);
+   $gp_form->legend(ADD);
+
+   $gp_form->add('hidden', 'f_id_auth_group')
+           ->value($cur_group->id_auth_group);
+
+   $gp_form->add('select','f_id_config_project')
+            ->options($all_project, 'id_config_project', 'project')
+            ->inputGrid('col-xs-12 col-md-12')
+            ->multiple(true)
+            ->fieldClasses('multiselect');
+
+   $gp_form->add('submit', 'f_submit_group_project')
+           ->labelGrid('col-xs-offset-0 col-md-offset-0')
+           ->inputGrid('col-xs-12 col-md-12')
+           ->iType('add')
+           ->value(SUBMIT);
 }
+echo $gp_form->bindForm();
 ?>

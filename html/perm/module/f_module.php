@@ -1,23 +1,56 @@
-<form name="f_form_module" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_perm_module'); ?>">
-	<input type="hidden" name="f_id_perm_module" id="f_id_perm_module" value="<?php echo @$cur_module->id_perm_module; ?>" />
-	<label for="f_module"><?php echo MODULE ?></label>
-		<input type="text" name="f_module" id="f_module" value="<?php echo @$cur_module->module; ?>" /><br />
-	<label for="f_component"><?php echo COMPONANT ?></label>
-		<input type="text" name="f_component" id="f_component" value="<?php echo @$cur_module->component; ?>" /><br />
-	<label for="f_menu_name"><?php echo MENU_NAME ?></label>
-		<input type="text" name="f_menu_name" id="f_menu_name" value="<?php echo @$cur_module->menu_name; ?>" /><br />
-	<label for="f_menu_order"><?php echo MENU_ORDER ?></label>
-		<input type="text" name="f_menu_order" id="f_menu_order" value="<?php echo @$cur_module->menu_order; ?>" /><br />
-	<input type="submit" name="f_submit_module" id="f_submit_module" value="<?php echo SUBMIT ?>" />
-</form>
+<?php
+$m_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_module');
 
-<?php
+$m_form->add('hidden', 'f_id_perm_module')
+        ->value(@$cur_module->id_perm_module);
+
+$m_form->add('text', 'f_module')
+        ->value(@$cur_module->module)
+        ->label(MODULE)
+        ->autocomplete(false)
+        ->labelGrid(IL_CSS)
+        ->inputGrid(I_CSS);
+
+$m_form->add('text', 'f_menu_name')
+        ->value(@$cur_module->menu_name)
+        ->label(MENU_NAME)
+        ->autocomplete(false)
+        ->labelGrid(IL_CSS)
+        ->inputGrid(I_CSS);
+
+$m_form->add('text', 'f_menu_order')
+        ->value(@$cur_module->menu_order)
+        ->label(MENU_ORDER)
+        ->autocomplete(false)
+        ->labelGrid(IL_CSS)
+        ->inputGrid(I_CSS);
+
+$m_form->add('text', 'f_component')
+        ->value(@$cur_module->component)
+        ->autocomplete(false)
+        ->label(COMPONENT)
+        ->labelGrid(IL_CSS)
+        ->inputGrid(I_CSS);
+
+$m_form->add('submit', 'f_submit_module')
+        ->iType('add')
+        ->value(SUBMIT)
+        ->labelGrid(SL_CSS)
+        ->inputGrid(S_CSS);
+
+echo $m_form->bindForm();
+
 if (isset($_GET['f_id_perm_module'])) {
-?>
-	<form name="f_form_del_module" method="post" action="<?php echo removeqsvar($cur_url, 'f_id_perm_module'); ?>" onsubmit="return validate_del(this);">
-		<input type="hidden" name="f_id_perm_module" id="f_del_id_perm_module" value="<?php echo $cur_module->id_perm_module; ?>" />
-		<input type="submit" name="f_del_module" id="f_del_module" value="<?php echo DEL ?>" />
-	</form>
-<?php
+   $m_dform = new Form('horizontal', removeqsvar($cur_url, array('f_id_perm_module','last_action')).'&amp;last_action=edit_module');
+   $m_dform->add('hidden', 'f_id_perm_module')
+           ->value($cur_module->id_perm_module);
+
+   $m_dform->add('submit', 'f_del_module')
+           ->iType('delete')
+           ->value(DEL)
+           ->labelGrid(SL_CSS)
+           ->inputGrid(S_CSS);
+
+   echo $m_dform->bindForm();
 }
 ?>

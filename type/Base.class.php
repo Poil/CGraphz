@@ -5,10 +5,11 @@
 class Type_Base {
 	var $datadir;
 	var $rrdtool;
-	var $rrdtool_opts;
+	var $rrdtool_opts = array();
 	var $cache;
 	var $args;
 	var $seconds;
+	var $seconds_end;
 	var $data_sources = array('value');
 	var $order;
 	var $legend = array();
@@ -24,6 +25,7 @@ class Type_Base {
 	var $negative_io;
 	var $percentile = false;
 	var $graph_smooth;
+	var $graph_minmax;
 
 	var $files;
 	var $tinstances;
@@ -36,7 +38,13 @@ class Type_Base {
 		$this->log = new LOG();
 		$this->datadir = $config['datadir'];
 		$this->rrdtool = $config['rrdtool'];
-		$this->rrdtool_opts = $config['rrdtool_opts'];
+		if (!empty($config['rrdtool_opts'])) {
+			if (is_array($config['rrdtool_opts'])) {
+				$this->rrdtool_opts = $config['rrdtool_opts'];
+			} else {
+				$this->rrdtool_opts = explode(' ', $config['rrdtool_opts']);
+			}
+		}
 		$this->cache = $config['cache'];
 		$this->parse_get($_get);
 		$this->rrd_title = sprintf(
@@ -58,6 +66,7 @@ class Type_Base {
 		$this->graph_type = isset($_get['graph_type']) ? $_get['graph_type'] : $config['graph_type'];
 		$this->negative_io = $config['negative_io'];
 		$this->graph_smooth = $config['graph_smooth'];
+		$this->graph_minmax = $config['graph_minmax'];
 		$this->flush_socket = $config['socket'];
 		$this->flush_type = $config['flush_type'];
 	}
@@ -131,13 +140,8 @@ class Type_Base {
 	}
 
 	function rrd_escape($value) {
-		if ($this->graph_type == 'canvas') {
-			# http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#IEscaping_the_colon
-			return str_replace(array(':','"'), array('\:','\"'), $value);
-		} else {
-			# php needs it double escaped to execute rrdtool correctly
-			return str_replace(array(':','"'), array('\\\:','\\"'), $value);
-		}
+		# http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#IEscaping_the_colon
+		return str_replace(':', '\:', $value);
 	}
 
 	function parse_filename($file) {
@@ -145,9 +149,6 @@ class Type_Base {
 			$file = DIR_WEBROOT.'/rrd.php/' . str_replace($this->datadir . '/', '', $file);
 			# rawurlencode all but /
 			$file = str_replace('%2F', '/', rawurlencode($file));
-		} else {
-			# escape characters
-			$file = str_replace(array(' ', '(', ')'), array('\ ', '\(', '\)'), $file);
 		}
 		return $this->rrd_escape($file);
 	}
@@ -155,6 +156,11 @@ class Type_Base {
 	function rrd_files() {
 		$files = $this->get_filenames();
 
+		$this->tinstances = array();
+		$this->files = array();
+		$this->identifiers = array();
+
+		$datadir_prefix = preg_quote($this->datadir, '#');
 		foreach($files as $filename) {
 			$basename=basename($filename,'.rrd');
 			$instance = strpos($basename,'-')
@@ -163,7 +169,9 @@ class Type_Base {
 
 			$this->tinstances[] = $instance;
 			$this->files[$instance] = $filename;
-			$this->identifiers[$instance] = preg_replace("#^$this->datadir/(.*)\.rrd$#", '$1', $filename);
+			$this->identifiers[$instance] = preg_replace(
+				"#^{$datadir_prefix}/(.*)\.rrd$#", '$1',
+				$filename);
 		}
 
 		sort($this->tinstances);
@@ -187,7 +195,7 @@ class Type_Base {
 
 		$files = glob($this->datadir .'/'. $identifier . $wildcard . 'rrd');
 
-		return $files;
+		return $files ? $files : array();
 	}
 
 	function rrd_graph($debug = false) {
@@ -197,80 +205,99 @@ class Type_Base {
 		$this->rainbow_colors();
 		$this->colors = $colors + $this->colors;
 
-		$graphdata = $this->rrd_gen_graph();
+		$graphoptions = $this->rrd_gen_graph();
+		# $shellcmd contains escaped rrdtool arguments
+		$shellcmd = array();
+		foreach ($graphoptions as $arg)
+			$shellcmd[] = escapeshellarg($arg);
 
 		$style = $debug !== false ? $debug : $this->graph_type;
 		switch ($style) {
 			case 'cmd':
 				print '<pre>';
-				foreach ($graphdata as $d) {
+				foreach ($shellcmd as $d) {
 					printf("%s \\\n", $d);
 				}
 				print '</pre>';
 			break;
 			case 'canvas':
-				printf('<canvas id="%s" class="rrd">', sha1(serialize($graphdata)));
-				foreach ($graphdata as $d) {
-					printf("%s\n", $d);
+				printf('<canvas id="%s" class="rrd">', sha1(serialize($graphoptions)));
+				foreach ($graphoptions as $d) {
+					printf("\"%s\"\n", htmlentities($d));
 				}
 				print '</canvas>';
 			break;
 			case 'debug':
 			case 1:
 				print '<pre>';
-				print_r($graphdata);
+				print htmlentities(print_r($shellcmd, TRUE));
 				print '</pre>';
 			break;
 			case 'svg':
-				# caching
-				if (is_numeric($this->cache) && $this->cache > 0)
-					header("Expires: " . date(DATE_RFC822,strtotime($this->cache." seconds")));
-				header("content-type: image/svg+xml");
-				$graphdata = implode(' ', $graphdata);
-				passthru($graphdata);
-			break;
 			case 'png':
 			default:
 				# caching
 				if (is_numeric($this->cache) && $this->cache > 0)
 					header("Expires: " . date(DATE_RFC822,strtotime($this->cache." seconds")));
-				header("content-type: image/png");
-				$graphdata = implode(' ', $graphdata);
-				passthru($graphdata);
+				if ($style === 'svg')
+					header("content-type: image/svg+xml");
+				else
+					header("content-type: image/png");
+				
+				$shellcmd = array_merge(
+					$this->rrd_graph_command($style),
+					$shellcmd
+				);
+				$shellcmd = implode(' ', $shellcmd);
+				passthru($shellcmd, $exitcode);
+				if ($exitcode !== 0) {
+					header('HTTP/1.1 500 Internal Server Error');
+				}
 			break;
 		}
 	}
+	
+	function rrd_graph_command($imgformat) {
+		if (!in_array($imgformat, array('png', 'svg')))
+			$imgformat = 'png';
+		
+		return array(
+			$this->rrdtool,
+			'graph',
+			'-',
+			'-a', strtoupper($imgformat)
+		);
+	}	
 
 	function rrd_options() {
-		switch ($this->graph_type) {
-			case 'png':
-			case 'hybrid':
-				$rrdgraph[] = $this->rrdtool;
-				$rrdgraph[] = 'graph - -a PNG';
-			break;
-			case 'svg':
-				$rrdgraph[] = $this->rrdtool;
-				$rrdgraph[] = 'graph - -a SVG -R light --font DEFAULT:7'; 
-			break;
-			default:
-			break;
-		}
-		if ($this->rrdtool_opts != '')
-			$rrdgraph[] = $this->rrdtool_opts;
+		$rrdgraph = array();
+		foreach($this->rrdtool_opts as $opt)
+			$rrdgraph[] = $opt;
 		if ($this->graph_smooth)
 			$rrdgraph[] = '-E';
-		if ($this->base)
-			$rrdgraph[] = '--base '.$this->base;
-		$rrdgraph[] = sprintf('-w %d', is_numeric($this->width) ? $this->width : 400);
-		$rrdgraph[] = sprintf('-h %d', is_numeric($this->height) ? $this->height : 175);
-		$rrdgraph[] = '-l 0';
-		$rrdgraph[] = sprintf('-t "%s on %s"', $this->rrd_title, $this->args['host']);
-		if ($this->rrd_vertical)
-			$rrdgraph[] = sprintf('-v "%s"', $this->rrd_vertical);
+		if ($this->base) {
+			$rrdgraph[] = '--base';
+			$rrdgraph[] = $this->base;
+		}
+		$rrdgraph = array_merge($rrdgraph, array(
+			'-w', is_numeric($this->width) ? $this->width : 400,
+			'-h', is_numeric($this->height) ? $this->height : 175,
+			'-l', '0',
+			'-t', "{$this->rrd_title} on {$this->args['host']}"
+		));
+		if ($this->rrd_vertical) {
+			$rrdgraph[] = '-v';
+			$rrdgraph[] = $this->rrd_vertical;
+		}
+
+		$rrdgraph[] = '-s';
 		if ($this->seconds_end == "") {
-			$rrdgraph[] = sprintf('-s e-%d', is_numeric($this->seconds) ? $this->seconds : 86400);
+			$rrdgraph[] = sprintf(' e-%d', is_numeric($this->seconds) ? $this->seconds : 86400);
 		} else {
-			$rrdgraph[] = sprintf('-s %s -e %s', is_numeric($this -> seconds) ? $this -> seconds : 'now-86400', is_numeric($this -> seconds_end) ? $this -> seconds_end : 'now');
+			$rrdgraph[] = is_numeric($this -> seconds) ? $this -> seconds : 'now-86400';
+			$rrdgraph[] = '-e';
+			$rrdgraph[] = is_numeric($this -> seconds_end) ? $this -> seconds_end : 'now';
+			//$rrdgraph[] = sprintf(' %s -e %s', is_numeric($this -> seconds) ? $this -> seconds : 'now-86400', is_numeric($this -> seconds_end) ? $this -> seconds_end : 'now');
 		}
 
 		return $rrdgraph;
