@@ -1,6 +1,7 @@
 <?php
 echo '<h1>'.MANAGE_MODULES.'</h1>';
 include(DIR_FSROOT.'/html/config/environment/w_environment.php');
+include(DIR_FSROOT.'/html/config/environment_server/e_environment_server_wh_id.php');
 include(DIR_FSROOT.'/html/config/environment/e_environment.php');
 include(DIR_FSROOT.'/html/config/environment/r_environment_wh_id.php');
 include(DIR_FSROOT.'/html/config/environment/r_environment.php');
