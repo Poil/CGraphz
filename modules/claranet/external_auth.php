@@ -4,6 +4,7 @@
 /*                           /*
 /*                           /*
 /*****************************/
+if (!isset($argc)) {
 //Initialisation du memcache
 
     if(!isset($_SESSION)){
@@ -27,5 +28,5 @@
             header('Location: ./modules/claranet/errorHosts.php');
         }
     }
-
+}
 ?>

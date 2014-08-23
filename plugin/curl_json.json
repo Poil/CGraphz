@@ -30,5 +30,11 @@
 		"vertical": "Files",
 		"type": "stacked",
 		"legend_format": "%5.1lf%s"
+	},
+	"cache_ratio": {
+		"title": "Ratio",
+		"vertical": "%",
+		"type": "stacked",
+		"legend_format": "%5.1lf%s"
 	}
 }
