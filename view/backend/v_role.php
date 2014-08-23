@@ -1,6 +1,7 @@
 <?php
 echo '<h1>'.MANAGE_MODULES.'</h1>';
 include(DIR_FSROOT.'/html/config/role/w_role.php');
+include(DIR_FSROOT.'/html/config/role_server/e_role_server_wh_id.php');
 include(DIR_FSROOT.'/html/config/role/e_role.php');
 include(DIR_FSROOT.'/html/config/role/r_role_wh_id.php');
 include(DIR_FSROOT.'/html/config/role/r_role.php');
