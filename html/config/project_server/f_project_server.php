@@ -24,25 +24,25 @@ if (isset($_GET['f_id_config_server'])) {
    $ps_form->legend(ADD);
    $ps_form->add('checkbox','f_filter_server_in_project')
            ->value('true')
-           ->label('filter server')
-           ->inputGrid('col-sm-offset-2 col-md-9')
            ->checked($f_filter_server_in_project)
-           ->onclick("$('#f_submit_project_server').click()");
+           ->onclick("$('#f_submit_project_server').click()")
+           ->label(FILTER_SRV_ALREADY_DEF_PROJECT)
+           ->inputGrid('col-xs-12 col-md-12');
 
    $ps_form->add('hidden', 'f_id_config_project')
            ->value($cur_project->id_config_project);
 
    $ps_form->add('select','f_id_config_server')
-           ->label(SERVER)
-           ->labelGrid('col-xs-2 col-md-2')
-           ->inputGrid('col-xs-9 col-md-9')
            ->multiple(true)
            ->fieldClasses('multiselect')
-           ->options($all_server, 'id_config_server', 'server_name');
+           ->options($all_server, 'id_config_server', 'server_name')
+           ->inputGrid('col-xs-12 col-md-12');
 
    $ps_form->add('submit', 'f_submit_project_server')
            ->iType('add')
-           ->value(SUBMIT);
+           ->value(SUBMIT)
+           ->labelGrid('col-xs-offset-0 col-md-offset-0')
+           ->inputGrid('col-xs-12 col-md-12');
 }
 echo $ps_form->bindForm();
 ?>

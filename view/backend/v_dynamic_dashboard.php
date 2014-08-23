@@ -21,7 +21,7 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
         $tab_dynamic_dashboard_group_class='active';
         $tab_dynamic_dashboard_class='';
     } 
-    else if (isset($_GET['f_id_dynamic_dashboard_content']) || $last_action=='edit_dynamic_dashboard_content') {
+    else if (isset($_GET['f_id_config_dynamic_dashboard_content']) || $last_action=='edit_dynamic_dashboard_content') {
         $tab_dynamic_dashboard_content_class='active';
         $tab_dynamic_dashboard_class='';
     }
@@ -90,7 +90,7 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/d_dynamic_dashboard_content.php');
     echo '<div class="clearfix"></div>';
     
-    if (isset($_GET['f_id_dynamic_dashboard_content'])) {
+    if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_dynamic_dashboard_content').'&amp;last_action=edit_content"><button type="button" class="btn btn-primary">'.ADD.' '.CONTENT.'</button></a>';
     }
     echo '<div class="clearfix"></div>';

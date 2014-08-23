@@ -49,6 +49,7 @@ define('I_CSS','col-xs-6 col-sm-6 col-md-6 col-lg-6');
 define('IL_CSS','col-xs-3 col-sm-3 col-md-3 col-lg-3');
 define('S_CSS', 'col-xs-6 col-sm-6 col-md-6 col-lg-6');
 define('SL_CSS','col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3');
+define('SEM_CSS','col-xs-9 col-sm-9 col-md-9 col-lg-9');
 define('C_CSS','col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-9 col-sm-9 col-md-9 col-lg-9');
 
 /************************* CGP *************************/

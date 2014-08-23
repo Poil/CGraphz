@@ -23,17 +23,17 @@ if (isset($_GET['f_id_perm_module'])) {
 
 if (isset($cur_module)) {
     $module_href='edit';
-    $module_title=EDIT.' '.PROJECT;
+    $module_title=EDIT.' '.MODULE;
     echo '<div class="clearfix"></div><br />';
     echo '
         <ul class="nav nav-tabs" role="tablist">
           <li class="'.$tab_module_class.'"><a href="#module_'.$module_href.'" role="tab" data-toggle="tab">'.$module_title.'</a></li>
-          <li class="'.$tab_module_group_class.'"><a href="#module_group" role="tab" data-toggle="tab">Project Groups</a></li>
+          <li class="'.$tab_module_group_class.'"><a href="#module_group" role="tab" data-toggle="tab">'.GROUP.'</a></li>
         </ul>
         <div class="tab-content">';
 } else {
     $module_href='add';
-    $module_title=ADD.' '.PROJECT;
+    $module_title=ADD.' '.MODULE;
     echo '<div class="clearfix"></div><br />';
     echo '
         <ul class="nav nav-tabs" role="tablist">
@@ -56,7 +56,7 @@ echo '</fieldset></div>';
 
 if (isset($_GET['f_id_perm_module'])) {
     echo '<div class="tab-pane '.$tab_module_group_class.'" id="module_group"><fieldset>';
-    echo '<legend>'.PROJECT_PERMS.'</legend>';
+    echo '<legend>'.GROUP.'</legend>';
     include(DIR_FSROOT.'/html/perm/module_group/w_module_group.php');
     include(DIR_FSROOT.'/html/perm/module_group/e_module_group.php');
     include(DIR_FSROOT.'/html/perm/module_group/r_module_group_wh_id.php');
