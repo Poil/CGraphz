@@ -43,12 +43,15 @@ if (isset($cur_user)) {
 }
 
 echo '<div class="tab-pane '.$tab_user_class.'" id="user_'.$user_href.'"><fieldset>';
+echo '<legend>'.USER.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_auth_user'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
 include(DIR_FSROOT.'/html/auth/user/f_user.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 if (isset($_GET['f_id_auth_user'])) {

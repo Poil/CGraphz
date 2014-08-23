@@ -71,12 +71,15 @@ if (isset($cur_group)) {
 }
 
 echo '<div class="tab-pane '.$tab_group_class.'" id="group_'.$group_href.'"><fieldset>';
+echo '<legend>'.GROUP.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_auth_group'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
 include(DIR_FSROOT.'/html/auth/group/f_group.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 if (isset($_GET['f_id_auth_group'])) {

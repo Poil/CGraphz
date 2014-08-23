@@ -8,21 +8,21 @@ $m_form->add('text', 'f_role')
         ->value(@$cur_role->role)
         ->label(ROLE)
         ->autocomplete(false)
-        ->labelGrid('col-xs-4 col-md-2 col-lg-2')
-        ->inputGrid('col-xs-6 col-md-5 col-lg-5');
+        ->labelGrid(IL_CSS)
+        ->inputGrid(I_CSS);
 
 $m_form->add('text', 'f_role_desc')
         ->value(@$cur_role->role_description)
         ->label(DESC)
         ->autocomplete(false)
-        ->labelGrid('col-xs-4 col-md-2 col-lg-2')
-        ->inputGrid('col-xs-6 col-md-5 col-lg-5');
+        ->labelGrid(IL_CSS)
+        ->inputGrid(I_CSS);
 
 $m_form->add('submit', 'f_submit_role')
         ->iType('add')
-        ->labelGrid('col-xs-offset-4 col-md-offset-2 col-lg-offset-2')
-        ->inputGrid('col-xs-6 col-md-5 col-lg-5 col-lg-5')
-        ->value(SUBMIT);
+        ->value(SUBMIT)
+        ->labelGrid(SL_CSS)
+        ->inputGrid(S_CSS);
 
 echo $m_form->bindForm();
 
@@ -33,9 +33,10 @@ if (isset($_GET['f_id_config_role'])) {
 
    $m_dform->add('submit', 'f_del_role')
            ->iType('delete')
-           ->labelGrid('col-xs-offset-4 col-md-offset-2 col-lg-offset-2')
-           ->inputGrid('col-xs-6 col-md-5 col-lg-5')
-           ->value(DEL);
+           ->value(DEL)
+           ->labelGrid(SL_CSS)
+           ->inputGrid(S_CSS);
+
    echo $m_dform->bindForm();
 }
 ?>

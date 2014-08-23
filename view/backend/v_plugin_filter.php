@@ -36,12 +36,15 @@ if (isset($cur_plugin_filter)) {
 }
 
 echo '<div class="tab-pane '.$tab_plugin_filter_class.'" id="plugin_filter_'.$plugin_filter_href.'"><fieldset>';
+echo '<legend>'.PLUGIN.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_config_plugin_filter'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
 include(DIR_FSROOT.'/html/config/plugin_filter/f_plugin_filter.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 echo '</div>';
