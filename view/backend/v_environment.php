@@ -1,6 +1,7 @@
 <?php
 echo '<h1>'.MANAGE_MODULES.'</h1>';
 include(DIR_FSROOT.'/html/config/environment/w_environment.php');
+include(DIR_FSROOT.'/html/config/environment_server/e_environment_server_wh_id.php');
 include(DIR_FSROOT.'/html/config/environment/e_environment.php');
 include(DIR_FSROOT.'/html/config/environment/r_environment_wh_id.php');
 include(DIR_FSROOT.'/html/config/environment/r_environment.php');
@@ -42,12 +43,15 @@ if (isset($cur_environment)) {
 }
 
 echo '<div class="tab-pane '.$tab_environment_class.'" id="environment_'.$environment_href.'"><fieldset>';
+echo '<legend>'.ENV.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_config_environment'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
 include(DIR_FSROOT.'/html/config/environment/f_environment.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 if (isset($_GET['f_id_config_environment'])) {

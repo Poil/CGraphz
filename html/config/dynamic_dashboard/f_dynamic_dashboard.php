@@ -8,14 +8,14 @@ $d_form->add('text', 'f_title')
         ->value(@$cur_dynamic_dashboard->title)
         ->label(TITLE)
         ->autocomplete(false)
-        ->labelGrid('col-xs-4 col-md-2 col-lg-2')
-        ->inputGrid('col-xs-6 col-md-5 col-lg-5');
+        ->labelGrid(IL_CSS)
+        ->inputGrid(I_CSS);
 
 $d_form->add('submit', 'f_submit_dynamic_dashboard')
         ->iType('add')
-        ->labelGrid('col-xs-offset-4 col-md-offset-2 col-lg-offset-2')
-        ->inputGrid('col-xs-6 col-md-5 col-lg-5 col-lg-5')
-        ->value(SUBMIT);
+        ->value(SUBMIT)
+        ->labelGrid(SL_CSS)
+        ->inputGrid(S_CSS);
 
 echo $d_form->bindForm();
 
@@ -26,9 +26,10 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
 
    $dd_dform->add('submit', 'f_del_dynamic_dashboard')
            ->iType('delete')
-           ->labelGrid('col-xs-offset-4 col-md-offset-2 col-lg-offset-2')
-           ->inputGrid('col-xs-6 col-md-5 col-lg-5')
-           ->value(DEL);
+           ->value(DEL)
+           ->labelGrid(SL_CSS)
+           ->inputGrid(S_CSS);
+
    echo $dd_dform->bindForm();
 }
 ?>

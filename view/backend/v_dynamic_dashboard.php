@@ -21,7 +21,7 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
         $tab_dynamic_dashboard_group_class='active';
         $tab_dynamic_dashboard_class='';
     } 
-    else if (isset($_GET['f_id_dynamic_dashboard_content']) || $last_action=='edit_dynamic_dashboard_content') {
+    else if (isset($_GET['f_id_config_dynamic_dashboard_content']) || $last_action=='edit_dynamic_dashboard_content') {
         $tab_dynamic_dashboard_content_class='active';
         $tab_dynamic_dashboard_class='';
     }
@@ -50,12 +50,15 @@ if (isset($cur_dynamic_dashboard)) {
 }
 
 echo '<div class="tab-pane '.$tab_dynamic_dashboard_class.'" id="dynamic_dashboard_'.$dynamic_dashboard_href.'"><fieldset>';
+echo '<legend>'.DASHBOARD.'</legend>';
+echo '<fieldset>';
 if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     echo '<legend>'.EDIT.'</legend>';
 } else {
     echo '<legend>'.ADD.'</legend>';
 }
 include(DIR_FSROOT.'/html/config/dynamic_dashboard/f_dynamic_dashboard.php');
+echo '</fieldset>';
 echo '</fieldset></div>';
 
 if (isset($_GET['f_id_config_dynamic_dashboard'])) {
@@ -74,7 +77,8 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/f_dynamic_dashboard_group.php');
-    echo '</fieldset></div>';
+    echo '</fieldset>';
+    echo '</div>';
 
     /* content */
     echo '<div class="tab-pane '.$tab_dynamic_dashboard_content_class.'" id="dynamic_dashboard_content"><fieldset>';
@@ -86,12 +90,13 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/d_dynamic_dashboard_content.php');
     echo '<div class="clearfix"></div>';
     
-    if (isset($_GET['f_id_dynamic_dashboard_content'])) {
+    if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_dynamic_dashboard_content').'&amp;last_action=edit_content"><button type="button" class="btn btn-primary">'.ADD.' '.CONTENT.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/f_dynamic_dashboard_content.php');
-    echo '</fieldset></div>';
+    echo '</fieldset>';
+    echo '</div>';
 }        
 echo '</div>';
 echo '<div class="clearfix"></div>';

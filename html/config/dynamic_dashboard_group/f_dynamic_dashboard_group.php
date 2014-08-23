@@ -30,19 +30,19 @@ if (isset($_GET['f_id_auth_group'])) {
    $dg_form->add('select','f_id_auth_group')
             ->options($all_group, 'id_auth_group', 'group')
             ->label(GROUP)
-            ->labelGrid('col-xs-3 col-md-2')
-            ->inputGrid('col-xs-8 col-md-9');
+            ->labelGrid(IL_CSS)
+            ->inputGrid(I_CSS);
 
    $dg_form->add('checkbox','f_group_manager')
            ->value('manager')
            ->label('Manager')
-           ->inputGrid('col-md-offset-2 col-md-9');
+           ->inputGrid(C_CSS);
 
    $dg_form->add('submit', 'f_submit_dynamic_dashboard_group')
            ->iType('add')
            ->value(SUBMIT)
-           ->labelGrid('col-xs-offset-3 col-md-offset-2')
-           ->inputGrid('col-xs-8 col-md-9');
+           ->labelGrid(SL_CSS)
+           ->inputGrid(S_CSS);
 }
 echo $dg_form->bindForm();
 ?>

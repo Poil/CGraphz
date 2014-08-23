@@ -2,7 +2,6 @@
 class InputCheckbox extends Field{
     private $checked = false;
     private $default = false;
-    private $display = 'inline';
     
     public function buildField(){
         $field = '<div class="form-group">'."\n";
@@ -71,8 +70,4 @@ class InputCheckbox extends Field{
         return $this;
     }
     
-    public function display($v){
-        if($v == 'inline' OR $v == 'block' OR $v == 'hidden')
-            $this->display = $v;
-    }
 }

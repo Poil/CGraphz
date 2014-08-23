@@ -53,18 +53,24 @@
 }
 
 .dataTables_length {
-	width: 40%;
+	width: 100%;
 	float: left;
 }
 
 .dataTables_filter {
-	width: 50%;
+	width: 100%;
 	float: right;
 	text-align: right;
 }
 
+.dataTables_filter > label > input,
+.dataTables_length > label > select {
+	display: inline;
+}
+
+
 .dataTables_info {
-	width: 60%;
+	width: 100%;
 	float: left;
 }
 

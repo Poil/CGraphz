@@ -26,22 +26,22 @@ if (isset($_GET['f_id_config_server'])) {
 
    $es_form->add('checkbox','f_filter_server_in_environment')
            ->value('true')
-           ->label('filter server')
-           ->inputGrid('col-sm-offset-2 col-md-9')
+           ->label(FILTER_SRV_ALREADY_DEF_ENV)
            ->checked($f_filter_server_in_environment)
-           ->onclick("$('#f_submit_environment_server').click()");
+           ->onclick("$('#f_submit_environment_server').click()")
+           ->inputGrid('col-xs-12 col-md-12');
 
    $es_form->add('select','f_id_config_server')
-           ->label(SERVER)
-           ->labelGrid('col-xs-2 col-md-2')
-           ->inputGrid('col-xs-9 col-md-9')
            ->multiple(true)
            ->fieldClasses('multiselect')
-           ->options($all_server, 'id_config_server', 'server_name');
+           ->options($all_server, 'id_config_server', 'server_name')
+           ->inputGrid('col-xs-12 col-md-12');
 
    $es_form->add('submit', 'f_submit_environment_server')
            ->iType('add')
-           ->value(SUBMIT);
+           ->value(SUBMIT)
+           ->labelGrid('col-xs-offset-0 col-md-offset-0')
+           ->inputGrid('col-xs-12 col-md-12');
 }
 echo $es_form->bindForm();
 ?>

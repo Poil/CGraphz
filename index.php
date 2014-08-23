@@ -88,9 +88,9 @@ if ($auth->verif_auth()) {
       echo '<section style="margin-top: 140px">';
    } elseif (GET('module') == 'dashboard') {
       include(DIR_FSROOT.'/html/menu/menu_plugin.php');
-      echo '<section style="margin-top: 90px">';
+      echo '<section style="margin-top: 90px; padding:0 5px">';
    } else {
-      echo '<section style="margin-top: 60px">';
+      echo '<section style="margin-top: 60px; padding:0 5px">';
    }
 ?>
    <?php include(DIR_FSROOT.'/config/module.php'); ?>

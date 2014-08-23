@@ -9,36 +9,34 @@ if (isset($cur_server->id_config_server)) {
            ->value(@$cur_server->server_name)
            ->label(SERVER)
            ->autocomplete(false)
-           ->labelGrid('col-xs-3 col-md-1')
-           ->inputGrid('col-xs-4 col-md-3');
+           ->labelGrid(IL_CSS)
+           ->inputGrid(I_CSS);
 } else {
    $s_form->add('select','f_server_name')
-           ->label(SERVER)
-           ->labelGrid('col-xs-3 col-md-1')
-           ->inputGrid('col-xs-4 col-md-3')
            ->multiple(true)
            ->fieldClasses('multiselect')
-           ->options($all_rrdserver, 'server_name', 'server_name');
+           ->options($all_rrdserver, 'server_name', 'server_name')
+           ->inputGrid('col-xs-12 col-md-12');
 }
 $s_form->add('text', 'f_server_description')
-        ->value(@$cur_server->server_description)
-        ->label(DESC)
-        ->autocomplete(false)
-        ->labelGrid('col-xs-3 col-md-1')
-        ->inputGrid('col-xs-4 col-md-3');
+       ->value(@$cur_server->server_description)
+       ->label(DESC)
+       ->autocomplete(false)
+       ->labelGrid(IL_CSS)
+       ->inputGrid(I_CSS);
 
 $s_form->add('select','f_collectd_version')
        ->label(COLLECTD_VERSION)
        ->options(unserialize(COLLECTD_VERSIONS))
        ->value(@$cur_server->collectd_version)
-       ->labelGrid('col-xs-3 col-md-1')
-       ->inputGrid('col-xs-4 col-md-3');
+       ->labelGrid(IL_CSS)
+       ->inputGrid(I_CSS);
 
 $s_form->add('submit', 'f_submit_server')
         ->iType('add')
-        ->labelGrid('col-xs-offset-3 col-md-offset-1')
-        ->inputGrid('col-xs-4 col-md-3')
-        ->value(SUBMIT);
+        ->value(SUBMIT)
+        ->labelGrid(SL_CSS)
+        ->inputGrid(S_CSS);
 
 echo $s_form->bindForm();
 
@@ -50,9 +48,9 @@ if (isset($_GET['f_id_config_server'])) {
 
    $s_dform->add('submit', 'f_del_server')
            ->iType('delete')
-           ->labelGrid('col-xs-offset-3 col-md-offset-1')
-           ->inputGrid('col-xs-4 col-md-3')
-           ->value(DEL);
+           ->value(DEL)
+           ->labelGrid(SL_CSS)
+           ->inputGrid(S_CSS);
 
    echo $s_dform->bindForm();
 }
