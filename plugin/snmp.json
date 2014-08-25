@@ -16,6 +16,26 @@
 		"legend_format": "%5.1lf%s",
 		"datasize": true
 	},
+	"load": {
+		"title": "System load",
+		"vertical": "System load",
+		"type": "default",
+		"scale": "0.001",
+		"legend": {
+			"shortterm": {
+				"name": " 1 min",
+				"color": "00ff00"
+			},
+			"midterm": {
+				"name": " 5 min",
+				"color": "0000ff"
+			},
+			"longterm": {
+				"name": "15 min",
+				"color": "ff0000"
+			}
+		}
+	},
 	"uptime": {
 		"title": "Uptime {{TI}}",
 		"vertical": "Days",
