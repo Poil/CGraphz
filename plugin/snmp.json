@@ -15,5 +15,11 @@
 		},
 		"legend_format": "%5.1lf%s",
 		"datasize": true
+	},
+	"uptime": {
+		"title": "Uptime {{TI}}",
+		"vertical": "Days",
+		"type": "uptime",
+		"legend_format": "%5.1lf%s"
 	}
 }
