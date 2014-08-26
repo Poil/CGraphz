@@ -177,17 +177,17 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   }
                } else if ($all_content[$i]->rrd_ordering=='P') {
                   if ($old_p!=$plugin['p']) {
-                     echo '<h1>'.$plugin['p'].'</h1>';
+                     echo '<h2>'.$plugin['p'].'</h2>';
                   }
                   if ($old_pc!=$plugin['pc']) {
-                     echo '<h2>'.$plugin['pc'].'</h2>';
+                     echo '<h3>'.$plugin['pc'].'</h3>';
                   }
                } else if ($all_content[$i]->rrd_ordering=='PC') {
                   if ($old_pc!=$plugin['pc']) {
-                     echo '<h1>'.$plugin['pc'].'</h1>';
+                     echo '<h2>'.$plugin['pc'].'</h2>';
                   }
                   if ($old_servername!=$plugin['servername']) {
-                     echo '<h2>'.$plugin['servername'].'</h2>';
+                     echo '<h3>'.$plugin['servername'].'</h3>';
                   }
                } else if ($all_content[$i]->rrd_ordering=='PI') {
                   if ($old_pi!=$plugin['pi']) {
