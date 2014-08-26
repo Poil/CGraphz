@@ -115,10 +115,14 @@ if (isset($plugin_json[$type]['legend'])) {
 
 if (isset($plugin_json[$type]['title'])) {
 	$obj->rrd_title = $plugin_json[$type]['title'];
-	$obj->rrd_title = str_replace('{{PI}}', GET('pi'), $obj->rrd_title);
-	$obj->rrd_title = str_replace('{{PC}}', GET('pc'), $obj->rrd_title);
-	$obj->rrd_title = str_replace('{{TI}}', GET('ti'), $obj->rrd_title);
-	$obj->rrd_title = str_replace('{{TC}}', GET('tc'), $obj->rrd_title);
+	$replacements = array(
+		'{{PI}}' => GET('pi'),
+		'{{PC}}' => GET('pc'),
+		'{{TI}}' => GET('ti'),
+		'{{TC}}' => GET('tc'),
+		'{{HOST}}' => GET('h')
+	);
+	$obj->rrd_title = str_replace(array_keys($replacements), array_values($replacements), $obj->rrd_title);
 }
 
 if (isset($plugin_json[$type]['vertical'])) {

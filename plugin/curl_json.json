@@ -1,6 +1,6 @@
 {
 	"players": {
-		"title": "Connections",
+		"title": "Connections on {{HOST}}",
 		"vertical": "Slots",
 		"type": "stacked",
 		"legend": {
@@ -14,25 +14,25 @@
 		"legend_format": "%5.1lf%s"
 	},
 	"cache_result": {
-		"title": "Cache query",
+		"title": "Cache query on {{HOST}}",
 		"vertical": "Queries",
 		"type": "stacked",
 		"legend_format": "%5.1lf%s"
 	},
 	"cache_size": {
-		"title": "Cache query",
+		"title": "Cache query on {{HOST}}",
 		"vertical": "Bytes",
 		"type": "stacked",
 		"legend_format": "%5.1lf%s"
 	},
 	"files": {
-		"title": "Files",
+		"title": "Files on {{HOST}}",
 		"vertical": "Files",
 		"type": "stacked",
 		"legend_format": "%5.1lf%s"
 	},
 	"cache_ratio": {
-		"title": "Ratio",
+		"title": "Ratio on {{HOST}}",
 		"vertical": "%",
 		"type": "stacked",
 		"legend_format": "%5.1lf%s"
