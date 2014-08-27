@@ -147,6 +147,9 @@ class Type_Base {
 	}
 
 	function rrd_escape($value) {
+		# In case people have really bizarre URLs in $CONFIG['rrd_url'],
+		# it should not be dropped.
+		$value = str_replace('\\', '\\\\', $value);
 		# http://oss.oetiker.ch/rrdtool/doc/rrdgraph_graph.en.html#IEscaping_the_colon
 		return str_replace(':', '\:', $value);
 	}
@@ -290,8 +293,9 @@ class Type_Base {
 			'-w', is_numeric($this->width) ? $this->width : 400,
 			'-h', is_numeric($this->height) ? $this->height : 175,
 			'-l', '0',
-			'-t', "{$this->rrd_title} on {$this->args['host']}"
+			'-t', $this->rrd_title
 		));
+
 		if ($this->rrd_vertical) {
 			$rrdgraph[] = '-v';
 			$rrdgraph[] = $this->rrd_vertical;

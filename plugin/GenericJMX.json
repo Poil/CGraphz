@@ -1,6 +1,6 @@
 {
 	"memory": {
-		"title": "{{TC}} {{PI}} for {{PC}}",
+		"title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
 		"vertical": "{{ND}}",
 		"legend": {
 			"heap-committed": {

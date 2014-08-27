@@ -98,7 +98,6 @@ div#project_plugin > div > button.navbar-toggle {
 
 div#project_plugin > div > ul {
     margin:0 0;
-    background:white;
 }
 
 div#project_plugin > div > ul > li > a{
@@ -123,4 +122,10 @@ div#project_plugin > div > ul > li > ul > li > a {
 /* fix popup modal position */
 div#popupModal .modal-dialog {
     margin: 10px;
+}
+
+@media (max-width: 1200px) {
+    div#project_plugin > div > ul {
+        background:white;
+    }
 }
