@@ -1,13 +1,13 @@
 {
 	"df": {
-		"title": "Tablespace usage",
+		"title": "Tablespace usage on {{HOST}}",
 		"vertical": "Bytes",
 		"legend_format": "%5.1lf%s",
 		"base": "1024",
 		"type": "stacked"
 	},
 	"io_octets": {
-		"title": "Database i/o",
+		"title": "Database i/o on {{HOST}}",
 		"vertical": "Bytes/s",
 		"legend_format": "%5.1lf%s"
 	}
