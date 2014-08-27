@@ -134,58 +134,7 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
             include(DIR_FSROOT.'/html/small_admin/newuser/f_user.php');
             echo '</fieldset>';
         } else if ($component=='mydashboard') {
-            echo '<h1>'.MANAGE_MY_DYN_DASHBOARDS.'</h1>';
-            include(DIR_FSROOT.'/html/small_admin/mydashboard/r_dynamic_dashboard_wh_id.php');
-            include(DIR_FSROOT.'/html/small_admin/mydashboard/e_dynamic_dashboard.php');
-            include(DIR_FSROOT.'/html/small_admin/mydashboard/w_dynamic_dashboard.php');
-            include(DIR_FSROOT.'/html/small_admin/mydashboard/r_dynamic_dashboard_wh_id.php');
-            include(DIR_FSROOT.'/html/small_admin/mydashboard/r_dynamic_dashboard.php');
-            include(DIR_FSROOT.'/html/small_admin/mydashboard/d_dynamic_dashboard.php');
-            echo '<div class="clearfix"></div>';
-            
-            if (isset($_GET['f_id_config_dynamic_dashboard'])) {
-                echo '<a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'"><button type="button" class="btn btn-primary">'.ADD.' '.DASHBOARD.'</button></a>';
-            }
-            echo '<div class="clearfix"></div>';
-            $f_id_config_dynamic_dashboard=intval(GET('f_id_config_dynamic_dashboard'));
-            echo '<fieldset>';
-            if (isset($cur_dynamic_dashboard)) {
-                echo '<legend>'.$cur_dynamic_dashboard->title.'</legend>';
-            }
-            echo '<fieldset>';
-            if (isset($_GET['f_id_config_dynamic_dashboard'])) {
-                echo '<legend>'.EDIT.'</legend>';
-            } else {
-                echo '<legend>'.ADD.'</legend>';
-            }
-            
-            include(DIR_FSROOT.'/html/small_admin/mydashboard/f_dynamic_dashboard.php');
-            echo '</fieldset>';
-            
-            if (isset($_GET['f_id_config_dynamic_dashboard'])) {
-                echo '<fieldset class="large">';
-                echo '<legend>'.PLUGIN_FILTER.'</legend>';
-                include(DIR_FSROOT.'/html/small_admin/mydashboard_content/w_dynamic_dashboard_content.php');
-                include(DIR_FSROOT.'/html/small_admin/mydashboard_content/e_dynamic_dashboard_content.php');
-                include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content_wh_id.php');
-                include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content.php');
-                include(DIR_FSROOT.'/html/small_admin/mydashboard_content/d_dynamic_dashboard_content.php');
-                echo '<div class="clearfix"></div>';
-                
-                if (isset($_GET['f_id_auth_user'])) {
-                    echo '<a href="'.removeqsvar($cur_url,'f_id_auth_user').'"><button type="button" class="btn btn-primary">'.ADD.' '.USER.'</button></a>';
-                }
-                echo '<div class="clearfix"></div>';
-                if (isset($_GET['f_id_auth_user'])) {
-                    echo '<strong>'.DEL.'</strong>';
-                } else {
-                    echo '<strong>'.ADD.'</strong>';
-                }
-                include(DIR_FSROOT.'/html/small_admin/mydashboard_content/f_dynamic_dashboard_content.php');
-                echo '</fieldset>';
-            }
-            echo '</fieldset>';
-            echo '<div class="clearfix"></div>';
+            include(DIR_FSROOT.'/view/backend/v_small_admin_mydashboard.php');
         }
     } else {
         echo $CONFIG['welcome_text'];
