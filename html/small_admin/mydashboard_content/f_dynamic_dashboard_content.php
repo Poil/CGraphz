@@ -1,6 +1,6 @@
+<fieldset>
 <?php
 $ddc_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_dynamic_dashboard_content');
-$ddc_form->fieldset(true);
 
 $ddc_form->add('hidden', 'f_id_config_dynamic_dashboard_content')
         ->value(@$cur_dynamic_dashboard_content->id_config_dynamic_dashboard_content);
@@ -103,7 +103,8 @@ if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
    echo $ddc_dform->bindForm();
 }
 ?>
-	
+</fieldset>
+
 <div id="displaytest" style="display:none;" title="<?php echo CLICK_TO_CLOSE ?>"></div>
 
 <script type="text/javascript">
