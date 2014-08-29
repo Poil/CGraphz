@@ -178,6 +178,7 @@
 
 		<script type="text/javascript">
 			$(document).ready(function(){
+<<<<<<< HEAD
                 $.ajax({
                     type: 'GET',
                     url: '<?php echo DIR_WEBROOT; ?>/modules/claranet/ajax/getGraphClient.ajax.php',
@@ -192,6 +193,22 @@
                     }
                 });
             });
+=======
+				$.ajax({
+					type: 'GET',
+					url: '<?php echo DIR_WEBROOT; ?>/modules/claranet/ajax/getGraphClient.ajax.php',
+					data: '<?php echo 'f_host='.$_GET['f_host'].'&idGuest='.$idGuest.'&timerange='.((isset($_SESSION['time_range'])) ? $_SESSION['time_range'] : "").'&timestart='.((isset($_SESSION['time_start'])) ? $_SESSION['time_start'] : "").'&timeend='.((isset($_SESSION['time_end'])) ? $_SESSION['time_end'] : "");?>',
+					success: function(msg){
+						var tabSrcClient=msg.split('|');
+						for(var i = 0 ; i < tabSrcClient.length ; i++){
+							// Ne pas prendre en compte les variables de temps ( ce qui il y a après le &s )
+							var src=tabSrcClient[i].split('&s');
+							$('[src*="'+src[0]+'"]').addClass('grapheClient');
+						}
+					}
+				});
+			});
+>>>>>>> b0cf3e6d05ee59139b059777748cc2dedd81b113
 		</script>
 <?php
     }
