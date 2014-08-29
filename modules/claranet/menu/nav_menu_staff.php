@@ -181,11 +181,13 @@
 				$.ajax({
 					type: 'GET',
 					url: '<?php echo DIR_WEBROOT; ?>/modules/claranet/ajax/getGraphClient.ajax.php',
-					data: '<?php echo 'f_host='.$_GET['f_host'].'&idGuest='.$idGuest.'&timerange='.$_SESSION['time_range'].'&timestart='.$_SESSION['time_start'].'&timeend='.$_SESSION['time_end'];?>',
+					data: '<?php echo 'f_host='.$_GET['f_host'].'&idGuest='.$idGuest.'&timerange='.((isset($_SESSION['time_range'])) ? $_SESSION['time_range'] : "").'&timestart='.((isset($_SESSION['time_start'])) ? $_SESSION['time_start'] : "").'&timeend='.((isset($_SESSION['time_end'])) ? $_SESSION['time_end'] : "");?>',
 					success: function(msg){
 						var tabSrcClient=msg.split('|');
 						for(var i = 0 ; i < tabSrcClient.length ; i++){
-							$('[src="'+tabSrcClient[i]+'"]').addClass('grapheClient');
+							// Ne pas prendre en compte les variables de temps ( ce qui il y a après le &s )
+							var src=tabSrcClient[i].split('&s');
+							$('[src*="'+src[0]+'"]').addClass('grapheClient');
 						}
 					}
 				});
