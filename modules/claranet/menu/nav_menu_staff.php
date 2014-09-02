@@ -129,7 +129,7 @@
 
 <div class="input-group" id="checkFiltre" style="width : 30px; margin-top : 8px;">
 	<span class="input-group-addon">
-		<input <?php if($_SESSION['filtre']!=$idStaff){ echo "checked ";}?>id="filtreClient"type="checkbox">
+		<input <?php if(isset($_SESSION['filtre']) && $_SESSION['filtre']!=$idStaff){ echo "checked ";}?>id="filtreClient"type="checkbox">
 	</span>
 	<span id="textCheckFiltre" class="input-group-addon" style="width:65px;padding-left:0px;">Vue client</span>
 </div>
@@ -138,7 +138,7 @@
 <script type="text/javascript">
 	function modifeFiltre(){
 	<?php
-		if($_SESSION['filtre']!=$idStaff){
+		if(isset($_SESSION['filtre']) && $_SESSION['filtre']!=$idStaff){
 			echo "window.location.href = '".DIR_WEBROOT."/modules/claranet/filtre.php?c=$idStaff';";
 		}else{
 			echo "window.location.href = '".DIR_WEBROOT."/modules/claranet/filtre.php?c=$idGuest';";
@@ -162,7 +162,7 @@
 
 
 <?php
-	if($_SESSION['filtre']==$idStaff && isset($_GET['f_host'])){
+	if(isset($_SESSION['filtre']) && $_SESSION['filtre']==$idStaff && isset($_GET['f_host'])){
 	//ajax entoure image graphe
 ?>
 		<style>
