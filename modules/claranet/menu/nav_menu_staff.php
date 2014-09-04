@@ -85,6 +85,22 @@
 	echo '</select>
 		</div>';
 
+	// Si on est administrateur alors il faut enlever le search de la barre d'admin avant d'ajouter le search custom Claranet
+	// Et descendre la barre de plugin de 50px pour compenser la double barre
+	if (isset($_SESSION['profile']) && ($_SESSION['profile']=='admin')) {
+?>		
+		<script type="text/javascript">
+			$("#f_form_find_server").hide();
+
+
+			$(function(){
+				var anchor=$('#project_plugin');
+			
+				anchor.parent().css('top','100px');
+			});
+		</script>
+<?php
+	}
 ?>
 	<div style="width : 10px; height : 5px; display : inline-block;">
 		<!-- Permet de mettre un espace horizontal ( width ) sur grand ecran et un epsace vertical ( height ) en responsive !-->
@@ -111,7 +127,7 @@
 	});
 </script>
 
-<?php
+<?php	
 
 	//Si l'utilisateur n'est pas un user alors on affiche la checkbox de vue client.
 	$connSQL=new DB();
