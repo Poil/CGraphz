@@ -86,7 +86,7 @@
 		</div>';
 
 	// Si on est administrateur alors il faut enlever le search de la barre d'admin avant d'ajouter le search custom Claranet
-	// Et descendre la barre de plugin de 50px pour compenser la double barre
+	// Et descendre la barre de plugin et le nom du serveur pour compenser la double barre
 	if (isset($_SESSION['profile']) && ($_SESSION['profile']=='admin')) {
 ?>		
 		<script type="text/javascript">
@@ -94,6 +94,8 @@
 
 
 			$(function(){
+				$('#dashboard h1').css('margin-top','130px');
+
 				var anchor=$('#project_plugin');
 			
 				anchor.parent().css('top','100px');
