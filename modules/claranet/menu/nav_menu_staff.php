@@ -84,25 +84,6 @@
 
 	echo '</select>
 		</div>';
-
-	// Si on est administrateur alors il faut enlever le search de la barre d'admin avant d'ajouter le search custom Claranet
-	// Et descendre la barre de plugin et le nom du serveur pour compenser la double barre
-	if (isset($_SESSION['profile']) && ($_SESSION['profile']=='admin')) {
-?>		
-		<script type="text/javascript">
-			$("#f_form_find_server").hide();
-
-
-			$(function(){
-				$('#dashboard h1').css('margin-top','130px');
-
-				var anchor=$('#project_plugin');
-			
-				anchor.parent().css('top','100px');
-			});
-		</script>
-<?php
-	}
 ?>
 	<div style="width : 10px; height : 5px; display : inline-block;">
 		<!-- Permet de mettre un espace horizontal ( width ) sur grand ecran et un epsace vertical ( height ) en responsive !-->
@@ -147,7 +128,7 @@
 
 <div class="input-group" id="checkFiltre" style="width : 30px; margin-top : 8px;">
 	<span class="input-group-addon">
-		<input <?php if(isset($_SESSION['filtre']) && $_SESSION['filtre']!=$idStaff){ echo "checked ";}?>id="filtreClient"type="checkbox">
+		<input <?php if(!isset($_SESSION['filtre']) || $_SESSION['filtre']!=$idStaff){ echo "checked ";}?>id="filtreClient"type="checkbox">
 	</span>
 	<span id="textCheckFiltre" class="input-group-addon" style="width:65px;padding-left:0px;">Vue client</span>
 </div>
@@ -156,7 +137,7 @@
 <script type="text/javascript">
 	function modifeFiltre(){
 	<?php
-		if(isset($_SESSION['filtre']) && $_SESSION['filtre']!=$idStaff){
+		if(!isset($_SESSION['filtre']) || $_SESSION['filtre']!=$idStaff){
 			echo "window.location.href = '".DIR_WEBROOT."/modules/claranet/filtre.php?c=$idStaff';";
 		}else{
 			echo "window.location.href = '".DIR_WEBROOT."/modules/claranet/filtre.php?c=$idGuest';";

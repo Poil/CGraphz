@@ -6,8 +6,8 @@
 /*****************************/
 if(isset($_SESSION['user'])) {
 	if (isset($_SESSION['profile']) && ($_SESSION['profile']=='admin')) {
-		$this->user = isset($_SESSION['user']) ? 'admin' : '';
-		$this->passwd = isset($_SESSION['user']) ? 'pass' : '';
+		$this->user = isset($_SESSION['user']) ? 'staff' : '';
+		$this->passwd = isset($_SESSION['user']) ? 'staff' : '';
 	} else if(isset($_SESSION['profile']) && ($_SESSION['profile']=='staff')) {
 		$this->user = isset($_SESSION['user']) ? 'staff' : '';
 		$this->passwd = isset($_SESSION['user']) ? 'staff' : '';
