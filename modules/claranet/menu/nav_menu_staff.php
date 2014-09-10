@@ -187,7 +187,10 @@
                             // Ne pas prendre en compte les variables de temps ( ce qui il y a après le &s )
                             var src=tabSrcClient[i].split('&s');
                             $('[src*="'+src[0]+'"]').addClass('grapheClient');
-                        }
+						}
+
+						// Cas particulier de l'aggregation
+						$('[src*="&t=aggregation"]').addClass('grapheClient');
                     }
                 });
             });
