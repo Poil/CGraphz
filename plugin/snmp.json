@@ -16,6 +16,26 @@
 		"legend_format": "%5.1lf%s",
 		"datasize": true
 	},
+
+	"if_errors": {
+		"title": "Interface Errors ({{TI}}) on {{HOST}}",
+		"vertical": "Errors per second"
+	},
+
+	"if_dropped": {
+		"title": "Interface Discards ({{TI}}) on {{HOST}}",
+		"vertical": "Dropped per second"
+	},
+
+	"if_packets": {
+		"title": "Interface Packets ({{TI}}) on {{HOST}}",
+		"vertical": "Packets per second"
+	},
+
+	"gauge-cpu": {
+		"scale": "100"
+	},
+
 	"load": {
 		"title": "System load",
 		"vertical": "System load",
