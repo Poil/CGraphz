@@ -41,5 +41,21 @@
 		"vertical": "Days",
 		"type": "uptime",
 		"legend_format": "%5.1lf%s"
+	},
+	"memory": {
+		"title": "Physical memory utilization on {{HOST}}",
+		"vertical": "Bytes",
+		"type": "stacked",
+		"legend": {
+			"free": {
+				"name": "Free",
+				"color": "00e000"
+			},
+			"used": {
+				"name": "Used",
+				"color": "ff0000"
+			}
+		},
+		"base": "1024"
 	}
 }
