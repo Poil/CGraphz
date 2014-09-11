@@ -124,7 +124,12 @@ div#popupModal .modal-dialog {
     margin: 10px;
 }
 
-@media (max-width: 1200px) {
+/* inline form in nav menu 180px */
+nav form.form-inline select {
+   width: 180px;
+}
+
+@media (max-width: 992px) {
     div#project_plugin > div > ul {
         background:white;
     }
