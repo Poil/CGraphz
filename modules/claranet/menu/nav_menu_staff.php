@@ -85,6 +85,24 @@
 	echo '</select>
 		</div>';
 
+	// Si on est administrateur alors il faut enlever le search de la barre d'admin avant d'ajouter le search custom Claranet
+	// Et descendre la barre de plugin et le nom du serveur pour compenser la double barre
+	if (isset($_SESSION['profile']) && ($_SESSION['profile']=='admin')) {
+?>		
+		<script type="text/javascript">
+			$("#f_form_find_server").hide();
+
+
+			$(function(){
+				$('#dashboard h1').css('margin-top','130px');
+
+				var anchor=$('#project_plugin');
+			
+				anchor.parent().css('top','100px');
+			});
+		</script>
+<?php
+	}
 ?>
 	<div style="width : 10px; height : 5px; display : inline-block;">
 		<!-- Permet de mettre un espace horizontal ( width ) sur grand ecran et un epsace vertical ( height ) en responsive !-->
@@ -111,7 +129,7 @@
 	});
 </script>
 
-<?php
+<?php	
 
 	//Si l'utilisateur n'est pas un user alors on affiche la checkbox de vue client.
 	$connSQL=new DB();
@@ -129,7 +147,7 @@
 
 <div class="input-group" id="checkFiltre" style="width : 30px; margin-top : 8px;">
 	<span class="input-group-addon">
-		<input <?php if($_SESSION['filtre']!=$idStaff){ echo "checked ";}?>id="filtreClient"type="checkbox">
+		<input <?php if(isset($_SESSION['filtre']) && $_SESSION['filtre']!=$idStaff){ echo "checked ";}?>id="filtreClient"type="checkbox">
 	</span>
 	<span id="textCheckFiltre" class="input-group-addon" style="width:65px;padding-left:0px;">Vue client</span>
 </div>
@@ -138,7 +156,7 @@
 <script type="text/javascript">
 	function modifeFiltre(){
 	<?php
-		if($_SESSION['filtre']!=$idStaff){
+		if(isset($_SESSION['filtre']) && $_SESSION['filtre']!=$idStaff){
 			echo "window.location.href = '".DIR_WEBROOT."/modules/claranet/filtre.php?c=$idStaff';";
 		}else{
 			echo "window.location.href = '".DIR_WEBROOT."/modules/claranet/filtre.php?c=$idGuest';";
@@ -162,7 +180,7 @@
 
 
 <?php
-	if($_SESSION['filtre']==$idStaff && isset($_GET['f_host'])){
+	if(isset($_SESSION['filtre']) && $_SESSION['filtre']==$idStaff && isset($_GET['f_host'])){
 	//ajax entoure image graphe
 ?>
 		<style>
@@ -178,18 +196,20 @@
 
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$.ajax({
-					type: 'GET',
-					url: '<?php echo DIR_WEBROOT; ?>/modules/claranet/ajax/getGraphClient.ajax.php',
-					data: '<?php echo 'f_host='.$_GET['f_host'].'&idGuest='.$idGuest.'&timerange='.$_SESSION['time_range'].'&timestart='.$_SESSION['time_start'].'&timeend='.$_SESSION['time_end'];?>',
-					success: function(msg){
-						var tabSrcClient=msg.split('|');
-						for(var i = 0 ; i < tabSrcClient.length ; i++){
-							$('[src="'+tabSrcClient[i]+'"]').addClass('grapheClient');
-						}
-					}
-				});
-			});
+                $.ajax({
+                    type: 'GET',
+                    url: '<?php echo DIR_WEBROOT; ?>/modules/claranet/ajax/getGraphClient.ajax.php',
+                    data: '<?php echo 'f_host='.$_GET['f_host'].'&idGuest='.$idGuest.'&timerange='.((isset($_SESSION['time_range'])) ? $_SESSION['time_range'] : "").'&timestart='.((isset($_SESSION['time_start'])) ? $_SESSION['time_start'] : "").'&timeend='.((isset($_SESSION['time_end'])) ? $_SESSION['time_end'] : "");?>',
+                    success: function(msg){
+                        var tabSrcClient=msg.split('|');
+                        for(var i = 0 ; i < tabSrcClient.length ; i++){
+                            // Ne pas prendre en compte les variables de temps ( ce qui il y a après le &s )
+                            var src=tabSrcClient[i].split('&s');
+                            $('[src*="'+src[0]+'"]').addClass('grapheClient');
+                        }
+                    }
+                });
+            });
 		</script>
 <?php
     }

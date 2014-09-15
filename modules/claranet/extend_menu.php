@@ -31,7 +31,7 @@
 
         if(isset($_GET['f_host'])){
             if(strpos($_GET['f_host'],'WEB') !== false) {
-                    echo '<a href="../#/dashboard?grp='.$_GET['id_project'].'" style="color: #ffffff; background-color: transparent; text-decoration: none;">PeekIn</a>';
+                    echo '<a href="../#/dashboard?grp='.((isset($_GET['id_project']))? $_GET['id_project']: "0").'" style="color: #ffffff; background-color: transparent; text-decoration: none;">PeekIn</a>';
 
             }else{
                     echo '<a href="../#/details/'.$_GET['f_host'].'?grp='.$_GET['id_project'].'" style="color: #ffffff; background-color: transparent; text-decoration: none;">PeekIn</a>';
