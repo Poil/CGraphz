@@ -1,4 +1,9 @@
 {
+	"gauge": {
+		"title": "{{TI}} on {{HOST}}",
+		"type": "stacked"
+	},
+
 	"if_octets": {
 		"title": "Interface Traffic ({{TI}}) on {{HOST}}",
 		"vertical": "{{ND}} per second",
@@ -16,6 +21,62 @@
 		"legend_format": "%5.1lf%s",
 		"datasize": true
 	},
+
+	"if_errors": {
+		"title": "Interface Errors ({{TI}}) on {{HOST}}",
+		"vertical": "Errors per second",
+		"type": "io",
+		"legend": {
+			"rx": {
+				"name": "Receive",
+				"color": "0000ff"
+			},
+			"tx": {
+				"name": "Transmit",
+				"color": "00b000"
+			}
+		},
+		"legend_format": "%5.1lf%s"
+	},
+
+	"if_dropped": {
+		"title": "Interface Discards ({{TI}}) on {{HOST}}",
+		"vertical": "Dropped per second",
+		"type": "io",
+		"legend": {
+			"rx": {
+				"name": "Receive",
+				"color": "0000ff"
+			},
+			"tx": {
+				"name": "Transmit",
+				"color": "00b000"
+			}
+		},
+		"legend_format": "%5.1lf%s"
+	},
+
+	"if_packets": {
+		"title": "Interface Packets ({{TI}}) on {{HOST}}",
+		"vertical": "Packets per second",
+		"type": "io",
+		"legend": {
+			"rx": {
+				"name": "Receive",
+				"color": "0000ff"
+			},
+			"tx": {
+				"name": "Transmit",
+				"color": "00b000"
+			}
+		},
+		"legend_format": "%5.1lf%s"
+	},
+
+	"gauge-cpu": {
+		"scale": "100"
+	},
+
 	"load": {
 		"title": "System load",
 		"vertical": "System load",
@@ -36,10 +97,33 @@
 			}
 		}
 	},
+
+	"temperature": {
+		"title": "Temperature on {{HOST}}",
+		"vertical": "Celsius",
+		"type": "default"
+	},
+
 	"uptime": {
 		"title": "Uptime {{TI}}",
 		"vertical": "Days",
 		"type": "uptime",
 		"legend_format": "%5.1lf%s"
+	},
+	"memory": {
+		"title": "Physical memory utilization on {{HOST}}",
+		"vertical": "Bytes",
+		"type": "stacked",
+		"legend": {
+			"free": {
+				"name": "Free",
+				"color": "00e000"
+			},
+			"used": {
+				"name": "Used",
+				"color": "ff0000"
+			}
+		},
+		"base": "1024"
 	}
 }
