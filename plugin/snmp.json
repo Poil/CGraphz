@@ -18,18 +18,54 @@
 	},
 
 	"if_errors": {
-		"title": "Interface Errors ({{TI}}) on {{HOST}}",
-		"vertical": "Errors per second"
+		"title": "Interface Errors ({{PI}}) on {{HOST}}",
+		"vertical": "Errors per second",
+		"type": "io",
+		"legend": {
+			"rx": {
+				"name": "Receive",
+				"color": "0000ff"
+			},
+			"tx": {
+				"name": "Transmit",
+				"color": "00b000"
+			}
+		},
+		"legend_format": "%5.1lf%s"
 	},
 
 	"if_dropped": {
-		"title": "Interface Discards ({{TI}}) on {{HOST}}",
-		"vertical": "Dropped per second"
+		"title": "Interface Discards ({{PI}}) on {{HOST}}",
+		"vertical": "Dropped per second",
+		"type": "io",
+		"legend": {
+			"rx": {
+				"name": "Receive",
+				"color": "0000ff"
+			},
+			"tx": {
+				"name": "Transmit",
+				"color": "00b000"
+			}
+		},
+		"legend_format": "%5.1lf%s"
 	},
 
 	"if_packets": {
-		"title": "Interface Packets ({{TI}}) on {{HOST}}",
-		"vertical": "Packets per second"
+		"title": "Interface Packets ({{PI}}) on {{HOST}}",
+		"vertical": "Packets per second",
+		"type": "io",
+		"legend": {
+			"rx": {
+				"name": "Receive",
+				"color": "0000ff"
+			},
+			"tx": {
+				"name": "Transmit",
+				"color": "00b000"
+			}
+		},
+		"legend_format": "%5.1lf%s"
 	},
 
 	"gauge-cpu": {
