@@ -1,7 +1,7 @@
 <?php
 /************************* CGraphz **********************/
 # Cgraphz version
-define('CGRAPHZ_VERSION','2.40 beta 3');
+define('CGRAPHZ_VERSION','2.40 beta 4');
 
 # Collectd
 define('COLLECTD_DEFAULT_VERSION','collectd_5');
@@ -70,7 +70,7 @@ $CONFIG['graph_smooth'] = false;
 $CONFIG['graph_minmax'] = false;
 
 # Plugin that can have a TypeCategory
-$CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats)$/';
+$CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats|tail)$/';
 
 # Plugin that can have a PluginCategory
 $CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000|tcpconns|aggregation)$/';

@@ -129,7 +129,7 @@ nav form.form-inline select {
    width: 180px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 992px) {
     div#project_plugin > div > ul {
         background:white;
     }
