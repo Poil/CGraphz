@@ -12,6 +12,7 @@ if (!$auth->verif_auth()) {
 			
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 $plugin = validate_get(GET('p'), 'plugin');
+$plugininstance = validate_get(GET('pi'), 'plugininstance');
 $type = validate_get(GET('t'), 'type');
 $width = GET('x') ? filter_input(INPUT_GET, 'x', FILTER_VALIDATE_INT, array(
 	'min_range' => 10,
@@ -59,15 +60,23 @@ if ($plugin == 'aggregation') {
 }
 
 # plugin json
-if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'.json')) {
-	$json = file_get_contents('plugin/'.$plugin.'.json');
+if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'-'.$plugininstance.'.json')) {
+	$json = file_get_contents('plugin/'.$plugin.'-'.$plugininstance.'.json');
 	$plugin_json = json_decode($json, true);
-
+	
 	if (is_null($plugin_json))
 		$log->write('CGP Error: invalid json in plugin/'.$plugin.'.json');
 } else {
-        $log->write(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $plugin));
-        error_image('Unknown graph type :'.$plugin.' '.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'.json')) {
+		$json = file_get_contents('plugin/'.$plugin.'.json');
+		$plugin_json = json_decode($json, true);
+	
+		if (is_null($plugin_json))
+			$log->write('CGP Error: invalid json in plugin/'.$plugin.'.json');
+	} else {
+	        $log->write(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $plugin));
+	        error_image('Unknown graph type :'.$plugin.' '.PHP_EOL.str_replace('&',PHP_EOL,$_SERVER['QUERY_STRING']));
+	}
 }
 
 if (!isset($plugin_json[$type]['type']))
@@ -89,6 +98,14 @@ switch ($plugin_json[$type]['type']) {
 	case 'uptime':
 		require_once 'type/Uptime.class.php';
 		$obj = new Type_Uptime($CONFIG, $_GET);
+		break;
+	case 'iowpm':
+		 require_once 'type/GenericIOWPM.class.php';
+        $obj = new Type_GenericIOWPM($CONFIG, $_GET);
+        break;
+	case 'aggregation':
+		require_once 'type/GenericAggregation.class.php';
+        $obj = new Type_GenericAggregation($CONFIG, $_GET);
 		break;
 	default:
 		require_once 'type/Default.class.php';
