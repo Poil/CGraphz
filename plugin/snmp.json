@@ -23,7 +23,7 @@
 	},
 
 	"if_errors": {
-		"title": "Interface Errors ({{PI}}) on {{HOST}}",
+		"title": "Interface Errors ({{TI}}) on {{HOST}}",
 		"vertical": "Errors per second",
 		"type": "io",
 		"legend": {
@@ -40,7 +40,7 @@
 	},
 
 	"if_dropped": {
-		"title": "Interface Discards ({{PI}}) on {{HOST}}",
+		"title": "Interface Discards ({{TI}}) on {{HOST}}",
 		"vertical": "Dropped per second",
 		"type": "io",
 		"legend": {
@@ -57,7 +57,7 @@
 	},
 
 	"if_packets": {
-		"title": "Interface Packets ({{PI}}) on {{HOST}}",
+		"title": "Interface Packets ({{TI}}) on {{HOST}}",
 		"vertical": "Packets per second",
 		"type": "io",
 		"legend": {
