@@ -97,6 +97,13 @@
 			}
 		}
 	},
+
+	"temperature": {
+		"title": "Temperature on {{HOST}}",
+		"vertical": "Celsius",
+		"type": "default"
+	},
+
 	"uptime": {
 		"title": "Uptime {{TI}}",
 		"vertical": "Days",
