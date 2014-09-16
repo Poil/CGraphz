@@ -62,12 +62,9 @@
 	},
 	"gauge": {
 		"title": "{{PI}} {{TC}} on {{HOST}}",
-		"type": "default",
+		"type": "stackedtotal",
 		"vertical": "ms",
 		"legend": {
-			"delay": {
-				"name": "Total"
-			},
 			"delay-before_queue_mgr": {
 				"name": "Time before queue manager"
 			},
@@ -79,6 +76,9 @@
 			},
 			"delay-trans_time": {
 				"name": "Message transmission time"
+			},
+			"delay": {
+				"name": "Total"
 			}
 		}
 	},
