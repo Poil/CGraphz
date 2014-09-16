@@ -71,6 +71,7 @@ $ddc_form->add('text', 'f_regex_ti_filter')
          ->inputGrid(I_CSS);
 
 $ddc_form->add('select','f_rrd_ordering')
+         ->value(@$cur_dynamic_dashboard_content->rrd_ordering)
          ->options(array('S','P','PC','PI','T','TI'))
          ->label(GRAPH_ORDER)
          ->labelGrid(IL_CSS)

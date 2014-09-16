@@ -126,10 +126,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                         $tmp=explode('-',$plugin_array[$cpt_p]['ti']);
                         $plugin_array[$cpt_p]['tc']=$tmp[0];
 						$ti=null;
-                     } /*else if (preg_match($CONFIG['plugin_tcategory'], $plugin_array[$cpt_p]['p'])) {
-                        $plugin_array[$cpt_p]['tc']=$plugin_array[$cpt_p]['ti'];
-                        $plugin_array[$cpt_p]['ti']=null;
-                     } */
+                     } 
                   } else {
                      $plugin_array[$cpt_p]['tc']=null;
                      $plugin_array[$cpt_p]['ti']=null;

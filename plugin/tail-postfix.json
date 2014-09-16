@@ -1,32 +1,32 @@
 {
 	"counter": {
 		"title": "{{PI}} {{TC}} on {{HOST}}",
-		"type": "stacked",
+		"type": "default",
 		"vertical": "Conn/s",
 		"legend": {
-			"connection-in-TLS-established": {
-				"name": "TLS Established"
-			},
-			"connection-in-TLS-setup": {
-				"name": "TLS Setup"
+			"connection-in-open": {
+				"name": "In Open"
 			},
 			"connection-in-close": {
-				"name": "Close"
+				"name": "In Close"
 			},
 			"connection-in-lost": {
-				"name": "Lost"
-			},
-			"connection-in-open": {
-				"name": "Open"
-			},
-			"connection-out-TLS-established": {
-				"name": "TLS Established"
-			},
-			"connection-out-TLS-setup": {
-				"name": "TLS Setup"
+				"name": "In Lost"
 			},
 			"connection-in-timeout": {
-				"name": "Timeout"
+				"name": "In Timeout"
+			},
+			"connection-in-TLS-established": {
+				"name": "In TLS Established"
+			},
+			"connection-in-TLS-setup": {
+				"name": "In TLS Setup"
+			},
+			"connection-out-TLS-established": {
+				"name": "Out TLS Established"
+			},
+			"connection-out-TLS-setup": {
+				"name": "Out TLS Setup"
 			},
 			"rejected": {
 				"name": "Rejected"
@@ -62,12 +62,9 @@
 	},
 	"gauge": {
 		"title": "{{PI}} {{TC}} on {{HOST}}",
-		"type": "default",
+		"type": "stackedtotal",
 		"vertical": "ms",
 		"legend": {
-			"delay": {
-				"name": "Total"
-			},
 			"delay-before_queue_mgr": {
 				"name": "Time before queue manager"
 			},
@@ -79,6 +76,9 @@
 			},
 			"delay-trans_time": {
 				"name": "Message transmission time"
+			},
+			"delay": {
+				"name": "Total"
 			}
 		}
 	},
