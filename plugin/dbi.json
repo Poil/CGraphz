@@ -191,6 +191,25 @@
                             }
                 }
         },
+		"pg_n_tup_c": {
+                "title": "PostgreSQL Queries {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "del": {
+                            "name": "Delete Requests"
+                            },
+                            "hot_upd": {
+                            "name": "HOT Update Requests"
+                            },
+                            "ins": {
+                            "name": "Insert Requests"
+                            },
+                            "upd": {
+                            "name": "Update Requests"
+                            }
+                }
+        },
 		"pg_numbackends": {
                 "title": "PostgreSQL Connections {{PI}}",
                 "vertical": "counter",
