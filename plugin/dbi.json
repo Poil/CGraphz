@@ -191,6 +191,16 @@
                             }
                 }
         },
+		"pg_numbackends": {
+                "title": "PostgreSQL Connections {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "pg_connection": {
+                                "name": "Connections actives"
+                            }
+                }
+        },
 		"mysql_connectionsg": {
 				"title": "Mysql Limits Connections {{PI}}",
 				"vertical": "counter",
