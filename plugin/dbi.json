@@ -102,6 +102,16 @@
 							}
 				}
 		},
+		"pg_db_size": {
+                                "title": "PostgreSQL Total BDD Size {{PI}}",
+                                "vertical": "MB",
+                                "type": "stacked",
+                                "legend": {
+                                                        "pg_db_size": {
+                                                        "name": "Total BDD Size"
+                                                        }
+                                }
+                },
 		"mysql_sort": {
 				"title": "Mysql Sort Operations {{PI}}",
 				"vertical": "counter",
