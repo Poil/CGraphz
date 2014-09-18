@@ -160,6 +160,37 @@
                             }
                 }
         },
+		"pg_blks": {
+                "title": "PostgreSQL Disk IO {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "heap_hit": {
+                            "name": "Heap Hit"
+                            },
+							"heap_read": {
+                            "name": "Heap Read"
+                            },
+							"idx_hit": {
+                            "name": "Index Hit"
+                            },
+							"idx_read": {
+                            "name": "Index Read"
+                            },
+							"tidx_read": {
+                            "name": "Toast Index Read"
+                            },
+                            "tidx_hit": {
+                            "name": "Toast Index Hit"
+                            },
+                            "toast_hit": {
+                            "name": "Toast Hit"
+                            },
+                            "toast_read": {
+                            "name": "Toast Read"
+                            }
+                }
+        },
 		"mysql_connectionsg": {
 				"title": "Mysql Limits Connections {{PI}}",
 				"vertical": "counter",
