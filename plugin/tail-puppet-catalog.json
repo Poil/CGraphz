@@ -1,0 +1,18 @@
+{
+	"gauge": {
+		"title": "Average catalogs compilation time on {{HOST}}",
+		"type": "default",
+		"vertical": "Seconds",
+		"legend": {
+			"production": {
+				"name": "Production"
+			},
+			"build": {
+				"name": "Build"
+			},
+			"test": {
+				"name": "Test"
+			}
+		}
+	}
+}
