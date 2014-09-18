@@ -147,6 +147,19 @@
 							}
 				}
 		},
+		"pg_xact": {
+                "title": "PostgreSQL Transactions {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "pg_commit": {
+                            "name": "Transactions abouties"
+                            },
+                            "pg_rollback": {
+                            "name": "Transactions annulées"
+                            }
+                }
+        },
 		"mysql_connectionsg": {
 				"title": "Mysql Limits Connections {{PI}}",
 				"vertical": "counter",
