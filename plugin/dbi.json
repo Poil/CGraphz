@@ -156,7 +156,7 @@
                             "name": "Transactions abouties"
                             },
                             "pg_rollback": {
-                            "name": "Transactions annulées"
+                            "name": "Transactions annulees"
                             }
                 }
         },
@@ -207,6 +207,25 @@
                             },
                             "upd": {
                             "name": "Update Requests"
+                            }
+                }
+        },
+		"pg_scan": {
+                "title": "PostgreSQL Query Plans {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "idx": {
+                            "name": "Index"
+                            },
+                            "idx_tup_fetch": {
+                            "name": "Index Parcouru"
+                            },
+                            "seq": {
+                            "name": "Sequence"
+                            },
+                            "seq_tup_read": {
+                            "name": "Sequence Lues"
                             }
                 }
         },
