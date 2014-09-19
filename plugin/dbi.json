@@ -216,16 +216,16 @@
                 "type": "stacked",
                 "legend": {
                             "idx": {
-                            "name": "Index"
+                            "name": "Nb Index Scan Tables"
                             },
                             "idx_tup_fetch": {
-                            "name": "Index Parcouru"
+                            "name": "Nb Rows Index Scans Found"
                             },
                             "seq": {
-                            "name": "Sequence"
+                            "name": "Nb Sequential Scan Tables"
                             },
                             "seq_tup_read": {
-                            "name": "Sequence Lues"
+                            "name": "Nb Rows Sequential Scan Found"
                             }
                 }
         },
