@@ -205,6 +205,12 @@
                             "ins": {
                             "name": "Insert Requests"
                             },
+							"dead": {
+                            "name": "Dead Requests"
+                            },
+                            "live": {
+                            "name": "Live Requests"
+                            },
                             "upd": {
                             "name": "Update Requests"
                             }
