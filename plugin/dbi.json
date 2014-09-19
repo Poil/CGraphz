@@ -205,14 +205,21 @@
                             "ins": {
                             "name": "Insert Requests"
                             },
-							"dead": {
-                            "name": "Dead Requests"
-                            },
+                            "upd": {
+                            "name": "Update Requests"
+                            }
+                }
+        },
+		"pg_n_tup_g": {
+                "title": "PostgreSQL Tables State {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
                             "live": {
                             "name": "Live Requests"
                             },
-                            "upd": {
-                            "name": "Update Requests"
+                            "dead": {
+                            "name": "Dead Requests"
                             }
                 }
         },
