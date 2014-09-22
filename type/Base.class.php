@@ -285,9 +285,13 @@ class Type_Base {
 		$rrdgraph = array_merge($rrdgraph, array(
 			'-w', is_numeric($this->width) ? $this->width : 400,
 			'-h', is_numeric($this->height) ? $this->height : 175,
-			'-l', '0',
 			'-t', $this->rrd_title
 		));
+
+		if (!array_search('-l',$rrdgraph)) {
+			$rrdgraph[] = '-l';
+			$rrdgraph[] = '0';
+		}
 
 		if ($this->rrd_vertical) {
 			$rrdgraph[] = '-v';
