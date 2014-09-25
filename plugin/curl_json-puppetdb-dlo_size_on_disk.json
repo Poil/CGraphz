@@ -1,0 +1,11 @@
+{
+	"gauge": {
+		"title": "PuppetDB DLO Size On Disk",
+		"type": "default",
+		"legend": {
+			"Value": {
+				"name": "Bytes"
+			}
+		}
+	}
+}

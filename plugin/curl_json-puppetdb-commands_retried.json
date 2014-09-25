@@ -1,0 +1,11 @@
+{
+	"counter": {
+		"title": "PuppetDB Commands Retried",
+		"type": "default",
+		"legend": {
+			"Count": {
+				"name": "Count"
+			}
+		}
+	}
+}

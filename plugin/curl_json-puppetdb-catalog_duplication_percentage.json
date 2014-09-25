@@ -1,0 +1,15 @@
+{
+	"gauge": {
+		"title": "PuppetDB Catalog Duplication",
+		"type": "default",
+		"vertical": "% of catalogs encountered",
+		"scale": "100",
+		"rrdtool_opts": ["-u", "100", "-l", "95", "-r"],
+		"legend_format": "%5.1lf%s",
+		"legend": {
+			"Value": {
+				"name": "Value"
+			}
+		}
+	}
+}

@@ -1,0 +1,15 @@
+{
+	"gauge": {
+		"title": "PuppetDB Resource Duplication",
+		"type": "default",
+		"scale": "100",
+		"rrdtool_opts": ["-u", "100", "-l", "80", "-r"],
+		"legend_format": "%5.1lf%s",
+		"vertical": "% of resources stored",
+		"legend": {
+			"Value": {
+				"name": "Value"
+			}
+		}
+	}
+}

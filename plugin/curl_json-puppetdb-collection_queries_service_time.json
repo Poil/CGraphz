@@ -1,0 +1,11 @@
+{
+	"latency": {
+		"title": "PuppetDB Collection Queries Service Time",
+		"type": "default",
+		"legend": {
+			"99thPercentile": {
+				"name": "99thPercentile"
+			}
+		}
+	}
+}
