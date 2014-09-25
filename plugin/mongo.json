@@ -17,7 +17,6 @@
 		},
 		"legend_format": "%5.1lf%s"
     },
-
     "total_operations": {
         "title": "Mongo DB Total Operations ({{PI}}) on {{HOST}}",
         "vertical": "Commandes par secondes",
@@ -109,8 +108,5 @@
             }
         }
      }
-
-
-
-
 }
+

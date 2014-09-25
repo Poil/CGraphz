@@ -102,6 +102,16 @@
 							}
 				}
 		},
+		"pg_db_size": {
+                                "title": "PostgreSQL Total BDD Size {{PI}}",
+                                "vertical": "MB",
+                                "type": "stacked",
+                                "legend": {
+                                                        "pg_db_size": {
+                                                        "name": "Total BDD Size"
+                                                        }
+                                }
+                },
 		"mysql_sort": {
 				"title": "Mysql Sort Operations {{PI}}",
 				"vertical": "counter",
@@ -137,6 +147,111 @@
 							}
 				}
 		},
+		"pg_xact": {
+                "title": "PostgreSQL Transactions {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "pg_commit": {
+                            "name": "Transactions abouties"
+                            },
+                            "pg_rollback": {
+                            "name": "Transactions annulees"
+                            }
+                }
+        },
+		"pg_blks": {
+                "title": "PostgreSQL Disk IO {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "heap_hit": {
+                            "name": "Heap Hit"
+                            },
+							"heap_read": {
+                            "name": "Heap Read"
+                            },
+							"idx_hit": {
+                            "name": "Index Hit"
+                            },
+							"idx_read": {
+                            "name": "Index Read"
+                            },
+							"tidx_read": {
+                            "name": "Toast Index Read"
+                            },
+                            "tidx_hit": {
+                            "name": "Toast Index Hit"
+                            },
+                            "toast_hit": {
+                            "name": "Toast Hit"
+                            },
+                            "toast_read": {
+                            "name": "Toast Read"
+                            }
+                }
+        },
+		"pg_n_tup_c": {
+                "title": "PostgreSQL Queries {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "del": {
+                            "name": "Delete Requests"
+                            },
+                            "hot_upd": {
+                            "name": "HOT Update Requests"
+                            },
+                            "ins": {
+                            "name": "Insert Requests"
+                            },
+                            "upd": {
+                            "name": "Update Requests"
+                            }
+                }
+        },
+		"pg_n_tup_g": {
+                "title": "PostgreSQL Tables State {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "live": {
+                            "name": "Live Requests"
+                            },
+                            "dead": {
+                            "name": "Dead Requests"
+                            }
+                }
+        },
+		"pg_scan": {
+                "title": "PostgreSQL Query Plans {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "idx": {
+                            "name": "Nb Index Scan Tables"
+                            },
+                            "idx_tup_fetch": {
+                            "name": "Nb Rows Index Scans Found"
+                            },
+                            "seq": {
+                            "name": "Nb Sequential Scan Tables"
+                            },
+                            "seq_tup_read": {
+                            "name": "Nb Rows Sequential Scan Found"
+                            }
+                }
+        },
+		"pg_numbackends": {
+                "title": "PostgreSQL Connections {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "pg_connection": {
+                                "name": "Connections actives"
+                            }
+                }
+        },
 		"mysql_connectionsg": {
 				"title": "Mysql Limits Connections {{PI}}",
 				"vertical": "counter",

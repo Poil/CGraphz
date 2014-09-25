@@ -434,8 +434,8 @@ class Type_Base {
                 $explode1=explode("/",$val);
                 $explode2=explode("-", $explode1[1]);
                 $plugin=$explode2[0];
-
-				$cmd = sprintf("FLUSH %s.rrd\n", $this->datadir.'/'.$val);
+				
+				$cmd = sprintf("FLUSH %s.rrd\n", str_replace(' ', "\\ ", $this->datadir.'/'.$val));
 				if ($debug == true) { $this->log->write('[Flush] - Commands : FLUSH '.$this->datadir.'/'.$val.'.rrd'); }
 				
 				//On verifie si le plugin à une config special
