@@ -6,7 +6,7 @@
 		private $memcache = null;
 
 		public function __construct(){
-			ini_set('session.gc_maxlifetime', 3600);
+			ini_set('session.gc_maxlifetime', 43200);
 			
 			$this->memcache = new Memcache;
 			$this->memcache->connect($this->host, $this->port) or die("Error : Memcache is not ready");
