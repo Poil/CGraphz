@@ -1,0 +1,30 @@
+{
+	"derive": {
+		"title": "Total informations {{HOST}}",
+		"vertical": "Hits",
+        "legend": {
+            "s_bodybytes": {
+                         "name": "Total body bytes"
+                     },
+            "s_fetch": {
+                         "name": "Total fetch"
+                     },
+            "s_hdrbytes": {
+                         "name": "Total header bytes"
+                     },
+            "s_pass": {
+                         "name": "Total pass"
+                     },
+            "s_pipe": {
+                         "name": "Total pipe"
+                     },
+            "s_req": {
+                         "name": "Total Requests"
+                     },
+            "s_sess": {
+                         "name": "Total Sessions"
+                     }
+        },
+		"legend_format": "%5.1lf"
+    }	
+}

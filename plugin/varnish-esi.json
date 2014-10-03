@@ -1,0 +1,14 @@
+{
+	"derive": {
+		"title": "ESI parse on {{HOST}}",
+        "legend": {
+            "esi_errors": {
+                         "name": "ESI parse errors (unlock)"
+                     },
+            "esi_warnings": {
+                         "name": "ESI parse warnings (unlock)"
+                     }
+        },
+		"legend_format": "%5.1lf"
+    }	
+}

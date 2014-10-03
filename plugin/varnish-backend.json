@@ -1,0 +1,36 @@
+{
+	"derive": {
+		"title": "Backend traffic on {{HOST}}",
+		"vertical": "Hits",
+        "legend": {
+            "backend_busy": {
+                         "name": "Backend conn. too many"
+                     },
+            "backend_conn": {
+                         "name": "Backend conn. success"
+                     },
+            "backend_fail": {
+                         "name": "Backend conn. failures"
+                     },
+            "backend_recycle": {
+                         "name": "Backend conn. recycles"
+                     },
+            "backend_req": {
+                         "name": "Backend requests made"
+                     },
+            "backend_retry": {
+                         "name": "Backend conn. retry"
+                     },
+            "backend_reuse": {
+                         "name": "Backend conn. reuses"
+                     },
+            "backend_toolate": {
+                         "name": "Backend conn. was closed"
+                     },
+            "backend_unhealthy": {
+                         "name": "Backend conn. not attempted"
+                     }
+        },
+		"legend_format": "%5.1lf"
+    }	
+}

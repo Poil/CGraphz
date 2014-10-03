@@ -1,0 +1,19 @@
+{
+	"derive": {
+		"title": "Cache rates on {{HOST}}",
+		"vertical": "Hits",
+        "legend": {
+            "cache_hit": {
+                         "name": "Cache hits"
+                     },
+            "cache_hitpass": {
+                         "name": "Cache hits for pass"
+                     },
+            "cache_miss": {
+                         "name": "Cache misses"
+                     }
+        },
+		"legend_format": "%5.1lf"
+    }	
+}
+

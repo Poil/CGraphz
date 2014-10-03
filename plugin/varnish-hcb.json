@@ -1,0 +1,17 @@
+{
+	"derive": {
+		"title": "HCB info on {{HOST}}",
+        "legend": {
+            "hcb_insert": {
+                         "name": "HCB Inserts"
+                     },
+            "hcb_lock": {
+                         "name": "HCB Lookups with lock"
+                     },
+            "hcb_nolock": {
+                         "name": "HCB Lookups without lock"
+                     }
+        },
+		"legend_format": "%5.1lf"
+    }	
+}

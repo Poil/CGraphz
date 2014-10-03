@@ -1,0 +1,27 @@
+{
+	"derive": {
+		"title": "Sessions infos on {{HOST}}",
+		"vertical": "Hits",
+        "legend": {
+            "sess_closed": {
+                         "name": "Session Closed"
+                     },
+            "sess_herd": {
+                         "name": "Session herd"
+                     },
+            "sess_linger": {
+                         "name": "Session Linger"
+                     },
+            "sess_pipe_overflow": {
+                         "name": "Dropped sessions due to session pipe overflow"
+                     },
+            "sess_pipeline": {
+                         "name": "Session Pipeline"
+                     },
+            "sess_readahead": {
+                         "name": "Session Read Ahead"
+                     }
+        },
+		"legend_format": "%5.1lf"
+    }	
+}
