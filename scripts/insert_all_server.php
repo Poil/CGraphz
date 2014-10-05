@@ -131,7 +131,10 @@ if ($find=='1') {
        		  FROM server_list
 		  WHERE server_name NOT IN (
                 	SELECT server_name FROM config_server
-        	  ) ORDER BY server_name
+        	  ) 
+		  GROUP BY server_name
+          HAVING COUNT(*) <= 1
+		  ORDER BY server_name
 		)';
 	$connSQL->query($lib);
 	

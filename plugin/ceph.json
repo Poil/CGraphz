@@ -1,0 +1,6 @@
+{
+        "ceph": {
+                "type": "stacked",
+        }
+}
+
