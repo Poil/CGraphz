@@ -134,3 +134,19 @@ nav form.form-inline select {
         background:white;
     }
 }
+
+.btn-cust {
+  position: relative;
+  float: right;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: white;
+}
+
+.btn-cust:hover {
+  color:white;
+  background-color: #333;
+}
+
