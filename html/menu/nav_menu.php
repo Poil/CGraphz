@@ -3,9 +3,7 @@
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-inner">
 <?php
-echo '<p class="navbar-text pull-right" >
-		  <a href="'.DIR_WEBROOT.'/index.php?f_logout=" style="color: #ffffff; background-color: transparent; text-decoration: none;"><span title="Logout" class="glyphicon glyphicon-log-out"></span></a>
-	  </p>';
+echo '<p class="navbar-btn pull-right"><a href="'.DIR_WEBROOT.'/index.php?f_logout="><span title="Logout" class="btn btn-cust glyphicon glyphicon-log-out"></span></a></p>';
 ?>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-dashboard">
         <span class="sr-only">Toggle navigation</span>
