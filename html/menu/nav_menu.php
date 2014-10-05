@@ -2,6 +2,11 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-inner">
+<?php
+echo '<p class="navbar-text pull-right" >
+		  <a href="'.DIR_WEBROOT.'/index.php?f_logout=" style="color: #ffffff; background-color: transparent; text-decoration: none;"><span title="Logout" class="glyphicon glyphicon-log-out"></span></a>
+	  </p>';
+?>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-dashboard">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
@@ -113,9 +118,6 @@ if ($perm_mod->perm_list_module('perm') or $perm_mod->perm_list_module('auth') o
 </form>';
   }
 }
-echo '<p class="navbar-text pull-right" >
-		  <a href="'.DIR_WEBROOT.'/index.php?f_logout=" style="color: #ffffff; background-color: transparent; text-decoration: none;">Logout</a>
-	  </p>';
 
 if (AUTH_TYPE != 'default') include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/extend_menu.php');
 ?>
