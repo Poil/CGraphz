@@ -143,6 +143,10 @@ nav form.form-inline select {
   border: 1px solid #333;
   border-radius: 4px;
   color: white;
+  margin-bottom: 8px;
+  margin-right: 15px;
+  margin-top: 8px;
+  padding: 9px 10px;
 }
 
 .btn-cust:hover {
