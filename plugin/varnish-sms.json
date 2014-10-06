@@ -8,16 +8,23 @@
             "sms_bfree": {
                          "name": "SMS bytes freed"
                      },
-            "sms_nbytes": {
-                         "name": "SMS outstanding bytes"
-                     },
-            "sms_nobj": {
-                         "name": "SMS outstanding allocations"
-                     },
             "sms_nreq": {
                          "name": "SMS allocator requests"
                      }
         },
 		"legend_format": "%5.1lf"
+    },
+
+    "gauge": {
+        "title": "SMS info on {{HOST}}",
+        "legend": {
+            "sms_nbytes": {
+                         "name": "SMS outstanding bytes"
+                     },
+            "sms_nobj": {
+                         "name": "SMS outstanding allocations"
+                     }
+        },
+        "legend_format": "%5.1lf"
     }	
 }

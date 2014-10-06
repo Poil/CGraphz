@@ -1,0 +1,21 @@
+{
+	"derive": {
+		"title": "DNS infos on {{HOST}}",
+		"vertical": "Hits",
+        "legend": {
+            "dir_dns_cache_full": {
+                         "name": "DNS director full dnscache"
+                     },
+            "dir_dns_failed": {
+                         "name": "DNS director failed lookups"
+                     },
+            "dir_dns_hit": {
+                         "name": "DNS director cached lookups hit"
+                     },
+            "dir_dns_lookups": {
+                         "name": "DNS director lookups"
+                     }
+        },
+		"legend_format": "%5.1lf"
+    }	
+}

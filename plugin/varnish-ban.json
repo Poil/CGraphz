@@ -1,0 +1,30 @@
+{
+	"derive": {
+		"title": "Bans infos on {{HOST}}",
+		"vertical": "Hits",
+        "legend": {
+            "n_ban": {
+                         "name": "N total active bans"
+                     },
+            "n_ban_add": {
+                         "name": "N new bans added"
+                     },
+            "n_ban_dups": {
+                         "name": "N duplicate bans removed"
+                     },
+            "n_ban_gone": {
+                         "name": "N total gone bans"
+                     },
+            "n_ban_obj_test": {
+                         "name": "N objects tested"
+                     },
+            "n_ban_re_test": {
+                         "name": "N regexps tested against"
+                     },
+            "n_ban_retire": {
+                         "name": "N old bans deleted"
+                     }
+        },
+		"legend_format": "%5.1lf"
+    }	
+}

@@ -1,0 +1,30 @@
+{
+	"derive": {
+		"title": "Misc infos on {{HOST}}",
+		"vertical": "Hits",
+        "legend": {
+            "accept_fail": {
+                         "name": "Accept failures"
+                     },
+            "losthdr": {
+                         "name": "HTTP header overflows"
+                     },
+            "n_gunzip": {
+                         "name": "Gunzip operations"
+                     },
+            "n_gzip": {
+                         "name": "Gzip operations"
+                     },
+            "n_vbc": {
+                         "name": "N struct vbc"
+                     },
+            "n_waitinglist": {
+                         "name": "N struct waitinglist"
+                     },
+            "vmods": {
+                         "name": "Loaded VMODs"
+                     }
+        },
+		"legend_format": "%5.1lf"
+    }	
+}

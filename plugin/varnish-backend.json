@@ -29,6 +29,9 @@
                      },
             "backend_unhealthy": {
                          "name": "Backend conn. not attempted"
+                     },
+            "n_backend": {
+                         "name": "N backends"
                      }
         },
 		"legend_format": "%5.1lf"
