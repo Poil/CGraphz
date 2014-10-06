@@ -2,6 +2,7 @@
 	"derive": {
 		"title": "Backend traffic on {{HOST}}",
 		"vertical": "Hits",
+        "type": "stacked",
         "legend": {
             "backend_busy": {
                          "name": "Backend conn. too many"

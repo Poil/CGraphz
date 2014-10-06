@@ -1,5 +1,5 @@
 {
-	"derive": {
+	"gauge": {
 		"title": "Objects infos on {{HOST}}",
 		"vertical": "Hits",
         "legend": {

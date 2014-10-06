@@ -2,6 +2,7 @@
 	"derive": {
 		"title": "Cache rates on {{HOST}}",
 		"vertical": "Hits",
+        "type": "stacked",
         "legend": {
             "cache_hit": {
                          "name": "Cache hits"
