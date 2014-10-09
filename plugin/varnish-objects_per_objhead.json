@@ -1,12 +1,9 @@
 {
     "gauge": {
-        "title": "Number of objects",
+        "title": "Objects per objecthead",
         "legend": {
             "n_object": {
                          "name": "N struct object"
-                     },
-            "n_objectcore": {
-                         "name": "N struct objectcore"
                      },
             "n_objecthead": {
                          "name": "N struct objecthead"

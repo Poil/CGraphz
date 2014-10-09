@@ -1,10 +1,11 @@
 {
     "gauge": {
-        "title": "Varnish uptime on {{HOST}}",
+        "title": "Varnish uptime",
         "legend": {
             "uptime": {
                          "name": "Client uptime"
                      }
-        }
+        },
+        "legend_format": "%5.1lf"
     }
 }

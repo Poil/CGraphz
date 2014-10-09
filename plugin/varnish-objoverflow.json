@@ -1,0 +1,11 @@
+{
+    "derive": {
+        "title": "Objects overflowing workspace",
+        "legend": {
+            "n_objoverflow": {
+                         "name": "Objects overflowing workspace"
+                     }
+        },
+        "legend_format": "%5.1lf"
+    }
+}

@@ -1,9 +1,9 @@
 {
     "derive": {
-        "title": "ESI",
+        "title": "Session herd",
         "legend": {
-            "esi_errors": {
-                         "name": "ESI parse errors (unlock)"
+            "sess_herd": {
+                         "name": "Session herd"
                      }
         },
         "legend_format": "%5.1lf"

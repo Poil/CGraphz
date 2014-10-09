@@ -1,0 +1,14 @@
+{
+    "derive": {
+        "title": "Object expunging",
+        "legend": {
+            "n_lru_nuked": {
+                         "name": "N LRU nuked objects"
+                     },
+            "n_expired": {
+                         "name": "N expired objects"
+                     }
+        },
+        "legend_format": "%5.1lf"
+    }
+}

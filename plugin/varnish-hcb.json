@@ -1,17 +1,17 @@
 {
-	"derive": {
-		"title": "HCB info on {{HOST}}",
+    "derive": {
+        "title": "Critbit data",
         "legend": {
+            "hcb_nolock": {
+                         "name": "HCB Lookups without lock"
+                     },
             "hcb_insert": {
                          "name": "HCB Inserts"
                      },
             "hcb_lock": {
                          "name": "HCB Lookups with lock"
-                     },
-            "hcb_nolock": {
-                         "name": "HCB Lookups without lock"
                      }
         },
-		"legend_format": "%5.1lf"
-    }	
+        "legend_format": "%5.1lf"
+    }
 }

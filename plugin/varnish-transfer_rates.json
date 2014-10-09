@@ -1,0 +1,14 @@
+{
+    "derive": {
+        "title": "Client response transfer rates",
+        "legend": {
+            "s_hdrbytes": {
+                         "name": "Total header bytes"
+                     },
+            "s_bodybytes": {
+                         "name": "Total body bytes"
+                     }
+        },
+        "legend_format": "%5.1lf"
+    }
+}

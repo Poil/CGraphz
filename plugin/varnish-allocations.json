@@ -1,0 +1,11 @@
+{
+    "derive": {
+        "title": "Memory allocation requests",
+        "legend": {
+            "sms_nreq": {
+                         "name": "SMS allocator requests"
+                     }
+        },
+        "legend_format": "%5.1lf"
+    }
+}
