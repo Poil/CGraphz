@@ -153,36 +153,13 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 
 			// Verif regex OK
 			if (isset($p) && isset($t)) {
-				if ($p == 'varnish') {
-					$ti='';
-					$t='all';
-					if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
-						if ($CONFIG['graph_type'] == 'canvas') {
-							$_GET['h'] = $cur_server->server_name;
-							$_GET['p'] = $p;
-							$_GET['pc'] = $pc;
-							$_GET['pi'] = $pi;
-							$_GET['t'] = $t;
-							$_GET['tc'] = $tc;
-							$_GET['ti'] = $ti;
-
-							chdir(DIR_FSROOT);
-							include DIR_FSROOT.'/plugin/'.$p.'.php';
-						} else {
-							if ($time_range!='') {
-								echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />'."\n";
-							} else {
-								echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
-							}
-						}
-					}
-				}
-				else if (!preg_match('/^(df|interface|oracle|snmp)$/', $p) || 
+				if (!preg_match('/^(df|interface|oracle|snmp)$/', $p) || 
 				   (((preg_replace('/[^0-9\.]/','',$cur_server->collectd_version) >= 5)
 				     && !preg_match('/^(oracle|snmp)$/', $p) && $t!='df')
 				     || ($p == 'snmp' && $t == 'memory')
 					)
 			    ) {
+					if ($p == 'varnish') { $t='all'; }
 					$ti='';
 					if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
 						if ($CONFIG['graph_type'] == 'canvas') {
