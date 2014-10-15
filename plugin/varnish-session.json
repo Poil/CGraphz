@@ -1,20 +1,21 @@
 {
-    "derive": {
-        "title": "Sessions",
-        "legend": {
-            "sess_closed": {
-                         "name": "Session Closed"
-                     },
-            "sess_readahead": {
-                         "name": "Session Read Ahead"
-                     },
-            "sess_pipeline": {
-                         "name": "Session Pipeline"
-                     },
-            "sess_linger": {
-                         "name": "Session Linger"
-                     }
-        },
-        "legend_format": "%5.1lf"
-    }
+	"all": {
+		"title": "Sessions",
+		"type": "varnish",
+		"legend": {
+			"sess_closed": {
+				"name": "Session Closed"
+			},
+			"sess_readahead": {
+				"name": "Session Read Ahead"
+			},
+			"sess_pipeline": {
+				"name": "Session Pipeline"
+			},
+			"sess_linger": {
+				"name": "Session Linger"
+			}
+		},
+		"legend_format": "%5.1lf"
+	}
 }

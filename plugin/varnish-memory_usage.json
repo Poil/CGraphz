@@ -1,14 +1,15 @@
 {
-    "gauge": {
-        "title": "Memory usage",
-        "legend": {
-            "sms_balloc": {
-                         "name": "SMS bytes allocated"
-                     },
-            "sms_nbytes": {
-                         "name": "SMS outstanding bytes"
-                     }
-        },
-        "legend_format": "%5.1lf"
-    }
+	"all": {
+		"title": "Memory usage",
+		"type": "varnish",
+		"legend": {
+			"sms_balloc": {
+				"name": "SMS bytes allocated"
+			},
+			"sms_nbytes": {
+				"name": "SMS outstanding bytes"
+			}
+		},
+		"legend_format": "%5.1lf"
+	}
 }

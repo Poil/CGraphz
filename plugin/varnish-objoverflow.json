@@ -1,11 +1,12 @@
 {
-    "derive": {
-        "title": "Objects overflowing workspace",
-        "legend": {
-            "n_objoverflow": {
-                         "name": "Objects overflowing workspace"
-                     }
-        },
-        "legend_format": "%5.1lf"
-    }
+	"all": {
+		"title": "Objects overflowing workspace",
+		"type": "varnish",
+		"legend": {
+			"n_objoverflow": {
+				"name": "Objects overflowing workspace"
+			}
+		},
+		"legend_format": "%5.1lf"
+	}
 }

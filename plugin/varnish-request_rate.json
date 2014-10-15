@@ -1,32 +1,33 @@
 {
-    "derive": {
-        "title": "Request rates",
-        "legend": {
-            "client_req": {
-                         "name": "Client requests received"
-                     },
-            "cache_miss": {
-                         "name": "Cache misses"
-                     },
-            "s_pipe": {
-                         "name": "Total pipe"
-                     },
-            "backend_conn": {
-                         "name": "Backend conn. success"
-                     },
-            "backend_unhealthy": {
-                         "name": "Backend conn. not attempted"
-                     },
-            "cache_hit": {
-                         "name": "Cache hits"
-                     },
-            "s_pass": {
-                         "name": "Total pass"
-                     },
-            "cache_hitpass": {
-                         "name": "Cache hits for pass"
-                     }
-        },
-        "legend_format": "%5.1lf"
-    }
+	"all": {
+		"title": "Request rates",
+		"type": "varnish",
+		"legend": {
+			"client_req": {
+				"name": "Client requests received"
+			},
+			"cache_miss": {
+				"name": "Cache misses"
+			},
+			"s_pipe": {
+				"name": "Total pipe"
+			},
+			"backend_conn": {
+				"name": "Backend conn. success"
+			},
+			"backend_unhealthy": {
+				"name": "Backend conn. not attempted"
+			},
+			"cache_hit": {
+				"name": "Cache hits"
+			},
+			"s_pass": {
+				"name": "Total pass"
+			},
+			"cache_hitpass": {
+				"name": "Cache hits for pass"
+			}
+		},
+		"legend_format": "%5.1lf"
+	}
 }

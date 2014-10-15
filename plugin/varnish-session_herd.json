@@ -1,11 +1,12 @@
 {
-    "derive": {
-        "title": "Session herd",
-        "legend": {
-            "sess_herd": {
-                         "name": "Session herd"
-                     }
-        },
-        "legend_format": "%5.1lf"
-    }
+	"all": {
+		"title": "Session herd",
+		"type": "varnish",
+		"legend": {
+			"sess_herd": {
+				"name": "Session herd"
+			}
+		},
+		"legend_format": "%5.1lf"
+	}
 }

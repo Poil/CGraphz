@@ -1,51 +1,45 @@
 {
-    "derive": {
-        "title": "VCL and bans",
-        "legend": {
-            "n_vcl": {
-                         "name": "N vcl total"
-                     },
-            "n_vcl_discard": {
-                         "name": "N vcl discarded"
-                     },
-            "n_ban_dups": {
-                         "name": "N duplicate bans removed"
-                     },
-            "n_backend": {
-                         "name": "N backends"
-                     },
-            "n_ban_add": {
-                         "name": "N new bans added"
-                     },
-            "n_ban": {
-                         "name": "N total active bans"
-                     },
-            "n_ban_obj_test": {
-                         "name": "N objects tested"
-                     },
-            "n_ban_retire": {
-                         "name": "N old bans deleted"
-                     },
-            "n_ban_re_test": {
-                         "name": "N regexps tested against"
-                     },
-            "n_vcl_avail": {
-                         "name": "N vcl available"
-                     }
-        },
-        "legend_format": "%5.1lf"
+  "all": {
+    "title": "VCL and bans",
+    "type": "varnish",
+    "legend": {
+      "n_vcl": {
+        "name": "N vcl total"
+      },
+      "n_vcl_discard": {
+        "name": "N vcl discarded"
+      },
+      "n_ban_dups": {
+        "name": "N duplicate bans removed"
+      },
+      "n_backend": {
+        "name": "N backends"
+      },
+      "n_ban_add": {
+        "name": "N new bans added"
+      },
+      "n_ban": {
+        "name": "N total active bans"
+      },
+      "n_ban_obj_test": {
+        "name": "N objects tested"
+      },
+      "n_ban_retire": {
+        "name": "N old bans deleted"
+      },
+      "n_ban_re_test": {
+        "name": "N regexps tested against"
+      },
+      "n_vcl_avail": {
+        "name": "N vcl available"
+      },
+      "n_backend": {
+        "name": "N backends"
+      },
+      "n_ban": {
+        "name": "N total active bans"
+      }
     },
-   "gauge": {
-        "title": "VCL and bans",
-        "legend": {
-           "n_backend": {
-                         "name": "N backends"
-                     },
-            "n_ban": {
-                         "name": "N total active bans"
-                     }
-        },
-        "legend_format": "%5.1lf"
-
+    "legend_format": "%5.1lf"
   }
 }

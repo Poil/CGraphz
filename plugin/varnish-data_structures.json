@@ -1,14 +1,15 @@
 {
-    "gauge": {
-        "title": "Data structure sizes",
-        "legend": {
-            "n_sess": {
-                         "name": "N struct sess"
-                     },
-            "n_sess_mem": {
-                         "name": "N struct sess_mem"
-                     }
-        },
-        "legend_format": "%5.1lf"
-    }
+	"all": {
+		"title": "Data structure sizes",
+		"type": "varnish",
+		"legend": {
+			"n_sess": {
+				"name": "N struct sess"
+			},
+			"n_sess_mem": {
+				"name": "N struct sess_mem"
+			}
+		},
+		"legend_format": "%5.1lf"
+	}
 }

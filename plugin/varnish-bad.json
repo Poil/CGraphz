@@ -1,6 +1,7 @@
 {
-    "derive": {
+    "all": {
         "title": "Misbehavior",
+		"type": "varnish",
         "legend": {
             "fetch_failed": {
                          "name": "Fetch failed"
@@ -43,13 +44,7 @@
                      },
             "n_objoverflow": {
                          "name": "Objects overflowing workspace"
-                     }
-        },
-        "legend_format": "%5.1lf"
-    },
-    "gauge": {
-        "title": "Misbehavior",
-        "legend": {
+                     },
             "n_wrk_lqueue": {
                          "name": "work request queue length"
              }
