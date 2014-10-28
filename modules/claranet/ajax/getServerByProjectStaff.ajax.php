@@ -1,5 +1,5 @@
 <?php
-    include('../../../config/config.php');
+	include('../../../config/config.php');
 	$connSQL=new DB();
     if(isset($_GET['project'])){
 		//Récuperation des serveurs d'un projet dans claratact
@@ -39,7 +39,10 @@
 
 			for ($i=0; $i<$cpt_server; $i++) {
 				$hName=$all_server[$i]->server_name;
-				echo '<option value="&f_host='.$hName.'&id_project='.$_GET['project'].'">'.$hName.'</option>';
+				$selected="";
+				if(isset($_GET['f_host']) && $_GET['f_host']==$hName) $selected="selected ";
+				
+				echo '<option '.$selected.'value="&f_host='.$hName.'&id_project='.$_GET['project'].'">'.$hName.'</option>';
 			}
 		}
 

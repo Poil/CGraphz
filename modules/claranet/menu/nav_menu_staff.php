@@ -47,7 +47,7 @@
 		echo '  <option value="'.$nameHost.'">'.$nameHost.'</option>';
 	}else{
 		//Si on a trouvé un nom de projet alors on cherche dans la base de données de claratact la liste des serveurs de ce projet.
-		$curl = curl_init();
+		/*$curl = curl_init();
 
 		curl_setopt($curl, CURLOPT_URL, "http://claratact.fr.clara.net/REST/Projet/getProjectHosts.php");
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -78,7 +78,9 @@
 			}
 
 			echo '  <option '.$selected.'value="&f_host='.$wpmName.'&id_project='.$nameProject.'">'.$wpmName.'</option>';
-		}
+		}*/
+		$_GET['project']=$nameProject;
+		include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/ajax/getServerByProjectStaff.ajax.php');
 	}
 
 
