@@ -1,6 +1,155 @@
 {
-        "ceph": {
-                "type": "stacked",
-        }
+	"ceph_capacity": {
+		"title": "Capacity ({{PI}})",
+		"vertical": "Size",
+		"type": "stacked",
+		"legend": {
+			"total_avail": {
+				"name": "Total Available",
+				"color": "f0a000"
+			},
+			"total_space": {
+				"name": "Total Free",
+				"color": "0000ff"
+			},
+			"total_used": {
+				"name": "Total Used",
+				"color": "ff0000"
+			}
+		},
+		"legend_format": "%5.1lf%s"
+	},
+	"ceph_latency": {
+		"title": "Latency ({{PI}})",
+		"type": "stacked",
+		"legend": {
+			"avg_latency": {
+				"name": "Average Latency"
+			},
+			"max_latency": {
+                "name": "Maximum Latency"
+            },
+            "min_latency": {
+                "name": "Minimum Latency"
+            },
+            "stddev_latency": {
+                "name": "Stddev Latency"
+            }
+		},
+		"legend_format": "%5.1lf%s"
+	},
+	"ceph_osd": {
+        "title": "OSD ({{PI}})",
+        "type": "stacked",
+        "legend": {
+            "down": {
+                "name": "Down"
+            },
+            "in": {
+                "name": "In"
+            },
+            "out": {
+                "name": "Out"
+            },
+            "up": {
+                "name": "Up"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+	"ceph_pg": {
+        "title": "PG ({{PI}})",
+        "type": "stacked",
+        "legend": {
+            "active": {
+                "name": "Active"
+            },
+            "clean": {
+                "name": "Clean"
+            },
+            "scrubbing": {
+                "name": "Scrubbing"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+	"gauge": {
+        "title": " ({{PI}})",
+        "type": "stacked",
+        "legend": {
+            "backfilling": {
+                "name": "Back Filling"
+            },
+            "deep": {
+                "name": "Deep"
+            },
+			"inactive": {
+                "name": "Inactive"
+            },
+            "peering": {
+                "name": "Peering"
+            },
+			"wait_backfill": {
+                "name": "Wait Back Fill"
+            },
+            "remapped": {
+                "name": "Remapped"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+	    "ceph_bsec": {
+        "title": "Bytes/s for pool ({{PI}})",
+        "type": "stacked",
+        "legend": {
+            "read_bytes_sec": {
+                "name": "Read Bytes Sec"
+            },
+            "write_bytes_sec": {
+                "name": "Write Bytes Sec"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+	"ceph_bused": {
+        "title": "Bytes Used for pool ({{PI}})",
+        "type": "stacked",
+        "legend": {
+            "bytes_used": {
+                "name": "Bytes Used"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+	"ceph_kbused": {
+        "title": "KBytes Used for pool ({{PI}})",
+        "type": "stacked",
+        "legend": {
+            "kb_used": {
+                "name": "KBytes Used"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+	"ceph_ops": {
+        "title": "Operations for pool ({{PI}})",
+        "type": "stacked",
+        "legend": {
+            "op_per_sec": {
+                "name": "Operation per Second"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+	"ceph_obj": {
+		"title": "Objects for pool ({{PI}})",
+		"type": "stacked",
+		"vertical": "Objects",
+		"legend": {
+			"objects": {
+				"name": "Objects"
+			}
+		},
+		"legend_format": "%5.1lf%s"
+	}
 }
-
