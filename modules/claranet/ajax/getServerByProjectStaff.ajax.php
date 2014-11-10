@@ -19,7 +19,7 @@
 
 		echo '<option value=""></option>';
 		
-		$endrequete="";
+		$endRequete="";
         foreach($return->hosts as $server){
 			if($endRequete!="") $endRequete.=" OR ";
 			$endRequete.="server_name LIKE '".$server->name."'";
