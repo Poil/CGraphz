@@ -103,10 +103,12 @@
         "type": "stacked",
         "legend": {
             "read_bytes_sec": {
-                "name": "Read Bytes Sec"
+                "name": "Read Bytes Sec",
+				"color": "0000ff"
             },
             "write_bytes_sec": {
-                "name": "Write Bytes Sec"
+                "name": "Write Bytes Sec",
+				"color": "00b000"
             }
         },
         "legend_format": "%5.1lf%s"
