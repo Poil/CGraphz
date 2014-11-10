@@ -6,7 +6,7 @@
 		"legend": {
 			"total_avail": {
 				"name": "Total Available",
-				"color": "f0a000"
+				"color": "00ff00"
 			},
 			"total_space": {
 				"name": "Total Free",
@@ -33,7 +33,8 @@
                 "name": "Minimum Latency"
             },
             "stddev_latency": {
-                "name": "Stddev Latency"
+                "name": "Stddev Latency",
+				"color": "ffff00"
             }
 		},
 		"legend_format": "%5.1lf%s"
@@ -52,7 +53,8 @@
                 "name": "Out"
             },
             "up": {
-                "name": "Up"
+                "name": "Up",
+				"color": "ffff00"
             }
         },
         "legend_format": "%5.1lf%s"
@@ -68,7 +70,8 @@
                 "name": "Clean"
             },
             "scrubbing": {
-                "name": "Scrubbing"
+                "name": "Scrubbing",
+				"color": "ffff00"
             }
         },
         "legend_format": "%5.1lf%s"
@@ -93,7 +96,8 @@
                 "name": "Wait Back Fill"
             },
             "remapped": {
-                "name": "Remapped"
+                "name": "Remapped",
+				"color": "ffff00"
             }
         },
         "legend_format": "%5.1lf%s"
