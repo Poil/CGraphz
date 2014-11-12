@@ -1,6 +1,6 @@
 <fieldset>
 <?php
-$ddc_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_dynamic_dashboard_content');
+$ddc_form = new Form('horizontal', removeqsvar($cur_url, 'last_action').'&amp;last_action=edit_content');
 
 $ddc_form->add('hidden', 'f_id_config_dynamic_dashboard_content')
         ->value(@$cur_dynamic_dashboard_content->id_config_dynamic_dashboard_content);
@@ -91,7 +91,7 @@ $ddc_form->add('submit', 'f_submit_dynamic_dashboard_content')
 echo $ddc_form->bindForm();
 
 if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
-   $ddc_dform = new Form('horizontal', removeqsvar($cur_url, array('f_id_config_dynamic_dashboard_content','last_action')).'&amp;last_action=edit_dynamic_dashboard_content');
+   $ddc_dform = new Form('horizontal', removeqsvar($cur_url, array('f_id_config_dynamic_dashboard_content','last_action')).'&amp;last_action=edit_content');
    $ddc_dform->add('hidden', 'f_id_config_dynamic_dashboard_content')
            ->value($cur_dynamic_dashboard_content->id_config_dynamic_dashboard_content);
 
