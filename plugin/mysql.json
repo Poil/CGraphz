@@ -1,6 +1,6 @@
 {
 	"cache_result": {
-		"title": "MySQL query cache ({{PI}})",
+		"title": "MySQL query cache ({{PI}}) on {{HOST}}",
 		"vertical": "Queries/s",
 		"type": "stacked",
 		"legend": {
@@ -24,7 +24,7 @@
 		"legend_format": "%5.1lf%s"
 	},
 	"cache_size": {
-		"title": "MySQL query cache size ({{PI}})",
+		"title": "MySQL query cache size ({{PI}}) on {{HOST}}",
 		"vertical": "Queries in cache",
 		"type": "stacked",
 		"legend": {
@@ -35,13 +35,13 @@
 		"legend_format": "%5.1lf%s"
 	},
 	"mysql_commands": {
-		"title": "MySQL commands ({{PI}})",
+		"title": "MySQL commands ({{PI}}) on {{HOST}}}",
 		"vertical": "Issues/s",
 		"type": "stacked",
 		"legend_format": "%5.1lf%s"
 	},
 	"mysql_handler": {
-		"title": "MySQL handler ({{PI}})",
+		"title": "MySQL handler ({{PI}}) on {{HOST}}",
 		"vertical": "Invocations",
 		"type": "stacked",
 		"legend": {
@@ -92,7 +92,7 @@
 		"legend_format": "%5.1lf%s"
 	},
 	"mysql_locks": {
-		"title": "MySQL locks ({{PI}})",
+		"title": "MySQL locks ({{PI}}) on {{HOST}}",
 		"vertical": "locks",
 		"legend": {
 			"immediate": {
@@ -105,7 +105,7 @@
 		"legend_format": "%5.1lf%s"
 	},
 	"mysql_octets": {
-		"title": "MySQL Traffic ({{TI}})",
+		"title": "MySQL Traffic ({{TI}}) on {{HOST}}",
 		"vertical": "Bits per second",
 		"type": "io",
 		"legend": {
@@ -121,7 +121,7 @@
 		"legend_format": "%5.1lf%s"
 	},
 	"threads": {
-		"title": "MySQL threads ({{PI}})",
+		"title": "MySQL threads ({{PI}}) on {{HOST}}",
 		"vertical": "Threads",
 		"type": "stacked",
 		"legend": {
@@ -140,8 +140,8 @@
 		},
 		"legend_format": "%5.1lf%s"
 	},
-		    "mysql_qcache": {
-        "title": "MySQL Query Cache ({{PI}})",
+    "mysql_qcache": {
+        "title": "MySQL Query Cache ({{PI}}) on {{HOST}}",
         "vertical": "Queries",
         "type": "stacked",
         "legend": {
@@ -168,8 +168,8 @@
         },
         "legend_format": "%5.1lf%s"
     },
-            "mysql_threads": {
-        "title": "MySQL Threads ({{PI}})",
+    "mysql_threads": {
+        "title": "MySQL Threads ({{PI}}) on {{HOST}}",
         "vertical": "Threads",
         "type": "stacked",
         "legend": {
@@ -196,8 +196,8 @@
         },
         "legend_format": "%5.1lf%s"
     },
-	    "mysql_log_position": {
-        "title": "MySQL Log Position ({{PI}})",
+    "mysql_log_position": {
+        "title": "MySQL Log Position ({{PI}}) on {{HOST}}",
         "vertical": "Position",
         "type": "stacked",
         "legend": {
@@ -214,7 +214,7 @@
         "legend_format": "%5.1lf%s"
     },
 	"time_offset": {
-        "title": "MySQL Time Offset ({{PI}})",
+        "title": "MySQL Time Offset ({{PI}}) on {{HOST}}",
         "vertical": "Seconds",
         "type": "stacked",
         "legend": {
@@ -225,7 +225,7 @@
         "legend_format": "%5.1lf%s"
     },
 	"total_threads": {
-		"title": "MySQL created threads ({{PI}})",
+		"title": "MySQL created threads ({{PI}}) on {{HOST}}",
 		"vertical": "Created Threads",
 		"legend": {
 			"created": {
