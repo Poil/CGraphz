@@ -14,7 +14,7 @@ $tab_dynamic_dashboard_class='active';
 
 if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     echo '<a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'"><button type="button" class="btn btn-primary">'.ADD.' '.DASHBOARD.'</button></a>';
-    if (isset($_GET['f_id_config_dynamic_dashboard_content']) || $last_action=='edit_dynamic_dashboard_content') {
+    if (isset($_GET['f_id_config_dynamic_dashboard_content']) || $last_action=='edit_content') {
         $tab_dynamic_dashboard_content_class='active';
         $tab_dynamic_dashboard_class='';
     }

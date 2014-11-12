@@ -21,7 +21,7 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
         $tab_dynamic_dashboard_group_class='active';
         $tab_dynamic_dashboard_class='';
     } 
-    else if (isset($_GET['f_id_config_dynamic_dashboard_content']) || $last_action=='edit_dynamic_dashboard_content') {
+    else if (isset($_GET['f_id_config_dynamic_dashboard_content']) || $last_action=='edit_content') {
         $tab_dynamic_dashboard_content_class='active';
         $tab_dynamic_dashboard_class='';
     }
