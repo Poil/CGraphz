@@ -1,5 +1,5 @@
 <?php
-    include('../../../config/config.php');
+	include('../../../config/config.php');
 	$connSQL=new DB();
     if(isset($_GET['project'])){
 		//Récuperation des serveurs d'un projet dans claratact
@@ -18,16 +18,32 @@
         $return=json_decode($return);
 
 		echo '<option value=""></option>';
-		$allHosts=array();
+		
+		$endRequete="";
         foreach($return->hosts as $server){
-			$allHosts[]=$server->name;
+			if($endRequete!="") $endRequete.=" OR ";
+			$endRequete.="server_name LIKE '".$server->name."'";
         }
         foreach($return->wpm as $wpmName){
-			$allHosts[]=$wpmName;
+			if($endRequete!="") $endRequete.=" OR ";
+            $endRequete.="server_name LIKE '".$wpmName."'";
         }
-		asort($allHosts);
-		foreach($allHosts as $hName){
-			echo '<option value="&f_host='.$hName.'&id_project='.$_GET['project'].'">'.$hName.'</option>';
+	
+		if($endRequete!=""){	
+			$connSQL=new DB();
+
+			$requete="SELECT server_name FROM cgraphz.config_server where ".$endRequete." ORDER BY server_name";
+
+		    $all_server=$connSQL->query($requete);
+			$cpt_server=count($all_server);
+
+			for ($i=0; $i<$cpt_server; $i++) {
+				$hName=$all_server[$i]->server_name;
+				$selected="";
+				if(isset($_GET['f_host']) && $_GET['f_host']==$hName) $selected="selected ";
+				
+				echo '<option '.$selected.'value="&f_host='.$hName.'&id_project='.$_GET['project'].'">'.$hName.'</option>';
+			}
 		}
 
     }

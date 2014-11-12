@@ -46,39 +46,8 @@
 		$nameHost=(isset($_GET['f_host'])) ? $_GET['f_host'] : "";
 		echo '  <option value="'.$nameHost.'">'.$nameHost.'</option>';
 	}else{
-		//Si on a trouvé un nom de projet alors on cherche dans la base de données de claratact la liste des serveurs de ce projet.
-		$curl = curl_init();
-
-		curl_setopt($curl, CURLOPT_URL, "http://claratact.fr.clara.net/REST/Projet/getProjectHosts.php");
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_POST, true);
-
-		$postfields=array('login'=>'FR-Claratact-API','pass'=>'phax5d!idhj8h','idProjet'=>$nameProject);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $postfields);
-
-		$return=curl_exec($curl);
-
-		curl_close($curl);
-		$return=json_decode($return);
-		if(isset($_GET["f_host"])){
-			echo '<option value=""></option>';
-		}
-		foreach($return->hosts as $server){
-			$selected="";
-			if($_GET["f_host"]==$server->name){
-				$selected="selected ";
-			}
-
-			echo '<option '.$selected.'value="&f_host='.$server->name.'&id_project='.$nameProject.'">'.$server->name.'</option>';
-		}
-		foreach($return->wpm as $wpmName){
-			$selected="";
-			if($_GET["f_host"]==$wpmName){
-				$selected="selected ";
-			}
-
-			echo '  <option '.$selected.'value="&f_host='.$wpmName.'&id_project='.$nameProject.'">'.$wpmName.'</option>';
-		}
+		$_GET['project']=$nameProject;
+		include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/ajax/getServerByProjectStaff.ajax.php');
 	}
 
 
