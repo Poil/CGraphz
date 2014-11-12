@@ -124,4 +124,25 @@ class PERMS {
 
 	function perm_list_project_server($id_config_project) {
 	}
+
+	function perm_list_plugin_filter() {
+		$lib='
+		SELECT cpf.plugin_filter_desc, cpf.id_config_plugin_filter
+		FROM config_plugin_filter cpf
+		        LEFT JOIN config_plugin_filter_group cpfg
+		                ON cpf.id_config_plugin_filter=cpfg.id_config_plugin_filter
+		        LEFT JOIN auth_group ag
+		                ON cpfg.id_auth_group=ag.id_auth_group
+		        LEFT JOIN auth_user_group aug
+		                ON ag.id_auth_group=aug.id_auth_group
+		WHERE
+		        aug.id_auth_user=:id_auth_user
+		GROUP BY id_config_plugin_filter, plugin_filter_desc
+		ORDER BY plugin_filter_desc';
+		
+		$this->connSQL->bind('id_auth_user',$this->id_auth_user);
+		$all_plugin_filter=$this->connSQL->query($lib);
+
+		return $all_plugin_filter;
+	}
 }

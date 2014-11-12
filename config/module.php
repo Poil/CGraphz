@@ -61,6 +61,8 @@ if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
         } else if ($component == 'light') {
                 include(DIR_FSROOT.'/modules/preg_find.php');
                 include(DIR_FSROOT.'/html/dashboard/dashboard_light/d_dashboard_light.php');
+        } else if ($component == 'quickview') {
+                include(DIR_FSROOT.'/modules/preg_find.php');
         }
     } else if ($module=='small_admin') {
         if ($component=='mygroup') {
