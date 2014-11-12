@@ -149,6 +149,8 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
             $plugin_array = sortArray($plugin_array, array('t','servername', 'p','pc', 'pi', 'tc', 'ti'));
          } else if ($all_content[$i]->rrd_ordering=='TI') {
             $plugin_array = sortArray($plugin_array, array('ti','servername', 'p', 'pc', 'pi', 't', 'tc'));
+         } else if ($all_content[$i]->rrd_ordering=='P-T') {
+            $plugin_array = sortArray($plugin_array, array('p','t', 'pc', 'servername', 'pi', 'tc', 'ti'));
          }
 
          $old_t=null;
@@ -202,7 +204,15 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   } else if (!$plugin['ti'] && $old_t!=$plugin['t']) {
                      echo '<h2>'.$plugin['t'].'</h2>';
                   }
+               } else if ($all_content[$i]->rrd_ordering=='P-T') {
+                  if ($old_p!=$plugin['p']) {
+                     echo '<h2>'.$plugin['p'].'</h2>';
+                  }
+                  if ($old_t!=$plugin['t']) {
+                     echo '<h3>'.$plugin['t'].'</h3>';
+                  }
                }
+
                if ($CONFIG['no_break'] == true) { echo '<span style="white-space:nowrap">'; }
                if (!preg_match('/^(df|interface|oracle)$/', $plugin['p']) || 
 				  (((preg_replace('/[^0-9\.]/','',$plugin['collectd_version']) >= 5)
