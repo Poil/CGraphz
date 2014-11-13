@@ -53,7 +53,7 @@
 		"legend": {
 			"opcache_statistics-num_cached_keys": {
 				"name": "Num cached keys",
-				"color": "ffff00"
+				"color": "ff0000"
 			},
 			"opcache_statistics-num_cached_scripts": {
 				"name": "Num cached scripts",
