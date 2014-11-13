@@ -51,6 +51,8 @@ CREATE TABLE IF NOT EXISTS `cgraphz`.`config_quickview_content_filter` (
   `display_t_title` TINYINT(1) NULL DEFAULT 0,
   `display_tc_title` TINYINT(1) NULL DEFAULT 0,
   `display_ti_title` TINYINT(1) NULL DEFAULT 0,
+  `graph_width` INT NULL,
+  `graph_height` INT NULL,
   PRIMARY KEY (`id_config_quickview_content_filter`),
   INDEX `fk_cqcf_id_config_quickview_content_idx` (`id_config_quickview_content` ASC),
   CONSTRAINT `fk_cqcf_id_config_quickview_content`
