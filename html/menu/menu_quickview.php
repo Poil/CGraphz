@@ -32,14 +32,18 @@ $f_id_config_project=filter_input(INPUT_GET, 'f_id_config_project',FILTER_SANITI
          ->value($f_id_config_project)
          ->formcontrol(false);
 
-      $qv->add('button','f_advanced')
-         ->value(ADVANCED);
-
       $qv->add('button','f_prepend')
          ->value(PREPEND);
 
       $qv->add('button','f_append_after')
          ->value(APPEND_AFTER);
+
+      $qv->add('button','f_advanced')
+         ->value(ADVANCED);
+
+      $qv->add('button','f_edit')
+         ->value(ADVANCED);
+
 
       echo $qv->bindForm();
     ?>
