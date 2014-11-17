@@ -111,8 +111,9 @@ class Type_GenericIOWPM extends Type_Default {
 
 		// ajoute les calculs du taux de dispo et affichage des maintenance, erreur et OK
 		$rrdgraph[] = "CDEF:cdefa=a,0,EQ,INF,UNKN,IF";
-        $rrdgraph[] = "CDEF:cdefb=a,0.00001,EQ,INF,UNKN,IF";
-		$rrdgraph[] = "CDEF:cdefcd=a,0.1,GT,INF,UNKN,IF";
+        //$rrdgraph[] = "CDEF:cdefb=a,0.00001,EQ,INF,UNKN,IF";
+        $rrdgraph[] = "CDEF:cdefb=a,0,GT,a,0.1,LT,*,INF,UNKN,IF";
+        $rrdgraph[] = "CDEF:cdefcd=a,0.1,GT,INF,UNKN,IF";
 
 		// Affichage des AREA pour les maintenance et OK
 		$rrdgraph[] = 'AREA:cdefa#71FF067F';

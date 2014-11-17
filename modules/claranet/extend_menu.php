@@ -34,7 +34,7 @@
                     echo '<a href="../#/dashboard?grp='.((isset($_GET['id_project']))? $_GET['id_project']: "0").'" style="color: #ffffff; background-color: transparent; text-decoration: none;">PeekIn</a>';
 
             }else{
-                    echo '<a href="../#/details/'.$_GET['f_host'].'?grp='.$_GET['id_project'].'" style="color: #ffffff; background-color: transparent; text-decoration: none;">PeekIn</a>';
+                    echo '<a href="../#/details/'.$_GET['f_host'].'?grp='.((isset($_GET['id_project']))? $_GET['id_project']: "0").'" style="color: #ffffff; background-color: transparent; text-decoration: none;">PeekIn</a>';
             }
         }else{
             echo '<a href="../#dashboard/" style="color: #ffffff; background-color: transparent; text-decoration: none;">PeekIn</a>';
