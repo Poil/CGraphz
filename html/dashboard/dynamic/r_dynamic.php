@@ -219,7 +219,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 				  && $p!='oracle' && $t!='df'))
 			   ) {
                   $plugin['ti']=null;
-                  if ($plugin['p'] == 'varnish') { $plugin['t']='all'; }
+                  if ($plugin['p'] == 'varnish3') { $plugin['t']='all'; }
                   if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
                       if ($CONFIG['graph_type'] == 'canvas') {
                          $_GET['h'] = $plugin['servername'];
