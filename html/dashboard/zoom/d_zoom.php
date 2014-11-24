@@ -41,11 +41,10 @@ if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
 </form>
 
 <?php
-
-if (empty($_SESSION['detail-width'])) $_SESSION['detail-width'] = $CONFIG['detail-width'];
-if (empty($_SESSION['detail-height'])) $_SESSION['detail-height'] = $CONFIG['detail-height'];
-if (empty($_GET['x'])) $_GET['x'] = $_SESSION['detail-width'] - 150;
-if (empty($_GET['y'])) $_GET['y'] = $_SESSION['detail-height'] - 350;
+if (empty($_GET['detail-width'])) $_GET['detail-width'] = $CONFIG['detail-width'];
+if (empty($_GET['detail-height'])) $_GET['detail-height'] = $CONFIG['detail-height'];
+if (empty($_GET['x'])) $_GET['x'] = intval($_GET['detail-width']) - 150;
+if (empty($_GET['y'])) $_GET['y'] = intval($_GET['detail-height']) - 350;
 
 chdir(DIR_FSROOT);
 $CONFIG['version']=$cur_server->collectd_version;
