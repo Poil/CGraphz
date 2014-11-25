@@ -73,7 +73,7 @@ $CONFIG['graph_minmax'] = false;
 $CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats|tail)$/';
 
 # Plugin that can have a PluginCategory
-$CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|curl_json|curl|curl_xml|P2000|tcpconns|aggregation)$/';
+$CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|varnish3|curl_json|curl|curl_xml|P2000|tcpconns|aggregation)$/';
 
 # Display PI as title for these plugins
 $CONFIG['title_pinstance']='/^(tail|P2000|GenericJMX|PM710|mysql)$/';
