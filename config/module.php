@@ -22,16 +22,22 @@ $component=GET('component');
 $workflow=GET('workflow');
 
 $perm_mod = new PERMS();
-if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
-	if(file_exists(DIR_FSROOT.'/component/'.$module.'/'.$component.'.php')){
-		include(DIR_FSROOT.'/component/'.$module.'/'.$component.'.php');
-	}else{
-		echo $CONFIG['welcome_text'];
-	}
-} else {
-    if ($component && $module) {
-        echo '<br />'.NO_ACCESS.'<br />';
-    }
-}
 
+
+if(preg_match("/^[0-9a-z_]*$/", $module) && preg_match("/^[0-9a-z_]*$/", $component)){
+	if ($perm_mod->perm_module($module, $component)) { // DEBUT PERM MODULE
+		if(file_exists(DIR_FSROOT.'/component/'.$module.'/'.$component.'.php')){
+			include(DIR_FSROOT.'/component/'.$module.'/'.$component.'.php');
+		}else{
+			echo $CONFIG['welcome_text'];
+		}
+	} else {
+	    if ($component && $module) {
+	        echo '<br />'.NO_ACCESS.'<br />';
+	    }
+	}
+}else{
+	echo '<br />'.NO_ACCESS.'<br />';
+	die();
+}
 ?>
