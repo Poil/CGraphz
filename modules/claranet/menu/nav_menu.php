@@ -41,36 +41,9 @@
 		  <div class="form-group">
 			<select id="selectServer">';
 
-	//Contiendra tous les noms de serveurs contenu dans la session si on veut afficher tous les serveurs ( sert pour le tri alphabétique des serveurs).
-	$allNameServer=array();
-	if($all){
-		echo '<option value="&f_host=-1"></option>';
-	}
-	foreach($tabHosts as $nomProjet => $listeHosts){
-		foreach($listeHosts as $server_name){
-			if($all){
-				$allNameServer[]=$server_name;
-			}else if($nameProject==$nomProjet){
-				$selected="";
-				if(isset($_GET['f_host']) && $_GET['f_host']==$server_name){
-					$selected="selected ";
-				}
-				echo '<option '.$selected.'value="&f_host='.$server_name.'">'.$server_name.'</option>';
-			}
-
-		}
-	}
-	if($all){
-		//Tri alphabétique des serveurs.
-		natcasesort($allNameServer);
-		foreach($allNameServer as $server_name){
-			$selected="";
-			if(isset($_GET['f_host']) && $_GET['f_host']==$server_name){
-				$selected="selected ";
-			}
-			echo '<option '.$selected.'value="&f_host='.$server_name.'">'.$server_name.'</option>';
-		}
-	}
+	if($nameProject=="") $_GET['project']=-1;
+    else $_GET['project']=$nameProject;
+    include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/ajax/getServerByProject.ajax.php');
 
 ?>
 		</select>

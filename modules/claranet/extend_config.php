@@ -16,4 +16,8 @@ $CONFIG['socket_plugin']=array();
 foreach($plugin as $name => $rrd_cached_name){
     $CONFIG['socket_plugin'][$name]=$rrd_cached_name;
 }
+
+define('CLARATACT_WS','http://claratact.fr.clara.net');
+define('CLARATACT_USER','FR-Claratact-API');
+define('CLARATACT_PASS','phax5d!idhj8h');
 ?>

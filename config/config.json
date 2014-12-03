@@ -12,6 +12,6 @@
                 "load": "rrd cached pn01",
                 "memory": "rrd cached pn01",
                 "swap": "rrd cached pn01",
-                "wpm": "rrd cached pn01"
+                "wpm": "rrd cached pn03"
         }
 }
