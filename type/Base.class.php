@@ -300,6 +300,11 @@ class Type_Base {
 			$rrdgraph[] = '0';
 		}
 
+		if (GRAPH_TITLE=='text') {
+			$rrdgraph[] = '--border';
+			$rrdgraph[] = '0';
+		}
+
 		if ($this->rrd_vertical) {
 			$rrdgraph[] = '-v';
 			$rrdgraph[] = $this->rrd_vertical;

@@ -201,10 +201,17 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 							chdir(DIR_FSROOT);
 							include DIR_FSROOT.'/plugin/'.$p.'.php';
 						} else {
+							if(GRAPH_TITLE=='text') {
+								echo '<figure>';
+								gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
+							}
 							if ($time_range!='') {
 								echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />'."\n";
 							} else {
 								echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
+							}
+							if(GRAPH_TITLE=='text') {
+								echo '</figure>';
 							}
 						}
 					}
@@ -221,10 +228,17 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 						chdir(DIR_FSROOT);
 						include DIR_FSROOT.'/plugin/'.$p.'.php';
 					} else {
+						if(GRAPH_TITLE=='text') {
+							echo '<figure>';
+							gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
+						}
 						if ($time_range!='') {
 							echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />'."\n";
 						} else {
 							echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
+						}
+						if(GRAPH_TITLE=='text') {
+							echo '</figure>';
 						}
 					}
 				}
@@ -289,7 +303,14 @@ foreach ($vmlist as $vmdir) {
 				if ($t!=$old_t) echo '<h4>'.ucfirst(str_replace('_', ' ',$t)).'</h4>';
 				$old_t=$t;
 
+				if(GRAPH_TITLE=='text') {
+					echo '<figure>';
+					gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
+				}
 				echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src='.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.' />';
+				if(GRAPH_TITLE=='text') {
+					echo '</figure>';
+				}
 			}
 		}
 	}

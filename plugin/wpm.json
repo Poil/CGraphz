@@ -1,5 +1,24 @@
 {
-        "gauge": {
-                "type": "iowpm"
+	"gauge": {
+		"type": "iowpm",
+		"vertical": "Seconds",
+		"legend": {
+			"wpm_Time_namelookup": {
+				"name": "DNS",
+				"color": "ffff33"
+			},
+			"wpm_Time_starttransfer": {
+				"name": "1st byte",
+				"color": "ff6633"
+			},
+			"wpm_Time_connect": {
+				"name": "Connect",
+				"color": "d86887"
+			},
+			"wpm_Time_total": {
+				"name": "Total",
+				"color": "9f30ff"
+			}
         }
+	}
 }

@@ -147,16 +147,20 @@ if (isset($plugin_json[$type]['legend'])) {
 	}
 }
 
-if (isset($plugin_json[$type]['title'])) {
-	$obj->rrd_title = $plugin_json[$type]['title'];
-	$replacements = array(
-		'{{PI}}' => GET('pi'),
-		'{{PC}}' => GET('pc'),
-		'{{TI}}' => GET('ti'),
-		'{{TC}}' => GET('tc'),
-		'{{HOST}}' => GET('h')
-	);
-	$obj->rrd_title = str_replace(array_keys($replacements), array_values($replacements), $obj->rrd_title);
+if (GRAPH_TITLE=='rrd') {
+	if (isset($plugin_json[$type]['title'])) {
+		$obj->rrd_title = $plugin_json[$type]['title'];
+		$replacements = array(
+			'{{PI}}' => GET('pi'),
+			'{{PC}}' => GET('pc'),
+			'{{TI}}' => GET('ti'),
+			'{{TC}}' => GET('tc'),
+			'{{HOST}}' => GET('h')
+		);
+		$obj->rrd_title = str_replace(array_keys($replacements), array_values($replacements), $obj->rrd_title);
+	} 
+} else {
+	$obj->rrd_title='';
 }
 
 if (isset($plugin_json[$type]['vertical'])) {

@@ -46,3 +46,5 @@ function parse_typesdb_file($file) {
 	}
 	return $types;
 }
+
+

@@ -108,4 +108,84 @@ function sort_plugins($hostpath, $plugins, $filters) {
 	asort($plugins_ordered);
 	return $plugins_ordered;
 }
+
+function gen_title($h,$p,$pc,$pi,$t,$tc,$ti) {
+	global $CONFIG;
+
+	$auth = new AUTH_USER();
+	$log = new LOG();	
+	
+	if (!$auth->verif_auth()) {
+		echo 'Error auth'; 
+		die();
+	}
+				
+	if (strpos($h,':')!=FALSE) {
+		$tmp=explode(':',$h);
+		$h=$tmp[0];
+	}
+	
+	if (!$authorized=$auth->check_access_right($h)) {
+		$log->write('CGRAPHZ ERROR: Permission denied for host : '.$h);
+		echo 'Error host';
+		die();
+	}
+	
+	if (validate_get($h, 'host') === NULL) {
+		$log->write('CGRAPHZ ERROR: host contains unknown characters');
+		echo 'Error char';
+		die();
+	}
+	
+	if ($p == 'aggregation') {
+		$p = $pc;
+	}
+	
+	# plugin json
+	if (function_exists('json_decode') && file_exists('plugin/'.$p.'-'.$pi.'.json')) {
+		$json = file_get_contents('plugin/'.$p.'-'.$pi.'.json');
+		$plugin_json = json_decode($json, true);
+		
+		if (is_null($plugin_json))
+			$log->write('CGP Error: invalid json in plugin/'.$p.'.json');
+	} else if (function_exists('json_decode') && file_exists('plugin/'.$p.'-'.$pc.'.json')) {
+		$json = file_get_contents('plugin/'.$p.'-'.$pc.'.json');
+		$plugin_json = json_decode($json, true);
+		
+		if (is_null($plugin_json))
+			$log->write('CGP Error: invalid json in plugin/'.$p.'.json');
+	} else if (function_exists('json_decode') && file_exists('plugin/'.$p.'-'.$pc.'-'.$pi.'.json')) {
+		$json = file_get_contents('plugin/'.$p.'-'.$pc.'-'.$pi.'.json');
+		$plugin_json = json_decode($json, true);
+		
+		if (is_null($plugin_json))
+			$log->write('CGP Error: invalid json in plugin/'.$p.'.json');
+	} else {
+		if (function_exists('json_decode') && file_exists('plugin/'.$p.'.json')) {
+			$json = file_get_contents('plugin/'.$p.'.json');
+			$plugin_json = json_decode($json, true);
+		
+			if (is_null($plugin_json))
+				$log->write('CGP Error: invalid json in plugin/'.$p.'.json');
+		} else {
+		        $log->write(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $p));
+				echo 'Error plugin not available';
+		}
+	}
+	if (isset($plugin_json[$t]['title'])) {
+		$rrd_title = $plugin_json[$t]['title'];
+		$replacements = array(
+			'{{PI}}' => $pi,
+			'{{PC}}' => $pc,
+			'{{TI}}' => $ti,
+			'{{TC}}' => $tc,
+			'{{HOST}}' => $h
+		);
+		$rrd_title = str_replace(array_keys($replacements), array_values($replacements), $rrd_title);
+	} else if ($plugin_json[$t]['type']=='iowpm') {
+		$ItemName=file_get_contents($CONFIG['datadir'].'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
+		$rrd_title="$ItemName on $h";
+	}
+	echo '<figcaption>'.$rrd_title.'</figcaption>';
+}
 ?>

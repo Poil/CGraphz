@@ -70,6 +70,20 @@ div.dataTables_wrapper {
     cursor: url(../img/zoom.png), pointer;
 }
 
+figure {
+	display: inline-block;
+	border: 2px solid #CCCCCC;
+	background: #F3F3F3;
+	max-width: 100%;
+}
+
+figure figcaption  {
+	text-align:center;
+	font-family: "DejaVu Sans Mono", Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+	font-weight:lighter;
+	font-size: 0.9em;
+}
+
 form.form-inline div.form-group select.form-control {
    margin-top:0;
 }
