@@ -67,6 +67,12 @@ if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'-'.$plugini
 	
 	if (is_null($plugin_json))
 		$log->write('CGP Error: invalid json in plugin/'.$plugin.'.json');
+} else if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'-'.$plugincategory.'.json')) {
+	$json = file_get_contents('plugin/'.$plugin.'-'.$plugincategory.'.json');
+	$plugin_json = json_decode($json, true);
+	
+	if (is_null($plugin_json))
+		$log->write('CGP Error: invalid json in plugin/'.$plugin.'.json');
 } else if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'-'.$plugincategory.'-'.$plugininstance.'.json')) {
 	$json = file_get_contents('plugin/'.$plugin.'-'.$plugincategory.'-'.$plugininstance.'.json');
 	$plugin_json = json_decode($json, true);
