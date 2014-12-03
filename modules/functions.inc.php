@@ -109,7 +109,7 @@ function sort_plugins($hostpath, $plugins, $filters) {
 	return $plugins_ordered;
 }
 
-function gen_title($h,$p,$pc,$pi,$t,$tc,$ti) {
+function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 	global $CONFIG;
 
 	$auth = new AUTH_USER();
@@ -186,6 +186,6 @@ function gen_title($h,$p,$pc,$pi,$t,$tc,$ti) {
 		$ItemName=file_get_contents($CONFIG['datadir'].'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
 		$rrd_title="$ItemName on $h";
 	}
-	echo '<figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$rrd_title.'">'.$rrd_title.'</figcaption>';
+	return $rrd_title;
 }
 ?>
