@@ -110,7 +110,6 @@ class Type_GenericIOWPM extends Type_Base {
 		// Affichage du AREA pour les erreurs ( en dernier pour que le reste des graphes ne soient pas visibles )
         $rrdgraph[] = 'AREA:cdefcd#dd0000FF';
 
-		//print_r($rrdgraph);	
 		return $rrdgraph;
 	}
 }

@@ -186,6 +186,6 @@ function gen_title($h,$p,$pc,$pi,$t,$tc,$ti) {
 		$ItemName=file_get_contents($CONFIG['datadir'].'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
 		$rrd_title="$ItemName on $h";
 	}
-	echo '<figcaption>'.$rrd_title.'</figcaption>';
+	echo '<figcaption style="max-width:'.$CONFIG['width'].'px">'.$rrd_title.'</figcaption>';
 }
 ?>

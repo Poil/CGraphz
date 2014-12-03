@@ -74,7 +74,6 @@ figure {
 	display: inline-block;
 	border: 2px solid #CCCCCC;
 	background: #F3F3F3;
-	max-width: 100%;
 }
 
 figure figcaption  {
