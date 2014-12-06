@@ -146,8 +146,7 @@ if (isset($plugin_json[$type]['legend'])) {
 			$obj->colors[$rrd] = $property['color'];
 	}
 }
-
-if (GRAPH_TITLE=='rrd') {
+if (GRAPH_TITLE!='text' || $obj->graph_type!='png') {
 	if (isset($plugin_json[$type]['title'])) {
 		$obj->rrd_title = $plugin_json[$type]['title'];
 		$replacements = array(

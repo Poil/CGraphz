@@ -293,7 +293,7 @@ class Type_Base {
 			$rrdgraph[] = '0';
 		}
 
-		if (GRAPH_TITLE=='text') {
+		if (GRAPH_TITLE=='text' && $this->graph_type=='png') {
 			$rrdgraph[] = '--border';
 			$rrdgraph[] = '0';
 		}
