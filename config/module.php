@@ -1,9 +1,4 @@
 <?php 
-/*
-function removeqsvar($url, $varname) {
-    return str_replace('&','&amp;',preg_replace('/[?&]'.$varname.'=[^&]+(&|$)/' ,'' , $url));
-}
-*/
 function removeqsvar($url, $varname) {
     if (is_array($varname)) {
         foreach ($varname as $cur_var) {

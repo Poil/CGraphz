@@ -133,10 +133,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$tc=$tmp[0];
 				//$ti=implode('-', array_slice($tmp,1));
 				$ti=null;
-			} /* else if (preg_match($CONFIG['plugin_tcategory'], $p)) {
-				$tc=$ti;
-				$ti=null;
-			} */
+			}
 		} else { 
 			$tc=null; 
 			$ti=null; 
@@ -165,6 +162,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$lvl_pi=$lvl_pc+1;
 				$$pc=true;
 				$others=false;
+				$$pi=false;
 			}
 			// Displaying Plugin Instance for some plugins
 			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
@@ -251,8 +249,9 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 $vmlist = preg_find('#^'.$cur_server->server_name.':#', $CONFIG['datadir'].'/', PREG_FIND_DIRMATCH|PREG_FIND_SORTBASENAME);
 
 //print_r($vmlist);
-
-foreach ($vmlist as $vmdir) {
+if (!empty($vmlist)) {
+	echo "<h2>Libvirt</h2>";
+	foreach ($vmlist as $vmdir) {
 
 	$tmp=explode(':',$vmdir);
 	$vm=$tmp[1];
