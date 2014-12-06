@@ -105,10 +105,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				$tc=$tmp[0];
 				//$ti=implode('-', array_slice($tmp,1));
 				$ti=null;
-			} /*else if (preg_match($CONFIG['plugin_tcategory'], $p)) {
-				$tc=$ti;
-				$ti=null;
-			}*/
+			} 
 		} else { 
 			$tc=null; 
 			$ti=null; 
@@ -143,7 +140,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
 				${$pc.$pi}=true;
 				echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
-			// Displaying Type for snmp
+			// Displaying Type for SNMP
 			} else if ($p=='snmp' && ${$p.$t}!=true) {
 				${$p.$t}=true;
 				echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$t))."</h$lvl_pi>";
@@ -155,9 +152,8 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			if (isset($p) && isset($t)) {
 				if (!preg_match('/^(df|interface|oracle|snmp)$/', $p) || 
 				   (((preg_replace('/[^0-9\.]/','',$cur_server->collectd_version) >= 5)
-				     && !preg_match('/^(oracle|snmp)$/', $p) && $t!='df')
+				     && !preg_match('/^(oracle|snmp)$/', $p) && $t!='df'))
 				     || ($p == 'snmp' && $t == 'memory')
-					)
 			    ) {
 					if ($p == 'varnish3') { $t='all'; }
 					$ti='';
@@ -174,11 +170,15 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 							chdir(DIR_FSROOT);
 							include DIR_FSROOT.'/plugin/'.$p.'.php';
 						} else {
+							$graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
+							if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
+
 							if ($time_range!='') {
-								echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />'."\n";
+								echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" alt="'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />'."\n";
 							} else {
-								echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
+								echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" alt="'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
 							}
+							if(GRAPH_TITLE=='text') { echo '</figure>'; }
 						}
 					}
 				} else {
@@ -194,11 +194,14 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 						chdir(DIR_FSROOT);
 						include DIR_FSROOT.'/plugin/'.$p.'.php';
 					} else {
+						$graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
+						if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
 						if ($time_range!='') {
-							echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />'."\n";
+							echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" alt="'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />'."\n";
 						} else {
-							echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
+							echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" alt="'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
 						}
+						if(GRAPH_TITLE=='text') { echo '</figure>'; }
 					}
 				}
 			} else if (DEBUG==true){
@@ -263,7 +266,10 @@ if (!empty($vmlist)) {
 					if ($t!=$old_t) echo '<h4>'.ucfirst(str_replace('_', ' ',$t)).'</h4>';
 					$old_t=$t;
 	
-					echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.'" alt="rrd" src="'.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.'" />';
+					$graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
+					if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
+					echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13; '.$graph_title.'" alt="'.$graph_title.'" src='.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.' />';
+					if (GRAPH_TITLE=='text') { echo '</figure>'; }
 				}
 			}
 		}
