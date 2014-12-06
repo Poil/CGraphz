@@ -1,0 +1,15 @@
+{
+	"all": {
+		"title": "Objects per objecthead",
+		"type":"varnish",
+		"legend": {
+			"n_object": {
+				"name": "N struct object"
+			},
+			"n_objecthead": {
+				"name": "N struct objecthead"
+			}
+		},
+		"legend_format": "%5.1lf"
+	}
+}

@@ -159,6 +159,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 				     || ($p == 'snmp' && $t == 'memory')
 					)
 			    ) {
+					if ($p == 'varnish3') { $t='all'; }
 					$ti='';
 					if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
 						if ($CONFIG['graph_type'] == 'canvas') {

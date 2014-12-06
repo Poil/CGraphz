@@ -52,6 +52,9 @@ define('SL_CSS','col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3
 define('SEM_CSS','col-xs-9 col-sm-9 col-md-9 col-lg-9');
 define('C_CSS','col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3 col-xs-9 col-sm-9 col-md-9 col-lg-9');
 
+# Display graph title as text (text/rrd)
+define('GRAPH_TITLE','rrd');
+
 /************************* CGP *************************/
 # extra typesdb config to merge to default
 #$CONFIG['typesdb'][] = '/usr/share/collectd/my_extra_types.db';

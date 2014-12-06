@@ -1,0 +1,22 @@
+{
+	"gauge": {
+		"title": "Solr cache ({{PC}}) on {{HOST}}",
+		"vertical": "*",
+		"legend": {
+			"evictions": {
+				"name": "Evictions",
+				"color": "0000ff"
+			},
+			"hitratio": {
+				"name": "Hit ratio",
+				"color": "00ff00"
+			},
+			"size": {
+				"name": "Size",
+				"color": "0ff000"
+			}
+		},
+		"legend_format": "%5.0lf"
+	}
+}
+

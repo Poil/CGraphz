@@ -1,0 +1,54 @@
+{
+    "all": {
+        "title": "Misbehavior",
+		"type": "varnish",
+        "legend": {
+            "fetch_failed": {
+                         "name": "Fetch failed"
+                     },
+            "n_wrk_drop": {
+                         "name": "N dropped work requests"
+                     },
+            "backend_unhealthy": {
+                         "name": "Backend conn. not attempted"
+                     },
+            "accept_fail": {
+                         "name": "Accept failures"
+                     },
+            "n_wrk_failed": {
+                         "name": "N worker threads not created"
+                     },
+            "client_drop_late": {
+                         "name": "Connection dropped late"
+                     },
+            "losthdr": {
+                         "name": "HTTP header overflows"
+                     },
+            "n_wrk_max": {
+                         "name": "N worker threads limited"
+                     },
+            "client_drop": {
+                         "name": "Connection dropped, no sess/wrk"
+                     },
+            "n_wrk_lqueue": {
+                         "name": "work request queue length"
+                     },
+            "esi_warnings": {
+                         "name": "ESI parse warnings (unlock)"
+                     },
+            "backend_busy": {
+                         "name": "Backend conn. too many"
+                     },
+            "esi_errors": {
+                         "name": "ESI parse errors (unlock)"
+                     },
+            "n_objoverflow": {
+                         "name": "Objects overflowing workspace"
+                     },
+            "n_wrk_lqueue": {
+                         "name": "work request queue length"
+             }
+        },
+        "legend_format": "%5.1lf"
+    }
+}

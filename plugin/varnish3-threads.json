@@ -1,0 +1,24 @@
+{
+	"all": {
+		"title": "Thread status",
+		"type": "varnish",
+		"legend": {
+			"n_wrk_create": {
+				"name": "N worker threads created"
+			},
+			"n_wrk_failed": {
+				"name": "N worker threads not created"
+			},
+			"n_wrk_max": {
+				"name": "N worker threads limited"
+			},
+			"n_wrk_drop": {
+				"name": "N dropped work requests"
+			}
+			"n_wrk": {
+				"name": "N worker threads"
+			}
+		},
+		"legend_format": "%5.1lf"
+	}
+}

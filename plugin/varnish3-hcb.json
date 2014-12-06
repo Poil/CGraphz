@@ -1,0 +1,18 @@
+{
+	"all": {
+		"title": "Critbit data",
+		"type": "varnish",
+		"legend": {
+			"hcb_nolock": {
+				"name": "HCB Lookups without lock"
+			},
+			"hcb_insert": {
+				"name": "HCB Inserts"
+			},
+			"hcb_lock": {
+				"name": "HCB Lookups with lock"
+			}
+		},
+		"legend_format": "%5.1lf"
+	}
+}
