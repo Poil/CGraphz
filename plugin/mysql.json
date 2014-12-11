@@ -35,7 +35,7 @@
 		"legend_format": "%5.1lf%s"
 	},
 	"mysql_commands": {
-		"title": "MySQL commands ({{PI}}) on {{HOST}}}",
+		"title": "MySQL commands ({{PI}}) on {{HOST}}",
 		"vertical": "Issues/s",
 		"type": "stacked",
 		"legend_format": "%5.1lf%s"
