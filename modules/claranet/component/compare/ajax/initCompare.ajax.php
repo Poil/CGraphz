@@ -21,83 +21,70 @@ if(isset($_GET['id_prj'])){
 
 
 
-	$jsonPluginTxt='[';
-    $nb_p=0;
-    $nb_pc=0;
-    $nb_pi=0;
-    $nb_t=0;
-    $nb_tc=0;
+	
+
+	$arrayPlugin=array();
     foreach($plugins as $p_name => $p){
-        if($nb_p!=0) $jsonPluginTxt.=",";
-        $nb_p++;
-        $jsonPluginTxt.='{
-                "text" : "<span niveau=\"plugin\" value=\"'.$p_name.'\">'.$p_name.'</span>",
-                "children" : [';
-
-        $nb_pc=0;
-        $nb_pi=0;
-        $nb_t=0;
-        $nb_tc=0;
+		
+		$arrayPC=array();
         foreach($p as $pc_name => $pc){
-            if($pc_name!=="null"){
-                if($nb_pc!=0) $jsonPluginTxt.=",";
-                $nb_pc++;
-                $jsonPluginTxt.='{
-                            "text" : "<span niveau=\"plugin-categorie\" plugin=\"'.$p_name.'\" value=\"'.$pc_name.'\">'.$pc_name.'</span>",
-                            "children" : [';
-                $nb_pi=0;
-                $nb_t=0;
-                $nb_tc=0;
-            }
+			$arrayPI=array();
             foreach($pc as $pi_name => $pi){
-                if($pi_name!=="null"){
-                    if($nb_pi!=0) $jsonPluginTxt.=",";
-                    $nb_pi++;
-                    $jsonPluginTxt.='{
-                                "text" : "<span niveau=\"plugin-instance\" plugin=\"'.$p_name.'\" plugin-categorie=\"'.$pc_name.'\" value=\"'.$pi_name.'\">'.$pi_name.'</span>",
-                                "children" : [';
-                    $nb_t=0;
-                    $nb_tc=0;
-                }
+				$arrayT=array();
                 foreach($pi as $t_name => $t){
-                    if($t_name!=="null"){
-                        if($nb_t!=0) $jsonPluginTxt.=",";
-                        $nb_t++;
-                        $selected="false";
-                        if($withGraph && $_GET['p']==$p_name && $_GET['pc']==$pc_name && $_GET['pi']==$pi_name && $_GET['t'] ==$t_name) $selected="true";
+					$tempT=array();
+					if($t_name!=="null"){
+						$selected=false;
+                        if($withGraph && $_GET['p']==$p_name && $_GET['pc']==$pc_name && $_GET['pi']==$pi_name && $_GET['t'] ==$t_name) $selected=true;
 
-                        $jsonPluginTxt.='{
-                                "state" : { "selected" : '.$selected.' },';
+						$tempT['state']=array("selected" => $selected);
+						$tempT['text']= '<span niveau="p-type" plugin="'.$p_name.'" plugin-categorie="'.$pc_name.'" plugin-instance="'.$pi_name.'" value="'.$t_name.'" >'.$t_name.'</span>';
 
-                        $jsonPluginTxt.='  "text" : "<span niveau=\"p-type\" plugin=\"'.$p_name.'\" plugin-categorie=\"'.$pc_name.'\" plugin-instance=\"'.$pi_name.'\" value=\"'.$t_name.'\" >'.$t_name.'</span>",
-                                "children" : [';
-                        $nb_tc=0;
-                    }/*
-					foreach($t as $tc_name => $ti_name){
-                        if($tc_name!=="null"){
-                            if($nb_tc!=0) echo ",";
-                            $nb_tc++;
+						$arrayT[]=$tempT;
+					}
 
-                            echo '{
-                                    "text" : \'<span niveau="type-categorie" plugin="'.$p_name.'" plugin-categorie="'.$pc_name.'" plugin-instance="'.$pi_name.'" p-type="'.$t_name.'" value="'.$tc_name.'">'.$tc_name.'</span>\',';
-
-                            echo '}';
-                        }
-                    }*/
-                    if($t_name!=="null") $jsonPluginTxt.="]}";
                 }
-                if($pi_name!=="null") $jsonPluginTxt.="]}";
+				$tempPI=array();
+                if($pi_name!=="null"){
+                    $tempPI['text']= '<span niveau="plugin-instance" plugin="'.$p_name.'" plugin-categorie="'.$pc_name.'" value="'.$pi_name.'">'.$pi_name.'</span>';
+					if(!empty($arrayT)){
+						$tempPI['children']=$arrayT;
+					}
+
+                    $arrayPI[]=$tempPI;
+                }else{
+					$arrayPI=array_merge($arrayPI,$arrayT);
+				}
             }
-            if($pc_name!=="null") $jsonPluginTxt.="]}";
+
+			$tempPC=array();
+            if($pc_name!=="null"){
+                $tempPC['text']= '<span niveau="plugin-categorie" plugin="'.$p_name.'" value="'.$pc_name.'">'.$pc_name.'</span>';
+                if(!empty($arrayPI)){
+                    $tempPC['children']=$arrayPI;
+                }
+
+                $arrayPC[]=$tempPC;
+            }else{
+                $arrayPC=array_merge($arrayPC,$arrayPI);
+            }
+
         }
-        $jsonPluginTxt.="]}";
+
+		$tempPlugin=array();
+        if($p_name!=="null"){
+            $tempPlugin['text']= '<span niveau="plugin" value="'.$p_name.'">'.$p_name.'</span>';
+            if(!empty($arrayPC)){
+                $tempPlugin['children']=$arrayPC;
+            }
+
+            $arrayPlugin[]=$tempPlugin;
+        }else{
+            $arrayPlugin=array_merge($arrayPlugin,$arrayPC);
+        }
+
     }
-    $jsonPluginTxt.="]";
 	 
-
-
-
-
 
 
 
@@ -105,7 +92,7 @@ if(isset($_GET['id_prj'])){
 
 	echo "{
 			\"pluginJs\" : ".json_encode($plugins).",
-			\"jsonPlugin\" : ".$jsonPluginTxt."
+			\"jsonPlugin\" : ".json_encode($arrayPlugin)."
 	}";	
 }
 ?>
