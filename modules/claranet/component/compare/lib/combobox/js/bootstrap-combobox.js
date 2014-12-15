@@ -40,7 +40,7 @@
     this.refresh();
     this.transferAttributes();
     
-	this.glenn();
+	this.initMenu();
 
 	this.listen();
   };
@@ -304,7 +304,7 @@
     this.source = this.parse();
     this.options.items = this.source.length;
   }
-  , glenn: function(){
+  , initMenu: function(){
 	this.query = this.$element.val();
 	var items= this.source;
 	items = this.sorter(items);
@@ -426,9 +426,7 @@
           break;
 
         case 40: // down arrow
-		  console.log('glenn3');
           e.preventDefault();
-			console.log('glenn4');
           this.next();
           break;
       }
