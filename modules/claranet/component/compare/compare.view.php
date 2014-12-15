@@ -37,7 +37,6 @@ if(isset($_GET['id_project'])){
         if(empty($_GET['t'])) $_GET['t']="null";
     }
 
-
 	echo "<table id='servers' >
 			<tr>";
 				
@@ -94,7 +93,9 @@ if(isset($_GET['id_project'])){
 			});
 		});
 <?php
-	echo "addGraphInit('".$_GET['p']."','".$_GET['pc']."','".$_GET['pi']."','".$_GET['t']."','".$_GET['tc']."');";
+	if($withGraph){
+		echo "addGraphInit('".$_GET['p']."','".$_GET['pc']."','".$_GET['pi']."','".$_GET['t']."','".$_GET['tc']."');";
+	}
 ?>
     });
 	
