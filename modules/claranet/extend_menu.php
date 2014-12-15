@@ -1,6 +1,5 @@
 <?php
 	// Affiche un la barre de navigation en fonction du profile
-
 	if(isset($_SESSION['profile'])){
 		//Récupération du nom de projet et des serveurs.
         include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/serverProjectSession.php');
