@@ -131,7 +131,8 @@
 
 <?php
 	if(isset($_SESSION['filtre']) && $_SESSION['filtre']==$idStaff && isset($_GET['f_host'])){
-	//ajax entoure image graphe
+		if($component=="light"){
+		//ajax entoure image graphe
 ?>
 		<style>
 			img:not(.grapheClient){
@@ -165,6 +166,7 @@
             });
 		</script>
 <?php
+		}
     }
 ?>
 
