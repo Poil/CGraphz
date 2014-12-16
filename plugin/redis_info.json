@@ -1,0 +1,20 @@
+{
+
+ "current_connections": {
+        "title": "Client / slaves on {{HOST}}",
+        "vertical": "Number of ...",
+        "type": "stacked",
+        "legend": {
+            "connected_clients": {
+                "name": "connected_clients"
+            },
+            "connected_slaves": {
+                "name": "connected_slaves"
+            },
+            "blocked_clients": {
+                "name": "blocked_clients"
+            }
+        }
+     }
+
+}

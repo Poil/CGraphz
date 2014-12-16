@@ -1,0 +1,12 @@
+{
+	"gauge": {
+		"title": "PuppetDB Commands Processing per Second",
+		"type": "default",
+		"vertical": "Commands",
+		"legend": {
+			"OneMinuteRate": {
+				"name": "OneMinuteRate"
+			}
+		}
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"gauge": {
+		"title": "Documents in index ({{PC}}) on {{HOST}}",
+		"vertical": "Documents",
+		"legend": {
+			"documents": {
+				"name": "Documents",
+				"color": "0000ff"
+			}
+		},
+		"legend_format": "%5.0lf"
+	}
+}
+

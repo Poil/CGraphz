@@ -67,6 +67,12 @@ if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'-'.$plugini
 	
 	if (is_null($plugin_json))
 		$log->write('CGP Error: invalid json in plugin/'.$plugin.'.json');
+} else if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'-'.$plugincategory.'.json')) {
+	$json = file_get_contents('plugin/'.$plugin.'-'.$plugincategory.'.json');
+	$plugin_json = json_decode($json, true);
+	
+	if (is_null($plugin_json))
+		$log->write('CGP Error: invalid json in plugin/'.$plugin.'.json');
 } else if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'-'.$plugincategory.'-'.$plugininstance.'.json')) {
 	$json = file_get_contents('plugin/'.$plugin.'-'.$plugincategory.'-'.$plugininstance.'.json');
 	$plugin_json = json_decode($json, true);
@@ -114,6 +120,10 @@ switch ($plugin_json[$type]['type']) {
 		require_once 'type/GenericAggregation.class.php';
         $obj = new Type_GenericAggregation($CONFIG, $_GET);
 		break;
+	case 'varnish':
+		require_once 'type/VarnishStacked.class.php';
+        $obj = new Type_VarnishStacked($CONFIG, $_GET);
+		break;
 	default:
 		require_once 'type/Default.class.php';
 		$obj = new Type_Default($CONFIG, $_GET);
@@ -136,17 +146,20 @@ if (isset($plugin_json[$type]['legend'])) {
 			$obj->colors[$rrd] = $property['color'];
 	}
 }
-
-if (isset($plugin_json[$type]['title'])) {
-	$obj->rrd_title = $plugin_json[$type]['title'];
-	$replacements = array(
-		'{{PI}}' => GET('pi'),
-		'{{PC}}' => GET('pc'),
-		'{{TI}}' => GET('ti'),
-		'{{TC}}' => GET('tc'),
-		'{{HOST}}' => GET('h')
-	);
-	$obj->rrd_title = str_replace(array_keys($replacements), array_values($replacements), $obj->rrd_title);
+if (GRAPH_TITLE!='text' || $obj->graph_type!='png') {
+	if (isset($plugin_json[$type]['title'])) {
+		$obj->rrd_title = $plugin_json[$type]['title'];
+		$replacements = array(
+			'{{PI}}' => GET('pi'),
+			'{{PC}}' => GET('pc'),
+			'{{TI}}' => GET('ti'),
+			'{{TC}}' => GET('tc'),
+			'{{HOST}}' => GET('h')
+		);
+		$obj->rrd_title = str_replace(array_keys($replacements), array_values($replacements), $obj->rrd_title);
+	} 
+} else {
+	$obj->rrd_title='';
 }
 
 if (isset($plugin_json[$type]['vertical'])) {

@@ -1,0 +1,11 @@
+{
+	"latency": {
+		"title": "PuppetDB Command Processing Latency",
+		"type": "default",
+		"legend": {
+			"99thPercentile": {
+				"name": "99thPercentile"
+			}
+		}
+	}
+}
