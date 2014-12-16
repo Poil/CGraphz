@@ -17,7 +17,7 @@
     left : 0;
 	height : 100%;
 
-	padding-top : 110px;
+	padding-top : 105px;
     padding-left : 250px;
 
 	width : 250px;
@@ -172,3 +172,10 @@ a .jstree-anchor > *{
 	margin-top: 5px;
 }
 
+#servers th > a{
+	margin-left : 5px;
+}
+
+#servers th .serverName a{
+	color : #000;
+}

@@ -167,8 +167,7 @@
 				echo 'forKnowProject="&f_host="+hostname;';
 			}
 		?>
-
-				$(this).append('<a class="pull-right" href="<?php echo DIR_WEBROOT; ?>/index.php?module=dashboard&component=compare'+forKnowProject+urlSrc+'">Compare</a>');
+				if(urlSrc.indexOf('wpm') < 1 ) $(this).prepend('<a  class="pull-right" href="<?php echo DIR_WEBROOT; ?>/index.php?module=dashboard&component=compare'+forKnowProject+urlSrc+'">Compare</a>');
 			}
 		});
 		

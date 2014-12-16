@@ -1,5 +1,7 @@
 <?php
-	include('../../../config/config.php');
+	if(basename($_SERVER['PHP_SELF'])!=="index.php"){
+		include_once('../../../config/config.php');
+	}
 	$connSQL=new DB();
     if(isset($_GET['project'])){
 		//Récuperation des serveurs d'un projet dans claratact
@@ -20,14 +22,19 @@
 		echo '<option value=""></option>';
 		
 		$endRequete="";
-        foreach($return->hosts as $server){
-			if($endRequete!="") $endRequete.=" OR ";
-			$endRequete.="server_name LIKE '".$server->name."'";
-        }
-        foreach($return->wpm as $wpmName){
-			if($endRequete!="") $endRequete.=" OR ";
-            $endRequete.="server_name LIKE '".$wpmName."'";
-        }
+		if(isset($return->hosts)){
+			foreach($return->hosts as $server){
+				if($endRequete!="") $endRequete.=" OR ";
+				$endRequete.="server_name LIKE '".$server->name."'";
+			}
+		}
+
+		if(isset($return->wpm)){
+			foreach($return->wpm as $wpmName){
+				if($endRequete!="") $endRequete.=" OR ";
+				$endRequete.="server_name LIKE '".$wpmName."'";
+			}
+		}
 	
 		if($endRequete!=""){	
 			$connSQL=new DB();

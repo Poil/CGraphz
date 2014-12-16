@@ -1,9 +1,9 @@
 $(function(){
 	$('#project_plugin').attr('id','compare-toolbar');
 	$('#bs-navbar-collapse-plugin').attr('id','bs-navbar-collapse-compare-toolbar');	
-	$('div#bs-navbar-collapse-compare-toolbar').append('<form class="navbar-form navbar-left" role="search"><div class="form-group"><input id="serverToAdd" type="text" class="form-control" placeholder="Ajouter serveur..."></div><button id="addServer" type="submit" class="btn btn-default">Ajouter serveur</button></form><div id="jquery-live-search-add-host" class="modal-content" style="display: none; position: fixed; left: 709.03125px; top: 35px; width: 182px;"></div>');
+	$('div#bs-navbar-collapse-compare-toolbar').append('<form class="navbar-form navbar-left" role="search"><div class="form-group"><input id="serverToAdd" type="text" class="form-control" placeholder="Ajouter serveur..."></div><button id="addServer2" class="btn btn-default">Ajouter serveur</button></form><div id="jquery-live-search-add-host" class="modal-content" style="display: none; position: fixed; left: 709.03125px; top: 35px; width: 182px;"></div>');
 
-	$('#addServer').on('click',function(){
+	$('#addServer2').on('click',function(){
 		var serverName=$('#serverToAdd').val();
 		$('#serverToAdd').val('');
 		if(serverName!=""){
@@ -400,12 +400,10 @@ function addHost(hostname){
     var time_end=getParameterByName(src,'e');
     var timer=getParameterByName(src,'timer');
 
-
 	if($('#servers .serverName[value='+hostname+']').length <= 0){
 		$('#dashboard_content').animate({scrollLeft:0, scrollTop:0}, 'fast');
-		$('tr:has(th)').prepend('<th><span class="serverName" value="'+hostname+'">'+hostname+'</span><a href="#" onclick="removeHost($(this));return false;">&nbsp;<i class="glyphicon glyphicon-remove"></i></a></th>');
+		$('tr:has(th)').prepend('<th><span class="serverName" value="'+hostname+'"><a href="'+dashlightURL+'&f_host='+hostname+'">'+hostname+'</a></span><a href="#" onclick="removeHost($(this));return false;"><i class="glyphicon glyphicon-remove"></i></a></th>');
 		$('tr:has(.imggraph)').prepend('<td><div class="div-for-width"></div></td>');
-		
 		$('.imggraph[src*="?h=patron-graph&"]').each(function(){
 			var src=$(this).attr('src');
 			src=src.replace('patron-graph',hostname);

@@ -1,6 +1,7 @@
 <?php
-	include('../../../config/config.php');	
-
+	if(basename($_SERVER['PHP_SELF'])!=="index.php"){
+		include_once('../../../config/config.php');	
+	}
 	if(isset($_GET['project']) && isset($_SESSION['hierarchy'])){
 		$projects=json_decode($_SESSION["hierarchy"]);
 
@@ -15,14 +16,18 @@
 		$endRequete="";
         foreach($projects as $project){
             if($all || $project->nom==$_GET['project']){
-                foreach($project->hosts as $server){
-					if($endRequete!="") $endRequete.=" OR ";
-					$endRequete.="server_name LIKE '".$server->name."'";
+				if(isset($project->hosts)){
+					foreach($project->hosts as $server){
+						if($endRequete!="") $endRequete.=" OR ";
+						$endRequete.="server_name LIKE '".$server->name."'";
+					}
 				}
-                foreach($project->wpm as $name){
-					if($endRequete!="") $endRequete.=" OR ";
-					$endRequete.="server_name LIKE '".$name."'";
-                }
+				if(isset($project->wpm)){
+					foreach($project->wpm as $name){
+						if($endRequete!="") $endRequete.=" OR ";
+						$endRequete.="server_name LIKE '".$name."'";
+					}
+				}
             }
         }
 

@@ -41,7 +41,7 @@ if(isset($_GET['id_project'])){
 			<tr>";
 				
 	foreach($serverNames as $server_name){
-		echo "<th><span class='serverName' value='".$server_name."'>".$server_name."</span><a href='#' onclick='removeHost($(this));return false;'>&nbsp;<i class='glyphicon glyphicon-remove'></i></a></th>";
+		echo "<th><span class='serverName' value='".$server_name."'><a href='".DIR_WEBROOT."/index.php?module=dashboard&component=light&f_host=".$server_name."&id_project=".$id_prj."'>".$server_name."</a></span><a href='#' onclick='removeHost($(this));return false;'><i class='glyphicon glyphicon-remove'></i></a></th>";
 	}
 	echo "		<th><span class='serverName' value='patron-graph'></span></th>";
 	echo '</tr>
@@ -76,7 +76,7 @@ if(isset($_GET['id_project'])){
 <script>
 	var ajaxURL="<?php echo DIR_WEBROOT."/modules/claranet/component/compare/ajax/";?>";
 	var pluginJs=[];
-	
+	var dashlightURL="<?php echo DIR_WEBROOT."/index.php?module=dashboard&component=light"; ?>";	
 	$(function() {
 		$.getJSON( '<?php echo DIR_WEBROOT."/modules/claranet/component/compare/ajax/initCompare.ajax.php?id_prj=".$id_prj.$srcGraph; ?>', function( data ) {
 			pluginJs=data.pluginJs;
