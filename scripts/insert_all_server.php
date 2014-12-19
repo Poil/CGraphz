@@ -1,7 +1,7 @@
 <?php
 include('../config/config.php');
 
-$prod=true;
+$prod=(CGRAPHZ_VERSION=="");
 $file_reporting="./insertion_doublon_reporting.json";
 
 $connSQL=new DB();
