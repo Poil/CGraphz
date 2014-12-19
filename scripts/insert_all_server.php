@@ -1,7 +1,7 @@
 <?php
 include('../config/config.php');
 
-$prod=false;
+$prod=true;
 $file_reporting="./insertion_doublon_reporting.json";
 
 $connSQL=new DB();
@@ -44,8 +44,21 @@ if ($find=='1') {
 	//////////////////////////////////////
 	// Reporting des server en doublon
 	if($prod){
-		$serverDoublon=$connSQL->query($lib);	
-		if(sizeof($serverDoublon) > 0){	
+		$filelist=scandir($CONFIG['datadir']);
+
+		$serverPresent=array();
+		$serverDoublonDir=array();
+		foreach($filelist as $server_name){
+			$server_name=strtoupper($server_name);
+		    if(!isset($serverPresent[$server_name])){
+		        $serverPresent[$server_name]=true;
+		    }else{
+		        $serverDoublonDir[]=$server_name;
+		    }
+		}
+
+		$serverDoublonBDD=$connSQL->query($lib);	
+		if(sizeof($serverDoublonBDD) > 0 || sizeof($serverDoublonDir) > 0){	
 			$json = file_get_contents($file_reporting);
 			if($json==NULL){
 				$json="{}";	
@@ -54,15 +67,36 @@ if ($find=='1') {
 			
 			$jsonServer="[";
 			$serverMail="";
+			$serverMailBDD="";
+			$serverMailDir="";
+
 			$i=0;
-			foreach($serverDoublon as $server){
+			foreach($serverDoublonBDD as $server){
 				if($i>0) $jsonServer.=",";
 				$jsonServer.='"'.$server->server_name.'"';
-				$serverMail.=" - ".htmlentities($server->server_name)."<br>";
+				$serverMailBDD.=" - ".htmlentities($server->server_name)."<br>";
 				$i++;
 			}
+
+			foreach($serverDoublonDir as $server_name){
+                if($i>0) $jsonServer.=",";
+                $jsonServer.='"'.$server_name.'"';
+                $serverMailDir.=" - ".htmlentities($server_name)."<br>";
+                $i++;
+            }
+
+
 			$jsonServer.="]";
 	
+			if($serverMailBDD!=""){
+				$serverMail.="Serveur en doublon dans la BDD :<br/>".$serverMailBDD."<br/><br/>";
+			}
+
+			if($serverMailDir!=""){
+                $serverMail.="Serveur en doublon dans le repertoire :<br/>".$serverMailDir."<br/><br/>";
+            }
+
+
 			$parsed_json->server=json_decode($jsonServer);
 	
 			// Envoi de mail une fois par jours si il y a des doublons
@@ -81,26 +115,26 @@ if ($find=='1') {
 			if($toReport){
 				$from="Glenn INIZAN <glenn.inizan@fr.clara.net>";
 				$to="FR-si@fr.clara.net";
+				//$to="glenn.inizan@fr.clara.net";
 				$passage_ligne = "\n";
 				$header = "From: ".$from.$passage_ligne;
 				$header .= "Reply-to: ".$from.$passage_ligne;
 				$header .= "MIME-Version: 1.0".$passage_ligne;
 				$header .= "Content-Type: text/html; charset=\"UTF-8\"".$passage_ligne;
 	
-			    $sujet="[Reporting CGraphZ] Probléme sur l'insertion de serveur dans CGraphZ";
+			    $sujet="[Reporting CGraphZ] Probléme de doublon dans CGraphZ";
 	
 				$messageHTML="
 			    <html>
 			        <body style='font-size : 12px; font-family : Verdana;'>
 			            <p>
-						Vous trouverez ci dessous la liste des serveurs en doublon dans CGraphZ. Ce probl&egrave;me vient d'un doublon des repertoires de graphe RRD pour ces serveurs (un en majuscule l'autre en minuscule). Afin d'etre sure d'afficher les bons graphes dans CGraphZ il est important de supprimer les repertoires qui ne sont plus à jours.
+						Vous trouverez ci dessous la liste des serveurs en doublon dans CGraphZ. Ces doublons peuvent créer des blancs dans les graphes. Merci de les corriger au plus vite.
 			            </p>
 						<br>
-						Les serveurs sont : <br>".
-						$serverMail."
+						".$serverMail."
 			        </body>
 			    </html>";
-				echo $messageHTML."\n";
+				//echo $messageHTML."\n";
 			    mail($to,$sujet,$messageHTML,$header);
 	
 				$now=new DateTime();
