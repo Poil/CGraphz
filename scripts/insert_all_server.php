@@ -44,20 +44,21 @@ if ($find=='1') {
 	//////////////////////////////////////
 	// Reporting des server en doublon
 	if($prod){
-		$filelist=scandir($CONFIG['datadir']);
+		$serverDoublonBDD=$connSQL->query($lib);
+		$serverDoublonDir=array();
+
+		$serversDir=scandir($CONFIG['datadir']);
 
 		$serverPresent=array();
-		$serverDoublonDir=array();
-		foreach($filelist as $server_name){
-			$server_name=strtoupper($server_name);
-		    if(!isset($serverPresent[$server_name])){
-		        $serverPresent[$server_name]=true;
-		    }else{
-		        $serverDoublonDir[]=$server_name;
-		    }
+		foreach($serversDir as $server){
+			$server_name=strtoupper($server);
+			if(!isset($serverPresent[$server_name])){
+				$serverPresent[$server_name]=true;
+			}else{
+				$serverDoublonDir[]=$server_name;
+			}
 		}
-
-		$serverDoublonBDD=$connSQL->query($lib);	
+	
 		if(sizeof($serverDoublonBDD) > 0 || sizeof($serverDoublonDir) > 0){	
 			$json = file_get_contents($file_reporting);
 			if($json==NULL){
@@ -66,10 +67,8 @@ if ($find=='1') {
 			$parsed_json=json_decode($json);
 			
 			$jsonServer="[";
-			$serverMail="";
 			$serverMailBDD="";
 			$serverMailDir="";
-
 			$i=0;
 			foreach($serverDoublonBDD as $server){
 				if($i>0) $jsonServer.=",";
@@ -77,28 +76,28 @@ if ($find=='1') {
 				$serverMailBDD.=" - ".htmlentities($server->server_name)."<br>";
 				$i++;
 			}
-
-			foreach($serverDoublonDir as $server_name){
+			foreach($serverDoublonDir as $serverName){
                 if($i>0) $jsonServer.=",";
-                $jsonServer.='"'.$server_name.'"';
-                $serverMailDir.=" - ".htmlentities($server_name)."<br>";
+                $jsonServer.='"'.$serverName.'"';
+                $serverMailDir.=" - ".htmlentities($serverName)."<br>";
                 $i++;
             }
 
-
 			$jsonServer.="]";
 	
+			$parsed_json->server=json_decode($jsonServer);
+	
+			$serverMail="";
+
 			if($serverMailBDD!=""){
-				$serverMail.="Serveur en doublon dans la BDD :<br/>".$serverMailBDD."<br/><br/>";
+				$serverMail.="Les serveurs en doublons en BDD sont :<br>".$serverMailBDD."<br><br>";
 			}
 
 			if($serverMailDir!=""){
-                $serverMail.="Serveur en doublon dans le repertoire :<br/>".$serverMailDir."<br/><br/>";
+                $serverMail.="Les serveurs en doublons dans les repertoires sont :<br>".$serverMailDir."<br><br>";
             }
 
 
-			$parsed_json->server=json_decode($jsonServer);
-	
 			// Envoi de mail une fois par jours si il y a des doublons
 			$toReport=false;
 			if(isset($parsed_json->reporting)){
@@ -113,28 +112,27 @@ if ($find=='1') {
 			}
 	
 			if($toReport){
-				$from="Glenn INIZAN <glenn.inizan@fr.clara.net>";
+				$from="Reporting CGraphZ <si@fr.clara.net>";
 				$to="FR-si@fr.clara.net";
-				//$to="glenn.inizan@fr.clara.net";
 				$passage_ligne = "\n";
 				$header = "From: ".$from.$passage_ligne;
 				$header .= "Reply-to: ".$from.$passage_ligne;
 				$header .= "MIME-Version: 1.0".$passage_ligne;
 				$header .= "Content-Type: text/html; charset=\"UTF-8\"".$passage_ligne;
 	
-			    $sujet="[Reporting CGraphZ] Probléme de doublon dans CGraphZ";
+			    $sujet="[Reporting CGraphZ] Problème de doublon dans l'insertion de serveur CGraphZ";
 	
 				$messageHTML="
 			    <html>
 			        <body style='font-size : 12px; font-family : Verdana;'>
 			            <p>
-						Vous trouverez ci dessous la liste des serveurs en doublon dans CGraphZ. Ces doublons peuvent créer des blancs dans les graphes. Merci de les corriger au plus vite.
+						Vous trouverez ci dessous la liste des serveurs en doublon dans CGraphZ. 
 			            </p>
 						<br>
 						".$serverMail."
 			        </body>
 			    </html>";
-				//echo $messageHTML."\n";
+				echo $messageHTML."\n";
 			    mail($to,$sujet,$messageHTML,$header);
 	
 				$now=new DateTime();
@@ -167,7 +165,7 @@ if ($find=='1') {
                 	SELECT server_name FROM config_server
         	  ) 
 		  GROUP BY server_name
-          HAVING COUNT(*) <= 1
+		  HAVING COUNT(*) <= 1
 		  ORDER BY server_name
 		)';
 	$connSQL->query($lib);
