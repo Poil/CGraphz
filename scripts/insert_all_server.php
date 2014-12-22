@@ -85,8 +85,6 @@ if ($find=='1') {
 
 			$jsonServer.="]";
 	
-			$parsed_json->server=json_decode($jsonServer);
-	
 			$serverMail="";
 
 			if($serverMailBDD!=""){
@@ -107,10 +105,44 @@ if ($find=='1') {
 	
 				// Si le dernier reporting a etait fait il ya plus d'un jour alors on doit faire le reporting 
 				if($date_reporting < $now ) $toReport=true;
+				else{
+					// Fait un reporting si un nouveau server arrive
+					if(isset($parsed_json->server)){
+						foreach($serverDoublonBDD as $server){
+							$isInJSON=false;
+							foreach($parsed_json->server as $j_server){
+								if($server->server_name===$j_server){
+									$isInJSON=true;
+									break;
+								}
+							}
+							if(!$isInJSON){ 
+								$toReport=true;
+								break;
+							}
+						}
+						
+						foreach($serverDoublonDir as $server_name){
+							$isInJSON=false;
+							foreach($parsed_json->server as $j_server){
+								if($server_name===$j_server){
+									$isInJSON=true;
+									break;
+								}
+							}
+							if(!$isInJSON){
+								$toReport=true;
+								break;
+							}
+						}
+					}
+				}
 			}else{
 				$toReport=true;
 			}
-	
+			
+			$parsed_json->server=json_decode($jsonServer);	
+			
 			if($toReport){
 				$from="Reporting CGraphZ <si@fr.clara.net>";
 				$to="FR-si@fr.clara.net";
@@ -133,7 +165,7 @@ if ($find=='1') {
 			        </body>
 			    </html>";
 				echo $messageHTML."\n";
-			    mail($to,$sujet,$messageHTML,$header);
+			    //mail($to,$sujet,$messageHTML,$header);
 	
 				$now=new DateTime();
 				$parsed_json->reporting=$now->format("Y-m-d H:i:s");
