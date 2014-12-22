@@ -165,7 +165,7 @@ if ($find=='1') {
 			        </body>
 			    </html>";
 				echo $messageHTML."\n";
-			    //mail($to,$sujet,$messageHTML,$header);
+			    mail($to,$sujet,$messageHTML,$header);
 	
 				$now=new DateTime();
 				$parsed_json->reporting=$now->format("Y-m-d H:i:s");
