@@ -444,7 +444,12 @@ class Type_Base {
 					if ($debug == true) { $this->log->write('[Flush] - Commands : FLUSH '.$this->datadir.'/'.$val.'.rrd'); }
 				
 					//On verifie si le plugin à une config special
-					if(isset($this->flush_multi_socket) && isset($this->flush_multi_socket[$plugin])){
+					if( ($plugin== "network" || $plugin=="rrdcached") && ($explode1[0]=="clagra-pn01" || $explode1[0]=="clagra-pn03")){
+						$host=$explode1[0].".adm.fr.clara.net:42217";
+						if (! $socket = @fsockopen($host, 0, $u_errno, $u_errmsg)) {
+							$socket=$socket_defaut;
+						}
+					}else if(isset($this->flush_multi_socket) && isset($this->flush_multi_socket[$plugin])){
 						if(!isset($sockets[$this->flush_multi_socket[$plugin]])){
 							if (isset($this->flush_list_sockets[$this->flush_multi_socket[$plugin]]) && !$socket = @fsockopen($this->flush_list_sockets[$this->flush_multi_socket[$plugin]], 0, $u_errno, $u_errmsg)) {
 								$socket=$socket_defaut;
