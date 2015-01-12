@@ -253,52 +253,53 @@ if (!empty($vmlist)) {
 	echo "<h2>Libvirt</h2>";
 	foreach ($vmlist as $vmdir) {
 
-	$tmp=explode(':',$vmdir);
-	$vm=$tmp[1];
+		$tmp=explode(':',$vmdir);
+		$vm=$tmp[1];
 
-	echo "<h3>$vm</h3>";
+		echo "<h3>$vm</h3>";
 
-	foreach ($pg_filters as $filter) {
-		$myregex='#^('.$vmdir.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd#';
+		foreach ($pg_filters as $filter) {
+			$myregex='#^('.$vmdir.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd#';
 
-		$plugins = preg_find($myregex, $vmdir, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+			$plugins = preg_find($myregex, $vmdir, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
 
-		$old_t='';
-		$old_pi='';
-		foreach ($plugins as $plugin) {
-			preg_match($myregex, $plugin, $matches);
+			$old_t='';
+			$old_pi='';
+			foreach ($plugins as $plugin) {
+				preg_match($myregex, $plugin, $matches);
 
-			if (isset($matches[2])) {
-				$p=$matches[2];
-				if (!isset($$p)) $$p=false;
-			} else { 
-				$p=null; 
-			}
-			if (isset($matches[3])) {
-				$pi=$matches[3];
-			} else { 
-				$pi=null; 
-			}
-			if (isset($matches[4])) {
-				$t=$matches[4];
-			} else { 
-				$t=null; 
-			}
-			if (isset($matches[5])) {
-				$ti=$matches[5];
-			} else { 
-				$ti=null; 
-			}
+				if (isset($matches[2])) {
+					$p=$matches[2];
+					if (!isset($$p)) $$p=false;
+				} else { 
+					$p=null; 
+				}
+				if (isset($matches[3])) {
+					$pi=$matches[3];
+				} else { 
+					$pi=null; 
+				}
+				if (isset($matches[4])) {
+					$t=$matches[4];
+				} else { 
+					$t=null; 
+				}
+				if (isset($matches[5])) {
+					$ti=$matches[5];
+				} else { 
+					$ti=null; 
+				}
 
-			if (! isset(${$vm.$p.$pi.$t.$ti}) ) {
-				${$vm.$p.$pi.$t.$ti}=true;
-				if ($t!=$old_t) echo '<h4>'.ucfirst(str_replace('_', ' ',$t)).'</h4>';
-				$old_t=$t;
+				if (! isset(${$vm.$p.$pi.$t.$ti}) ) {
+					${$vm.$p.$pi.$t.$ti}=true;
+					if ($t!=$old_t) echo '<h4>'.ucfirst(str_replace('_', ' ',$t)).'</h4>';
+					$old_t=$t;
 
-				$graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
-				if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
-				echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13; '.$graph_title.'" alt="'.$graph_title.'" src='.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.' />';
-				if (GRAPH_TITLE=='text') { echo '</figure>'; }
+					$graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
+					if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
+					echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13; '.$graph_title.'" alt="'.$graph_title.'" src='.DIR_WEBROOT.'/graph.php?h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.' />';
+					if (GRAPH_TITLE=='text') { echo '</figure>'; }
+				}
 			}
 		}
 	}
