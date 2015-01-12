@@ -1,6 +1,5 @@
 <?php
 	// Affiche un la barre de navigation en fonction du profile
-
 	if(isset($_SESSION['profile'])){
 		//Récupération du nom de projet et des serveurs.
         include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/serverProjectSession.php');
@@ -8,6 +7,10 @@
 
 		echo "
              <style>
+					select{
+						height : 34px;
+						margin-top: 8px;
+					}
                     .projetLink:hover{
                         color : #2a5685;
                     }
@@ -18,6 +21,13 @@
                         padding: 0px;
                         margin: 3px;
                     }
+
+					#filtreGraph{
+						height : 20px;
+						padding-top: 0;
+						padding-bottom: 2px;
+						margin-top: 5px;
+					}
             </style>";
 
 		if($_SESSION['profile']=='admin' || $_SESSION['profile']=='staff'){
@@ -26,6 +36,7 @@
 			include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/menu/nav_menu.php');
 		}
 
+		
 		echo '<p class="navbar-text pull-right">';
 
 
@@ -44,16 +55,21 @@
 
 ?>
 
+<link href="<?php echo DIR_WEBROOT; ?>/modules/claranet/component/compare/lib/combobox/css/bootstrap-combobox.css" media="screen" rel="stylesheet" type="text/css">
+<script src="<?php echo DIR_WEBROOT; ?>/modules/claranet/component/compare/lib/combobox/js/bootstrap-combobox.js" type="text/javascript"></script>
 
 
 
 <script type='text/javascript'>
+
 	$(function(){
+		$('#selectProject').combobox();
+
 		$('#selectServer').change(function(){
 			var srv='';
-		$('#selectServer option:selected').each(function(){
-			srv=$(this).val();
-		});
+			$('#selectServer option:selected').each(function(){
+				srv=$(this).val();
+			});
 			if(srv!="-1"){
 				window.location.href = '<?php echo DIR_WEBROOT; ?>/index.php?module=dashboard&component=light'+srv;
 			}
@@ -125,12 +141,106 @@
 			        i++;
 		        });
 	        });
-
-
 		}
-		addAggregation('cpu','CPU');
-	});
+		//addAggregation('cpu','CPU');
+
+		function getParameterByName(name) {
+			name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+			var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+				results = regex.exec(location.search);
+			return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		}
+		$('figcaption').each(function(){
+			var src=$(this).parent().children().filter('.imggraph').first().attr('src');
+			var tabSrc=src.split("&p=");
+			if(tabSrc.length > 1){
+				var urlSrc="&p="+tabSrc[1];
+				var id_prj=getParameterByName('id_project');
+				var hostname=getParameterByName('f_host');
+
+				var forKnowProject="";
+		<?php 
+			if(isset($_SESSION['profile']) && ($_SESSION['profile']=="admin" || $_SESSION['profile']=="staff")){
+				echo 'if(id_prj!="" && id_prj!="0") forKnowProject="&id_project="+id_prj;
+					  else forKnowProject="&f_host="+hostname;';
+			}else{
+				echo 'forKnowProject="&f_host="+hostname;';
+			}
+		?>
+				if(urlSrc.indexOf('wpm') < 1 ) $(this).prepend('<a  class="pull-right" href="<?php echo DIR_WEBROOT; ?>/index.php?module=dashboard&component=compare'+forKnowProject+urlSrc+'">Compare</a>');
+			}
+		});
+		
+
+<?php
+		if($component=="compare"){
+
+
+
+		}else{
+?>
+		$('div#bs-navbar-collapse-plugin').append('<div class="form-group pull-right" style="margin-bottom : 0px;"><input id="filtreGraph" type="text" class="form-control" placeholder="Filtrer graph..."></div>');
+
+		$.expr[':'].attrCaseInsensitive = function(node, stackIndex, properties){
+		    var args = properties[3].split(',').map(function(arg) {
+		        return arg.replace(/^\s*["']|["']\s*$/g, '');  
+		    });
+		    return $(node).attr(args[0]).toLowerCase().indexOf(args[1]) > -1;
+		};
+
 	
+		$('#filtreGraph').keyup(function(){
+			var title=$(this).val();
+			
+			if(title!=""){
+				$('figcaption:not(:hidden):not(:attrCaseInsensitive(title, "'+title.toLowerCase()+'"))').each(function(){
+            	    $(this).parent().hide();
+            	});
+
+
+				$('figcaption:attrCaseInsensitive(title, "'+title.toLowerCase()+'"):hidden').each(function(){
+					$(this).parent().show();
+				});
+			}else{
+				$('figcaption[title]:hidden').each(function(){
+                    $(this).parent().show();
+                });
+			}	
+		
+			$('#dashboard h2,#dashboard h3,#dashboard h4').each(function(){ $(this).show()});
+
+			var elem_suivant=null;
+			$($('#dashboard h2,#dashboard h3,#dashboard h4,#dashboard figure:not(:hidden)').get().reverse()).each(function(){
+				var elem_tagName=$(this).prop("tagName");
+				if(elem_tagName != "FIGURE"){
+					if(elem_tagName=="H4"){
+						if(elem_suivant === null || elem_suivant != "FIGURE"){
+							$(this).hide();
+						}else{
+							elem_suivant=elem_tagName;
+						}
+					}else if(elem_tagName=="H3"){
+                        if(elem_suivant === null || (elem_suivant != "FIGURE" && elem_suivant != "H4")){
+                            $(this).hide();
+                        }else{
+                            elem_suivant=elem_tagName;
+                        }
+                    }else if(elem_tagName=="H2"){
+                        if(elem_suivant === null || (elem_suivant != "FIGURE" && elem_suivant != "H4" && elem_suivant != "H3")){
+                            $(this).hide();
+                        }else{
+                            elem_suivant=elem_tagName;
+                        }
+                    }
+				}else{
+					elem_suivant=elem_tagName;
+				}
+			});
+		});
+<?php
+	}
+?>
+	});
 </script>
 
 
