@@ -214,10 +214,11 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                }
 
                if ($CONFIG['no_break'] == true) { echo '<span style="white-space:nowrap">'; }
-               if (!preg_match('/^(df|interface|oracle)$/', $plugin['p']) || 
+               if (!preg_match('/^(df|interface|oracle|snmp)$/', $plugin['p']) || 
 				  (((preg_replace('/[^0-9\.]/','',$plugin['collectd_version']) >= 5)
-				  && $p!='oracle' && $t!='df'))
-			   ) {
+                  && !preg_match('/^(oracle|snmp)$/', $plugin['p']) && $plugin['t']!='df'))
+                  || ($plugin['p'] == 'snmp' && $plugin['t'] == 'memory')
+               ) {
                   $plugin['ti']=null;
                   if ($plugin['p'] == 'varnish3') { $plugin['t']='all'; }
                   if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
