@@ -94,10 +94,11 @@
 		},
 		"mysql_databasesize": {
 				"title": "Mysql Total BDD Size {{PI}}",
-				"vertical": "MB",
+				"vertical": "Bytes",
 				"type": "stacked",
+				"scale": "1048576",
 				"legend": {
-							"full_bdd_size": {
+							"total_db_size": {
 							"name": "Total BDD Size"
 							}
 				}

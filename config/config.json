@@ -7,7 +7,7 @@
         },
         "plugin": {
                 "df": "rrd cached pn01",
-                "disk": "rrd cached pn01",
+                "disk": "rrd cached pn03",
                 "cpu": "rrd cached pn01",
                 "load": "rrd cached pn01",
                 "memory": "rrd cached pn01",
