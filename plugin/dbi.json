@@ -203,7 +203,13 @@
                             "hot_upd": {
                             "name": "HOT Update Requests"
                             },
-                            "ins": {
+                            "fetched": {
+                            "name": "Fetched Requests"
+                            },
+							"return": {
+                            "name": "Return Requests"
+                            },
+							"ins": {
                             "name": "Insert Requests"
                             },
                             "upd": {
