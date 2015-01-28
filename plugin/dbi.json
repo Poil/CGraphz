@@ -230,6 +230,19 @@
                             }
                 }
         },
+		"pg_blks": {
+                "title": "PostgreSQL Blocks State {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "pg_blksh": {
+                            "name": "Blocks Disks found in Buffer"
+                            },
+                            "pg_blksr": {
+                            "name": "Blocks Disk Read"
+                            }
+                }
+        },
 		"pg_scan": {
                 "title": "PostgreSQL Query Plans {{PI}}",
                 "vertical": "counter",
