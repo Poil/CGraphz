@@ -151,6 +151,8 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
             $plugin_array = sortArray($plugin_array, array('ti','servername', 'p', 'pc', 'pi', 't', 'tc'));
          } else if ($all_content[$i]->rrd_ordering=='P-T') {
             $plugin_array = sortArray($plugin_array, array('p','t', 'pc', 'servername', 'pi', 'tc', 'ti'));
+         } else if ($all_content[$i]->rrd_ordering=='P-PI-T') {
+            $plugin_array = sortArray($plugin_array, array('p','pi','pc','t','servername', 'tc', 'ti'));
          }
 
          $old_t=null;
@@ -210,6 +212,16 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   }
                   if ($old_t!=$plugin['t']) {
                      echo '<h3>'.$plugin['t'].'</h3>';
+                  }
+               } else if ($all_content[$i]->rrd_ordering=='P-PI-T') {
+                  if ($old_p!=$plugin['p']) {
+                     echo '<h2>'.$plugin['p'].'</h2>';
+                  }
+                  if ($old_pi!=$plugin['pi']) {
+                     echo '<h3>'.$plugin['pi'].'</h3>';
+                  }
+                  if ($old_t!=$plugin['t']) {
+                     echo '<h4>'.$plugin['t'].'</h4>';
                   }
                }
 
