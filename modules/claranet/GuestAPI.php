@@ -30,7 +30,7 @@ class GuestAPI{
 
 	public function getServers($idPrj){
 		$serversName=array();
-		foreach($this->hierarchy as $prj){
+		/*foreach($this->hierarchy as $prj){
 			if($prj->id==$idPrj){
 				foreach($prj->hosts as $host){
 					$serversName[]=$host->name;
@@ -39,7 +39,39 @@ class GuestAPI{
 					$serversName[]=$wpmName;
 				}
             }
+        }*/
+
+		$endRequete="";
+        foreach($this->hierarchy as $project){
+            if($project->nom==$_GET['project']){
+                if(isset($project->hosts)){
+                    foreach($project->hosts as $server){
+                        if($endRequete!="") $endRequete.=" OR ";
+                        $endRequete.="server_name LIKE '".$server->name."'";
+                    }
+                }
+                if(isset($project->wpm)){
+                    foreach($project->wpm as $name){
+                        if($endRequete!="") $endRequete.=" OR ";
+                        $endRequete.="server_name LIKE '".$name."'";
+                    }
+                }
+            }
         }
+
+        if($endRequete!=""){
+            $connSQL=new DB();
+
+            $requete="SELECT server_name FROM cgraphz.config_server where ".$endRequete." ORDER BY server_name";
+
+            $all_server=$connSQL->query($requete);
+            $cpt_server=count($all_server);
+
+            for ($i=0; $i<$cpt_server; $i++) {
+                $serversName[]=$all_server[$i]->server_name;
+            }
+        }
+	
 		return $serversName;
 	}
 

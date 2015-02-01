@@ -203,7 +203,13 @@
                             "hot_upd": {
                             "name": "HOT Update Requests"
                             },
-                            "ins": {
+                            "fetched": {
+                            "name": "Fetched Requests"
+                            },
+							"return": {
+                            "name": "Return Requests"
+                            },
+							"ins": {
                             "name": "Insert Requests"
                             },
                             "upd": {
@@ -221,6 +227,19 @@
                             },
                             "dead": {
                             "name": "Dead Requests"
+                            }
+                }
+        },
+		"pg_blks": {
+                "title": "PostgreSQL Blocks State {{PI}}",
+                "vertical": "counter",
+                "type": "stacked",
+                "legend": {
+                            "pg_blksh": {
+                            "name": "Blocks Disk Buffer"
+                            },
+                            "pg_blksr": {
+                            "name": "Blocks Disk Read"
                             }
                 }
         },
