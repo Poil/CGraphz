@@ -43,7 +43,7 @@ class GuestAPI{
 
 		$endRequete="";
         foreach($this->hierarchy as $project){
-            if($project->nom==$_GET['project']){
+            if($project->id==$idPrj){
                 if(isset($project->hosts)){
                     foreach($project->hosts as $server){
                         if($endRequete!="") $endRequete.=" OR ";
