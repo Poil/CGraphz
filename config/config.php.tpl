@@ -1,5 +1,4 @@
 <?php
-/************************* CGraphz **********************/
 # Cgraphz version
 define('CGRAPHZ_VERSION','2.50 dev');
 
