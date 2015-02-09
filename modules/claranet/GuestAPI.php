@@ -30,17 +30,6 @@ class GuestAPI{
 
 	public function getServers($idPrj){
 		$serversName=array();
-		/*foreach($this->hierarchy as $prj){
-			if($prj->id==$idPrj){
-				foreach($prj->hosts as $host){
-					$serversName[]=$host->name;
-				}
-				foreach($prj->wpm as $wpmName){
-					$serversName[]=$wpmName;
-				}
-            }
-        }*/
-
 		$endRequete="";
         foreach($this->hierarchy as $project){
             if($project->id==$idPrj){
@@ -62,7 +51,11 @@ class GuestAPI{
         if($endRequete!=""){
             $connSQL=new DB();
 
-            $requete="SELECT server_name FROM cgraphz.config_server where ".$endRequete." ORDER BY server_name";
+            $requete="SELECT server_name FROM cgraphz.config_server where ".$endRequete."
+					ORDER BY CASE
+						WHEN server_name like 'WEB%' THEN concat(2,server_name)
+						ELSE concat(1,server_name)
+					END";
 
             $all_server=$connSQL->query($requete);
             $cpt_server=count($all_server);
