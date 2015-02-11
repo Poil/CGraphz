@@ -230,7 +230,11 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 				  (((preg_replace('/[^0-9\.]/','',$plugin['collectd_version']) >= 5)
                   && !preg_match('/^(oracle|snmp)$/', $plugin['p']) && $plugin['t']!='df'))
                   || ($plugin['p'] == 'snmp' && $plugin['t'] == 'memory')
+<<<<<<< HEAD
                ) {
+=======
+			   ) {
+>>>>>>> 2.40
                   $plugin['ti']=null;
                   if ($plugin['p'] == 'varnish3') { $plugin['t']='all'; }
                   if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
