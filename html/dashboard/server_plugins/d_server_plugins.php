@@ -157,7 +157,7 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			    ) {
 					if ($p == 'varnish3') { $t='all'; }
 					$ti='';
-					if ($old_t!=$t or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
+					if ($old_t!=$t or $old_p!=$p or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
 						if ($CONFIG['graph_type'] == 'canvas') {
 							$_GET['h'] = $cur_server->server_name;
 							$_GET['p'] = $p;

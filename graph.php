@@ -15,6 +15,13 @@ $plugin = validate_get(GET('p'), 'plugin');
 $plugininstance = validate_get(GET('pi'), 'plugininstance');
 $plugincategory = validate_get(GET('pc'), 'plugincategory');
 $type = validate_get(GET('t'), 'type');
+
+if (preg_match($CONFIG['plugin_tcategory'], $plugin) && !empty($tc)) {
+  $type_orig=$type;
+  $typecategory = validate_get(GET('tc'), 'typecategory');
+  $type = $type.'-'.$typecategory;
+}
+
 $width = GET('x') ? filter_input(INPUT_GET, 'x', FILTER_VALIDATE_INT, array(
 	'min_range' => 10,
 	'max_range' => $CONFIG['max-width']

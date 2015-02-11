@@ -104,6 +104,12 @@
 		"type": "default"
 	},
 
+	"links": {
+		"title": "{{TI}} links state on {{HOST}}",
+		"vertical": "State",
+		"type": "stacked"
+	},
+
 	"uptime": {
 		"title": "Uptime {{TI}}",
 		"vertical": "Days",
