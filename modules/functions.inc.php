@@ -140,6 +140,11 @@ function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 	if ($p == 'aggregation') {
 		$p = $pc;
 	}
+
+    if (preg_match($CONFIG['plugin_tcategory'], $p) && !empty($tc)) {
+      $t_orig=$t;
+      $t = $t.'-'.$tc;
+    }
 	
 	# plugin json
 	if (function_exists('json_decode') && file_exists('plugin/'.$p.'-'.$pi.'.json')) {
