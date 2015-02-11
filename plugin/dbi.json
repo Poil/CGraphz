@@ -96,7 +96,7 @@
 				"title": "Mysql Total BDD Size {{PI}}",
 				"vertical": "Bytes",
 				"type": "stacked",
-				"scale": "1048576",
+				"scale": "1000000",
 				"legend": {
 							"total_db_size": {
 							"name": "Total BDD Size"
@@ -268,7 +268,10 @@
                 "type": "stacked",
                 "legend": {
                             "pg_connection": {
-                                "name": "Connections actives"
+                                "name": "Active Connections"
+                            },
+							"pg_max_connection": {
+                                "name": "Maximum Connections"
                             }
                 }
         },

@@ -1,17 +1,17 @@
 {
 
- "current_connections": {
+ "counter": {
         "title": "Client / slaves on {{HOST}}",
-        "vertical": "Number of ...",
+        "vertical": "Nb",
         "type": "stacked",
         "legend": {
-            "connected_clients": {
+            "connected-clients": {
                 "name": "connected_clients"
             },
-            "connected_slaves": {
+            "connected-slaves": {
                 "name": "connected_slaves"
             },
-            "blocked_clients": {
+            "blocked-clients": {
                 "name": "blocked_clients"
             }
         }

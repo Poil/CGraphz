@@ -15,6 +15,13 @@ $plugin = validate_get(GET('p'), 'plugin');
 $plugininstance = validate_get(GET('pi'), 'plugininstance');
 $plugincategory = validate_get(GET('pc'), 'plugincategory');
 $type = validate_get(GET('t'), 'type');
+
+if (preg_match($CONFIG['plugin_tcategory'], $plugin) && !empty($tc)) {
+  $type_orig=$type;
+  $typecategory = validate_get(GET('tc'), 'typecategory');
+  $type = $type.'-'.$typecategory;
+}
+
 $width = GET('x') ? filter_input(INPUT_GET, 'x', FILTER_VALIDATE_INT, array(
 	'min_range' => 10,
 	'max_range' => $CONFIG['max-width']
@@ -104,6 +111,10 @@ switch ($plugin_json[$type]['type']) {
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG, $_GET);
 		break;
+    case 'stackedbis':
+        require_once 'type/GenericStackedBis.class.php';
+        $obj = new Type_GenericStackedBis($CONFIG, $_GET);
+        break;
 	case 'io':
 		require_once 'type/GenericIO.class.php';
 		$obj = new Type_GenericIO($CONFIG, $_GET);
@@ -146,6 +157,7 @@ if (isset($plugin_json[$type]['legend'])) {
 			$obj->colors[$rrd] = $property['color'];
 	}
 }
+
 if (GRAPH_TITLE!='text' || $obj->graph_type!='png') {
 	if (isset($plugin_json[$type]['title'])) {
 		$obj->rrd_title = $plugin_json[$type]['title'];

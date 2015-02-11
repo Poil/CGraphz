@@ -40,7 +40,7 @@ if ($find=='1') {
 		  FROM server_list 
 		  GROUP BY server_name
 		  HAVING COUNT(*) > 1";
-
+	
 	//////////////////////////////////////
 	// Reporting des server en doublon
 	if($prod){
@@ -94,7 +94,6 @@ if ($find=='1') {
 			if($serverMailDir!=""){
                 $serverMail.="Les serveurs en doublons dans les repertoires sont :<br>".$serverMailDir."<br><br>";
             }
-
 
 			// Envoi de mail une fois par jours si il y a des doublons
 			$toReport=false;

@@ -54,7 +54,7 @@ class Compare{
 	
 	public function getPlugins($id_prj){
 		$serverNames=$this->getServeur($id_prj);
-		
+
 		$plugin_array=array();
 
 		$pg_filters=$this->getFilter();
