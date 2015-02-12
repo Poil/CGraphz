@@ -15,8 +15,9 @@ $plugin = validate_get(GET('p'), 'plugin');
 $plugininstance = validate_get(GET('pi'), 'plugininstance');
 $plugincategory = validate_get(GET('pc'), 'plugincategory');
 $type = validate_get(GET('t'), 'type');
+$typecategory = validate_get(GET('tc'), 'typecategory');
 
-if (preg_match($CONFIG['plugin_tcategory'], $plugin) && !empty($tc)) {
+if (preg_match($CONFIG['plugin_tcategory'], $plugin) && !empty($typecategory)) {
   $type_orig=$type;
   $typecategory = validate_get(GET('tc'), 'typecategory');
   $type = $type.'-'.$typecategory;
