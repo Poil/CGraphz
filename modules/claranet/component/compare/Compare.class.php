@@ -158,12 +158,12 @@ class Compare{
 	            if($endRequete!="") $endRequete.=" OR ";
 	            $endRequete.="server_name LIKE '".$server->name."'";
 	        }
-			/*
+			
 	        foreach($servers->wpm as $wpmName){
 	            if($endRequete!="") $endRequete.=" OR ";
 	            $endRequete.="server_name LIKE '".$wpmName."'";
 	        }
-			*/
+			
 	        if($endRequete!=""){
 	            $connSQL=new DB();
 	
