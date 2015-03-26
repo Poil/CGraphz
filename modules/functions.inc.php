@@ -198,6 +198,7 @@ function getRRDPath($plugin){
 	if(isset($CONFIG['path_rrd_plugin']) && isset($CONFIG['path_rrd_plugin']['plugin'])){
 		return $CONFIG['path_rrd_plugin']['plugin'];
 	}
+	// Test
 	return $CONFIG['datadir'];
 }
 ?>
