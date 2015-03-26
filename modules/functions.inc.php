@@ -193,4 +193,11 @@ function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 	}
 	return $rrd_title;
 }
+
+function getRRDPath($plugin){
+	if(isset($CONFIG['path_rrd_plugin']) && isset($CONFIG['path_rrd_plugin']['plugin'])){
+		return $CONFIG['path_rrd_plugin']['plugin'];
+	}
+	return $CONFIG['datadir'];
+}
 ?>

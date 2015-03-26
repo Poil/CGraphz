@@ -13,8 +13,10 @@ foreach($rrd_cached as $name => $r){
 
 $plugin=$configCommune->plugin;
 $CONFIG['socket_plugin']=array();
-foreach($plugin as $name => $rrd_cached_name){
-    $CONFIG['socket_plugin'][$name]=$rrd_cached_name;
+$CONFIG['path_rrd_plugin']=array();
+foreach($plugin as $name => $plugin_info){
+	$CONFIG['socket_plugin'][$name]=$plugin_info->rrd_cached;
+	$CONFIG['path_rrd_plugin'][$name]=$plugin_info->path;
 }
 
 define('CLARATACT_WS','http://claratact.fr.clara.net');
