@@ -9,7 +9,11 @@ $all_server=$connSQL->query('SELECT * FROM config_server ORDER BY server_name');
 $cpt_server=count($all_server);
 
 /* Listing des serveurs présent dans le RRD DIR et pas déjà affectés */
-$filelist=array_values(array_diff(scandir($CONFIG['datadir']), array('..', '.', 'lost+found')));
+$allDatadir=getAllDatadir();
+$filelist=array();
+foreach($allDatadir as $datadir){
+	$filelist=array_merge(array_values(array_diff(scandir($datadir), array('..', '.', 'lost+found'))),$filelist);
+}
 
 $lib='
 CREATE TEMPORARY TABLE server_list (
@@ -22,7 +26,7 @@ $find='0';
 $lib= 'INSERT INTO server_list (server_name) VALUES (';  
 $cpt_filelist=count($filelist);
 for($i=0; $i<$cpt_filelist; $i++) {
-	if (strpos($filelist[$i],':')==false && is_dir($CONFIG['datadir'].'/'.$filelist[$i])) {
+	if (strpos($filelist[$i],':')==false ) {
 		if($find=='1')  {
 			$lib.=" ), (";
 		}  
@@ -47,17 +51,20 @@ if ($find=='1') {
 		$serverDoublonBDD=$connSQL->query($lib);
 		$serverDoublonDir=array();
 
-		$serversDir=scandir($CONFIG['datadir']);
+		foreach($allDatadir as $datadir){
+			$serversDir=scandir($datadir);
 
-		$serverPresent=array();
-		foreach($serversDir as $server){
-			$server_name=strtoupper($server);
-			if(!isset($serverPresent[$server_name])){
-				$serverPresent[$server_name]=true;
-			}else{
-				$serverDoublonDir[]=$server_name;
+			$serverPresent=array();
+			foreach($serversDir as $server){
+				$server_name=strtoupper($server);
+				if(!isset($serverPresent[$server_name])){
+					$serverPresent[$server_name]=true;
+				}else{
+					$serverDoublonDir[]=$server_name;
+				}
 			}
 		}
+		$serverDoublonDir=array_unique($serverDoublonDir);
 	
 		if(sizeof($serverDoublonBDD) > 0 || sizeof($serverDoublonDir) > 0){	
 			$json = file_get_contents($file_reporting);
