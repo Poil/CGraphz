@@ -81,7 +81,7 @@ class Compare{
 						}
 					}
 				}
-			
+	
 			    $myregex='#^(('.implode("|",$allDatadir).')/('.implode("|",$serverNames).')/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
 				
 				foreach ($plugins as $plugin) {
