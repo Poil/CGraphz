@@ -188,7 +188,7 @@ function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 		);
 		$rrd_title = str_replace(array_keys($replacements), array_values($replacements), $rrd_title);
 	} else if ($plugin_json[$t]['type']=='iowpm') {
-		$ItemName=file_get_contents($CONFIG['datadir'].'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
+		$ItemName=file_get_contents(getRRDPath($p).'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
 		$rrd_title="$ItemName on $h";
 	}
 	return $rrd_title;
