@@ -9,7 +9,7 @@ function collectd_identifier($host, $plugin, $pinst, $type, $tinst) {
 		$plugin, strlen($pinst) ? '-' : '', $pinst,
 		$type, strlen($tinst) ? '-' : '', $tinst);
 
-	if (is_file($CONFIG['datadir'].'/'.$identifier.'.rrd'))
+	if (is_file(getRRDPath($plugin).'/'.$identifier.'.rrd'))
 		return $identifier;
 	else
 		return FALSE;

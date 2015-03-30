@@ -41,7 +41,6 @@ class Type_Base {
 
 	function __construct($config, $_get) {
 		$this->log = new LOG();
-		$this->datadir = $config['datadir'];
 		$this->rrdtool = $config['rrdtool'];
 		if (!empty($config['rrdtool_opts'])) {
 			if (is_array($config['rrdtool_opts'])) {
@@ -52,6 +51,7 @@ class Type_Base {
 		}
 		$this->cache = $config['cache'];
 		$this->parse_get($_get);
+		$this->datadir = getRRDPath($this->args['plugin']);
 		$this->rrd_title = sprintf(
 			'%s%s%s%s',
 			$this->args['plugin'],
@@ -156,16 +156,13 @@ class Type_Base {
 
 	function parse_filename($file) {
 		if ($this->graph_type == 'canvas') {
-			$file = DIR_WEBROOT.'/rrd.php/' . str_replace($this->datadir . '/', '', $file);
-			# rawurlencode all but /
-			$file = str_replace('%2F', '/', rawurlencode($file));
+			$file = DIR_WEBROOT.'/rrd.php?datadir=' .rawurlencode($this->datadir). '&path=' . rawurlencode(str_replace($this->datadir . '/', '', $file));
 		}
 		return $this->rrd_escape($file);
 	}
 
 	function rrd_files() {
 		$files = $this->get_filenames();
-
 		$this->tinstances = array();
 		$this->files = array();
 		$this->identifiers = array();
@@ -202,9 +199,9 @@ class Type_Base {
 		$identifier = preg_replace("/([*?[])/", '[$1]', $identifier);
 
 		$wildcard = strlen($this->args['tinstance']) ? '.' : '[-.]*';
-
+		
 		$files = glob($this->datadir .'/'. $identifier . $wildcard . 'rrd');
-
+		
 		return $files ? $files : array();
 	}
 

@@ -70,39 +70,46 @@ if (isset($time_start) && isset($time_end)) {
 	$zoom='onclick="Show_Popup($(this).attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\')"';
 }
 $dgraph=0;
-if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
+$allDatadir=getAllDatadir();
+foreach($allDatadir as $key => $datadir){
+	if(!is_dir($datadir."/$cur_server->server_name/")) unset($allDatadir[$key]);	
+}
+if (!empty($allDatadir)) {
 	$myregex='';
 	foreach ($pg_filters as $filter) {
 		if (empty($myregex)) {
-			$myregex='#^((('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
+			$myregex='#^(((('.implode("|",$allDatadir).')/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
 		} else {
-			$myregex=$myregex.'|(('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
+			$myregex=$myregex.'|((('.implode("|",$allDatadir).')/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
 		}
 	}
 	$myregex=$myregex.')#';
 
-	$tplugins = preg_find($myregex, $CONFIG['datadir'].'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
-	if ($tplugins) $dgraph=1;
-	$plugins = (sort_plugins($CONFIG['datadir'].'/'.$cur_server->server_name,$tplugins, $pg_filters));
-
+	$tplugins=array();
+	foreach($allDatadir as $datadir){
+		$tpluginsDatadir=preg_find($myregex, $datadir.'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+		if ($tpluginsDatadir) $dgraph=1;
+		$tplugins=array_merge($tplugins,$tpluginsDatadir);
+	}	
+	$plugins = (sort_plugins('('.implode('|',$allDatadir).')/'.$cur_server->server_name,$tplugins, $pg_filters));
 	if ($plugins) $dgraph=1;
 
 	$old_t='';
 	$old_pi='';
 	$old_subpg='';
-	$myregex='#^('.$CONFIG['datadir'].'/'.$cur_server->server_name.'/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
+	$myregex='#^(('.implode("|",$allDatadir).')/'.$cur_server->server_name.'/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
 	foreach ($plugins as $plugin) {
 		preg_match($myregex, $plugin['content'], $matches);
 
-		if (isset($matches[2])) {
-			$p=$matches[2];
+		if (isset($matches[3])) {
+			$p=$matches[3];
 			if (!isset($$p)) $$p=false;
 		} else { 
 			continue;
 			$p=null; 
 		}
-		if (isset($matches[3])) {
-			$pi=$matches[3];
+		if (isset($matches[4])) {
+			$pi=$matches[4];
 			$pc=null;
 			if (substr_count($pi, '-') >= 1 && preg_match($CONFIG['plugin_pcategory'], $p)) {
 				$tmp=explode('-',$pi);
@@ -120,13 +127,13 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 			$pc=null; 
 			$pi=null; 
 		}
-		if (isset($matches[4])) {
-			$t=$matches[4];
+		if (isset($matches[5])) {
+			$t=$matches[5];
 		} else { 
 			$t=null; 
 		}
-		if (isset($matches[5])) {
-			$ti=$matches[5];
+		if (isset($matches[6])) {
+			$ti=$matches[6];
 			$tc=null;
 			if (substr_count($ti, '-') >= 1 && preg_match($CONFIG['plugin_tcategory'], $p)) {
 				$tmp=explode('-',$ti);
@@ -246,8 +253,10 @@ if (is_dir($CONFIG['datadir']."/$cur_server->server_name/")) {
 }
 
 /* VMHOST LibVirt */
-$vmlist = preg_find('#^'.$cur_server->server_name.':#', $CONFIG['datadir'].'/', PREG_FIND_DIRMATCH|PREG_FIND_SORTBASENAME);
-
+$vmlist = array();
+foreach($allDatadir as $datadir){
+	$vmlist=array_merge($vmlist,preg_find('#^'.$cur_server->server_name.':#', $datadir.'/', PREG_FIND_DIRMATCH|PREG_FIND_SORTBASENAME));
+}
 //print_r($vmlist);
 if (!empty($vmlist)) {
 	echo "<h2>Libvirt</h2>";

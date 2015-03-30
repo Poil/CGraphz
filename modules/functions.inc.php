@@ -29,7 +29,7 @@ function validate_get($value, $type) {
 	return $value;
 }
 
-function validateRRDPath($base, $path) {
+function validateRRDPath($base,$path) {
 	$base=preg_replace('{/$}','',$base);
 	if (is_link($base)) {
 		$base=realpath($base);
@@ -195,10 +195,18 @@ function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 }
 
 function getRRDPath($plugin){
-	if(isset($CONFIG['path_rrd_plugin']) && isset($CONFIG['path_rrd_plugin']['plugin'])){
-		return $CONFIG['path_rrd_plugin']['plugin'];
+	global $CONFIG;
+	if(isset($CONFIG['path_rrd_plugin']) && isset($CONFIG['path_rrd_plugin'][$plugin])){
+		return $CONFIG['path_rrd_plugin'][$plugin];
 	}
-	// Test
 	return $CONFIG['datadir'];
+}
+
+function getAllDatadir(){
+	global $CONFIG;
+	$allDatadir=array($CONFIG['datadir']);
+	foreach($CONFIG['path_rrd_plugin'] as $path_rrd) $allDatadir[]=$path_rrd;
+
+	return array_unique($allDatadir);
 }
 ?>
