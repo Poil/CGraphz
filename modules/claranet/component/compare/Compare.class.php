@@ -58,35 +58,42 @@ class Compare{
 		$plugin_array=array();
 
 		$pg_filters=$this->getFilter();
-		foreach($serverNames as $serverName){
-			if (is_dir($this->config['datadir'].'/'.$serverName.'/')) {
-				 $myregex='';
-                foreach ($pg_filters as $filter) {
-                    if (empty($myregex)) {
-                        $myregex='#^((('.$this->config['datadir'].'/'.$serverName.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
-                    } else {
-                        $myregex=$myregex.'|(('.$this->config['datadir'].'/'.$serverName.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
-                    }
-                }
 
-                $myregex=$myregex.')#';
+		$allDatadir=getAllDatadir();
+		if(!empty($serverNames)){
+			if(!empty($allDatadir)) {
+			    $plugins=array();
+				foreach($serverNames as $serverName){
+					foreach($allDatadir as $datadir){
+						if(is_dir($datadir."/".$serverName)){
+							$myregex='';
+							foreach ($pg_filters as $filter) {
+			        	        if (empty($myregex)) {
+				    	            $myregex='#^((('.$datadir.'/'.$serverName.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
+							    } else {
+									$myregex=$myregex.'|(('.$datadir.'/'.$serverName.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
+								}
+							}
+							$myregex=$myregex.')#';
 
-                $plugins = preg_find($myregex, $this->config['datadir']."/".$serverName, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
-
-                $myregex='#^('.$this->config['datadir'].'/'.$serverName.'/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
-
+							$pluginsDatadir=preg_find($myregex, $datadir.'/'.$serverName, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+							$plugins=array_merge($plugins,$pluginsDatadir);
+						}
+					}
+				}
+			
+			    $myregex='#^(('.implode("|",$allDatadir).')/('.implode("|",$serverNames).')/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
 				
-
 				foreach ($plugins as $plugin) {
                     preg_match($myregex, $plugin, $matches);
                     
-					if (isset($matches[2])) {
-                       $p=$matches[2];
+					if (isset($matches[4])) {
+                       $p=$matches[4];
                     } else {
                        $p=null;
                     }
-                    if (!is_blank($matches[3])) {
-                       $pi=$matches[3];
+                    if (!is_blank($matches[5])) {
+                       $pi=$matches[5];
                        $pc=null;
                        if (substr_count($pi, '-') >= 1 && preg_match($this->config['plugin_pcategory'], $p)) {
                           $tmp=explode('-',$pi);
@@ -100,13 +107,13 @@ class Compare{
                        $pc=null;
                        $pi=null;
                     }
-                    if (isset($matches[4])) {
-                       $t=$matches[4];
+                    if (isset($matches[6])) {
+                       $t=$matches[6];
                     } else {
                        $t=null;
                     }
-                    if (isset($matches[5]) && !is_blank($matches[5])) {
-                       $ti=$matches[5];
+                    if (isset($matches[7]) && !is_blank($matches[7])) {
+                       $ti=$matches[7];
                        $tc=null;
                        if (substr_count($ti, '-') >= 1 && preg_match($this->config['plugin_tcategory'], $p)) {
                           $tmp=explode('-',$ti);
