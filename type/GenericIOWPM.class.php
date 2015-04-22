@@ -105,7 +105,7 @@ class Type_GenericIOWPM extends Type_Base {
 		$rrdgraph[] = "CDEF:cdefch=PREV(a),UN,0,PREV(a),IF,0.1,GT,PREV,UN,0,PREV,IF,cdefcf,UN,0,cdefcf,IF,PREV(cdefcf),UN,0,PREV(cdefcf),IF,-,ADDNAN,PREV,UN,0,PREV,IF,IF";
 
 		$rrdgraph[] = "CDEF:dispo=1,cdefch,cdefcg,/,-,100,*";
-        $rrdgraph[] = 'GPRINT:dispo:LAST:Taux de disponibilite\: %5.1lf%s%%';
+        //$rrdgraph[] = 'GPRINT:dispo:LAST:Taux de disponibilite\: %5.1lf%s%%';
 
 		// Affichage du AREA pour les erreurs ( en dernier pour que le reste des graphes ne soient pas visibles )
         $rrdgraph[] = 'AREA:cdefcd#dd0000FF';
