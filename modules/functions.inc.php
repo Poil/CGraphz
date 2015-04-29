@@ -174,7 +174,6 @@ function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 				$log->write('CGP Error: invalid json in plugin/'.$p.'.json');
 		} else {
 		        $log->write(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $p));
-				echo 'Error plugin not available';
 		}
 	}
 	if (isset($plugin_json[$t]['title'])) {
