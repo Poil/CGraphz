@@ -146,7 +146,9 @@ if (!empty($allDatadir)) {
                 $others=false;
                 $$pi=false;
             }
+
             // Displaying Plugin Instance for some plugins
+			${$pc.$pi} = isset(${$pc.$pi}) ? ${$pc.$pi} : false;
             if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
                 ${$pc.$pi}=true;
                 echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
