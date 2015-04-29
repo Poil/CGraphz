@@ -34,9 +34,9 @@ class Type_Base {
 	var $flush_socket;
 	var $flush_type;
 
-	function __construct($config, $_get) {
+	function __construct($config, $_get, $pluginconfig) {
 		$this->log = new LOG();
-		$this->datadir = $config['datadir'];
+		$this->datadir = $pluginconfig['rrd_path'];
 		$this->rrdtool = $config['rrdtool'];
 		if (!empty($config['rrdtool_opts'])) {
 			if (is_array($config['rrdtool_opts'])) {
@@ -67,8 +67,8 @@ class Type_Base {
 		$this->negative_io = $config['negative_io'];
 		$this->graph_smooth = $config['graph_smooth'];
 		$this->graph_minmax = $config['graph_minmax'];
-		$this->flush_socket = $config['socket'];
-		$this->flush_type = $config['flush_type'];
+		$this->flush_socket = $pluginconfig['socket'];
+		$this->flush_type = $pluginconfig['flush_type'];
 	}
 
 	function rainbow_colors() {
@@ -149,9 +149,10 @@ class Type_Base {
 
 	function parse_filename($file) {
 		if ($this->graph_type == 'canvas') {
-			$file = DIR_WEBROOT.'/rrd.php/' . str_replace($this->datadir . '/', '', $file);
+			$file = str_replace($this->datadir . '/', '', $file);
 			# rawurlencode all but /
 			$file = str_replace('%2F', '/', rawurlencode($file));
+			$file = DIR_WEBROOT.'/rrd.php/'.getDatadirEntry($this->datadir).'/' . $file;
 		}
 		return $this->rrd_escape($file);
 	}

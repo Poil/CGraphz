@@ -125,7 +125,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                      if (substr_count($plugin_array[$cpt_p]['ti'], '-') >= 1 && preg_match($CONFIG['plugin_tcategory'], $plugin_array[$cpt_p]['p'])) {
                         $tmp=explode('-',$plugin_array[$cpt_p]['ti']);
                         $plugin_array[$cpt_p]['tc']=$tmp[0];
-						$ti=null;
+                        $ti=null;
                      } 
                   } else {
                      $plugin_array[$cpt_p]['tc']=null;
@@ -227,10 +227,10 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
 
                if ($CONFIG['no_break'] == true) { echo '<span style="white-space:nowrap">'; }
                if (!preg_match('/^(df|interface|oracle|snmp)$/', $plugin['p']) || 
-				  (((preg_replace('/[^0-9\.]/','',$plugin['collectd_version']) >= 5)
+                  (((preg_replace('/[^0-9\.]/','',$plugin['collectd_version']) >= 5)
                   && !preg_match('/^(oracle|snmp)$/', $plugin['p']) && $plugin['t']!='df'))
                   || ($plugin['p'] == 'snmp' && $plugin['t'] == 'memory')
-			   ) {
+               ) {
                   $plugin['ti']=null;
                   if ($plugin['p'] == 'varnish3') { $plugin['t']='all'; }
                   if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
