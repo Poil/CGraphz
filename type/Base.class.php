@@ -394,7 +394,7 @@ class Type_Base {
 	# tell collectd to FLUSH all data of the identifier(s)
 	function collectd_flush($debug=false) {
 		$identifier = $this->identifiers;
-		if ($debug == true) { $this->log->write('[Flush] - Identifiers : '.join($identifier,' -- ')); }
+		if ($debug == true) { $this->log->write('[Flush] - Socket: '.$this->flush_socket.' - Identifiers : '.join($identifier,' -- ')); }
 
 		if (!$this->flush_socket)
 			return FALSE;
@@ -423,6 +423,7 @@ class Type_Base {
 		}
 		elseif ($this->flush_type == 'rrdcached') {
 			foreach ($identifier as $val) {
+				$val = str_replace(' ', '\ ', $val);
 				$cmd = sprintf("FLUSH %s.rrd\n", $this->datadir.'/'.$val);
 				if ($debug == true) { $this->log->write('[Flush] - Commands : FLUSH '.$this->datadir.'/'.$val.'.rrd'); }
 				$this->socket_cmd($socket, $cmd);
