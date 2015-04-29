@@ -278,7 +278,6 @@
     "mysql_connectionsg": {
         "title": "Mysql Limits Connections {{PI}}",
         "vertical": "counter",
-        "type":    "stacked",
         "legend": {
             "max_connections": {
                 "name": "Maximum Connections"

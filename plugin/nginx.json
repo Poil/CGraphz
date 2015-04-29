@@ -1,7 +1,7 @@
 {
 	"connections": {
 		"title": "Nginx connections on {{HOST}}",
-		"vertical": "Connections/s",
+		"vertical": "Active Connections",
 		"legend": {
 			"accepted": {
 				"name": "Accepted",
