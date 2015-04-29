@@ -98,9 +98,9 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                foreach ($plugins as $plugin) {
                   $plugin_array[$cpt_p]['servername']=$all_server[$j]->server_name;
                   $plugin_array[$cpt_p]['collectd_version']=$all_server[$j]->collectd_version;
-                  $plugin_datadir = getDatadirEntry($matches[1]);
 
                   preg_match($myregex, $plugin, $matches);
+                  $plugin_datadir = getDatadirEntry($matches[1]);
                   
                   if (isset($matches[3])) {
                      $plugin_array[$cpt_p]['p']=$matches[3];
