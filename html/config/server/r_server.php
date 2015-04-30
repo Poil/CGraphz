@@ -4,7 +4,11 @@ $all_server=$connSQL->query('SELECT * FROM config_server ORDER BY server_name');
 $cpt_server=count($all_server);
 
 /* Listing des serveurs présent dans le RRD DIR et pas déjà affectés */
-$filelist=array_values(array_diff(scandir($CONFIG['datadir']), array('..', '.', 'lost+found')));
+$allDatadir=getAllDatadir();
+$filelist=array();
+foreach($allDatadir as $datadir){
+	$filelist=array_merge(array_values(array_diff(scandir($datadir), array('..', '.', 'lost+found'))), $filelist);
+}
 
 $lib='
 CREATE TEMPORARY TABLE server_list (
