@@ -18,7 +18,7 @@ else { header("Content-type: text/html"); }
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    
-   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-2.1.1.min.js"></script>
+   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-2.1.3.min.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-1.10.4.custom.min.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.strtotime.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.liveSearch/js/jquery.liveSearch.js"></script>
