@@ -33,10 +33,12 @@ class Type_Base {
 
 	var $flush_socket;
 	var $flush_type;
+	var $flush_path;
 
 	function __construct($config, $_get, $pluginconfig) {
 		$this->log = new LOG();
 		$this->datadir = $pluginconfig['rrd_path'];
+		$this->flush_path = $pluginconfig['flush_path'];
 		$this->rrdtool = $config['rrdtool'];
 		if (!empty($config['rrdtool_opts'])) {
 			if (is_array($config['rrdtool_opts'])) {
@@ -424,8 +426,8 @@ class Type_Base {
 		elseif ($this->flush_type == 'rrdcached') {
 			foreach ($identifier as $val) {
 				$val = str_replace(' ', '\ ', $val);
-				$cmd = sprintf("FLUSH %s.rrd\n", $this->datadir.'/'.$val);
-				if ($debug == true) { $this->log->write('[Flush] - Commands : FLUSH '.$this->datadir.'/'.$val.'.rrd'); }
+				$cmd = sprintf("FLUSH %s.rrd\n", $this->flush_path.'/'.$val);
+				if ($debug == true) { $this->log->write('[Flush] - Commands : FLUSH '.$this->flush_path.'/'.$val.'.rrd'); }
 				$this->socket_cmd($socket, $cmd);
 			}
 		}

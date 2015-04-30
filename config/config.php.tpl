@@ -89,24 +89,29 @@ $CONFIG['version'] = 5;
 
 # collectd's datadirs and flush config
  # collectd's unix socket 'flush_type = collectd' (unixsock plugin) or rrd tcp socket 'flush_type' = 'rrdcached'
- # syntax : 'unix:///var/run/collectd-unixsock'
- # syntax : 'xxx.xxx.xxx.xxx:xxxx'
- # disabled: NULL
+  # syntax : 'unix:///var/run/collectd-unixsock'
+  # syntax : 'xxx.xxx.xxx.xxx:xxxx'
+  # disabled: NULL
+ # rrd_path is the path to RRD on the local server
+ # flush_path is the path to RRD on the collectd server, can be empty if your basedir is correctly configured
 $CONFIG['datadir'] = array(
 	'lun1' => array(
 		'flush_type' => 'rrdcached',
 		'socket'     => '10.7.79.65:42217', 
-		'rrd_path'   => '/mnt-lun-en-01/rrd'
+		'rrd_path'   => '/mnt-lun-en-01/rrd',
+		'flush_path' => '/mnt-lun-en-01/rrd'
 	),
 	'lun2' => array(
 		'flush_type' => 'rrdcached',
 		'socket'     => '10.7.79.66:42217',
-		'rrd_path'   => '/mnt-lun-en-02/rrd'
+		'rrd_path'   => '/mnt-lun-en-02/rrd',
+		'flush_path' => '/mnt-lun-en-02/rrd'
 	),
 	'lun3' => array(
 		'flush_type' => 'rrdcached',
 		'socket'     => '10.7.79.67:42217',
-		'rrd_path'   => '/mnt-lun-en-03/rrd'
+		'rrd_path'   => '/mnt-lun-en-03/rrd',
+		'flush_path' => '/mnt-lun-en-03/rrd'
 	)
 );
 
