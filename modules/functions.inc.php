@@ -174,7 +174,6 @@ function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 				$log->write('CGP Error: invalid json in plugin/'.$p.'.json');
 		} else {
 		        $log->write(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $p));
-				echo 'Error plugin not available';
 		}
 	}
 	if (isset($plugin_json[$t]['title'])) {
@@ -187,10 +186,31 @@ function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 			'{{HOST}}' => $h
 		);
 		$rrd_title = str_replace(array_keys($replacements), array_values($replacements), $rrd_title);
-	} else if ($plugin_json[$t]['type']=='iowpm') {
-		$ItemName=file_get_contents($CONFIG['datadir'].'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
-		$rrd_title="$ItemName on $h";
+	} else if (array_key_exists($t, $plugin_json) and $plugin_json[$t]['type']=='iowpm') {
+		foreach (getAllDatadir() as $key => $value) {
+			if (file_exists($value.'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt')) {
+				$ItemName=file_get_contents($value.'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
+				continue;
+			}
+		}
+		$rrd_title = isset($ItemName) ? "$ItemName on $h" : "$pi on $h";
+	} else {
+		$rrd_title = "$h $p $pc $pi $ti $tc";
 	}
 	return $rrd_title;
 }
-?>
+
+function getAllDatadir(){
+	global $CONFIG;
+	return array_map(function($item) { return $item['rrd_path']; }, $CONFIG['datadir']);
+}
+
+function getDatadirEntry($rrd_path) {
+	global $CONFIG;
+	foreach ($CONFIG['datadir'] as $key => $value) {
+		if (is_array($value) && strpos($rrd_path, $value['rrd_path']) !== false) {
+			return $key;
+		}
+	}
+}
+

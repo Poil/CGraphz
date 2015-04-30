@@ -72,13 +72,13 @@ $CONFIG['graph_smooth'] = false;
 $CONFIG['graph_minmax'] = false;
 
 # Plugin that can have a TypeCategory
-$CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats|tail)$/';
+$CONFIG['plugin_tcategory']='/^(GenericJMX|elasticsearch|P2000|nagiostats|tail|curl_json|redis_info)$/';
 
 # Plugin that can have a PluginCategory
-$CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|varnish3|curl_json|curl|curl_xml|P2000|tcpconns|aggregation)$/';
+$CONFIG['plugin_pcategory']='/^(GenericJMX|varnish|varnish3|curl_json|curl|curl_xml|P2000|aggregation|solr_info|bind)$/';
 
 # Display PI as title for these plugins
-$CONFIG['title_pinstance']='/^(tail|P2000|GenericJMX|PM710|mysql)$/';
+$CONFIG['title_pinstance']='/^(tail|P2000|GenericJMX|PM710|mysql|dbi|memcached)$/';
 
 # prevent a linebreak between the img tag (true/false)
 $CONFIG['no_break'] = false;
@@ -86,8 +86,33 @@ $CONFIG['no_break'] = false;
 # collectd version
 $CONFIG['version'] = 5;
 
-# collectd's datadir
-$CONFIG['datadir'] = '/var/lib/collectd/rrd/';
+# collectd's datadirs and flush config
+ # collectd's unix socket 'flush_type = collectd' (unixsock plugin) or rrd tcp socket 'flush_type' = 'rrdcached'
+  # syntax : 'unix:///var/run/collectd-unixsock'
+  # syntax : 'xxx.xxx.xxx.xxx:xxxx'
+  # disabled: NULL
+ # rrd_path is the path to RRD on the local server
+ # flush_path is the path to RRD on the collectd server, can be empty if your basedir is correctly configured
+$CONFIG['datadir'] = array(
+	'lun1' => array(
+		'flush_type' => 'rrdcached',
+		'socket'     => '10.7.79.65:42217', 
+		'rrd_path'   => '/mnt-lun-en-01/rrd',
+		'flush_path' => '/mnt-lun-en-01/rrd'
+	),
+	'lun2' => array(
+		'flush_type' => 'rrdcached',
+		'socket'     => '10.7.79.66:42217',
+		'rrd_path'   => '/mnt-lun-en-02/rrd',
+		'flush_path' => '/mnt-lun-en-02/rrd'
+	),
+	'lun3' => array(
+		'flush_type' => 'rrdcached',
+		'socket'     => '10.7.79.67:42217',
+		'rrd_path'   => '/mnt-lun-en-03/rrd',
+		'flush_path' => '/mnt-lun-en-03/rrd'
+	)
+);
 
 # rrdtool executable
 $CONFIG['rrdtool'] = '/usr/bin/rrdtool';
@@ -103,14 +128,14 @@ $CONFIG['time_range']['uptime']  = 31536000;
 $CONFIG['showload'] = true;
 
 # show graphs in bits or bytes
-$CONFIG['network_datasize'] = 'bytes';
+$CONFIG['network_datasize'] = 'bits';
 
 # Base value 
 ## 1000 -> 1 Megabyte = 1000 Kilobyte 
 ## 1024 -> 1 Megabyte = 1024 Kilobyte)
 $CONFIG['default_base']=1024;
 
-# Display graphs as png, svg
+# Display graphs as png, svg or canvas
 # Note that svg graph dimensions are defined in "points" (pt) and not pixels, so svg image sizes will be different then png
 $CONFIG['graph_type'] = 'png';
 
@@ -124,16 +149,8 @@ $CONFIG['height'] = 175;
 $CONFIG['detail-width'] = 800;
 $CONFIG['detail-height'] = 350;
 # max allowed width/height of the graphs
-$CONFIG['max-width'] = 1280;
-$CONFIG['max-height'] = 1024;
-
-# collectd's unix socket (unixsock plugin) or rrdcached tcp socket
-# syntax : 'unix:///var/run/collectd-unixsock'
-# syntax : 'xxx.xxx.xxx.xxx:xxxx'
-# disabled: NULL
-#$CONFIG['flush_type'] = 'rrdcached';
-#$CONFIG['flush_type'] = 'collectd';
-$CONFIG['socket'] = NULL;
+$CONFIG['max-width'] = 4096;
+$CONFIG['max-height'] = 2048;
 
 $CONFIG['welcome_text'] =
 '<h3>Welcome on cgraphz</h3>
@@ -154,4 +171,4 @@ include(DIR_FSROOT.'/modules/functions.inc.php');
 if (AUTH_TYPE != 'default') include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/external_auth.php');
 
 if (!ini_get('date.timezone')) { date_default_timezone_set(DEFAULT_TIMEZONE); }
-?>
+

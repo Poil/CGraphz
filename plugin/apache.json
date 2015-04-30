@@ -12,10 +12,10 @@
 	},
 	"apache_connections": {
 		"title": "Webserver Connections ({{PI}}) on {{HOST}}",
-		"vertical": "Conns/s",
+		"vertical": "Active Connections",
 		"legend": {
 			"value": {
-				"name": "Conns/s",
+				"name": "Active Connections",
 				"color": "00b000"
 			}
 		},

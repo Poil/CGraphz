@@ -35,6 +35,7 @@ $height = empty($_GET['y']) ? $CONFIG['height'] : $_GET['y'];
 $host=validate_get(GET('h'), 'host');
 $s=intval($_GET['s']);
 $e=isset($_GET['e']) ? intval($_GET['e']) : null;
+$datadir = GET('datadir');
 
 if (strpos($host,':')!=FALSE) {
 	$tmp=explode(':',$host);
@@ -103,38 +104,41 @@ if (function_exists('json_decode') && file_exists('plugin/'.$plugin.'-'.$plugini
 if (!isset($plugin_json[$type]['type']))
 	$plugin_json[$type]['type'] = 'default';
 
+// Build pluginconfig
+$pluginconfig=$CONFIG['datadir'][$datadir];
+
 switch ($plugin_json[$type]['type']) {
 	case 'stackedtotal':
 		require_once 'type/GenericStackedTotal.class.php';
-		$obj = new Type_GenericStackedTotal($CONFIG, $_GET);
+		$obj = new Type_GenericStackedTotal($CONFIG, $_GET, $pluginconfig);
 		break;
 	case 'stacked':
 		require_once 'type/GenericStacked.class.php';
-		$obj = new Type_GenericStacked($CONFIG, $_GET);
+		$obj = new Type_GenericStacked($CONFIG, $_GET, $pluginconfig);
 		break;
 	case 'io':
 		require_once 'type/GenericIO.class.php';
-		$obj = new Type_GenericIO($CONFIG, $_GET);
+		$obj = new Type_GenericIO($CONFIG, $_GET, $pluginconfig);
 		break;
 	case 'uptime':
 		require_once 'type/Uptime.class.php';
-		$obj = new Type_Uptime($CONFIG, $_GET);
+		$obj = new Type_Uptime($CONFIG, $_GET, $pluginconfig);
 		break;
 	case 'iowpm':
 		 require_once 'type/GenericIOWPM.class.php';
-        $obj = new Type_GenericIOWPM($CONFIG, $_GET);
+        $obj = new Type_GenericIOWPM($CONFIG, $_GET, $pluginconfig);
         break;
 	case 'aggregation':
 		require_once 'type/GenericAggregation.class.php';
-        $obj = new Type_GenericAggregation($CONFIG, $_GET);
+        $obj = new Type_GenericAggregation($CONFIG, $_GET, $pluginconfig);
 		break;
 	case 'varnish':
 		require_once 'type/VarnishStacked.class.php';
-        $obj = new Type_VarnishStacked($CONFIG, $_GET);
+        $obj = new Type_VarnishStacked($CONFIG, $_GET, $pluginconfig);
 		break;
 	default:
 		require_once 'type/Default.class.php';
-		$obj = new Type_Default($CONFIG, $_GET);
+		$obj = new Type_Default($CONFIG, $_GET, $pluginconfig);
 		break;
 }
 
