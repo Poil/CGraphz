@@ -39,7 +39,6 @@ else { header("Content-type: text/html"); }
    // Javascript and css of admin
    if (GET('module') != 'dashboard') {
       ?>
-      <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/demo_table.css" />
       <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/js/jquery.uix.multiselect.js"></script>
       <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/js/locales/jquery.uix.multiselect_fr.js"></script>
       <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/css/jquery.uix.multiselect.css" />
@@ -47,6 +46,7 @@ else { header("Content-type: text/html"); }
       <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.dataTables.min.js"></script>
       <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/dataTables.bootstrap.js"></script>
       <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/dataTables.bootstrap.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/dataTables_extra.css" />
       <?php
    }
    ?>
