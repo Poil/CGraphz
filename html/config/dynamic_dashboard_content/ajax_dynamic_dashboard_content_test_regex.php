@@ -41,25 +41,35 @@ if ($_POST['f_regex_srv']) {
 	$f_regex_ti=filter_input(INPUT_POST,'f_regex_ti',FILTER_SANITIZE_SPECIAL_CHARS);
 
 	for ($i=0; $i<$cpt_server; $i++) {
-		if (is_dir($CONFIG['datadir'].'/'.$all_server[$i]->server_name.'/')) {
-			$myregex='#^('.$CONFIG['datadir'].'/'.$all_server[$i]->server_name.'/)('.$f_regex_p.')(?:\-('.$f_regex_pi.'))?/('.$f_regex_t.')(?:\-('.$f_regex_ti.'))?\.rrd#';
+		$allDatadir=getAllDatadir();
+		foreach($allDatadir as $key => $datadir){
+			if(!is_dir($datadir.'/'.$all_server[$i]->server_name.'/')) unset($allDatadir[$key]);	
+		}
 
-			$plugins = preg_find($myregex, $CONFIG['datadir'].'/'.$all_server[$i]->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+		if (!empty($allDatadir)) {
+			$myregex='#^(('.implode('|',$allDatadir).')/'.$all_server[$i]->server_name.'/)('.$f_regex_p.')(?:\-('.$f_regex_pi.'))?/('.$f_regex_t.')(?:\-('.$f_regex_ti.'))?\.rrd#';
+
+			$plugins = array();
+			foreach($allDatadir as $datadir) {
+				$tplugins = preg_find($myregex, $datadir.'/'.$all_server[$i]->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+				$plugins=array_merge($plugins, $tplugins);
+			}
+
 			foreach ($plugins as $plugin) {
 				preg_match($myregex, $plugin, $matches);
-				if (isset($matches[2])) {
-					$str=$matches[2];
+				if (isset($matches[3])) {
+					$str=$matches[3];
 				}
-				if (isset($matches[3]) && $matches[3]!='') {
-					$str.='-'.$matches[3].'/';
+				if (isset($matches[4]) && $matches[4]!='') {
+					$str.='-'.$matches[4].'/';
 				} else { 
 					$str.='/'; 
 				}
-				if (isset($matches[4])) {
-					$str.=$matches[4];
+				if (isset($matches[5])) {
+					$str.=$matches[5];
 				}
-				if (isset($matches[5]) && $matches[5]!='') {
-					$str.='-'.$matches[5].'.rrd';
+				if (isset($matches[6]) && $matches[6]!='') {
+					$str.='-'.$matches[6].'.rrd';
 				} else { 
 					$str.='.rrd'; 
 				}
@@ -69,14 +79,12 @@ if ($_POST['f_regex_srv']) {
 		}
 	}
 
-	echo '<div>
-	Serveurs trouvés<br />';
+	echo '<div>'.SERVERS_FOUND.'<br />';
 	foreach ($all_server as $server) {
 		echo $server->server_name.', ';
 	}
 	echo '</div><br />
-	<div>
-	RRDs trouvés<br />';
+	<div>'.RRDS_FOUND.'<br />';
 	
 	$plugin_array=array_unique($plugin_array,SORT_REGULAR);
 

@@ -1,20 +1,6 @@
 <?php
 $log = new LOG();	
 
-# generate identifier that collectd's FLUSH command understands
-function collectd_identifier($host, $plugin, $pinst, $type, $tinst) {
-	global $CONFIG;
-
-	$identifier = sprintf('%s/%s%s%s/%s%s%s', $host,
-		$plugin, strlen($pinst) ? '-' : '', $pinst,
-		$type, strlen($tinst) ? '-' : '', $tinst);
-
-	if (is_file($CONFIG['datadir'].'/'.$identifier.'.rrd'))
-		return $identifier;
-	else
-		return FALSE;
-}
-
 function parse_typesdb_file($file) {
 	global $log;
 	

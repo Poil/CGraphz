@@ -14,7 +14,7 @@ $u_form->add('text', 'f_user')
 
 $u_form->add('select', 'f_type')
         ->value(@$cur_user->type)
-        ->label(MENU_NAME)
+        ->label(TYPE)
         ->options(array('mysql','ldap'))
         ->labelGrid(IL_CSS)
         ->inputGrid(I_CSS);
