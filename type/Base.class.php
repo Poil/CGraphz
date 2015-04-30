@@ -33,10 +33,12 @@ class Type_Base {
 
 	var $flush_socket;
 	var $flush_type;
+	var $flush_path;
 
-	function __construct($config, $_get) {
+	function __construct($config, $_get, $pluginconfig) {
 		$this->log = new LOG();
-		$this->datadir = $config['datadir'];
+		$this->datadir = $pluginconfig['rrd_path'];
+		$this->flush_path = $pluginconfig['flush_path'];
 		$this->rrdtool = $config['rrdtool'];
 		if (!empty($config['rrdtool_opts'])) {
 			if (is_array($config['rrdtool_opts'])) {
@@ -67,8 +69,8 @@ class Type_Base {
 		$this->negative_io = $config['negative_io'];
 		$this->graph_smooth = $config['graph_smooth'];
 		$this->graph_minmax = $config['graph_minmax'];
-		$this->flush_socket = $config['socket'];
-		$this->flush_type = $config['flush_type'];
+		$this->flush_socket = $pluginconfig['socket'];
+		$this->flush_type = $pluginconfig['flush_type'];
 	}
 
 	function rainbow_colors() {
@@ -149,9 +151,10 @@ class Type_Base {
 
 	function parse_filename($file) {
 		if ($this->graph_type == 'canvas') {
-			$file = DIR_WEBROOT.'/rrd.php/' . str_replace($this->datadir . '/', '', $file);
+			$file = str_replace($this->datadir . '/', '', $file);
 			# rawurlencode all but /
 			$file = str_replace('%2F', '/', rawurlencode($file));
+			$file = DIR_WEBROOT.'/rrd.php/'.getDatadirEntry($this->datadir).'/' . $file;
 		}
 		return $this->rrd_escape($file);
 	}
@@ -393,7 +396,7 @@ class Type_Base {
 	# tell collectd to FLUSH all data of the identifier(s)
 	function collectd_flush($debug=false) {
 		$identifier = $this->identifiers;
-		if ($debug == true) { $this->log->write('[Flush] - Identifiers : '.join($identifier,' -- ')); }
+		if ($debug == true) { $this->log->write('[Flush] - Socket: '.$this->flush_socket.' - Identifiers : '.join($identifier,' -- ')); }
 
 		if (!$this->flush_socket)
 			return FALSE;
@@ -422,8 +425,9 @@ class Type_Base {
 		}
 		elseif ($this->flush_type == 'rrdcached') {
 			foreach ($identifier as $val) {
-				$cmd = sprintf("FLUSH %s.rrd\n", $this->datadir.'/'.$val);
-				if ($debug == true) { $this->log->write('[Flush] - Commands : FLUSH '.$this->datadir.'/'.$val.'.rrd'); }
+				$val = str_replace(' ', '\ ', $val);
+				$cmd = sprintf("FLUSH %s.rrd\n", $this->flush_path.'/'.$val);
+				if ($debug == true) { $this->log->write('[Flush] - Commands : FLUSH '.$this->flush_path.'/'.$val.'.rrd'); }
 				$this->socket_cmd($socket, $cmd);
 			}
 		}
