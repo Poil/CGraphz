@@ -21,7 +21,7 @@ $find='0';
 $lib= 'INSERT INTO server_list (server_name) VALUES (';  
 $cpt_filelist=count($filelist);
 for($i=0; $i<$cpt_filelist; $i++) {
-	if (strpos($filelist[$i],':')==false && is_dir($CONFIG['datadir'].'/'.$filelist[$i])) {
+	if (strpos($filelist[$i],':')==false) {
 		if($find=='1')  {
 			$lib.=" ), (";
 		}  
