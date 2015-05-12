@@ -1,7 +1,7 @@
 <?php
 class InputHidden extends Field{
     public function buildField(){
-        $field = '<input class="form-control" type="hidden" ';
+        $field = '<input type="hidden" ';
             if(!empty($this->name))
                 $field.= 'name="'.$this->name.'" ';
             if(!empty($this->value))

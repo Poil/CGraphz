@@ -6,7 +6,7 @@ $file_reporting="./insertion_doublon_reporting.json";
 
 $connSQL=new DB();
 $all_server=$connSQL->query('SELECT * FROM config_server ORDER BY server_name');
-$cpt_server=count($all_server);
+$cpt_server=count($all_server); 
 
 /* Listing des serveurs présent dans le RRD DIR et pas déjà affectés */
 $allDatadir=getAllDatadir();

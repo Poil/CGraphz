@@ -18,7 +18,7 @@ else { header("Content-type: text/html"); }
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    
-   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-2.1.1.min.js"></script>
+   <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-2.1.3.min.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-1.10.4.custom.min.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.strtotime.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.liveSearch/js/jquery.liveSearch.js"></script>
@@ -39,7 +39,6 @@ else { header("Content-type: text/html"); }
    // Javascript and css of admin
    if (GET('module') != 'dashboard') {
       ?>
-      <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/css/demo_table.css" />
       <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/js/jquery.uix.multiselect.js"></script>
       <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/js/locales/jquery.uix.multiselect_fr.js"></script>
       <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery.uix.multiselect/css/jquery.uix.multiselect.css" />
@@ -47,6 +46,7 @@ else { header("Content-type: text/html"); }
       <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.dataTables.min.js"></script>
       <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/dataTables.bootstrap.js"></script>
       <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/dataTables.bootstrap.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/dataTables_extra.css" />
       <?php
    }
    ?>
@@ -86,6 +86,8 @@ if ($auth->verif_auth()) {
           include(DIR_FSROOT.'/html/menu/menu_plugin.php');
       }
       echo '<section style="margin-top: 140px">';
+   } elseif (GET('module') == 'dashboard' && GET('component') == 'quickview') {
+      include(DIR_FSROOT.'/html/menu/menu_quickview.php');
    } elseif (GET('module') == 'dashboard') {
       include(DIR_FSROOT.'/html/menu/menu_plugin.php');
       echo '<section style="margin-top: 90px; padding:0 5px">';
