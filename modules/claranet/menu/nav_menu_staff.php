@@ -9,7 +9,7 @@
 
 	$curl = curl_init();
 
-	curl_setopt($curl, CURLOPT_URL, "http://claratact.fr.clara.net/REST/contact/getProjectsForStaff.php");
+	curl_setopt($curl, CURLOPT_URL, "https://claratact.adm.fr.clara.net/REST/contact/getProjectsForStaff.php");
 	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 	curl_setopt($curl, CURLOPT_POST, true);
 
