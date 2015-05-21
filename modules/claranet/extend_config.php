@@ -21,7 +21,7 @@ foreach($plugin as $name => $plugin_info){
 
 if(isset($configCommune["rrd_path"]["default"])) $CONFIG['datadir']=$configCommune["rrd_path"]["default"];
 
-define('CLARATACT_WS','http://claratact.fr.clara.net');
+define('CLARATACT_WS','https://claratact.adm.fr.clara.net');
 define('CLARATACT_USER','FR-Claratact-API');
 define('CLARATACT_PASS','phax5d!idhj8h');
 ?>
