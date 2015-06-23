@@ -7,7 +7,7 @@
 		//Récuperation des serveurs d'un projet dans claratact
 		$curl = curl_init();
 
-		curl_setopt($curl, CURLOPT_URL, "https://claratact.adm.fr.clara.net/REST/Projet/getProjectHosts.php");
+		curl_setopt($curl, CURLOPT_URL, CLARATACT_WS."/REST/Projet/getProjectHosts.php");
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_POST, true);
 
