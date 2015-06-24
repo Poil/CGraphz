@@ -14,6 +14,7 @@ $filelist=array();
 foreach($allDatadir as $datadir){
 	$filelist=array_merge(array_values(array_diff(scandir($datadir), array('..', '.', 'lost+found'))),$filelist);
 }
+$filelist=array_unique($filelist);
 
 $lib='
 CREATE TEMPORARY TABLE server_list (
