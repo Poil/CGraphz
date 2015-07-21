@@ -31,7 +31,7 @@ $(function(){
                 var serverName=$(this).attr('value');
 				$(this).parent().hide();
 
-				$('#servers .imggraph[src*="?h='+serverName+'&"]').each(function(){
+				$('#servers .imggraph[src*="&h='+serverName+'&"]').each(function(){
 					$(this).parent().parent().parent().hide();
 				});
             });
@@ -40,7 +40,7 @@ $(function(){
                 var serverName=$(this).attr('value');
 				$(this).parent().show();
 
-				$('#servers .imggraph[src*="?h='+serverName+'&"]').each(function(){
+				$('#servers .imggraph[src*="&h='+serverName+'&"]').each(function(){
                     $(this).parent().parent().parent().show();
                 });
             });
@@ -390,7 +390,7 @@ function hideErrorGraph(obj){
 function removeHost(obj){
 	var serverName=obj.parent().children().filter('.serverName').attr('value');
 	
-	$('td:has(.imggraph[src*="?h='+serverName+'&"])').each(function(){
+	$('td:has(.imggraph[src*="&h='+serverName+'&"])').each(function(){
 		$(this).remove();
 	});
 
@@ -409,7 +409,7 @@ function addHost(hostname){
 		$('#dashboard_content').animate({scrollLeft:0, scrollTop:0}, 'fast');
 		$('tr:has(th)').prepend('<th><span class="serverName" value="'+hostname+'"><a href="'+dashlightURL+'&f_host='+hostname+'">'+hostname+'</a></span><a href="#" onclick="removeHost($(this));return false;"><i class="glyphicon glyphicon-remove"></i></a></th>');
 		$('tr:has(.imggraph)').prepend('<td><div class="div-for-width"></div></td>');
-		$('.imggraph[src*="?h=patron-graph&"]').each(function(){
+		$('.imggraph[src*="&h=patron-graph&"]').each(function(){
 			var src=$(this).attr('src');
 			src=src.replace('patron-graph',hostname);
 			$(this).parent().parent().parent().parent().children().first().children().first().append('<figure><figcaption>'+hostname+'</figcaption><img class="imggraph" onerror="hideErrorGraph($(this));" onclick="Show_Popup($(this).attr(\'src\').split(\'?\')[1],\''+timer+'\',\''+time_start+'\',\''+time_end+'\')" title="Click to Zoom" alt="rrd" src="'+src+'"></figure>');
