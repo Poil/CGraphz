@@ -60,6 +60,10 @@ class Compare{
 		$pg_filters=$this->getFilter();
 
 		$allDatadir=getAllDatadir();
+		foreach($allDatadir as $key => $datadir){
+			if(!is_dir($datadir.'/')) unset($allDatadir[$key]);
+		}
+		
 		if(!empty($serverNames)){
 			if(!empty($allDatadir)) {
 			    $plugins=array();
@@ -86,6 +90,7 @@ class Compare{
 				
 				foreach ($plugins as $plugin) {
                     preg_match($myregex, $plugin, $matches);
+                    $plugin_datadir = getDatadirEntry($matches[1]);
                     
 					if (isset($matches[4])) {
                        $p=$matches[4];
@@ -134,15 +139,17 @@ class Compare{
                         if($tc===null || $tc==="")$tc="null";
                         if($ti===null || $ti==="")$ti="null";
 	
-						
-						$plugin_array=$this->createArchiPlugin($plugin_array,$p);
+						if(!isset($plugin_array[$plugin_datadir])){
+							$plugin_array[$plugin_datadir]=array();
+						}
+						$plugin_array[$plugin_datadir]=$this->createArchiPlugin($plugin_array[$plugin_datadir],$p);
 	
-						$plugin_array[$p]=$this->createArchiPlugin($plugin_array[$p],$pc);
-	                    $plugin_array[$p][$pc]=$this->createArchiPlugin($plugin_array[$p][$pc],$pi);
-	                    $plugin_array[$p][$pc][$pi]=$this->createArchiPlugin($plugin_array[$p][$pc][$pi],$t);
-	                    $plugin_array[$p][$pc][$pi][$t]=$this->createArchiPlugin($plugin_array[$p][$pc][$pi][$t],$tc);
+						$plugin_array[$plugin_datadir][$p]=$this->createArchiPlugin($plugin_array[$plugin_datadir][$p],$pc);
+	                    $plugin_array[$plugin_datadir][$p][$pc]=$this->createArchiPlugin($plugin_array[$plugin_datadir][$p][$pc],$pi);
+	                    $plugin_array[$plugin_datadir][$p][$pc][$pi]=$this->createArchiPlugin($plugin_array[$plugin_datadir][$p][$pc][$pi],$t);
+	                    $plugin_array[$plugin_datadir][$p][$pc][$pi][$t]=$this->createArchiPlugin($plugin_array[$plugin_datadir][$p][$pc][$pi][$t],$tc);
 	
-	                    $plugin_array[$p][$pc][$pi][$t][$tc]=$ti;
+	                    $plugin_array[$plugin_datadir][$p][$pc][$pi][$t][$tc]=$ti;
 					}
 				}
 			}

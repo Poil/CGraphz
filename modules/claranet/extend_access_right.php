@@ -1,7 +1,5 @@
 <?php
-
-
-if (in_array($host, $_SESSION['server'])) return true;
-else return false;
+$is_auth=false;
+if (in_array($host, $_SESSION['server'])) $is_auth=true;
 
 ?>

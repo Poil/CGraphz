@@ -152,9 +152,20 @@
 		}
 		$('figcaption').each(function(){
 			var src=$(this).parent().children().filter('.imggraph').first().attr('src');
+
+			var datadir="";
+			var tabSrc=src.split("?datadir=");
+			if(tabSrc.length > 1){
+				srcDatadirHost=tabSrc[1];
+				tabSrcDatadirHost=srcDatadirHost.split('&h=');
+				if(tabSrcDatadirHost.length > 0){
+					datadir=tabSrcDatadirHost[0];
+				}
+			}
+			
 			var tabSrc=src.split("&p=");
 			if(tabSrc.length > 1){
-				var urlSrc="&p="+tabSrc[1];
+				var urlSrc="&datadir="+datadir+"&p="+tabSrc[1];
 				var id_prj=getParameterByName('id_project');
 				var hostname=getParameterByName('f_host');
 

@@ -130,6 +130,7 @@ class AUTH_USER {
 		  AND (aug.id_auth_user=:s_id_user)
 		GROUP BY server_name
 		ORDER BY server_name';
+		
 
 		$this->connSQL->bind('host', $host);
 		$this->connSQL->bind('s_id_user',$_SESSION['S_ID_USER']);
@@ -139,6 +140,7 @@ class AUTH_USER {
 			return $authorized;
 		} else if (AUTH_TYPE != 'default') {
 			include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/extend_access_right.php');
+			return $is_auth;
 		} else {		
 			return false;
 		}

@@ -20,6 +20,11 @@ if(isset($_GET['id_project'])){
 }
 
 ?>
+<script>
+	var DIR_WEBROOT="<?php echo DIR_WEBROOT;?>".substring(1);
+
+</script>
+
 <div id="dashboard" style="margin-left : 0px;">
     <div id="dashboard_content" >
 <?php
@@ -55,9 +60,9 @@ if(isset($_GET['id_project'])){
 	}
 	// graph invisible servant simplement a retenir les timeranges
 	if ($time_range!='') {
-		echo '		<img class="imggraph imggraph-pattron" '.$zoom.' title="Click to Zoom" alt="rrd" src="/CGraphz/graph.php?h=&amp;p=&amp;pc=&amp;pi=&amp;t=&amp;tc=&amp;ti=&amp;s='.$time_range.'">';
+		echo '		<img class="imggraph imggraph-pattron" '.$zoom.' title="Click to Zoom" alt="rrd" src="/'.DIR_WEBROOT.'/graph.php?datadir=&h=&amp;p=&amp;pc=&amp;pi=&amp;t=&amp;tc=&amp;ti=&amp;s='.$time_range.'">';
 	}else{
-		echo '      <img class="imggraph imggraph-pattron" '.$zoom.' title="Click to Zoom" alt="rrd" src="/CGraphz/graph.php?h=&amp;p=&amp;pc=&amp;pi=&amp;t=&amp;tc=&amp;ti=&amp;s='.$time_start.'&amp;e='.$time_end.'">';
+		echo '      <img class="imggraph imggraph-pattron" '.$zoom.' title="Click to Zoom" alt="rrd" src="/'.DIR_WEBROOT.'/graph.php?datadir=&h=&amp;p=&amp;pc=&amp;pi=&amp;t=&amp;tc=&amp;ti=&amp;s='.$time_start.'&amp;e='.$time_end.'">';
 	}	
 	echo '		</td>
 			 </tr>
@@ -94,7 +99,7 @@ if(isset($_GET['id_project'])){
 		});
 <?php
 	if($withGraph){
-		echo "addGraphInit('".$_GET['p']."','".$_GET['pc']."','".$_GET['pi']."','".$_GET['t']."','".$_GET['tc']."');";
+		echo "addGraphInit('".$_GET['datadir']."','".$_GET['p']."','".$_GET['pc']."','".$_GET['pi']."','".$_GET['t']."','".$_GET['tc']."');";
 	}
 ?>
     });
