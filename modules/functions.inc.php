@@ -87,27 +87,41 @@ function is_blank($value) {
 	return empty($value) && !is_numeric($value);
 }
 
+function cmp_plugin($a, $b) {
+	$a_index=intval($a['index']);
+	$b_index=intval($b['index']);
+	if ($a_index == $b_index) {
+		return strcmp(strtoupper($a['plugin_name']), strtoupper($b['plugin_name']));
+	}
+	return ($a_index < $b_index) ? -1 : 1;
+}
+
 function sort_plugins($hostpath, $plugins, $filters) {
 	$plugins_ordered = array();
 	$i=0;
 	foreach ($plugins as $plugin) {
+		$p_name="";
 		foreach ($filters as $filter) {
 			$myregex='#^('.$hostpath.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd#';
-			if (preg_match($myregex, $plugin)) {
+			if (preg_match($myregex, $plugin,$output)) {
+				$p_name=$output[3];
 				$plugins_ordered[$i]['index']=$filter->plugin_order;
 				$plugins_ordered[$i]['content']=$plugin;
+				$plugins_ordered[$i]['plugin_name']=$p_name;
 				break;
 			}
 		}
 		if (empty($plugins_ordered[$i]['index'])) {
 			$plugins_ordered[$i]['index']=99999;
 			$plugins_ordered[$i]['content']=$plugin;
+			$plugins_ordered[$i]['plugin_name']=$p_name;
 		}
 		$i++;
 	}
-	asort($plugins_ordered);
+	uasort($plugins_ordered,'cmp_plugin');
 	return $plugins_ordered;
 }
+
 
 function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 	global $CONFIG;
