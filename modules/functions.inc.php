@@ -190,24 +190,29 @@ function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 		        $log->write(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $p));
 		}
 	}
-	if (isset($plugin_json[$t]['title'])) {
-		$rrd_title = $plugin_json[$t]['title'];
-		$replacements = array(
-			'{{PI}}' => $pi,
-			'{{PC}}' => $pc,
-			'{{TI}}' => $ti,
-			'{{TC}}' => $tc,
-			'{{HOST}}' => $h
-		);
-		$rrd_title = str_replace(array_keys($replacements), array_values($replacements), $rrd_title);
-	} else if (array_key_exists($t, $plugin_json) and $plugin_json[$t]['type']=='iowpm') {
-		foreach (getAllDatadir() as $key => $value) {
-			if (file_exists($value.'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt')) {
-				$ItemName=file_get_contents($value.'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
-				continue;
+	
+	if(isset($plugin_json)){
+		if (isset($plugin_json[$t]['title'])) {
+			$rrd_title = $plugin_json[$t]['title'];
+			$replacements = array(
+				'{{PI}}' => $pi,
+				'{{PC}}' => $pc,
+				'{{TI}}' => $ti,
+				'{{TC}}' => $tc,
+				'{{HOST}}' => $h
+			);
+			$rrd_title = str_replace(array_keys($replacements), array_values($replacements), $rrd_title);
+		} else if (array_key_exists($t, $plugin_json) and $plugin_json[$t]['type']=='iowpm') {
+			foreach (getAllDatadir() as $key => $value) {
+				if (file_exists($value.'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt')) {
+					$ItemName=file_get_contents($value.'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
+					continue;
+				}
 			}
+			$rrd_title = isset($ItemName) ? "$ItemName on $h" : "$pi on $h";
+		} else {
+			$rrd_title = "$h $p $pc $pi $ti $tc";
 		}
-		$rrd_title = isset($ItemName) ? "$ItemName on $h" : "$pi on $h";
 	} else {
 		$rrd_title = "$h $p $pc $pi $ti $tc";
 	}
