@@ -85,11 +85,21 @@ class Compare{
 						}
 					}
 				}
+				
+				$allHostname=array();
+				foreach($allDatadir as $datadir){
+					foreach($serverNames as $server){
+						$allHostname[]=$datadir."/".$server;
+					}
+				}
+				
+				$plugins=sort_plugins('('.implode("|",$allHostname).')',$plugins, $pg_filters);
 	
-			    $myregex='#^(('.implode("|",$allDatadir).')/('.implode("|",$serverNames).')/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
+				$myregex='#^(('.implode("|",$allDatadir).')/('.implode("|",$serverNames).')/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
 				
 				foreach ($plugins as $plugin) {
-                    preg_match($myregex, $plugin, $matches);
+                    preg_match($myregex, $plugin['content'], $matches);
+                    
                     $plugin_datadir = getDatadirEntry($matches[1]);
                     
 					if (isset($matches[4])) {
@@ -132,24 +142,23 @@ class Compare{
 
 
 					if($p!==null){
-
-                        if($pc===null || $pc==="")$pc="null";
+						if($pc===null || $pc==="")$pc="null";
                         if($pi===null || $pi==="")$pi="null";
                         if($t===null || $t==="")$t="null";
                         if($tc===null || $tc==="")$tc="null";
                         if($ti===null || $ti==="")$ti="null";
 	
-						if(!isset($plugin_array[$plugin_datadir])){
-							$plugin_array[$plugin_datadir]=array();
+						if(!isset($plugin_array[$plugin['index']][$plugin_datadir])){
+							$plugin_array[$plugin['index']][$plugin_datadir]=array();
 						}
-						$plugin_array[$plugin_datadir]=$this->createArchiPlugin($plugin_array[$plugin_datadir],$p);
+						$plugin_array[$plugin['index']][$plugin_datadir]=$this->createArchiPlugin($plugin_array[$plugin['index']][$plugin_datadir],$p);
 	
-						$plugin_array[$plugin_datadir][$p]=$this->createArchiPlugin($plugin_array[$plugin_datadir][$p],$pc);
-	                    $plugin_array[$plugin_datadir][$p][$pc]=$this->createArchiPlugin($plugin_array[$plugin_datadir][$p][$pc],$pi);
-	                    $plugin_array[$plugin_datadir][$p][$pc][$pi]=$this->createArchiPlugin($plugin_array[$plugin_datadir][$p][$pc][$pi],$t);
-	                    $plugin_array[$plugin_datadir][$p][$pc][$pi][$t]=$this->createArchiPlugin($plugin_array[$plugin_datadir][$p][$pc][$pi][$t],$tc);
+						$plugin_array[$plugin['index']][$plugin_datadir][$p]=$this->createArchiPlugin($plugin_array[$plugin['index']][$plugin_datadir][$p],$pc);
+	                    $plugin_array[$plugin['index']][$plugin_datadir][$p][$pc]=$this->createArchiPlugin($plugin_array[$plugin['index']][$plugin_datadir][$p][$pc],$pi);
+	                    $plugin_array[$plugin['index']][$plugin_datadir][$p][$pc][$pi]=$this->createArchiPlugin($plugin_array[$plugin['index']][$plugin_datadir][$p][$pc][$pi],$t);
+	                    $plugin_array[$plugin['index']][$plugin_datadir][$p][$pc][$pi][$t]=$this->createArchiPlugin($plugin_array[$plugin['index']][$plugin_datadir][$p][$pc][$pi][$t],$tc);
 	
-	                    $plugin_array[$plugin_datadir][$p][$pc][$pi][$t][$tc]=$ti;
+	                    $plugin_array[$plugin['index']][$plugin_datadir][$p][$pc][$pi][$t][$tc]=$ti;
 					}
 				}
 			}

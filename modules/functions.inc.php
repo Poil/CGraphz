@@ -99,6 +99,7 @@ function cmp_plugin($a, $b) {
 function sort_plugins($hostpath, $plugins, $filters) {
 	$plugins_ordered = array();
 	$i=0;
+	
 	foreach ($plugins as $plugin) {
 		$p_name="";
 		foreach ($filters as $filter) {
@@ -118,7 +119,7 @@ function sort_plugins($hostpath, $plugins, $filters) {
 		}
 		$i++;
 	}
-	uasort($plugins_ordered,'cmp_plugin');
+	usort($plugins_ordered,'cmp_plugin');
 	return $plugins_ordered;
 }
 
