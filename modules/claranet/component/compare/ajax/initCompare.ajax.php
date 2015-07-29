@@ -21,12 +21,15 @@ if(isset($_GET['id_prj'])){
 
 
 
-	
+	$pluginByDatadir=array();
 
 	$arrayPlugin=array();
 	foreach($plugins_datadir as $datadirs){
 		ksort($datadirs);
 		foreach($datadirs as $datadir => $plugins){
+			if(!isset($pluginByDatadir[$datadir])) $pluginByDatadir[$datadir]=array();
+			$pluginByDatadir[$datadir]=array_merge($pluginByDatadir[$datadir],$plugins);
+
 		    foreach($plugins as $p_name => $p){
 				
 				$arrayPC=array();
@@ -95,7 +98,7 @@ if(isset($_GET['id_prj'])){
 
 
 	echo "{
-			\"pluginJs\" : ".json_encode($plugins_datadir).",
+			\"pluginJs\" : ".json_encode($pluginByDatadir).",
 			\"jsonPlugin\" : ".json_encode($arrayPlugin)."
 	}";	
 }
