@@ -1,6 +1,6 @@
 <?php
 	class memcacheSessionHandler{
-		private $host = "localhost";
+		private $host = MEMCACHED_HOST;
 		private $port = 11211;
 		private $lifetime = 0;
 		private $memcache = null;
