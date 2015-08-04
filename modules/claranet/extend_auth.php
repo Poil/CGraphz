@@ -11,12 +11,14 @@ if(isset($_SESSION['user'])) {
 	} else if(isset($_SESSION['profile']) && ($_SESSION['profile']=='staff')) {
 		$this->user = isset($_SESSION['user']) ? 'staff' : '';
 		$this->passwd = isset($_SESSION['user']) ? 'staff' : '';
-		$this->user = isset($_SESSION['filtre']) ? $_SESSION['filtre'] : 'staff';
-		$this->passwd = isset($_SESSION['filtre']) ? $_SESSION['filtre'] : 'staff';
 	} else{
 		$this->user = isset($_SESSION['user']) ? 'guest' : '';
 		$this->passwd = isset($_SESSION['user']) ? 'guest' : '';
 	}
+	
+	/*$this->user = isset($_SESSION['user']) ? 'wister' : '';
+	$this->passwd = isset($_SESSION['user']) ? 'wister' : '';*/
+	
 	$component='dashboard';
 	$try_auth=True;
 }

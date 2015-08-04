@@ -79,59 +79,46 @@
 	});
 </script>
 
-<?php	
-
-	//Si l'utilisateur n'est pas un user alors on affiche la checkbox de vue client.
-	$connSQL=new DB();
-	$idStaff=$_SESSION["S_ID_USER"];
-	$requete="SELECT id_auth_user FROM auth_user WHERE user='guest'";
-
-	$res=$connSQL->query($requete);
-	$idGuest=$res[0]->id_auth_user;
-
-?>
-
 <div style="width : 10px; height : 5px; display : inline-block;">
 	<!-- Permet de mettre un espace horizontal ( width ) sur grand ecran et un epsace vertical ( height ) en responsive !-->
 </div>
+<div class="form-group">
+	<p style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:15px;">Vue : </p>
+</div>
+<div class="form-group">  
+	<select id="selectView">
+<?php	
+	//Modifie l'id utilisateur ( dans CGraphZ ) pour afficher les graphes en fonction du filtre ( staff, guest... )
+	if(isset($_SESSION['filtre']))
+		$_SESSION["S_ID_USER"]=$_SESSION['filtre'];
+	
+	//Si l'utilisateur n'est pas un user alors on affiche la checkbox de vue client.
+	$connSQL=new DB();
+	
+	$requete="SELECT id_auth_user,name_view FROM view order by name_view;";
 
-<div class="input-group" id="checkFiltre" style="width : 30px; margin-top : 8px;">
-	<span class="input-group-addon">
-		<input <?php if(!isset($_SESSION['filtre']) || $_SESSION['filtre']!=$idStaff){ echo "checked ";}?>id="filtreClient"type="checkbox">
-	</span>
-	<span id="textCheckFiltre" class="input-group-addon" style="width:65px;padding-left:0px;">Vue client</span>
+	$res=$connSQL->query($requete);
+	
+	
+	foreach($res as $row){
+		echo '<option '.(($_SESSION['S_ID_USER']==$row->id_auth_user)? 'selected':'').' value="'.$row->id_auth_user.'">'.$row->name_view.'</option>';
+	}
+?>	    
+	</select>
 </div>
 </form>
 
 <script type="text/javascript">
-	function modifeFiltre(){
-	<?php
-		if(!isset($_SESSION['filtre']) || $_SESSION['filtre']!=$idStaff){
-			echo "window.location.href = '".DIR_WEBROOT."/modules/claranet/filtre.php?c=$idStaff';";
-		}else{
-			echo "window.location.href = '".DIR_WEBROOT."/modules/claranet/filtre.php?c=$idGuest';";
-		}
-	?>
-
-	}
-
-	$('#textCheckFiltre').on('click',function(){
-		if($('#filtreClient').is(":checked")){
-			$('#filtreClient').prop("checked",false);
-		}else{
-			$('#filtreClient').prop("checked",true);
-		}
-		modifeFiltre();
+	$('#selectView').on('change',function(){
+		window.location.href = '<?php echo DIR_WEBROOT; ?>/modules/claranet/filtre.php?c='+$(this).val();
 	});
-	$('#filtreClient').change(modifeFiltre);
 </script>
 
 
 
 
 <?php
-	if(isset($_SESSION['filtre']) && $_SESSION['filtre']==$idStaff && isset($_GET['f_host'])){
-		if($component=="light"){
+	if($component=="light"){
 		//ajax entoure image graphe
 ?>
 		<style>
@@ -150,29 +137,25 @@
                 $.ajax({
                     type: 'GET',
                     url: '<?php echo DIR_WEBROOT; ?>/modules/claranet/ajax/getGraphClient.ajax.php',
-                    data: '<?php echo 'f_host='.$_GET['f_host'].'&idGuest='.$idGuest.'&timerange='.((isset($_SESSION['time_range'])) ? $_SESSION['time_range'] : "").'&timestart='.((isset($_SESSION['time_start'])) ? $_SESSION['time_start'] : "").'&timeend='.((isset($_SESSION['time_end'])) ? $_SESSION['time_end'] : "");?>',
+                    data: '<?php echo 'f_host='.$_GET['f_host'].'&idUser='.$_SESSION["S_ID_USER"].'&timerange='.((isset($_SESSION['time_range'])) ? $_SESSION['time_range'] : "").'&timestart='.((isset($_SESSION['time_start'])) ? $_SESSION['time_start'] : "").'&timeend='.((isset($_SESSION['time_end'])) ? $_SESSION['time_end'] : "");?>',
                     success: function(msg){
-                        var tabSrcClient=msg.split('|');
-                        for(var i = 0 ; i < tabSrcClient.length ; i++){
-                            // Ne pas prendre en compte les variables de temps ( ce qui il y a après le &s )
-                            var src=tabSrcClient[i].split('&s');
-                            $('[src*="'+src[0]+'"]').addClass('grapheClient');
-						}
-
-						// Cas particulier de l'aggregation
-						$('[src*="&t=aggregation"]').addClass('grapheClient');
+                        if(msg=="all"){
+                        	$('#dashboard figure img').addClass('grapheClient');
+                        }else if(msg!=""){
+	                        var tabSrcClient=msg.split('|');
+	                        for(var i = 0 ; i < tabSrcClient.length ; i++){
+	                            // Ne pas prendre en compte les variables de temps ( ce qui il y a après le &s )
+	                            var src=tabSrcClient[i].split('&s');
+	                            $('#dashboard figure img[src*="'+src[0]+'"]').addClass('grapheClient');
+							}
+	
+							// Cas particulier de l'aggregation
+							$('#dashboard figure img[src*="&t=aggregation"]').addClass('grapheClient');
+                        }
                     }
                 });
             });
 		</script>
 <?php
-		}
     }
 ?>
-
-<?php
-	//Modifie l'id utilisateur ( dans CGraphZ ) pour afficher les graphes en fonction du filtre ( staff ou guest )
-	$_SESSION["S_ID_USER"]=isset($_SESSION['filtre']) ? $_SESSION['filtre'] : $idGuest;
-	
-?>
-
