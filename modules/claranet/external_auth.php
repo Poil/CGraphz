@@ -25,7 +25,7 @@ if (!isset($argc)) {
         require DIR_FSROOT."/modules/claranet/check_access_right.php";
 
         if(!$serverOk){
-            header('Location: ./modules/claranet/errorHosts.php');
+            header('Location: '.DIR_WEBROOT.'/modules/claranet/errorHosts.php');
         }
     }
 }

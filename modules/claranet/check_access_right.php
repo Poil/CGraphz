@@ -7,7 +7,7 @@ if( isset($_SESSION['profile']) && $_SESSION['profile']=="user"){
 	if(isset($_GET['f_host'])){
         $host=$_GET['f_host'];
     }
-    if(isset($host)){
+    if(isset($host) && $host!=""){
         $serverOk=false;
 		//Récuperation des serveurs autorisé dans la variable de session "hierarchy"
         $hier_decode=json_decode($_SESSION["hierarchy"]);

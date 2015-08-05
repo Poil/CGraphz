@@ -1,8 +1,16 @@
 <?php
 	//Affichage du select des projet
 	echo '
+			
+	<script>
+		$(function(){
+			$("#selectProject").on("change",changeProjet);
+			
+			$("#selectServer").on("change",changeServer);
+		});
+	</script>
 	<form class="navbar-form navbar-left" role="search" style="margin-top : 0px;">
-        <div class="form-group">
+        <div class="form-group" id="divSelectProject">
 			<p style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top : 15px;">Projets : </p>
         </div>
 		<div class="form-group">
@@ -38,7 +46,7 @@
 	echo '<div class="form-group">
 			<p style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:15px;">Serveurs : </p>
 		  </div>
-		  <div class="form-group">
+		  <div class="form-group" id="divSelectServer">
 			<select id="selectServer">';
 
 	if($nameProject=="") $_GET['project']=-1;
