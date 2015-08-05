@@ -4,6 +4,7 @@
 			
 	<script>
 		$(function(){
+			$("#selectProject").combobox();
 			$("#selectProject").on("change",changeProjet);
 			
 			$("#selectServer").on("change",changeServer);
