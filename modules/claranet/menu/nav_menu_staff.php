@@ -1,37 +1,61 @@
 <?php
 	echo '
+	<style>
+		/**********************************************/
+		/**************** SPINNER *********************/
+		/**********************************************/
+		
+		.glyphicon-refresh-animate {
+		    -animation: spin .9s infinite linear;
+		    -webkit-animation: spin2 .9s infinite linear;
+		    color : white;		    
+		}
+		
+		@-webkit-keyframes spin2 {
+		    from { -webkit-transform: rotate(0deg);}
+		    to { -webkit-transform: rotate(360deg);}
+		}
+		
+		@keyframes spin {
+		    from { transform: scale(1) rotate(0deg);}
+		    to { transform: scale(1) rotate(360deg);}
+		}
+	</style>
+	<script>
+		$(function(){
+			$.ajax({
+			    type: "POST",
+			    url: "modules/claranet/ajax/getProjectStaff.ajax.php",
+			    contentType: "application/json; charset=utf-8",
+			    dataType: "json",
+			    success: function(data){
+					var selectProject=$("<select>",{"id":"selectProject"})
+						.append($("<option>").val("").text(""));
+					$.each(data,function(index,projet){
+						var option=$("<option>").val(projet.id).text(projet.name);
+						if(projet.id=="'.$nameProject.'") option.prop("selected",true);
+			
+						selectProject.append(option);
+					});
+					$("#divSelectProject").empty()
+						.append(selectProject);
+			
+					$("#selectProject").combobox();
+			
+					$("#selectProject").on("change",changeProjet);
+					$("#selectProject").trigger("change");
+				}
+			});
+		});
+	</script>
+			
 	<form class="navbar-form navbar-left" role="search" style="margin-top : 0px;">
 		<div class="form-group">
 			<p style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top : 15px;">Projets : </p>
         </div>
-		<div class="form-group">
-			<select id="selectProject" >';
-
-	$curl = curl_init();
-
-	curl_setopt($curl, CURLOPT_URL, CLARATACT_WS."/REST/contact/getProjectsForStaff.php");
-	curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($curl, CURLOPT_POST, true);
-
-	$postfields=array('login'=>'FR-Claratact-API','pass'=>'phax5d!idhj8h');
-	curl_setopt($curl, CURLOPT_POSTFIELDS, $postfields);
-
-	$return=curl_exec($curl);
-
-	curl_close($curl);
-	if($nameProject==""){
-		echo '  <option value=""></option>';
-	}
-	foreach(json_decode($return) as $project){
-		$selected="";
-		if($nameProject==$project->id){
-			$selected="selected ";
-		}
-
-		echo '  <option '.$selected.'value="'.$project->id.'">'.$project->name.'</option>';
-	}
-
-	echo '</select></div>';
+		<div class="form-group" id="divSelectProject">
+			<span class="glyphicon glyphicon-refresh glyphicon-refresh-animate glyphicon-refresh-animate"></span>
+		</div>';
 ?>
 
 <?php
@@ -39,17 +63,11 @@
 	echo '<div class="form-group">
 			  <p style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top:15px;">Serveurs : </p>
 		  </div>
-		  <div class="form-group">  
+		  <div class="form-group" id="divSelectServer">  
 			<select id="selectServer">';
-
-	if($nameProject==""){
-		$nameHost=(isset($_GET['f_host'])) ? $_GET['f_host'] : "";
-		echo '  <option value="'.$nameHost.'">'.$nameHost.'</option>';
-	}else{
-		$_GET['project']=$nameProject;
-		include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/ajax/getServerByProjectStaff.ajax.php');
-	}
-
+	
+	$nameHost=(isset($_GET['f_host'])) ? $_GET['f_host'] : "";
+	echo '  <option value="'.$nameHost.'">'.$nameHost.'</option>';
 
 	echo '</select>
 		</div>';

@@ -61,45 +61,58 @@
 
 
 <script type='text/javascript'>
-
-	$(function(){
-		$('#selectProject').combobox();
-
-		$('#selectServer').change(function(){
-			var srv='';
-			$('#selectServer option:selected').each(function(){
-				srv=$(this).val();
-			});
-			if(srv!="-1"){
-				window.location.href = '<?php echo DIR_WEBROOT; ?>/index.php?module=dashboard&component=light'+srv;
+	function changeProjet(){
+		// Redirection vers la page de login si la Session n'existe plus
+		$.get("<?php echo DIR_WEBROOT ?>/modules/claranet/ajax/checkSession.ajax.php",function(data){
+			if(data=="no"){
+				window.location="../";
 			}
 		});
-
-		$('#selectProject').change(function(){
-			// Redirection vers la page de login si la Session n'existe plus
-			$.get("<?php echo DIR_WEBROOT ?>/modules/claranet/ajax/checkSession.ajax.php",function(data){
-				if(data=="no"){
-					window.location="../";
-				}
-			});
-			$('#selectServer').html("");
-			var prj='';
-			$('#selectProject option:selected').each(function(){
-				prj=$(this).val();
-			});
+		$('#selectServer').html("");
+		var prj='';
+		$('#selectProject option:selected').each(function(){
+			prj=$(this).val();
+		});
+		
+		$("#divSelectServer").empty()
+			.append($("<span>",{"class":"glyphicon glyphicon-refresh glyphicon-refresh-animate glyphicon-refresh-animate"}));
+		
+		if(prj!=''){
 			//Requète ajax récuperant les serveurs liés au projet dans la session.
 			$.ajax({
 				type: 'GET',
 				url: '<?php echo DIR_WEBROOT; ?>/modules/claranet/ajax/getServerByProject<?php if($_SESSION["profile"]!="user") echo "Staff"; ?>.ajax.php',
-				data: 'project='+prj,
+				data: {'project' : prj, 'f_host' : '<?php echo $_GET["f_host"]; ?>'},
 				success: function(msg){
-					$('#selectServer').html(msg);
+					$("#divSelectServer").empty()
+						.append(
+							$("<select>",{"id":"selectServer"})
+								.html(msg)
+								.on("change",changeServer)
+						);
 				}
 			});
+		}else{
+			$("#divSelectServer").empty()
+				.append(
+					$("<select>",{"id":"selectServer"})
+						.append($("<option>").val("<?php echo ((isset($_GET["f_host"]))?$_GET["f_host"]:"");?>").text("<?php echo ((isset($_GET["f_host"]))?$_GET["f_host"]:"");?>"))
+				);
+		}
+	};
+
+	function changeServer(){
+		var srv='';
+		$('#selectServer option:selected').each(function(){
+			srv=$(this).val();
 		});
+		if(srv!="-1" && srv!=""){
+			window.location.href = '<?php echo DIR_WEBROOT; ?>/index.php?module=dashboard&component=light'+srv;
+		}
+	};
 
-
-
+	
+	$(function(){
 		function addAggregation(plugin,pluginText){
 			var i=0;
 			$('img[src*="&p='+plugin+'&"]').each(function(){
