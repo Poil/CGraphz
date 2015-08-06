@@ -36,14 +36,14 @@
             return $return;
 		} 
 		
-		public function getAllProject(){
+		public function getAllProject($host=''){
 			$curl = curl_init();
 			
 			curl_setopt($curl, CURLOPT_URL, CLARATACT_WS."/REST/contact/getProjectsForStaff.php");
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($curl, CURLOPT_POST, true);
 			
-			$postfields=array('login'=>CLARATACT_USER,'pass'=>CLARATACT_PASS);
+			$postfields=array('login'=>CLARATACT_USER,'pass'=>CLARATACT_PASS,'host'=>$host);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $postfields);
 			
 			$return=curl_exec($curl);

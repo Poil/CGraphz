@@ -25,15 +25,21 @@
 		$(function(){
 			$.ajax({
 			    type: "POST",
-			    url: "modules/claranet/ajax/getProjectStaff.ajax.php",
+			    url: "modules/claranet/ajax/getProjectStaff.ajax.php?host='.((isset($_GET['f_host']))? $_GET['f_host'] : '').'",
 			    contentType: "application/json; charset=utf-8",
 			    dataType: "json",
 			    success: function(data){
 					var selectProject=$("<select>",{"id":"selectProject"})
 						.append($("<option>").val("").text(""));
-					$.each(data,function(index,projet){
+					
+			    	$.each(data,function(index,projet){
 						var option=$("<option>").val(projet.id).text(projet.name);
-						if(projet.id=="'.$nameProject.'") option.prop("selected",true);
+						
+						// Si on n\'a pas de nom de projet alors on cherche dans le resultat ajax le projet concerné
+						if("'.$nameProject.'"==""){
+							if(projet.isHostProject) option.prop("selected",true);
+						// Sinon on verifie si l\'id en court et celui du projet concerné
+						}else if(projet.id=="'.$nameProject.'") option.prop("selected",true);
 			
 						selectProject.append(option);
 					});

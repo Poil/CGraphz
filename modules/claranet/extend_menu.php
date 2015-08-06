@@ -28,6 +28,11 @@
 						padding-bottom: 2px;
 						margin-top: 5px;
 					}
+				
+					
+					#divSelectProject,#divSelectServer{
+						min-width : 220px;
+					}					
             </style>";
 
 		if($_SESSION['profile']=='admin' || $_SESSION['profile']=='staff'){
