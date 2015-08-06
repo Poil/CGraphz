@@ -90,8 +90,11 @@ function is_blank($value) {
 function cmp_plugin($a, $b) {
 	$a_index=intval($a['index']);
 	$b_index=intval($b['index']);
+	
 	if ($a_index == $b_index) {
-		return strcmp(strtoupper($a['plugin_name']), strtoupper($b['plugin_name']));
+		if(strcmp(strtoupper($a['plugin_name']),strtoupper($b['plugin_name']))==0) return strcmp(strtoupper($a['content']), strtoupper($b['content']));
+		else 
+			return strcmp(strtoupper($a['plugin_name']), strtoupper($b['plugin_name']));
 	}
 	return ($a_index < $b_index) ? -1 : 1;
 }
@@ -119,6 +122,7 @@ function sort_plugins($hostpath, $plugins, $filters) {
 		}
 		$i++;
 	}
+	
 	usort($plugins_ordered,'cmp_plugin');
 	return $plugins_ordered;
 }
