@@ -259,7 +259,7 @@ if (!empty($allDatadir)) {
 /* VMHOST LibVirt */
 $vmlist = array();
 foreach($allDatadir as $datadir){
-	$vmlist=array_merge($vmlist,preg_find('#^'.$cur_server->server_name.':#', $datadir.'/', PREG_FIND_DIRMATCH|PREG_FIND_SORTBASENAME));
+	$vmlist=array_merge($vmlist,glob($datadir.'/'.$cur_server->server_name.':*'));
 }
 
 if (!empty($vmlist)) {
