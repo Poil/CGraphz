@@ -11,10 +11,10 @@
 		});
 	</script>
 	<form class="navbar-form navbar-left" role="search" style="margin-top : 0px;">
-        <div class="form-group" id="divSelectProject">
+        <div class="form-group">
 			<p style="color: #ffffff; background-color: transparent; text-decoration: none; margin-top : 15px;">Projets : </p>
         </div>
-		<div class="form-group">
+		<div class="form-group" id="divSelectProject">
 			<select id="selectProject">';
 
 	//Si on est un user alors on affiche les projets contenu dans la session.
