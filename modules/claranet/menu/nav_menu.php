@@ -57,7 +57,6 @@
 ?>
 		</select>
 	</div>
-
 	<div style="width : 10px; height : 5px; display : inline-block;">
         <!-- Permet de mettre un espace horizontal ( width ) sur grand ecran et un epsace vertical ( height ) en responsive !-->
     </div>	
@@ -65,6 +64,80 @@
 	<div id="f_form_find_server" class="form-group">
 		<input type="text" name="f_find_server" class="form-control" placeholder="<?php echo SEARCH ?>" autocomplete="off" style="margin-top : 8px;">
 	</div>
+	
+	<?php
+			//Si l'utilisateur n'est pas un user alors on affiche la checkbox de vue client.
+			$connSQL=new DB();
+			
+			if(isset($_SESSION['hierarchy'])){
+				$prjs=array();
+			
+				foreach(json_decode($_SESSION['hierarchy'],true) as $prj){
+					$prjs[]=$prj['id'];
+				}
+				
+				if(!empty($prjs)){
+					$requeteView="SELECT au.id_auth_user, v.name_view
+							FROM project_view as pv
+							INNER JOIN view as v
+								ON pv.id_view=v.id_view
+							INNER JOIN auth_user as au
+								ON au.id_auth_user=v.id_auth_user
+							WHERE id_project in (".implode(",",$prjs).");";
+					
+					$views=$connSQL->query($requeteView);
+					
+					if(!empty($views)){
+						// On recupère l'id du user guest
+						$requeteGuest='SELECT id_auth_user
+									FROM auth_user
+									WHERE user="guest"
+									LIMIT 1;';
+						
+						$res=$connSQL->query($requeteGuest);
+						// On affiche l'option de vue par defaut
+						if(isset($res[0])){
+							$guest=$res[0];
+							echo "
+							<div style='width : 10px; height : 5px; display : inline-block;'>
+								<!-- Permet de mettre un espace horizontal ( width ) sur grand ecran et un epsace vertical ( height ) en responsive !-->
+							</div>
+							<div class='form-group'>
+								<p style='color: #ffffff; background-color: transparent; text-decoration: none; margin-top:15px;'>Vue : </p>
+							</div>
+							<div class='form-group'>  
+								<select id='selectView'>
+									<option value='".$guest->id_auth_user."'>Defaut</otpion>";
+							
+							foreach($views as $index => $view){
+								$isCurrentView=false;
+								
+								// Si il n'y a pas de filtre la vue courant est la première du user
+								if(!isset($_SESSION['filtre']) && $index==0){
+									$_SESSION["S_ID_USER"]=$view->id_auth_user;
+									$isCurrentView=true;
+								// Si il y a un filtre alors la vue courante est celle du filtre
+								}else if(isset($_SESSION['filtre']) && ($view->id_auth_user==$_SESSION['filtre'])){
+									$_SESSION["S_ID_USER"]=$_SESSION['filtre'];
+									$isCurrentView=true;
+								}
+										
+								echo '<option '.(($isCurrentView)? 'selected':'').' value="'.$view->id_auth_user.'">'.$view->name_view.'</option>';
+							}
+							
+							echo "
+								</select>
+							</div>
+							<script type='text/javascript'>
+								$('#selectView').on('change',function(){
+									window.location.href = '".DIR_WEBROOT."/modules/claranet/filtre.php?c='+$(this).val();
+								});
+							</script>";
+						}
+					}
+				}
+			}
+		?>
 </form>
 <script type="text/javascript">
 	//Permet l'autocomplete du search
