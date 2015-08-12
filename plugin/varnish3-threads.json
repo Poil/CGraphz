@@ -14,7 +14,7 @@
 			},
 			"n_wrk_drop": {
 				"name": "N dropped work requests"
-			},
+			}
 			"n_wrk": {
 				"name": "N worker threads"
 			}

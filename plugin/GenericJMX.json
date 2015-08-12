@@ -1,5 +1,5 @@
 {
-	"memory-heap": {
+	"memory": {
 		"title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
 		"vertical": "{{ND}}",
 		"legend": {
@@ -14,13 +14,7 @@
 			},
 			"heap-max": {
 				"name": "Total"
-			}
-        }
-    },
-	"memory-nonheap": {
-		"title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
-		"vertical": "{{ND}}",
-		"legend": {
+			},
 			"nonheap-committed": {
 				"name": "Committed"
 			},
@@ -32,13 +26,7 @@
 			},
 			"nonheap-max": {
 				"name": "Total"
-			}
-       }
-   },
-   "memory": {
-		"title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
-		"vertical": "{{ND}}",
-        "legend": {
+			},
 			"committed": {
 				"name": "Committed"
 			},
