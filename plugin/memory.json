@@ -36,6 +36,12 @@
 				"name": "Active",
 				"color": "ff00ff"
 			},
+			"slab_recl":{
+			    "name": "Slab Reclaimed Memory",
+			},
+			"slab_unrecl":{
+			    "name": "Slab Unreclaimed Memory",
+			},    
 			"wired": {
 				"name": "Wired",
 				"color": "ff0000"
