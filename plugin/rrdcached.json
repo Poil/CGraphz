@@ -1,0 +1,14 @@
+{
+    "counter": {
+        "title": "rrdcached counter on {{HOST}}"
+    },
+    "gauge": {
+        "title": "rrdcached gauge on {{HOST}}"
+    },
+    "operations": {
+        "title": "rrdcached operations on {{HOST}}"
+    },
+    "queue_length": {
+        "title": "rrdcached queue_length on {{HOST}}"
+    }
+}
