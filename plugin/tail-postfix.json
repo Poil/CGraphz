@@ -4,7 +4,7 @@
 		"type": "default",
 		"vertical": "Conn/s",
 		"legend": {
-			"-in-open": {
+			"connection-in-open": {
 				"name": "In Open"
 			},
 			"-in-close": {
