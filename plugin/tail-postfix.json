@@ -91,7 +91,7 @@
 			"delay-trans_time": {
 				"name": "Message transmission time"
 			},
-			"delay-delay": {
+			"delay": {
 				"name": "Total"
 			}
 		}
