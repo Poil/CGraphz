@@ -1,2 +1,95 @@
 {
+	"counter": {
+		"title": "{{PI}} {{TC}} on {{HOST}}",
+		"type": "default",
+		"vertical": "Conn/s",
+		"legend": {
+			"connection-in-open": {
+				"name": "In Open"
+			},
+			"connection-in-close": {
+				"name": "In Close"
+			},
+			"connection-in-lost": {
+				"name": "In Lost"
+			},
+			"connection-in-timeout": {
+				"name": "In Timeout"
+			},
+			"connection-in-TLS-established": {
+				"name": "In TLS Established"
+			},
+			"connection-in-TLS-setup": {
+				"name": "In TLS Setup"
+			},
+			"connection-out-TLS-established": {
+				"name": "Out TLS Established"
+			},
+			"connection-out-TLS-setup": {
+				"name": "Out TLS Setup"
+			},
+			"rejected": {
+				"name": "Rejected"
+			},
+			"rejected-host_not_found": {
+				"name": "Host not found"
+			},
+			"rejected-no_dns_entry": {
+				"name": "No DNS Entry"
+			},
+			"rejected-spam_or_forged": {
+				"name": "Spam or Forged"
+			},
+			"status-bounced": {
+				"name": "Bounced"
+			},
+			"status-deferred": {
+				"name": "Deferred"
+			},
+			"status-forwarded": {
+				"name": "Forwarded"
+			},
+			"status-reject": {
+				"name": "Reject"
+			},
+			"status-sent": {
+				"name": "Sent"
+			},
+			"status-softbounce": {
+				"name": "Soft Bounce"
+			}
+		}
+	},
+	"gauge": {
+		"title": "{{PI}} {{TC}} on {{HOST}}",
+		"type": "stackedtotal",
+		"vertical": "ms",
+		"legend": {
+			"delay-before_queue_mgr": {
+				"name": "Time before queue manager"
+			},
+			"delay-in_queue_mgr": {
+				"name": "Time in queue manager"
+			},
+			"delay-setup_time": {
+				"name": "Conn setup (DNS HELO TLS)"
+			},
+			"delay-trans_time": {
+				"name": "Message transmission time"
+			},
+			"delay": {
+				"name": "Total"
+			}
+		}
+	},
+	"ipt_bytes": {
+		"title": "{{PI}} message size on {{HOST}}",
+		"type": "stack",
+		"vertical": "Bytes",
+		"legend": {
+			"size": {
+				"name": "Size"
+			}
+		}
+	}
 }
