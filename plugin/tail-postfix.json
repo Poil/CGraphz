@@ -1,80 +1,94 @@
 {
-	"counter": {
+	"counter-connection": {
 		"title": "{{PI}} {{TC}} on {{HOST}}",
 		"type": "default",
 		"vertical": "Conn/s",
 		"legend": {
-			"connection-in-open": {
+			"in-open": {
 				"name": "In Open"
 			},
-			"connection-in-close": {
+			"in-close": {
 				"name": "In Close"
 			},
-			"connection-in-lost": {
+			"in-lost": {
 				"name": "In Lost"
 			},
-			"connection-in-timeout": {
+			"in-timeout": {
 				"name": "In Timeout"
 			},
-			"connection-in-TLS-established": {
+			"in-TLS-established": {
 				"name": "In TLS Established"
 			},
-			"connection-in-TLS-setup": {
+			"in-TLS-setup": {
 				"name": "In TLS Setup"
 			},
-			"connection-out-TLS-established": {
+			"out-TLS-established": {
 				"name": "Out TLS Established"
 			},
-			"connection-out-TLS-setup": {
+			"out-TLS-setup": {
 				"name": "Out TLS Setup"
-			},
+			}
+		}
+	},
+	"counter-rejected": {
+		"title": "{{PI}} {{TC}} on {{HOST}}",
+		"type": "default",
+		"vertical": "Conn/s",
+		"legend": {
 			"rejected": {
 				"name": "Rejected"
 			},
-			"rejected-host_not_found": {
+			"host_not_found": {
 				"name": "Host not found"
 			},
-			"rejected-no_dns_entry": {
+			"no_dns_entry": {
 				"name": "No DNS Entry"
 			},
-			"rejected-spam_or_forged": {
+			"spam_or_forged": {
 				"name": "Spam or Forged"
-			},
-			"status-bounced": {
+			}
+		}
+	},
+	"counter-status": {
+		"title": "{{PI}} {{TC}} on {{HOST}}",
+		"type": "default",
+		"vertical": "Conn/s",
+		"legend": {
+			"bounced": {
 				"name": "Bounced"
 			},
-			"status-deferred": {
+			"deferred": {
 				"name": "Deferred"
 			},
-			"status-forwarded": {
+			"forwarded": {
 				"name": "Forwarded"
 			},
-			"status-reject": {
+			"reject": {
 				"name": "Reject"
 			},
-			"status-sent": {
+			"sent": {
 				"name": "Sent"
 			},
-			"status-softbounce": {
+			"softbounce": {
 				"name": "Soft Bounce"
 			}
 		}
 	},
-	"gauge": {
+	"gauge-delay": {
 		"title": "{{PI}} {{TC}} on {{HOST}}",
 		"type": "stackedtotal",
 		"vertical": "ms",
 		"legend": {
-			"delay-before_queue_mgr": {
+			"before_queue_mgr": {
 				"name": "Time before queue manager"
 			},
-			"delay-in_queue_mgr": {
+			"in_queue_mgr": {
 				"name": "Time in queue manager"
 			},
-			"delay-setup_time": {
+			"setup_time": {
 				"name": "Conn setup (DNS HELO TLS)"
 			},
-			"delay-trans_time": {
+			"trans_time": {
 				"name": "Message transmission time"
 			},
 			"delay": {
