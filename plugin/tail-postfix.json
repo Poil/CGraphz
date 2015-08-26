@@ -7,25 +7,25 @@
 			"connection-in-open": {
 				"name": "In Open"
 			},
-			"-in-close": {
+			"connection-in-close": {
 				"name": "In Close"
 			},
-			"-in-lost": {
+			"connection-in-lost": {
 				"name": "In Lost"
 			},
-			"-in-timeout": {
+			"connection-in-timeout": {
 				"name": "In Timeout"
 			},
-			"-in-TLS-established": {
+			"connection-in-TLS-established": {
 				"name": "In TLS Established"
 			},
-			"-in-TLS-setup": {
+			"connection-in-TLS-setup": {
 				"name": "In TLS Setup"
 			},
-			"-out-TLS-established": {
+			"connection-out-TLS-established": {
 				"name": "Out TLS Established"
 			},
-			"-out-TLS-setup": {
+			"connection-out-TLS-setup": {
 				"name": "Out TLS Setup"
 			}
 		}
@@ -38,13 +38,13 @@
 			"rejected": {
 				"name": "Rejected"
 			},
-			"-host_not_found": {
+			"rejected-host_not_found": {
 				"name": "Host not found"
 			},
-			"-no_dns_entry": {
+			"rejected-no_dns_entry": {
 				"name": "No DNS Entry"
 			},
-			"-spam_or_forged": {
+			"rejected-spam_or_forged": {
 				"name": "Spam or Forged"
 			}
 		}
@@ -54,22 +54,22 @@
 		"type": "default",
 		"vertical": "Conn/s",
 		"legend": {
-			"-bounced": {
+			"status-bounced": {
 				"name": "Bounced"
 			},
-			"-deferred": {
+			"status-deferred": {
 				"name": "Deferred"
 			},
-			"-forwarded": {
+			"status-forwarded": {
 				"name": "Forwarded"
 			},
-			"-reject": {
+			"status-reject": {
 				"name": "Reject"
 			},
-			"-sent": {
+			"status-sent": {
 				"name": "Sent"
 			},
-			"-softbounce": {
+			"status-softbounce": {
 				"name": "Soft Bounce"
 			}
 		}
@@ -79,19 +79,19 @@
 		"type": "stackedtotal",
 		"vertical": "ms",
 		"legend": {
-			"-before_queue_mgr": {
+			"delay-before_queue_mgr": {
 				"name": "Time before queue manager"
 			},
-			"-in_queue_mgr": {
+			"delay-in_queue_mgr": {
 				"name": "Time in queue manager"
 			},
-			"-setup_time": {
+			"delay-setup_time": {
 				"name": "Conn setup (DNS HELO TLS)"
 			},
-			"-trans_time": {
+			"delay-trans_time": {
 				"name": "Message transmission time"
 			},
-			"-delay": {
+			"delay-delay": {
 				"name": "Total"
 			}
 		}
