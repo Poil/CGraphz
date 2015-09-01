@@ -1,0 +1,32 @@
+#bs-navbar-collapse-dashboard, #bs-navbar-collapse-dashboard *,
+#project_plugin, #project_plugin *,
+#left_menu, #left_menu *,
+.container-fluid, .container-fluid * {
+	display: none;
+}
+
+#dashboard {
+	position: absolute;
+	top: 0;
+}
+
+.imggraph {
+    vertical-align:top;
+    cursor: url(../img/zoom.png), pointer;
+}
+
+figure {
+	display: inline-block;
+	border: 2px solid #CCCCCC;
+	background: #F3F3F3;
+	margin: 2px;
+}
+
+figure figcaption  {
+	text-align:center;
+	font-family: "DejaVu Sans Mono", Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+	font-weight:lighter;
+	font-size: 0.9em;
+	overflow:hidden;
+	white-space: nowrap;
+}
