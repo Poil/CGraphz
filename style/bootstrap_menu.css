@@ -107,6 +107,14 @@ div#left_menu_show a {
   color:black;
 }
 
+div#left_menu_graph_show {
+  position:fixed;
+  margin-left:18pt;
+  min-width: 120pt;
+  display:none;
+  text-align:left;
+}
+
 div#jquery-live-search {
   padding-left:5pt;
   padding-right:5pt;

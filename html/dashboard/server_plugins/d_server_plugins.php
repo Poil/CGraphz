@@ -1,11 +1,12 @@
 <?php
 
 $f_id_config_project=filter_input(INPUT_GET,'f_id_config_project',FILTER_SANITIZE_NUMBER_INT);
-$f_x=filter_input(INPUT_GET,'x',FILTER_SANITIZE_NUMBER_INT);
-$f_y=filter_input(INPUT_GET,'y',FILTER_SANITIZE_NUMBER_INT);
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
-$x = (!empty($f_x) && $f_x != 0) ? $f_x : $CONFIG['width'];
-$y = (!empty($f_y) && $f_y != 0) ? $f_y : $CONFIG['height'];
+
+if (isset($_POST['f_x'])) { $_SESSION['graph_width']=filter_input(INPUT_POST,'f_x',FILTER_SANITIZE_NUMBER_INT); }
+if (isset($_POST['f_y'])) { $_SESSION['graph_height']=filter_input(INPUT_POST,'f_y',FILTER_SANITIZE_NUMBER_INT); }
+$x = (!empty($_SESSION['graph_width']) && $_SESSION['graph_width'] != 0) ? $_SESSION['graph_width'] : $CONFIG['width'];
+$y = (!empty($_SESSION['graph_height']) && $_SESSION['graph_height'] != 0) ? $_SESSION['graph_height'] : $CONFIG['height'];
 
 $graph_size = "&amp;x=$x&amp;y=$y";
 
