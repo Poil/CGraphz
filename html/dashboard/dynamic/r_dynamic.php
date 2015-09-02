@@ -233,11 +233,17 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   if ($old_p!=$plugin['p']) {
                      echo '<h2>'.$plugin['p'].'</h2>';
                   }
-                  if ($old_pi!=$plugin['pi']) {
-                     echo '<h3>'.$plugin['pi'].'</h3>';
-                  }
-                  if ($old_t!=$plugin['t']) {
-                     echo '<h4>'.$plugin['t'].'</h4>';
+                  if (empty($plugin['pi'])) {
+                      if ($old_t!=$plugin['t']) {
+                         echo '<h3>'.$plugin['t'].'</h3>';
+                      }
+                  } else {
+                      if ($old_pi!=$plugin['pi']) {
+                         echo '<h3>'.$plugin['pi'].'</h3>';
+                      }
+                      if ($old_t!=$plugin['t']) {
+                         echo '<h4>'.$plugin['t'].'</h4>';
+                      }
                   }
                }
 
