@@ -1,5 +1,5 @@
 <?php
-echo '<h1>'.MANAGE_MODULES.'</h1>';
+echo '<h1>'.MANAGE_PLUGIN_FILTERS.'</h1>';
 include(DIR_FSROOT.'/html/config/plugin_filter/w_plugin_filter.php');
 include(DIR_FSROOT.'/html/config/plugin_filter/e_plugin_filter.php');
 include(DIR_FSROOT.'/html/config/plugin_filter/r_plugin_filter_wh_id.php');
