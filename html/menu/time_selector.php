@@ -24,6 +24,39 @@ if (isset($time_start) && isset($time_end)) {
 } else {
 	$zoom='onclick="Show_Popup($(\'.imggraph:first\').attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false"';
 }
+
+/* form graph size selector */
+if (isset($_POST['f_x'])) { $_SESSION['graph_width']=filter_input(INPUT_POST,'f_x',FILTER_SANITIZE_NUMBER_INT); }
+if (isset($_POST['f_y'])) { $_SESSION['graph_height']=filter_input(INPUT_POST,'f_y',FILTER_SANITIZE_NUMBER_INT); }
+$x = (!empty($_SESSION['graph_width']) && $_SESSION['graph_width'] != 0) ? $_SESSION['graph_width'] : $CONFIG['width'];
+$y = (!empty($_SESSION['graph_height']) && $_SESSION['graph_height'] != 0) ? $_SESSION['graph_height'] : $CONFIG['height'];
+
+$form = new Form('horizontal');
+$form->fieldset(true);
+
+$form->add('html', '<legend>'.GRAPH_SIZE_SELECTOR.'</legend>');
+$form->add('text', 'f_x')
+     ->label(WIDTH)
+     ->labelGrid('col-xs-3 col-md-4')
+     ->inputGrid('col-xs-10 col-md-8')
+     ->value($x)
+     ->placeholder(WIDTH);
+
+$form->add('text', 'f_y')
+     ->label(HEIGHT)
+     ->labelGrid('col-xs-3 col-md-4')
+     ->inputGrid('col-xs-10 col-md-8')
+     ->value($y)
+     ->placeholder(HEIGHT);
+ 
+$form->add('submit', 'f_submit_graph_size')
+     ->iType('primary')
+     ->labelGrid('col-xs-offset-3 col-md-offset-4')
+     ->inputGrid('col-xs-10 col-md-8')
+     ->value(SUBMIT);
+
+$form->bindValues($_POST);
+
 echo '
 <div id="left_menu">
 	<div id="left_menu_show" class="modal-content">
@@ -41,11 +74,14 @@ echo '
 			<li><a href="#" '.$zoom.'>'.CUSTOM.'</a></li>
 		</ul>
 	</div>
+	<div id="left_menu_graph_show" class="modal-content">'.$form.'</div>
 	<img src="img/go-top.png" style="cursor:pointer" onclick="$(\'html, body\').animate({ scrollTop: 0 }, \'slow\');"  title="',GOTO_TOP_OF_PAGE,'" alt="Top" />
 	<br />
 	<img src="img/refresh.png" style="cursor:pointer" onclick="refresh_graph(\'dashboard\',\'\',\'\',\'\'); return false" title="',REFRESH,'" alt="Refresh" />
 	<br />
 	<img src="img/clock.png" style="cursor:pointer" onclick="$(\'#left_menu_show\').toggle(\'400\'); return false;" title="',TIME_SELECTOR,'" alt="Time Selector" />
+	<br />
+	<img src="img/config.png" style="cursor:pointer" onclick="$(\'#left_menu_graph_show\').toggle(\'400\'); return false;" title="',GRAPH_SIZE_SELECTOR,'" alt="Graph Size Selector" />
 	<br />
 	'.$urlrefresh.'
 </div>';

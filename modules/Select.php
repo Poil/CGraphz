@@ -28,7 +28,7 @@ class Select extends Field{
 	}
 
         $field = '<div class="form-group">';
-
+        if (!isset($this->labelclass)) $this->labelclass=''; 
         switch($this->formtype) {
             case 'horizontal':
                 $this->labelclass.='control-label';

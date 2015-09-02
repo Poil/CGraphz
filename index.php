@@ -35,6 +35,8 @@ else { header("Content-type: text/html"); }
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.custom.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-bootstrap/css/custom-theme/jquery-ui-1.10.3.theme.css" />
 
+   <link rel="stylesheet" type="text/css" media="print" href="<?php echo DIR_WEBROOT; ?>/style/print.css" />
+
    <?php
    // Javascript and css of admin
    if (GET('module') != 'dashboard') {

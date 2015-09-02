@@ -26,7 +26,7 @@
         ->inputGrid('col-xs-6 col-md-4')
         ->value(SUBMIT);
  
-   $form->bindValues($_POST); // Ici on lie automatiquement un tableau de variable ou une entité de la couche modèle
+   $form->bindValues($_POST);
    echo $form->bindForm();
 ?>
   </div>
