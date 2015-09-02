@@ -6,6 +6,7 @@ class InputText extends Field{
     
     public function buildField(){
         $field = '<div class="form-group">'."\n";
+        if (!isset($this->labelclass)) $this->labelclass='';
 
         switch($this->formtype) {
             case 'horizontal':

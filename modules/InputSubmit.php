@@ -3,6 +3,7 @@ class InputSubmit extends Field{
     private $itype = 'default';
     
     public function buildField(){
+        if (!isset($this->btnclass)) $this->btnclass='';
         switch($this->itype) {
             case 'add':
                 $this->btnclass.='btn-success';
