@@ -1,7 +1,7 @@
 <?php
 /************************* CGraphz **********************/
 # Cgraphz version
-define('CGRAPHZ_VERSION','2.44');
+define('CGRAPHZ_VERSION','2.46');
 
 # Collectd
 define('COLLECTD_DEFAULT_VERSION','collectd_5');
