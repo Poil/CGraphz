@@ -3,6 +3,7 @@ class InputSubmit extends Field{
     private $itype = 'default';
     
     public function buildField(){
+        if (!isset($this->btnclass)) $this->btnclass='';
         switch($this->itype) {
             case 'add':
                 $this->btnclass.='btn-success';
@@ -29,7 +30,7 @@ class InputSubmit extends Field{
             break;
         }
         
-        $field.= '<button name="'.$this->name.'" id="'.$this->name.'" type="submit" class="btn '.$this->btnclass.'">'.$this->value.'</button>'."\n";
+        $field.= '<button name="'.$this->name.'" id="'.$this->name.'" type="submit" value="'.$this->value.'" class="btn '.$this->btnclass.'">'.$this->value.'</button>'."\n";
 
         switch($this->formtype) {
             case 'horizontal':

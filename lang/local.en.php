@@ -46,6 +46,7 @@ define('STOP_AUTO_REFRESH','Stop auto refresh');
 define('ENABLE_AUTO_REFRESH','Active auto refresh');
 define('REFRESH','Refresh');
 define('TIME_SELECTOR','Time selector');
+define('GRAPH_SIZE_SELECTOR','Graph size selector');
 define('SEARCH','Search');
 define('DAY','day');
 define('DAYS','days');
@@ -102,4 +103,6 @@ define('NO_ACCESS','Access denied, please contact your administrator');
 define('NO_GRAPH','Sorry there is no graph to display for your query');
 define('FIND','Find');
 define('APPLY','Apply');
+define('WIDTH','Width');
+define('HEIGHT','Height');
 

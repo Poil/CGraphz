@@ -1,6 +1,14 @@
 <?php
+
 $f_id_config_dynamic_dashboard=filter_input(INPUT_GET,'f_id_config_dynamic_dashboard',FILTER_SANITIZE_NUMBER_INT);
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
+
+if (isset($_POST['f_x'])) { $_SESSION['graph_width']=filter_input(INPUT_POST,'f_x',FILTER_SANITIZE_NUMBER_INT); }
+if (isset($_POST['f_y'])) { $_SESSION['graph_height']=filter_input(INPUT_POST,'f_y',FILTER_SANITIZE_NUMBER_INT); }
+$x = (!empty($_SESSION['graph_width']) && $_SESSION['graph_width'] != 0) ? $_SESSION['graph_width'] : $CONFIG['width'];
+$y = (!empty($_SESSION['graph_height']) && $_SESSION['graph_height'] != 0) ? $_SESSION['graph_height'] : $CONFIG['height'];
+
+$graph_size = "&amp;x=$x&amp;y=$y";
 
 if (isset($_GET['f_id_config_dynamic_dashboard'])) {
    include(DIR_FSROOT.'/html/menu/time_selector.php');
@@ -10,10 +18,10 @@ echo '<div id="dashboard">';
 
 if ($_GET['f_id_config_dynamic_dashboard']) {
 
-   
-   $lib='SELECT 
-         cddg.* 
-      FROM 
+
+   $lib='SELECT
+         cddg.*
+      FROM
          config_dynamic_dashboard cdd
       LEFT JOIN config_dynamic_dashboard_group cddg
          ON cdd.id_config_dynamic_dashboard=cddg.id_config_dynamic_dashboard
@@ -26,12 +34,12 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
       WHERE aug.id_auth_user=:s_id_user
       AND cdd.id_config_dynamic_dashboard=:f_id_config_dynamic_dashboard
       ORDER BY dash_ordering';
-   
+
    $connSQL=new DB();
    $connSQL->bind('s_id_user',$s_id_user);
    $connSQL->bind('f_id_config_dynamic_dashboard',$f_id_config_dynamic_dashboard);
    $cur_dashboard=$connSQL->row($lib);
-   
+
    if ($cur_dashboard->id_auth_group) {
       $lib='SELECT
             cddc.*
@@ -40,29 +48,29 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
          WHERE
             cddc.id_config_dynamic_dashboard=:f_id_config_dynamic_dashboard
          ORDER BY dash_ordering';
-            
+
       $connSQL=new DB();
       $connSQL->bind('f_id_config_dynamic_dashboard',$f_id_config_dynamic_dashboard);
       $all_content=$connSQL->query($lib);
       $cpt_content=count($all_content);
-         
-      
+
+
       for ($i=0; $i<$cpt_content; $i++) {
          $cpt_p=0;
-         
+
          $lib='
-            SELECT 
-               cs.id_config_server, 
+            SELECT
+               cs.id_config_server,
                cs.server_name,
                COALESCE(cs.collectd_version,"'.COLLECTD_DEFAULT_VERSION.'") as collectd_version
             FROM config_server cs
-               LEFT JOIN config_server_project csp 
+               LEFT JOIN config_server_project csp
                   ON cs.id_config_server=csp.id_config_server
-               LEFT JOIN perm_project_group ppg 
+               LEFT JOIN perm_project_group ppg
                   ON ppg.id_config_project=csp.id_config_project
-               LEFT JOIN auth_group ag 
+               LEFT JOIN auth_group ag
                   ON ag.id_auth_group=ppg.id_auth_group
-               LEFT JOIN auth_user_group aug 
+               LEFT JOIN auth_user_group aug
                   ON aug.id_auth_group=ag.id_auth_group
             WHERE aug.id_auth_user=:s_id_user
                AND cs.server_name REGEXP :regex_srv
@@ -73,8 +81,8 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
          $connSQL->bind('s_id_user',$s_id_user);
          $connSQL->bind('regex_srv',$all_content[$i]->regex_srv);
          $all_server=$connSQL->query($lib);
-         $cpt_server=count($all_server);         
-         
+         $cpt_server=count($all_server);
+
          if (isset($time_start) && isset($time_end)) {
              $zoom='onclick="Show_Popup($(this).attr(\'src\').split(\'?\')[1],\'\',\''.$time_start.'\',\''.$time_end.'\')"';
          } else {
@@ -84,7 +92,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
          for ($j=0; $j<$cpt_server; $j++) {
             $allDatadir=getAllDatadir();
             foreach($allDatadir as $key => $datadir){
-            	if(!is_dir($datadir.'/'.$all_server[$j]->server_name.'/')) unset($allDatadir[$key]);    
+                if(!is_dir($datadir.'/'.$all_server[$j]->server_name.'/')) unset($allDatadir[$key]);
             }
             if (!empty($allDatadir)) {
                $myregex='#^(('.implode('|',$allDatadir).')/'.$all_server[$j]->server_name.'/)('.$all_content[$i]->regex_p_filter.')(?:\-('.$all_content[$i]->regex_pi_filter.'))?/('.$all_content[$i]->regex_t_filter.')(?:\-('.$all_content[$i]->regex_ti_filter.'))?\.rrd#';
@@ -94,14 +102,14 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                     $tplugins = preg_find($myregex, $datadir.'/'.$all_server[$j]->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
                     $plugins=array_merge($plugins, $tplugins);
                 }
-               
+
                foreach ($plugins as $plugin) {
                   $plugin_array[$cpt_p]['servername']=$all_server[$j]->server_name;
                   $plugin_array[$cpt_p]['collectd_version']=$all_server[$j]->collectd_version;
 
                   preg_match($myregex, $plugin, $matches);
-                  $plugin_datadir = getDatadirEntry($matches[1]);
-                  
+                  $plugin_array[$cpt_p]['datadir'] = getDatadirEntry($matches[1]);
+
                   if (isset($matches[3])) {
                      $plugin_array[$cpt_p]['p']=$matches[3];
                   } else {
@@ -121,7 +129,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   } else {
                      $plugin_array[$cpt_p]['pc']=null;
                      $plugin_array[$cpt_p]['pi']=null;
-                  }                  
+                  }
                   if (isset($matches[5])) {
                      $plugin_array[$cpt_p]['t']=$matches[5];
                   } else {
@@ -134,12 +142,12 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                         $tmp=explode('-',$plugin_array[$cpt_p]['ti']);
                         $plugin_array[$cpt_p]['tc']=$tmp[0];
                         $ti=null;
-                     } 
+                     }
                   } else {
                      $plugin_array[$cpt_p]['tc']=null;
                      $plugin_array[$cpt_p]['ti']=null;
                   }
-                  
+
                   $cpt_p++;
                }
             }
@@ -170,12 +178,12 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
          $old_pi=null;
          $old_p=null;
          $old_servername=null;
-         
+
          //$final_array=array_merge_recursive($plugin_array, $final_array);
          foreach ($plugin_array as $plugin) {
             if (! isset(${$plugin['servername'].$plugin['p'].$plugin['pc'].$plugin['pi'].$plugin['t'].$plugin['tc'].$plugin['ti']}) ) {
                ${$plugin['servername'].$plugin['p'].$plugin['pc'].$plugin['pi'].$plugin['t'].$plugin['tc'].$plugin['ti']}=true;
-               
+
                if ($all_content[$i]->rrd_ordering=='S') {
                   if ($old_servername!=$plugin['servername']) {
                      echo '<h1>'.$plugin['servername'].'</h1>';
@@ -234,7 +242,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                }
 
                if ($CONFIG['no_break'] == true) { echo '<span style="white-space:nowrap">'; }
-               if (!preg_match('/^(df|interface|oracle|snmp)$/', $plugin['p']) || 
+               if (!preg_match('/^(df|interface|oracle|snmp)$/', $plugin['p']) ||
                   (((preg_replace('/[^0-9\.]/','',$plugin['collectd_version']) >= 5)
                   && !preg_match('/^(oracle|snmp)$/', $plugin['p']) && $plugin['t']!='df'))
                   || ($plugin['p'] == 'snmp' && $plugin['t'] == 'memory')
@@ -250,16 +258,16 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                          $_GET['t'] = $plugin['t'];
                          $_GET['tc'] = $plugin['tc'];
                          $_GET['ti'] = $plugin['ti'];
-                           
+
                          chdir(DIR_FSROOT);
                          include DIR_FSROOT.'/plugin/'.$plugin['p'].'.php';
                       } else {
                          $graph_title=gen_title($plugin['servername'],$plugin['p'],$plugin['pc'],$plugin['pi'],$plugin['t'],$plugin['tc'],$plugin['ti']);
                          if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
                          if ($time_range!=null) {
-                            echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.'" />'."\n";
+                            echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.$graph_size.'" />'."\n";
                          } else {
-                            echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
+                            echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.$graph_size.'" />'."\n";
                          }
                          if(GRAPH_TITLE=='text') { echo '</figure>'; }
                       }
@@ -273,22 +281,22 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                      $_GET['t'] = $plugin['t'];
                      $_GET['tc'] = $plugin['tc'];
                      $_GET['ti'] = $plugin['ti'];
-                        
+
                      chdir(DIR_FSROOT);
                      include DIR_FSROOT.'/plugin/'.$plugin['p'].'.php';
                   } else {
                      $graph_title=gen_title($plugin['servername'],$plugin['p'],$plugin['pc'],$plugin['pi'],$plugin['t'],$plugin['tc'],$plugin['ti']);
                      if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
                      if ($time_range!=null) {
-                        echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.'" />'."\n";
+                        echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.$graph_size.'" />'."\n";
                      } else {
-                        echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
+                        echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.$graph_size.'" />'."\n";
                      }
                      if(GRAPH_TITLE=='text') { echo '</figure>'; }
                   }
                }
                if ($CONFIG['no_break'] == true) { echo '</span>'; }
-        
+
                $old_t=$plugin['t'];
                $old_tc=$plugin['tc'];
                $old_ti=$plugin['ti'];
