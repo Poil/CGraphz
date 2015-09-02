@@ -66,6 +66,7 @@ define('MANAGE_GROUPS','Gérer les groupes');
 define('MANAGE_SERVERS','Gérer les serveurs');
 define('MANAGE_PROJECTS','Gérer les projets');
 define('MANAGE_PLUGINS','Gérer les plugins');
+define('MANAGE_PLUGIN_FILTERS','Gérer les filtres de plugin');
 define('MANAGE_ROLES','Gérer les rôles');
 define('MANAGE_DYNAMIC_DASHBOARDS','Gérer les TdBs dynamiques');
 define('MANAGE_MYGROUP','Gérer mes groupes');
