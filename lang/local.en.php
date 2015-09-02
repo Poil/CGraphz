@@ -43,7 +43,7 @@ define('FILTER_SRV_ALREADY_DEF_ENV','Filter servers that are already map to an e
 define('FILTER_SRV_ALREADY_DEF_ROLE','Filter servers that are already map to a role');
 define('FILTER_SRV_ALREADY_DEF_PROJECT','Filter servers that are already map to a project');
 define('STOP_AUTO_REFRESH','Stop auto refresh');
-define('ENABLE_AUTO_REFRESH','Active auto refresh');
+define('ENABLE_AUTO_REFRESH','Enable auto refresh');
 define('REFRESH','Refresh');
 define('TIME_SELECTOR','Time selector');
 define('GRAPH_SIZE_SELECTOR','Graph size selector');
