@@ -1,6 +1,14 @@
 <?php
+
 $f_id_config_dynamic_dashboard=filter_input(INPUT_GET,'f_id_config_dynamic_dashboard',FILTER_SANITIZE_NUMBER_INT);
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
+
+if (isset($_POST['f_x'])) { $_SESSION['graph_width']=filter_input(INPUT_POST,'f_x',FILTER_SANITIZE_NUMBER_INT); }
+if (isset($_POST['f_y'])) { $_SESSION['graph_height']=filter_input(INPUT_POST,'f_y',FILTER_SANITIZE_NUMBER_INT); }
+$x = (!empty($_SESSION['graph_width']) && $_SESSION['graph_width'] != 0) ? $_SESSION['graph_width'] : $CONFIG['width'];
+$y = (!empty($_SESSION['graph_height']) && $_SESSION['graph_height'] != 0) ? $_SESSION['graph_height'] : $CONFIG['height'];
+
+$graph_size = "&amp;x=$x&amp;y=$y";
 
 if (isset($_GET['f_id_config_dynamic_dashboard'])) {
    include(DIR_FSROOT.'/html/menu/time_selector.php');
@@ -225,11 +233,17 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   if ($old_p!=$plugin['p']) {
                      echo '<h2>'.$plugin['p'].'</h2>';
                   }
-                  if ($old_pi!=$plugin['pi']) {
-                     echo '<h3>'.$plugin['pi'].'</h3>';
-                  }
-                  if ($old_t!=$plugin['t']) {
-                     echo '<h4>'.$plugin['t'].'</h4>';
+                  if (empty($plugin['pi'])) {
+                      if ($old_t!=$plugin['t']) {
+                         echo '<h3>'.$plugin['t'].'</h3>';
+                      }
+                  } else {
+                      if ($old_pi!=$plugin['pi']) {
+                         echo '<h3>'.$plugin['pi'].'</h3>';
+                      }
+                      if ($old_t!=$plugin['t']) {
+                         echo '<h4>'.$plugin['t'].'</h4>';
+                      }
                   }
                }
 
@@ -257,9 +271,9 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                          $graph_title=gen_title($plugin['servername'],$plugin['p'],$plugin['pc'],$plugin['pi'],$plugin['t'],$plugin['tc'],$plugin['ti']);
                          if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
                          if ($time_range!=null) {
-                            echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.'" />'."\n";
+                            echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.$graph_size.'" />'."\n";
                          } else {
-                            echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
+                            echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.$graph_size.'" />'."\n";
                          }
                          if(GRAPH_TITLE=='text') { echo '</figure>'; }
                       }
@@ -280,9 +294,9 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                      $graph_title=gen_title($plugin['servername'],$plugin['p'],$plugin['pc'],$plugin['pi'],$plugin['t'],$plugin['tc'],$plugin['ti']);
                      if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
                      if ($time_range!=null) {
-                        echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.'" />'."\n";
+                        echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_range.$graph_size.'" />'."\n";
                      } else {
-                        echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.'" />'."\n";
+                        echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin['datadir'].'&amp;h='.urlencode($plugin['servername']).'&amp;p='.urlencode($plugin['p']).'&amp;pc='.urlencode($plugin['pc']).'&amp;pi='.urlencode($plugin['pi']).'&amp;t='.urlencode($plugin['t']).'&amp;tc='.urlencode($plugin['tc']).'&amp;ti='.urlencode($plugin['ti']).'&amp;s='.$time_start.'&amp;e='.$time_end.$graph_size.'" />'."\n";
                      }
                      if(GRAPH_TITLE=='text') { echo '</figure>'; }
                   }

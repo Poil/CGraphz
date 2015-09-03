@@ -43,9 +43,10 @@ define('FILTER_SRV_ALREADY_DEF_ENV','Filter servers that are already map to an e
 define('FILTER_SRV_ALREADY_DEF_ROLE','Filter servers that are already map to a role');
 define('FILTER_SRV_ALREADY_DEF_PROJECT','Filter servers that are already map to a project');
 define('STOP_AUTO_REFRESH','Stop auto refresh');
-define('ENABLE_AUTO_REFRESH','Active auto refresh');
+define('ENABLE_AUTO_REFRESH','Enable auto refresh');
 define('REFRESH','Refresh');
 define('TIME_SELECTOR','Time selector');
+define('GRAPH_SIZE_SELECTOR','Graph size selector');
 define('SEARCH','Search');
 define('DAY','day');
 define('DAYS','days');
@@ -64,6 +65,7 @@ define('MANAGE_GROUPS','Manage groups');
 define('MANAGE_SERVERS','Manage servers');
 define('MANAGE_PROJECTS','Manage projects');
 define('MANAGE_PLUGINS','Manage plugins');
+define('MANAGE_PLUGIN_FILTERS','Manage plugin filters');
 define('MANAGE_ROLES','Manage roles');
 define('MANAGE_DYNAMIC_DASHBOARDS','Manage dynamic dashboards');
 define('MANAGE_MYGROUP','Manage my groups');
@@ -102,4 +104,6 @@ define('NO_ACCESS','Access denied, please contact your administrator');
 define('NO_GRAPH','Sorry there is no graph to display for your query');
 define('FIND','Find');
 define('APPLY','Apply');
+define('WIDTH','Width');
+define('HEIGHT','Height');
 

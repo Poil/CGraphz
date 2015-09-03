@@ -1,5 +1,5 @@
 {
-	"counter": {
+	"counter-connection": {
 		"title": "{{PI}} {{TC}} on {{HOST}}",
 		"type": "default",
 		"vertical": "Conn/s",
@@ -27,7 +27,14 @@
 			},
 			"connection-out-TLS-setup": {
 				"name": "Out TLS Setup"
-			},
+			}
+		}
+	},
+	"counter-rejected": {
+		"title": "{{PI}} {{TC}} on {{HOST}}",
+		"type": "default",
+		"vertical": "Conn/s",
+		"legend": {
 			"rejected": {
 				"name": "Rejected"
 			},
@@ -39,7 +46,14 @@
 			},
 			"rejected-spam_or_forged": {
 				"name": "Spam or Forged"
-			},
+			}
+		}
+	},
+	"counter-status": {
+		"title": "{{PI}} {{TC}} on {{HOST}}",
+		"type": "default",
+		"vertical": "Conn/s",
+		"legend": {
 			"status-bounced": {
 				"name": "Bounced"
 			},
@@ -60,7 +74,7 @@
 			}
 		}
 	},
-	"gauge": {
+	"gauge-delay": {
 		"title": "{{PI}} {{TC}} on {{HOST}}",
 		"type": "stackedtotal",
 		"vertical": "ms",
