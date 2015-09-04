@@ -1,36 +1,4 @@
 {
-	"pg_blks": {
-		"title": "PostgreSQL Disk I/O ({{PI}}) on {{HOST}}",
-		"vertical": "Blocks",
-		"type": "stacked",
-		"legend": {
-			"heap_hit": {
-				"name": "Heap hit"
-			},
-			"heap_read": {
-				"name": "Heap read"
-			},
-			"idx_hit": {
-				"name": "Index hit"
-			},
-			"idx_read": {
-				"name": "Index read"
-			},
-			"tidx_hit": {
-				"name": "Toast index hit"
-			},
-			"tidx_read": {
-				"name": "Toast index read"
-			},
-			"toast_hit": {
-				"name": "Toast hit"
-			},
-			"toast_read": {
-				"name": "Toast read"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
 	"pg_db_size": {
 		"title": "PostgreSQL DB size ({{PI}}) on {{HOST}}",
 		"vertical": "Bytes",

@@ -1,0 +1,14 @@
+{
+    "if_octets": {
+        "title": "network if_octets on {{HOST}}"
+    },
+    "if_packets": {
+        "title": "network if_packets on {{HOST}}"
+    },
+    "queue_length": {
+        "title": "network queue_length on {{HOST}}"
+    },
+    "total_values": {
+        "title": "network total_values on {{HOST}}"
+    }
+}

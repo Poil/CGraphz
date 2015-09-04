@@ -5,44 +5,50 @@ $prod=(CGRAPHZ_VERSION=="");
 $file_reporting="./insertion_doublon_reporting.json";
 
 $connSQL=new DB();
-$all_server=$connSQL->query('SELECT * FROM config_server ORDER BY server_name');
-$cpt_server=count($all_server);
+/*$all_server=$connSQL->query('SELECT * FROM config_server ORDER BY server_name');
+$cpt_server=count($all_server); 
+*/
 
-/* Listing des serveurs présent dans le RRD DIR et pas déjà affectés */
-$allDatadir=getAllDatadir();
-$filelist=array();
-foreach($allDatadir as $datadir){
-	$filelist=array_merge(array_values(array_diff(scandir($datadir), array('..', '.', 'lost+found'))),$filelist);
-}
-
+$connSQL->query("DROP TABLE server_list");
 $lib='
-CREATE TEMPORARY TABLE server_list (
-	`server_name` varchar(45) NOT NULL default \'\'
+CREATE TABLE server_list (
+	`server_name` varchar(45) NOT NULL default \'\',
+	`datadir` varchar(45) NOT NULL default \'\'
 )';
 $connSQL->query($lib);
 
+/* Listing des serveurs présent dans le RRD DIR et pas déjà affectés */
+$allDatadir=getAllDatadir();
 
-$find='0';
-$lib= 'INSERT INTO server_list (server_name) VALUES (';  
-$cpt_filelist=count($filelist);
-for($i=0; $i<$cpt_filelist; $i++) {
-	if (strpos($filelist[$i],':')==false ) {
-		if($find=='1')  {
-			$lib.=" ), (";
-		}  
-		$lib.= '\''.$filelist[$i].'\'';
-		$find='1';
+$oneFind='0';
+foreach($allDatadir as $datadir){
+	$filelist=array_values(array_diff(scandir($datadir), array('..', '.', 'lost+found')));
+	
+	$find='0';
+	
+	$lib= 'INSERT INTO server_list (server_name,datadir) VALUES (';
+	$cpt_filelist=count($filelist);
+	for($i=0; $i<$cpt_filelist; $i++) {
+		if (strpos($filelist[$i],':')==false ) {
+			if($find=='1')  {
+				$lib.=', "'.$datadir.'" ), (';
+			}
+			$lib.= '\''.$filelist[$i].'\'';
+			$find='1';
+			$oneFind='1';
+		}
 	}
-}  
-$lib.=' )';
+	$lib.=', "'.$datadir.'")';
+	
+	if ($find=='1') {
+		$connSQL->query($lib);
+	}
+}
 
-if ($find=='1') {
-	$connSQL->query($lib);
-
-
-	$lib="SELECT server_name
+if ($oneFind=='1') {
+	$lib="SELECT DISTINCT server_name
 		  FROM server_list 
-		  GROUP BY server_name
+		  GROUP BY CONCAT(server_name,'##',datadir)
 		  HAVING COUNT(*) > 1";
 	
 	//////////////////////////////////////
@@ -192,20 +198,22 @@ if ($find=='1') {
 	}
 
 
-
-
 	/////////////////////////////////////
 	// Insert
 	$lib = 'INSERT INTO config_server (server_name, server_description) (
-		  SELECT DISTINCT server_name, server_name as server_description
-       		  FROM server_list
-		  WHERE server_name NOT IN (
-                	SELECT server_name FROM config_server
-        	  ) 
-		  GROUP BY server_name
-		  HAVING COUNT(*) <= 1
-		  ORDER BY server_name
-		)';
+  		SELECT DISTINCT server_name, server_name as server_description
+		FROM server_list
+		WHERE server_name not in (
+			SELECT server_name FROM config_server
+		)
+		AND server_name not in (
+			SELECT DISTINCT server_name
+			FROM server_list 
+			GROUP BY CONCAT(server_name,"##",datadir)
+			HAVING COUNT(*) > 1
+		)
+		ORDER BY server_name
+	)';
 	$connSQL->query($lib);
 	
 	/////////////////////////////////////

@@ -87,27 +87,46 @@ function is_blank($value) {
 	return empty($value) && !is_numeric($value);
 }
 
+function cmp_plugin($a, $b) {
+	$a_index=intval($a['index']);
+	$b_index=intval($b['index']);
+	
+	if ($a_index == $b_index) {
+		if(strcmp(strtoupper($a['plugin_name']),strtoupper($b['plugin_name']))==0) return strcmp(strtoupper($a['content']), strtoupper($b['content']));
+		else 
+			return strcmp(strtoupper($a['plugin_name']), strtoupper($b['plugin_name']));
+	}
+	return ($a_index < $b_index) ? -1 : 1;
+}
+
 function sort_plugins($hostpath, $plugins, $filters) {
 	$plugins_ordered = array();
 	$i=0;
+	
 	foreach ($plugins as $plugin) {
+		$p_name="";
 		foreach ($filters as $filter) {
 			$myregex='#^('.$hostpath.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd#';
-			if (preg_match($myregex, $plugin)) {
+			if (preg_match($myregex, $plugin,$output)) {
+				$p_name=$output[3];
 				$plugins_ordered[$i]['index']=$filter->plugin_order;
 				$plugins_ordered[$i]['content']=$plugin;
+				$plugins_ordered[$i]['plugin_name']=$p_name;
 				break;
 			}
 		}
 		if (empty($plugins_ordered[$i]['index'])) {
 			$plugins_ordered[$i]['index']=99999;
 			$plugins_ordered[$i]['content']=$plugin;
+			$plugins_ordered[$i]['plugin_name']=$p_name;
 		}
 		$i++;
 	}
-	asort($plugins_ordered);
+	
+	usort($plugins_ordered,'cmp_plugin');
 	return $plugins_ordered;
 }
+
 
 function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 	global $CONFIG;
@@ -174,39 +193,48 @@ function gen_title($h, $p, $pc, $pi, $t, $tc, $ti) {
 				$log->write('CGP Error: invalid json in plugin/'.$p.'.json');
 		} else {
 		        $log->write(sprintf('CGRAPHZ ERROR: plugin "%s" is not available', $p));
-				echo 'Error plugin not available';
 		}
 	}
-	if (isset($plugin_json[$t]['title'])) {
-		$rrd_title = $plugin_json[$t]['title'];
-		$replacements = array(
-			'{{PI}}' => $pi,
-			'{{PC}}' => $pc,
-			'{{TI}}' => $ti,
-			'{{TC}}' => $tc,
-			'{{HOST}}' => $h
-		);
-		$rrd_title = str_replace(array_keys($replacements), array_values($replacements), $rrd_title);
-	} else if ($plugin_json[$t]['type']=='iowpm') {
-		$ItemName=file_get_contents(getRRDPath($p).'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
-		$rrd_title="$ItemName on $h";
+	
+	if(isset($plugin_json)){
+		if (isset($plugin_json[$t]['title'])) {
+			$rrd_title = $plugin_json[$t]['title'];
+			$replacements = array(
+				'{{PI}}' => $pi,
+				'{{PC}}' => $pc,
+				'{{TI}}' => $ti,
+				'{{TC}}' => $tc,
+				'{{HOST}}' => $h
+			);
+			$rrd_title = str_replace(array_keys($replacements), array_values($replacements), $rrd_title);
+		} else if (array_key_exists($t, $plugin_json) and $plugin_json[$t]['type']=='iowpm') {
+			foreach (getAllDatadir() as $key => $value) {
+				if (file_exists($value.'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt')) {
+					$ItemName=file_get_contents($value.'/'.$h.'/'.$p.'-'.$pi.'/ItemName.txt');
+					continue;
+				}
+			}
+			$rrd_title = isset($ItemName) ? "$ItemName on $h" : "$pi on $h";
+		} else {
+			$rrd_title = "$h $p $pc $pi $ti $tc";
+		}
+	} else {
+		$rrd_title = "$h $p $pc $pi $ti $tc";
 	}
 	return $rrd_title;
 }
 
-function getRRDPath($plugin){
-	global $CONFIG;
-	if(isset($CONFIG['path_rrd_plugin']) && isset($CONFIG['path_rrd_plugin'][$plugin])){
-		return $CONFIG['path_rrd_plugin'][$plugin];
-	}
-	return $CONFIG['datadir'];
-}
-
 function getAllDatadir(){
 	global $CONFIG;
-	$allDatadir=array($CONFIG['datadir']);
-	foreach($CONFIG['path_rrd_plugin'] as $path_rrd) $allDatadir[]=$path_rrd;
-
-	return array_unique($allDatadir);
+	return array_map(function($item) { return $item['rrd_path']; }, $CONFIG['datadir']);
 }
-?>
+
+function getDatadirEntry($rrd_path) {
+	global $CONFIG;
+	foreach ($CONFIG['datadir'] as $key => $value) {
+		if (is_array($value) && strpos($rrd_path, $value['rrd_path']) !== false) {
+			return $key;
+		}
+	}
+}
+

@@ -1,119 +1,20 @@
 {
- "counter": {
+
+ "current_connections": {
         "title": "Client / slaves on {{HOST}}",
-        "vertical": "Count",
+        "vertical": "Number of ...",
+        "type": "stacked",
         "legend": {
-            "connected-clients": {
+            "connected_clients": {
                 "name": "connected_clients"
             },
-            "connected-slaves": {
+            "connected_slaves": {
                 "name": "connected_slaves"
             },
-            "blocked-clients": {
+            "blocked_clients": {
                 "name": "blocked_clients"
             }
         }
-     },
-	"bytes": {
-		"title": "Memory on {{HOST}}",
-        "vertical": "Bytes",
-		"legend": {
-			"used_memory": {
-				"name" : "Used Memory"
-			}
-		}
-	},
-    "counter-commands": {
-        "title": "Counter Commands on {{HOST}}",
-        "vertical": "Count",
-        "legend": {
-            "commands-processed": {
-                "name" : "Processed"
-            }
-        }
-    },
-    "counter-connections": {
-        "title": "Counter Connections on {{HOST}}",
-        "vertical": "Count",
-        "legend": {
-            "connections-received": {
-                "name" : "Received"
-            }
-        }
-    },
-    "gauge-changes": {
-        "title": "Changes on {{HOST}}",
-        "vertical": "",
-        "legend": {
-            "changes-since_last_save": {
-                "name" : "Since Last Save"
-            }
-        }
-    },
-    "gauge-clients": {
-        "title": "Clients on {{HOST}}",
-        "vertical": "",
-        "legend": {
-            "clients-blocked": {
-                "name" : "Blocked"
-            },
-            "clients-connected": {
-                "name" : "Connected"
-            }
-        }
-    },
-    "gauge-keys": {
-        "title": "Keys on {{HOST}}",
-        "vertical": "",
-        "legend": {
-            "changes-evicted": {
-                "name" : "Evicted"
-            }
-        }
-    },
-    "gauge-repl": {
-        "title": "Replication Backlog on {{HOST}}",
-        "vertical": "",
-        "legend": {
-            "repl-backlog_active": {
-                "name" : "Active"
-            },
-            "repl-backlog_first_byte_offset": {
-                "name" : "First Byte Offset"
-            },
-            "repl-backlog_histlen": {
-                "name" : "Histlen"
-            },
-            "repl-backlog_size": {
-                "name" : "Size"
-            }
-        }
-	},
-    "gauge-repl_offset": {
-        "title": "Repl Offset on {{HOST}}",
-        "vertical": "",
-        "legend": {
-            "repl_offset-master": {
-                "name" : "Master"
-            }
-        }
-    },
-    "gauge-slaves": {
-        "title": "Slave on {{HOST}}",
-        "vertical": "",
-        "legend": {
-            "slaves-connected": {
-                "name" : "Connected"
-            }
-        }
-    },
-    "uptime": {
-        "title": "Uptime on {{HOST}}",
-        "vertical": "In Seconds",
-        "legend": {
-            "uptime_in_seconds": {
-                "name" : "Uptime"
-            }
-        }
-    }
+     }
+
 }

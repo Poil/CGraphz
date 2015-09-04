@@ -16,7 +16,7 @@
 	},
 	"nginx_connections": {
 		"title": "Nginx connection states on {{HOST}}",
-		"vertical": "Connections/s",
+		"vertical": "Active Connections",
 		"legend": {
 			"active": {
 				"name": "Active",

@@ -31,7 +31,7 @@ $(function(){
                 var serverName=$(this).attr('value');
 				$(this).parent().hide();
 
-				$('#servers .imggraph[src*="?h='+serverName+'&"]').each(function(){
+				$('#servers .imggraph[src*="&h='+serverName+'&"]').each(function(){
 					$(this).parent().parent().parent().hide();
 				});
             });
@@ -40,7 +40,7 @@ $(function(){
                 var serverName=$(this).attr('value');
 				$(this).parent().show();
 
-				$('#servers .imggraph[src*="?h='+serverName+'&"]').each(function(){
+				$('#servers .imggraph[src*="&h='+serverName+'&"]').each(function(){
                     $(this).parent().parent().parent().show();
                 });
             });
@@ -111,7 +111,7 @@ function getParameterByName(url,name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
-function addGraphInit(p,pc,pi,t,tc){
+function addGraphInit(datadir,p,pc,pi,t,tc){
 	var src=$('#servers .imggraph-pattron').attr('src');
     var time_start=getParameterByName(src,'s');
     var time_end=getParameterByName(src,'e');
@@ -128,7 +128,7 @@ function addGraphInit(p,pc,pi,t,tc){
         "txt" : timer_txt
     };
 
-	showGraph(p,pc,pi,t,tc,time_range);
+	showGraph(datadir,p,pc,pi,t,tc,time_range);
 }
 
 function addGraph(id){
@@ -159,55 +159,56 @@ function addGraph(id){
 
 function printGraph(niveau,plugin,time_range){
 	var p=plugin['p'];
+	var datadir=plugin['datadir']
 
 	if(niveau=="plugin"){
-		showAllGraphPC(p,time_range);	
+		showAllGraphPC(datadir,p,time_range);	
 	}else{
 		var pc=plugin['pc'];
 
 		if(niveau=="plugin-categorie"){
-			showAllGraphPI(p,pc,time_range);
+			showAllGraphPI(datadir,p,pc,time_range);
 		}else{
 		    var pi=plugin['pi'];
 
 			if(niveau=="plugin-instance"){
-				showAllGraphT(p,pc,pi,time_range);
+				showAllGraphT(datadir,p,pc,pi,time_range);
 			}else{
 				var t=plugin['t'];
 
-				showGraph(p,pc,pi,t,'',time_range);
+				showGraph(datadir,p,pc,pi,t,'',time_range);
 			}
 	    }
 	}
 
 }
 
-function showAllGraphPC(p,time_range){
-	var tab_pc=pluginJs[p];
+function showAllGraphPC(datadir,p,time_range){
+	var tab_pc=pluginJs[datadir][p];
 
     for(pc_name in tab_pc){
-        showAllGraphPI(p,pc_name,time_range);
+        showAllGraphPI(datadir,p,pc_name,time_range);
     }
 }
 
-function showAllGraphPI(p,pc,time_range){
-	var tab_pi=pluginJs[p][pc];	
+function showAllGraphPI(datadir,p,pc,time_range){
+	var tab_pi=pluginJs[datadir][p][pc];	
 
 	for(pi_name in tab_pi){
-		showAllGraphT(p,pc,pi_name,time_range);
+		showAllGraphT(datadir,p,pc,pi_name,time_range);
 	}
 }
 
-function showAllGraphT(p,pc,pi,time_range){
-	var tab_t=pluginJs[p][pc][pi];
+function showAllGraphT(datadir,p,pc,pi,time_range){
+	var tab_t=pluginJs[datadir][p][pc][pi];
 
 	for(t_name in tab_t){
-		showGraph(p,pc,pi,t_name,'',time_range);
+		showGraph(datadir,p,pc,pi,t_name,'',time_range);
 	}
 }
 
 
-function showGraph(p,pc,pi,t,tc,time_range){
+function showGraph(datadir,p,pc,pi,t,tc,time_range){
 	if(pc=="null") pc="";
 	if(pi=="null") pi="";
 	if(t=="null") t="";
@@ -259,7 +260,7 @@ function showGraph(p,pc,pi,t,tc,time_range){
 		if($(this).is(':hidden')){
 			visible='style="display : none;"';
 		}
-        row+='<td '+visible+'><div class="div-for-width"><figure><figcaption><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>&nbsp;Loading...</figcaption><img class="imggraph" onload="getTitle($(this),\''+serverName+'\', \''+p+'\', \''+pc+'\', \''+pi+'\', \''+t+'\', \''+tc+'\', \'\');" onerror="hideErrorGraph($(this));" onclick="Show_Popup($(this).attr(\'src\').split(\'?\')[1],\''+time_range["timer"]+'\',\''+time_range['s']+'\',\''+time_range['e']+'\')" title="Click to Zoom" alt="rrd" src="/CGraphz/graph.php?h='+serverName+'&amp;p='+p+'&amp;pc='+pc+'&amp;pi='+pi+'&amp;t='+t+'&amp;tc='+tc+'&amp;ti='+time_range['txt']+'"></figure></div></td>';
+        row+='<td '+visible+'><div class="div-for-width"><figure><figcaption><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>&nbsp;Loading...</figcaption><img class="imggraph" onload="getTitle($(this),\''+serverName+'\', \''+p+'\', \''+pc+'\', \''+pi+'\', \''+t+'\', \''+tc+'\', \'\');" onerror="hideErrorGraph($(this));" onclick="Show_Popup($(this).attr(\'src\').split(\'?\')[1],\''+time_range["timer"]+'\',\''+time_range['s']+'\',\''+time_range['e']+'\')" title="Click to Zoom" alt="rrd" src="/'+DIR_WEBROOT+'/graph.php?datadir='+datadir+'&h='+serverName+'&amp;p='+p+'&amp;pc='+pc+'&amp;pi='+pi+'&amp;t='+t+'&amp;tc='+tc+'&amp;ti='+time_range['txt']+'"></figure></div></td>';
     });
 
 
@@ -272,6 +273,7 @@ function showGraph(p,pc,pi,t,tc,time_range){
 function getPlugin(obj){
 	var niveau=obj.attr('niveau');
 
+	var datadir="";
     var p="";
     var pc="";
     var pi="";
@@ -310,7 +312,10 @@ function getPlugin(obj){
     }else{
         p=obj.html();
     }
-	return {'p' : p, 'pc' : pc, 'pi' : pi, 't' : t, 'tc' : tc, 'ti' : ti};
+    
+    datadir=obj.attr("datadir");
+    
+	return {'datadir' : datadir, 'p' : p, 'pc' : pc, 'pi' : pi, 't' : t, 'tc' : tc, 'ti' : ti};
 }
 
 
@@ -385,7 +390,7 @@ function hideErrorGraph(obj){
 function removeHost(obj){
 	var serverName=obj.parent().children().filter('.serverName').attr('value');
 	
-	$('td:has(.imggraph[src*="?h='+serverName+'&"])').each(function(){
+	$('td:has(.imggraph[src*="&h='+serverName+'&"])').each(function(){
 		$(this).remove();
 	});
 
@@ -404,7 +409,7 @@ function addHost(hostname){
 		$('#dashboard_content').animate({scrollLeft:0, scrollTop:0}, 'fast');
 		$('tr:has(th)').prepend('<th><span class="serverName" value="'+hostname+'"><a href="'+dashlightURL+'&f_host='+hostname+'">'+hostname+'</a></span><a href="#" onclick="removeHost($(this));return false;"><i class="glyphicon glyphicon-remove"></i></a></th>');
 		$('tr:has(.imggraph)').prepend('<td><div class="div-for-width"></div></td>');
-		$('.imggraph[src*="?h=patron-graph&"]').each(function(){
+		$('.imggraph[src*="&h=patron-graph&"]').each(function(){
 			var src=$(this).attr('src');
 			src=src.replace('patron-graph',hostname);
 			$(this).parent().parent().parent().parent().children().first().children().first().append('<figure><figcaption>'+hostname+'</figcaption><img class="imggraph" onerror="hideErrorGraph($(this));" onclick="Show_Popup($(this).attr(\'src\').split(\'?\')[1],\''+timer+'\',\''+time_start+'\',\''+time_end+'\')" title="Click to Zoom" alt="rrd" src="'+src+'"></figure>');
