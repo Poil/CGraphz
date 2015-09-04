@@ -26,7 +26,7 @@ class InputText extends Field{
         if (!$this->autocomplete) { $autocomplete='autocomplete="off"'; }
         else { $autocomplete=''; }
 
-        if ($formcontrol==true) {
+        if ($this->formcontrol) {
            $fieldclass='form-control';
 	}
 
