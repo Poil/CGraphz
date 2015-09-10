@@ -218,7 +218,7 @@ if (!empty($allDatadir)) {
 							include DIR_FSROOT.'/plugin/'.$p.'.php';
 						} else {
 							$graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
-							if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
+							if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($x+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
 
 							if ($time_range!='') {
 								echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" alt="'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.$graph_size.'" />'."\n";
@@ -242,7 +242,7 @@ if (!empty($allDatadir)) {
 						include DIR_FSROOT.'/plugin/'.$p.'.php';
 					} else {
 						$graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
-						if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
+						if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($x+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
 						if ($time_range!='') {
 							echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" alt="'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.$graph_size.'" />'."\n";
 						} else {
@@ -317,7 +317,7 @@ if (!empty($vmlist)) {
 					$old_t=$t;
 
 					$graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
-					if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($CONFIG['width']+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
+					if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($x+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
 					echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13; '.$graph_title.'" alt="'.$graph_title.'" src='.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.$graph_size.' />';
 					if (GRAPH_TITLE=='text') { echo '</figure>'; }
 				}
