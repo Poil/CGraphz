@@ -128,6 +128,10 @@ switch ($plugin_json[$type]['type']) {
 		require_once 'type/Uptime.class.php';
 		$obj = new Type_Uptime($CONFIG, $_GET, $pluginconfig);
 		break;
+	case 'filled':
+		require_once 'type/GenericFilled.class.php';
+		$obj = new Type_GenericFilled($CONFIG, $_GET, $pluginconfig);
+		break;
 	case 'iowpm':
 		 require_once 'type/GenericIOWPM.class.php';
         $obj = new Type_GenericIOWPM($CONFIG, $_GET, $pluginconfig);
