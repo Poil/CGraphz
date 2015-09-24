@@ -37,6 +37,10 @@
 		"type": "stackedtotal",
 		"legend_format": "%5.1lf%s",
 		"legend": {
+			"opcache_statistics-max_cached_keys": {
+				"name": "Max cached keys",
+				"color": "00ff00"
+			},
 			"opcache_statistics-num_cached_keys": {
 				"name": "Num cached keys",
 				"color": "ff0000"
@@ -44,10 +48,6 @@
 			"opcache_statistics-num_cached_scripts": {
 				"name": "Num cached scripts",
 				"color": "ff00ff"
-			},
-			"opcache_statistics-max_cached_keys": {
-				"name": "Max cached keys",
-				"color": "00ff00"
 			}
 		}
 	},
