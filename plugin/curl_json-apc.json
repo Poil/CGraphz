@@ -48,7 +48,8 @@
     },
 	"cache_size-mem": {
 		"title": "Cache size on {{HOST}}",
-		"vertical": "Size",
+		"vertical": "Bytes",
+		"type": "stacked",
 		"legend_format": "%5.1lf%s",
 		"legend": {
 			"mem-free": {
@@ -137,6 +138,38 @@
                 "color": "00ff00"
             }
         }
-    }
-
+    },
+	"files-files": {
+		"title": "Files on {{HOST}}",
+		"vertical": "Files",
+		"type": "stackedtotal",
+		"legend_format": "%5.1lf%s",
+		"legend": {
+			"files-cached": {
+				"name": "Cached",
+				"color": "ff0000"
+			},
+			"files-deleted": {
+				"name": "Deleted",
+				"color": "ff00ff"
+			}
+		}
+	},
+	"cache_result-num": {
+		"title": "Cache results on {{HOST}}",
+		"vertical": "Num",
+		"type": "stacked",
+		"legend_format": "%5.1lf%s",
+		"legend": {
+			"num-hits": {
+				"name": "Hits",
+				"color": "00ff00"
+			},
+			"num-misses": {
+				"name": "Misses",
+				"color": "ff0000"
+			}
+		}
+	}
 }
+
