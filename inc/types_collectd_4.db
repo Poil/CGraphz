@@ -175,7 +175,7 @@ oracle_bddsize       value:GAUGE:0:U
 oracle_tbssize       free:GAUGE:0:1125899906842623, used:GAUGE:0:1125899906842623
 oracle_totalio       rx:DERIVE:0:U, tx:DERIVE:0:U
 oracle_tbsio         rx:DERIVE:0:U, tx:DERIVE:0:U
-oracle_session       value:GAUGE:0:100
+oracle_session       maxsessions:GAUGE:0:U, cursessions:GAUGE:0:U
 oracle_lockwait      value:GAUGE:0:U
 oracle_hitratio      value:GAUGE:0:100
 oracle_redoswperhour value:GAUGE:0:U

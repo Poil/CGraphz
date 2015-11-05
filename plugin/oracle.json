@@ -71,12 +71,15 @@
         "title": "Percent Session Used",
         "vertical": "Percent",
         "legend": {
-                  "SESSIONSUP": {
-                               "name": "Session usage",
-                               "color": "228b22"
+                  "maxsessions": {
+                               "name": "Max Sessions available",
+                               "color": "ff0000"
+                   },
+                  "cursessions": {
+                               "name": "Current Session",
+                               "color": "0000cd"
                    }
-      },
-      "type": "stacked"
+      }
    },
    "oracle_lockwait": {
         "title": "Number(s) of Lock Wait",
