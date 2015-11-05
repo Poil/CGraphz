@@ -207,3 +207,16 @@ arc_ratio		value:GAUGE:0:U
 arc_size		current:GAUGE:0:U, target:GAUGE:0:U, minlimit:GAUGE:0:U, maxlimit:GAUGE:0:U
 mysql_qcache		hits:COUNTER:0:U, inserts:COUNTER:0:U, not_cached:COUNTER:0:U, lowmem_prunes:COUNTER:0:U, queries_in_cache:GAUGE:0:U
 mysql_threads		running:GAUGE:0:U, connected:GAUGE:0:U, cached:GAUGE:0:U, created:COUNTER:0:U
+oracle_bddsize       value:GAUGE:0:U
+oracle_tbssize       free:GAUGE:0:1125899906842623, used:GAUGE:0:1125899906842623
+oracle_totalio       rx:DERIVE:0:U, tx:DERIVE:0:U
+oracle_tbsio         rx:DERIVE:0:U, tx:DERIVE:0:U
+oracle_session       value:GAUGE:0:100
+oracle_lockwait      value:GAUGE:0:U
+oracle_hitratio      value:GAUGE:0:100
+oracle_redoswperhour value:GAUGE:0:U
+oracle_state         value:GAUGE:0:U
+oracle_request       value:GAUGE:0:U
+oracle_usedmempool   lapool:GAUGE:0:U, stpool:GAUGE:0:U, japool:GAUGE:0:U, shpool:GAUGE:0:U, bcache:GAUGE:0:U, pgainuse:GAUGE:0:U
+oracle_defmempool    memmaxt:GAUGE:0:U, memt:GAUGE:0:U, sgamax:GAUGE:0:U, sgat:GAUGE:0:U, pgat:GAUGE:0:U, shpools:GAUGE:0:U, dbcachesize:GAUGE:0:U
+oracle_cpu           value:DERIVE:0:U
