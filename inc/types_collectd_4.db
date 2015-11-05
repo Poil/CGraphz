@@ -171,3 +171,17 @@ voltage			value:GAUGE:U:U
 vs_memory		value:GAUGE:0:9223372036854775807
 vs_processes		value:GAUGE:0:65535
 vs_threads		value:GAUGE:0:65535
+oracle_bddsize       value:GAUGE:0:U
+oracle_tbssize       free:GAUGE:0:1125899906842623, used:GAUGE:0:1125899906842623
+oracle_totalio       rx:DERIVE:0:U, tx:DERIVE:0:U
+oracle_tbsio         rx:DERIVE:0:U, tx:DERIVE:0:U
+oracle_session       maxsessions:GAUGE:0:U, cursessions:GAUGE:0:U
+oracle_lockwait      value:GAUGE:0:U
+oracle_hitratio      value:GAUGE:0:100
+oracle_redoswperhour value:GAUGE:0:U
+oracle_state         value:GAUGE:0:U
+oracle_request       value:GAUGE:0:U
+oracle_usedmempool   lapool:GAUGE:0:U, stpool:GAUGE:0:U, japool:GAUGE:0:U, shpool:GAUGE:0:U, bcache:GAUGE:0:U, pgainuse:GAUGE:0:U
+oracle_defmempool    memmaxt:GAUGE:0:U, memt:GAUGE:0:U, sgamax:GAUGE:0:U, sgat:GAUGE:0:U, pgat:GAUGE:0:U, shpools:GAUGE:0:U, dbcachesize:GAUGE:0:U
+oracle_cpu           value:DERIVE:0:U
+
