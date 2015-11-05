@@ -1,14 +1,176 @@
 {
-	"df": {
-		"title": "Tablespace usage on {{HOST}}",
-		"vertical": "Bytes",
-		"legend_format": "%5.1lf%s",
-		"base": "1024",
-		"type": "stacked"
-	},
-	"io_octets": {
-		"title": "Database i/o on {{HOST}}",
-		"vertical": "Bytes/s",
-		"legend_format": "%5.1lf%s"
-	}
+        "oracle_tbssize": {
+                "title": "Disk Usage on Tablespace {{TI}}",
+                "type": "stacked",
+                "vertical": "Bytes",
+                "legend": {
+                        "free": {
+                                "name": "Free",
+                                "color": "00ff00"
+                        },
+                        "used": {
+                                "name": "Used",
+                                "color": "ff0000"
+                        }
+                },
+                "legend_format": "%5.1lf%s"
+        },
+    "oracle_tbsio": {
+                "title": "Tablespace I/O Traffic on {{TI}}",
+                "vertical": "Bytes/s",
+        "legend": {
+                "rx": {
+                      "name": "Read"
+                },
+                "tx": {
+                      "name": "Written"
+                }
+        },
+        "type": "io",
+                "legend_format": "%5.1lf%s"
+        },
+    "uptime": {
+        "title": "Uptime",
+        "vertical": "Days",
+        "type": "stacked",
+        "legend": {
+                  "UPSINCE": {
+                             "name": "UP Since",
+                             "color": "00e000"
+                  }
+         },
+        "legend_format": "%.1lf"
+    },
+    "disk_time": {
+        "title": "Efficiency Disk Time per operation",
+        "vertical": "Avg. Time/Op",
+        "legend": {
+                        "read": {
+                                "name": "Read",
+                                "color": "0000ff"
+                        },
+                        "write": {
+                                "name": "Write",
+                                "color": "00b000"
+                        }
+                },
+        "type": "stacked"
+    },
+    "oracle_hitratio": {
+        "title": "Percent Hit Ratio",
+        "vertical": "Percent",
+        "legend": {
+                  "HIT_RATIO": {
+                               "name": "RowCache Hit Ratio",
+                               "color": "ff8c00"
+                   }
+      },
+      "type": "stacked"
+   },
+    "oracle_session": {
+        "title": "Percent Session Used",
+        "vertical": "Percent",
+        "legend": {
+                  "SESSIONSUP": {
+                               "name": "Session usage",
+                               "color": "228b22"
+                   }
+      },
+      "type": "stacked"
+   },
+   "oracle_lockwait": {
+        "title": "Number(s) of Lock Wait",
+        "vertical": "Count",
+        "legend": {
+                  "LOCKWAIT": {
+                               "name": "Lock Wait"
+                   }
+      },
+      "type": "stacked"
+   },
+   "oracle_redoswperhour": {
+        "title": "Redolog switches per hour",
+        "vertical": "Count",
+        "legend": {
+                  "REDOLOG_SW": {
+                               "name": "Redolog switches"
+                   }
+      },
+      "type": "stacked"
+   },
+   "oracle_state": {
+        "title": "Oracle State",
+        "vertical": "State",
+        "legend": {
+                  "STATE": {
+                               "name": "STATE: 1=OPEN, 2=STARTED, 3=MOUNTED, 4=OPEN MIGRATE"
+                   }
+      },
+      "type": "stacked"
+   },
+   "oracle_usedmempool": {
+        "title": "Memory Pool Allocation Usage",
+        "vertical": "Bytes",
+        "legend": {
+                  "shpool": {
+                               "name": "Shared Pool"
+                   },
+                  "japool": {
+                               "name": "Java Pool"
+                   },
+                  "stpool": {
+                               "name": "Streams Pool"
+                   },
+                  "lapool": {
+                               "name": "Large Pool"
+                   },
+                  "bcache": {
+                               "name": "Default Buffer Pool"
+                   },
+                  "pgainuse": {
+                               "name": "PGA in use"
+                   }
+      },
+      "type": "stacked"
+   },
+    "oracle_defmempool": {
+        "title": "Memory Pool Allocation Configuration",
+        "vertical": "Bytes",
+        "legend": {
+                  "memmaxt": {
+                               "name": "Memory Max Target Size"
+                   },
+                  "memt": {
+                               "name": "Memory Target Size"
+                   },
+                  "sgamax": {
+                               "name": "SGA Max Size"
+                   },
+                  "sgat": {
+                               "name": "SGA Target Size"
+                   },
+                  "pgat": {
+                               "name": "PGA Aggregate Target Size"
+                   },
+                  "shpools": {
+                               "name": "Shared Pool Size"
+                   },
+                  "dbcachesize": {
+                               "name": "DB Cache Size"
+                   }
+      },
+      "type": "stacked"
+   },
+    "oracle_bddsize": {
+        "title": "Total Oracle BDD Size",
+        "vertical": "Bytes",
+        "legend": {
+                "TOTALBDDSIZE": {
+                                "name": "Total Size"
+                }
+        },
+        "type": "stacked",
+        "legend_format": "%5.1lf%s",
+        "scale": "1000000"
+   }
 }
