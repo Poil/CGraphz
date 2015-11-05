@@ -38,7 +38,8 @@ class Type_GenericIOWPM extends Type_Base {
 				if(!$isCanvas){
 					$isCanvas=($file!=$this->parse_filename($file));
 				}
-                $rrdgraph[] = sprintf('DEF:a=%s:%s:MAX', $this->parse_filename($file),'value');
+//                $rrdgraph[] = sprintf('DEF:a=%s:%s:MAX', $this->parse_filename($file),'value');
+                $rrdgraph[] = sprintf('DEF:a=%s:%s:AVERAGE', $this->parse_filename($file),'value');
             } elseif(basename($file,'.rrd')=='gauge-wpm_Time_total'){
                 $rrdgraph[] = sprintf("DEF:b=%s:value:AVERAGE",$this->parse_filename($file),'value');
             }
@@ -46,9 +47,9 @@ class Type_GenericIOWPM extends Type_Base {
 		$i=0;
 		foreach ($this->tinstances as $tinstance) {
 			foreach ($this->data_sources as $ds) {
-				$rrdgraph[] = sprintf('DEF:min_%s%s=%s:%s:MIN', crc32hex($sources[$i]), $raw, $this->parse_filename($this->files[$tinstance]), $ds);
+//				$rrdgraph[] = sprintf('DEF:min_%s%s=%s:%s:MIN', crc32hex($sources[$i]), $raw, $this->parse_filename($this->files[$tinstance]), $ds);
 				$rrdgraph[] = sprintf('DEF:avg_%s_raw=%s:%s:AVERAGE', crc32hex($sources[$i]), $this->parse_filename($this->files[$tinstance]), $ds);
-				$rrdgraph[] = sprintf('DEF:max_%s%s=%s:%s:MAX', crc32hex($sources[$i]), $raw, $this->parse_filename($this->files[$tinstance]), $ds);
+//				$rrdgraph[] = sprintf('DEF:max_%s%s=%s:%s:MAX', crc32hex($sources[$i]), $raw, $this->parse_filename($this->files[$tinstance]), $ds);
 				if (!$this->scale)
 					$rrdgraph[] = sprintf('VDEF:tot_%s=avg_%1$s,TOTAL', crc32hex($sources[$i]));
 				$i++;
@@ -58,9 +59,9 @@ class Type_GenericIOWPM extends Type_Base {
 			$i=0;
 			foreach ($this->tinstances as $tinstance) {
 				foreach ($this->data_sources as $ds) {
-					$rrdgraph[] = sprintf('CDEF:min_%s=min_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
+//					$rrdgraph[] = sprintf('CDEF:min_%s=min_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
 					$rrdgraph[] = sprintf('CDEF:avg_%s=avg_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
-					$rrdgraph[] = sprintf('CDEF:max_%s=max_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
+//					$rrdgraph[] = sprintf('CDEF:max_%s=max_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
 					if ($i == 1)
 						$rrdgraph[] = sprintf('CDEF:avg_%s_neg=avg_%1$s_raw,%s%s,*', crc32hex($sources[$i]), $this->negative_io ? '-' : '', $this->scale);
 					$rrdgraph[] = sprintf('VDEF:tot_%1$s=avg_%1$s,TOTAL', crc32hex($sources[$i]));
@@ -89,14 +90,16 @@ class Type_GenericIOWPM extends Type_Base {
 		foreach ($sources as $source) {
 			$legend = empty($this->legend[$source]) ? $source : $this->legend[$source];
 			$rrdgraph[] = sprintf('LINE1:avg_%s%s#%s:%s', crc32hex($source), $i == 1 ? '_neg' : '', $this->colors[$source], $this->rrd_escape($legend));
-			$rrdgraph[] = sprintf('GPRINT:min_%s:MIN:%s Min,', crc32hex($source), $this->rrd_format);
+//			$rrdgraph[] = sprintf('GPRINT:min_%s:MIN:%s Min,', crc32hex($source), $this->rrd_format);
+			$rrdgraph[] = sprintf('GPRINT:avg_%s:MIN:%s Min,', crc32hex($source), $this->rrd_format);
 			$rrdgraph[] = sprintf('GPRINT:avg_%s:AVERAGE:%s Avg,', crc32hex($source), $this->rrd_format);
-			$rrdgraph[] = sprintf('GPRINT:max_%s:MAX:%s Max,', crc32hex($source), $this->rrd_format);
+//			$rrdgraph[] = sprintf('GPRINT:max_%s:MAX:%s Max,', crc32hex($source), $this->rrd_format);
+			$rrdgraph[] = sprintf('GPRINT:avg_%s:MAX:%s Max,', crc32hex($source), $this->rrd_format);
 			$rrdgraph[] = sprintf('GPRINT:avg_%s:LAST:%s Last', crc32hex($source), $this->rrd_format);
 			$rrdgraph[] = sprintf('GPRINT:tot_%s:%s Total\l',crc32hex($source), $this->rrd_format);
 			$i++;
 		}
-
+/*
 		// Calculs et affichage du taux de dispo
 		$rrdgraph[] = "CDEF:cdefce=b,POP,TIME,PREV,UN,INF,PREV,IF,MIN";
         $rrdgraph[] = "CDEF:cdefcf=a,POP,TIME";
@@ -106,7 +109,7 @@ class Type_GenericIOWPM extends Type_Base {
 
 		$rrdgraph[] = "CDEF:dispo=1,cdefch,cdefcg,/,-,100,*";
         //$rrdgraph[] = 'GPRINT:dispo:LAST:Taux de disponibilite\: %5.1lf%s%%';
-
+*/
 		// Affichage du AREA pour les erreurs ( en dernier pour que le reste des graphes ne soient pas visibles )
         $rrdgraph[] = 'AREA:cdefcd#dd0000FF';
 
