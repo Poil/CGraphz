@@ -68,8 +68,8 @@
       "type": "stacked"
    },
     "oracle_session": {
-        "title": "Percent Session Used",
-        "vertical": "Percent",
+        "title": "Sessions",
+        "vertical": "Count",
         "legend": {
                   "maxsessions": {
                                "name": "Max Sessions available",
