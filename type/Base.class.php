@@ -161,7 +161,6 @@ class Type_Base {
 
 	function rrd_files() {
 		$files = $this->get_filenames();
-
 		$this->tinstances = array();
 		$this->files = array();
 		$this->identifiers = array();
@@ -198,9 +197,9 @@ class Type_Base {
 		$identifier = preg_replace("/([*?[])/", '[$1]', $identifier);
 
 		$wildcard = strlen($this->args['tinstance']) ? '.' : '[-.]*';
-
+		
 		$files = glob($this->datadir .'/'. $identifier . $wildcard . 'rrd');
-
+		
 		return $files ? $files : array();
 	}
 
@@ -356,7 +355,7 @@ class Type_Base {
 	function parse_legend($sources) {
 		# fill up legend by items that are not defined by plugin
 		$this->legend = $this->legend + array_combine($sources, $sources);
-
+		
 		# detect length of longest legend
 		$max = 0;
 		foreach ($this->legend as $legend) {
@@ -397,7 +396,7 @@ class Type_Base {
 	function collectd_flush($debug=false) {
 		$identifier = $this->identifiers;
 		if ($debug == true) { $this->log->write('[Flush] - Socket: '.$this->flush_socket.' - Identifiers : '.join($identifier,' -- ')); }
-
+		
 		if (!$this->flush_socket)
 			return FALSE;
 

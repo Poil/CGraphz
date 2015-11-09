@@ -1,52 +1,232 @@
 <?php
 include('../config/config.php');
 
+$prod=(CGRAPHZ_VERSION=="");
+$file_reporting="./insertion_doublon_reporting.json";
+
 $connSQL=new DB();
-$all_server=$connSQL->query('SELECT * FROM config_server ORDER BY server_name');
-$cpt_server=count($all_server);
+/*$all_server=$connSQL->query('SELECT * FROM config_server ORDER BY server_name');
+$cpt_server=count($all_server); 
+*/
 
-/* Listing des serveurs présent dans le RRD DIR et pas déjà affectés */
-$allDatadir=getAllDatadir();
-$filelist=array();
-foreach($allDatadir as $datadir){
-	$filelist=array_merge(array_values(array_diff(scandir($datadir), array('..', '.', 'lost+found'))), $filelist);
-}
-
+$connSQL->query("DROP TABLE server_list");
 $lib='
-CREATE TEMPORARY TABLE server_list (
-	`server_name` varchar(45) NOT NULL default \'\'
+CREATE TABLE server_list (
+	`server_name` varchar(45) NOT NULL default \'\',
+	`datadir` varchar(45) NOT NULL default \'\'
 )';
 $connSQL->query($lib);
 
+/* Listing des serveurs présent dans le RRD DIR et pas déjà affectés */
+$allDatadir=getAllDatadir();
 
-$find='0';
-$lib= 'INSERT INTO server_list (server_name) VALUES (';  
-$cpt_filelist=count($filelist);
-for($i=0; $i<$cpt_filelist; $i++) {
-	if (strpos($filelist[$i],':')==false ) {
-		if($find=='1')  {
-			$lib.=" ), (";
-		}  
-		$lib.= '\''.$filelist[$i].'\'';
-		$find='1';
-	}
-}  
-$lib.=' )';
-
-if ($find=='1') {
-	$connSQL->query($lib);
+$oneFind='0';
+foreach($allDatadir as $datadir){
+	$filelist=array_values(array_diff(scandir($datadir), array('..', '.', 'lost+found')));
 	
+	$find='0';
+	
+	$lib= 'INSERT INTO server_list (server_name,datadir) VALUES (';
+	$cpt_filelist=count($filelist);
+	for($i=0; $i<$cpt_filelist; $i++) {
+		if (strpos($filelist[$i],':')==false ) {
+			if($find=='1')  {
+				$lib.=', "'.$datadir.'" ), (';
+			}
+			$lib.= '\''.$filelist[$i].'\'';
+			$find='1';
+			$oneFind='1';
+		}
+	}
+	$lib.=', "'.$datadir.'")';
+	
+	if ($find=='1') {
+		$connSQL->query($lib);
+	}
+}
+
+if ($oneFind=='1') {
+	$lib="SELECT DISTINCT server_name
+		  FROM server_list 
+		  GROUP BY CONCAT(server_name,'##',datadir)
+		  HAVING COUNT(*) > 1";
+	
+	//////////////////////////////////////
+	// Reporting des server en doublon
+	if($prod){
+		$serverDoublonBDD=$connSQL->query($lib);
+		$serverDoublonDir=array();
+
+		foreach($allDatadir as $datadir){
+			$serversDir=scandir($datadir);
+
+			$serverPresent=array();
+			foreach($serversDir as $server){
+				$server_name=strtoupper($server);
+				if(!isset($serverPresent[$server_name])){
+					$serverPresent[$server_name]=true;
+				}else{
+					$serverDoublonDir[]=$server_name;
+				}
+			}
+		}
+		$serverDoublonDir=array_unique($serverDoublonDir);
+	
+		if(sizeof($serverDoublonBDD) > 0 || sizeof($serverDoublonDir) > 0){	
+			$json = file_get_contents($file_reporting);
+			if($json==NULL){
+				$json="{}";	
+			}
+			$parsed_json=json_decode($json);
+			
+			$jsonServer="[";
+			$serverMailBDD="";
+			$serverMailDir="";
+			$i=0;
+			foreach($serverDoublonBDD as $server){
+				if($i>0) $jsonServer.=",";
+				$jsonServer.='"'.$server->server_name.'"';
+				$serverMailBDD.=" - ".htmlentities($server->server_name)."<br>";
+				$i++;
+			}
+			foreach($serverDoublonDir as $serverName){
+                if($i>0) $jsonServer.=",";
+                $jsonServer.='"'.$serverName.'"';
+                $serverMailDir.=" - ".htmlentities($serverName)."<br>";
+                $i++;
+            }
+
+			$jsonServer.="]";
+	
+			$serverMail="";
+
+			if($serverMailBDD!=""){
+				$serverMail.="Les serveurs en doublons en BDD sont :<br>".$serverMailBDD."<br><br>";
+			}
+
+			if($serverMailDir!=""){
+                $serverMail.="Les serveurs en doublons dans les repertoires sont :<br>".$serverMailDir."<br><br>";
+            }
+
+			// Envoi de mail une fois par jours si il y a des doublons
+			$toReport=false;
+			if(isset($parsed_json->reporting)){
+				$date_reporting=new DateTime($parsed_json->reporting);
+				$date_reporting->add(new DateInterval("P1D"));
+				$now=new DateTime();
+	
+				// Si le dernier reporting a etait fait il ya plus d'un jour alors on doit faire le reporting 
+				if($date_reporting < $now ) $toReport=true;
+				else{
+					// Fait un reporting si un nouveau server arrive
+					if(isset($parsed_json->server)){
+						foreach($serverDoublonBDD as $server){
+							$isInJSON=false;
+							foreach($parsed_json->server as $j_server){
+								if($server->server_name===$j_server){
+									$isInJSON=true;
+									break;
+								}
+							}
+							if(!$isInJSON){ 
+								$toReport=true;
+								break;
+							}
+						}
+						
+						foreach($serverDoublonDir as $server_name){
+							$isInJSON=false;
+							foreach($parsed_json->server as $j_server){
+								if($server_name===$j_server){
+									$isInJSON=true;
+									break;
+								}
+							}
+							if(!$isInJSON){
+								$toReport=true;
+								break;
+							}
+						}
+					}
+				}
+			}else{
+				$toReport=true;
+			}
+			
+			$parsed_json->server=json_decode($jsonServer);	
+			
+			if($toReport){
+				$from="Reporting CGraphZ <si@fr.clara.net>";
+				$to="FR-si@fr.clara.net";
+				$passage_ligne = "\n";
+				$header = "From: ".$from.$passage_ligne;
+				$header .= "Reply-to: ".$from.$passage_ligne;
+				$header .= "MIME-Version: 1.0".$passage_ligne;
+				$header .= "Content-Type: text/html; charset=\"UTF-8\"".$passage_ligne;
+	
+			    $sujet="[Reporting CGraphZ] Problème de doublon dans l'insertion de serveur CGraphZ";
+	
+				$messageHTML="
+			    <html>
+			        <body style='font-size : 12px; font-family : Verdana;'>
+			            <p>
+						Vous trouverez ci dessous la liste des serveurs en doublon dans CGraphZ. 
+			            </p>
+						<br>
+						".$serverMail."
+			        </body>
+			    </html>";
+				echo $messageHTML."\n";
+			    mail($to,$sujet,$messageHTML,$header);
+	
+				$now=new DateTime();
+				$parsed_json->reporting=$now->format("Y-m-d H:i:s");
+			}
+	
+			$monfichier = fopen($file_reporting, 'a');
+			ftruncate($monfichier,0);
+			fputs($monfichier,json_encode($parsed_json));
+			fclose($monfichier);
+		// Sinon vide le fichier de reporting des doublons
+		}else{
+			$monfichier = fopen($file_reporting, 'a');
+	        ftruncate($monfichier,0);
+	        fputs($monfichier,"{}");
+	        fclose($monfichier);
+		}
+	
+	}
+
+
 	/////////////////////////////////////
 	// Insert
 	$lib = 'INSERT INTO config_server (server_name, server_description) (
-		  SELECT server_name, server_name as server_description
-       		  FROM server_list
-		  WHERE server_name NOT IN (
-                	SELECT server_name FROM config_server
-        	  ) ORDER BY server_name
-		)';
+  		SELECT DISTINCT server_name, server_name as server_description
+		FROM server_list
+		WHERE server_name not in (
+			SELECT server_name FROM config_server
+		)
+		AND server_name not in (
+			SELECT DISTINCT server_name
+			FROM server_list 
+			GROUP BY CONCAT(server_name,"##",datadir)
+			HAVING COUNT(*) > 1
+		)
+		ORDER BY server_name
+	)';
 	$connSQL->query($lib);
-
+	
+	/////////////////////////////////////
+    // Link server not linked to all_servers project
+	$lib = 'insert into config_server_project (id_config_server,id_config_project) (
+		select id_config_server, 7 
+		from config_server 
+		where id_config_server not in (
+			select id_config_server from config_server_project
+		) order by id_config_server
+	)';
+	$connSQL->query($lib);
+	
 	/////////////////////////////////////
 	// Purge removed server
 	$lib='
@@ -57,10 +237,10 @@ if ($find=='1') {
 		) ORDER BY server_name';
 	
 	$all_deleted_server=$connSQL->query($lib);
-
+	
 	foreach ($all_deleted_server as $cur_server) {
 		$connSQL=new DB();
-
+		echo 'Deleting '.$cur_server->id_config_server;
 		$connSQL->bind('id_config_server',$cur_server->id_config_server);
 		$lib='DELETE FROM config_role_server WHERE id_config_server=:id_config_server';
 		$connSQL->query($lib);

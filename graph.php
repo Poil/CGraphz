@@ -116,6 +116,10 @@ switch ($plugin_json[$type]['type']) {
 		require_once 'type/GenericStacked.class.php';
 		$obj = new Type_GenericStacked($CONFIG, $_GET, $pluginconfig);
 		break;
+    case 'stackedbis':
+        require_once 'type/GenericStackedBis.class.php';
+        $obj = new Type_GenericStackedBis($CONFIG, $_GET);
+        break;
 	case 'io':
 		require_once 'type/GenericIO.class.php';
 		$obj = new Type_GenericIO($CONFIG, $_GET, $pluginconfig);
@@ -162,6 +166,7 @@ if (isset($plugin_json[$type]['legend'])) {
 			$obj->colors[$rrd] = $property['color'];
 	}
 }
+
 if (GRAPH_TITLE!='text' || $obj->graph_type!='png') {
 	if (isset($plugin_json[$type]['title'])) {
 		$obj->rrd_title = $plugin_json[$type]['title'];

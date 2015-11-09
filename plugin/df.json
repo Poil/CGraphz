@@ -12,6 +12,10 @@
 				"name": "Free",
 				"color": "00ff00"
 			},
+			"size": {
+				"name": "Free",
+				"color": "00ff00"
+			},
 			"used": {
 				"name": "Used",
 				"color": "ff0000"

@@ -88,6 +88,8 @@ if ($auth->verif_auth()) {
           include(DIR_FSROOT.'/html/menu/menu_plugin.php');
       }
       echo '<section style="margin-top: 140px">';
+   } elseif (GET('module') == 'dashboard' && GET('component') == 'quickview') {
+      include(DIR_FSROOT.'/html/menu/menu_quickview.php');
    } elseif (GET('module') == 'dashboard') {
       include(DIR_FSROOT.'/html/menu/menu_plugin.php');
       echo '<section style="margin-top: 90px; padding:0 5px">';

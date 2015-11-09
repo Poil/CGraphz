@@ -1,5 +1,6 @@
 <?php
 class Select extends Field{
+    private $formcontrol=true;
     private $options;
     private $col_id;
     private $col_text;
@@ -22,6 +23,10 @@ class Select extends Field{
         } else {
            $fieldclass='';
         }
+        if ($formcontrol==true) {
+           $fieldclass='form-control '.$fieldclass;
+	}
+
         $field = '<div class="form-group">';
         if (!isset($this->labelclass)) $this->labelclass=''; 
         switch($this->formtype) {
@@ -58,7 +63,7 @@ class Select extends Field{
         }
         
 
-        $field.= '<select class="form-control '.$fieldclass.'" '.$ro.' name="'.$this->name.$name_prefix.'" id="'.$this->name.'" ';
+        $field.= '<select class="'.$fieldclass.'" '.$ro.' name="'.$this->name.$name_prefix.'" id="'.$this->name.'" ';
         
         if($this->multiple)
             $field.= 'multiple="multiple" ';
@@ -147,6 +152,10 @@ class Select extends Field{
 
     public function enableData($k){
         $this->enable_data = $k;
+        return $this;
+    }
+    public function formcontrol($k){
+        $this->formcontrol= $k;
         return $this;
     }
 }

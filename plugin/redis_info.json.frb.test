@@ -1,0 +1,17 @@
+{
+ "gauge": {
+        "title": "Client / slaves on {{HOST}}",
+        "type": "stackedbis",
+        "legend": {
+            "clients-connected": {
+                "name": "Connected_clients"
+            },
+            "slaves-connected": {
+                "name": "Connected_slaves"
+            },
+            "clients-blocked": {
+                "name": "Blocked_clients"
+            }
+        }
+     }
+}

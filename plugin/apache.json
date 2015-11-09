@@ -15,7 +15,7 @@
 		"vertical": "Active Connections",
 		"legend": {
 			"value": {
-				"name": "Active Connections",
+				"name": "Active connections",
 				"color": "00b000"
 			}
 		},
@@ -57,7 +57,7 @@
 				"color": "ffff00"
 			},
 			"finishing": {
-				"name": "Finishing",
+				"name": "Graceful Finishing",
 				"color": "008080"
 			},
 			"logging": {

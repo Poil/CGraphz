@@ -141,8 +141,13 @@ div#popupModal .modal-dialog {
 }
 
 /* inline form in nav menu 180px */
-nav form.form-inline select {
+nav form.form-inline select,
+nav form.form-inline input {
    width: 180px;
+   margin-top: 10px;
+}
+nav form.form-inline button {
+   margin-top: 10px;
 }
 
 @media (max-width: 992px) {

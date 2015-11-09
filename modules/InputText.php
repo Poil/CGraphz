@@ -1,5 +1,6 @@
 <?php
 class InputText extends Field{
+    private $formcontrol=true;
     private $maxlength;
     private $itype='text';
     private $autocomplete=true;
@@ -25,6 +26,10 @@ class InputText extends Field{
         if (!$this->autocomplete) { $autocomplete='autocomplete="off"'; }
         else { $autocomplete=''; }
 
+        if ($this->formcontrol) {
+           $fieldclass='form-control';
+	}
+
         if(!empty($this->label)){
             if (!empty($this->labelgrid)) {
                 $this->labelclass.=' '.$this->labelgrid;
@@ -40,7 +45,7 @@ class InputText extends Field{
             $field.= '<div class="'.$this->inputgrid.'">'."\n";
         }
         
-        $field.= '<input '.$ro.' '.$autocomplete.' class="form-control" type="'.$this->itype.'" ';
+        $field.= '<input '.$ro.' '.$autocomplete.' class="'.$fieldclass.'" type="'.$this->itype.'" ';
             if(!empty($this->name))
                 $field.= 'name="'.$this->name.'" ';
             if(!empty($this->value))
@@ -74,6 +79,10 @@ class InputText extends Field{
 
     public function autocomplete($v) {
         $this->autocomplete = $v;
+        return $this;
+    }
+    public function formcontrol($k){
+        $this->formcontrol= $k;
         return $this;
     }
 }
