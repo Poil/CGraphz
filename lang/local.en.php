@@ -51,6 +51,7 @@ define('SEARCH','Search');
 define('DAY','day');
 define('DAYS','days');
 define('WEEK','week');
+define('WEEKS','weeks');
 define('MONTH','month');
 define('MONTHS','months');
 define('YEAR','year');
