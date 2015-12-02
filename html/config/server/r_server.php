@@ -10,27 +10,33 @@ foreach($allDatadir as $datadir){
 	$filelist=array_merge(array_values(array_diff(scandir($datadir), array('..', '.', 'lost+found'))), $filelist);
 }
 
+$cpt_filelist=count($filelist);
+for($i=0; $i<$cpt_filelist; $i++) {
+	if (strpos($filelist[$i],':') !== false) {
+		$filelist[$i] = substr($filelist[$i], 0, strpos($filelist[$i],':'));
+	}
+}
+$filelist = array_unique($filelist);
+$filelist = array_filter($filelist);
+$filelist = array_values($filelist);
+
 $lib='
 CREATE TEMPORARY TABLE server_list (
 	`server_name` varchar(45) NOT NULL default \'\'
 )';
 $connSQL->query($lib);
 
-
 $find='0';
 $lib= 'INSERT INTO server_list (server_name) VALUES (';  
 $cpt_filelist=count($filelist);
 for($i=0; $i<$cpt_filelist; $i++) {
-	if (strpos($filelist[$i],':')==false) {
-		if($find=='1')  {
-			$lib.=" ), (";
-		}  
-		$lib.= '\''.$filelist[$i].'\'';
-		$find='1';
-	}
+	if($find=='1')  {
+		$lib.=" ), (";
+	}  
+	$lib.= '\''.$filelist[$i].'\'';
+	$find='1';
 }  
 $lib.=' )';
-
 if ($find=='1') $connSQL->query($lib);
 
 $lib='
