@@ -296,6 +296,7 @@ if (!empty($vmlist)) {
         }
     }
 }
+
 if ($dgraph===0) {
   echo NO_GRAPH;
 }
