@@ -296,6 +296,192 @@ if (!empty($vmlist)) {
         }
     }
 }
+// AZezaezae
+$allDatadir=getAllDatadir();
+foreach($allDatadir as $datadir){
+    $vmlist=array_merge($vmlist,preg_find('#^natexo-pw00-web:#', $datadir.'/', PREG_FIND_DIRMATCH|PREG_FIND_SORTBASENAME));
+}
+echo $vmlist;
+
+if (!empty($allDatadir)) {
+    $myregex='';
+    foreach ($pg_filters as $filter) {
+        if (empty($myregex)) {
+            $myregex='#^(((('.implode('|',$allDatadir).')/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
+        } else {
+            $myregex=$myregex.'|((('.implode("|",$allDatadir).')/'.$cur_server->server_name.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd)';
+        }
+    }
+    $myregex=$myregex.')#';
+
+	$tplugins=array();
+    foreach($allDatadir as $datadir) {
+        $tpluginsDatadir=preg_find($myregex, $datadir.'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
+        if ($tpluginsDatadir) $dgraph=1;
+        $tplugins=array_merge($tplugins,$tpluginsDatadir);
+    }   
+    $plugins = (sort_plugins('('.implode('|',$allDatadir).')/'.$cur_server->server_name,$tplugins, $pg_filters));
+
+	$old_t='';
+    $old_pi='';
+    $old_subpg='';
+    $myregex='#^(('.implode('|',$allDatadir).')/'.$cur_server->server_name.'/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
+    foreach ($plugins as $plugin) {
+        preg_match($myregex, $plugin['content'], $matches);
+		$plugin_datadir = getDatadirEntry($matches[1]);
+
+    if (isset($matches[3])) {
+            $p=$matches[3];
+            if (!isset($$p)) $$p=false;
+        } else { 
+            continue;
+            $p=null; 
+        }
+        if (isset($matches[4])) {
+            $pi=$matches[4];
+            $pc=null;
+            if (substr_count($pi, '-') >= 1 && preg_match($CONFIG['plugin_pcategory'], $p)) {
+                $tmp=explode('-',$pi);
+                // Fix when PI is null after separating PC/PI for example a directory named "MyHost/GenericJMX-cassandra_activity_request-/"
+                if (strlen($tmp[1])) {
+                    $pc=$tmp[0];
+                    $pi=implode('-', array_slice($tmp,1));
+                }
+            // Copy PI to PC if no PC but Plugin can have a PC
+            } else if (preg_match($CONFIG['plugin_pcategory'], $p)) {
+                $pc=$pi;
+                $pi=null;
+            }
+        } else { 
+            $pc=null; 
+            $pi=null; 
+        }
+        if (isset($matches[5])) {
+            $t=$matches[5];
+        } else { 
+            $t=null; 
+        }
+        if (isset($matches[6])) {
+            $ti=$matches[6];
+            $tc=null;
+            if (substr_count($ti, '-') >= 1 && preg_match($CONFIG['plugin_tcategory'], $p)) {
+                $tmp=explode('-',$ti);
+                $tc=$tmp[0];
+                //$ti=implode('-', array_slice($tmp,1));
+                $ti=null;
+            } 
+        } else { 
+            $tc=null; 
+            $ti=null; 
+        }
+
+
+		if (!isset(${$p.$pc.$pi.$t.$tc.$ti}) ) {
+            if ($$p!=true && $p!='aggregation') {
+                $lvl_p=2;
+                $lvl_pc=$lvl_p+1;
+                $lvl_pi=$lvl_pc;
+                $lvl_tc=null;
+                echo "<h$lvl_p>".ucfirst($p)."</h$lvl_p>";
+                $$p=true;
+                $others=false;
+            } else if ($p == 'aggregation') {
+                $lvl_p=2;
+                $lvl_pc=$lvl_p;
+                $lvl_pi=$lvl_pc;
+                $lvl_tc=null;
+                $others=false;
+            }
+            // Displaying Plugin Category if there is a Plugin Category
+            if (isset($pc) && empty($$pc)) {
+                echo "<h$lvl_pc>".ucfirst(str_replace('_', ' ', $pc))."</h$lvl_pc>";
+                $lvl_pi=$lvl_pc+1;
+                $$pc=true;
+                $others=false;
+                $$pi=false;
+            }
+            
+			// Displaying Plugin Instance for some plugins
+			${$pc.$pi} = isset(${$pc.$pi}) ? ${$pc.$pi} : false;
+            if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
+                ${$pc.$pi}=true;
+                echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
+            // Displaying Type for SNMP
+            } else if ($p=='snmp' && ${$p.$t}!=true) {
+                ${$p.$t}=true;
+                echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$t))."</h$lvl_pi>";
+            }
+
+			${$p.$pc.$pi.$t.$tc.$ti}=true;
+
+			// Verif regex OK
+            if (isset($p) && isset($t)) {
+                if (!preg_match('/^(df|interface|oracle|snmp)$/', $p) || 
+                   (((preg_replace('/[^0-9\.]/','',$cur_server->collectd_version) >= 5)
+                     && !preg_match('/^(oracle|snmp)$/', $p) && $t!='df'))
+                     || ($p == 'snmp' && $t == 'memory')
+                ) {
+                    if ($p == 'varnish3') { $t='all'; }
+                    $ti='';
+                    if ($old_t!=$t or $old_p!=$p or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
+                        if ($CONFIG['graph_type'] == 'canvas') {
+                            $_GET['h'] = $cur_server->server_name;
+                            $_GET['p'] = $p;
+                            $_GET['pc'] = $pc;
+                            $_GET['pi'] = $pi;
+                            $_GET['t'] = $t;
+                            $_GET['tc'] = $tc;
+                            $_GET['ti'] = $ti;
+
+                            chdir(DIR_FSROOT);
+                            include DIR_FSROOT.'/plugin/'.$p.'.php';
+                        } else {
+                            $graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
+                            if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($x+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
+
+                            if ($time_range!='') {
+                                echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" alt="'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.$graph_size.'" />'."\n";
+                            } else {
+                                echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" alt="'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.$graph_size.'" />'."\n";
+                            }
+                            if(GRAPH_TITLE=='text') { echo '</figure>'; }
+                        }
+                    }
+                } else {
+                    if ($CONFIG['graph_type'] == 'canvas') {
+                        $_GET['h'] = $cur_server->server_name;
+                        $_GET['p'] = $p;
+                        $_GET['pc'] = $pc;
+                        $_GET['pi'] = $pi;
+                        $_GET['t'] = $t;
+                        $_GET['tc'] = $tc;
+                        $_GET['ti'] = $ti;
+
+                   		chdir(DIR_FSROOT);
+                        include DIR_FSROOT.'/plugin/'.$p.'.php';
+                    } else {
+                        $graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
+                        if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($x+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
+                        if ($time_range!='') {
+                            echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" alt="'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.$graph_size.'" />'."\n";
+                        } else {
+                            echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13;'.$graph_title.'" alt="'.$graph_title.'" src="'.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($cur_server->server_name).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_start.'&amp;e='.$time_end.$graph_size.'" />'."\n";
+                        }
+                        if(GRAPH_TITLE=='text') { echo '</figure>'; }
+                    }
+                }
+            } else if (DEBUG==true){
+                echo 'ERREUR - p='.$p.' pc='.$pc.' pi='.$pi.' t='.$t.' tc='.$tc.' ti='.$ti.'<br />';
+            } 
+        } 
+        $old_t=$t;
+        $old_tc=$tc;
+        $old_p=$p;
+        $old_pi=$pi;
+        $old_pc=$pc;
+    }
+}
+
 if ($dgraph===0) {
   echo NO_GRAPH;
 }
