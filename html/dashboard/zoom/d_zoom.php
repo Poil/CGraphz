@@ -14,17 +14,19 @@ $cur_server=$connSQL->row($lib);
 
 echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
 echo '<meta name="viewport" content="width=1050, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />';
-if (isset($_SESSION['time_start']) && $_SESSION['time_start']!='') {
-	$date_start=date('Y-m-d H:i',$_SESSION['time_start']);
-} else {
-	$date_start=date('Y-m-d H:i',mktime() - intval($_GET['s']) );
-}
-if (isset($_SESSION['time_end']) && $_SESSION['time_end']!='') {
-	$date_end=date('Y-m-d H:i',$_SESSION['time_end']);
-} else {
+
+if(isset($_GET['s']) && $_GET['s']!="") {
+	if (isset($_GET['e']) && $_GET['e']!=""){
+		$date_start=date('Y-m-d H:i',intval($_GET['s']));
+		$date_end=date('Y-m-d H:i',intval($_GET['e']));
+	}else{
+		$date_start=date('Y-m-d H:i',(time()-intval($_GET['s'])));
+		$date_end=date('Y-m-d H:i');
+	}
+}else{
+	$date_start=date('Y-m-d H:i',(time()-intval($CONFIG['time_range']['default'])));
 	$date_end=date('Y-m-d H:i');
 }
-
 ?>
 
 <form  class="form-inline" role="form" onsubmit="refresh_graph('dashboard','',date_to_ts('f_time_start'),date_to_ts('f_time_end'));  Close_Popup(); return false" action="" method="post" name="f_form_time_selection">
