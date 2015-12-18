@@ -118,8 +118,10 @@ $CONFIG['datadir'] = array(
 # rrdtool executable
 $CONFIG['rrdtool'] = '/usr/bin/rrdtool';
 
-# rrdtool special command-line options
-$CONFIG['rrdtool_opts'] = array();
+$CONFIG['rrdtool_opts'] = array(
+        '--color', 'FRAME#808080',
+        '--color', 'ARROW#000000'
+);
 
 # default plugins time range
 $CONFIG['time_range']['default'] = 7200;
