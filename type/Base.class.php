@@ -72,7 +72,7 @@ class Type_Base {
 		$this->flush_socket = $pluginconfig['socket'];
 		$this->flush_type = $pluginconfig['flush_type'];
 	}
-
+/*
 	function rainbow_colors() {
 		$c = 0;
 		$sources = count($this->rrd_get_sources());
@@ -93,6 +93,37 @@ class Type_Base {
 			}
 			$this->colors[$ds] = $hex;
 			$c++;
+		}
+	}
+*/
+	function rgb2color($red, $green, $blue) {
+		return $this->dec2hex($red,2).$this->dec2hex($green,2).$this->dec2hex($blue,2);
+	}
+
+	function dec2hex($value, $size = 0, $char = '0') {
+		$ret = dechex($value);
+		while(strlen($ret) < $size ) {
+			$ret = $char.$ret;
+		}
+		return $ret;
+	}
+
+	function rainbow_colors() {
+		$center = 176;
+		$width = 79;
+		$frequency1 = 0.5;
+		$frequency2 = 0.5;
+		$frequency3 = 0.5;
+		$phase1 = 0;
+		$phase2 = 2;
+		$phase3 = 4;
+		
+		for ($i=0; $i<count($this->rrd_get_sources()); $i++) {
+			$ds = $this->rrd_get_sources()[$i];
+			$red = sin($frequency1 * $i + $phase1) * $width + $center;
+			$grn = sin($frequency2 * $i + $phase2) * $width + $center;
+			$blu = sin($frequency3 * $i + $phase3) * $width + $center;
+			$this->colors[$ds] = $this->rgb2color($red, $grn, $blu);
 		}
 	}
 

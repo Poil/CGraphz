@@ -5,16 +5,13 @@
 		"type": "default",
 		"legend": {
 			"shortterm": {
-				"name": " 1 min",
-				"color": "00ff00"
+				"name": " 1 min"
 			},
 			"midterm": {
-				"name": " 5 min",
-				"color": "0000ff"
+				"name": " 5 min"
 			},
 			"longterm": {
-				"name": "15 min",
-				"color": "ff0000"
+				"name": "15 min"
 			}
 		},
 		"legend_format": "%.2lf"
