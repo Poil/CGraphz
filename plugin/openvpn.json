@@ -1,30 +1,27 @@
 {
-	"if_octets": {
-		"title": "Traffic ({{PI}}) on {{HOST}}",
-		"vertical": "{{ND}} per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s",
-		"datasize": true
-	},
-	"users": {
-		"title": "Users ({{PI}}) on {{HOST}}",
-		"vertical": "Users",
-		"legend": {
-			"value": {
-				"name": "Users",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%.1lf"
-	}
+    "if_octets": {
+        "datasize": true,
+        "legend": {
+            "rx": {
+                "name": "Receive"
+            },
+            "tx": {
+                "name": "Transmit"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Traffic ({{PI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "{{ND}} per second"
+    },
+    "users": {
+        "legend": {
+            "value": {
+                "name": "Users"
+            }
+        },
+        "legend_format": "%.1lf",
+        "title": "Users ({{PI}}) on {{HOST}}",
+        "vertical": "Users"
+    }
 }

@@ -1,21 +1,21 @@
 {
-	"all": {
-		"title": "Sessions",
-		"type": "varnish",
-		"legend": {
-			"sess_closed": {
-				"name": "Session Closed"
-			},
-			"sess_readahead": {
-				"name": "Session Read Ahead"
-			},
-			"sess_pipeline": {
-				"name": "Session Pipeline"
-			},
-			"sess_linger": {
-				"name": "Session Linger"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "legend": {
+            "sess_closed": {
+                "name": "Session Closed"
+            },
+            "sess_linger": {
+                "name": "Session Linger"
+            },
+            "sess_pipeline": {
+                "name": "Session Pipeline"
+            },
+            "sess_readahead": {
+                "name": "Session Read Ahead"
+            }
+        },
+        "legend_format": "%5.1lf",
+        "title": "Sessions",
+        "type": "varnish"
+    }
 }

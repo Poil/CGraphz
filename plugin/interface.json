@@ -1,51 +1,45 @@
 {
-	"if_octets": {
-		"title": "Interface Traffic ({{PI}}) on {{HOST}}",
-		"vertical": "{{ND}} per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s",
-		"datasize": true
-	},
-	"if_errors": {
-		"title": "Interface Errors ({{PI}}) on {{HOST}}",
-		"vertical": "Errors per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"if_packets": {
-		"title": "Interface Packets ({{PI}}) on {{HOST}}",
-		"vertical": "Packets per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "if_errors": {
+        "legend": {
+            "rx": {
+                "name": "Receive"
+            },
+            "tx": {
+                "name": "Transmit"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Interface Errors ({{PI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "Errors per second"
+    },
+    "if_octets": {
+        "datasize": true,
+        "legend": {
+            "rx": {
+                "name": "Receive"
+            },
+            "tx": {
+                "name": "Transmit"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Interface Traffic ({{PI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "{{ND}} per second"
+    },
+    "if_packets": {
+        "legend": {
+            "rx": {
+                "name": "Receive"
+            },
+            "tx": {
+                "name": "Transmit"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Interface Packets ({{PI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "Packets per second"
+    }
 }

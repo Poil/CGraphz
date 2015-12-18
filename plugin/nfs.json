@@ -1,8 +1,8 @@
 {
-	"nfs_procedure": {
-		"title": "NFS-{{PI}} Procedures on {{HOST}}",
-		"vertical": "Procedures",
-		"type": "stacked",
-		"legend_format": "%5.2lf"
-	}
+    "nfs_procedure": {
+        "legend_format": "%5.2lf",
+        "title": "NFS-{{PI}} Procedures on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Procedures"
+    }
 }

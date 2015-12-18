@@ -1,12 +1,12 @@
 {
-	"all": {
-		"title": "Session herd",
-		"type": "varnish",
-		"legend": {
-			"sess_herd": {
-				"name": "Session herd"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "legend": {
+            "sess_herd": {
+                "name": "Session herd"
+            }
+        },
+        "legend_format": "%5.1lf",
+        "title": "Session herd",
+        "type": "varnish"
+    }
 }

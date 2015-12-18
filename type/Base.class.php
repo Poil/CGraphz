@@ -109,16 +109,27 @@ class Type_Base {
 	}
 
 	function rainbow_colors() {
+		$sources_nb = count($this->rrd_get_sources());
 		$center = 176;
 		$width = 79;
-		$frequency1 = 0.5;
-		$frequency2 = 0.5;
-		$frequency3 = 0.5;
+		if ($sources_nb <= 3) {
+			$frequency1 = 0.9;
+			$frequency2 = 0.9;
+			$frequency3 = 0.9;
+		} else if ($sources_nb <= 12) {
+			$frequency1 = 0.5;
+			$frequency2 = 0.5;
+			$frequency3 = 0.5;
+		} else {
+			$frequency1 = 0.2;
+			$frequency2 = 0.2;
+			$frequency3 = 0.2;
+		}
 		$phase1 = 0;
 		$phase2 = 2;
 		$phase3 = 4;
 		
-		for ($i=0; $i<count($this->rrd_get_sources()); $i++) {
+		for ($i=0; $i<$sources_nb; $i++) {
 			$ds = $this->rrd_get_sources()[$i];
 			$red = sin($frequency1 * $i + $phase1) * $width + $center;
 			$grn = sin($frequency2 * $i + $phase2) * $width + $center;

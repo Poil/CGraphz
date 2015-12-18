@@ -1,43 +1,37 @@
 {
-	"df_complex": {
-		"title": "Free space ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"reserved": {
-				"name": "Reserved",
-				"color": "aaaaaa"
-			},
-			"free": {
-				"name": "Free",
-				"color": "00ff00"
-			},
-			"used": {
-				"name": "Used",
-				"color": "ff0000"
-			}
-		},
-		"legend_format": "%5.1lf%sB",
-		"base": "1024"
-	},
-	"df_inodes": {
-		"title": "Free inodes ({{PI}}) on {{HOST}}",
-		"vertical": "Inodes",
-		"type": "stacked",
-		"legend": {
-			"reserved": {
-				"name": "Reserved",
-				"color": "aaaaaa"
-			},
-			"free": {
-				"name": "Free",
-				"color": "00ff00"
-			},
-			"used": {
-				"name": "Used",
-				"color": "ff0000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "df_complex": {
+        "base": "1024",
+        "legend": {
+            "free": {
+                "name": "Free"
+            },
+            "reserved": {
+                "name": "Reserved"
+            },
+            "used": {
+                "name": "Used"
+            }
+        },
+        "legend_format": "%5.1lf%sB",
+        "title": "Free space ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Bytes"
+    },
+    "df_inodes": {
+        "legend": {
+            "free": {
+                "name": "Free"
+            },
+            "reserved": {
+                "name": "Reserved"
+            },
+            "used": {
+                "name": "Used"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Free inodes ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Inodes"
+    }
 }

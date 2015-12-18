@@ -1,15 +1,15 @@
 {
-	"all": {
-		"title": "Object expunging",
-		"type": "varnish",
-		"legend": {
-			"n_lru_nuked": {
-				"name": "N LRU nuked objects"
-			},
-			"n_expired": {
-				"name": "N expired objects"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "legend": {
+            "n_expired": {
+                "name": "N expired objects"
+            },
+            "n_lru_nuked": {
+                "name": "N LRU nuked objects"
+            }
+        },
+        "legend_format": "%5.1lf",
+        "title": "Object expunging",
+        "type": "varnish"
+    }
 }

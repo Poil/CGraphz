@@ -1,39 +1,34 @@
 {
-	"swap": {
-		"title": "Swap utilization on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"free": {
-				"name": "Free",
-				"color": "00e000"
-			},
-			"cached": {
-				"name": "Cached",
-				"color": "0000ff"
-			},
-			"used": {
-				"name": "Used",
-				"color": "ff0000"
-			}
-		},
-		"legend_format": "%5.1lf%s",
-		"base": "1024"
-	},
-	"swap_io": {
-		"title": "Swapped I/O pages on {{HOST}}",
-		"vertical": "Pages",
-		"type": "io",
-		"legend": {
-			"out": {
-				"name": "Out",
-				"color": "0000ff"
-			},
-			"in": {
-				"name": "In",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "swap": {
+        "base": "1024",
+        "legend": {
+            "cached": {
+                "name": "Cached"
+            },
+            "free": {
+                "name": "Free"
+            },
+            "used": {
+                "name": "Used"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Swap utilization on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Bytes"
+    },
+    "swap_io": {
+        "legend": {
+            "in": {
+                "name": "In"
+            },
+            "out": {
+                "name": "Out"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Swapped I/O pages on {{HOST}}",
+        "type": "io",
+        "vertical": "Pages"
+    }
 }

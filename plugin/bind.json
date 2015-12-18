@@ -1,14 +1,12 @@
 {
-        "dns_qtype_cached": {
-                "title": "cache_rr_sets {{HOST}}",
-                "type": "stacked",
-                "legend": {
-                        "value": {
-                                "name": "Current",
-                                "color": "00e000"
-                        }
-                },
-                "legend_format": "%.1lf"
-        }
+    "dns_qtype_cached": {
+        "legend": {
+            "value": {
+                "name": "Current"
+            }
+        },
+        "legend_format": "%.1lf",
+        "title": "cache_rr_sets {{HOST}}",
+        "type": "stacked"
+    }
 }
-

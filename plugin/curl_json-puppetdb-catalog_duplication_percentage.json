@@ -1,15 +1,21 @@
 {
-	"gauge": {
-		"title": "PuppetDB Catalog Duplication",
-		"type": "default",
-		"vertical": "% of catalogs encountered",
-		"scale": "100",
-		"rrdtool_opts": ["-u", "100", "-l", "95", "-r"],
-		"legend_format": "%5.1lf%s",
-		"legend": {
-			"Value": {
-				"name": "Value"
-			}
-		}
-	}
+    "gauge": {
+        "legend": {
+            "Value": {
+                "name": "Value"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "rrdtool_opts": [
+            "-u",
+            "100",
+            "-l",
+            "95",
+            "-r"
+        ],
+        "scale": "100",
+        "title": "PuppetDB Catalog Duplication",
+        "type": "default",
+        "vertical": "% of catalogs encountered"
+    }
 }

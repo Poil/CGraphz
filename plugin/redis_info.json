@@ -1,119 +1,119 @@
 {
- "counter": {
-        "title": "Client / slaves on {{HOST}}",
-        "vertical": "Count",
+    "bytes": {
         "legend": {
+            "used_memory": {
+                "name": "Used Memory"
+            }
+        },
+        "title": "Memory on {{HOST}}",
+        "vertical": "Bytes"
+    },
+    "counter": {
+        "legend": {
+            "blocked-clients": {
+                "name": "blocked_clients"
+            },
             "connected-clients": {
                 "name": "connected_clients"
             },
             "connected-slaves": {
                 "name": "connected_slaves"
-            },
-            "blocked-clients": {
-                "name": "blocked_clients"
             }
-        }
-     },
-	"bytes": {
-		"title": "Memory on {{HOST}}",
-        "vertical": "Bytes",
-		"legend": {
-			"used_memory": {
-				"name" : "Used Memory"
-			}
-		}
-	},
+        },
+        "title": "Client / slaves on {{HOST}}",
+        "vertical": "Count"
+    },
     "counter-commands": {
-        "title": "Counter Commands on {{HOST}}",
-        "vertical": "Count",
         "legend": {
             "commands-processed": {
-                "name" : "Processed"
+                "name": "Processed"
             }
-        }
+        },
+        "title": "Counter Commands on {{HOST}}",
+        "vertical": "Count"
     },
     "counter-connections": {
-        "title": "Counter Connections on {{HOST}}",
-        "vertical": "Count",
         "legend": {
             "connections-received": {
-                "name" : "Received"
+                "name": "Received"
             }
-        }
+        },
+        "title": "Counter Connections on {{HOST}}",
+        "vertical": "Count"
     },
     "gauge-changes": {
-        "title": "Changes on {{HOST}}",
-        "vertical": "",
         "legend": {
             "changes-since_last_save": {
-                "name" : "Since Last Save"
+                "name": "Since Last Save"
             }
-        }
+        },
+        "title": "Changes on {{HOST}}",
+        "vertical": ""
     },
     "gauge-clients": {
-        "title": "Clients on {{HOST}}",
-        "vertical": "",
         "legend": {
             "clients-blocked": {
-                "name" : "Blocked"
+                "name": "Blocked"
             },
             "clients-connected": {
-                "name" : "Connected"
+                "name": "Connected"
             }
-        }
+        },
+        "title": "Clients on {{HOST}}",
+        "vertical": ""
     },
     "gauge-keys": {
-        "title": "Keys on {{HOST}}",
-        "vertical": "",
         "legend": {
             "changes-evicted": {
-                "name" : "Evicted"
+                "name": "Evicted"
             }
-        }
+        },
+        "title": "Keys on {{HOST}}",
+        "vertical": ""
     },
     "gauge-repl": {
-        "title": "Replication Backlog on {{HOST}}",
-        "vertical": "",
         "legend": {
             "repl-backlog_active": {
-                "name" : "Active"
+                "name": "Active"
             },
             "repl-backlog_first_byte_offset": {
-                "name" : "First Byte Offset"
+                "name": "First Byte Offset"
             },
             "repl-backlog_histlen": {
-                "name" : "Histlen"
+                "name": "Histlen"
             },
             "repl-backlog_size": {
-                "name" : "Size"
+                "name": "Size"
             }
-        }
-	},
+        },
+        "title": "Replication Backlog on {{HOST}}",
+        "vertical": ""
+    },
     "gauge-repl_offset": {
-        "title": "Repl Offset on {{HOST}}",
-        "vertical": "",
         "legend": {
             "repl_offset-master": {
-                "name" : "Master"
+                "name": "Master"
             }
-        }
+        },
+        "title": "Repl Offset on {{HOST}}",
+        "vertical": ""
     },
     "gauge-slaves": {
-        "title": "Slave on {{HOST}}",
-        "vertical": "",
         "legend": {
             "slaves-connected": {
-                "name" : "Connected"
+                "name": "Connected"
             }
-        }
+        },
+        "title": "Slave on {{HOST}}",
+        "vertical": ""
     },
     "uptime": {
-        "title": "Uptime on {{HOST}}",
-        "vertical": "In Seconds",
         "legend": {
             "uptime_in_seconds": {
-                "name" : "Uptime"
+                "name": "Uptime"
             }
-        }
+        },
+        "title": "Uptime on {{HOST}}",
+        "vertical": "In Seconds"
     }
 }

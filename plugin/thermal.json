@@ -1,12 +1,12 @@
 {
-	"gauge": {
-		"title": "Temperature ({{PI}}) on {{HOST}}",
-		"vertical": "°C",
-		"legend": {
-			"value": {
-				"name": "Temperature"
-			}
-		},
-		"legend_format": "%.1lf"
-	}
+    "gauge": {
+        "legend": {
+            "value": {
+                "name": "Temperature"
+            }
+        },
+        "legend_format": "%.1lf",
+        "title": "Temperature ({{PI}}) on {{HOST}}",
+        "vertical": "\u00b0C"
+    }
 }

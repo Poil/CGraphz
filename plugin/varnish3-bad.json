@@ -1,54 +1,51 @@
 {
     "all": {
-        "title": "Misbehavior",
-		"type": "varnish",
         "legend": {
-            "fetch_failed": {
-                         "name": "Fetch failed"
-                     },
-            "n_wrk_drop": {
-                         "name": "N dropped work requests"
-                     },
-            "backend_unhealthy": {
-                         "name": "Backend conn. not attempted"
-                     },
             "accept_fail": {
-                         "name": "Accept failures"
-                     },
-            "n_wrk_failed": {
-                         "name": "N worker threads not created"
-                     },
-            "client_drop_late": {
-                         "name": "Connection dropped late"
-                     },
-            "losthdr": {
-                         "name": "HTTP header overflows"
-                     },
-            "n_wrk_max": {
-                         "name": "N worker threads limited"
-                     },
-            "client_drop": {
-                         "name": "Connection dropped, no sess/wrk"
-                     },
-            "n_wrk_lqueue": {
-                         "name": "work request queue length"
-                     },
-            "esi_warnings": {
-                         "name": "ESI parse warnings (unlock)"
-                     },
+                "name": "Accept failures"
+            },
             "backend_busy": {
-                         "name": "Backend conn. too many"
-                     },
+                "name": "Backend conn. too many"
+            },
+            "backend_unhealthy": {
+                "name": "Backend conn. not attempted"
+            },
+            "client_drop": {
+                "name": "Connection dropped, no sess/wrk"
+            },
+            "client_drop_late": {
+                "name": "Connection dropped late"
+            },
             "esi_errors": {
-                         "name": "ESI parse errors (unlock)"
-                     },
+                "name": "ESI parse errors (unlock)"
+            },
+            "esi_warnings": {
+                "name": "ESI parse warnings (unlock)"
+            },
+            "fetch_failed": {
+                "name": "Fetch failed"
+            },
+            "losthdr": {
+                "name": "HTTP header overflows"
+            },
             "n_objoverflow": {
-                         "name": "Objects overflowing workspace"
-                     },
+                "name": "Objects overflowing workspace"
+            },
+            "n_wrk_drop": {
+                "name": "N dropped work requests"
+            },
+            "n_wrk_failed": {
+                "name": "N worker threads not created"
+            },
             "n_wrk_lqueue": {
-                         "name": "work request queue length"
-             }
+                "name": "work request queue length"
+            },
+            "n_wrk_max": {
+                "name": "N worker threads limited"
+            }
         },
-        "legend_format": "%5.1lf"
+        "legend_format": "%5.1lf",
+        "title": "Misbehavior",
+        "type": "varnish"
     }
 }

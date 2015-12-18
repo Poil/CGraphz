@@ -1,26 +1,87 @@
 {
-	"file_size": {
-		"title": "Mongo DB size ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"data": {
-				"name": "Data"
-			},
-			"index": {
-				"name": "Index"
-			},
-			"storage": {
-				"name": "Storage"
-			}
-
-		},
-		"legend_format": "%5.1lf%s"
+    "cache_ratio": {
+        "legend": {
+            "cache_misses": {
+                "name": "Cache Misses"
+            }
+        },
+        "title": "Mongo DB cache ratio ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Cache misses ratio"
+    },
+    "connections": {
+        "legend": {
+            "connections": {
+                "name": "Connections"
+            }
+        },
+        "title": "Mongo DB connexions ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Open Connections"
+    },
+    "file_size": {
+        "legend": {
+            "data": {
+                "name": "Data"
+            },
+            "index": {
+                "name": "Index"
+            },
+            "storage": {
+                "name": "Storage"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Mongo DB size ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Bytes"
+    },
+    "gauge": {
+        "legend": {
+            "collections": {
+                "name": "Collections"
+            },
+            "indexes": {
+                "name": "Indexes"
+            },
+            "num_extents": {
+                "name": "Extents"
+            },
+            "object_count": {
+                "name": "Objects Count"
+            }
+        },
+        "title": "Mongo DB Objects Counters ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Number of ..."
+    },
+    "memory": {
+        "legend": {
+            "mapped": {
+                "name": "Mapped"
+            },
+            "resident": {
+                "name": "Resident"
+            },
+            "virtual": {
+                "name": "Virtual"
+            }
+        },
+        "title": "Mongo DB memory usage ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "MB"
+    },
+    "percent": {
+        "legend": {
+            "lock_ratio": {
+                "name": "Lock Ratio"
+            }
+        },
+        "title": "Mongo DB lock ratio ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Locks ratio"
     },
     "total_operations": {
-        "title": "Mongo DB Total Operations ({{PI}}) on {{HOST}}",
-        "vertical": "Commandes par secondes",
-        "type": "stacked",
         "legend": {
             "command": {
                 "name": "Command"
@@ -40,73 +101,9 @@
             "update": {
                 "name": "Update"
             }
-        }
-    },
-    "memory": {
-        "title": "Mongo DB memory usage ({{PI}}) on {{HOST}}",
-        "vertical": "MB",
+        },
+        "title": "Mongo DB Total Operations ({{PI}}) on {{HOST}}",
         "type": "stacked",
-
-        "legend": {
-            "mapped": {
-                "name": "Mapped"
-            },
-            "resident": {
-                "name": "Resident"
-            },
-            "virtual": {
-                "name": "Virtual"
-            }
-        }
-     },
-     "connections": {
-        "title": "Mongo DB connexions ({{PI}}) on {{HOST}}",
-        "vertical": "Open Connections",
-        "type": "stacked",
-        "legend": {
-            "connections": {
-                "name": "Connections"
-            }
-        }
-     },
-     "cache_ratio": {
-        "title": "Mongo DB cache ratio ({{PI}}) on {{HOST}}",
-        "vertical": "Cache misses ratio",
-        "type": "stacked",
-        "legend": {
-            "cache_misses": {
-                "name": "Cache Misses"
-            }
-        }
-     },
-     "percent": {
-        "title": "Mongo DB lock ratio ({{PI}}) on {{HOST}}",
-        "vertical": "Locks ratio",
-        "type": "stacked",
-        "legend": {
-            "lock_ratio": {
-                "name": "Lock Ratio"
-            }
-        }
-     },
-     "gauge": {
-        "title": "Mongo DB Objects Counters ({{PI}}) on {{HOST}}",
-        "vertical": "Number of ...",
-        "type": "stacked",
-        "legend": {
-            "collections": {
-                "name": "Collections"
-            },
-            "indexes": {
-                "name": "Indexes"
-            },
-            "num_extents": {
-                "name": "Extents"
-            },
-            "object_count": {
-                "name": "Objects Count"
-            }
-        }
-     }
+        "vertical": "Commandes par secondes"
+    }
 }
-

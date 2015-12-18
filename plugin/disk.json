@@ -1,84 +1,74 @@
 {
-	"disk_merged": {
-		"title": "Disk Merged Operations ({{PI}}) on {{HOST}}",
-		"vertical": "Merged operations/s",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"disk_octets": {
-		"title": "Disk Traffic ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes per second",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"disk_ops": {
-		"title": "Disk Operations ({{PI}}) on {{HOST}}",
-		"vertical": "Ops per second",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"disk_time": {
-		"title": "Disk time per operation ({{PI}}) on {{HOST}}",
-		"vertical": "Avg. Time/Op",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%ss",
-		"scale": 0.001
-	},
-	"disk_io_time": {
-		"title": "Disk IO time per operation ({{PI}}) on {{HOST}}",
-		"vertical": "Avg. IO Time/Op",
-		"type": "io",
-		"legend": {
-			"io_time": {
-				"name": "IO Time",
-				"color": "0000ff"
-			},
-			"weighted_io_time": {
-				"name": "Weighted IO Time",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%ss",
-		"scale": 0.001
-	}
+    "disk_io_time": {
+        "legend": {
+            "io_time": {
+                "name": "IO Time"
+            },
+            "weighted_io_time": {
+                "name": "Weighted IO Time"
+            }
+        },
+        "legend_format": "%5.1lf%ss",
+        "scale": 0.001,
+        "title": "Disk IO time per operation ({{PI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "Avg. IO Time/Op"
+    },
+    "disk_merged": {
+        "legend": {
+            "read": {
+                "name": "Read"
+            },
+            "write": {
+                "name": "Write"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Disk Merged Operations ({{PI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "Merged operations/s"
+    },
+    "disk_octets": {
+        "legend": {
+            "read": {
+                "name": "Read"
+            },
+            "write": {
+                "name": "Write"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Disk Traffic ({{PI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "Bytes per second"
+    },
+    "disk_ops": {
+        "legend": {
+            "read": {
+                "name": "Read"
+            },
+            "write": {
+                "name": "Write"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Disk Operations ({{PI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "Ops per second"
+    },
+    "disk_time": {
+        "legend": {
+            "read": {
+                "name": "Read"
+            },
+            "write": {
+                "name": "Write"
+            }
+        },
+        "legend_format": "%5.1lf%ss",
+        "scale": 0.001,
+        "title": "Disk time per operation ({{PI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "Avg. Time/Op"
+    }
 }

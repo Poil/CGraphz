@@ -1,8 +1,8 @@
 {
-	"tcp_connections": {
-		"title": "TCP Connections ({{PI}}) on {{HOST}}",
-		"vertical": "Connections",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	}
+    "tcp_connections": {
+        "legend_format": "%5.1lf",
+        "title": "TCP Connections ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Connections"
+    }
 }

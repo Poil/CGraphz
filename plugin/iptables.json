@@ -1,15 +1,15 @@
 {
-	"ipt_bytes": {
-		"title": "IP-Tables Traffic on {{HOST}}",
-		"vertical": "{{ND}}",
-		"type": "stacked",
-		"legend_format": "%5.1lf%s",
-		"datasize": true
-	},
-	"ipt_packets": {
-		"title": "IP-Tables Packets on {{HOST}}",
-		"vertical": "Packets",
-		"type": "stacked",
-		"legend_format": "%5.1lf%s"
-	}
+    "ipt_bytes": {
+        "datasize": true,
+        "legend_format": "%5.1lf%s",
+        "title": "IP-Tables Traffic on {{HOST}}",
+        "type": "stacked",
+        "vertical": "{{ND}}"
+    },
+    "ipt_packets": {
+        "legend_format": "%5.1lf%s",
+        "title": "IP-Tables Packets on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Packets"
+    }
 }

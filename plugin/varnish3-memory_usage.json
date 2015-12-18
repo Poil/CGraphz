@@ -1,15 +1,15 @@
 {
-	"all": {
-		"title": "Memory usage",
-		"type": "varnish",
-		"legend": {
-			"sms_balloc": {
-				"name": "SMS bytes allocated"
-			},
-			"sms_nbytes": {
-				"name": "SMS outstanding bytes"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "legend": {
+            "sms_balloc": {
+                "name": "SMS bytes allocated"
+            },
+            "sms_nbytes": {
+                "name": "SMS outstanding bytes"
+            }
+        },
+        "legend_format": "%5.1lf",
+        "title": "Memory usage",
+        "type": "varnish"
+    }
 }

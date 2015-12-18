@@ -1,107 +1,89 @@
 {
-  "haproxy_bytes": {
-    "title": "HAProxy Bandwidth ({{PI}})",
-    "vertical": "Bytes/s",
-    "type": "stacked",
-    "legend": {
-      "in": {
-        "name": "Incoming",
-        "color": "00ff00"
-      },
-      "out": {
-        "name": "Outgoing",
-        "color": "0000ff"
-      }
+    "haproxy_bytes": {
+        "legend": {
+            "in": {
+                "name": "Incoming"
+            },
+            "out": {
+                "name": "Outgoing"
+            }
+        },
+        "title": "HAProxy Bandwidth ({{PI}})",
+        "type": "stacked",
+        "vertical": "Bytes/s"
+    },
+    "haproxy_error": {
+        "legend": {
+            "connection": {
+                "name": "Connection"
+            },
+            "redistribute": {
+                "name": "Redistributed"
+            },
+            "response": {
+                "name": "Response"
+            },
+            "retry": {
+                "name": "Retried"
+            }
+        },
+        "title": "HAProxy Errors ({{PI}})",
+        "type": "stacked",
+        "vertical": "Requests"
+    },
+    "haproxy_response": {
+        "legend": {
+            "1xx": {
+                "name": "1xx"
+            },
+            "2xx": {
+                "name": "2xx"
+            },
+            "3xx": {
+                "name": "3xx"
+            },
+            "4xx": {
+                "name": "4xx"
+            },
+            "5xx": {
+                "name": "5xx"
+            },
+            "other": {
+                "name": "Other"
+            }
+        },
+        "title": "HAProxy Responses ({{PI}})",
+        "type": "stacked",
+        "vertical": "Responses"
+    },
+    "haproxy_sessions": {
+        "legend": {
+            "queue": {
+                "name": "Queued"
+            },
+            "total": {
+                "name": "Total"
+            }
+        },
+        "title": "HAProxy Sessions ({{PI}})",
+        "vertical": "Sessions"
+    },
+    "haproxy_time": {
+        "legend": {
+            "connect": {
+                "name": "Connect"
+            },
+            "queue": {
+                "name": "Queue"
+            },
+            "response": {
+                "name": "Response"
+            },
+            "total": {
+                "name": "Total"
+            }
+        },
+        "title": "HAProxy Response Times ({{PI}})",
+        "vertical": "Time (ms)"
     }
-  },
-
-  "haproxy_error": {
-    "title": "HAProxy Errors ({{PI}})",
-    "vertical": "Requests",
-    "type": "stacked",
-    "legend": {
-      "connection": {
-        "name": "Connection",
-        "color": "ff0000"
-      },
-      "response": {
-        "name": "Response",
-        "color": "ffa500"
-      },
-      "redistribute": {
-        "name": "Redistributed",
-        "color": "0000ff"
-      },
-      "retry": {
-        "name": "Retried",
-        "color": "00ffff"
-      }
-    }
-  },
-
-  "haproxy_response": {
-    "title": "HAProxy Responses ({{PI}})",
-    "vertical": "Responses",
-    "type": "stacked",
-    "legend": {
-      "1xx": {
-        "color": "ffff00"
-      },
-      "2xx": {
-        "color": "00ff00"
-      },
-      "3xx": {
-        "color": "0000ff"
-      },
-      "4xx": {
-        "color": "ffa500"
-      },
-      "5xx": {
-        "color": "ff0000"
-      },
-      "other": {
-        "name": "Other",
-        "color": "00ffff"
-      }
-    }
-  },
-
-  "haproxy_sessions": {
-    "title": "HAProxy Sessions ({{PI}})",
-    "vertical": "Sessions",
-    "legend": {
-      "total": {
-        "name": "Total",
-        "color": "00ff00"
-      },
-      "queue": {
-        "name": "Queued",
-        "color": "ffa500"
-      }
-    }
-  },
-
-  "haproxy_time": {
-    "title": "HAProxy Response Times ({{PI}})",
-    "vertical": "Time (ms)",
-    "legend": {
-      "connect": {
-        "name": "Connect",
-        "color": "ff0000"
-      },
-      "queue": {
-        "name": "Queue",
-        "color": "ffa500"
-      },
-      "response": {
-        "name": "Response",
-        "color": "00ff00"
-      },
-      "total": {
-        "name": "Total",
-        "color": "0000ff"
-      }
-    }
-  }
 }
-

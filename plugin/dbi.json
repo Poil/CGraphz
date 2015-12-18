@@ -1,122 +1,139 @@
 {
-    "mysql_select": {
-        "title": "Mysql Select {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
+    "legend_format": "%5.1lf%s",
+    "mysql_connectionsc": {
         "legend": {
-            "select_range": {
-                "name": "Select Range"
+            "aborted_clients": {
+                "name": "Aborted Clients Connections"
             },
-            "select_range_check": {
-                "name": "Select Range Check"
+            "aborted_connects": {
+                "name": "Aborted Connections"
             },
+            "connections": {
+                "name": "Connections"
+            }
+        },
+        "title": "Mysql Connections {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
+    },
+    "mysql_connectionsg": {
+        "legend": {
+            "max_connections": {
+                "name": "Maximum Connections"
+            },
+            "max_used_connections": {
+                "name": "Maximum Used Connections"
+            }
+        },
+        "title": "Mysql Limits Connections {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
+    },
+    "mysql_createtmp": {
+        "legend": {
+            "created_tmp_disk_tables": {
+                "name": "Created Temp Disk Tables"
+            },
+            "created_tmp_files": {
+                "name": "Created Temp Files"
+            },
+            "created_tmp_tables": {
+                "name": "Created Temp Tables"
+            }
+        },
+        "title": "Mysql Temporary Objects {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
+    },
+    "mysql_databasesize": {
+        "legend": {
+            "total_bdd_size": {
+                "name": "Total BDD Size"
+            }
+        },
+        "scale": "1000000",
+        "title": "MySQL Total BDD Size {{PI}}",
+        "type": "stacked",
+        "vertical": "Bytes"
+    },
+    "mysql_open": {
+        "legend": {
+            "open_files": {
+                "name": "Open Files"
+            },
+            "open_tables": {
+                "name": "Open Tables"
+            }
+        },
+        "title": "Mysql Open Objects {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
+    },
+    "mysql_opened": {
+        "legend": {
+            "opened_files": {
+                "name": "Opened Files"
+            },
+            "opened_tables": {
+                "name": "Opened Tables"
+            }
+        },
+        "title": "Mysql Opened Objects {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
+    },
+    "mysql_qcachemem": {
+        "legend": {
+            "qcache_free_blocks": {
+                "name": "Qcache Blocks Free"
+            },
+            "qcache_free_memory": {
+                "name": "Qcache Memory Free"
+            },
+            "qcache_total_blocks": {
+                "name": "Qcache Total Blocks"
+            },
+            "query_cache_size": {
+                "name": "Qcache Memory Total"
+            }
+        },
+        "title": "Mysql Qcache Memory {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
+    },
+    "mysql_select": {
+        "legend": {
             "select_full_join": {
                 "name": "Select Full Join"
             },
             "select_full_range_join": {
                 "name": "Select Full Range Join"
             },
+            "select_range": {
+                "name": "Select Range"
+            },
+            "select_range_check": {
+                "name": "Select Range Check"
+            },
             "select_scan": {
                 "name": "Select Scan"
             }
-        }
+        },
+        "title": "Mysql Select {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
     },
     "mysql_slowqueries": {
-        "title": "Mysql Slow Queries {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
         "legend": {
             "slow_queries": {
                 "name": "Number of slow queries"
             }
-        }
-    },
-    "mysql_createtmp": {
-        "title": "Mysql Temporary Objects {{PI}}",
-        "vertical": "counter",
+        },
+        "title": "Mysql Slow Queries {{PI}}",
         "type": "stacked",
-        "legend": {
-            "created_tmp_disk_tables": {
-                "name": "Created Temp Disk Tables"
-            },
-            "created_tmp_tables": {
-                "name": "Created Temp Tables"
-            },
-            "created_tmp_files": {
-                "name": "Created Temp Files"
-            }
-        }
-    },
-    "mysql_open": {
-        "title": "Mysql Open Objects {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
-        "legend": {
-            "open_tables": {
-                "name": "Open Tables"
-            },
-            "open_files": {
-                "name": "Open Files"
-            }
-        }
-    },
-    "mysql_opened": {
-        "title": "Mysql Opened Objects {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
-        "legend": {
-            "opened_tables": {
-                "name": "Opened Tables"
-            },
-            "opened_files": {
-                "name": "Opened Files"
-            }
-        }
-    },
-    "mysql_qcachemem": {
-        "title": "Mysql Qcache Memory {{PI}}",
-        "vertical": "counter",
-        "type":    "stacked",
-        "legend": {
-            "qcache_free_memory": {
-                "name": "Qcache Memory Free"
-            },
-            "query_cache_size": {
-                "name": "Qcache Memory Total"
-            },
-            "qcache_free_blocks": {
-                "name": "Qcache Blocks Free"
-            },
-            "qcache_total_blocks": {
-                "name": "Qcache Total Blocks"
-            }
-        }
-    },
-    "mysql_databasesize": {
-        "title": "MySQL Total BDD Size {{PI}}",
-        "vertical": "Bytes",
-        "type": "stacked",
-        "scale": "1000000",
-        "legend": {
-            "total_bdd_size": {
-                "name": "Total BDD Size"
-            }
-        }
-    },
-    "pg_db_size": {
-        "title": "PostgreSQL Total BDD Size {{PI}}",
-        "vertical": "MB",
-        "type": "stacked",
-        "legend": {
-            "pg_db_size": {
-                "name": "Total BDD Size"
-            }
-        }
+        "vertical": "counter"
     },
     "mysql_sort": {
-        "title": "Mysql Sort Operations {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
         "legend": {
             "sort_merge_passes": {
                 "name": "Sort Range Passes"
@@ -130,97 +147,12 @@
             "sort_scan": {
                 "name": "Sort Scan"
             }
-        }
-    },
-    "mysql_connectionsc": {
-        "title": "Mysql Connections {{PI}}",
-        "vertical": "counter",
+        },
+        "title": "Mysql Sort Operations {{PI}}",
         "type": "stacked",
-        "legend": {
-            "aborted_clients": {
-                "name": "Aborted Clients Connections"
-            },
-            "aborted_connects": {
-                "name": "Aborted Connections"
-            },
-            "connections": {
-                "name": "Connections"
-            }
-        }
-    },
-    "pg_xact": {
-        "title": "PostgreSQL Transactions {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
-        "legend": {
-            "pg_commit": {
-                "name": "Transactions abouties"
-            },
-            "pg_rollback": {
-                "name": "Transactions annulees"
-            }
-        }
+        "vertical": "counter"
     },
     "pg_blks": {
-        "title": "PostgreSQL Disk IO {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
-        "legend": {
-            "heap_hit": {
-                "name": "Heap Hit"
-            },
-            "heap_read": {
-                "name": "Heap Read"
-            },
-            "idx_hit": {
-                "name": "Index Hit"
-            },
-            "idx_read": {
-                "name": "Index Read"
-            },
-            "tidx_read": {
-                "name": "Toast Index Read"
-            },
-            "tidx_hit": {
-                "name": "Toast Index Hit"
-            },
-            "toast_hit": {
-                "name": "Toast Hit"
-            },
-            "toast_read": {
-                "name": "Toast Read"
-            }
-        }
-    },
-    "pg_n_tup_c": {
-        "title": "PostgreSQL Queries {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
-        "legend": {
-            "del": {
-                "name": "Delete Requests"
-            },
-            "hot_upd": {
-                "name": "HOT Update Requests"
-            },
-            "fetched": {
-                "name": "Fetched Requests"
-            },
-            "return": {
-                "name": "Return Requests"
-            },
-            "ins": {
-                "name": "Insert Requests"
-            },
-            "upd": {
-                "name": "Update Requests"
-            }
-        }
-    },
-    "pg_blks": {
-        "title": "PostgreSQL Blocks State {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
         "legend": {
             "pg_blksh": {
                 "name": "Blocks Disk Buffer"
@@ -228,25 +160,73 @@
             "pg_blksr": {
                 "name": "Blocks Disk Read"
             }
-        }
+        },
+        "title": "PostgreSQL Blocks State {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
+    },
+    "pg_db_size": {
+        "legend": {
+            "pg_db_size": {
+                "name": "Total BDD Size"
+            }
+        },
+        "title": "PostgreSQL Total BDD Size {{PI}}",
+        "type": "stacked",
+        "vertical": "MB"
+    },
+    "pg_n_tup_c": {
+        "legend": {
+            "del": {
+                "name": "Delete Requests"
+            },
+            "fetched": {
+                "name": "Fetched Requests"
+            },
+            "hot_upd": {
+                "name": "HOT Update Requests"
+            },
+            "ins": {
+                "name": "Insert Requests"
+            },
+            "return": {
+                "name": "Return Requests"
+            },
+            "upd": {
+                "name": "Update Requests"
+            }
+        },
+        "title": "PostgreSQL Queries {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
     },
     "pg_n_tup_g": {
-        "title": "PostgreSQL Tables State {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
         "legend": {
-            "live": {
-                "name": "Live Requests"
-            },
             "dead": {
                 "name": "Dead Requests"
+            },
+            "live": {
+                "name": "Live Requests"
             }
-        }
+        },
+        "title": "PostgreSQL Tables State {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
+    },
+    "pg_numbackends": {
+        "legend": {
+            "pg_connection": {
+                "name": "Actives Connections"
+            },
+            "pg_max_connection": {
+                "name": "Maximum Connections"
+            }
+        },
+        "title": "PostgreSQL Connections {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
     },
     "pg_scan": {
-        "title": "PostgreSQL Query Plans {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
         "legend": {
             "idx": {
                 "name": "Nb Index Scan Tables"
@@ -260,34 +240,22 @@
             "seq_tup_read": {
                 "name": "Nb Rows Sequential Scan Found"
             }
-        }
-    },
-    "pg_numbackends": {
-        "title": "PostgreSQL Connections {{PI}}",
-        "vertical": "counter",
+        },
+        "title": "PostgreSQL Query Plans {{PI}}",
         "type": "stacked",
-        "legend": {
-            "pg_connection": {
-                "name": "Actives Connections"
-            },
-            "pg_max_connection": {
-                "name": "Maximum Connections"
-            }
-        }
+        "vertical": "counter"
     },
-    "mysql_connectionsg": {
-        "title": "Mysql Limits Connections {{PI}}",
-        "vertical": "counter",
-        "type":    "stacked",
+    "pg_xact": {
         "legend": {
-            "max_connections": {
-                "name": "Maximum Connections"
+            "pg_commit": {
+                "name": "Transactions abouties"
             },
-            "max_used_connections": {
-                "name": "Maximum Used Connections"
+            "pg_rollback": {
+                "name": "Transactions annulees"
             }
-        }
-    },
-    "legend_format": "%5.1lf%s"
+        },
+        "title": "PostgreSQL Transactions {{PI}}",
+        "type": "stacked",
+        "vertical": "counter"
+    }
 }
-

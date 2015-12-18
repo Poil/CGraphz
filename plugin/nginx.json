@@ -1,51 +1,44 @@
 {
-	"connections": {
-		"title": "Nginx connections on {{HOST}}",
-		"vertical": "Active Connections",
-		"legend": {
-			"accepted": {
-				"name": "Accepted",
-				"color": "ff0000"
-			},
-			"handled": {
-				"name": "Handled",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"nginx_connections": {
-		"title": "Nginx connection states on {{HOST}}",
-		"vertical": "Active Connections",
-		"legend": {
-			"active": {
-				"name": "Active",
-				"color": "005d57"
-			},
-			"reading": {
-				"name": "Reading",
-				"color": "4444ff"
-			},
-			"waiting": {
-				"name": "Waiting",
-				"color": "f24ac8"
-			},
-			"writing": {
-				"name": "Writing",
-				"color": "00cf00"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"nginx_requests": {
-		"title": "Nginx requests on {{HOST}}",
-		"vertical": "Requests/s",
-		"legend": {
-			"value": {
-				"name": "Requests",
-				"color": "00aa00"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "connections": {
+        "legend": {
+            "accepted": {
+                "name": "Accepted"
+            },
+            "handled": {
+                "name": "Handled"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Nginx connections on {{HOST}}",
+        "vertical": "Active Connections"
+    },
+    "nginx_connections": {
+        "legend": {
+            "active": {
+                "name": "Active"
+            },
+            "reading": {
+                "name": "Reading"
+            },
+            "waiting": {
+                "name": "Waiting"
+            },
+            "writing": {
+                "name": "Writing"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Nginx connection states on {{HOST}}",
+        "vertical": "Active Connections"
+    },
+    "nginx_requests": {
+        "legend": {
+            "value": {
+                "name": "Requests"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Nginx requests on {{HOST}}",
+        "vertical": "Requests/s"
+    }
 }

@@ -1,21 +1,21 @@
 {
-	"all": {
-		"title": "Hit rates",
-		"type": "varnish",
-		"legend": {
-			"cache_hit": {
-				"name": "Cache hits"
-			},
-			"client_req": {
-				"name": "Client requests received"
-			},
-			"cache_miss": {
-				"name": "Cache misses"
-			},
-			"cache_hitpass": {
-				"name": "Cache hits for pass"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "legend": {
+            "cache_hit": {
+                "name": "Cache hits"
+            },
+            "cache_hitpass": {
+                "name": "Cache hits for pass"
+            },
+            "cache_miss": {
+                "name": "Cache misses"
+            },
+            "client_req": {
+                "name": "Client requests received"
+            }
+        },
+        "legend_format": "%5.1lf",
+        "title": "Hit rates",
+        "type": "varnish"
+    }
 }

@@ -1,13 +1,12 @@
 {
-	"gauge": {
-		"title": "Solr average time per request ({{PC}}) on {{HOST}}",
-        "vertical": "Seconds",
-		"legend": {
-			"query": {
-				"name": "Average Time per request"
-			}
-		},
-        "legend_format": "%5.1lf%s"
-	}
+    "gauge": {
+        "legend": {
+            "query": {
+                "name": "Average Time per request"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Solr average time per request ({{PC}}) on {{HOST}}",
+        "vertical": "Seconds"
+    }
 }
-

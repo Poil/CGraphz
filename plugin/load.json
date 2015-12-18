@@ -1,19 +1,19 @@
 {
-	"load": {
-		"title": "System load on {{HOST}}",
-		"vertical": "System load",
-		"type": "default",
-		"legend": {
-			"shortterm": {
-				"name": " 1 min"
-			},
-			"midterm": {
-				"name": " 5 min"
-			},
-			"longterm": {
-				"name": "15 min"
-			}
-		},
-		"legend_format": "%.2lf"
-	}
+    "load": {
+        "legend": {
+            "longterm": {
+                "name": "15 min"
+            },
+            "midterm": {
+                "name": " 5 min"
+            },
+            "shortterm": {
+                "name": " 1 min"
+            }
+        },
+        "legend_format": "%.2lf",
+        "title": "System load on {{HOST}}",
+        "type": "default",
+        "vertical": "System load"
+    }
 }

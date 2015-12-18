@@ -1,84 +1,74 @@
 {
-	"cpu": {
-		"title": "CPU-{{PI}} usage on {{HOST}}",
-		"vertical": "Jiffies",
-		"rrdtool_opts": ["-u", "100"],
-		"type": "stacked",
-		"legend": {
-			"idle": {
-				"name": "Idle",
-				"color": "e8e8e8"
-			},
-			"nice": {
-				"name": "Nice",
-				"color": "00e000"
-			},
-			"user": {
-				"name": "User",
-				"color": "0000ff"
-			},
-			"wait": {
-				"name": "Wait-IO",
-				"color": "ffb000"
-			},
-			"system": {
-				"name": "System",
-				"color": "ff0000"
-			},
-			"softirq": {
-				"name": "SoftIRQ",
-				"color": "ff00ff"
-			},
-			"interrupt": {
-				"name": "IRQ",
-				"color": "a000a0"
-			},
-			"steal": {
-				"name": "Steal",
-				"color": "000000"
-			}
-		},
-		"legend_format": "%5.2lf"
-	},
-	"aggregation": {
-        "title": "Average CPU usage",
-        "vertical": "Jiffies",
-        "rrdtool_opts": ["-u", "100"],
-        "type": "aggregation",
+    "aggregation": {
         "legend": {
             "idle": {
-                "name": "Idle",
-                "color": "e8e8e8"
-            },
-            "nice": {
-                "name": "Nice",
-                "color": "00e000"
-            },
-            "user": {
-                "name": "User",
-                "color": "0000ff"
-            },
-            "wait": {
-                "name": "Wait-IO",
-                "color": "ffb000"
-            },
-            "system": {
-                "name": "System",
-                "color": "ff0000"
-            },
-            "softirq": {
-                "name": "SoftIRQ",
-                "color": "ff00ff"
+                "name": "Idle"
             },
             "interrupt": {
-                "name": "IRQ",
-                "color": "a000a0"
+                "name": "IRQ"
+            },
+            "nice": {
+                "name": "Nice"
+            },
+            "softirq": {
+                "name": "SoftIRQ"
             },
             "steal": {
-                "name": "Steal",
-                "color": "000000"
+                "name": "Steal"
+            },
+            "system": {
+                "name": "System"
+            },
+            "user": {
+                "name": "User"
+            },
+            "wait": {
+                "name": "Wait-IO"
             }
         },
-        "legend_format": "%5.2lf"
-    }	
+        "legend_format": "%5.2lf",
+        "rrdtool_opts": [
+            "-u",
+            "100"
+        ],
+        "title": "Average CPU usage",
+        "type": "aggregation",
+        "vertical": "Jiffies"
+    },
+    "cpu": {
+        "legend": {
+            "idle": {
+                "name": "Idle"
+            },
+            "interrupt": {
+                "name": "IRQ"
+            },
+            "nice": {
+                "name": "Nice"
+            },
+            "softirq": {
+                "name": "SoftIRQ"
+            },
+            "steal": {
+                "name": "Steal"
+            },
+            "system": {
+                "name": "System"
+            },
+            "user": {
+                "name": "User"
+            },
+            "wait": {
+                "name": "Wait-IO"
+            }
+        },
+        "legend_format": "%5.2lf",
+        "rrdtool_opts": [
+            "-u",
+            "100"
+        ],
+        "title": "CPU-{{PI}} usage on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Jiffies"
+    }
 }

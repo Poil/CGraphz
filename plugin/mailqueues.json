@@ -1,7 +1,7 @@
 {
-	"gauge": {
-		"title": "Mails Count in Queues on {{HOST}}",
-		"vertical": "Number",
-		"legend_format": "%5.1lf%s"
-	}
+    "gauge": {
+        "legend_format": "%5.1lf%s",
+        "title": "Mails Count in Queues on {{HOST}}",
+        "vertical": "Number"
+    }
 }

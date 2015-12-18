@@ -1,22 +1,22 @@
 {
-	"delay": {
-		"title": "Delay on {{HOST}}",
-		"vertical": "Seconds",
-		"legend_format": "%5.1lf%s"
-	},
-	"frequency_offset": {
-		"title": "Frequency offset on {{HOST}}",
-		"vertical": "ppm",
-		"legend_format": "%5.1lf%s"
-	},
-	"time_dispersion": {
-		"title": "Time dispersion on {{HOST}}",
-		"vertical": "Seconds",
-		"legend_format": "%5.1lf%s"
-	},
-	"time_offset": {
-		"title": "Time offset on {{HOST}}",
-		"vertical": "Seconds",
-		"legend_format": "%5.1lf%s"
-	}
+    "delay": {
+        "legend_format": "%5.1lf%s",
+        "title": "Delay on {{HOST}}",
+        "vertical": "Seconds"
+    },
+    "frequency_offset": {
+        "legend_format": "%5.1lf%s",
+        "title": "Frequency offset on {{HOST}}",
+        "vertical": "ppm"
+    },
+    "time_dispersion": {
+        "legend_format": "%5.1lf%s",
+        "title": "Time dispersion on {{HOST}}",
+        "vertical": "Seconds"
+    },
+    "time_offset": {
+        "legend_format": "%5.1lf%s",
+        "title": "Time offset on {{HOST}}",
+        "vertical": "Seconds"
+    }
 }

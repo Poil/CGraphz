@@ -1,12 +1,12 @@
 {
-	"all": {
-		"title": "ESI",
-		"type": "varnish",
-		"legend": {
-			"esi_errors": {
-				"name": "ESI parse errors (unlock)"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "legend": {
+            "esi_errors": {
+                "name": "ESI parse errors (unlock)"
+            }
+        },
+        "legend_format": "%5.1lf",
+        "title": "ESI",
+        "type": "varnish"
+    }
 }

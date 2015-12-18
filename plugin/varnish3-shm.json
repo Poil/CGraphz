@@ -1,18 +1,18 @@
 {
-	"all": {
-		"title": "Shared memory activity",
-		"type": "varnish",
-		"legend": {
-			"shm_cont": {
-				"name": "SHM MTX contention"
-			},
-			"shm_flushes": {
-				"name": "SHM flushes due to overflow"
-			},
-			"shm_cycles": {
-				"name": "SHM cycles through buffer"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "legend": {
+            "shm_cont": {
+                "name": "SHM MTX contention"
+            },
+            "shm_cycles": {
+                "name": "SHM cycles through buffer"
+            },
+            "shm_flushes": {
+                "name": "SHM flushes due to overflow"
+            }
+        },
+        "legend_format": "%5.1lf",
+        "title": "Shared memory activity",
+        "type": "varnish"
+    }
 }

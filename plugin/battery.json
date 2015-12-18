@@ -1,35 +1,32 @@
 {
-	"charge": {
-		"title": "Charge (Battery {{PI}}) on {{HOST}}",
-		"vertical": "Ampere hours",
-		"legend": {
-			"value": {
-				"name": "Charge",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"current": {
-		"title": "Current (Battery {{PI}}) on {{HOST}}",
-		"vertical": "Ampere",
-		"legend": {
-			"value": {
-				"name": "Current",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"voltage": {
-		"title": "Voltage (Battery {{PI}}) on {{HOST}}",
-		"vertical": "Volt",
-		"legend": {
-			"value": {
-				"name": "Voltage",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "charge": {
+        "legend": {
+            "value": {
+                "name": "Charge"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Charge (Battery {{PI}}) on {{HOST}}",
+        "vertical": "Ampere hours"
+    },
+    "current": {
+        "legend": {
+            "value": {
+                "name": "Current"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Current (Battery {{PI}}) on {{HOST}}",
+        "vertical": "Ampere"
+    },
+    "voltage": {
+        "legend": {
+            "value": {
+                "name": "Voltage"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Voltage (Battery {{PI}}) on {{HOST}}",
+        "vertical": "Volt"
+    }
 }

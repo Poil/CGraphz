@@ -1,11 +1,11 @@
 {
-	"gauge": {
-		"title": "PuppetDB Managed Resources",
-		"type": "default",
-		"legend": {
-			"Value": {
-				"name": "Resources"
-			}
-		}
-	}
+    "gauge": {
+        "legend": {
+            "Value": {
+                "name": "Resources"
+            }
+        },
+        "title": "PuppetDB Managed Resources",
+        "type": "default"
+    }
 }

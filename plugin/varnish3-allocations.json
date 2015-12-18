@@ -1,12 +1,12 @@
 {
-	"all": {
-		"title": "Memory allocation requests",
-		"type": "varnish",
-		"legend": {
-			"sms_nreq": {
-				"name": "SMS allocator requests"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "legend": {
+            "sms_nreq": {
+                "name": "SMS allocator requests"
+            }
+        },
+        "legend_format": "%5.1lf",
+        "title": "Memory allocation requests",
+        "type": "varnish"
+    }
 }

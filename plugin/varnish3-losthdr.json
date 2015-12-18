@@ -1,12 +1,12 @@
 {
-	"all": {
-		"title": "HTTP Header overflows",
-		"type": "varnish",
-		"legend": {
-			"losthdr": {
-				"name": "HTTP header overflows"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "legend": {
+            "losthdr": {
+                "name": "HTTP header overflows"
+            }
+        },
+        "legend_format": "%5.1lf",
+        "title": "HTTP Header overflows",
+        "type": "varnish"
+    }
 }

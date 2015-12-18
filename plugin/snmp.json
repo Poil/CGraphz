@@ -1,135 +1,113 @@
 {
-	"gauge": {
-		"title": "{{TI}} on {{HOST}}",
-		"type": "stacked"
-	},
-
-	"if_octets": {
-		"title": "Interface Traffic ({{TI}}) on {{HOST}}",
-		"vertical": "{{ND}} per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s",
-		"datasize": true
-	},
-
-	"if_errors": {
-		"title": "Interface Errors ({{TI}}) on {{HOST}}",
-		"vertical": "Errors per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-
-	"if_dropped": {
-		"title": "Interface Discards ({{TI}}) on {{HOST}}",
-		"vertical": "Dropped per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-
-	"if_packets": {
-		"title": "Interface Packets ({{TI}}) on {{HOST}}",
-		"vertical": "Packets per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-
-	"gauge-cpu": {
-		"scale": "100"
-	},
-
-	"load": {
-		"title": "System load",
-		"vertical": "System load",
-		"type": "default",
-		"scale": "0.001",
-		"legend": {
-			"shortterm": {
-				"name": " 1 min",
-				"color": "00ff00"
-			},
-			"midterm": {
-				"name": " 5 min",
-				"color": "0000ff"
-			},
-			"longterm": {
-				"name": "15 min",
-				"color": "ff0000"
-			}
-		}
-	},
-
-	"temperature": {
-		"title": "Temperature on {{HOST}}",
-		"vertical": "Celsius",
-		"type": "default"
-	},
-
-	"links": {
-		"title": "{{TI}} links state on {{HOST}}",
-		"vertical": "State",
-		"type": "stacked"
-	},
-
-	"uptime": {
-		"title": "Uptime {{TI}}",
-		"vertical": "Days",
-		"type": "uptime",
-		"legend_format": "%5.1lf%s"
-	},
-	"memory": {
-		"title": "Physical memory utilization on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"free": {
-				"name": "Free",
-				"color": "00e000"
-			},
-			"used": {
-				"name": "Used",
-				"color": "ff0000"
-			}
-		},
-		"base": "1024"
-	}
+    "gauge": {
+        "title": "{{TI}} on {{HOST}}",
+        "type": "stacked"
+    },
+    "gauge-cpu": {
+        "scale": "100"
+    },
+    "if_dropped": {
+        "legend": {
+            "rx": {
+                "name": "Receive"
+            },
+            "tx": {
+                "name": "Transmit"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Interface Discards ({{TI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "Dropped per second"
+    },
+    "if_errors": {
+        "legend": {
+            "rx": {
+                "name": "Receive"
+            },
+            "tx": {
+                "name": "Transmit"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Interface Errors ({{TI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "Errors per second"
+    },
+    "if_octets": {
+        "datasize": true,
+        "legend": {
+            "rx": {
+                "name": "Receive"
+            },
+            "tx": {
+                "name": "Transmit"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Interface Traffic ({{TI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "{{ND}} per second"
+    },
+    "if_packets": {
+        "legend": {
+            "rx": {
+                "name": "Receive"
+            },
+            "tx": {
+                "name": "Transmit"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Interface Packets ({{TI}}) on {{HOST}}",
+        "type": "io",
+        "vertical": "Packets per second"
+    },
+    "links": {
+        "title": "{{TI}} links state on {{HOST}}",
+        "type": "stacked",
+        "vertical": "State"
+    },
+    "load": {
+        "legend": {
+            "longterm": {
+                "name": "15 min"
+            },
+            "midterm": {
+                "name": " 5 min"
+            },
+            "shortterm": {
+                "name": " 1 min"
+            }
+        },
+        "scale": "0.001",
+        "title": "System load",
+        "type": "default",
+        "vertical": "System load"
+    },
+    "memory": {
+        "base": "1024",
+        "legend": {
+            "free": {
+                "name": "Free"
+            },
+            "used": {
+                "name": "Used"
+            }
+        },
+        "title": "Physical memory utilization on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Bytes"
+    },
+    "temperature": {
+        "title": "Temperature on {{HOST}}",
+        "type": "default",
+        "vertical": "Celsius"
+    },
+    "uptime": {
+        "legend_format": "%5.1lf%s",
+        "title": "Uptime {{TI}}",
+        "type": "uptime",
+        "vertical": "Days"
+    }
 }

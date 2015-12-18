@@ -1,26 +1,24 @@
 {
-	"bytes": {
-		"title": "Filecount: size ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"value": {
-				"name": "Size",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"files": {
-		"title": "Filecount: number of files ({{PI}}) on {{HOST}}",
-		"vertical": "Files",
-		"type": "stacked",
-		"legend": {
-			"value": {
-				"name": "Files",
-				"color": "f0a000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "bytes": {
+        "legend": {
+            "value": {
+                "name": "Size"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Filecount: size ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Bytes"
+    },
+    "files": {
+        "legend": {
+            "value": {
+                "name": "Files"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "title": "Filecount: number of files ({{PI}}) on {{HOST}}",
+        "type": "stacked",
+        "vertical": "Files"
+    }
 }

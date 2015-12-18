@@ -1,12 +1,12 @@
 {
-	"counter": {
-		"title": "PuppetDB Commands Processed",
-		"type": "default",
-		"vertical": "Commands",
-		"legend": {
-			"Count": {
-				"name": "Count"
-			}
-		}
-	}
+    "counter": {
+        "legend": {
+            "Count": {
+                "name": "Count"
+            }
+        },
+        "title": "PuppetDB Commands Processed",
+        "type": "default",
+        "vertical": "Commands"
+    }
 }

@@ -1,11 +1,11 @@
 {
-	"latency": {
-		"title": "PuppetDB DLO Compression Round Trip Time Latency",
-		"type": "default",
-		"legend": {
-			"99thPercentile": {
-				"name": "99thPercentile"
-			}
-		}
-	}
+    "latency": {
+        "legend": {
+            "99thPercentile": {
+                "name": "99thPercentile"
+            }
+        },
+        "title": "PuppetDB DLO Compression Round Trip Time Latency",
+        "type": "default"
+    }
 }

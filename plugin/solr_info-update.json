@@ -1,43 +1,42 @@
 {
-	"gauge": {
-		"title": "Update statistics ({{PC}}) on {{HOST}}",
-		"vertical": "Nb",
-		"legend": {
-			"errors": {
-				"name": "Errors"
-			},
-			"commits": {
-				"name": "Commits"
-			},
-			"autocommits": {
-				"name": "Autocommits"
-			},
-			"soft_autocommits": {
-				"name": "Soft autocommits"
-			},
-			"optimizes": {
-				"name": "Optimizes"
-			},
-			"expunges": {
-				"name": "Expunges"
-			},
-			"rollbacks": {
-				"name": "Rollbacks"
-			},
-			"pending_docs": {
-				"name": "Pending documents"
-			},
-			"adds": {
-				"name": "Adds"
-			},
-			"deletes_by_id": {
-				"name": "Deletes by ID"
-			},
-			"deletes_by_query": {
-				"name": "Deletes by query"
-			}
-		},
-		"legend_format": "%5.0lf"
-	}
+    "gauge": {
+        "legend": {
+            "adds": {
+                "name": "Adds"
+            },
+            "autocommits": {
+                "name": "Autocommits"
+            },
+            "commits": {
+                "name": "Commits"
+            },
+            "deletes_by_id": {
+                "name": "Deletes by ID"
+            },
+            "deletes_by_query": {
+                "name": "Deletes by query"
+            },
+            "errors": {
+                "name": "Errors"
+            },
+            "expunges": {
+                "name": "Expunges"
+            },
+            "optimizes": {
+                "name": "Optimizes"
+            },
+            "pending_docs": {
+                "name": "Pending documents"
+            },
+            "rollbacks": {
+                "name": "Rollbacks"
+            },
+            "soft_autocommits": {
+                "name": "Soft autocommits"
+            }
+        },
+        "legend_format": "%5.0lf",
+        "title": "Update statistics ({{PC}}) on {{HOST}}",
+        "vertical": "Nb"
+    }
 }
-
