@@ -26,6 +26,7 @@ class Type_Base {
 	var $percentile = false;
 	var $graph_smooth;
 	var $graph_minmax;
+	var $faded_color = false;
 
 	var $files;
 	var $tinstances;
@@ -49,6 +50,7 @@ class Type_Base {
 				$this->rrdtool_opts = explode(' ', $config['rrdtool_opts']);
 			}
 		}
+		$this->faded_colors = filter_var($config['faded_colors'], FILTER_VALIDATE_BOOLEAN);
 		$this->cache = $config['cache'];
 		$this->parse_get($_get);
 		$this->rrd_title = sprintf(
@@ -163,6 +165,9 @@ class Type_Base {
 	}
 
 	function get_faded_color($fgc, $bgc='ffffff', $percent=0.25) {
+		if (!$this->faded_colors) {
+			return $fgc;
+		}
 		$fgc = $this->validate_color($fgc);
 		if (!is_numeric($percent))
 			$percent=0.25;

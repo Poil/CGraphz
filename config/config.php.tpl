@@ -59,6 +59,9 @@ define('GRAPH_TITLE','rrd');
 # extra typesdb config to merge to default
 #$CONFIG['typesdb'][] = '/usr/share/collectd/my_extra_types.db';
 
+# enable or disable faded colors
+$CONFIG['faded_colors'] = false;
+
 # use the negative X-axis in I/O graphs
 $CONFIG['negative_io'] = false;
 
