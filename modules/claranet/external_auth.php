@@ -15,7 +15,11 @@ if (!isset($argc)) {
     //Retour à la page de login de Peek in si aucune variable de session user.
     if(!isset($_SESSION["user"])){
         session_destroy();
-        header('Location: '.DIR_WEBROOT.'/../login?target=..'.urlencode($_SERVER[REQUEST_URI]));
+        $target = '';
+        if (isset($_SERVER[REQUEST_URI])) {
+            $target = '?target=..'.urlencode($_SERVER[REQUEST_URI]);
+        }
+        header('Location: '.DIR_WEBROOT.'/../login'.$target);
     }
     
 	//Si profile "user" alors on verifie si il a accés à ce serveur.
