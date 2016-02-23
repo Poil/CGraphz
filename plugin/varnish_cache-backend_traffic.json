@@ -1,0 +1,24 @@
+{
+        "all": {
+                "title": "Backend traffic",
+                "type": "varnish",
+                "legend": {
+                        "backend_conn_failures": {
+                                "name": "Backend conn. failures"
+                        },
+                        "backend_conn_reuses": {
+                                "name": "Backend conn. reuses"
+                        },
+                        "backend_conn_retry": {
+                                "name": "Backend conn. retry"
+                        },
+                        "backend_requests_made": {
+                                "name": "Backend requests made"
+                        },
+                        "backend_conn_recycles": {
+                                "name": "Backend conn. recycles"
+                        }
+                },
+                "legend_format": "%5.1lf"
+        }
+}
