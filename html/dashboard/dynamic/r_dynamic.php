@@ -254,7 +254,7 @@ if ($_GET['f_id_config_dynamic_dashboard']) {
                   || ($plugin['p'] == 'snmp' && $plugin['t'] == 'memory')
                ) {
                   $plugin['ti']=null;
-                  if ($plugin['p'] == 'varnish3') { $plugin['t']='all'; }
+                  if ($plugin['p'] == 'varnish3' || $plugin['p'] == 'varnish_cache') { $plugin['t']='all'; }
                   if ($old_t!=$plugin['t'] or $old_pi!=$plugin['pi'] or $old_pc!=$plugin['pc'] or $plugin['servername']!=$old_servername or $old_tc!=$plugin['tc']) {
                       if ($CONFIG['graph_type'] == 'canvas') {
                          $_GET['h'] = $plugin['servername'];

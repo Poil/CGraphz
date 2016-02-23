@@ -174,7 +174,7 @@ if (!empty($allDatadir)) {
                      && !preg_match('/^(oracle|snmp)$/', $p) && $t!='df'))
                      || ($p == 'snmp' && $t == 'memory')
                 ) {
-                    if ($p == 'varnish3') { $t='all'; }
+                    if ($p == 'varnish_cache' || $p == 'varnish3') { $t='all'; }
                     $ti='';
                     if ($old_t!=$t or $old_p!=$p or $old_pi!=$pi or $old_pc!=$pc or $old_tc!=$tc)   {
                         if ($CONFIG['graph_type'] == 'canvas') {
