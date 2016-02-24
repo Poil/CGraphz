@@ -1,0 +1,37 @@
+{
+        "all": {
+                "title": "Hit Rate",
+                "type": "varnish",
+                "legend": {
+                        "cache_hits": {
+                                "name": "Cache Hits"
+                        },
+                        "cache_misses": {
+                                "name": "Cache Misses"
+                        },
+                        "cache_hits_for_pass": {
+                                "name": "Cache Hits For Pass"
+                        },
+                        "backend_conn_success": {
+                                "name": "Backend conn. Sucess"
+                        },
+                        "backend_conn_not_attempted": {
+                                "name": "Backend conn. Not Attempted"
+                        },
+                        "good_client_requests_received": {
+                               "name": "Good Client Requests Received"
+                        },
+                        "total_passed_requests_seen"": {
+                               "name": "Total Passed requests Seen"
+                        },
+                        "total_pipe_sessions_seen": {
+                               "name": "Total Pipe Sessions Seen"
+                        },
+                        "sessions_accepted": {
+                               "name": "Session Accepted"
+                        }
+                        
+                },
+                "legend_format": "%5.1lf"
+        }
+}
