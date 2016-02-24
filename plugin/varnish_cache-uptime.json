@@ -8,6 +8,6 @@
                         }
                 },
                 "legend_format": "%5.1lf",
-                "scale": 0.00000015
+                "scale": 0.000115
         }
 }
