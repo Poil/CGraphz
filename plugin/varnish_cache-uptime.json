@@ -1,0 +1,12 @@
+{
+        "all": {
+                "title": "Uptime",
+                "type": "varnish",
+                "legend": {
+                        "varnish_uptime": {
+                                "name": "Uptime"
+                        }
+                },
+                "legend_format": "%5.1lf"
+        }
+}

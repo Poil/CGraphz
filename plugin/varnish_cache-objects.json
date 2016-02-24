@@ -1,0 +1,12 @@
+{
+        "all": {
+                "title": "Objects",
+                "type": "varnish",
+                "legend": {
+                        "number_of_objects": {
+                                "name": "Number of objects"
+                        }
+                },
+                "legend_format": "%5.1lf"
+        }
+}
