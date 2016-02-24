@@ -1,0 +1,21 @@
+{
+        "all": {
+                "title": "Memory Usage",
+                "type": "varnish",
+                "legend": {
+                        "bytes_outstanding_transient": {
+                                "name": "Bytes Outstanding Transient"
+                        },
+                        "bytes_available_transient": {
+                                "name": "Bytes Available Transient"
+                        },
+                        "bytes_outstanding_s0": {
+                                "name": "Bytes Outstanding s0"
+                        },
+                        "bytes_available_s0": {
+                                "name": "Bytes Available s0"
+                        }
+                },
+                "legend_format": "%5.1lf"
+        }
+}

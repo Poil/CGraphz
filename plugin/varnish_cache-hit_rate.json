@@ -1,0 +1,18 @@
+{
+        "all": {
+                "title": "Hit Rate",
+                "type": "varnish",
+                "legend": {
+                        "cache_hits": {
+                                "name": "Cache Hits"
+                        },
+                        "cache_hits_for_pass": {
+                                "name": "Cache Hit For Pass"
+                        },
+                        "cache_misses": {
+                                "name": "Cache Missed"
+                        }
+                },
+                "legend_format": "%5.1lf"
+        }
+}
