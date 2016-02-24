@@ -7,7 +7,7 @@
                                 "name": "Uptime"
                         }
                 },
-                "legend_format": "%5.1lf"
+                "legend_format": "%5.1lf",
                 "scale": 0.864
         }
 }
