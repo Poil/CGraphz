@@ -1,6 +1,6 @@
 {
         "all": {
-                "title": "Backend traffic",
+                "title": "Misbehavior",
                 "type": "varnish",
                 "legend": {
                         "esi_parse_errors": {
