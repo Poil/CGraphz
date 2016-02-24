@@ -1,6 +1,6 @@
 {
         "all": {
-                "title": "Hit Rate",
+                "title": "Request Rate",
                 "type": "varnish",
                 "legend": {
                         "cache_hits": {
