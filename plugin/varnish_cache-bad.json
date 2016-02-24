@@ -31,10 +31,10 @@
                                 "name": "Backend conn. Too Many"
                         },
                         "threads_hit_max": {
-                                 name": "Threads Hit Max"
+                                 "name": "Threads Hit Max"
                         },
                         "threads_destroyed": {
-                                 name": "Threads Destroyed"
+                                 "name": "Threads Destroyed"
                         },
                         "length_of_session_queue": {
                                 "name": "Lenght of Session queue"
