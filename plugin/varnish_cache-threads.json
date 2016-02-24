@@ -1,0 +1,24 @@
+{
+        "all": {
+                "title": "Threads",
+                "type": "varnish",
+                "legend": {
+                        "thread_creation_failed": {
+                                "name": "Thread Creation Failed"
+                        },
+                        "threads_hit_max": {
+                                "name": "Threads Hit Max"
+                        },
+                        "total_number_of_threads": {
+                                "name": "Total Number of Threads"
+                        },
+                        "threads_created": {
+                                "name": "Threads Created"
+                        },
+                        "threads_destroyed": {
+                                "name": "Threads Destroyed"
+                        }
+                },
+                "legend_format": "%5.1lf"
+        }
+}

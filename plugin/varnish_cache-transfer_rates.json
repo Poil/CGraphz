@@ -1,0 +1,15 @@
+{
+        "all": {
+                "title": "Transfert Rates",
+                "type": "varnish",
+                "legend": {
+                        "body_traffic": {
+                                "name": "Body Traffic"
+                        },
+                        "header_traffic": {
+                                "name": "Header Traffic"
+                        }
+                },
+                "legend_format": "%5.1lf"
+        }
+}
