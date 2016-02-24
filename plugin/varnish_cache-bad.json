@@ -1,0 +1,45 @@
+{
+        "all": {
+                "title": "Backend traffic",
+                "type": "varnish",
+                "legend": {
+                        "esi_parse_errors": {
+                                "name": "ESI Parse Errors"
+                        },
+                        "esi_parse_warnings": {
+                                "name": "ESI Parse Warnings"
+                        },
+                        "fetch_failed": {
+                                "name": "Fetch Failed"
+                        },
+                        "http_header_overflows": {
+                                "name": "http_header Overflows"
+                        },
+                        "session_accept_failures": {
+                                "name": "Session Accept Failures"
+                        },
+                        "sessions_dropped": {
+                                "name": "Session Dropped"
+                        },
+                        "backend_conn_not_attempted": {
+                                "name": "Backend conn. Not Attempted"
+                        },
+                        "thread_creation_failed": {
+                                "name": "Thread Creation Failed"
+                        },
+                        "backend_conn_too_many": {
+                                "name": "Backend conn. Too Many"
+                        },
+                        "threads_hit_max": {
+                                 name": "Threads Hit Max"
+                        },
+                        "threads_destroyed": {
+                                 name": "Threads Destroyed"
+                        },
+                        "length_of_session_queue": {
+                                "name": "Lenght of Session queue"
+                        }
+                },
+                "legend_format": "%5.1lf"
+        }
+}
