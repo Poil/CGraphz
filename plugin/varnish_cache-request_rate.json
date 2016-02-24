@@ -21,7 +21,7 @@
                         "good_client_requests_received": {
                                "name": "Good Client Requests Received"
                         },
-                        "total_passed_requests_seen"": {
+                        "total_passed_requests_seen": {
                                "name": "Total Passed requests Seen"
                         },
                         "total_pipe_sessions_seen": {

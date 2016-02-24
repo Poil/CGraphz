@@ -1,7 +1,7 @@
 {
         "all": {
                 "title": "Uptime",
-                "type": "uptime",
+                "type": "varnish",
                 "legend": {
                         "varnish_uptime": {
                                 "name": "Uptime"

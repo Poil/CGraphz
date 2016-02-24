@@ -1,0 +1,37 @@
+{
+        "all": {
+                "title": "VCL and BANS",
+                "type": "varnish",
+                "legend": {
+                        "n_duplicate_bans_removed": {
+                                "name": "Duplicate Bans Removed"
+                        },
+                        "n_new_bans_added": {
+                                "name": "New Bans Added"
+                        },
+                        "n_backends": {
+                                "name": "Backends"
+                        },
+                        "n_vcl_total": {
+                                "name": "VCL Total"
+                        },
+                        "n_total_active bans": {
+                                "name": "Total Active Bans"
+                        },
+                        "n_old_bans_deleted": {
+                               "name": "Old Bans Deleted"
+                        },
+                        "n_objects_tested": {
+                               "name": "Objects Tested"
+                        },
+                        "n_vcl_discarded": {
+                               "name": "VCL Discarded"
+                        },
+                        "n_vcl_available": {
+                               "name": "VCL Available"
+                        }
+                        
+                },
+                "legend_format": "%5.1lf"
+        }
+}
