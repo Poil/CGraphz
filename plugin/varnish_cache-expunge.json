@@ -1,0 +1,15 @@
+{
+        "all": {
+                "title": "Object Expunging",
+                "type": "varnish",
+                "legend": {
+                        "number_of_expired objects": {
+                                "name": "Number of expired objects"
+                        },
+                        "number_of_lru_nuked_objects": {
+                                "name": "Number of LRU Nuked objects"
+                        }
+                },
+                "legend_format": "%5.1lf"
+        }
+}
