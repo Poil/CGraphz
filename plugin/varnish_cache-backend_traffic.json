@@ -12,6 +12,15 @@
                         "backend_conn_retry": {
                                 "name": "Backend conn. retry"
                         },
+                        "backend_conn_too_many": {
+                                "name": "Backend conn. too many"
+                        },
+                        "backend_conn_success": {
+                                "name": "Backend conn. succcess"
+                        },
+                        "backend_conn_not_attempted": {
+                                "name": "Backend conn. not attempted"
+                        },
                         "backend_requests_made": {
                                 "name": "Backend requests made"
                         },
