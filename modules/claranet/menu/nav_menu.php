@@ -83,9 +83,10 @@
 								ON pv.id_view=v.id_view
 							INNER JOIN auth_user as au
 								ON au.id_auth_user=v.id_auth_user
-							WHERE id_project in (".implode(",",$prjs).");";
+							WHERE id_project in (".implode(",",array_filter($prjs)).");";
 					
 					$views=$connSQL->query($requeteView);
+					
 					
 					if(!empty($views)){
 						// On recupère l'id du user guest
