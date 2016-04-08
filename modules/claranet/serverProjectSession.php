@@ -8,6 +8,7 @@
 	if(isset($_SESSION["profile"]) && ($_SESSION["profile"]=="user")){
 		//L'ensemble des serveurs authorisé est contenu dans la variable de session "hierarchy".
 		$hier_decode=json_decode($_SESSION["hierarchy"]);
+		$i=0;
 		foreach($hier_decode as $projet){
 			$tabHosts[$projet->nom]=array();
 			foreach($projet->hosts as $host){
