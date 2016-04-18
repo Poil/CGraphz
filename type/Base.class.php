@@ -345,7 +345,9 @@ class Type_Base {
 				$sources = $this->tinstances;
 			} else {
 				# use data_sources as sources
-				$sources = $this->data_sources;
+				if (is_array($this->order)) {
+					$sources = array_intersect($this->order,$this->data_sources);
+				}
 			}
 		}
 		$this->parse_legend($sources);
