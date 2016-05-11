@@ -357,11 +357,6 @@ class Type_Base {
 		$this->parse_legend($sources);
 		return $sources;
 	}
-			}
-		}
-		$this->parse_legend($sources);
-		return $sources;
-	}
 
 	function parse_legend($sources) {
 		# fill up legend by items that are not defined by plugin
