@@ -352,6 +352,7 @@ class Type_Base {
 				} else {
 					$sources = $this->data_sources;
 				}
+				$this->data_sources = $sources;
 			}
 		}
 		$this->parse_legend($sources);
