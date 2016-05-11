@@ -38,7 +38,9 @@ class Type_Base {
 	function __construct($config, $_get, $pluginconfig) {
 		$this->log = new LOG();
 		$this->datadir = $pluginconfig['rrd_path'];
-		$this->flush_path = $pluginconfig['flush_path'];
+		if (!empty($pluginconfig['flush_path'])) {
+			$this->flush_path = $pluginconfig['flush_path'];
+		}
 		$this->rrdtool = $config['rrdtool'];
 		if (!empty($config['rrdtool_opts'])) {
 			if (is_array($config['rrdtool_opts'])) {
@@ -347,7 +349,14 @@ class Type_Base {
 				# use data_sources as sources
 				if (is_array($this->order)) {
 					$sources = array_intersect($this->order,$this->data_sources);
+				} else {
+					$sources = $this->data_sources;
 				}
+			}
+		}
+		$this->parse_legend($sources);
+		return $sources;
+	}
 			}
 		}
 		$this->parse_legend($sources);
