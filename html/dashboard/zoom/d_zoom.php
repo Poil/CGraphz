@@ -16,16 +16,16 @@ echo '<button type="button" class="close" data-dismiss="modal" aria-hidden="true
 echo '<meta name="viewport" content="width=1050, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />';
 
 if(isset($_GET['s']) && $_GET['s']!="") {
-	if (isset($_GET['e']) && $_GET['e']!=""){
-		$date_start=date('Y-m-d H:i',intval($_GET['s']));
-		$date_end=date('Y-m-d H:i',intval($_GET['e']));
-	}else{
-		$date_start=date('Y-m-d H:i',(time()-intval($_GET['s'])));
-		$date_end=date('Y-m-d H:i');
-	}
+    if (isset($_GET['e']) && $_GET['e']!="") {
+        $date_start = date('Y-m-d H:i', intval($_GET['s']));
+        $date_end = date('Y-m-d H:i', intval($_GET['e']));
+    } else {
+        $date_start = date('Y-m-d H:i', (time() - intval($_GET['s'])));
+        $date_end = date('Y-m-d H:i');
+    }
 }else{
-	$date_start=date('Y-m-d H:i',(time()-intval($CONFIG['time_range']['default'])));
-	$date_end=date('Y-m-d H:i');
+    $date_start = date('Y-m-d H:i', (time() - intval($CONFIG['time_range']['default'])));
+    $date_end = date('Y-m-d H:i');
 }
 ?>
 

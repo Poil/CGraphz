@@ -11,20 +11,20 @@ $y = (!empty($_SESSION['graph_height']) && $_SESSION['graph_height'] != 0) ? $_S
 $graph_size = "&amp;x=$x&amp;y=$y";
 
 if (isset($_GET['f_id_config_server'])) {
-	include(DIR_FSROOT.'/html/menu/time_selector.php');
+    include(DIR_FSROOT.'/html/menu/time_selector.php');
 }
 
 echo '<div id="dashboard">';
 if ($cur_server->server_name=='') {
-	echo '<h1>'.UNKNOWN_SERVER.'</h1>';
-	echo '</div>';
-	exit;
+    echo '<h1>'.UNKNOWN_SERVER.'</h1>';
+    echo '</div>';
+    exit;
 }
 
 echo '<h1>'.$cur_server->server_name.'</h1>';
 
 $lib = 'SELECT 
-		cpf.*         
+        cpf.*         
     FROM 
         config_plugin_filter cpf
         LEFT JOIN config_plugin_filter_group cpfg
@@ -53,7 +53,7 @@ if (isset($time_start) && isset($time_end)) {
 $dgraph=0;
 $allDatadir=getAllDatadir();
 foreach($allDatadir as $key => $datadir){
-	if(!is_dir($datadir.'/'.$cur_server->server_name.'/')) unset($allDatadir[$key]);    
+    if(!is_dir($datadir.'/'.$cur_server->server_name.'/')) unset($allDatadir[$key]);    
 }
 
 if (!empty($allDatadir)) {
@@ -67,7 +67,7 @@ if (!empty($allDatadir)) {
     }
     $myregex=$myregex.')#';
 
-	$tplugins=array();
+    $tplugins=array();
     foreach($allDatadir as $datadir) {
         $tpluginsDatadir=preg_find($myregex, $datadir.'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
         if ($tpluginsDatadir) $dgraph=1;
@@ -75,13 +75,13 @@ if (!empty($allDatadir)) {
     }   
     $plugins = (sort_plugins('('.implode('|',$allDatadir).')/'.$cur_server->server_name,$tplugins, $pg_filters));
 
-	$old_t='';
+    $old_t='';
     $old_pi='';
     $old_subpg='';
     $myregex='#^(('.implode('|',$allDatadir).')/'.$cur_server->server_name.'/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
     foreach ($plugins as $plugin) {
         preg_match($myregex, $plugin['content'], $matches);
-		$plugin_datadir = getDatadirEntry($matches[1]);
+        $plugin_datadir = getDatadirEntry($matches[1]);
 
     if (isset($matches[3])) {
             $p=$matches[3];
@@ -129,7 +129,7 @@ if (!empty($allDatadir)) {
         }
 
 
-		if (!isset(${$p.$pc.$pi.$t.$tc.$ti}) ) {
+        if (!isset(${$p.$pc.$pi.$t.$tc.$ti}) ) {
             if ($$p!=true && $p!='aggregation') {
                 $lvl_p=2;
                 $lvl_pc=$lvl_p+1;
@@ -153,9 +153,9 @@ if (!empty($allDatadir)) {
                 $others=false;
                 $$pi=false;
             }
-            
-			// Displaying Plugin Instance for some plugins
-			${$pc.$pi} = isset(${$pc.$pi}) ? ${$pc.$pi} : false;
+
+            // Displaying Plugin Instance for some plugins
+            ${$pc.$pi} = isset(${$pc.$pi}) ? ${$pc.$pi} : false;
             if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
                 ${$pc.$pi}=true;
                 echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
@@ -165,9 +165,9 @@ if (!empty($allDatadir)) {
                 echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$t))."</h$lvl_pi>";
             }
 
-			${$p.$pc.$pi.$t.$tc.$ti}=true;
+            ${$p.$pc.$pi.$t.$tc.$ti}=true;
 
-			// Verif regex OK
+            // Verif regex OK
             if (isset($p) && isset($t)) {
                 if (!preg_match('/^(df|interface|oracle|snmp)$/', $p) || 
                    (((preg_replace('/[^0-9\.]/','',$cur_server->collectd_version) >= 5)
@@ -210,7 +210,7 @@ if (!empty($allDatadir)) {
                         $_GET['tc'] = $tc;
                         $_GET['ti'] = $ti;
 
-                   		chdir(DIR_FSROOT);
+                           chdir(DIR_FSROOT);
                         include DIR_FSROOT.'/plugin/'.$p.'.php';
                     } else {
                         $graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
@@ -242,7 +242,7 @@ foreach($allDatadir as $datadir){
 }
 
 if (!empty($vmlist)) {
-	echo "<h2>Libvirt</h2>";
+    echo "<h2>Libvirt</h2>";
     foreach ($vmlist as $vmdir) {
     
         $tmp=explode(':',$vmdir);
