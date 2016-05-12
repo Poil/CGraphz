@@ -11,7 +11,7 @@ $e_form->add('text', 'f_environment')
         ->labelGrid(IL_CSS)
         ->inputGrid(I_CSS);
 
-$e_form->add('text', 'f_environment_description')
+$e_form->add('text', 'f_environment_desc')
         ->value(@$cur_environment->environment_description)
         ->label(DESC)
         ->autocomplete(false)
