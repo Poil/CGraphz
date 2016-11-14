@@ -70,3 +70,8 @@ Add your first server
  * Add the admin group to the permissions tab
 1. You can now go on dashboard and view your RRDs
 
+=======
+License
+-------
+
+CGraphz is released under the terms of GPL version 3. See doc/LICENSE for the full license text.
