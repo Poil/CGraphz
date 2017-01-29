@@ -23,7 +23,7 @@ class Select extends Field{
         } else {
            $fieldclass='';
         }
-        if ($formcontrol==true) {
+        if ($this->formcontrol==true) {
            $fieldclass='form-control '.$fieldclass;
 	}
 
