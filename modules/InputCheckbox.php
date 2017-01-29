@@ -2,6 +2,7 @@
 class InputCheckbox extends Field{
     private $checked = false;
     private $default = false;
+    private $labelclass = null;
     
     public function buildField(){
         $field = '<div class="form-group">'."\n";
