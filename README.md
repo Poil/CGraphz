@@ -17,7 +17,7 @@ Clone Git
 -----
 > cd /var/www/
 
-> wget https://github.com/Poil/CGraphz/archive/v2.46.1.tar.gz
+> wget https://github.com/Poil/CGraphz/archive/v2.46.3.tar.gz
 
 Or
 
@@ -28,8 +28,27 @@ Or
 Post Installation
 -----
 * MySQL : 
+ * Set the default to UTF-8 in my.cnf
 
+```ini
+[client]
+default-character-set=utf8
+
+[mysql]
+default-character-set=utf8
+
+
+[mysqld]
+collation-server = utf8_unicode_ci
+init-connect='SET NAMES utf8'
+character-set-server = utf8
+```
+
+ * Source the schema
 > mysql -u root -p -e "source /var/www/CGraphz/sql/initial_cgraphz_2.10.sql; source /var/www/CGraphz/sql/upgrade_from_2.10_to_2_20.sql;"
+
+ * Submenu in english :
+> mysql -u root -p -e "source /var/www/CGraphz/sql/cgraphz_en.sql;"
 
 * Configuration
  * Edit /var/www/CGraphz/config/config.php.tpl
@@ -70,8 +89,3 @@ Add your first server
  * Add the admin group to the permissions tab
 1. You can now go on dashboard and view your RRDs
 
-=======
-License
--------
-
-CGraphz is released under the terms of GPL version 3. See doc/LICENSE for the full license text.
