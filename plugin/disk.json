@@ -63,5 +63,22 @@
 		},
 		"legend_format": "%5.1lf%ss",
 		"scale": 0.001
+	},
+	"disk_io_time": {
+		"title": "Disk IO time per operation ({{PI}}) on {{HOST}}",
+		"vertical": "Avg. Time/Op",
+		"type": "io",
+		"legend": {
+			"weighted_io_time": {
+				"name": "Weighted IO Time",
+				"color": "0000ff"
+			},
+			"io_time": {
+				"name": "IO Time",
+				"color": "00b000"
+			}
+		},
+		"legend_format": "%5.1lf%ss",
+		"scale": 0.001
 	}
 }

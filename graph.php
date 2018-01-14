@@ -6,10 +6,8 @@ require_once 'modules/collectd.inc.php';
 $auth = new AUTH_USER();
 $log = new LOG();	
 
-if (!$auth->verif_auth()) {
-	error_image('[ERROR] Permission denied');
-}
-			
+$authed = $auth->verif_auth();
+
 $s_id_user=filter_var($_SESSION['S_ID_USER'],FILTER_SANITIZE_NUMBER_INT);
 $plugin = validate_get(GET('p'), 'plugin');
 $plugininstance = validate_get(GET('pi'), 'plugininstance');
@@ -42,7 +40,7 @@ if (strpos($host,':')!=FALSE) {
 	$host=$tmp[0];
 }
 
-if (!$authorized=$auth->check_access_right($host)) {
+if ($authed && !$authorized=$auth->check_access_right($host)) {
 	$log->write('CGRAPHZ ERROR: Permission denied for host : '.$host);
 	error_image('[ERROR] Permission denied to '.$host);
 }
