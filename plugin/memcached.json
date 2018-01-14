@@ -110,9 +110,13 @@
         "title": "Memcached number of Threads ({{PI}}) on {{HOST}}",
         "vertical": "Threads",
         "legend": {
-            "value": {
+            "threads": {
                 "name": "Threads",
                 "color": "00b000"
+            },
+            "processes": {
+                "name": "Processes",
+                "color": "0b0000"
             }
         },
         "legend_format": "%5.1lf%s"

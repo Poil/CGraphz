@@ -1,0 +1,285 @@
+{
+    "bytes-indices_merges_size": {
+        "title": "Indices Merges Size ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "legend": {
+            "indices_merges_size-current": {
+                "name": "Current"
+            },
+            "indices_merges_size-total": {
+                "name": "Total"
+            }
+        }
+    },
+    "bytes-indices_size": {
+        "title": "Indices Size ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "legend": {
+            "indices_size-store": {
+                "name": "Store"
+            }
+        }
+    },
+    "bytes-jvm_mem": {
+        "title": "JVM Mem ({{PI}}) on {{HOST}}",
+        "title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
+        "vertical": "Bytes",
+        "legend": {
+            "jvm_mem-heap_committed": {
+                "name": "Heap Committed"
+            },
+            "jvm_mem-heap_used": {
+                "name": "Heap Used"
+            },
+            "jvm_mem-non_heap_committed": {
+                "name": "NonHeap Committed"
+            },
+            "jvm_mem-non_heap_used": {
+                "name": "NonHeap Used"
+            }
+         }
+    },
+    "bytes-transport_size": {
+        "title": "In/Out Size ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "legend": {
+            "transport_size-rx": {
+                "name": "rx"
+            },
+            "transport_size-tx": {
+                "name": "tx"
+            }
+        }
+    },
+    "counter-indices_docs": {
+        "title": "Indices Docs  ({{PI}}) on {{HOST}}",
+        "vertical": "Count",
+        "legend": {
+            "indices_docs-deleted": {
+                "name": "deleted"
+            }
+        }
+    },
+    "counter-indices_get_time": {
+        "title": "Get Time ({{PI}}) on {{HOST}}",
+        "vertical": "Millisecondes",
+        "legend": {
+            "indices_get_time-current": {
+                "name": "Current"
+            },
+           "indices_get_time-exists": {
+                "name": "Exists"
+            },
+           "indices_get_time-missing": {
+                "name": "Missing"
+            }
+        }
+    },
+    "counter-indices_get_total": {
+        "title": "Get Total ({{PI}}) on {{HOST}}",
+        "vertical": "Count",
+        "legend": {
+            "indices_get_total-current": {
+                "name": "Current"
+            },
+           "indices_get_total-exists": {
+                "name": "Exists"
+            },
+           "indices_get_total-missing": {
+                "name": "Missing"
+            }
+        }
+    },
+    "counter-indices_indexing_time": {
+        "title": "Indexing Time ({{PI}}) on {{HOST}}",
+        "vertical": "Millisecondes",
+        "legend": {
+            "indices_indexing_time-delete": {
+                "name": "Delete"
+            },
+            "indices_indexing_time-index": {
+                "name": "Index"
+            }
+        }
+    },
+    "counter-indices_indexing_total": {
+        "title": "Indexing Total ({{PI}}) on {{HOST}}",
+        "vertical": "Count",
+        "legend": {
+            "indices_indexing_total-delete": {
+                "name": "Delete"
+            },
+            "indices_indexing_total-index": {
+                "name": "Index"
+            }
+        }
+    },
+    "counter-indices_merges_time": {
+        "title": "Merge Time Count ({{PI}}) on {{HOST}}",
+        "vertical": "Millisecondes",
+        "legend": {
+            "indices_merges_time-total": {
+                "name": "Total"
+            }
+        }
+    },
+    "counter-indices_merges": {
+        "title": "Merge Count ({{PI}}) on {{HOST}}",
+        "vertical": "Count",
+        "legend": {
+            "indices_merges-total": {
+                "name": "Total"
+            }
+        }
+    },
+    "counter-indices_search_fetch": {
+        "title": "Search Fetch ({{PI}}) on {{HOST}}",
+        "vertical": "Count",
+        "legend": {
+            "indices_search_fetch-current": {
+                "name": "Current"
+            },
+            "indices_search_fetch-total": {
+                "name": "Total"
+            }
+        }
+    },
+    "counter-indices_search_time": {
+        "title": "Search Time ({{PI}}) on {{HOST}}",
+        "vertical": "Millisecondes",
+        "legend": {
+            "indices_search_time-fetch": {
+                "name": "Fetch"
+            },
+            "indices_search_time-query": {
+                "name": "Query"
+            }
+        }
+    },
+    "counter-indices_search_total": {
+        "title": "Search Total ({{PI}}) on {{HOST}}",
+        "vertical": "Count",
+        "legend": {
+            "indices_search_total-query": {
+                "name": "Query"
+            }
+        }
+    },
+    "counter-indices_time": {
+        "title": "Time Count ({{PI}}) on {{HOST}}",
+        "vertical": "Millisecondes",
+        "legend": {
+            "indices_time-flush": {
+                "name": "Flush"
+            },
+            "indices_time-refresh": {
+                "name": "Refresh"
+            }
+        }
+    },
+    "counter-indices_total": {
+        "title": "Total Count ({{PI}}) on {{HOST}}",
+        "vertical": "Count",
+        "legend": {
+            "indices_total-flush": {
+                "name": "Flush"
+            },
+            "indices_total-refresh": {
+                "name": "Refresh"
+            }
+        }
+    },
+    "counter-transport_count": {
+        "title": "In/Out Count ({{PI}}) on {{HOST}}",
+        "vertical": "Count",
+        "legend": {
+            "transport_count-rx": {
+                "name": "rx"
+            },
+            "transport_count-tx": {
+                "name": "tx"
+            }
+        }
+    },
+    "gauge-http_open": {
+        "title": "HTTP Open ({{PI}}) on {{HOST}}",
+        "vertical": "Count",
+        "legend": {
+            "http_open-current": {
+                "name": "Current"
+            },
+            "http_open-total": {
+                "name": "Total"
+            }
+        }
+    },
+    "gauge-indices_docs": {
+        "title": "Indices Docs {{PI}}) on {{HOST}}",
+        "vertical": "",
+        "legend": {
+            "indices_docs-count": {
+                "name": "Count"
+            }
+        }
+    },
+    "gauge-indices_merges": {
+        "title": "Indices Meges ({{PI}}) on {{HOST}}",
+        "vertical": "",
+        "legend": {
+            "indices_merges-current": {
+                "name": "Current"
+            }
+        }
+    },
+    "gauge-indices_merges_docs": {
+        "title": "Indices Merges Docs ({{PI}}) on {{HOST}}",
+        "vertical": "",
+        "legend": {
+            "indices_merges_docs-current": {
+                "name": "Current"
+            },
+            "indices_merges_docs-total": {
+                "name": "Total"
+            }
+        }
+    },
+    "gauge-indices_search_current": {
+        "title": "Indices Search ({{PI}}) on {{HOST}}",
+        "vertical": "",
+        "legend": {
+            "indices_search_current-query": {
+                "name": "Query"
+            }
+        }
+    },
+    "gauge-jvm_threads": {
+        "title": "JVM Threads ({{PI}}) on {{HOST}}",
+        "vertical": "",
+        "legend": {
+            "jvm_threads-count": {
+                "name": "Count"
+            },
+            "jvm_threads-peak": {
+                "name": "Peak"
+            }
+        }
+    },
+    "gauge-process": {
+        "title": "Process ({{PI}}) on {{HOST}}",
+        "vertical": "",
+        "legend": {
+            "process-open_file_descriptors": {
+                "name": "Open File Descriptor"
+            }
+        }
+    },
+    "gauge-transport_open": {
+        "title": "Transport Open ({{PI}}) on {{HOST}}",
+        "vertical": "",
+        "legend": {
+            "transport_open-server": {
+                "name": "Server"
+            }
+        }
+    }
+}

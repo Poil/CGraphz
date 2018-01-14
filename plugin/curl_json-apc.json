@@ -1,0 +1,175 @@
+{
+    "files-entries": {
+        "title": "Cache entries statistics on {{HOST}}",
+        "vertical": "Nb",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "entries-opcode": {
+                "name": "Opcode (files) entries",
+                "color": "00ff00"
+            },
+            "entries-user": {
+                "name": "User (variables) entries",
+                "color": "ff0000"
+            }
+        }
+    },
+    "cache_ratio-opcode": {
+        "title": "Opcode cache queries on {{HOST}}",
+        "vertical": "%",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "opcode-hits": {
+                "name": "Opcode hits",
+                "color": "00ff00"
+            },
+            "opcode-misses": {
+                "name": "Opcode misses",
+                "color": "ff0000"
+            }
+        }
+    },
+    "cache_ratio-user": {
+        "title": "User cache queries on {{HOST}}",
+        "vertical": "%",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "user-hits": {
+                "name": "User hits",
+                "color": "00ff00"
+            },
+            "user-misses": {
+                "name": "User misses",
+                "color": "ff0000"
+            }
+        }
+    },
+    "cache_size-mem": {
+        "title": "Cache size on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "mem-free": {
+                "name": "Free",
+                "color": "00ff00"
+            },
+            "mem-used": {
+                "name": "Used",
+                "color": "ff0000"
+            },
+            "mem-size": {
+                "name": "Total",
+                "color": "4444ff"
+            }
+        }
+    },
+    "cache_size-sizes": {
+        "title": "Cache size per cache on {{HOST}}",
+        "vertical": "Size",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "sizes-user": {
+                "name": "User (variables) mem size",
+                "color": "4444ff"
+            },
+            "sizes-opcode": {
+                "name": "Opcode (files) mem size",
+                "color": "00cf00"
+            }
+        }
+    },
+    "files-opcode_rates": {
+        "title": "Opcode (files) cache statistics on {{HOST}}",
+        "vertical": "req/s",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "opcode_rates-hits": {
+                "name": "Files hits",
+                "color": "00cf00"
+            },
+            "opcode_rates-misses": {
+                "name": "Files misses",
+                "color": "ff0000"
+            },
+            "opcode_rates-inserts": {
+                "name": "Files inserts",
+                "color": "f24ac8"
+            },
+            "opcode_rates-requests": {
+                "name": "Files requests",
+                "color": "4444ff"
+            }
+        }
+    },
+    "files-user_rates": {
+        "title": "User (variables) cache statistics on {{HOST}}",
+        "vertical": "req/s",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "user_rates-hits": {
+                "name": "Variables hits",
+                "color": "00cf00"
+            },
+            "user_rates-misses": {
+                "name": "Variables misses",
+                "color": "ff0000"
+            },
+            "user_rates-inserts": {
+                "name": "Variables inserts",
+                "color": "f24ac8"
+            },
+            "user_rates-requests": {
+                "name": "Variables requests",
+                "color": "4444ff"
+            }
+        }
+    },
+    "cache_ratio-fragment_percentage": {
+        "title": "Cache memory fragmentation on {{HOST}}",
+        "vertical": "%",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "fragment_percentage": {
+                "name": "Fragmentation",
+                "color": "00ff00"
+            }
+        }
+    },
+    "files-files": {
+        "title": "Files on {{HOST}}",
+        "vertical": "Files",
+        "type": "stackedtotal",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "files-cached": {
+                "name": "Cached",
+                "color": "ff0000"
+            },
+            "files-deleted": {
+                "name": "Deleted",
+                "color": "ff00ff"
+            }
+        }
+    },
+    "cache_result-num": {
+        "title": "Cache results on {{HOST}}",
+        "vertical": "Num",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "num-hits": {
+                "name": "Hits",
+                "color": "00ff00"
+            },
+            "num-misses": {
+                "name": "Misses",
+                "color": "ff0000"
+            }
+        }
+    }
+}
+

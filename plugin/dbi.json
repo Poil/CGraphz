@@ -1,6 +1,6 @@
 {
     "mysql_select": {
-        "title": "Mysql Select {{PI}}",
+        "title": "MySQL Select ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -22,7 +22,7 @@
         }
     },
     "mysql_slowqueries": {
-        "title": "Mysql Slow Queries {{PI}}",
+        "title": "MySQL Slow Queries ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -32,7 +32,7 @@
         }
     },
     "mysql_createtmp": {
-        "title": "Mysql Temporary Objects {{PI}}",
+        "title": "MySQL Temporary Objects ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -48,7 +48,7 @@
         }
     },
     "mysql_open": {
-        "title": "Mysql Open Objects {{PI}}",
+        "title": "MySQL Open Objects ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -61,7 +61,7 @@
         }
     },
     "mysql_opened": {
-        "title": "Mysql Opened Objects {{PI}}",
+        "title": "MySQL Opened Objects ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -74,7 +74,7 @@
         }
     },
     "mysql_qcachemem": {
-        "title": "Mysql Qcache Memory {{PI}}",
+        "title": "MySQL Qcache Memory ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type":    "stacked",
         "legend": {
@@ -93,7 +93,7 @@
         }
     },
     "mysql_databasesize": {
-        "title": "MySQL Total BDD Size {{PI}}",
+        "title": "MySQL Total BDD Size ({{PI}}) on {{HOST}}",
         "vertical": "Bytes",
         "type": "stacked",
         "scale": "1000000",
@@ -103,18 +103,8 @@
             }
         }
     },
-    "pg_db_size": {
-        "title": "PostgreSQL Total BDD Size {{PI}}",
-        "vertical": "MB",
-        "type": "stacked",
-        "legend": {
-            "pg_db_size": {
-                "name": "Total BDD Size"
-            }
-        }
-    },
     "mysql_sort": {
-        "title": "Mysql Sort Operations {{PI}}",
+        "title": "MySQL Sort Operations ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -133,7 +123,7 @@
         }
     },
     "mysql_connectionsc": {
-        "title": "Mysql Connections {{PI}}",
+        "title": "MySQL Connections ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -148,8 +138,30 @@
             }
         }
     },
+    "mysql_connectionsg": {
+        "title": "MySQL Limits Connections ({{PI}}) on {{HOST}}",
+        "vertical": "counter",
+        "legend": {
+            "max_connections": {
+                "name": "Maximum Connections"
+            },
+            "max_used_connections": {
+                "name": "Maximum Used Connections"
+            }
+        }
+    },
+    "pg_db_size": {
+        "title": "PostgreSQL Total BDD Size ({{PI}}) on {{HOST}}",
+        "vertical": "MB",
+        "type": "stacked",
+        "legend": {
+            "pg_db_size": {
+                "name": "Total BDD Size"
+            }
+        }
+    },
     "pg_xact": {
-        "title": "PostgreSQL Transactions {{PI}}",
+        "title": "PostgreSQL Transactions ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -162,7 +174,7 @@
         }
     },
     "pg_blks": {
-        "title": "PostgreSQL Disk IO {{PI}}",
+        "title": "PostgreSQL Disk IO ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -193,7 +205,7 @@
         }
     },
     "pg_n_tup_c": {
-        "title": "PostgreSQL Queries {{PI}}",
+        "title": "PostgreSQL Queries ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -217,21 +229,8 @@
             }
         }
     },
-    "pg_blks": {
-        "title": "PostgreSQL Blocks State {{PI}}",
-        "vertical": "counter",
-        "type": "stacked",
-        "legend": {
-            "pg_blksh": {
-                "name": "Blocks Disk Buffer"
-            },
-            "pg_blksr": {
-                "name": "Blocks Disk Read"
-            }
-        }
-    },
     "pg_n_tup_g": {
-        "title": "PostgreSQL Tables State {{PI}}",
+        "title": "PostgreSQL Tables State ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -243,8 +242,21 @@
             }
         }
     },
+    "pg_blks": {
+        "title": "PostgreSQL Blocks State ({{PI}}) on {{HOST}}",
+        "vertical": "counter",
+        "type": "stacked",
+        "legend": {
+            "pg_blksh": {
+                "name": "Blocks Disk Buffer"
+            },
+            "pg_blksr": {
+                "name": "Blocks Disk Read"
+            }
+        }
+    },
     "pg_scan": {
-        "title": "PostgreSQL Query Plans {{PI}}",
+        "title": "PostgreSQL Query Plans ({{PI}}) on {{HOST}}",
         "vertical": "counter",
         "type": "stacked",
         "legend": {
@@ -263,28 +275,14 @@
         }
     },
     "pg_numbackends": {
-        "title": "PostgreSQL Connections {{PI}}",
+        "title": "PostgreSQL Connections ({{PI}}) on {{HOST}}",
         "vertical": "counter",
-        "type": "stacked",
         "legend": {
-            "pg_connection": {
-                "name": "Actives Connections"
-            },
             "pg_max_connection": {
                 "name": "Maximum Connections"
-            }
-        }
-    },
-    "mysql_connectionsg": {
-        "title": "Mysql Limits Connections {{PI}}",
-        "vertical": "counter",
-        "type":    "stacked",
-        "legend": {
-            "max_connections": {
-                "name": "Maximum Connections"
             },
-            "max_used_connections": {
-                "name": "Maximum Used Connections"
+            "pg_connection": {
+                "name": "Active Connections"
             }
         }
     },

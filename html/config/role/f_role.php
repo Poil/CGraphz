@@ -11,7 +11,7 @@ $m_form->add('text', 'f_role')
         ->labelGrid(IL_CSS)
         ->inputGrid(I_CSS);
 
-$m_form->add('text', 'f_role_desc')
+$m_form->add('text', 'f_role_description')
         ->value(@$cur_role->role_description)
         ->label(DESC)
         ->autocomplete(false)

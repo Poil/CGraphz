@@ -16,8 +16,8 @@ class AUTH_USER {
     $try_auth=False;
     // Auth Form
     if (isset($_POST['f_submit_auth'])) {
-      $this->user=mysql_escape_string($_POST['f_user']);
-      $this->passwd=mysql_escape_string($_POST['f_passwd']);
+      $this->user=$_POST['f_user'];
+      $this->passwd=$_POST['f_passwd'];
       $try_auth=True;
       // Auth Basic if "&f_basic_auth=true" WARNING You can't logout with BasicAuth (see http://httpd.apache.org/docs/1.3/howto/auth.html How do I log out?)
     } else if (isset($_GET['f_basic_auth']) && !isset($_SESSION['S_USER']) && !isset($_SERVER['PHP_AUTH_USER'])) {
@@ -35,7 +35,9 @@ class AUTH_USER {
     if (isset($_GET['f_logout'])) {
       $this->logout();
     } else if ($try_auth==True) {
-      $res=$this->connSQL->row('SELECT id_auth_user, user, type FROM auth_user WHERE user="'.$this->user.'"');
+      $lib='SELECT id_auth_user, user, type FROM auth_user WHERE user=:user'; 
+      $this->connSQL->bind('user', $this->user);
+      $res=$this->connSQL->row($lib);
       if (!$res) {
         return false;
       }
@@ -63,8 +65,8 @@ class AUTH_USER {
         }
       }
     } else if (isset($_SESSION['S_USER'])) {
-      $this->user=mysql_escape_string($_SESSION['S_USER']);
-      $this->passwd=mysql_escape_string($_SESSION['S_PASSWD']);
+      $this->user=$_SESSION['S_USER'];
+      $this->passwd=$_SESSION['S_PASSWD'];
       $this->id_auth_user=intval($_SESSION['S_ID_USER']);
       if ($this->verif_auth_mysql(false)) {
         return true;
@@ -97,10 +99,12 @@ class AUTH_USER {
 
   function verif_auth_mysql($new_ident) {
     if ($new_ident==true) {
-      $lib='SELECT `user`,`passwd` FROM auth_user WHERE `user`="'.$this->user.'" AND `passwd`=password("'.$this->passwd.'")';
+        $lib='SELECT `user`,`passwd` FROM auth_user WHERE `user`=:user AND `passwd`=password(:passwd)'; 
     } else {
-      $lib='SELECT `user`,`passwd` FROM auth_user WHERE `user`="'.$this->user.'" AND `passwd`="'.$this->passwd.'"';
+        $lib='SELECT `user`,`passwd` FROM auth_user WHERE `user`=:user AND `passwd`=:passwd';
     }
+    $this->connSQL->bind('user', $this->user);
+    $this->connSQL->bind('passwd', $this->passwd);
     $res=$this->connSQL->row($lib);
     if ($res->user == $this->user) {
       $_SESSION['S_USER']=$res->user;
