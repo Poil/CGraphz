@@ -11,9 +11,9 @@ $f_id_config_environment=filter_input(INPUT_GET, 'f_id_config_environment',FILTE
 $f_id_config_role=filter_input(INPUT_GET, 'f_id_config_role',FILTER_SANITIZE_NUMBER_INT);
 
 if ($auth->verif_auth()) {
-	$project=new PROJECT($f_id_config_project);
+    $project=new PROJECT($f_id_config_project);
 
-	$servers = (array) $project->get_servers($f_id_config_environment, $f_id_config_role);
-	echo json_encode($servers);
+    $servers = (array) $project->get_servers($f_id_config_environment, $f_id_config_role);
+    echo json_encode($servers);
 }
 ?>

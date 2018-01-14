@@ -1,32 +1,32 @@
 {
-	"dns_octets": {
-		"title": "DNS traffic on {{HOST}}",
-		"vertical": "Bit/s",
-		"type": "stacked",
-		"legend": {
-			"queries": {
-				"name": "Queries",
-				"color": "0000ff"
-			},
-			"responses": {
-				"name": "Responses",
-				"color": "00ff00"
-			}
-		}
-	},
-	"dns_opcode": {
-		"title": "DNS Opcode Query on {{HOST}}",
-		"vertical": "Queries/s",
-		"type": "stacked"
-	},
-	"dns_qtype": {
-		"title": "DNS QType on {{HOST}}",
-		"vertical": "Queries/s",
-		"type": "stacked"
-	},
-	"dns_rcode": {
-		"title": "DNS Reply code on {{HOST}}",
-		"vertical": "Queries/s",
-		"type": "stacked"
-	}
+    "dns_octets": {
+        "title": "DNS traffic on {{HOST}}",
+        "vertical": "Bit/s",
+        "type": "stacked",
+        "legend": {
+            "queries": {
+                "name": "Queries",
+                "color": "0000ff"
+            },
+            "responses": {
+                "name": "Responses",
+                "color": "00ff00"
+            }
+        }
+    },
+    "dns_opcode": {
+        "title": "DNS Opcode Query on {{HOST}}",
+        "vertical": "Queries/s",
+        "type": "stacked"
+    },
+    "dns_qtype": {
+        "title": "DNS QType on {{HOST}}",
+        "vertical": "Queries/s",
+        "type": "stacked"
+    },
+    "dns_rcode": {
+        "title": "DNS Reply code on {{HOST}}",
+        "vertical": "Queries/s",
+        "type": "stacked"
+    }
 }

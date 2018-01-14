@@ -1,194 +1,194 @@
 {
-	"ps_state": {
-		"title": "Processes on {{HOST}}",
-		"vertical": "Processes",
-		"type": "stacked",
-		"legend": {
-			"blocked": {
-				"name": "Blocked",
-				"color": "ff00ff"
-			},
-			"paging": {
-				"name": "Paging",
-				"color": "ffb000"
-			},
-			"running": {
-				"name": "Running",
-				"color": "00e000"
-			},
-			"sleeping": {
-				"name": "Sleeping",
-				"color": "0000ff"
-			},
-			"wait": {
-				"name": "Wait",
-				"color": "ffdd00"
-			},
-			"idle": {
-				"name": "Idle",
-				"color": "00d8ff"
-			},
-			"stopped": {
-				"name": "Stopped",
-				"color": "a000a0"
-			},
-			"zombies": {
-				"name": "Zombies",
-				"color": "ff0000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"fork_rate": {
-		"title": "Fork rate on {{HOST}}",
-		"vertical": "forks/s",
-		"type": "stacked",
-		"legend": {
-			"value": {
-				"name": "Forks",
-				"color": "f0a000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_code": {
-		"title": "Text Resident Set ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"value": {
-				"name": "TRS",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_count": {
-		"title": "Number of Processes/Threads ({{PI}}) on {{HOST}}",
-		"vertical": "Amount",
-		"type": "stacked",
-		"legend": {
-			"processes": {
-				"name": "Processes",
-				"color": "0000ff"
-			},
-			"threads": {
-				"name": "Threads",
-				"color": "ff0000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_cputime": {
-		"title": "CPU time ({{PI}}) on {{HOST}}",
-		"vertical": "CPU time [s]",
-		"type": "stacked",
-		"legend": {
-			"user": {
-				"name": "User",
-				"color": "0000ff"
-			},
-			"syst": {
-				"name": "System",
-				"color": "ff0000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_disk_octets": {
-		"title": "Disk Traffic ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes per second",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_disk_ops": {
-		"title": "Disk Operations ({{PI}}) on {{HOST}}",
-		"vertical": "Ops per second",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_data": {
-		"title": "Data Resident Set ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"value": {
-				"name": "DRS",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_pagefaults": {
-		"title": "PageFaults ({{PI}}) on {{HOST}}",
-		"vertical": "Pagefaults",
-		"type": "stacked",
-		"legend": {
-			"minflt": {
-				"name": "Minor",
-				"color": "ff0000"
-			},
-			"majflt": {
-				"name": "Major",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_rss": {
-		"title": "Resident Segment Size ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"value": {
-				"name": "RSS",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_stacksize": {
-		"title": "Stacksize ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"value": {
-				"name": "Stacksize",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_vm": {
-		"title": "Virtual Memory ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"value": {
-				"name": "Memory",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "ps_state": {
+        "title": "Processes on {{HOST}}",
+        "vertical": "Processes",
+        "type": "stacked",
+        "legend": {
+            "blocked": {
+                "name": "Blocked",
+                "color": "ff00ff"
+            },
+            "paging": {
+                "name": "Paging",
+                "color": "ffb000"
+            },
+            "running": {
+                "name": "Running",
+                "color": "00e000"
+            },
+            "sleeping": {
+                "name": "Sleeping",
+                "color": "0000ff"
+            },
+            "wait": {
+                "name": "Wait",
+                "color": "ffdd00"
+            },
+            "idle": {
+                "name": "Idle",
+                "color": "00d8ff"
+            },
+            "stopped": {
+                "name": "Stopped",
+                "color": "a000a0"
+            },
+            "zombies": {
+                "name": "Zombies",
+                "color": "ff0000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "fork_rate": {
+        "title": "Fork rate on {{HOST}}",
+        "vertical": "forks/s",
+        "type": "stacked",
+        "legend": {
+            "value": {
+                "name": "Forks",
+                "color": "f0a000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_code": {
+        "title": "Text Resident Set ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend": {
+            "value": {
+                "name": "TRS",
+                "color": "0000ff"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_count": {
+        "title": "Number of Processes/Threads ({{PI}}) on {{HOST}}",
+        "vertical": "Amount",
+        "type": "stacked",
+        "legend": {
+            "processes": {
+                "name": "Processes",
+                "color": "0000ff"
+            },
+            "threads": {
+                "name": "Threads",
+                "color": "ff0000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_cputime": {
+        "title": "CPU time ({{PI}}) on {{HOST}}",
+        "vertical": "CPU time [s]",
+        "type": "stacked",
+        "legend": {
+            "user": {
+                "name": "User",
+                "color": "0000ff"
+            },
+            "syst": {
+                "name": "System",
+                "color": "ff0000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_disk_octets": {
+        "title": "Disk Traffic ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes per second",
+        "type": "io",
+        "legend": {
+            "read": {
+                "name": "Read",
+                "color": "0000ff"
+            },
+            "write": {
+                "name": "Write",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_disk_ops": {
+        "title": "Disk Operations ({{PI}}) on {{HOST}}",
+        "vertical": "Ops per second",
+        "type": "io",
+        "legend": {
+            "read": {
+                "name": "Read",
+                "color": "0000ff"
+            },
+            "write": {
+                "name": "Write",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_data": {
+        "title": "Data Resident Set ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend": {
+            "value": {
+                "name": "DRS",
+                "color": "0000ff"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_pagefaults": {
+        "title": "PageFaults ({{PI}}) on {{HOST}}",
+        "vertical": "Pagefaults",
+        "type": "stacked",
+        "legend": {
+            "minflt": {
+                "name": "Minor",
+                "color": "ff0000"
+            },
+            "majflt": {
+                "name": "Major",
+                "color": "0000ff"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_rss": {
+        "title": "Resident Segment Size ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend": {
+            "value": {
+                "name": "RSS",
+                "color": "0000ff"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_stacksize": {
+        "title": "Stacksize ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend": {
+            "value": {
+                "name": "Stacksize",
+                "color": "0000ff"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_vm": {
+        "title": "Virtual Memory ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend": {
+            "value": {
+                "name": "Memory",
+                "color": "0000ff"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    }
 }

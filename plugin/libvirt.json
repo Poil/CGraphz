@@ -1,118 +1,118 @@
 {
-	"disk_octets": {
-		"title": "Disk Traffic ({{TI}}) on {{HOST}}",
-		"vertical": "Bytes per second",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"disk_ops": {
-		"title": "Disk Operations ({{TI}}) on {{HOST}}",
-		"vertical": "Ops per second",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"if_dropped": {
-		"title": "Interface Packets Dropped ({{TI}}) on {{HOST}}",
-		"vertical": "Packets/s",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"if_errors": {
-		"title": "Interface Errors ({{TI}}) on {{HOST}}",
-		"vertical": "Errors/s",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"if_octets": {
-		"title": "Interface Traffic ({{TI}}) on {{HOST}}",
-		"vertical": "{{ND}} per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s",
-		"datasize": true
-	},
-	"if_packets": {
-		"title": "Interface Packets ({{TI}}) on {{HOST}}",
-		"vertical": "Packets per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"virt_cpu_total": {
-		"title": "CPU usage on {{HOST}}",
-		"vertical": "Milliseconds",
-		"legend": {
-			"value": {
-				"name": "CPU time",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%5.1lf",
-		"scale": "0.000001"
-	},
-	"virt_vcpu": {
-		"title": "vCPU usage on {{HOST}}",
-		"vertical": "Milliseconds",
-		"legend_format": "%5.1lf",
-		"scale": "0.000001"
+    "disk_octets": {
+        "title": "Disk Traffic ({{TI}}) on {{HOST}}",
+        "vertical": "Bytes per second",
+        "type": "io",
+        "legend": {
+            "read": {
+                "name": "Read",
+                "color": "0000ff"
+            },
+            "write": {
+                "name": "Write",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "disk_ops": {
+        "title": "Disk Operations ({{TI}}) on {{HOST}}",
+        "vertical": "Ops per second",
+        "type": "io",
+        "legend": {
+            "read": {
+                "name": "Read",
+                "color": "0000ff"
+            },
+            "write": {
+                "name": "Write",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "if_dropped": {
+        "title": "Interface Packets Dropped ({{TI}}) on {{HOST}}",
+        "vertical": "Packets/s",
+        "type": "io",
+        "legend": {
+            "rx": {
+                "name": "Receive",
+                "color": "0000ff"
+            },
+            "tx": {
+                "name": "Transmit",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "if_errors": {
+        "title": "Interface Errors ({{TI}}) on {{HOST}}",
+        "vertical": "Errors/s",
+        "type": "io",
+        "legend": {
+            "rx": {
+                "name": "Receive",
+                "color": "0000ff"
+            },
+            "tx": {
+                "name": "Transmit",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "if_octets": {
+        "title": "Interface Traffic ({{TI}}) on {{HOST}}",
+        "vertical": "{{ND}} per second",
+        "type": "io",
+        "legend": {
+            "rx": {
+                "name": "Receive",
+                "color": "0000ff"
+            },
+            "tx": {
+                "name": "Transmit",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "datasize": true
+    },
+    "if_packets": {
+        "title": "Interface Packets ({{TI}}) on {{HOST}}",
+        "vertical": "Packets per second",
+        "type": "io",
+        "legend": {
+            "rx": {
+                "name": "Receive",
+                "color": "0000ff"
+            },
+            "tx": {
+                "name": "Transmit",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "virt_cpu_total": {
+        "title": "CPU usage on {{HOST}}",
+        "vertical": "Milliseconds",
+        "legend": {
+            "value": {
+                "name": "CPU time",
+                "color": "0000ff"
+            }
+        },
+        "legend_format": "%5.1lf",
+        "scale": "0.000001"
+    },
+    "virt_vcpu": {
+        "title": "vCPU usage on {{HOST}}",
+        "vertical": "Milliseconds",
+        "legend_format": "%5.1lf",
+        "scale": "0.000001"
 
-	}
+    }
 }

@@ -1,13 +1,13 @@
 <?php
 if (isset($_GET['f_id_config_server'])) {
-	$f_id_config_server=filter_input(INPUT_GET,'f_id_config_server',FILTER_SANITIZE_NUMBER_INT);
-               
+    $f_id_config_server=filter_input(INPUT_GET,'f_id_config_server',FILTER_SANITIZE_NUMBER_INT);
+
         $connSQL=new DB();
         $lib='SELECT
                         crs.id_config_role,
                         crs.id_config_server,
                         cr.role,
-			cr.role_description,
+            cr.role_description,
                         cs.server_name,
                         cs.server_description
                 FROM
@@ -18,10 +18,10 @@ if (isset($_GET['f_id_config_server'])) {
                                         ON crs.id_config_server=cs.id_config_server
                 WHERE crs.id_config_server=:f_id_config_server';
 
-	$connSQL->bind('f_id_config_server',$f_id_config_server);
+    $connSQL->bind('f_id_config_server',$f_id_config_server);
         $all_server_role=$connSQL->query($lib);
         $cpt_server_role=count($all_server_role);
-       
+
         $lib='SELECT
                         *
                 FROM
@@ -34,9 +34,9 @@ if (isset($_GET['f_id_config_server'])) {
                         )
                 ORDER BY
                         role_description';
-       
+
         $connSQL=new DB();
-	$connSQL->bind('f_id_config_server',$f_id_config_server);
+    $connSQL->bind('f_id_config_server',$f_id_config_server);
         $all_role=$connSQL->query($lib);
         $cpt_role=count($all_role);
 }

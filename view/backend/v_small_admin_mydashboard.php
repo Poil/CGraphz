@@ -63,7 +63,7 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     include(DIR_FSROOT.'/html/small_admin/mydashboard_content/r_dynamic_dashboard_content.php');
     include(DIR_FSROOT.'/html/small_admin/mydashboard_content/d_dynamic_dashboard_content.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard_content').'&amp;last_action=edit_content"><button type="button" class="btn btn-primary">'.ADD.' '.CONTENT.'</button></a>';
     }
@@ -71,7 +71,7 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     include(DIR_FSROOT.'/html/small_admin/mydashboard_content/f_dynamic_dashboard_content.php');
     echo '</fieldset>';
     echo '</div>';
-}        
+}
 echo '</div>';
 echo '<div class="clearfix"></div>';
 ?>

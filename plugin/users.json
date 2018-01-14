@@ -1,12 +1,12 @@
 {
-	"users": {
-		"title": "Users on {{HOST}}",
-		"legend": {
-			"value": {
-				"name": "Users",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%.1lf"
-	}
+    "users": {
+        "title": "Users on {{HOST}}",
+        "legend": {
+            "value": {
+                "name": "Users",
+                "color": "0000f0"
+            }
+        },
+        "legend_format": "%.1lf"
+    }
 }

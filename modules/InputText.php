@@ -4,7 +4,7 @@ class InputText extends Field{
     private $maxlength;
     private $itype='text';
     private $autocomplete=true;
-    
+
     public function buildField(){
         $field = '<div class="form-group">'."\n";
         if (!isset($this->labelclass)) $this->labelclass='';
@@ -28,23 +28,23 @@ class InputText extends Field{
 
         if ($formcontrol==true) {
            $fieldclass='form-control';
-	}
+    }
 
         if(!empty($this->label)){
             if (!empty($this->labelgrid)) {
                 $this->labelclass.=' '.$this->labelgrid;
             }
 
-            $field.= '<label class="'.$this->labelclass.'" for="'.$this->name.'">'.$this->label; 
+            $field.= '<label class="'.$this->labelclass.'" for="'.$this->name.'">'.$this->label;
                 if($this->important)
-                    $field.= ' <span class="red">*</span>'; 
+                    $field.= ' <span class="red">*</span>';
             $field.= '</label>'."\n";
         }
 
         if (!empty($this->inputgrid)) {
             $field.= '<div class="'.$this->inputgrid.'">'."\n";
         }
-        
+
         $field.= '<input '.$ro.' '.$autocomplete.' class="'.$fieldclass.'" type="'.$this->itype.'" ';
             if(!empty($this->name))
                 $field.= 'name="'.$this->name.'" ';
@@ -55,17 +55,17 @@ class InputText extends Field{
             if(!empty($this->maxlength))
                 $field.= 'maxlength="'.$this->maxlength.'" ';
             $field.= 'id="'.$this->name.'"/>'."\n";
-       
+
         if (!empty($this->inputgrid)) {
             $field.= '</div>'."\n";
         }
 
-        # formgroup     
+        # formgroup
         $field.= '</div>'."\n";
-        
+
         return $field;
     }
-    
+
     public function maxlength($v){
         $v = intval($v);
         if($v > 0)

@@ -1,145 +1,145 @@
 {
-	"cache_result": {
-		"title": "MySQL query cache ({{PI}}) on {{HOST}}",
-		"vertical": "Queries/s",
-		"type": "stacked",
-		"legend": {
-			"qcache-not_cached": {
-				"name": "Not Cached",
-				"color": "f0a000"
-			},
-			"qcache-inserts": {
-				"name": "Inserts",
-				"color": "0000ff"
-			},
-			"qcache-hits": {
-				"name": "Hits",
-				"color": "00e000"
-			},
-			"qcache-prunes": {
-				"name": "Lowmem Prunes",
-				"color": "ff0000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"cache_size": {
-		"title": "MySQL query cache size ({{PI}}) on {{HOST}}",
-		"vertical": "Queries in cache",
-		"type": "stacked",
-		"legend": {
-			"qcache": {
-				"name": "Queries"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"mysql_commands": {
-		"title": "MySQL commands ({{PI}}) on {{HOST}}",
-		"vertical": "Issues/s",
-		"type": "stacked",
-		"legend_format": "%5.1lf%s"
-	},
-	"mysql_handler": {
-		"title": "MySQL handler ({{PI}}) on {{HOST}}",
-		"vertical": "Invocations",
-		"type": "stacked",
-		"legend": {
-			"commit": {
-				"color": "ff0000"
-			},
-			"delete": {
-				"color": "ff00e7"
-			},
-			"read_first": {
-				"name": "read first",
-				"color": "cc00ff"
-			},
-			"read_key": {
-				"name": "read key",
-				"color": "3200ff"
-			},
-			"read_next": {
-				"name": "read next",
-				"color": "0065ff"
-			},
-			"read_prev": {
-				"name": "read prev",
-				"color": "00fff3"
-			},
-			"read_rnd": {
-				"name": "read rnd",
-				"color": "00ff65"
-			},
-			"read_rnd_next": {
-				"name": "read rnd next",
-				"color": "33ff00"
-			},
-			"read_last": {
-                "name": "read last",
-				"color": "9fe855"
+    "cache_result": {
+        "title": "MySQL query cache ({{PI}}) on {{HOST}}",
+        "vertical": "Queries/s",
+        "type": "stacked",
+        "legend": {
+            "qcache-not_cached": {
+                "name": "Not Cached",
+                "color": "f0a000"
             },
-			"update": {
-				"color": "cbff00"
-			},
-			"write": {
-				"color": "ff9800"
-			},
-			"rollback": {
-				"color": "000000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"mysql_locks": {
-		"title": "MySQL locks ({{PI}}) on {{HOST}}",
-		"vertical": "locks",
-		"legend": {
-			"immediate": {
-				"color": "ff0000"
-			},
-			"waited": {
-				"color": "00ff00"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"mysql_octets": {
-		"title": "MySQL Traffic ({{TI}}) on {{HOST}}",
-		"vertical": "Bits per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"threads": {
-		"title": "MySQL threads ({{PI}}) on {{HOST}}",
-		"vertical": "Threads",
-		"type": "stacked",
-		"legend": {
-			"cached": {
-				"name": "Cached",
-				"color": "00e000"
-			},
-			"connected": {
-				"name": "Connected",
-				"color": "0000ff"
-			},
-			"running": {
-				"name": "Running",
-				"color": "ff0000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
+            "qcache-inserts": {
+                "name": "Inserts",
+                "color": "0000ff"
+            },
+            "qcache-hits": {
+                "name": "Hits",
+                "color": "00e000"
+            },
+            "qcache-prunes": {
+                "name": "Lowmem Prunes",
+                "color": "ff0000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "cache_size": {
+        "title": "MySQL query cache size ({{PI}}) on {{HOST}}",
+        "vertical": "Queries in cache",
+        "type": "stacked",
+        "legend": {
+            "qcache": {
+                "name": "Queries"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "mysql_commands": {
+        "title": "MySQL commands ({{PI}}) on {{HOST}}",
+        "vertical": "Issues/s",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s"
+    },
+    "mysql_handler": {
+        "title": "MySQL handler ({{PI}}) on {{HOST}}",
+        "vertical": "Invocations",
+        "type": "stacked",
+        "legend": {
+            "commit": {
+                "color": "ff0000"
+            },
+            "delete": {
+                "color": "ff00e7"
+            },
+            "read_first": {
+                "name": "read first",
+                "color": "cc00ff"
+            },
+            "read_key": {
+                "name": "read key",
+                "color": "3200ff"
+            },
+            "read_next": {
+                "name": "read next",
+                "color": "0065ff"
+            },
+            "read_prev": {
+                "name": "read prev",
+                "color": "00fff3"
+            },
+            "read_rnd": {
+                "name": "read rnd",
+                "color": "00ff65"
+            },
+            "read_rnd_next": {
+                "name": "read rnd next",
+                "color": "33ff00"
+            },
+            "read_last": {
+                "name": "read last",
+                "color": "9fe855"
+            },
+            "update": {
+                "color": "cbff00"
+            },
+            "write": {
+                "color": "ff9800"
+            },
+            "rollback": {
+                "color": "000000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "mysql_locks": {
+        "title": "MySQL locks ({{PI}}) on {{HOST}}",
+        "vertical": "locks",
+        "legend": {
+            "immediate": {
+                "color": "ff0000"
+            },
+            "waited": {
+                "color": "00ff00"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "mysql_octets": {
+        "title": "MySQL Traffic ({{TI}}) on {{HOST}}",
+        "vertical": "Bits per second",
+        "type": "io",
+        "legend": {
+            "rx": {
+                "name": "Receive",
+                "color": "0000ff"
+            },
+            "tx": {
+                "name": "Transmit",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "threads": {
+        "title": "MySQL threads ({{PI}}) on {{HOST}}",
+        "vertical": "Threads",
+        "type": "stacked",
+        "legend": {
+            "cached": {
+                "name": "Cached",
+                "color": "00e000"
+            },
+            "connected": {
+                "name": "Connected",
+                "color": "0000ff"
+            },
+            "running": {
+                "name": "Running",
+                "color": "ff0000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
     "mysql_qcache": {
         "title": "MySQL Query Cache ({{PI}}) on {{HOST}}",
         "vertical": "Queries",
@@ -157,11 +157,11 @@
                 "name": "Hits",
                 "color": "00e000"
             },
-			"lowmem_prunes": {
+            "lowmem_prunes": {
                 "name": "Lowmem Prunes",
                 "color": "ff0000"
             },
-			"queries_in_cache": {
+            "queries_in_cache": {
                 "name": "Queries in Cache",
                 "color": "cccccc"
             }
@@ -201,37 +201,37 @@
         "vertical": "Position",
         "type": "stacked",
         "legend": {
-			"master-bin": {
-				"name": "Master Bin"
-			},
-			"slave-exec": {
-				"name": "Slave Exec"
-			},
-			"slave-read": {
-				"name": "Slave Read"
-			}
+            "master-bin": {
+                "name": "Master Bin"
+            },
+            "slave-exec": {
+                "name": "Slave Exec"
+            },
+            "slave-read": {
+                "name": "Slave Read"
+            }
         },
         "legend_format": "%5.1lf%s"
     },
-	"time_offset": {
+    "time_offset": {
         "title": "MySQL Time Offset ({{PI}}) on {{HOST}}",
         "vertical": "Seconds",
         "type": "stacked",
         "legend": {
-			"value": {
-				"name": "Second Behind Master"
-			}
+            "value": {
+                "name": "Second Behind Master"
+            }
         },
         "legend_format": "%5.1lf%s"
     },
-	"total_threads": {
-		"title": "MySQL created threads ({{PI}}) on {{HOST}}",
-		"vertical": "Created Threads",
-		"legend": {
-			"created": {
-				"name": "Created"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "total_threads": {
+        "title": "MySQL created threads ({{PI}}) on {{HOST}}",
+        "vertical": "Created Threads",
+        "legend": {
+            "created": {
+                "name": "Created"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    }
 }

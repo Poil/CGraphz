@@ -3,108 +3,108 @@
 require_once 'Base.class.php';
 
 class Type_VarnishStacked extends Type_Base {
-	function rrd_files() {
-		$files = $this->get_filenames();
+    function rrd_files() {
+        $files = $this->get_filenames();
 
-		$this->tinstances = array();
-		$this->files = array();
-		$this->identifiers = array();
+        $this->tinstances = array();
+        $this->files = array();
+        $this->identifiers = array();
 
-		$datadir_prefix = preg_quote($this->datadir, '#');
-		foreach($files as $filename) {
-			$basename=basename($filename,'.rrd');
-			$instance = strpos($basename,'-')
-				? substr($basename, strpos($basename,'-') + 1)
-				: 'value';
+        $datadir_prefix = preg_quote($this->datadir, '#');
+        foreach($files as $filename) {
+            $basename=basename($filename,'.rrd');
+            $instance = strpos($basename,'-')
+                ? substr($basename, strpos($basename,'-') + 1)
+                : 'value';
 
-			$this->tinstances[] = $instance;
-			$this->files[$instance] = $filename;
-			$this->identifiers[$instance] = preg_replace(
-				"#^{$datadir_prefix}/(.*)\.rrd$#", '$1',
-				$filename);
-		}
+            $this->tinstances[] = $instance;
+            $this->files[$instance] = $filename;
+            $this->identifiers[$instance] = preg_replace(
+                "#^{$datadir_prefix}/(.*)\.rrd$#", '$1',
+                $filename);
+        }
 
-		sort($this->tinstances);
-		ksort($this->files);
-		ksort($this->identifiers);
-	}
+        sort($this->tinstances);
+        ksort($this->files);
+        ksort($this->identifiers);
+    }
 
-	function get_filenames() {
-		$identifier = sprintf('%s/%s%s%s/%s%s%s',
-			$this->args['host'],
-			$this->args['plugin'],
-			strlen($this->args['pcategory']) ? '-'.$this->args['pcategory'] : '',
-			strlen($this->args['pinstance']) ? '-'.$this->args['pinstance'] : '',
-			'{*}',
-			strlen($this->args['tcategory']) ? '-'.$this->args['tcategory'] : '',
-			(!strlen($this->args['tcategory']) && strlen($this->args['tinstance'])) ? '-'.$this->args['tinstance'].'' : ''
-		);
-		$identifier = preg_replace("/([*?[])/", '[$1]', $identifier);
-		$identifier = str_replace("{[*]}", '*', $identifier);
+    function get_filenames() {
+        $identifier = sprintf('%s/%s%s%s/%s%s%s',
+            $this->args['host'],
+            $this->args['plugin'],
+            strlen($this->args['pcategory']) ? '-'.$this->args['pcategory'] : '',
+            strlen($this->args['pinstance']) ? '-'.$this->args['pinstance'] : '',
+            '{*}',
+            strlen($this->args['tcategory']) ? '-'.$this->args['tcategory'] : '',
+            (!strlen($this->args['tcategory']) && strlen($this->args['tinstance'])) ? '-'.$this->args['tinstance'].'' : ''
+        );
+        $identifier = preg_replace("/([*?[])/", '[$1]', $identifier);
+        $identifier = str_replace("{[*]}", '*', $identifier);
 
-		$wildcard = strlen($this->args['tinstance']) ? '.' : '[-.]*';
+        $wildcard = strlen($this->args['tinstance']) ? '.' : '[-.]*';
 
-		$files = glob($this->datadir .'/'. $identifier . $wildcard . 'rrd');
+        $files = glob($this->datadir .'/'. $identifier . $wildcard . 'rrd');
 
-		return $files ? $files : array();
-	}
+        return $files ? $files : array();
+    }
 
-	function rrd_gen_graph() {
-		$rrdgraph = $this->rrd_options();
+    function rrd_gen_graph() {
+        $rrdgraph = $this->rrd_options();
 
-		$sources = $this->rrd_get_sources();
+        $sources = $this->rrd_get_sources();
 
-		$raw = null;
-		if ($this->scale)
-			$raw = '_raw';
-		$i=0;
-		foreach ($this->tinstances as $tinstance) {
-			foreach ($this->data_sources as $ds) {
-				$rrdgraph[] = sprintf('DEF:min_%s%s=%s:%s:MIN', crc32hex($sources[$i]), $raw, $this->parse_filename($this->files[$tinstance]), $ds);
-				$rrdgraph[] = sprintf('DEF:avg_%s%s=%s:%s:AVERAGE', crc32hex($sources[$i]), $raw, $this->parse_filename($this->files[$tinstance]), $ds);
-				$rrdgraph[] = sprintf('DEF:max_%s%s=%s:%s:MAX', crc32hex($sources[$i]), $raw, $this->parse_filename($this->files[$tinstance]), $ds);
-				$i++;
-			}
-		}
-		if ($this->scale) {
-			$i=0;
-			foreach ($this->tinstances as $tinstance) {
-				foreach ($this->data_sources as $ds) {
-					$rrdgraph[] = sprintf('CDEF:min_%s=min_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
-					$rrdgraph[] = sprintf('CDEF:avg_%s=avg_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
-					$rrdgraph[] = sprintf('CDEF:max_%s=max_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
-					$i++;
-				}
-			}
-		}
+        $raw = null;
+        if ($this->scale)
+            $raw = '_raw';
+        $i=0;
+        foreach ($this->tinstances as $tinstance) {
+            foreach ($this->data_sources as $ds) {
+                $rrdgraph[] = sprintf('DEF:min_%s%s=%s:%s:MIN', crc32hex($sources[$i]), $raw, $this->parse_filename($this->files[$tinstance]), $ds);
+                $rrdgraph[] = sprintf('DEF:avg_%s%s=%s:%s:AVERAGE', crc32hex($sources[$i]), $raw, $this->parse_filename($this->files[$tinstance]), $ds);
+                $rrdgraph[] = sprintf('DEF:max_%s%s=%s:%s:MAX', crc32hex($sources[$i]), $raw, $this->parse_filename($this->files[$tinstance]), $ds);
+                $i++;
+            }
+        }
+        if ($this->scale) {
+            $i=0;
+            foreach ($this->tinstances as $tinstance) {
+                foreach ($this->data_sources as $ds) {
+                    $rrdgraph[] = sprintf('CDEF:min_%s=min_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
+                    $rrdgraph[] = sprintf('CDEF:avg_%s=avg_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
+                    $rrdgraph[] = sprintf('CDEF:max_%s=max_%1$s_raw,%s,*', crc32hex($sources[$i]), $this->scale);
+                    $i++;
+                }
+            }
+        }
 
-		for ($i=count($sources)-1 ; $i>=0 ; $i--) {
-			if ($i == (count($sources)-1))
-				$rrdgraph[] = sprintf('CDEF:area_%s=avg_%1$s', crc32hex($sources[$i]));
-			else
-				$rrdgraph[] = sprintf('CDEF:area_%s=area_%s,avg_%1$s,ADDNAN', crc32hex($sources[$i]), crc32hex($sources[$i+1]));
-		}
+        for ($i=count($sources)-1 ; $i>=0 ; $i--) {
+            if ($i == (count($sources)-1))
+                $rrdgraph[] = sprintf('CDEF:area_%s=avg_%1$s', crc32hex($sources[$i]));
+            else
+                $rrdgraph[] = sprintf('CDEF:area_%s=area_%s,avg_%1$s,ADDNAN', crc32hex($sources[$i]), crc32hex($sources[$i+1]));
+        }
 
-		$c = 0;
-		foreach ($sources as $source) {
-			$color = is_array($this->colors) ? (isset($this->colors[$source])?$this->colors[$source]:$this->colors[$c++]) : $this->colors;
-			$color = $this->get_faded_color($color);
-			$rrdgraph[] = sprintf('AREA:area_%s#%s', crc32hex($source), $color);
-		}
+        $c = 0;
+        foreach ($sources as $source) {
+            $color = is_array($this->colors) ? (isset($this->colors[$source])?$this->colors[$source]:$this->colors[$c++]) : $this->colors;
+            $color = $this->get_faded_color($color);
+            $rrdgraph[] = sprintf('AREA:area_%s#%s', crc32hex($source), $color);
+        }
 
-		$c = 0;
-		foreach ($sources as $source) {
-			$legend = empty($this->legend[$source]) ? $source : $this->legend[$source];
-			$color = is_array($this->colors) ? (isset($this->colors[$source])?$this->colors[$source]:$this->colors[$c++]) : $this->colors;
-			$rrdgraph[] = sprintf('LINE1:area_%s#%s:%s', crc32hex($source), $this->validate_color($color), $this->rrd_escape($legend));
-			$rrdgraph[] = sprintf('GPRINT:min_%s:MIN:%s Min,', crc32hex($source), $this->rrd_format);
-			$rrdgraph[] = sprintf('GPRINT:avg_%s:AVERAGE:%s Avg,', crc32hex($source), $this->rrd_format);
-			$rrdgraph[] = sprintf('GPRINT:max_%s:MAX:%s Max,', crc32hex($source), $this->rrd_format);
-			$rrdgraph[] = sprintf('GPRINT:avg_%s:LAST:%s Last\\l', crc32hex($source), $this->rrd_format);
-		}
+        $c = 0;
+        foreach ($sources as $source) {
+            $legend = empty($this->legend[$source]) ? $source : $this->legend[$source];
+            $color = is_array($this->colors) ? (isset($this->colors[$source])?$this->colors[$source]:$this->colors[$c++]) : $this->colors;
+            $rrdgraph[] = sprintf('LINE1:area_%s#%s:%s', crc32hex($source), $this->validate_color($color), $this->rrd_escape($legend));
+            $rrdgraph[] = sprintf('GPRINT:min_%s:MIN:%s Min,', crc32hex($source), $this->rrd_format);
+            $rrdgraph[] = sprintf('GPRINT:avg_%s:AVERAGE:%s Avg,', crc32hex($source), $this->rrd_format);
+            $rrdgraph[] = sprintf('GPRINT:max_%s:MAX:%s Max,', crc32hex($source), $this->rrd_format);
+            $rrdgraph[] = sprintf('GPRINT:avg_%s:LAST:%s Last\\l', crc32hex($source), $this->rrd_format);
+        }
 
-		return $rrdgraph;
-	}
+        return $rrdgraph;
+    }
 }
 
 ?>

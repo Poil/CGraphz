@@ -1,11 +1,11 @@
 {
-	"gauge": {
-		"title": "PuppetDB Average Resources per Node",
-		"type": "default",
-		"legend": {
-			"Value": {
-				"name": "Resources"
-			}
-		}
-	}
+    "gauge": {
+        "title": "PuppetDB Average Resources per Node",
+        "type": "default",
+        "legend": {
+            "Value": {
+                "name": "Resources"
+            }
+        }
+    }
 }

@@ -1,11 +1,11 @@
 {
-	"latency": {
-		"title": "PuppetDB Enqueuing Service Time",
-		"type": "default",
-		"legend": {
-			"99thPercentile": {
-				"name": "99thPercentile"
-			}
-		}
-	}
+    "latency": {
+        "title": "PuppetDB Enqueuing Service Time",
+        "type": "default",
+        "legend": {
+            "99thPercentile": {
+                "name": "99thPercentile"
+            }
+        }
+    }
 }

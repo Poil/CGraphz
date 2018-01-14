@@ -25,13 +25,13 @@ $workflow=GET('workflow');
 <?php
 // Affichage du menu Dashboard si l'utilisateur a les droits
 $perm_mod = new PERMS();
-if ($perm_mod->perm_list_module('dashboard',false)) { 
+if ($perm_mod->perm_list_module('dashboard',false)) {
    echo '
    <ul class="nav navbar-nav">
       <li class="dropdown">
          <a href="#" class="dropdown-toggle" data-toggle="dropdown">',PERF_ANALYSIS,' <b class="caret"></b></a>
          <ul class="dropdown-menu">';
-         $allowed_perm=$perm_mod->perm_list_module('dashboard', false);         
+         $allowed_perm=$perm_mod->perm_list_module('dashboard', false);
          if ($allowed_perm) {
             foreach ($allowed_perm as $allowed) {
                if ($allowed->component=='dynamic') {
@@ -49,13 +49,13 @@ if ($perm_mod->perm_list_module('dashboard',false)) {
       </li>
    </ul>';
 }
-if ($perm_mod->perm_list_module('small_admin')) { 
+if ($perm_mod->perm_list_module('small_admin')) {
   echo '
   <ul class="nav navbar-nav">
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">',SMALL_ADMIN,' <b class="caret"></b></a>
       <ul class="dropdown-menu">';
-      $allowed_perm=$perm_mod->perm_list_module('small_admin', false);         
+      $allowed_perm=$perm_mod->perm_list_module('small_admin', false);
       if ($allowed_perm) {
          foreach ($allowed_perm as $allowed) {
             echo '<li><a href="index.php?module=small_admin&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
@@ -81,7 +81,7 @@ if ($perm_mod->perm_list_module('perm') or $perm_mod->perm_list_module('auth') o
                 echo ' <li><a href="index.php?module=perm&amp;component='.$allowed->component.'">'.$allowed->menu_name.'</a></li>';
               }
             }
-           
+
             $allowed_auth=$perm_mod->perm_list_module('auth', false);
             if ($allowed_auth) {
               foreach ($allowed_auth as $allowed) {

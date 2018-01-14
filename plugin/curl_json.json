@@ -1,80 +1,80 @@
 {
-	"players": {
-		"title": "Connections on {{HOST}}",
-		"vertical": "Slots",
-		"type": "stacked",
-		"legend": {
-			"free_slots": {
-				"name": "Free Slots"
-			},
-			"players": {
-				"name": "Players"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"cache_result": {
-		"title": "Cache query on {{HOST}}",
-		"vertical": "Queries",
-		"type": "stacked",
-		"legend_format": "%5.1lf%s",
-		"legend": {
-			"opcache_statistics-hits": {
-				"name": "Hits",
-				"color": "00ff00"
-			},
-			"opcache_statistics-misses": {
-				"name": "Misses",
-				"color": "ff0000"
-			}
-		}
-	},
-	"cache_size": {
-		"title": "Cache query on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend_format": "%5.1lf%s",
-		"legend": {
-			"memory_usage-free_memory": {
-				"name": "Free",
-				"color": "00ff00"
-			},
-			"memory_usage-used_memory": {
-				"name": "Used",
-				"color": "ff0000"
-			}
-		}
-	},
-	"files": {
-		"title": "Files on {{HOST}}",
-		"vertical": "Files",
-		"type": "stackedtotal",
-		"legend_format": "%5.1lf%s",
-		"legend": {
-			"opcache_statistics-num_cached_keys": {
-				"name": "Num cached keys",
-				"color": "ff0000"
-			},
-			"opcache_statistics-num_cached_scripts": {
-				"name": "Num cached scripts",
-				"color": "ff00ff"
-			},
-			"opcache_statistics-max_cached_keys": {
-				"name": "Max cached keys",
-				"color": "00ff00"
-			}
-		}
-	},
-	"cache_ratio": {
-		"title": "Ratio on {{HOST}}",
-		"vertical": "%",
-		"type": "stacked",
-		"legend_format": "%5.1lf%s",
-		"legend": {
-			"opcache_statistics-opcache_hit_rate": {
-				"name": "Hit rate",
-				"color": "00ff00"
-			}
-		}
-	}
+    "players": {
+        "title": "Connections on {{HOST}}",
+        "vertical": "Slots",
+        "type": "stacked",
+        "legend": {
+            "free_slots": {
+                "name": "Free Slots"
+            },
+            "players": {
+                "name": "Players"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "cache_result": {
+        "title": "Cache query on {{HOST}}",
+        "vertical": "Queries",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "opcache_statistics-hits": {
+                "name": "Hits",
+                "color": "00ff00"
+            },
+            "opcache_statistics-misses": {
+                "name": "Misses",
+                "color": "ff0000"
+            }
+        }
+    },
+    "cache_size": {
+        "title": "Cache query on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "memory_usage-free_memory": {
+                "name": "Free",
+                "color": "00ff00"
+            },
+            "memory_usage-used_memory": {
+                "name": "Used",
+                "color": "ff0000"
+            }
+        }
+    },
+    "files": {
+        "title": "Files on {{HOST}}",
+        "vertical": "Files",
+        "type": "stackedtotal",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "opcache_statistics-num_cached_keys": {
+                "name": "Num cached keys",
+                "color": "ff0000"
+            },
+            "opcache_statistics-num_cached_scripts": {
+                "name": "Num cached scripts",
+                "color": "ff00ff"
+            },
+            "opcache_statistics-max_cached_keys": {
+                "name": "Max cached keys",
+                "color": "00ff00"
+            }
+        }
+    },
+    "cache_ratio": {
+        "title": "Ratio on {{HOST}}",
+        "vertical": "%",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "opcache_statistics-opcache_hit_rate": {
+                "name": "Hit rate",
+                "color": "00ff00"
+            }
+        }
+    }
 }

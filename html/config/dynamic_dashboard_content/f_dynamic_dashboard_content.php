@@ -109,43 +109,43 @@ if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
 <div id="displaytest" style="display:none;" title="<?php echo CLICK_TO_CLOSE ?>"></div>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#f_test_regex').click(function() {
-			$("#displaytest").load('html/config/dynamic_dashboard_content/ajax_dynamic_dashboard_content_test_regex.php',
-				{
-					'f_regex_srv' : $('#f_regex_srv').val(),
-					'f_regex_p' : $('#f_regex_p_filter').val(),
-					'f_regex_pi' : $('#f_regex_pi_filter').val(),
-					'f_regex_t' : $('#f_regex_t_filter').val(),
-					'f_regex_ti' : $('#f_regex_ti_filter').val(),
-					'f_rrd_ordering' : $('#f_rrd_ordering').val()
-				},
-				function() {
-					$("#displaytest").show();
-				}
-			);
-			return false;
-		});
-		$("#displaytest").click(function() {
-			$("#displaytest").hide();		
-		});
-		$("#f_preload_filter").change(function(){
-			var p=$("#f_preload_filter option:selected").data('plugin');
-			var pi=$("#f_preload_filter option:selected").data('plugin_instance');
-			var t=$("#f_preload_filter option:selected").data('type');
-			var ti=$("#f_preload_filter option:selected").data('type_instance');
+    $(document).ready(function() {
+        $('#f_test_regex').click(function() {
+            $("#displaytest").load('html/config/dynamic_dashboard_content/ajax_dynamic_dashboard_content_test_regex.php',
+                {
+                    'f_regex_srv' : $('#f_regex_srv').val(),
+                    'f_regex_p' : $('#f_regex_p_filter').val(),
+                    'f_regex_pi' : $('#f_regex_pi_filter').val(),
+                    'f_regex_t' : $('#f_regex_t_filter').val(),
+                    'f_regex_ti' : $('#f_regex_ti_filter').val(),
+                    'f_rrd_ordering' : $('#f_rrd_ordering').val()
+                },
+                function() {
+                    $("#displaytest").show();
+                }
+            );
+            return false;
+        });
+        $("#displaytest").click(function() {
+            $("#displaytest").hide();
+        });
+        $("#f_preload_filter").change(function(){
+            var p=$("#f_preload_filter option:selected").data('plugin');
+            var pi=$("#f_preload_filter option:selected").data('plugin_instance');
+            var t=$("#f_preload_filter option:selected").data('type');
+            var ti=$("#f_preload_filter option:selected").data('type_instance');
 
-			if (p) { $('#f_regex_p_filter').val(p); }
-			else { $('#f_regex_p_filter').val(''); }
+            if (p) { $('#f_regex_p_filter').val(p); }
+            else { $('#f_regex_p_filter').val(''); }
 
-			if (pi) { $('#f_regex_pi_filter').val(pi); }
-			else { $('#f_regex_pi_filter').val(''); }
+            if (pi) { $('#f_regex_pi_filter').val(pi); }
+            else { $('#f_regex_pi_filter').val(''); }
 
-			if (t) { $('#f_regex_t_filter').val(t); }
-			else { $('#f_regex_t_filter').val(''); }
+            if (t) { $('#f_regex_t_filter').val(t); }
+            else { $('#f_regex_t_filter').val(''); }
 
-			if (ti) { $('#f_regex_ti_filter').val(ti); }
-			else { $('#f_regex_ti_filter').val(''); }
-		});	
-	});
+            if (ti) { $('#f_regex_ti_filter').val(ti); }
+            else { $('#f_regex_ti_filter').val(''); }
+        });
+    });
 </script>

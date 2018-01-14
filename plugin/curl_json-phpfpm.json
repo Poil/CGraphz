@@ -1,52 +1,52 @@
 {
-	"active_processes": {
-		"title": "Processes on {{HOST}}",
-		"vertical": "Nb/s",
-		"type": "default",
-		"legend_format": "%5.1lf%s",
-		"legend": {
-			"total processes": {
-				"name": "Total",
-				"color": "00ff00"
-			},
-			"idle processes": {
-				"name": "Idle",
-				"color": "ff00ff"
-			},
-			"active processes": {
-				"name": "Active",
-				"color": "ff0000"
-			}
-		}
-	},
-	"http_requests": {
-		"title": "HTTP Requests on {{HOST}}",
-		"vertical": "Nb/s",
-		"legend": {
-			"accepted conn": {
-				"name": "Connections",
-				"color": "0000ff"
-			}
-		}
-	},
-	"listen_queue": {
-		"title": "Listen Queue on {{HOST}}",
-		"vertical": "Nb/S",
-		"legend": {
-			"listen queue len": {
-				"name": "Length",
-				"color": "0000ff"
-			}
-		}
-	},
-	"slow_requests": {
-		"title": "Slow Requests on {{HOST}}",
-		"vertical": "Nb/s",
-		"legend": {
-			"slow requests": {
-				"name": "Requests",
-				"color": "0000ff"
-			}
-		}
-	}
+    "active_processes": {
+        "title": "Processes on {{HOST}}",
+        "vertical": "Nb/s",
+        "type": "default",
+        "legend_format": "%5.1lf%s",
+        "legend": {
+            "total processes": {
+                "name": "Total",
+                "color": "00ff00"
+            },
+            "idle processes": {
+                "name": "Idle",
+                "color": "ff00ff"
+            },
+            "active processes": {
+                "name": "Active",
+                "color": "ff0000"
+            }
+        }
+    },
+    "http_requests": {
+        "title": "HTTP Requests on {{HOST}}",
+        "vertical": "Nb/s",
+        "legend": {
+            "accepted conn": {
+                "name": "Connections",
+                "color": "0000ff"
+            }
+        }
+    },
+    "listen_queue": {
+        "title": "Listen Queue on {{HOST}}",
+        "vertical": "Nb/S",
+        "legend": {
+            "listen queue len": {
+                "name": "Length",
+                "color": "0000ff"
+            }
+        }
+    },
+    "slow_requests": {
+        "title": "Slow Requests on {{HOST}}",
+        "vertical": "Nb/s",
+        "legend": {
+            "slow requests": {
+                "name": "Requests",
+                "color": "0000ff"
+            }
+        }
+    }
 }

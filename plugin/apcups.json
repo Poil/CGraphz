@@ -1,67 +1,67 @@
 {
-	"charge": {
-		"title": "UPS Charge on {{HOST}}",
-		"vertical": "Ampere hours",
-		"legend": {
-			"value": {
-				"name": "Charge",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"frequency": {
-		"title": "UPS Input Frequency on {{HOST}}",
-		"vertical": "Hertz",
-		"legend": {
-			"value": {
-				"name": "Frequency",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"percent": {
-		"title": "UPS Load on {{HOST}}",
-		"vertical": "Load",
-		"legend": {
-			"value": {
-				"name": "Percent",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"temperature": {
-		"title": "UPS Temperature on {{HOST}}",
-		"vertical": "Celsius",
-		"legend": {
-			"value": {
-				"name": "Temperature",
-				"color": "0000f0"
-			}
-		}
-	},
-	"timeleft": {
-		"title": "UPS Time Left on {{HOST}}",
-		"vertical": "Seconds",
-		"legend": {
-			"value": {
-				"name": "Time Left",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"voltage": {
-		"title": "UPS Voltage {{TI}} on {{HOST}}",
-		"vertical": "Volt",
-		"legend": {
-			"value": {
-				"name": "Voltage",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "charge": {
+        "title": "UPS Charge on {{HOST}}",
+        "vertical": "Ampere hours",
+        "legend": {
+            "value": {
+                "name": "Charge",
+                "color": "0000f0"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "frequency": {
+        "title": "UPS Input Frequency on {{HOST}}",
+        "vertical": "Hertz",
+        "legend": {
+            "value": {
+                "name": "Frequency",
+                "color": "0000f0"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "percent": {
+        "title": "UPS Load on {{HOST}}",
+        "vertical": "Load",
+        "legend": {
+            "value": {
+                "name": "Percent",
+                "color": "0000f0"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "temperature": {
+        "title": "UPS Temperature on {{HOST}}",
+        "vertical": "Celsius",
+        "legend": {
+            "value": {
+                "name": "Temperature",
+                "color": "0000f0"
+            }
+        }
+    },
+    "timeleft": {
+        "title": "UPS Time Left on {{HOST}}",
+        "vertical": "Seconds",
+        "legend": {
+            "value": {
+                "name": "Time Left",
+                "color": "0000f0"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "voltage": {
+        "title": "UPS Voltage {{TI}} on {{HOST}}",
+        "vertical": "Volt",
+        "legend": {
+            "value": {
+                "name": "Voltage",
+                "color": "0000f0"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    }
 }

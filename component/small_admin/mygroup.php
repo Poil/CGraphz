@@ -1,5 +1,5 @@
 <?php
-	echo '<h1>'.MANAGE_MYGROUP.'</h1>';
+    echo '<h1>'.MANAGE_MYGROUP.'</h1>';
     include(DIR_FSROOT.'/html/small_admin/mygroup/w_group.php');
     include(DIR_FSROOT.'/html/small_admin/mygroup/r_group_wh_id.php');
     include(DIR_FSROOT.'/html/small_admin/mygroup/r_group.php');
@@ -44,7 +44,7 @@
             echo '<div class="clearfix"></div>';
             if (isset($_GET['f_id_auth_user'])) {
                 echo '<strong>'.DEL.'</strong>';
-			} else {
+            } else {
                 echo '<strong>'.ADD.'</strong>';
             }
             include(DIR_FSROOT.'/html/small_admin/mygroup_user/f_group_user.php');

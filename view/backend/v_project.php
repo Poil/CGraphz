@@ -20,7 +20,7 @@ if (isset($_GET['f_id_config_project'])) {
     if (isset($_GET['f_id_config_server']) || $last_action=='edit_server') {
         $tab_project_server_class='active';
         $tab_project_class='';
-    } 
+    }
     else if (isset($_GET['f_id_auth_group']) || $last_action=='edit_group') {
         $tab_project_group_class='active';
         $tab_project_class='';
@@ -70,13 +70,13 @@ if (isset($_GET['f_id_config_project'])) {
     include(DIR_FSROOT.'/html/perm/project_group/r_project_group.php');
     include(DIR_FSROOT.'/html/perm/project_group/d_project_group.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_auth_group'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_auth_group').'&amp;last_action=edit_group"><button type="button" class="btn btn-primary">'.ADD.' '.GROUP.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/perm/project_group/f_project_group.php');
-    
+
     echo '</div>';
 
     echo '<div class="tab-pane '.$tab_project_server_class.'" id="project_server"><fieldset>';
@@ -87,14 +87,14 @@ if (isset($_GET['f_id_config_project'])) {
     include(DIR_FSROOT.'/html/config/project_server/r_project_server.php');
     include(DIR_FSROOT.'/html/config/project_server/d_project_server.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_config_server'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_server').'&amp;last_action=edit_server"><button type="button" class="btn btn-primary">'.ADD.' '.SERVER.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/project_server/f_project_server.php');
     echo '</div>';
-}        
+}
 echo '</div>';
 echo '<div class="clearfix"></div>';
 ?>

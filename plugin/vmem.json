@@ -1,27 +1,27 @@
 {
-	"vmpage_faults": {
-		"title": "Page faults on {{HOST}}",
-		"type": "stacked",
-		"legend": {
-			"minflt": {
-				"name": "Minor",
-				"color": "0000f0"
-			},
-			"majflt": {
-				"name": "Major",
-				"color": "f00000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"vmpage_io": {
-		"title": "Page IO ({{TI}}) on {{HOST}}",
-		"type": "stacked",
-		"legend_format": "%5.1lf%s"
-	},
-	"vmpage_number": {
-		"title": "Pages on {{HOST}}",
-		"type": "stacked",
-		"legend_format": "%5.1lf%s"
-	}
+    "vmpage_faults": {
+        "title": "Page faults on {{HOST}}",
+        "type": "stacked",
+        "legend": {
+            "minflt": {
+                "name": "Minor",
+                "color": "0000f0"
+            },
+            "majflt": {
+                "name": "Major",
+                "color": "f00000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "vmpage_io": {
+        "title": "Page IO ({{TI}}) on {{HOST}}",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s"
+    },
+    "vmpage_number": {
+        "title": "Pages on {{HOST}}",
+        "type": "stacked",
+        "legend_format": "%5.1lf%s"
+    }
 }

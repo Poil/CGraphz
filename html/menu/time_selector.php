@@ -20,9 +20,9 @@ if (isset($_GET['auto_refresh'])) {
 }
 
 if (isset($time_start) && isset($time_end)) {
-	$zoom='onclick="Show_Popup($(\'.imggraph:first\').attr(\'src\').split(\'?\')[1],\'\',\''.$time_start.'\',\''.$time_end.'\'); $(\'#left_menu_show\').hide(\'400\'); return false"';
+    $zoom='onclick="Show_Popup($(\'.imggraph:first\').attr(\'src\').split(\'?\')[1],\'\',\''.$time_start.'\',\''.$time_end.'\'); $(\'#left_menu_show\').hide(\'400\'); return false"';
 } else {
-	$zoom='onclick="Show_Popup($(\'.imggraph:first\').attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false"';
+    $zoom='onclick="Show_Popup($(\'.imggraph:first\').attr(\'src\').split(\'?\')[1],\''.$time_range.'\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false"';
 }
 
 /* form graph size selector */
@@ -48,7 +48,7 @@ $form->add('text', 'f_y')
      ->inputGrid('col-xs-10 col-md-8')
      ->value($y)
      ->placeholder(HEIGHT);
- 
+
 $form->add('submit', 'f_submit_graph_size')
      ->iType('primary')
      ->labelGrid('col-xs-offset-3 col-md-offset-4')
@@ -59,40 +59,40 @@ $form->bindValues($_POST);
 
 echo '
 <div id="left_menu">
-	<div id="left_menu_show" class="modal-content">
-		<ul>			
-			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'3600\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1h</a></li>
-			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'7200\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">2h</a></li>
-			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'21600\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">6h</a></li>
-			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'43200\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">12h</a></li>
-			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'86400\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 '.DAY.'</a></li>
-			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'172800\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">2 '.DAYS.'</a></li>
-			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'604800\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 '.WEEK.'</a></li>
-			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'2592000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 '.MONTH.'</a></li>
-			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'15552000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">6 '.MONTHS.'</a></li>
-			<li><a href="#" onclick="refresh_graph(\'dashboard\',\'31104000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 '.YEAR.'</a></li>
-			<li><a href="#" '.$zoom.'>'.CUSTOM.'</a></li>
-		</ul>
-	</div>
-	<div id="left_menu_graph_show" class="modal-content">'.$form.'</div>
-	<img src="img/go-top.png" style="cursor:pointer" onclick="$(\'html, body\').animate({ scrollTop: 0 }, \'slow\');"  title="',GOTO_TOP_OF_PAGE,'" alt="Top" />
-	<br />
-	<img src="img/refresh.png" style="cursor:pointer" onclick="refresh_graph(\'dashboard\',\'\',\'\',\'\'); return false" title="',REFRESH,'" alt="Refresh" />
-	<br />
-	<img src="img/clock.png" style="cursor:pointer" onclick="$(\'#left_menu_show\').toggle(\'400\'); return false;" title="',TIME_SELECTOR,'" alt="Time Selector" />
-	<br />
-	<img src="img/config.png" style="cursor:pointer" onclick="$(\'#left_menu_graph_show\').toggle(\'400\'); return false;" title="',GRAPH_SIZE_SELECTOR,'" alt="Graph Size Selector" />
-	<br />
-	'.$urlrefresh.'
+    <div id="left_menu_show" class="modal-content">
+        <ul>
+            <li><a href="#" onclick="refresh_graph(\'dashboard\',\'3600\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1h</a></li>
+            <li><a href="#" onclick="refresh_graph(\'dashboard\',\'7200\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">2h</a></li>
+            <li><a href="#" onclick="refresh_graph(\'dashboard\',\'21600\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">6h</a></li>
+            <li><a href="#" onclick="refresh_graph(\'dashboard\',\'43200\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">12h</a></li>
+            <li><a href="#" onclick="refresh_graph(\'dashboard\',\'86400\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 '.DAY.'</a></li>
+            <li><a href="#" onclick="refresh_graph(\'dashboard\',\'172800\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">2 '.DAYS.'</a></li>
+            <li><a href="#" onclick="refresh_graph(\'dashboard\',\'604800\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 '.WEEK.'</a></li>
+            <li><a href="#" onclick="refresh_graph(\'dashboard\',\'2592000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 '.MONTH.'</a></li>
+            <li><a href="#" onclick="refresh_graph(\'dashboard\',\'15552000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">6 '.MONTHS.'</a></li>
+            <li><a href="#" onclick="refresh_graph(\'dashboard\',\'31104000\',\'\',\'\'); $(\'#left_menu_show\').hide(\'400\'); return false">1 '.YEAR.'</a></li>
+            <li><a href="#" '.$zoom.'>'.CUSTOM.'</a></li>
+        </ul>
+    </div>
+    <div id="left_menu_graph_show" class="modal-content">'.$form.'</div>
+    <img src="img/go-top.png" style="cursor:pointer" onclick="$(\'html, body\').animate({ scrollTop: 0 }, \'slow\');"  title="',GOTO_TOP_OF_PAGE,'" alt="Top" />
+    <br />
+    <img src="img/refresh.png" style="cursor:pointer" onclick="refresh_graph(\'dashboard\',\'\',\'\',\'\'); return false" title="',REFRESH,'" alt="Refresh" />
+    <br />
+    <img src="img/clock.png" style="cursor:pointer" onclick="$(\'#left_menu_show\').toggle(\'400\'); return false;" title="',TIME_SELECTOR,'" alt="Time Selector" />
+    <br />
+    <img src="img/config.png" style="cursor:pointer" onclick="$(\'#left_menu_graph_show\').toggle(\'400\'); return false;" title="',GRAPH_SIZE_SELECTOR,'" alt="Graph Size Selector" />
+    <br />
+    '.$urlrefresh.'
 </div>';
 if (isset($_GET['auto_refresh'])) {
-	echo '
-	<script type="text/javascript">
-	$(document).ready(function() {
-	  var auto_refresh=setInterval(function() {
-	     refresh_graph(\'dashboard\',\'\',\'\',\'\');
-	  }, 60000)
-	});
-	</script>';
+    echo '
+    <script type="text/javascript">
+    $(document).ready(function() {
+      var auto_refresh=setInterval(function() {
+         refresh_graph(\'dashboard\',\'\',\'\',\'\');
+      }, 60000)
+    });
+    </script>';
 }
 ?>

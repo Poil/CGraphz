@@ -1,11 +1,11 @@
 {
-	"latency": {
-		"title": "PuppetDB Database Comptaction Round Trip Time Latency",
-		"type": "default",
-		"legend": {
-			"99thPercentile": {
-				"name": "99thPercentile"
-			}
-		}
-	}
+    "latency": {
+        "title": "PuppetDB Database Comptaction Round Trip Time Latency",
+        "type": "default",
+        "legend": {
+            "99thPercentile": {
+                "name": "99thPercentile"
+            }
+        }
+    }
 }

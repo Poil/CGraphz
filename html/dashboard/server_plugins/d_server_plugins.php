@@ -23,19 +23,19 @@ if ($cur_server->server_name=='') {
 
 echo '<h1>'.$cur_server->server_name.'</h1>';
 
-$lib = 'SELECT 
-        cpf.*         
-    FROM 
+$lib = 'SELECT
+        cpf.*
+    FROM
         config_plugin_filter cpf
         LEFT JOIN config_plugin_filter_group cpfg
             ON cpf.id_config_plugin_filter=cpfg.id_config_plugin_filter
-        LEFT JOIN auth_group ag 
+        LEFT JOIN auth_group ag
             ON cpfg.id_auth_group=ag.id_auth_group
-        LEFT JOIN auth_user_group aug 
+        LEFT JOIN auth_user_group aug
             ON aug.id_auth_group=ag.id_auth_group
-        LEFT JOIN perm_project_group ppg 
+        LEFT JOIN perm_project_group ppg
             ON ppg.id_auth_group=ag.id_auth_group
-    WHERE 
+    WHERE
         aug.id_auth_user=:s_id_user
     AND ppg.id_config_project=:f_id_config_project
     ORDER BY plugin_order, plugin, plugin_instance, type, type_instance';
@@ -53,7 +53,7 @@ if (isset($time_start) && isset($time_end)) {
 $dgraph=0;
 $allDatadir=getAllDatadir();
 foreach($allDatadir as $key => $datadir){
-	if(!is_dir($datadir.'/'.$cur_server->server_name.'/')) unset($allDatadir[$key]);    
+    if(!is_dir($datadir.'/'.$cur_server->server_name.'/')) unset($allDatadir[$key]);
 }
 
 if (!empty($allDatadir)) {
@@ -72,7 +72,7 @@ if (!empty($allDatadir)) {
         $tpluginsDatadir=preg_find($myregex, $datadir.'/'.$cur_server->server_name, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
         if ($tpluginsDatadir) $dgraph=1;
         $tplugins=array_merge($tplugins,$tpluginsDatadir);
-    }   
+    }
     $plugins = (sort_plugins('('.implode('|',$allDatadir).')/'.$cur_server->server_name,$tplugins, $pg_filters));
 
     $old_t='';
@@ -81,14 +81,14 @@ if (!empty($allDatadir)) {
     $myregex='#^(('.implode('|',$allDatadir).')/'.$cur_server->server_name.'/)(\w+)(?:\-(.*))?/(\w+)(?:\-(.*))?\.rrd#';
     foreach ($plugins as $plugin) {
         preg_match($myregex, $plugin['content'], $matches);
-		$plugin_datadir = getDatadirEntry($matches[1]);
+        $plugin_datadir = getDatadirEntry($matches[1]);
 
         if (isset($matches[3])) {
             $p=$matches[3];
             if (!isset($$p)) $$p=false;
-        } else { 
+        } else {
             continue;
-            $p=null; 
+            $p=null;
         }
         if (isset($matches[4])) {
             $pi=$matches[4];
@@ -105,14 +105,14 @@ if (!empty($allDatadir)) {
                 $pc=$pi;
                 $pi=null;
             }
-        } else { 
-            $pc=null; 
-            $pi=null; 
+        } else {
+            $pc=null;
+            $pi=null;
         }
         if (isset($matches[5])) {
             $t=$matches[5];
-        } else { 
-            $t=null; 
+        } else {
+            $t=null;
         }
         if (isset($matches[6])) {
             $ti=$matches[6];
@@ -122,10 +122,10 @@ if (!empty($allDatadir)) {
                 $tc=$tmp[0];
                 //$ti=implode('-', array_slice($tmp,1));
                 $ti=null;
-            } 
-        } else { 
-            $tc=null; 
-            $ti=null; 
+            }
+        } else {
+            $tc=null;
+            $ti=null;
         }
 
 
@@ -155,7 +155,7 @@ if (!empty($allDatadir)) {
             }
 
             // Displaying Plugin Instance for some plugins
-			${$pc.$pi} = isset(${$pc.$pi}) ? ${$pc.$pi} : false;
+            ${$pc.$pi} = isset(${$pc.$pi}) ? ${$pc.$pi} : false;
             if (preg_match($CONFIG['title_pinstance'],$p) && strlen($pi) && ${$pc.$pi}!=true) {
                 ${$pc.$pi}=true;
                 echo "<h$lvl_pi>".ucfirst(str_replace('_', ' ',$pi))."</h$lvl_pi>";
@@ -169,7 +169,7 @@ if (!empty($allDatadir)) {
 
             // Verif regex OK
             if (isset($p) && isset($t)) {
-                if (!preg_match('/^(df|interface|oracle|snmp)$/', $p) || 
+                if (!preg_match('/^(df|interface|oracle|snmp)$/', $p) ||
                    (((preg_replace('/[^0-9\.]/','',$cur_server->collectd_version) >= 5)
                      && !preg_match('/^(oracle|snmp)$/', $p) && $t!='df'))
                      || ($p == 'snmp' && $t == 'memory')
@@ -225,8 +225,8 @@ if (!empty($allDatadir)) {
                 }
             } else if (DEBUG==true){
                 echo 'ERREUR - p='.$p.' pc='.$pc.' pi='.$pi.' t='.$t.' tc='.$tc.' ti='.$ti.'<br />';
-            } 
-        } 
+            }
+        }
         $old_t=$t;
         $old_tc=$tc;
         $old_p=$p;
@@ -244,49 +244,49 @@ foreach($allDatadir as $datadir){
 if (!empty($vmlist)) {
     echo "<h2>Libvirt</h2>";
     foreach ($vmlist as $vmdir) {
-    
+
         $tmp=explode(':',$vmdir);
         $vm=$tmp[1];
-    
+
         echo "<h3>$vm</h3>";
-    
+
         foreach ($pg_filters as $filter) {
             $myregex='#^('.$vmdir.'/)('.$filter->plugin.')(?:\-('.$filter->plugin_instance.'))?/('.$filter->type.')(?:\-('.$filter->type_instance.'))?\.rrd#';
-    
+
             $plugins = preg_find($myregex, $vmdir, PREG_FIND_RECURSIVE|PREG_FIND_FULLPATH|PREG_FIND_SORTBASENAME);
-    
+
             $old_t='';
             $old_pi='';
             foreach ($plugins as $plugin) {
                 preg_match($myregex, $plugin, $matches);
-    
+
                 if (isset($matches[2])) {
                     $p=$matches[2];
                     if (!isset($$p)) $$p=false;
-                } else { 
-                    $p=null; 
+                } else {
+                    $p=null;
                 }
                 if (isset($matches[3])) {
                     $pi=$matches[3];
-                } else { 
-                    $pi=null; 
+                } else {
+                    $pi=null;
                 }
                 if (isset($matches[4])) {
                     $t=$matches[4];
-                } else { 
-                    $t=null; 
+                } else {
+                    $t=null;
                 }
-                if (isset($matches[5])) {
+                if (isset($matches[5]) && !in_array($t, array('memory', 'virt_vcpu'))) {
                     $ti=$matches[5];
-                } else { 
-                    $ti=null; 
+                } else {
+                    $ti=null;
                 }
-    
+
                 if (! isset(${$vm.$p.$pi.$t.$ti}) ) {
                     ${$vm.$p.$pi.$t.$ti}=true;
                     if ($t!=$old_t) echo '<h4>'.ucfirst(str_replace('_', ' ',$t)).'</h4>';
                     $old_t=$t;
-    
+
                     $graph_title=gen_title($cur_server->server_name,$p,$pc,$pi,$t,$tc,$ti);
                     if (GRAPH_TITLE=='text') { echo '<figure><figcaption style="max-width:'.($x+100).'px" title="'.$graph_title.'">'.$graph_title.'</figcaption>'; }
                     echo '<img class="imggraph" '.$zoom.' title="'.CLICK_ZOOM.' : &#13; '.$graph_title.'" alt="'.$graph_title.'" src='.DIR_WEBROOT.'/graph.php?datadir='.$plugin_datadir.'&amp;h='.urlencode($cur_server->server_name).':'.urlencode($vm).'&amp;p='.urlencode($p).'&amp;pc='.urlencode($pc).'&amp;pi='.urlencode($pi).'&amp;t='.urlencode($t).'&amp;tc='.urlencode($tc).'&amp;ti='.urlencode($ti).'&amp;s='.$time_range.$graph_size.' />';

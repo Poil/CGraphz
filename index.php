@@ -11,13 +11,13 @@ else { header("Content-type: text/html"); }
 <!DOCTYPE html>
    <meta charset="UTF-8" />
 */
-?> 
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-   
+
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-2.1.3.min.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery-ui-1.10.4.custom.min.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/jquery.strtotime.js"></script>
@@ -27,7 +27,7 @@ else { header("Content-type: text/html"); }
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/common.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/func.js"></script>
    <script type="text/javascript" src="<?php echo DIR_WEBROOT; ?>/lib/dateformat.js"></script>
-   
+
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/css/bootstrap.min.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/lib/bootstrap/css/bootstrap-theme.min.css" />
    <link rel="stylesheet" type="text/css" media="screen" href="<?php echo DIR_WEBROOT; ?>/style/bootstrap_menu.css" />
@@ -74,7 +74,7 @@ else { header("Content-type: text/html"); }
    }
    ?>
 
-   
+
    <title>CGRAPHZ <?php echo CGRAPHZ_VERSION; ?></title>
 </head>
 <body id="id_body">
@@ -111,7 +111,7 @@ if ($auth->verif_auth()) {
 } else {
    include(DIR_FSROOT.'/html/auth/auth/f_auth.php');
 }
-?> 
+?>
 
 </body>
 </html>

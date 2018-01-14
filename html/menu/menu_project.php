@@ -46,7 +46,7 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
               } else {
                 echo '<option value="'.$cur_environment->id_config_environment.'">'.$cur_environment->environment_description.'</option>';
               }
-            } 
+            }
           }
           ?>
         </select>
@@ -65,7 +65,7 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
               } else {
                 echo '<option value="'.$cur_role->id_config_role.'">'.$cur_role->role_description.'</option>';
               }
-            } 
+            }
           }
           ?>
         </select>
@@ -83,7 +83,7 @@ $f_id_config_server=filter_input(INPUT_GET, 'f_id_config_server',FILTER_SANITIZE
                 } else {
                   echo '<option value="'.$cur_server->id_config_server.'">'.$cur_server->server_name.'</option>';
                 }
-              } 
+              }
             }
             ?>
         </select>
@@ -120,12 +120,12 @@ $(document).ready(function(){
     });
 
     $('#f_id_config_environment').on('change', function (){
-	if ($('#f_id_config_role').val()!="") { var role=$('#f_id_config_role option:selected').text(); }
+    if ($('#f_id_config_role').val()!="") { var role=$('#f_id_config_role option:selected').text(); }
         $.getJSON('ajax/json_server.php', {
-		f_id_config_project: $('#f_id_config_project').val(),
-		f_id_config_role: $('#f_id_config_role').val(),
-		f_id_config_environment: $(this).val()
-	}, function(data){
+        f_id_config_project: $('#f_id_config_project').val(),
+        f_id_config_role: $('#f_id_config_role').val(),
+        f_id_config_environment: $(this).val()
+    }, function(data){
             var options = '<option selected="selected"><?php echo SERVER; ?></option>';
             for (var x = 0; x < data.length; x++) {
                 options += '<option value="' + data[x]['id_config_server'] + '">' + data[x]['server_name'] + '</option>';
@@ -133,45 +133,45 @@ $(document).ready(function(){
             $('#f_id_config_server').html(options);
         }),
         $.getJSON('ajax/json_role.php', {
-		f_id_config_project: $('#f_id_config_project').val(),
-		f_id_config_environment: $(this).val()
-	}, function(data){
+        f_id_config_project: $('#f_id_config_project').val(),
+        f_id_config_environment: $(this).val()
+    }, function(data){
             var options = '<option><?php echo ROLE; ?></option>';
             for (var x = 0; x < data.length; x++) {
-		if (role ==  data[x]['role_description']) {
-                	options += '<option value="' + data[x]['id_config_role'] + '" selected="selected">' + data[x]['role_description'] + '</option>';
-		} else {
-                	options += '<option value="' + data[x]['id_config_role'] + '">' + data[x]['role_description'] + '</option>';
-		}
+        if (role ==  data[x]['role_description']) {
+                    options += '<option value="' + data[x]['id_config_role'] + '" selected="selected">' + data[x]['role_description'] + '</option>';
+        } else {
+                    options += '<option value="' + data[x]['id_config_role'] + '">' + data[x]['role_description'] + '</option>';
+        }
             }
             $('#f_id_config_role').html(options);
         });
     });
 
     $('#f_id_config_role').on('change', function (){
-	if ($('#f_id_config_environment').val()!="") { var environment=$('#f_id_config_environment option:selected').text(); }
+    if ($('#f_id_config_environment').val()!="") { var environment=$('#f_id_config_environment option:selected').text(); }
         $.getJSON('ajax/json_server.php', {
-		f_id_config_project: $('#f_id_config_project').val(),
-		f_id_config_environment: $('#f_id_config_environment').val(),
-		f_id_config_role: $(this).val()
-	}, function(data){
+        f_id_config_project: $('#f_id_config_project').val(),
+        f_id_config_environment: $('#f_id_config_environment').val(),
+        f_id_config_role: $(this).val()
+    }, function(data){
             var options = '<option selected="selected"><?php echo SERVER; ?></option>';
             for (var x = 0; x < data.length; x++) {
-               	options += '<option value="' + data[x]['id_config_server'] + '">' + data[x]['server_name'] + '</option>';
+                   options += '<option value="' + data[x]['id_config_server'] + '">' + data[x]['server_name'] + '</option>';
             }
             $('#f_id_config_server').html(options);
         }),
         $.getJSON('ajax/json_environment.php', {
-		f_id_config_project: $('#f_id_config_project').val(),
-		f_id_config_role: $(this).val()
-	}, function(data){
+        f_id_config_project: $('#f_id_config_project').val(),
+        f_id_config_role: $(this).val()
+    }, function(data){
             var options = '<option><?php echo ENV; ?></option>';
             for (var x = 0; x < data.length; x++) {
-		if (environment ==  data[x]['environment_description']) {
-                	options += '<option value="' + data[x]['id_config_environment'] + '" selected="selected">' + data[x]['environment_description'] + '</option>';
-		} else {
-                	options += '<option value="' + data[x]['id_config_environment'] + '">' + data[x]['environment_description'] + '</option>';
-		}
+        if (environment ==  data[x]['environment_description']) {
+                    options += '<option value="' + data[x]['id_config_environment'] + '" selected="selected">' + data[x]['environment_description'] + '</option>';
+        } else {
+                    options += '<option value="' + data[x]['id_config_environment'] + '">' + data[x]['environment_description'] + '</option>';
+        }
             }
             $('#f_id_config_environment').html(options);
         });
@@ -179,10 +179,10 @@ $(document).ready(function(){
 
     $('#f_id_config_server').on('change', function (){
        window.location = 'index.php?module=dashboard&component=view'
-		+'&f_id_config_project=' + $('#f_id_config_project').val()
-		+'&f_id_config_environment=' + $('#f_id_config_environment').val()
-		+'&f_id_config_role=' + $('#f_id_config_role').val()
-		+'&f_id_config_server=' + $(this).val();
+        +'&f_id_config_project=' + $('#f_id_config_project').val()
+        +'&f_id_config_environment=' + $('#f_id_config_environment').val()
+        +'&f_id_config_role=' + $('#f_id_config_role').val()
+        +'&f_id_config_server=' + $(this).val();
     });
 
 });

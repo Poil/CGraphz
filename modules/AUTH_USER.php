@@ -71,7 +71,7 @@ class AUTH_USER {
       } if ($this->verif_auth_ldap(false)) {
         return true;
       } else {
-        return false;  
+        return false;
       }
     } else {
       return false;
@@ -116,15 +116,15 @@ class AUTH_USER {
     if (!$this->verif_auth()) { return false; }
 
     $lib='
-      SELECT 
-      cs.server_name, 
+      SELECT
+      cs.server_name,
       COALESCE(cs.collectd_version,"'.COLLECTD_DEFAULT_VERSION.'") as collectd_version
         FROM config_server cs
-        LEFT JOIN config_server_project csp 
+        LEFT JOIN config_server_project csp
         ON cs.id_config_server=csp.id_config_server
-        LEFT JOIN perm_project_group ppg 
+        LEFT JOIN perm_project_group ppg
         ON csp.id_config_project=ppg.id_config_project
-        LEFT JOIN auth_user_group aug 
+        LEFT JOIN auth_user_group aug
         ON ppg.id_auth_group=aug.id_auth_group
         WHERE (cs.server_name=:host)
         AND (aug.id_auth_user=:s_id_user)
@@ -139,7 +139,7 @@ class AUTH_USER {
       return $authorized;
     } else if (AUTH_TYPE != 'default') {
       include(DIR_FSROOT.'/modules/'.AUTH_TYPE.'/extend_access_right.php');
-    } else {    
+    } else {
       return false;
     }
   }

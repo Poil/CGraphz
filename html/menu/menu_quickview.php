@@ -14,7 +14,7 @@ $f_id_config_project=filter_input(INPUT_GET, 'f_id_config_project',FILTER_SANITI
       </button>
     </div>
     <div class="collapse navbar-collapse" id="bs-navbar-collapse-quickview">
-    <?php 
+    <?php
       $qv = new Form('inline');
       $qv->add('select','f_id_config_project')
          ->options($perm->perm_list_project(), 'id_config_project', 'project_description')

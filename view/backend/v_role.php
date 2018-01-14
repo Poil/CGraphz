@@ -18,7 +18,7 @@ if (isset($_GET['f_id_config_role'])) {
     if (isset($_GET['f_id_config_server']) || $last_action=='edit_server') {
         $tab_role_server_class='active';
         $tab_role_class='';
-    } 
+    }
 }
 
 if (isset($cur_role)) {
@@ -63,14 +63,14 @@ if (isset($_GET['f_id_config_role'])) {
     include(DIR_FSROOT.'/html/config/role_server/r_role_server.php');
     include(DIR_FSROOT.'/html/config/role_server/d_role_server.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_config_server'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_server').'&amp;last_action=edit_server"><button type="button" class="btn btn-primary">'.ADD.' '.SERVER.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/role_server/f_role_server.php');
     echo '</div>';
-}        
+}
 echo '</div>';
 echo '<div class="clearfix"></div>';
 ?>

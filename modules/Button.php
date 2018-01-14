@@ -1,7 +1,7 @@
 <?php
 class Button extends Field{
     private $itype = 'default';
-    
+
     public function buildField(){
         switch($this->itype) {
             case 'add':
@@ -28,7 +28,7 @@ class Button extends Field{
             default:
             break;
         }
-        
+
         $field.= '<button name="'.$this->name.'" id="'.$this->name.'" class="btn '.$this->btnclass.'">'.$this->value.'</button>'."\n";
 
         switch($this->formtype) {
@@ -41,7 +41,7 @@ class Button extends Field{
 
         return $field;
     }
-    
+
     public function iType($v){
         $this->itype = $v;
         return $this;

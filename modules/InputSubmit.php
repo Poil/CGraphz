@@ -1,7 +1,7 @@
 <?php
 class InputSubmit extends Field{
     private $itype = 'default';
-    
+
     public function buildField(){
         if (!isset($this->btnclass)) $this->btnclass='';
         switch($this->itype) {
@@ -29,7 +29,7 @@ class InputSubmit extends Field{
             default:
             break;
         }
-        
+
         $field.= '<button name="'.$this->name.'" id="'.$this->name.'" type="submit" value="'.$this->value.'" class="btn '.$this->btnclass.'">'.$this->value.'</button>'."\n";
 
         switch($this->formtype) {
@@ -42,7 +42,7 @@ class InputSubmit extends Field{
 
         return $field;
     }
-    
+
     public function iType($v){
         $this->itype = $v;
         return $this;

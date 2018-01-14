@@ -14,15 +14,15 @@
             }
         }
      },
-	"bytes": {
-		"title": "Memory on {{HOST}}",
+    "bytes": {
+        "title": "Memory on {{HOST}}",
         "vertical": "Bytes",
-		"legend": {
-			"used_memory": {
-				"name" : "Used Memory"
-			}
-		}
-	},
+        "legend": {
+            "used_memory": {
+                "name" : "Used Memory"
+            }
+        }
+    },
     "counter-commands": {
         "title": "Counter Commands on {{HOST}}",
         "vertical": "Count",
@@ -88,7 +88,7 @@
                 "name" : "Size"
             }
         }
-	},
+    },
     "gauge-repl_offset": {
         "title": "Repl Offset on {{HOST}}",
         "vertical": "",

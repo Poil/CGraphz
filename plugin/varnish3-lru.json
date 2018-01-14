@@ -1,12 +1,12 @@
 {
-	"all": {
-		"title": "LRU activity",
-		"type": "varnish",
-		"legend": {
-			"n_lru_moved": {
-				"name": "N LRU moved objects"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "title": "LRU activity",
+        "type": "varnish",
+        "legend": {
+            "n_lru_moved": {
+                "name": "N LRU moved objects"
+            }
+        },
+        "legend_format": "%5.1lf"
+    }
 }

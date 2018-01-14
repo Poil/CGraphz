@@ -10,8 +10,8 @@ $f_id_config_project=filter_input(INPUT_GET, 'f_id_config_project',FILTER_SANITI
 $f_id_config_role=filter_input(INPUT_GET, 'f_id_config_role',FILTER_SANITIZE_NUMBER_INT);
 
 if ($auth->verif_auth()) {
-	$project=new PROJECT($f_id_config_project);
-	$envs = (array) $project->get_servers_environments($f_id_config_role);
-	echo json_encode($envs);
+    $project=new PROJECT($f_id_config_project);
+    $envs = (array) $project->get_servers_environments($f_id_config_role);
+    echo json_encode($envs);
 }
 ?>

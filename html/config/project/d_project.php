@@ -1,20 +1,20 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_project" class="table_admin">
 <thead>
 <tr>
-	<th><?php echo PROJECT ?></th>
-	<th><?php echo DESC ?></th>
+    <th><?php echo PROJECT ?></th>
+    <th><?php echo DESC ?></th>
 </tr>
 </thead>
 <tbody>
-<?php 
+<?php
 
 
 for ($i=0; $i<$cpt_project;$i++) {
-	echo '
-	<tr>
-		<td><a href="index.php?module=config&amp;component=project&amp;f_id_config_project='.$all_project[$i]->id_config_project.'">'.$all_project[$i]->project.'</a></td>
-		<td><a href="index.php?module=config&amp;component=project&amp;f_id_config_project='.$all_project[$i]->id_config_project.'">'.$all_project[$i]->project_description.'</a></td>
-	</tr>';
+    echo '
+    <tr>
+        <td><a href="index.php?module=config&amp;component=project&amp;f_id_config_project='.$all_project[$i]->id_config_project.'">'.$all_project[$i]->project.'</a></td>
+        <td><a href="index.php?module=config&amp;component=project&amp;f_id_config_project='.$all_project[$i]->id_config_project.'">'.$all_project[$i]->project_description.'</a></td>
+    </tr>';
 }
 ?>
 </tbody>

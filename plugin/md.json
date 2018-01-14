@@ -1,7 +1,7 @@
 {
-	"md_disks": {
-		"title": "MD (md-{{PI}}) on {{HOST}}",
-		"vertical": "Disks",
-		"legend_format": "%2.0lf"
-	}
+    "md_disks": {
+        "title": "MD (md-{{PI}}) on {{HOST}}",
+        "vertical": "Disks",
+        "legend_format": "%2.0lf"
+    }
 }

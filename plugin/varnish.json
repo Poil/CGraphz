@@ -1,62 +1,62 @@
 {
-	"connections": {
-		"title": "Connections ({{PC}} {{PI}}) on {{HOST}}",
-		"vertical": "Hits",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	},
-	"cache": {
-		"title": "Cache ({{PC}} {{PI}}) on {{HOST}}",
-		"vertical": "Hits",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	},
-	"http_requests": {
-		"title": "HTTP Requests ({{PC}} {{PI}}) on {{HOST}}",
-		"vertical": "Operations",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	},
-	"cache_result": {
-		"title": "Cache Result ({{PC}} {{PI}}) on {{HOST}}",
-		"vertical": "Hits",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	},
-	"total_operations": {
-		"title": "Total Operations ({{PC}} {{PI}}) on {{HOST}}",
-		"vertical": "Operations",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	},
-	"total_bytes": {
-		"title": "Total Bytes ({{PC}} {{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	},
-	"total_requests": {
-		"title": "Total Requests ({{PC}} {{PI}}) on {{HOST}}",
-		"vertical": "Requests",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	},
-	"total_sessions": {
-		"title": "Total Sessions ({{PC}} {{PI}}) on {{HOST}}",
-		"vertical": "Sessions",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	},
-	"threads": {
-		"title": "Thread ({{PC}} {{PI}}) on {{HOST}}",
-		"vertical": "Thread",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	},
-	"total_threads": {
-		"title": "Total Thread ({{PC}} {{PI}}) on {{HOST}}",
-		"vertical": "Thread",
-		"type": "stacked",
-		"legend_format": "%5.1lf"
-	}
+    "connections": {
+        "title": "Connections ({{PC}} {{PI}}) on {{HOST}}",
+        "vertical": "Hits",
+        "type": "stacked",
+        "legend_format": "%5.1lf"
+    },
+    "cache": {
+        "title": "Cache ({{PC}} {{PI}}) on {{HOST}}",
+        "vertical": "Hits",
+        "type": "stacked",
+        "legend_format": "%5.1lf"
+    },
+    "http_requests": {
+        "title": "HTTP Requests ({{PC}} {{PI}}) on {{HOST}}",
+        "vertical": "Operations",
+        "type": "stacked",
+        "legend_format": "%5.1lf"
+    },
+    "cache_result": {
+        "title": "Cache Result ({{PC}} {{PI}}) on {{HOST}}",
+        "vertical": "Hits",
+        "type": "stacked",
+        "legend_format": "%5.1lf"
+    },
+    "total_operations": {
+        "title": "Total Operations ({{PC}} {{PI}}) on {{HOST}}",
+        "vertical": "Operations",
+        "type": "stacked",
+        "legend_format": "%5.1lf"
+    },
+    "total_bytes": {
+        "title": "Total Bytes ({{PC}} {{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend_format": "%5.1lf"
+    },
+    "total_requests": {
+        "title": "Total Requests ({{PC}} {{PI}}) on {{HOST}}",
+        "vertical": "Requests",
+        "type": "stacked",
+        "legend_format": "%5.1lf"
+    },
+    "total_sessions": {
+        "title": "Total Sessions ({{PC}} {{PI}}) on {{HOST}}",
+        "vertical": "Sessions",
+        "type": "stacked",
+        "legend_format": "%5.1lf"
+    },
+    "threads": {
+        "title": "Thread ({{PC}} {{PI}}) on {{HOST}}",
+        "vertical": "Thread",
+        "type": "stacked",
+        "legend_format": "%5.1lf"
+    },
+    "total_threads": {
+        "title": "Total Thread ({{PC}} {{PI}}) on {{HOST}}",
+        "vertical": "Thread",
+        "type": "stacked",
+        "legend_format": "%5.1lf"
+    }
 }

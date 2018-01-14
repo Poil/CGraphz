@@ -1,19 +1,19 @@
 {
-	"gauge": {
-		"title": "Solr query statistics ({{PC}}) on {{HOST}}",
-		"vertical": "Nb",
-		"legend": {
-			"errors": {
-				"name": "Errors"
-			},
+    "gauge": {
+        "title": "Solr query statistics ({{PC}}) on {{HOST}}",
+        "vertical": "Nb",
+        "legend": {
+            "errors": {
+                "name": "Errors"
+            },
             "requests": {
                 "name": "Requests"
             },
             "timeouts": {
                 "name": "Timeouts"
             }
-		},
+        },
         "legend_format": "%5.0lf"
-	}
+    }
 }
 

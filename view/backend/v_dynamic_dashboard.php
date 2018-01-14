@@ -20,7 +20,7 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     if (isset($_GET['f_id_auth_group']) || $last_action=='edit_group') {
         $tab_dynamic_dashboard_group_class='active';
         $tab_dynamic_dashboard_class='';
-    } 
+    }
     else if (isset($_GET['f_id_config_dynamic_dashboard_content']) || $last_action=='edit_content') {
         $tab_dynamic_dashboard_content_class='active';
         $tab_dynamic_dashboard_class='';
@@ -71,7 +71,7 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/r_dynamic_dashboard_group.php');
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_group/d_dynamic_dashboard_group.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_auth_group'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_auth_group').'&amp;last_action=edit_group"><button type="button" class="btn btn-primary">'.ADD.' '.GROUP.'</button></a>';
     }
@@ -89,7 +89,7 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/r_dynamic_dashboard_content.php');
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/d_dynamic_dashboard_content.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_config_dynamic_dashboard_content'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard_content').'&amp;last_action=edit_content"><button type="button" class="btn btn-primary">'.ADD.' '.CONTENT.'</button></a>';
     }
@@ -97,7 +97,7 @@ if (isset($_GET['f_id_config_dynamic_dashboard'])) {
     include(DIR_FSROOT.'/html/config/dynamic_dashboard_content/f_dynamic_dashboard_content.php');
     echo '</fieldset>';
     echo '</div>';
-}        
+}
 echo '</div>';
 echo '<div class="clearfix"></div>';
 ?>

@@ -1,15 +1,15 @@
 {
-	"all": {
-		"title": "SHM writes and records",
-		"type": "varnish",
-		"legend": {
-			"shm_writes": {
-				"name": "SHM writes"
-			},
-			"shm_records": {
-				"name": "SHM records"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "title": "SHM writes and records",
+        "type": "varnish",
+        "legend": {
+            "shm_writes": {
+                "name": "SHM writes"
+            },
+            "shm_records": {
+                "name": "SHM records"
+            }
+        },
+        "legend_format": "%5.1lf"
+    }
 }

@@ -1,13 +1,13 @@
 {
-	"conntrack": {
-		"title": "Conntrack entries on {{HOST}}",
-		"vertical": "Entries",
-		"legend": {
-			"value": {
-				"name": "Entries",
-				"color": "0000f0"
-			}
-		},
-		"legend_format": "%.1lf"
-	}
+    "conntrack": {
+        "title": "Conntrack entries on {{HOST}}",
+        "vertical": "Entries",
+        "legend": {
+            "value": {
+                "name": "Entries",
+                "color": "0000f0"
+            }
+        },
+        "legend_format": "%.1lf"
+    }
 }

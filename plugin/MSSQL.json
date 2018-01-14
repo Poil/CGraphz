@@ -3,144 +3,144 @@
                                 "title": "MSSQL Files Size {{PI}}",
                                 "vertical": "bytes",
                                 "type": "stacked",
-								"legend": {
-										"Databases_Data_File_Size": {
-										"name" : "DataFiles Size"
-										},
-										"Databases_Log_File_Size": {
-										"name" : "DataLogs Size"
-										}
-								}
+                                "legend": {
+                                        "Databases_Data_File_Size": {
+                                        "name" : "DataFiles Size"
+                                        },
+                                        "Databases_Log_File_Size": {
+                                        "name" : "DataLogs Size"
+                                        }
+                                }
                 },
-				"sqlserver_locks": {
-								"title": "MSSQL Lock {{PI}}",
-								"vertical": "Nb",
-								"type": "stacked",
-								"legend" : {
-										"Locks_Locks_Wait" : {
-										"name" : "Lock Wait"
-										},
-										"Locks_Nb_Deadlock" : {
-										"name" : "Nb DeadLock"
-										}
-								}					
-				},
-				"sqlserver_mem": {
-								"title": "MSSQL Memory {{PI}}",
-								"vertical": "bytes",
-								"type": "stacked",
-								"legend": {
-										"Memory_Target_Memory" : {
-										"name" : "Target Memory"
-										},
-										"Memory_Total_Memory" : {
-										"name" : "Total Memory"
-										}
-								}
-				},
-				"sqlserver_access": {
-								"title": "MSSQL Access Methods Full Scans {{PI}}",
-								"vertical": "Nb",
-								"type": "stacked",
-								"legend" : {
-										"Access_Methods_Full_Scans" : {
-										"name" : "Full Scans/sec"
-										}
-								}
-				},
-				"sqlserver_connections": {
-								"title": "MSSQL Connections {{PI}}",
-								"vertical": "Nb",
-								"type": "stacked",
-								"legend" : {
-										"General_Statistics_Logical_connections" : {
-										"name" : "Logical Connections"
-										}
-							}
-				},
-				"sqlserver_buffercachehit" : {
-								"title": "MSSQL Buffer Cache Hit Ratio {{PI}}",
-								"vertical": "Nb",
-								"type" : "stacked",
-								"legend" : {
-										"Buffer_Manager_Cache_Hit_Ratio" : {
-										"name" : "Buffer Cache Hit Ratio"
-										}
-								}
-				},
-				"sqlserver_bufferpage" : {
-								"title": "MSSQL Buffer Page Life Expectancy {{PI}}",
-								"vertical": "Nb",
-								"type" : "stacked",
-								"legend" : {
-										"Buffer_Manager_Page_Life_Expectancy" : {
-										"name" : "Page Life Expectancy"
-										}
-								}
-				},
-				"sqlserver_jobs" : {
-								"title": "MSSQL Failed Jobs {{PI}}",
-								"vertical": "Nb",
-								"type" : "stacked",
-								"legend" : {
-										"Jobs_Failed_Jobs" : {
-										"name" : "Failed Jobs"
-										}
-								}
-				},
-				"sqlserver_processblocked" : {
-								"title": "MSSQL Processes Blocked {{PI}}",
-								"vertical": "Nb",
-								"type" : "stacked",
-								"legend" : {
-										"General_Statistics_Processes_blocked" : {
-										"name" : "Processes Blocked"
-										}
-								}
-				},
-				"sqlserver_stats" : {
-								"title": "MSSQL Compilations and ReCompilations {{PI}}",
-								"vertical": "Nb",
-								"type" : "stacked",
-								"legend" : {
-										"SQL_Statistics_SQL_Compilations" : {
-										"name" : "SQL Compilations"
-										},
-										"SQL_Statistics_SQL_Recompilations" : {
-										"name" : "SQL Recompilations"
-										}
-								}
-				},
-				"sqlserver_stats_requests" : {
-								"title": "MSSQL Batch Requests/sec {{PI}}",
-								"vertical": "Nb",
-								"type" : "stacked",
-								"legend" : {
-										"SQL_Statistics_Batch_Requests" : {
-										"name" : "Batch Request/sec"
-										}
-								}
-				},
-				"sqlserver_transaction_count" : {
-								"title": "MSSQL Transactions {{PI}}",
-								"vertical": "Nb",
-								"type" : "stacked",
-								"legend" : {
-										"Transactions_Transactions" : {
-										"name" : "Transactions"
-										}
-								}
-				},
-				"sqlserver_transaction_longuest" : {
-								"title": "MSSQL Longuest Transaction {{PI}}",
-								"vertical": "time in sec",
-								"type" : "stacked",
-								"legend" : {
-										"Transactions_Longuest_Transaction" : {
-										"name" : "Longuest Transactions"
-										}
-								}
-				},
+                "sqlserver_locks": {
+                                "title": "MSSQL Lock {{PI}}",
+                                "vertical": "Nb",
+                                "type": "stacked",
+                                "legend" : {
+                                        "Locks_Locks_Wait" : {
+                                        "name" : "Lock Wait"
+                                        },
+                                        "Locks_Nb_Deadlock" : {
+                                        "name" : "Nb DeadLock"
+                                        }
+                                }                    
+                },
+                "sqlserver_mem": {
+                                "title": "MSSQL Memory {{PI}}",
+                                "vertical": "bytes",
+                                "type": "stacked",
+                                "legend": {
+                                        "Memory_Target_Memory" : {
+                                        "name" : "Target Memory"
+                                        },
+                                        "Memory_Total_Memory" : {
+                                        "name" : "Total Memory"
+                                        }
+                                }
+                },
+                "sqlserver_access": {
+                                "title": "MSSQL Access Methods Full Scans {{PI}}",
+                                "vertical": "Nb",
+                                "type": "stacked",
+                                "legend" : {
+                                        "Access_Methods_Full_Scans" : {
+                                        "name" : "Full Scans/sec"
+                                        }
+                                }
+                },
+                "sqlserver_connections": {
+                                "title": "MSSQL Connections {{PI}}",
+                                "vertical": "Nb",
+                                "type": "stacked",
+                                "legend" : {
+                                        "General_Statistics_Logical_connections" : {
+                                        "name" : "Logical Connections"
+                                        }
+                            }
+                },
+                "sqlserver_buffercachehit" : {
+                                "title": "MSSQL Buffer Cache Hit Ratio {{PI}}",
+                                "vertical": "Nb",
+                                "type" : "stacked",
+                                "legend" : {
+                                        "Buffer_Manager_Cache_Hit_Ratio" : {
+                                        "name" : "Buffer Cache Hit Ratio"
+                                        }
+                                }
+                },
+                "sqlserver_bufferpage" : {
+                                "title": "MSSQL Buffer Page Life Expectancy {{PI}}",
+                                "vertical": "Nb",
+                                "type" : "stacked",
+                                "legend" : {
+                                        "Buffer_Manager_Page_Life_Expectancy" : {
+                                        "name" : "Page Life Expectancy"
+                                        }
+                                }
+                },
+                "sqlserver_jobs" : {
+                                "title": "MSSQL Failed Jobs {{PI}}",
+                                "vertical": "Nb",
+                                "type" : "stacked",
+                                "legend" : {
+                                        "Jobs_Failed_Jobs" : {
+                                        "name" : "Failed Jobs"
+                                        }
+                                }
+                },
+                "sqlserver_processblocked" : {
+                                "title": "MSSQL Processes Blocked {{PI}}",
+                                "vertical": "Nb",
+                                "type" : "stacked",
+                                "legend" : {
+                                        "General_Statistics_Processes_blocked" : {
+                                        "name" : "Processes Blocked"
+                                        }
+                                }
+                },
+                "sqlserver_stats" : {
+                                "title": "MSSQL Compilations and ReCompilations {{PI}}",
+                                "vertical": "Nb",
+                                "type" : "stacked",
+                                "legend" : {
+                                        "SQL_Statistics_SQL_Compilations" : {
+                                        "name" : "SQL Compilations"
+                                        },
+                                        "SQL_Statistics_SQL_Recompilations" : {
+                                        "name" : "SQL Recompilations"
+                                        }
+                                }
+                },
+                "sqlserver_stats_requests" : {
+                                "title": "MSSQL Batch Requests/sec {{PI}}",
+                                "vertical": "Nb",
+                                "type" : "stacked",
+                                "legend" : {
+                                        "SQL_Statistics_Batch_Requests" : {
+                                        "name" : "Batch Request/sec"
+                                        }
+                                }
+                },
+                "sqlserver_transaction_count" : {
+                                "title": "MSSQL Transactions {{PI}}",
+                                "vertical": "Nb",
+                                "type" : "stacked",
+                                "legend" : {
+                                        "Transactions_Transactions" : {
+                                        "name" : "Transactions"
+                                        }
+                                }
+                },
+                "sqlserver_transaction_longuest" : {
+                                "title": "MSSQL Longuest Transaction {{PI}}",
+                                "vertical": "time in sec",
+                                "type" : "stacked",
+                                "legend" : {
+                                        "Transactions_Longuest_Transaction" : {
+                                        "name" : "Longuest Transactions"
+                                        }
+                                }
+                },
                 "legend_format": "%5.1lf%s"
 }
 

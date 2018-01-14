@@ -3,57 +3,57 @@
                                 "title": "IIS Currrent Connections {{PI}}",
                                 "vertical": "Nb",
                                 "type": "stacked",
-								"legend": {
-										"current_connections" : {
-										"name" : "Current Connections"
-										}
-								}
-								
+                                "legend": {
+                                        "current_connections" : {
+                                        "name" : "Current Connections"
+                                        }
+                                }
+                                
                 },
-				"iis_attemps": {
-								"title": "IIS Connection Attemps/sec {{PI}}",
-								"vertical": "Nb",
-								"type": "stacked",
-								"legend" : {
-										"Connection_Attemps" : {
-										"name" : "Connection Attemps" 
-										}
-								}
-				},
-				"iis_anonymous": {
-								"title": "IIS Anonymous User Connection {{PI}}",
-								"vertical": "Nb",
-								"type": "stacked",
-								"legend" : {
-										"Current_Anonymous_Users" : {
-										"name" : "Current Anonymous Users"
-										},
-										"Current_Non_Anonymous_Users" : {
-										"name" : "Current Non Anonymous Users"
-										}
-								}
-				},
-				"iis_trafic": {
-								"title": "IIS Traffic {{PI}}",
-								"vertical": "Bytes",
-								"type": "stacked",
-								"legend": {
-										"Bytes_Received_Sec" : {
-										"name" : "Bytes Received/sec"
-										},
-										"Bytes_Sent_Sec" : {
-										"name" : "Bytes Sent/sec"
-										},
-										"Bytes_Total_Sec" : {
-										"name" : "Bytes Total/sec"
-										}
-								}
-				},
-				"iis_requests": {
-								"title": "IIS Requests {{PI}}",
-								"vertical": "Nb",
-								"type": "stacked",
-								"legend": {
+                "iis_attemps": {
+                                "title": "IIS Connection Attemps/sec {{PI}}",
+                                "vertical": "Nb",
+                                "type": "stacked",
+                                "legend" : {
+                                        "Connection_Attemps" : {
+                                        "name" : "Connection Attemps" 
+                                        }
+                                }
+                },
+                "iis_anonymous": {
+                                "title": "IIS Anonymous User Connection {{PI}}",
+                                "vertical": "Nb",
+                                "type": "stacked",
+                                "legend" : {
+                                        "Current_Anonymous_Users" : {
+                                        "name" : "Current Anonymous Users"
+                                        },
+                                        "Current_Non_Anonymous_Users" : {
+                                        "name" : "Current Non Anonymous Users"
+                                        }
+                                }
+                },
+                "iis_trafic": {
+                                "title": "IIS Traffic {{PI}}",
+                                "vertical": "Bytes",
+                                "type": "stacked",
+                                "legend": {
+                                        "Bytes_Received_Sec" : {
+                                        "name" : "Bytes Received/sec"
+                                        },
+                                        "Bytes_Sent_Sec" : {
+                                        "name" : "Bytes Sent/sec"
+                                        },
+                                        "Bytes_Total_Sec" : {
+                                        "name" : "Bytes Total/sec"
+                                        }
+                                }
+                },
+                "iis_requests": {
+                                "title": "IIS Requests {{PI}}",
+                                "vertical": "Nb",
+                                "type": "stacked",
+                                "legend": {
                                         "Copy_Request" : {
                                         "name" : "Copy"
                                         },
@@ -63,7 +63,7 @@
                                         "Get_Request" : {
                                         "name" : "Get"
                                         },
-										"Head_Request" : {
+                                        "Head_Request" : {
                                         "name" : "Head"
                                         },
                                         "Lock_Request" : {
@@ -72,7 +72,7 @@
                                         "Mkcol_Request" : {
                                         "name" : "Mkcol"
                                         },
-										"Move_Request" : {
+                                        "Move_Request" : {
                                         "name" : "Move"
                                         },
                                         "Options_Request" : {
@@ -81,7 +81,7 @@
                                         "Other_Request" : {
                                         "name" : "Other"
                                         },
-										"Post_Request" : {
+                                        "Post_Request" : {
                                         "name" : "Post"
                                         },
                                         "Propfind_Request" : {
@@ -90,7 +90,7 @@
                                         "Proppatch_Request" : {
                                         "name" : "Proppatch"
                                         },
-										"Put_Request" : {
+                                        "Put_Request" : {
                                         "name" : "Put"
                                         },
                                         "Search_Request" : {
@@ -99,13 +99,13 @@
                                         "Total_Method_Requests" : {
                                         "name" : "Total Method"
                                         },
-										"Trace_Request" : {
+                                        "Trace_Request" : {
                                         "name" : "Trace"
                                         },
                                         "Unlock_Request" : {
                                         "name" : "Unlock"
                                         }
                                 }
-				},
+                },
                 "legend_format": "%5.1lf%s"
 }

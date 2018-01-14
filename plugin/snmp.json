@@ -1,135 +1,135 @@
 {
-	"gauge": {
-		"title": "{{TI}} on {{HOST}}",
-		"type": "stacked"
-	},
+    "gauge": {
+        "title": "{{TI}} on {{HOST}}",
+        "type": "stacked"
+    },
 
-	"if_octets": {
-		"title": "Interface Traffic ({{TI}}) on {{HOST}}",
-		"vertical": "{{ND}} per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s",
-		"datasize": true
-	},
+    "if_octets": {
+        "title": "Interface Traffic ({{TI}}) on {{HOST}}",
+        "vertical": "{{ND}} per second",
+        "type": "io",
+        "legend": {
+            "rx": {
+                "name": "Receive",
+                "color": "0000ff"
+            },
+            "tx": {
+                "name": "Transmit",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "datasize": true
+    },
 
-	"if_errors": {
-		"title": "Interface Errors ({{TI}}) on {{HOST}}",
-		"vertical": "Errors per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
+    "if_errors": {
+        "title": "Interface Errors ({{TI}}) on {{HOST}}",
+        "vertical": "Errors per second",
+        "type": "io",
+        "legend": {
+            "rx": {
+                "name": "Receive",
+                "color": "0000ff"
+            },
+            "tx": {
+                "name": "Transmit",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
 
-	"if_dropped": {
-		"title": "Interface Discards ({{TI}}) on {{HOST}}",
-		"vertical": "Dropped per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
+    "if_dropped": {
+        "title": "Interface Discards ({{TI}}) on {{HOST}}",
+        "vertical": "Dropped per second",
+        "type": "io",
+        "legend": {
+            "rx": {
+                "name": "Receive",
+                "color": "0000ff"
+            },
+            "tx": {
+                "name": "Transmit",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
 
-	"if_packets": {
-		"title": "Interface Packets ({{TI}}) on {{HOST}}",
-		"vertical": "Packets per second",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
+    "if_packets": {
+        "title": "Interface Packets ({{TI}}) on {{HOST}}",
+        "vertical": "Packets per second",
+        "type": "io",
+        "legend": {
+            "rx": {
+                "name": "Receive",
+                "color": "0000ff"
+            },
+            "tx": {
+                "name": "Transmit",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
 
-	"gauge-cpu": {
-		"scale": "100"
-	},
+    "gauge-cpu": {
+        "scale": "100"
+    },
 
-	"load": {
-		"title": "System load",
-		"vertical": "System load",
-		"type": "default",
-		"scale": "0.001",
-		"legend": {
-			"shortterm": {
-				"name": " 1 min",
-				"color": "00ff00"
-			},
-			"midterm": {
-				"name": " 5 min",
-				"color": "0000ff"
-			},
-			"longterm": {
-				"name": "15 min",
-				"color": "ff0000"
-			}
-		}
-	},
+    "load": {
+        "title": "System load",
+        "vertical": "System load",
+        "type": "default",
+        "scale": "0.001",
+        "legend": {
+            "shortterm": {
+                "name": " 1 min",
+                "color": "00ff00"
+            },
+            "midterm": {
+                "name": " 5 min",
+                "color": "0000ff"
+            },
+            "longterm": {
+                "name": "15 min",
+                "color": "ff0000"
+            }
+        }
+    },
 
-	"temperature": {
-		"title": "Temperature on {{HOST}}",
-		"vertical": "Celsius",
-		"type": "default"
-	},
+    "temperature": {
+        "title": "Temperature on {{HOST}}",
+        "vertical": "Celsius",
+        "type": "default"
+    },
 
-	"links": {
-		"title": "{{TI}} links state on {{HOST}}",
-		"vertical": "State",
-		"type": "stacked"
-	},
+    "links": {
+        "title": "{{TI}} links state on {{HOST}}",
+        "vertical": "State",
+        "type": "stacked"
+    },
 
-	"uptime": {
-		"title": "Uptime {{TI}}",
-		"vertical": "Days",
-		"type": "uptime",
-		"legend_format": "%5.1lf%s"
-	},
-	"memory": {
-		"title": "Physical memory utilization on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"free": {
-				"name": "Free",
-				"color": "00e000"
-			},
-			"used": {
-				"name": "Used",
-				"color": "ff0000"
-			}
-		},
-		"base": "1024"
-	}
+    "uptime": {
+        "title": "Uptime {{TI}}",
+        "vertical": "Days",
+        "type": "uptime",
+        "legend_format": "%5.1lf%s"
+    },
+    "memory": {
+        "title": "Physical memory utilization on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend": {
+            "free": {
+                "name": "Free",
+                "color": "00e000"
+            },
+            "used": {
+                "name": "Used",
+                "color": "ff0000"
+            }
+        },
+        "base": "1024"
+    }
 }

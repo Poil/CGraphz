@@ -1,84 +1,97 @@
 {
-	"disk_merged": {
-		"title": "Disk Merged Operations ({{PI}}) on {{HOST}}",
-		"vertical": "Merged operations/s",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"disk_octets": {
-		"title": "Disk Traffic ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes per second",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"disk_ops": {
-		"title": "Disk Operations ({{PI}}) on {{HOST}}",
-		"vertical": "Ops per second",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"disk_time": {
-		"title": "Disk time per operation ({{PI}}) on {{HOST}}",
-		"vertical": "Avg. Time/Op",
-		"type": "io",
-		"legend": {
-			"read": {
-				"name": "Read",
-				"color": "0000ff"
-			},
-			"write": {
-				"name": "Write",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%ss",
-		"scale": 0.001
-	},
-	"disk_io_time": {
-		"title": "Disk IO time per operation ({{PI}}) on {{HOST}}",
-		"vertical": "Avg. Time/Op",
-		"type": "io",
-		"legend": {
-			"weighted_io_time": {
-				"name": "Weighted IO Time",
-				"color": "0000ff"
-			},
-			"io_time": {
-				"name": "IO Time",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%ss",
-		"scale": 0.001
-	}
+    "disk_merged": {
+        "title": "Disk Merged Operations ({{PI}}) on {{HOST}}",
+        "vertical": "Merged operations/s",
+        "type": "io",
+        "legend": {
+            "read": {
+                "name": "Read",
+                "color": "0000ff"
+            },
+            "write": {
+                "name": "Write",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "disk_octets": {
+        "title": "Disk Traffic ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes per second",
+        "type": "io",
+        "legend": {
+            "read": {
+                "name": "Read",
+                "color": "0000ff"
+            },
+            "write": {
+                "name": "Write",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "disk_ops": {
+        "title": "Disk Operations ({{PI}}) on {{HOST}}",
+        "vertical": "Ops per second",
+        "type": "io",
+        "legend": {
+            "read": {
+                "name": "Read",
+                "color": "0000ff"
+            },
+            "write": {
+                "name": "Write",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "disk_time": {
+        "title": "Disk time per operation ({{PI}}) on {{HOST}}",
+        "vertical": "Avg. Time/Op",
+        "type": "io",
+        "legend": {
+            "read": {
+                "name": "Read",
+                "color": "0000ff"
+            },
+            "write": {
+                "name": "Write",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%ss",
+        "scale": 0.001
+    },
+    "disk_io_time": {
+        "title": "Disk IO time per operation ({{PI}}) on {{HOST}}",
+        "vertical": "Avg. Time/Op",
+        "type": "io",
+        "legend": {
+            "weighted_io_time": {
+                "name": "Weighted IO Time",
+                "color": "0000ff"
+            },
+            "io_time": {
+                "name": "IO Time",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%ss",
+        "scale": 0.001
+    },
+    "pending_operations": {
+        "title": "Disk pending operation ({{PI}}) on {{HOST}}",
+        "vertical": "Pending",
+        "type": "default",
+        "legend": {
+            "value": {
+                "name": "Operations",
+                "color": "ff0000"
+            }
+        },
+        "legend_format": "%5.1lf%ss",
+        "scale": 0.001
+    }
 }

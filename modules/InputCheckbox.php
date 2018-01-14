@@ -2,7 +2,7 @@
 class InputCheckbox extends Field{
     private $checked = false;
     private $default = false;
-    
+
     public function buildField(){
         $field = '<div class="form-group">'."\n";
 
@@ -38,11 +38,11 @@ class InputCheckbox extends Field{
             $field.= ' checked />'."\n";
         else
             $field.= ' />'."\n";
-        
+
         if(!empty($this->label)){
-            $field.=$this->label; 
+            $field.=$this->label;
             if($this->important)
-                $field.= '<span class="red">*</span>'."\n"; 
+                $field.= '<span class="red">*</span>'."\n";
             $field.= '</label>'."\n";
         }
 
@@ -53,13 +53,13 @@ class InputCheckbox extends Field{
             $field.= '</div>'."\n";
         }
 
-        # formgroup     
+        # formgroup
         $field.= '</div>'."\n";
 
         return $field;
     }
-    
-    
+
+
     public function checked($v=true){
         $this->checked = $v;
         return $this;
@@ -69,5 +69,5 @@ class InputCheckbox extends Field{
         $this->default = $v;
         return $this;
     }
-    
+
 }

@@ -1,56 +1,56 @@
 {
-	"memory-heap": {
-		"title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
-		"vertical": "{{ND}}",
-		"legend": {
-			"heap-committed": {
-				"name": "Committed"
-			},
-			"heap-init": {
-				"name": "Init"
-			},
-			"heap-used": {
-				"name": "Used"
-			},
-			"heap-max": {
-				"name": "Total"
-			}
+    "memory-heap": {
+        "title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
+        "vertical": "{{ND}}",
+        "legend": {
+            "heap-committed": {
+                "name": "Committed"
+            },
+            "heap-init": {
+                "name": "Init"
+            },
+            "heap-used": {
+                "name": "Used"
+            },
+            "heap-max": {
+                "name": "Total"
+            }
         }
     },
-	"memory-nonheap": {
-		"title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
-		"vertical": "{{ND}}",
-		"legend": {
-			"nonheap-committed": {
-				"name": "Committed"
-			},
-			"nonheap-init": {
-				"name": "Init"
-			},
-			"nonheap-used": {
-				"name": "Used"
-			},
-			"nonheap-max": {
-				"name": "Total"
-			}
+    "memory-nonheap": {
+        "title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
+        "vertical": "{{ND}}",
+        "legend": {
+            "nonheap-committed": {
+                "name": "Committed"
+            },
+            "nonheap-init": {
+                "name": "Init"
+            },
+            "nonheap-used": {
+                "name": "Used"
+            },
+            "nonheap-max": {
+                "name": "Total"
+            }
        }
    },
    "memory": {
-		"title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
-		"vertical": "{{ND}}",
+        "title": "{{TC}} {{PI}} for {{PC}} on {{HOST}}",
+        "vertical": "{{ND}}",
         "legend": {
-			"committed": {
-				"name": "Committed"
-			},
-			"init": {
-				"name": "Init"
-			},
-			"used": {
-				"name": "Used"
-			},
-			"max": {
-				"name": "Total"
-			}
-		}
-	}
+            "committed": {
+                "name": "Committed"
+            },
+            "init": {
+                "name": "Init"
+            },
+            "used": {
+                "name": "Used"
+            },
+            "max": {
+                "name": "Total"
+            }
+        }
+    }
 }

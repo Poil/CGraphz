@@ -101,7 +101,7 @@ if (isset($_GET['f_id_config_server'])) {
     include(DIR_FSROOT.'/html/config/server_project/r_server_project.php');
     include(DIR_FSROOT.'/html/config/server_project/d_server_project.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_config_project'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_project').'&amp;last_action=edit_project"><button type="button" class="btn btn-primary">'.ADD.' '.PROJECT.'</button></a>';
     }
@@ -118,7 +118,7 @@ if (isset($_GET['f_id_config_server'])) {
     include(DIR_FSROOT.'/html/config/server_role/r_server_role.php');
     include(DIR_FSROOT.'/html/config/server_role/d_server_role.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_config_role'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_role').'&amp;last_action=edit_role"><button type="button" class="btn btn-primary">'.ADD.' '.ROLE.'</button></a>';
     }
@@ -135,14 +135,14 @@ if (isset($_GET['f_id_config_server'])) {
     include(DIR_FSROOT.'/html/config/server_environment/r_server_environment.php');
     include(DIR_FSROOT.'/html/config/server_environment/d_server_environment.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_config_environment'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_environment').'&amp;last_action=edit_environment"><button type="button" class="btn btn-primary">'.ADD.' '.ENV.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/server_environment/f_server_environment.php');
     echo '</div>';
-}        
+}
 echo '</div>';
 echo '<div class="clearfix"></div>';
 ?>

@@ -1,11 +1,11 @@
 {
-	"gauge": {
-		"title": "PuppetDB JVM Heap Memory",
-		"type": "default",
-		"legend": {
-			"HeapMemoryUsage-used": {
-				"name": "HeapMemoryUsage"
-			}
-		}
-	}
+    "gauge": {
+        "title": "PuppetDB JVM Heap Memory",
+        "type": "default",
+        "legend": {
+            "HeapMemoryUsage-used": {
+                "name": "HeapMemoryUsage"
+            }
+        }
+    }
 }

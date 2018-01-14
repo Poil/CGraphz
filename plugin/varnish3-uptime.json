@@ -1,12 +1,12 @@
 {
-	"all": {
-		"title": "Varnish uptime",
-		"type": "varnish",
-		"legend": {
-			"uptime": {
-				"name": "Client uptime"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "title": "Varnish uptime",
+        "type": "varnish",
+        "legend": {
+            "uptime": {
+                "name": "Client uptime"
+            }
+        },
+        "legend_format": "%5.1lf"
+    }
 }

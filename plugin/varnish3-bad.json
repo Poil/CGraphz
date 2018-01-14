@@ -1,7 +1,7 @@
 {
     "all": {
         "title": "Misbehavior",
-		"type": "varnish",
+        "type": "varnish",
         "legend": {
             "fetch_failed": {
                          "name": "Fetch failed"

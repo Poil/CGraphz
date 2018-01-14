@@ -8,16 +8,16 @@ class Form{
     protected $fieldset = false;
     protected $legend = null;
     protected $method = 'post';
-    
+
     public function __construct($formtype='', $action='', $enctype='', $onsubmit=''){
         $this->action = $action;
         $this->formtype = $formtype;
         $this->enctype = $enctype;
         $this->onsubmit = ' onsubmit="'.$onsubmit.'"';
-        
+
         return $this;
     }
-    
+
     public function add($entry, $value){
         switch($entry){
             case 'html': $this->items[] = $value; break;
@@ -45,7 +45,7 @@ class Form{
         }
         return true;
     }
-    
+
     /* Ici son comportement est spécifique à mon système d'entités-modèles */
     public function bindValues($entity){
         if($entity instanceof \Library\Model\Entity)
@@ -54,13 +54,13 @@ class Form{
             $attributs = $entity;
         else
             throw new \Library\Tiles\Exceptions\TileException('Le paramètre passé en argument doit être un objet de la classe \Library\Model\Entity ou un tableau.');
-        
+
         foreach($this->items as $k=>$v){
             if($v instanceof field AND isset($attributs[$k]))
                 $v->value($attributs[$k]);
         }
     }
-    
+
     public function bindForm() {
         if(!empty($this->enctype)) $enctype .= 'enctype="'.$this->enctype.'"';
         else $enctype='';
@@ -87,7 +87,7 @@ class Form{
             else
                 $view.= $output;
         }
-            
+
         if($this->fieldset) $view.='</fieldset>'."\n";
         return $view.'</form>'."\n";
     }
@@ -101,11 +101,11 @@ class Form{
     public function method($v) {
        $this->method=$v;
     }
-    
+
     public function printForm(){
         echo $this->bindForm();
     }
-    
+
     public function __toString(){
         return $this->bindForm();
     }

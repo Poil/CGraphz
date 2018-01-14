@@ -1,15 +1,15 @@
 {
-	"gauge": {
-		"title": "Solr hit cache ratio ({{PC}}) on {{HOST}}",
-		"vertical": "%",
-		"legend": {
-			"hitratio": {
-				"name": "Hit Ratio",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%1.2lf",
+    "gauge": {
+        "title": "Solr hit cache ratio ({{PC}}) on {{HOST}}",
+        "vertical": "%",
+        "legend": {
+            "hitratio": {
+                "name": "Hit Ratio",
+                "color": "0000ff"
+            }
+        },
+        "legend_format": "%1.2lf",
         "scale": "100"
-	}
+    }
 }
 

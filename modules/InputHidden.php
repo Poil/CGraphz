@@ -9,10 +9,10 @@ class InputHidden extends Field{
             if(!empty($this->maxlength))
                 $field.= 'maxlength="'.$this->maxlength.'" ';
             $field.= 'id="'.$this->name.'"/>';
-       
+
         return $field;
     }
-    
+
     public function maxlength($v){
         $v = intval($v);
         if($v > 0)

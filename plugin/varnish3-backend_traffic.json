@@ -1,30 +1,30 @@
 {
-	"all": {
-		"title": "Backend traffic",
-		"type": "varnish",
-		"legend": {
-			"backend_unhealthy": {
-				"name": "Backend conn. not attempted"
-			},
-			"backend_conn": {
-				"name": "Backend conn. success"
-			},
-			"backend_busy": {
-				"name": "Backend conn. too many"
-			},
-			"backend_fail": {
-				"name": "Backend conn. failures"
-			},
-			"backend_reuse": {
-				"name": "Backend conn. reuses"
-			},
-			"backend_req": {
-				"name": "Backend requests made"
-			},
-			"backend_recycle": {
-				"name": "Backend conn. recycles"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "title": "Backend traffic",
+        "type": "varnish",
+        "legend": {
+            "backend_unhealthy": {
+                "name": "Backend conn. not attempted"
+            },
+            "backend_conn": {
+                "name": "Backend conn. success"
+            },
+            "backend_busy": {
+                "name": "Backend conn. too many"
+            },
+            "backend_fail": {
+                "name": "Backend conn. failures"
+            },
+            "backend_reuse": {
+                "name": "Backend conn. reuses"
+            },
+            "backend_req": {
+                "name": "Backend requests made"
+            },
+            "backend_recycle": {
+                "name": "Backend conn. recycles"
+            }
+        },
+        "legend_format": "%5.1lf"
+    }
 }

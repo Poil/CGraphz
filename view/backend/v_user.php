@@ -63,15 +63,15 @@ if (isset($_GET['f_id_auth_user'])) {
     include(DIR_FSROOT.'/html/auth/user_group/r_user_group.php');
     include(DIR_FSROOT.'/html/auth/user_group/d_user_group.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_auth_group'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_auth_group').'&amp;last_action=edit_group"><button type="button" class="btn btn-primary">'.ADD.' '.GROUP.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/auth/user_group/f_user_group.php');
-    
+
     echo '</div>';
-}        
+}
 echo '</div>';
 echo '<div class="clearfix"></div>';
 ?>

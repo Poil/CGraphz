@@ -18,7 +18,7 @@ if (isset($_GET['f_id_config_environment'])) {
     if (isset($_GET['f_id_config_server']) || $last_action=='edit_server') {
         $tab_environment_server_class='active';
         $tab_environment_class='';
-    } 
+    }
 }
 
 if (isset($cur_environment)) {
@@ -63,14 +63,14 @@ if (isset($_GET['f_id_config_environment'])) {
     include(DIR_FSROOT.'/html/config/environment_server/r_environment_server.php');
     include(DIR_FSROOT.'/html/config/environment_server/d_environment_server.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_config_server'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_server').'&amp;last_action=edit_server"><button type="button" class="btn btn-primary">'.ADD.' '.SERVER.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/environment_server/f_environment_server.php');
     echo '</div>';
-}        
+}
 
 echo '</div>';
 echo '<div class="clearfix"></div>';

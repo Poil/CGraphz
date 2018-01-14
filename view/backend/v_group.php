@@ -92,7 +92,7 @@ if (isset($_GET['f_id_auth_group'])) {
     include(DIR_FSROOT.'/html/auth/group_user/r_group_user.php');
     include(DIR_FSROOT.'/html/auth/group_user/d_group_user.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_auth_user'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_auth_user').'&amp;last_action=edit_user"><button type="button" class="btn btn-primary">'.ADD.' '.USER.'</button></a>';
     }
@@ -101,7 +101,7 @@ if (isset($_GET['f_id_auth_group'])) {
     echo '<legend>'.EDIT.'</legend>';
     include(DIR_FSROOT.'/html/auth/group_user/f_group_user.php');
     echo '</fieldset>';
-    
+
     echo '</div>';
 
     /* GROUP PROJECT */
@@ -113,7 +113,7 @@ if (isset($_GET['f_id_auth_group'])) {
     include(DIR_FSROOT.'/html/perm/group_project/r_group_project.php');
     include(DIR_FSROOT.'/html/perm/group_project/d_group_project.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_config_project'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_project').'&amp;last_action=edit_project"><button type="button" class="btn btn-primary">'.ADD.' '.PROJECT.'</button></a>';
     }
@@ -130,7 +130,7 @@ if (isset($_GET['f_id_auth_group'])) {
     include(DIR_FSROOT.'/html/config/group_plugin_filter/r_group_plugin_filter.php');
     include(DIR_FSROOT.'/html/config/group_plugin_filter/d_group_plugin_filter.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_config_plugin_filter'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_plugin_filter').'&amp;last_action=edit_plugin_filter"><button type="button" class="btn btn-primary">'.ADD.' '.PLUGIN_FILTER.'</button></a>';
     }
@@ -147,7 +147,7 @@ if (isset($_GET['f_id_auth_group'])) {
     include(DIR_FSROOT.'/html/perm/group_module/r_group_module.php');
     include(DIR_FSROOT.'/html/perm/group_module/d_group_module.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_perm_module'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_perm_module').'&amp;last_action=edit_module"><button type="button" class="btn btn-primary">'.ADD.' '.MODULE.'</button></a>';
     }
@@ -164,15 +164,15 @@ if (isset($_GET['f_id_auth_group'])) {
     include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/r_group_dynamic_dashboard.php');
     include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/d_group_dynamic_dashboard.php');
     echo '<div class="clearfix"></div>';
-    
+
     if (isset($_GET['f_id_perm_module'])) {
         echo '<a href="'.removeqsvar($cur_url,'f_id_config_dynamic_dashboard').'&amp;last_action=edit_dynamic_dashboard"><button type="button" class="btn btn-primary">'.ADD.' '.DASHBOARD.'</button></a>';
     }
     echo '<div class="clearfix"></div>';
     include(DIR_FSROOT.'/html/config/group_dynamic_dashboard/f_group_dynamic_dashboard.php');
-    
+
     echo '</div>';
-}        
+}
 echo '</div>';
 echo '<div class="clearfix"></div>';
 ?>

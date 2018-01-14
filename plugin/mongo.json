@@ -1,21 +1,21 @@
 {
-	"file_size": {
-		"title": "Mongo DB size ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"data": {
-				"name": "Data"
-			},
-			"index": {
-				"name": "Index"
-			},
-			"storage": {
-				"name": "Storage"
-			}
+    "file_size": {
+        "title": "Mongo DB size ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend": {
+            "data": {
+                "name": "Data"
+            },
+            "index": {
+                "name": "Index"
+            },
+            "storage": {
+                "name": "Storage"
+            }
 
-		},
-		"legend_format": "%5.1lf%s"
+        },
+        "legend_format": "%5.1lf%s"
     },
     "total_operations": {
         "title": "Mongo DB Total Operations ({{PI}}) on {{HOST}}",

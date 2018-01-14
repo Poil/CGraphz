@@ -1,15 +1,15 @@
 {
-	"all": {
-		"title": "Client response transfer rates",
-		"type": "varnish",
-		"legend": {
-			"s_hdrbytes": {
-				"name": "Total header bytes"
-			},
-			"s_bodybytes": {
-				"name": "Total body bytes"
-			}
-		},
-		"legend_format": "%5.1lf"
-	}
+    "all": {
+        "title": "Client response transfer rates",
+        "type": "varnish",
+        "legend": {
+            "s_hdrbytes": {
+                "name": "Total header bytes"
+            },
+            "s_bodybytes": {
+                "name": "Total body bytes"
+            }
+        },
+        "legend_format": "%5.1lf"
+    }
 }

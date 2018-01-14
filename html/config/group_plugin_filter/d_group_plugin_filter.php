@@ -1,21 +1,21 @@
 <table border="0" cellpadding="0" cellspacing="0" id="table_group_plugin_filter" class="table_admin">
 <thead>
 <tr>
-	<th><?php echo PLUGIN_FILTER ?></th>
-	<th><?php echo DISPLAYED_ORDER ?></th>
+    <th><?php echo PLUGIN_FILTER ?></th>
+    <th><?php echo DISPLAYED_ORDER ?></th>
 </tr>
 </thead>
 <tbody>
-<?php 
+<?php
 
 
 for ($i=0; $i<$cpt_group_plugin_filter;$i++) {
 
-	echo '
-	<tr>
-		<td><a href="index.php?module=auth&amp;component=group&amp;f_id_auth_group='.$_GET['f_id_auth_group'].'&amp;f_id_config_plugin_filter='.$all_group_plugin_filter[$i]->id_config_plugin_filter.'">'.$all_group_plugin_filter[$i]->plugin_filter_desc.'</a></td>
-		<td>'.$all_group_plugin_filter[$i]->plugin_order.'</td>
-	</tr>';
+    echo '
+    <tr>
+        <td><a href="index.php?module=auth&amp;component=group&amp;f_id_auth_group='.$_GET['f_id_auth_group'].'&amp;f_id_config_plugin_filter='.$all_group_plugin_filter[$i]->id_config_plugin_filter.'">'.$all_group_plugin_filter[$i]->plugin_filter_desc.'</a></td>
+        <td>'.$all_group_plugin_filter[$i]->plugin_order.'</td>
+    </tr>';
 }
 ?>
 </tbody>

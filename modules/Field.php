@@ -13,21 +13,21 @@ abstract class Field{
     protected $readonly = false;
     protected $onchange = null;
     protected $onclick = null;
-    
+
     public function __construct($formtype, $name){
         $this->name($name);
         $this->formType($formtype);
     }
-    
+
     public function hydrate($options){
         foreach($options as $k => $v){
             if(is_callable(array($this, $k)))
                 $this->$k($v);
         }
     }
-    
+
     abstract public function buildField();
-    
+
     private function formType($v){
         $this->formtype = $v;
     }
@@ -86,5 +86,5 @@ abstract class Field{
         $this->fieldclasses = $v;
         return $this;
     }
-   
+
 }

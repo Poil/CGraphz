@@ -1,176 +1,176 @@
 <?php
 function select_template($name, $id, $table, $row_display, $row_value, $selected='', $js_func='') {
-	$lib='
-		SELECT 
-			'.$row_display.' AS row_display, 
-			'.$row_value.' AS row_value 
-		FROM 
-			'.$table.'
-		GROUP BY
-			row_display,
-			row_value
-		ORDER by 
-			row_display, 
-			row_value';
-	//echo $lib;
-	$connSQL=new DB();
-	$res=$connSQL->query($lib);
-	$cpt_res=count($res);
-	
-	$s='<select name="'.$name.'" id="'.$id.'"';
-	if ($js_func!='') {
-		$s.=' '.$js_func.' ';
-	}
-	$s.='>';
-	$s.='<option value=""></option>';
-	
-	for ($i=0; $i<$cpt_res; $i++) {
-		$s.='<option value="'.$res[$i]->row_value.'">'.$res[$i]->row_display.'</option>';
-	}
-	$s.='</select>';
-	
-	return $s;
+    $lib='
+        SELECT
+            '.$row_display.' AS row_display,
+            '.$row_value.' AS row_value
+        FROM
+            '.$table.'
+        GROUP BY
+            row_display,
+            row_value
+        ORDER by
+            row_display,
+            row_value';
+    //echo $lib;
+    $connSQL=new DB();
+    $res=$connSQL->query($lib);
+    $cpt_res=count($res);
+
+    $s='<select name="'.$name.'" id="'.$id.'"';
+    if ($js_func!='') {
+        $s.=' '.$js_func.' ';
+    }
+    $s.='>';
+    $s.='<option value=""></option>';
+
+    for ($i=0; $i<$cpt_res; $i++) {
+        $s.='<option value="'.$res[$i]->row_value.'">'.$res[$i]->row_display.'</option>';
+    }
+    $s.='</select>';
+
+    return $s;
 }
 
 
 function select_count_template($name, $id, $table, $row_value, $selected='', $js_func='') {
-	$lib='
-		SELECT 
-			'.$row_value.' AS row_value 
-		FROM 
-			'.$table.'
-		GROUP BY
-			row_value
-		ORDER by 
-			row_value';
-	
-	//echo $lib;
-	$connSQL=new DB();
-	$res=$connSQL->row($lib);
-	
-	$s='<select name="'.$name.'" id="'.$id.'"';
-	if ($js_func!='') {
-		$s.=' onchange="'.$js_func.'"';
-	}
-	$s.='>';
-	
-	for ($i=0; $i<=$res->row_value; $i++) {
-		$s.='<option value="'.$i.'">'.$i.'</option>';
-	}
-	$s.='</select>';
-	
-	return $s;
+    $lib='
+        SELECT
+            '.$row_value.' AS row_value
+        FROM
+            '.$table.'
+        GROUP BY
+            row_value
+        ORDER by
+            row_value';
+
+    //echo $lib;
+    $connSQL=new DB();
+    $res=$connSQL->row($lib);
+
+    $s='<select name="'.$name.'" id="'.$id.'"';
+    if ($js_func!='') {
+        $s.=' onchange="'.$js_func.'"';
+    }
+    $s.='>';
+
+    for ($i=0; $i<=$res->row_value; $i++) {
+        $s.='<option value="'.$i.'">'.$i.'</option>';
+    }
+    $s.='</select>';
+
+    return $s;
 }
 
 
 function options_template($table, $row_display, $row_value, $filter='', $typefilter='') {
 
-	if ($filter!='' && $typefilter!='') {
-		$lib='
-			SELECT
-				'.$row_display.' AS row_display, 
-				'.$row_value.' AS row_value,
-				'.$typefilter.'('.$filter.') AS filter_value
-			FROM
-				'.$table.' 
-			GROUP BY
-				row_display
-			ORDER BY
-				row_display';
-		
-	} else {
-		$lib='
-			SELECT 
-				'.$row_display.' AS row_display, 
-				'.$row_value.' AS row_value 
-			FROM 
-				'.$table.'
-			GROUP BY
-				row_display,
-				row_value
-			ORDER by 
-				row_display, 
-				row_value';
-	}
-	$connSQL=new DB();
-	$res=$connSQL->query($lib);
-	$cpt_res=count($res);
+    if ($filter!='' && $typefilter!='') {
+        $lib='
+            SELECT
+                '.$row_display.' AS row_display,
+                '.$row_value.' AS row_value,
+                '.$typefilter.'('.$filter.') AS filter_value
+            FROM
+                '.$table.'
+            GROUP BY
+                row_display
+            ORDER BY
+                row_display';
 
-	$s='[';	
-	$s.='{optionValue:'.php2js('').', optionDisplay:'.php2js('').'},';
-	for ($i=0; $i<$cpt_res; $i++) {
-		$s.='{optionValue:'.php2js($res[$i]->row_value).', optionDisplay:'.php2js($res[$i]->row_display).'}';
-		if ($i+1<$cpt_res) $s.=', ';
-	}
-	$s.=']';
-	
-	return $s;
+    } else {
+        $lib='
+            SELECT
+                '.$row_display.' AS row_display,
+                '.$row_value.' AS row_value
+            FROM
+                '.$table.'
+            GROUP BY
+                row_display,
+                row_value
+            ORDER by
+                row_display,
+                row_value';
+    }
+    $connSQL=new DB();
+    $res=$connSQL->query($lib);
+    $cpt_res=count($res);
+
+    $s='[';
+    $s.='{optionValue:'.php2js('').', optionDisplay:'.php2js('').'},';
+    for ($i=0; $i<$cpt_res; $i++) {
+        $s.='{optionValue:'.php2js($res[$i]->row_value).', optionDisplay:'.php2js($res[$i]->row_display).'}';
+        if ($i+1<$cpt_res) $s.=', ';
+    }
+    $s.=']';
+
+    return $s;
 }
 
 function options_count_template($table, $row_value) {
-	$lib='
-		SELECT 
-			'.$row_value.' AS row_value 
-		FROM 
-			'.$table.'
-		GROUP BY
-			row_value
-		ORDER by 
-			row_value';
-	
-	$connSQL=new DB();
-	$res=$connSQL->row($lib);
+    $lib='
+        SELECT
+            '.$row_value.' AS row_value
+        FROM
+            '.$table.'
+        GROUP BY
+            row_value
+        ORDER by
+            row_value';
 
-	$s='[';
-	for ($i=1; $i<=$res->row_value; $i++) {
-		$s.='{optionValue:'.php2js($i).', optionDisplay:'.php2js($i).'}';
-		if ($i+1<=$res->row_value) $s.=', ';
-	}
-	$s.=']';
-	
-	return $s;
+    $connSQL=new DB();
+    $res=$connSQL->row($lib);
+
+    $s='[';
+    for ($i=1; $i<=$res->row_value; $i++) {
+        $s.='{optionValue:'.php2js($i).', optionDisplay:'.php2js($i).'}';
+        if ($i+1<=$res->row_value) $s.=', ';
+    }
+    $s.=']';
+
+    return $s;
 }
 
 function single_value($table, $row_value) {
-	$lib='
-		SELECT 
-			'.$row_value.' AS row_value 
-		FROM 
-			'.$table;
-	
-	$connSQL=new DB();
-	$res=$connSQL->row($lib);
-	echo '[{optionValue:'.php2js($res->row_value).'}]';
+    $lib='
+        SELECT
+            '.$row_value.' AS row_value
+        FROM
+            '.$table;
+
+    $connSQL=new DB();
+    $res=$connSQL->row($lib);
+    echo '[{optionValue:'.php2js($res->row_value).'}]';
 }
 
 function load_profile($table, $myurl, $mycpt, $mytarget, $mylabelname) {
-	$lib='
-		SELECT
-			*
-		FROM
-			'.$table;
+    $lib='
+        SELECT
+            *
+        FROM
+            '.$table;
 
-	$connSQL=new DB();
-	$res=$connSQL->query($lib);
-	$cpt_res=count($res);
-	echo '<script type="text/javascript">'."\n";
-	echo 'removeFormFields(\''.$mytarget.'\');'."\n";
-	
-	foreach($res as $key => $value) {
-		$i=1;
-		if (strpos($myurl,'?')) {
-			$url=$myurl.'&';
-		} else {
-			$url=$myurl.'?';
-		}
-		foreach($value as $val) {
-			if ($i!=1 && count($value)!=$i) $url.='&';
-			$url.='f_'.$i.'='.$val;
-			$i++;
-		}
-		echo 'addFormField(\''.$mycpt.'\',\''.$mytarget.'\', \''.$mylabelname.'\', \''.$url.'\', \'\');'."\n";
-	}
-	echo '</script>'."\n";
+    $connSQL=new DB();
+    $res=$connSQL->query($lib);
+    $cpt_res=count($res);
+    echo '<script type="text/javascript">'."\n";
+    echo 'removeFormFields(\''.$mytarget.'\');'."\n";
+
+    foreach($res as $key => $value) {
+        $i=1;
+        if (strpos($myurl,'?')) {
+            $url=$myurl.'&';
+        } else {
+            $url=$myurl.'?';
+        }
+        foreach($value as $val) {
+            if ($i!=1 && count($value)!=$i) $url.='&';
+            $url.='f_'.$i.'='.$val;
+            $i++;
+        }
+        echo 'addFormField(\''.$mycpt.'\',\''.$mytarget.'\', \''.$mylabelname.'\', \''.$url.'\', \'\');'."\n";
+    }
+    echo '</script>'."\n";
 }
 
 
@@ -255,14 +255,14 @@ function print_nice(&$elem,$max_level=10,$print_nice_stack=array()){
 }
 
 function sortArray($data, $field) {
-	if(!is_array($field)) $field = array($field); 
-	usort($data, function($a, $b) use($field) {
-		 $retval = 0; 
-		 foreach($field as $fieldname) {
-		 	 if($retval == 0) $retval = strnatcmp($a[$fieldname],$b[$fieldname]); 
-		 } 
-		 return $retval; 
-	}); 
-	return $data; 
+    if(!is_array($field)) $field = array($field);
+    usort($data, function($a, $b) use($field) {
+         $retval = 0;
+         foreach($field as $fieldname) {
+              if($retval == 0) $retval = strnatcmp($a[$fieldname],$b[$fieldname]);
+         }
+         return $retval;
+    });
+    return $data;
 }
 ?>

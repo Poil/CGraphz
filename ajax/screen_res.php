@@ -8,5 +8,5 @@ if(isset($_POST['width']) && isset($_POST['height'])) {
 
     $_SESSION['detail-width'] = $f_width;
     $_SESSION['detail-height'] = $f_height;
-} 
+}
 ?>

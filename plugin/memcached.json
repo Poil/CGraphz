@@ -1,135 +1,135 @@
 {
-	"df": {
-		"title": "Memcached Memory Usage ({{PI}}) on {{HOST}}",
-		"vertical": "Bytes",
-		"type": "stacked",
-		"legend": {
-			"free": {
-				"name": "Free",
-				"color": "00ff00"
-			},
-			"used": {
-				"name": "Used",
-				"color": "ff0000"
-			}
-		},
-		"legend_format": "%5.1lf%s",
-		"base": "1024"
-	},
-	"memcached_command": {
-		"title": "Memcached Commands ({{PI}}) on {{HOST}}",
-		"vertical": "Commands",
-		"type": "stacked",
-		"legend": {
-			"flush": {
-				"name": "Flush",
-				"color": "00e000"
-			},
-			"get": {
-				"name": "Get",
-				"color": "0000ff"
-			},
-			"set": {
-				"name": "Set",
-				"color": "ffb000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"memcached_connections": {
-		"title": "Memcached Number of Connections ({{PI}}) on {{HOST}}",
-		"vertical": "Connections",
-		"legend": {
-			"value": {
-				"name": "Connections",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"memcached_items": {
-		"title": "Number of Items in Memcached ({{PI}}) on {{HOST}}",
-		"vertical": "Items",
-		"legend": {
-			"value": {
-				"name": "Items",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"memcached_octets": {
-		"title": "Memcached Network Traffic ({{PI}}) on {{HOST}}",
-		"vertical": "{{ND}}",
-		"type": "io",
-		"legend": {
-			"rx": {
-				"name": "Receive",
-				"color": "0000ff"
-			},
-			"tx": {
-				"name": "Transmit",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s",
-		"datasize": true
-	},
-	"memcached_ops": {
-		"title": "Memcached Operations ({{PI}}) on {{HOST}}",
-		"vertical": "Commands",
-		"type": "stacked",
-		"legend": {
-			"evictions": {
-				"name": "Evictions",
-				"color": "00e000"
-			},
-			"hits": {
-				"name": "Hits",
-				"color": "0000ff"
-			},
-			"misses": {
-				"name": "Misses",
-				"color": "ffb000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"percent": {
-		"title": "Memcached Hit Ratio ({{PI}}) on {{HOST}}",
-		"vertical": "Percent",
-		"legend": {
-			"value": {
-				"name": "Percent",
-				"color": "00e000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_count": {
-		"title": "Memcached number of Threads ({{PI}}) on {{HOST}}",
-		"vertical": "Threads",
-		"legend": {
-			"value": {
-				"name": "Threads",
-				"color": "00b000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ps_cputime": {
-		"title": "CPU Time consumed by Memcached ({{PI}}) on {{HOST}}",
-		"vertical": "CPU Time",
-		"legend": {
-			"user": {
-				"name": "User",
-				"color": "00e000"
-			},
-			"syst": {
-				"name": "System",
-				"color": "0000ff"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "df": {
+        "title": "Memcached Memory Usage ({{PI}}) on {{HOST}}",
+        "vertical": "Bytes",
+        "type": "stacked",
+        "legend": {
+            "free": {
+                "name": "Free",
+                "color": "00ff00"
+            },
+            "used": {
+                "name": "Used",
+                "color": "ff0000"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "base": "1024"
+    },
+    "memcached_command": {
+        "title": "Memcached Commands ({{PI}}) on {{HOST}}",
+        "vertical": "Commands",
+        "type": "stacked",
+        "legend": {
+            "flush": {
+                "name": "Flush",
+                "color": "00e000"
+            },
+            "get": {
+                "name": "Get",
+                "color": "0000ff"
+            },
+            "set": {
+                "name": "Set",
+                "color": "ffb000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "memcached_connections": {
+        "title": "Memcached Number of Connections ({{PI}}) on {{HOST}}",
+        "vertical": "Connections",
+        "legend": {
+            "value": {
+                "name": "Connections",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "memcached_items": {
+        "title": "Number of Items in Memcached ({{PI}}) on {{HOST}}",
+        "vertical": "Items",
+        "legend": {
+            "value": {
+                "name": "Items",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "memcached_octets": {
+        "title": "Memcached Network Traffic ({{PI}}) on {{HOST}}",
+        "vertical": "{{ND}}",
+        "type": "io",
+        "legend": {
+            "rx": {
+                "name": "Receive",
+                "color": "0000ff"
+            },
+            "tx": {
+                "name": "Transmit",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s",
+        "datasize": true
+    },
+    "memcached_ops": {
+        "title": "Memcached Operations ({{PI}}) on {{HOST}}",
+        "vertical": "Commands",
+        "type": "stacked",
+        "legend": {
+            "evictions": {
+                "name": "Evictions",
+                "color": "00e000"
+            },
+            "hits": {
+                "name": "Hits",
+                "color": "0000ff"
+            },
+            "misses": {
+                "name": "Misses",
+                "color": "ffb000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "percent": {
+        "title": "Memcached Hit Ratio ({{PI}}) on {{HOST}}",
+        "vertical": "Percent",
+        "legend": {
+            "value": {
+                "name": "Percent",
+                "color": "00e000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_count": {
+        "title": "Memcached number of Threads ({{PI}}) on {{HOST}}",
+        "vertical": "Threads",
+        "legend": {
+            "value": {
+                "name": "Threads",
+                "color": "00b000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ps_cputime": {
+        "title": "CPU Time consumed by Memcached ({{PI}}) on {{HOST}}",
+        "vertical": "CPU Time",
+        "legend": {
+            "user": {
+                "name": "User",
+                "color": "00e000"
+            },
+            "syst": {
+                "name": "System",
+                "color": "0000ff"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    }
 }

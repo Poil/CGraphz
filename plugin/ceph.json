@@ -1,32 +1,32 @@
 {
-	"ceph_capacity": {
-		"title": "Capacity ({{PI}})",
-		"vertical": "Size",
-		"type": "stacked",
-		"legend": {
-			"total_avail": {
-				"name": "Total Available",
-				"color": "00ff00"
-			},
-			"total_space": {
-				"name": "Total Free",
-				"color": "0000ff"
-			},
-			"total_used": {
-				"name": "Total Used",
-				"color": "ff0000"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ceph_latency": {
-		"title": "Latency ({{PI}})",
-		"type": "stacked",
-		"legend": {
-			"avg_latency": {
-				"name": "Average Latency"
-			},
-			"max_latency": {
+    "ceph_capacity": {
+        "title": "Capacity ({{PI}})",
+        "vertical": "Size",
+        "type": "stacked",
+        "legend": {
+            "total_avail": {
+                "name": "Total Available",
+                "color": "00ff00"
+            },
+            "total_space": {
+                "name": "Total Free",
+                "color": "0000ff"
+            },
+            "total_used": {
+                "name": "Total Used",
+                "color": "ff0000"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ceph_latency": {
+        "title": "Latency ({{PI}})",
+        "type": "stacked",
+        "legend": {
+            "avg_latency": {
+                "name": "Average Latency"
+            },
+            "max_latency": {
                 "name": "Maximum Latency"
             },
             "min_latency": {
@@ -34,12 +34,12 @@
             },
             "stddev_latency": {
                 "name": "Stddev Latency",
-				"color": "ffff00"
+                "color": "ffff00"
             }
-		},
-		"legend_format": "%5.1lf%s"
-	},
-	"ceph_osd": {
+        },
+        "legend_format": "%5.1lf%s"
+    },
+    "ceph_osd": {
         "title": "OSD ({{PI}})",
         "type": "stacked",
         "legend": {
@@ -54,12 +54,12 @@
             },
             "up": {
                 "name": "Up",
-				"color": "ffff00"
+                "color": "ffff00"
             }
         },
         "legend_format": "%5.1lf%s"
     },
-	"ceph_pg": {
+    "ceph_pg": {
         "title": "PG ({{PI}})",
         "type": "stacked",
         "legend": {
@@ -71,12 +71,12 @@
             },
             "scrubbing": {
                 "name": "Scrubbing",
-				"color": "ffff00"
+                "color": "ffff00"
             }
         },
         "legend_format": "%5.1lf%s"
     },
-	"gauge": {
+    "gauge": {
         "title": " ({{PI}})",
         "type": "stacked",
         "legend": {
@@ -86,38 +86,38 @@
             "deep": {
                 "name": "Deep"
             },
-			"inactive": {
+            "inactive": {
                 "name": "Inactive"
             },
             "peering": {
                 "name": "Peering"
             },
-			"wait_backfill": {
+            "wait_backfill": {
                 "name": "Wait Back Fill"
             },
             "remapped": {
                 "name": "Remapped",
-				"color": "ffff00"
+                "color": "ffff00"
             }
         },
         "legend_format": "%5.1lf%s"
     },
-	    "ceph_bsec": {
+        "ceph_bsec": {
         "title": "Bytes/s for pool ({{PI}})",
         "type": "stacked",
         "legend": {
             "read_bytes_sec": {
                 "name": "Read Bytes Sec",
-				"color": "0000ff"
+                "color": "0000ff"
             },
             "write_bytes_sec": {
                 "name": "Write Bytes Sec",
-				"color": "00b000"
+                "color": "00b000"
             }
         },
         "legend_format": "%5.1lf%s"
     },
-	"ceph_bused": {
+    "ceph_bused": {
         "title": "Bytes Used for pool ({{PI}})",
         "type": "stacked",
         "legend": {
@@ -127,7 +127,7 @@
         },
         "legend_format": "%5.1lf%s"
     },
-	"ceph_kbused": {
+    "ceph_kbused": {
         "title": "KBytes Used for pool ({{PI}})",
         "type": "stacked",
         "legend": {
@@ -137,7 +137,7 @@
         },
         "legend_format": "%5.1lf%s"
     },
-	"ceph_ops": {
+    "ceph_ops": {
         "title": "Operations for pool ({{PI}})",
         "type": "stacked",
         "legend": {
@@ -147,15 +147,15 @@
         },
         "legend_format": "%5.1lf%s"
     },
-	"ceph_obj": {
-		"title": "Objects for pool ({{PI}})",
-		"type": "stacked",
-		"vertical": "Objects",
-		"legend": {
-			"objects": {
-				"name": "Objects"
-			}
-		},
-		"legend_format": "%5.1lf%s"
-	}
+    "ceph_obj": {
+        "title": "Objects for pool ({{PI}})",
+        "type": "stacked",
+        "vertical": "Objects",
+        "legend": {
+            "objects": {
+                "name": "Objects"
+            }
+        },
+        "legend_format": "%5.1lf%s"
+    }
 }

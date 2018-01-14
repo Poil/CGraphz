@@ -1,11 +1,11 @@
 {
-	"gauge": {
-		"title": "PuppetDB Command Queue Depth",
-		"type": "default",
-		"legend": {
-			"Value": {
-				"name": "QueueSize"
-			}
-		}
-	}
+    "gauge": {
+        "title": "PuppetDB Command Queue Depth",
+        "type": "default",
+        "legend": {
+            "Value": {
+                "name": "QueueSize"
+            }
+        }
+    }
 }

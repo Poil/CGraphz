@@ -1,11 +1,11 @@
 {
-	"gauge": {
-		"title": "PuppetDB Discarded Messages",
-		"type": "default",
-		"legend": {
-			"Value": {
-				"name": "To be reviewed"
-			}
-		}
-	}
+    "gauge": {
+        "title": "PuppetDB Discarded Messages",
+        "type": "default",
+        "legend": {
+            "Value": {
+                "name": "To be reviewed"
+            }
+        }
+    }
 }

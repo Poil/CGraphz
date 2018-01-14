@@ -8,10 +8,10 @@ class Select extends Field{
     private $multiple = false;
     private $optionseparator = ' ';
     private $enable_data = false;
-    
+
     public function buildField(){
         $field = '';
-      
+
         if($this->multiple) {
            $name_prefix='[]';
         } else {
@@ -25,10 +25,10 @@ class Select extends Field{
         }
         if ($formcontrol==true) {
            $fieldclass='form-control '.$fieldclass;
-	}
+    }
 
         $field = '<div class="form-group">';
-        if (!isset($this->labelclass)) $this->labelclass=''; 
+        if (!isset($this->labelclass)) $this->labelclass='';
         switch($this->formtype) {
             case 'horizontal':
                 $this->labelclass.='control-label';
@@ -52,22 +52,22 @@ class Select extends Field{
                 $this->labelclass.=' '.$this->labelgrid;
             }
 
-            $field.= '<label class="'.$this->labelclass.'" for="'.$this->name.'">'.$this->label; 
+            $field.= '<label class="'.$this->labelclass.'" for="'.$this->name.'">'.$this->label;
                 if($this->important)
-                    $field.= ' <span class="red">*</span>'; 
+                    $field.= ' <span class="red">*</span>';
             $field.= '</label>';
         }
 
         if (!empty($this->inputgrid)) {
             $field.= '<div class="'.$this->inputgrid.'">';
         }
-        
+
 
         $field.= '<select class="'.$fieldclass.'" '.$ro.' name="'.$this->name.$name_prefix.'" id="'.$this->name.'" ';
-        
+
         if($this->multiple)
             $field.= 'multiple="multiple" ';
-            
+
         $field.= '>';
         if ($cpt_elem > 0) {
             if (is_object($this->options[0])) {
@@ -121,17 +121,17 @@ class Select extends Field{
             $field.= '</div>';
         }
 
-        # formgroup     
+        # formgroup
         $field.= '</div>';
-        
+
         return $field;
     }
-    
+
     public function options($options, $col_id=null, $col_text=null){
         $this->options=$options;
         $this->col_id=$col_id;
         $this->col_text=$col_text;
-        
+
         return $this;
     }
 
@@ -144,7 +144,7 @@ class Select extends Field{
         $this->selected = $k;
         return $this;
     }
-    
+
     public function multiple($k=true){
         $this->multiple = $k;
         return $this;
