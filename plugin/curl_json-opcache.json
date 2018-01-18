@@ -34,7 +34,7 @@
     "files-opcache_statistics": {
         "title": "Files on {{HOST}}",
         "vertical": "Files",
-        "type": "stackedtotal",
+        "type": "default",
         "legend_format": "%5.1lf%s",
         "legend": {
             "opcache_statistics-num_cached_keys": {

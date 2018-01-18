@@ -1,118 +1,436 @@
 {
- "counter": {
-        "title": "Client / slaves on {{HOST}}",
-        "vertical": "Count",
+    "current_connections": {
+        "title": "Connections on {{HOST}} for {{PI}}",
+        "vertical": "Number",
+        "type": "stacked",
         "legend": {
-            "connected-clients": {
+            "connected_clients": {
                 "name": "connected_clients"
             },
-            "connected-slaves": {
+            "connected_slaves": {
                 "name": "connected_slaves"
             },
-            "blocked-clients": {
+            "blocked_clients": {
                 "name": "blocked_clients"
             }
         }
-     },
+    },
     "bytes": {
-        "title": "Memory on {{HOST}}",
+        "title": "Used memory on {{HOST}} for {{PI}}",
         "vertical": "Bytes",
+        "type": "stacked",
         "legend": {
             "used_memory": {
-                "name" : "Used Memory"
+                "name": "Used"
             }
         }
     },
     "counter-commands": {
-        "title": "Counter Commands on {{HOST}}",
-        "vertical": "Count",
+        "title": "Commands on {{HOST}} for {{PI}}",
+        "vertical": "Commands",
+        "type": "stacked",
         "legend": {
             "commands-processed": {
-                "name" : "Processed"
+                "name": "Processed"
             }
         }
     },
     "counter-connections": {
-        "title": "Counter Connections on {{HOST}}",
+        "title": "Connections on {{HOST}} for {{PI}}",
         "vertical": "Count",
+        "type": "stacked",
         "legend": {
             "connections-received": {
-                "name" : "Received"
+                "name": "Received"
             }
         }
     },
-    "gauge-changes": {
-        "title": "Changes on {{HOST}}",
-        "vertical": "",
+    "counter-cmdstat": {
+        "title": "Commands on {{HOST}} for {{PI}}",
+        "vertical": "Commands per seconds",
+        "type": "stacked",
         "legend": {
-            "changes-since_last_save": {
-                "name" : "Since Last Save"
+            "cmdstat-auth": {
+                "name": "Auth"
+            },
+            "cmdstat-cluster": {
+                "name": "Cluster"
+            },
+            "cmdstat-config": {
+                "name": "Config"
+            },
+            "cmdstat-dbsize": {
+                "name": "DBSize"
+            },
+            "cmdstat-del": {
+                "name": "Del"
+            },
+            "cmdstat-eval": {
+                "name": "Eval"
+            },
+            "cmdstat-exec": {
+                "name": "Exec"
+            },
+            "cmdstat-exists": {
+                "name": "Exists"
+            },
+            "cmdstat-expire": {
+                "name": "Expire"
+            },
+            "cmdstat-flushall": {
+                "name": "FlushAll"
+            },
+            "cmdstat-flushdb": {
+                "name": "FlushDB"
+            },
+            "cmdstat-get": {
+                "name": "Get"
+            },
+            "cmdstat-hdel": {
+                "name": "HDel"
+            },
+            "cmdstat-hget": {
+                "name": "HGet"
+            },
+            "cmdstat-hgetall": {
+                "name": "HGetAll"
+            },
+            "cmdstat-hmget": {
+                "name": "HmGet"
+            },
+            "cmdstat-hmset": {
+                "name": "HmSet"
+            },
+            "cmdstat-hset": {
+                "name": "HSet"
+            },
+            "cmdstat-incrby": {
+                "name": "IncrBy"
+            },
+            "cmdstat-info": {
+                "name": "Info"
+            },
+            "cmdstat-keys": {
+                "name": "Keys"
+            },
+            "cmdstat-monitor": {
+                "name": "Monitor"
+            },
+            "cmdstat-multi": {
+                "name": "Multi"
+            },
+            "cmdstat-ping": {
+                "name": "Ping"
+            },
+            "cmdstat-psync": {
+                "name": "PSync"
+            },
+            "cmdstat-randomkey": {
+                "name": "RandomKey"
+            },
+            "cmdstat-readonly": {
+                "name": "ReadOnly"
+            },
+            "cmdstat-replconf": {
+                "name": "ReplConf"
+            },
+            "cmdstat-sadd": {
+                "name": "SAdd"
+            },
+            "cmdstat-scan": {
+                "name": "Scan"
+            },
+            "cmdstat-select": {
+                "name": "Select"
+            },
+            "cmdstat-set": {
+                "name": "Set"
+            },
+            "cmdstat-setex": {
+                "name": "SexEx"
+            },
+            "cmdstat-slowlog": {
+                "name": "SlowLog"
+            },
+            "cmdstat-smembers": {
+                "name": "SMembers"
+            },
+            "cmdstat-srem": {
+                "name": "SRem"
+            },
+            "cmdstat-ttl": {
+                "name": "TTL"
+            },
+            "cmdstat-type": {
+                "name": "Type"
+            },
+            "cmdstat-unwatch": {
+                "name": "Unwatch"
+            },
+            "cmdstat-watch": {
+                "name": "Watch"
+            }
+        }
+    },
+    "delay-slave": {
+        "title": "Slave delay on {{HOST}} for {{PI}}",
+        "vertical": "microseconds",
+        "type": "default"
+    },
+    "delay-cmdstat": {
+        "title": "Average Delay on {{HOST}} for {{PI}}",
+        "vertical": "microseconds",
+        "type": "default",
+        "legend": {
+            "cmdstat-auth": {
+                "name": "Auth"
+            },
+            "cmdstat-cluster": {
+                "name": "Cluster"
+            },
+            "cmdstat-config": {
+                "name": "Config"
+            },
+            "cmdstat-dbsize": {
+                "name": "DBSize"
+            },
+            "cmdstat-del": {
+                "name": "Del"
+            },
+            "cmdstat-eval": {
+                "name": "Eval"
+            },
+            "cmdstat-exec": {
+                "name": "Exec"
+            },
+            "cmdstat-exists": {
+                "name": "Exists"
+            },
+            "cmdstat-expire": {
+                "name": "Expire"
+            },
+            "cmdstat-flushall": {
+                "name": "FlushAll"
+            },
+            "cmdstat-flushdb": {
+                "name": "FlushDB"
+            },
+            "cmdstat-get": {
+                "name": "Get"
+            },
+            "cmdstat-hdel": {
+                "name": "HDel"
+            },
+            "cmdstat-hget": {
+                "name": "HGet"
+            },
+            "cmdstat-hgetall": {
+                "name": "HGetAll"
+            },
+            "cmdstat-hmget": {
+                "name": "HmGet"
+            },
+            "cmdstat-hmset": {
+                "name": "HmSet"
+            },
+            "cmdstat-hset": {
+                "name": "HSet"
+            },
+            "cmdstat-incrby": {
+                "name": "IncrBy"
+            },
+            "cmdstat-info": {
+                "name": "Info"
+            },
+            "cmdstat-keys": {
+                "name": "Keys"
+            },
+            "cmdstat-monitor": {
+                "name": "Monitor"
+            },
+            "cmdstat-multi": {
+                "name": "Multi"
+            },
+            "cmdstat-ping": {
+                "name": "Ping"
+            },
+            "cmdstat-psync": {
+                "name": "PSync"
+            },
+            "cmdstat-randomkey": {
+                "name": "RandomKey"
+            },
+            "cmdstat-readonly": {
+                "name": "ReadOnly"
+            },
+            "cmdstat-replconf": {
+                "name": "ReplConf"
+            },
+            "cmdstat-sadd": {
+                "name": "SAdd"
+            },
+            "cmdstat-scan": {
+                "name": "Scan"
+            },
+            "cmdstat-select": {
+                "name": "Select"
+            },
+            "cmdstat-set": {
+                "name": "Set"
+            },
+            "cmdstat-setex": {
+                "name": "SexEx"
+            },
+            "cmdstat-slowlog": {
+                "name": "SlowLog"
+            },
+            "cmdstat-smembers": {
+                "name": "SMembers"
+            },
+            "cmdstat-srem": {
+                "name": "SRem"
+            },
+            "cmdstat-ttl": {
+                "name": "TTL"
+            },
+            "cmdstat-type": {
+                "name": "Type"
+            },
+            "cmdstat-unwatch": {
+                "name": "Unwatch"
+            },
+            "cmdstat-watch": {
+                "name": "Watch"
+            }
+        }
+    },
+    "gauge-cluster_slots": {
+        "title": "Cluster Slots on {{HOST}} for {{PI}}",
+        "vertical": "Count",
+        "type": "stacked",
+        "legend": {
+            "cluster_slots-assigned": {
+                "name": "Assigned"
+            },
+            "cluster_slots-fail": {
+                "name": "Fail"
+            },
+            "cluster_slots-ok": {
+                "name": "OK"
+            },
+            "cluster_slots-pfail": {
+                "name": "PFail"
+            }
+        }
+    },
+    "gauge-cluster_stats": {
+        "title": "Cluster Stats on {{HOST}} for {{PI}}",
+        "vertical": "Count",
+        "type": "stacked",
+        "legend": {
+            "cluster_stats-messages_received": {
+                "name": "Received"
+            },
+            "cluster_stats-messages_sent": {
+                "name": "Sent"
             }
         }
     },
     "gauge-clients": {
-        "title": "Clients on {{HOST}}",
-        "vertical": "",
+        "title": "Clients on {{HOST}} for {{PI}}",
+        "vertical": "Count",
+        "type": "stacked",
         "legend": {
             "clients-blocked": {
-                "name" : "Blocked"
+                "name": "Blocked"
             },
             "clients-connected": {
-                "name" : "Connected"
+                "name": "Connected"
+            }
+        }
+    },
+    "gauge-changes": {
+        "title": "Changes on {{HOST}} for {{PI}}",
+        "vertical": "Count",
+        "type": "stacked",
+        "legend": {
+            "changes-since_last_save": {
+                "name": "Since Last Save"
+            }
+        }
+    },
+    "gauge-db": {
+        "title": "DB on {{HOST}} for {{PI}}",
+        "vertical": "Count",
+        "type": "stacked",
+        "legend": {
+            "db-db0-expires-keys": {
+                "name": "DB0 - Expires Keys"
+            },
+            "db-db0-keys": {
+                "name": "DB0 - Keys"
             }
         }
     },
     "gauge-keys": {
-        "title": "Keys on {{HOST}}",
-        "vertical": "",
+        "title": "Keys on {{HOST}} for {{PI}}",
+        "vertical": "Count",
+        "type": "stacked",
         "legend": {
-            "changes-evicted": {
-                "name" : "Evicted"
+            "keys-evicted": {
+                "name": "Evicted"
+            },
+            "keys-expired": {
+                "name": "Expired"
             }
         }
     },
     "gauge-repl": {
-        "title": "Replication Backlog on {{HOST}}",
-        "vertical": "",
+        "title": "Replication Backlog on {{HOST}} for {{PI}}",
+        "vertical": "?",
+        "type": "stacked",
         "legend": {
             "repl-backlog_active": {
-                "name" : "Active"
+                "name": "Active"
             },
             "repl-backlog_first_byte_offset": {
-                "name" : "First Byte Offset"
+                "name": "First Byte Offset"
             },
             "repl-backlog_histlen": {
-                "name" : "Histlen"
+                "name": "History Length"
             },
             "repl-backlog_size": {
-                "name" : "Size"
+                "name": "Size"
             }
         }
     },
     "gauge-repl_offset": {
-        "title": "Repl Offset on {{HOST}}",
-        "vertical": "",
+        "title": "Replication Offset on {{HOST}} for {{PI}}",
+        "vertical": "Offset",
+        "type": "stacked",
         "legend": {
             "repl_offset-master": {
-                "name" : "Master"
+                "name": "Offset Master"
             }
         }
     },
     "gauge-slaves": {
-        "title": "Slave on {{HOST}}",
-        "vertical": "",
+        "title": "Slaves on {{HOST}} for {{PI}}",
+        "vertical": "Count",
+        "type": "stacked",
         "legend": {
             "slaves-connected": {
-                "name" : "Connected"
+                "name": "Connected"
             }
         }
     },
     "uptime": {
-        "title": "Uptime on {{HOST}}",
-        "vertical": "In Seconds",
+        "title": "Uptime on {{HOST}} for {{PI}}",
+        "vertical": "Seconds",
+        "type": "uptime",
         "legend": {
             "uptime_in_seconds": {
-                "name" : "Uptime"
+                "name": "Uptime"
             }
         }
     }

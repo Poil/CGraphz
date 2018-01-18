@@ -98,7 +98,7 @@
         "type": "stacked",
         "scale": "1000000",
         "legend": {
-            "total_bdd_size": {
+            "total_db_size": {
                 "name": "Total BDD Size"
             }
         }

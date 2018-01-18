@@ -1,1 +1,28 @@
-{}
+{
+    "vmpage_action": {
+        "title": "Numa ({{PI}}) on {{HOST}}",
+        "vertical": "vmpages/s",
+        "legend": {
+            "interleave_hit": {
+                "name": "Interleave Hit"
+            },
+            "local_node": {
+                "name": "Local node"
+            },
+            "numa_foreign": {
+                "name": "Numa Foreign"
+            },
+            "numa_hit": {
+                "name": "Numa Hit"
+            },
+            "numa_miss": {
+                "name": "Numa Miss"
+            },
+            "other_node": {
+                "name": "Other Node"
+            }
+        },
+        "legend_format": "%5.1lf"
+    }
+}
+
