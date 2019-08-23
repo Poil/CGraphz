@@ -17,7 +17,7 @@ Clone Git
 -----
 > cd /var/www/
 
-> wget https://github.com/Poil/CGraphz/archive/v2.46.3.tar.gz
+> wget https://github.com/Poil/CGraphz/archive/v2.47.0.tar.gz
 
 Or
 
