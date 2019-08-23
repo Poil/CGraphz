@@ -136,8 +136,9 @@ class Type_Base {
 
 		foreach ($rgb as $pri) {
 			$c[$pri] = dechex(round($percent * $fg[$pri]) + ((1.0 - $percent) * $bg[$pri]));
-			if ($c[$pri] == '0')
-				$c[$pri] = '00';
+			if (strlen($c[$pri]) == 1) {
+				$c[$pri] = '0' . $c[$pri];
+			}
 		}
 
 		return $c['r'].$c['g'].$c['b'];
@@ -246,10 +247,14 @@ class Type_Base {
 				# caching
 				if (is_numeric($this->cache) && $this->cache > 0)
 					header("Expires: " . date(DATE_RFC822,strtotime($this->cache." seconds")));
-				if ($style === 'svg')
+
+				if ($style === 'svg') {
 					header("content-type: image/svg+xml");
-				else
+					header('Content-Disposition: filename="' . $this->rrd_title . '.svg"');
+				} else {
 					header("content-type: image/png");
+					header('Content-Disposition: filename="' . $this->rrd_title . '.png"');
+				}
 				
 				$shellcmd = array_merge(
 					$this->rrd_graph_command($style),
