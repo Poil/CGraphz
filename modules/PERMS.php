@@ -71,7 +71,7 @@ class PERMS {
 			WHERE au.id_auth_user=:id_auth_user
                         AND pm.module=:module
 			'.$libmenu.'
-			GROUP BY component
+			GROUP BY component, menu_name
 			ORDER BY menu_order';
 		
 		$this->connSQL->bind('id_auth_user',$this->id_auth_user);
